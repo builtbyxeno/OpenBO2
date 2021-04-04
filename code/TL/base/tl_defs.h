@@ -9,6 +9,8 @@ struct tlFileBuf {
 	unsigned int UserData;
 };
 
+char _tlAssert(const char* file, int line, const char* expr, const char* desc);
+
 /*
 ==============
 tlEndianSwap64

@@ -11,6 +11,8 @@
 #include "tl_defs.h"
 #include "tl_thread.h"
 
+struct tlFileBuf;
+
 struct tagTHREADNAME_INFO
 {
 	unsigned int dwType;

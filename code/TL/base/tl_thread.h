@@ -38,22 +38,22 @@ public:
         DWORD curTID;
 
         curTID = GetCurrentThreadId();
-        if (InterlockedCompareExchange64((volatile LONG64)this->ThisPtr, curTID, curTID) == curTID)
+        if (InterlockedCompareExchange64((volatile LONGLONG*)this->ThisPtr, curTID, curTID) == curTID)
         {
-            InterlockedExchangeAdd((volatile signed int)this->ThisPtr->WriteLockCount, 1u);
+            InterlockedExchangeAdd((volatile LONG*)this->ThisPtr->WriteLockCount, 1u);
             return;
         }
         while (1)
         {
-            if (InterlockedCompareExchange64((volatile signed __int64)this->ThisPtr, curTID, 0i64))
+            if (InterlockedCompareExchange64((volatile LONGLONG*)this->ThisPtr, curTID, 0i64))
                 Sleep(0);
-            if (!InterlockedCompareExchange((volatile signed int)this->ThisPtr->ReadLockCount, 0, 0))
+            if (!InterlockedCompareExchange((volatile LONG*)this->ThisPtr->ReadLockCount, 0, 0))
                 break;
-            while (InterlockedCompareExchange64((volatile signed __int64)this->ThisPtr, 0i64, curTID) != curTID)
+            while (InterlockedCompareExchange64((volatile LONGLONG*)this->ThisPtr, 0i64, curTID) != curTID)
             Sleep(0);
         }
-        InterlockedExchangeAdd((volatile signed int)this->ThisPtr->WriteLockCount, 1u);
-        InterlockedExchange(this, 0);
+        InterlockedExchangeAdd((volatile LONG*)this->ThisPtr->WriteLockCount, 1);
+        InterlockedExchange((volatile LONG*)this, 0);
     }
 
     /*
@@ -66,19 +66,19 @@ public:
         DWORD currTID;
 
         currTID = GetCurrentThreadId();
-        if (InterlockedCompareExchange64((volatile signed __int64*)this->ThisPtr, currTID, currTID) == currTID)
+        if (InterlockedCompareExchange64((volatile LONGLONG*)this->ThisPtr, currTID, currTID) == currTID)
         {
-            InterlockedExchangeAdd((volatile signed __int32*)this->ThisPtr->ReadLockCount, 1u);
+            InterlockedExchangeAdd((volatile LONG*)this->ThisPtr->ReadLockCount, 1u);
         }
         else
         {
-            while (InterlockedCompareExchange64((volatile signed __int64*)this->ThisPtr, currTID, 0i64))
+            while (InterlockedCompareExchange64((volatile LONGLONG*)this->ThisPtr, currTID, 0i64))
                 Sleep(0);
-            InterlockedExchangeAdd((volatile signed __int32*)this->ThisPtr->ReadLockCount, 1u);
-            while (InterlockedCompareExchange64((volatile signed __int64*)this->ThisPtr, 0i64, currTID) != currTID)
+            InterlockedExchangeAdd((volatile LONG*)this->ThisPtr->ReadLockCount, 1u);
+            while (InterlockedCompareExchange64((volatile LONGLONG*)this->ThisPtr, 0i64, currTID) != currTID)
                 ;
         }
-        InterlockedExchange(this, 0);
+        InterlockedExchange((volatile LONG*)this, 0);
     }
 
     /*
@@ -92,11 +92,11 @@ public:
         LONG Target;
 
         currTID = GetCurrentThreadId();
-        if (!InterlockedExchangeAdd((volatile signed __int32*)this->ThisPtr->WriteLockCount, 0xFFFFFFFF))
+        if (!InterlockedExchangeAdd((volatile LONG*)this->ThisPtr->WriteLockCount, 0xFFFFFFFF))
         {
             Target = 0;
             InterlockedExchange(&Target, 0);
-            while (InterlockedCompareExchange64((volatile signed __int64*)this->ThisPtr, 0i64, currTID) != currTID)
+            while (InterlockedCompareExchange64((volatile LONGLONG*)this->ThisPtr, 0i64, currTID) != currTID)
                 ;
         }
     }
@@ -131,12 +131,12 @@ public:
         currTID = GetCurrentThreadId();
         if (this->ThreadId != currTID || this->ThreadId)
         {
-            while (InterlockedCompareExchange64(this->ThisPtr, currTID, 0i64))
+            while (InterlockedCompareExchange64((volatile LONGLONG*)this->ThisPtr, currTID, 0i64))
             {
                 Sleep(0);
                 currTID = currTID;
             }
-            InterlockedExchange(this, 0);
+            InterlockedExchange((volatile LONG*)this, 0);
             this->LockCount = 1;
         }
         else
