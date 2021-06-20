@@ -2,10 +2,6 @@
 #define THREADS_H
 
 extern "C" {
-	unsigned int s_cpuCount;
-	unsigned int s_affinityMaskForProcess;
-	unsigned int s_affinityMaskForCpu[8];
-
 	void SetThreadName(unsigned int, char const*);
 	void Sys_Sleep(int);
 	void NET_Sleep(unsigned int);
@@ -19,7 +15,7 @@ extern "C" {
 	void Sys_InitMainThread(void);
 	void Sys_InitThread(int);
 	unsigned long Sys_ThreadMain(void*);
-	void Sys_CreateThread(void (*)(unsigned int), unsigned int);
+	void Sys_CreateThread(unsigned int, void(__cdecl*)(unsigned int));
 	void Sys_TitleServerThreadData(void);
 	void Sys_InitDemoStreamingEvent(void);
 	void Sys_WaitForDemoStreamingEvent(void);
@@ -29,7 +25,7 @@ extern "C" {
 	void Sys_InitServerEvents(void);
 	void Sys_NotifyRenderer(void);
 	int Sys_WaitServer(int);
-	int Sys_IsDBPrintingSuppressed(void);
+	bool Sys_IsDBPrintingSuppressed(void);
 	void Sys_StartGumpLoading(void);
 	int Sys_IsLoadingGump(void);
 	int Sys_WaitForGumpLoad(int);
