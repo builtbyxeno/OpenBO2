@@ -1,5 +1,3 @@
-#ifndef TL_SYSTEM_H
-#define TL_SYSTEM_H
 #define WIN32_LEAN_AND_MEAN
 
 #include <Windows.h>
@@ -10,6 +8,9 @@
 
 #include "tl_defs.h"
 #include "tl_thread.h"
+
+#ifndef TL_SYSTEM_H
+#define TL_SYSTEM_H
 
 struct tlFileBuf;
 
