@@ -3,8 +3,6 @@
 #include <math.h>
 #include "com_math_anglevectors.h"
 
-vec3_t vec3_origin = { 0,0,0 };
-
 void AngleVectors(vec3_t const* angles, vec3_t* forward, vec3_t* right, vec3_t* up)
 {
     float angle;

@@ -3,6 +3,14 @@
 
 extern "C" {
 
+	typedef union vec2_t {
+		float v[2];
+		struct {
+			float x;
+			float y;
+		};
+	} vec2_t;
+
 	typedef union vec3_t {
 		struct {
 			float x;
@@ -34,6 +42,9 @@ extern "C" {
 		vec3_t axis[3];
 	} orientation_t;
 
+	vec2_t vec2_origin = { 0,0 };
+	vec3_t vec3_origin = { 0,0,0 };
+	vec4_t vec4_origin = { 0,0,0,0 };
 }
 
 #endif // COM_VECTOR_H

@@ -7,4 +7,4 @@ add_executable(noserver WIN32
 	"universal/com_math_anglevectors.h" 
 	"universal/com_math_anglevectors.cpp" 
 	"qcommon/threads.h" 
-	"qcommon/threads.cpp" "gfx_d3d/r_pix_profile.h")
+	"qcommon/threads.cpp" "gfx_d3d/r_pix_profile.h" "universal/com_math.h" "universal/com_math.cpp" "universal/com_vector.cpp")
