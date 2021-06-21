@@ -61,10 +61,10 @@ extern "C" {
 	float PointToLineSegmentDistSq(union vec3_t const*, union vec3_t const*, union vec3_t const*);
 	int BoxInPlanes(union vec4_t const*, unsigned int, union vec3_t const*, union vec3_t const*);
 	int SphereInPlanes(union vec4_t const*, unsigned int, union vec3_t const*, float);
-	void MatrixIdentity33(union vec3_t* const);
-	void MatrixIdentity44(union vec4_t* const);
-	void MatrixMultiply(union vec3_t const* const, union vec3_t const* const, union vec3_t* const);
-	void MatrixVecMultiply(union vec3_t const* const, union vec3_t const*, union vec3_t*);
+	void MatrixIdentity33(union vec3_t*);
+	void MatrixIdentity44(union vec4_t*);
+	void MatrixMultiply(union vec3_t const*, union vec3_t const*, union vec3_t*);
+	void MatrixVecMultiply(union vec3_t const*, union vec3_t const*, union vec3_t*);
 	void MatrixVecMultiplyProject(union vec4_t const* const, union vec3_t const*, union vec3_t*);
 	void MatrixMultiply43(union vec3_t const* const, union vec3_t const* const, union vec3_t* const);
 	void MatrixMultiply44(union vec4_t const* const, union vec4_t const* const, union vec4_t* const);

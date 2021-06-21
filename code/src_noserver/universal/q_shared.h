@@ -69,6 +69,10 @@ extern "C" {
 
 	char value1[3][2][BIG_INFO_KEY];
 
+	inline void Com_Memcpy(void* dest, const void* src, int count) {
+		memcpy(dest, src, count);
+	}
+
 	//int LongNoSwap(int);
 	int FloatWriteNoSwap(float);
 	unsigned char ColorIndex(unsigned char);

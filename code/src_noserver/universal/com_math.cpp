@@ -1,8 +1,6 @@
 #include "com_math.h"
 #include <universal/com_vector.h>
-
-#include <stdlib.h>
-#include <math.h>
+#include <universal/q_shared.h>
 
 void TRACK_com_math(void)
 {
@@ -604,52 +602,187 @@ int SphereInPlanes(vec4_t const*, unsigned int, vec3_t const*, float)
 	return 0;
 }
 
-void MatrixIdentity33(vec3_t* const)
+float identityMatrix44[] =
+{ 1.0, 0.0, 0.0, 0.0,
+   0.0, 1.0, 0.0, 0.0,
+   0.0, 0.0, 1.0, 0.0,
+   0.0, 0.0, 0.0, 1.0
+};
+
+float identityMatrix33[] =
+{ 1.0, 0.0, 0.0,
+   0.0, 1.0, 0.0,
+   0.0, 0.0, 1.0,
+};
+
+void MatrixIdentity33(vec3_t* out)
 {
+	Com_Memcpy(out, identityMatrix33, sizeof(identityMatrix33));
 }
 
-void MatrixIdentity44(vec4_t* const)
+void MatrixIdentity44(vec4_t* out)
 {
+	Com_Memcpy(out, identityMatrix44, sizeof(identityMatrix44));
 }
 
-void MatrixMultiply(vec3_t const* const, vec3_t const* const, vec3_t* const)
+void MatrixMultiply(vec3_t const* in1, vec3_t const* in2, vec3_t* out)
 {
+	out->x = ((in1->x * in2->x) + (in2[1].x * in1->y)) + (in2[2].x * in1->z);
+	out->y = ((in2[1].y * in1->y) + (in2->y * in1->x)) + (in2[2].y * in1->z);
+	out->z = ((in2[1].z * in1->y) + (in2->z * in1->x)) + (in2[2].z * in1->z);
+	out[1].x = ((in1[1].y * in2[1].x) + (in1[1].x * in2->x)) + (in1[1].z * in2[2].x);
+	out[1].y = ((in1[1].y * in2[1].y) + (in1[1].x * in2->y)) + (in1[1].z * in2[2].y);
+	out[1].z = ((in1[1].y * in2[1].z) + (in1[1].x * in2->z)) + (in1[1].z * in2[2].z);
+	out[2].x = ((in2[1].x * in1[2].y) + (in2->x * in1[2].x)) + (in2[2].x * in1[2].z);
+	out[2].y = ((in2[1].y * in1[2].y) + (in2->y * in1[2].x)) + (in2[2].y * in1[2].z);
+	out[2].z = ((in2[1].z * in1[2].y) + (in2->z * in1[2].x)) + (in2[2].z * in1[2].z);
 }
 
-void MatrixVecMultiply(vec3_t const* const, vec3_t const*, vec3_t*)
+void MatrixVecMultiply(vec3_t const* mulMat, vec3_t const* mulVec, vec3_t* solution)
 {
+	solution->x = ((mulMat->y * mulVec->y) + (mulMat->x * mulVec->x)) + (mulMat->z * mulVec->z);
+	solution->y = ((mulMat[1].y * mulVec->y) + (mulMat[1].x * mulVec->x)) + (mulMat[1].z * mulVec->z);
+	solution->z = ((mulMat[2].y * mulVec->y) + (mulMat[2].x * mulVec->x)) + (mulMat[2].z * mulVec->z);
 }
 
-void MatrixVecMultiplyProject(vec4_t const* const, vec3_t const*, vec3_t*)
+void MatrixVecMultiplyProject(vec4_t const* mulMat, vec3_t const* mulVec, vec3_t* solution)
 {
+	solution->x = ((((mulMat->v[1] * mulVec->y) + (mulMat->v[0] * mulVec->x)) + (mulMat->v[2] * mulVec->z)) + mulMat->v[3]) * 1.0 / ((((mulMat[3].v[1] * mulVec->y) + (mulMat[3].v[0] * mulVec->x)) + (mulMat[3].v[2] * mulVec->z)) + mulMat[3].v[3]);
+	solution->y = ((((mulMat[1].v[1] * mulVec->y) + (mulMat[1].v[0] * mulVec->x)) + (mulMat[1].v[2] * mulVec->z)) + mulMat[1].v[3]) * (1.0 / ((((mulMat[3].v[1] * mulVec->y) + (mulMat[3].v[0] * mulVec->x)) + (mulMat[3].v[2] * mulVec->z)) + mulMat[3].v[3]));
+	solution->z = ((((mulMat[2].v[1] * mulVec->y) + (mulMat[2].v[0] * mulVec->x)) + (mulMat[2].v[2] * mulVec->z)) + mulMat[2].v[3]) * (1.0 / ((((mulMat[3].v[1] * mulVec->y) + (mulMat[3].v[0] * mulVec->x)) + (mulMat[3].v[2] * mulVec->z)) + mulMat[3].v[3]));
 }
 
-void MatrixMultiply43(vec3_t const* const, vec3_t const* const, vec3_t* const)
+void MatrixMultiply43(vec3_t const* in1, vec3_t const* in2, vec3_t* out)
 {
+	out->x = ((in1->x * in2->x) + (in2[1].x * in1->y)) + (in2[2].x * in1->z);
+	out[1].x = ((in1[1].y * in2[1].x) + (in1[1].x * in2->x)) + (in1[1].z * in2[2].x);
+	out[2].x = ((in1[2].y * in2[1].x) + (in1[2].x * in2->x)) + (in1[2].z * in2[2].x);
+	out->y = ((in2[1].y * in1->y) + (in2->y * in1->x)) + (in2[2].y * in1->z);
+	out[1].y = ((in1[1].y * in2[1].y) + (in1[1].x * in2->y)) + (in1[1].z * in2[2].y);
+	out[2].y = ((in1[2].y * in2[1].y) + (in1[2].x * in2->y)) + (in1[2].z * in2[2].y);
+	out->z = ((in1->x * in2->z) + (in1->y * in2[1].z)) + (in2[2].z * in1->z);
+	out[1].z = ((in1[1].y * in2[1].z) + (in1[1].x * in2->z)) + (in1[1].z * in2[2].z);
+	out[2].z = ((in1[2].y * in2[1].z) + (in1[2].x * in2->z)) + (in1[2].z * in2[2].z);
+	out[3].x = (((in1[3].y * in2[1].x) + (in1[3].x * in2->x)) + (in1[3].z * in2[2].x)) + in2[3].x;
+	out[3].y = (((in1[3].y * in2[1].y) + (in1[3].x * in2->y)) + (in1[3].z * in2[2].y)) + in2[3].y;
+	out[3].z = (((in1[3].y * in2[1].z) + (in1[3].x * in2->z)) + (in1[3].z * in2[2].z)) + in2[3].z;
 }
 
-void MatrixMultiply44(vec4_t const* const, vec4_t const* const, vec4_t* const)
+void MatrixMultiply44(vec4_t const* in1, vec4_t const* in2, vec4_t* out)
 {
+	out[0] = in1[0] * in2[0] + in1[1] * in2[4] + in1[2] * in2[8] + in1[3] * in2[12];
+	out[1] = in1[0] * in2[1] + in1[1] * in2[5] + in1[2] * in2[9] + in1[3] * in2[13];
+	out[2] = in1[0] * in2[2] + in1[1] * in2[6] + in1[2] * in2[10] + in1[3] * in2[14];
+	out[3] = in1[0] * in2[3] + in1[1] * in2[7] + in1[2] * in2[11] + in1[3] * in2[15];
+	out[4] = in1[4] * in2[0] + in1[5] * in2[4] + in1[6] * in2[8] + in1[7] * in2[12];
+	out[5] = in1[4] * in2[1] + in1[5] * in2[5] + in1[6] * in2[9] + in1[7] * in2[13];
+	out[6] = in1[4] * in2[2] + in1[5] * in2[6] + in1[6] * in2[10] + in1[7] * in2[14];
+	out[7] = in1[4] * in2[3] + in1[5] * in2[7] + in1[6] * in2[11] + in1[7] * in2[15];
+	out[8] = in1[8] * in2[0] + in1[9] * in2[4] + in1[10] * in2[8] + in1[11] * in2[12];
+	out[9] = in1[8] * in2[1] + in1[9] * in2[5] + in1[10] * in2[9] + in1[11] * in2[13];
+	out[10] = in1[8] * in2[2] + in1[9] * in2[6] + in1[10] * in2[10] + in1[11] * in2[14];
+	out[11] = in1[8] * in2[3] + in1[9] * in2[7] + in1[10] * in2[11] + in1[11] * in2[15];
+	out[12] = in1[12] * in2[0] + in1[13] * in2[4] + in1[14] * in2[8] + in1[15] * in2[12];
+	out[13] = in1[12] * in2[1] + in1[13] * in2[5] + in1[14] * in2[9] + in1[15] * in2[13];
+	out[14] = in1[12] * in2[2] + in1[13] * in2[6] + in1[14] * in2[10] + in1[15] * in2[14];
+	out[15] = in1[12] * in2[3] + in1[13] * in2[7] + in1[14] * in2[11] + in1[15] * in2[15];
 }
 
-void MatrixTranspose(vec3_t const* const, vec3_t* const)
+void MatrixTranspose(vec3_t const* in, vec3_t* out)
 {
+	out->x = in->x;
+	out->y = in[1].x;
+	out->z = in[2].x;
+	out[1].x = in->y;
+	out[1].y = in[1].y;
+	out[1].z = in[2].y;
+	out[2].x = in->z;
+	out[2].y = in[1].z;
+	out[2].z = in[2].z;
 }
 
-void MatrixTranspose44(vec4_t const* const, vec4_t* const)
+void MatrixTranspose44(vec4_t const* in, vec4_t* out)
 {
+	*out = *in;
+	out[1] = in[4];
+	out[2] = in[8];
+	out[3] = in[12];
+	out[4] = in[1];
+	out[5] = in[5];
+	out[6] = in[9];
+	out[7] = in[13];
+	out[8] = in[2];
+	out[9] = in[6];
+	out[10] = in[10];
+	out[11] = in[14];
+	out[12] = in[3];
+	out[13] = in[7];
+	out[14] = in[11];
+	out[15] = in[15];
 }
 
-void MatrixInverse(vec3_t const* const, vec3_t* const)
+void MatrixInverse(vec3_t const* in, vec3_t* out)
 {
+	float det;
+
+	det = ((((in[1].y * in[2].z) - (in[1].z * in[2].y)) * in->x) - (((in->y * in[2].z) - (in->z * in[2].y)) * in[1].x)) + (((in->y * in[1].z) - (in->z * in[1].y)) * in[2].x);
+
+	out->x = ((in[1].y * in[2].z) - (in[1].z * in[2].y)) * (1.0 / det);
+	out->y = -(((in[2].z * in->y) - (in[2].y * in->z)) * (1.0 / det));
+	out->z = ((in[1].z * in->y) - (in[1].y * in->z)) * (1.0 / det);
+	out[1].x = -(((in[1].x * in[2].z) - (in[1].z * in[2].x)) * (1.0 / det));
+	out[1].y = ((in[2].z * in->x) - (in->z * in[2].x)) * (1.0 / det);
+	out[1].z = -(((in[1].z * in->x) - (in[1].x * in->z)) * (1.0 / det));
+	out[2].x = ((in[1].x * in[2].y) - (in[1].y * in[2].x)) * (1.0 / det);
+	out[2].y = -(((in[2].y * in->x) - (in->y * in[2].x)) * (1.0 / det));
+	out[2].z = ((in[1].y * in->x) - (in[1].x * in->y)) * (1.0 / det);
 }
 
-void MatrixInverseOrthogonal43(vec3_t const* const, vec3_t* const)
+void MatrixInverseOrthogonal43(vec3_t const* in, vec3_t* out)
 {
+	vec3_t origin;
+	float m_x, m_y, m_z;
+
+	MatrixTranspose(in, out);
+	m_x = 0.0 - in[3].x;
+	m_y = 0.0 - in[3].y;
+	m_z = 0.0 - in[3].z;
+	origin.x = m_x;
+	origin.v[1] = m_z;
+	if (origin == out[3]) {
+		m_x = origin.x;
+		m_y = origin.y;
+		m_z = origin.z;
+	}
+	out[3].x = ((out[1].x * m_x) + (out->x * m_x)) + (out[2].x * m_z);
+	out[3].y = ((out->y * m_x) + (out[1].y * m_y)) + (out[2].y * m_z);
+	out[3].z = ((out->z * m_x) + (out[1].z * m_y)) + (out[2].z * m_z);
 }
 
-void MatrixInverse44(vec4_t const* const, vec4_t* const)
+void MatrixInverse44(vec4_t const* mat, vec4_t* dst)
 {
+	float det;
+	vec4_t row1, row2, row3, row4;
+
+	row1 = mat[0]; // |  x  y  z  w  |
+	row2 = mat[1]; // |  x  y  z  w  |
+	row3 = mat[2]; // |  x  y  z  w  |
+	row4 = mat[3]; // |  x  y  z  w  |
+
+	det = row1.w * row2.z * row3.y * row4.x - row1.z * row2.w * row3.y * row4.x -
+		row1.w * row2.y * row3.z * row4.x + row1.y * row2.w * row3.z * row4.x +
+		row1.z * row2.y * row3.w * row4.x - row1.y * row2.z * row3.w * row4.x -
+		row1.w * row2.z * row3.x * row4.y + row1.z * row2.w * row3.x * row4.y +
+		row1.w * row2.x * row3.z * row4.y - row1.x * row2.w * row3.z * row4.y -
+		row1.z * row2.x * row3.w * row4.y + row1.x * row2.z * row3.w * row4.y +
+		row1.w * row2.y * row3.x * row4.z - row1.y * row2.w * row3.x * row4.z -
+		row1.w * row2.x * row3.y * row4.z + row1.x * row2.w * row3.y * row4.z +
+		row1.y * row2.x * row3.w * row4.z - row1.x * row2.y * row3.w * row4.z -
+		row1.z * row2.y * row3.x * row4.w + row1.y * row2.z * row3.x * row4.w +
+		row1.z * row2.x * row3.y * row4.w - row1.x * row2.z * row3.y * row4.w -
+		row1.y * row2.x * row3.z * row4.w + row1.x * row2.y * row3.z * row4.w;
+
+	dst[0].x = 0;
 }
 
 void MatrixTransformVector44(vec4_t const*, vec4_t const* const, vec4_t*)
