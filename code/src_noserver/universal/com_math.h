@@ -7,9 +7,14 @@
 #define	YAW	1	// left / right
 #define	ROLL 2	// fall over
 
+#define minBounds 131072.0f
+#define maxBounds -131072.0f
+
 #define Square(x) ((x)*(x))
 
 extern "C" {
+	static unsigned int holdrand_0 = 2309737967;
+
 	inline float AngleNormalize360(const float angle) {
 		float sa;
 		float result;
@@ -78,11 +83,11 @@ extern "C" {
 	void MatrixTransposeTransformVector43(union vec3_t const*, union vec3_t const* const, union vec3_t*);
 	void MatrixTransformVector43Equals(union vec3_t*, union vec3_t const* const);
 	void VectorAngleMultiply(union vec2_t*, float);
-	void UnitQuatToAxis(union vec4_t const*, union vec3_t* const);
+	void UnitQuatToAxis(union vec4_t const*, union vec3_t*);
 	void UnitQuatToForward(union vec4_t const*, union vec3_t*);
 	void QuatSlerp(union vec4_t const*, union vec4_t const*, float, union vec4_t*);
 	float RotationToYaw(union vec2_t const*);
-	void FinitePerspectiveMatrix(float, float, float, float, union vec4_t* const);
+	void FinitePerspectiveMatrix(float, float, float, float, union vec4_t*);
 	void SpotLightViewMatrix(union vec3_t const*, float, union vec4_t* const);
 	void SpotLightViewMatrixDir3(union vec3_t const*, union vec3_t const*, union vec3_t const*, union vec4_t* const);
 	void SpotLightProjectionMatrix(float, float, float, union vec4_t* const);
@@ -97,7 +102,7 @@ extern "C" {
 	void _ClearBounds(union vec3_t*, union vec3_t*);
 	void AddPointToBounds(union vec3_t const*, union vec3_t*, union vec3_t*);
 	void AddPointToBounds2D(union vec2_t const*, union vec2_t*, union vec2_t*);
-	int BoundsOverlap(union vec3_t const*, union vec3_t const*, union vec3_t const*, union vec3_t const*);
+	bool BoundsOverlap(union vec3_t const*, union vec3_t const*, union vec3_t const*, union vec3_t const*);
 	void ExpandBounds(union vec3_t const*, union vec3_t const*, union vec3_t*, union vec3_t*);
 	void AxisClear(union vec3_t* const);
 	void Vec3PackNormAxis(union vec3_t const* const, union vec3_t* const);

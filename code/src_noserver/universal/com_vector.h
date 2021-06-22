@@ -1,6 +1,8 @@
 #ifndef COM_VECTOR_H
 #define COM_VECTOR_H
 
+#include <DirectXMath.h>
+
 extern "C" {
 
 	typedef union vec2_t {
@@ -84,11 +86,21 @@ extern "C" {
 		return out;
 	}
 
-	inline vec4_t operator ==(const vec4_t vec1, const vec4_t vec2) {
-		vec4_t out;
-
-		return out;
+	inline void Vec3Cross(const vec3_t* v0, const vec3_t* v1, vec3_t* cross) {
+		cross->x = (v1->z * v0->y) - (v0->z * v1->y);
+		cross->y = (v0->z * v1->x) - (v0->x * v1->z);
+		cross->z = (v0->x * v1->y) - (v1->x * v0->y);
 	}
+
+	typedef struct cplane_s
+	{
+		vec3_t normal;
+		float dist;
+		unsigned __int8 type;
+		unsigned __int8 signbits;
+		unsigned __int8 pad[2];
+	} cplane_s;
+
 }
 
 #endif // COM_VECTOR_H

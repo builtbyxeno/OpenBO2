@@ -123,9 +123,20 @@ void vectosignedangles(vec3_t const* vec, vec3_t* angles)
     }
 }
 
-float vectosignedpitch(vec3_t const*)
+float vectosignedpitch(vec3_t const* vec)
 {
-    return 0.0f;
+    if (vec->y == 0.0 && vec->x == 0.0)
+    {
+        if (-vec->z < 0.0)
+            return -90.0;
+        else
+            return 90.0;
+    }
+    else
+    {
+        float t = atan2f(vec->z, sqrtf(vec->y * vec->y + vec->x * vec->x));
+        return ((t * -180.0) * 0.31830987);
+    }
 }
 
 void AxisToSignedAngles(vec3_t const* axis, vec3_t* angles)
