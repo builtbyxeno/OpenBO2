@@ -7,9 +7,17 @@ void TRACK_com_math(void)
 {
 }
 
-double I_normCDF(double)
+long double I_normCDF(long double x)
 {
-	return 0.0;
+	double k = 1.0 / (1.0 + 0.2316419 * x);
+	double k_sum = k * (0.319381530 + k * (-0.356563782 + k * (1.781477937 + k * (-1.821255978 + 1.330274429 * k))));
+
+	if (x >= 0.0) {
+		return (1.0 - (1.0 / (pow(2 * M_PI, 0.5))) * exp(-0.5 * x * x) * k_sum);
+	}
+	else {
+		return 1.0 - I_normCDF(-x);
+	}
 }
 
 float random(void)
@@ -333,34 +341,18 @@ void ByteToDir(int b, vec3_t* dir)
 	}
 }
 
-int VecNCompareCustomEpsilon(vec3_t const* v0, vec3_t const* v1, float epsilon, int coordCount)
-{
-	int v4; // ecx
-	const vec3_t* i; // eax
-
-	v4 = 0;
-	if (coordCount <= 0)
-		return 1;
-	for (i = v1; ((*(&i->x + v0 - v1) - i->x) * (*(&i->x + v0 - v1) - i->x)) <= (epsilon * epsilon); i = (i + 4))
-	{
-		if (++v4 >= coordCount)
-			return 1;
-	}
-	return 0;
-}
-
 void Vec3ProjectionCoords(vec3_t const* dir, int* xCoord, int* yCoord)
 {
 	float v3; // xmm1_4
 	float v4; // xmm0_4
-	float (quat->v[0] * 2.0); // xmm2_4
+	float v5; // xmm2_4
 
 	v3 = dir->x * dir->x;
 	v4 = dir->z * dir->z;
-	(quat->v[0] * 2.0) = dir->y * dir->y;
-	if (v4 < v3 || v4 < (quat->v[0] * 2.0))
+	v5 = dir->y * dir->y;
+	if (v4 < v3 || v4 < v5)
 	{
-		if ((quat->v[0] * 2.0) < v3 || (quat->v[0] * 2.0) < v4)
+		if (v5 < v3 || v5 < v4)
 		{
 			if (dir->x <= 0.0)
 			{
@@ -1389,18 +1381,94 @@ void AxisToQuat(vec3_t const* const, vec4_t*)
 {
 }
 
-void QuatLerp(vec4_t const*, vec4_t const*, float, vec4_t*)
+void QuatLerp(vec4_t const* qa, vec4_t const* qb, float frac, vec4_t* out)
 {
+	if (((((qb->v[1] * qa->v[1]) + (qa->v[0] * qb->v[0])) + (qa->v[2] * qb->v[2])) + (qa->v[3] * qb->v[3])) < 0.0)
+	{
+		out->v[0] = -qb->v[0];
+		out->v[1] = -qb->v[1];
+		out->v[2] = -qb->v[2];
+		out->v[3] = -qb->v[3];
+		out->v[0] = ((out->v[0] - qa->v[0]) * frac) + qa->v[0];
+		out->v[1] = ((out->v[1] - qa->v[1]) * frac) + qa->v[1];
+		out->v[2] = ((out->v[2] - qa->v[2]) * frac) + qa->v[2];
+		out->v[3] = ((out->v[3] - qa->v[3]) * frac) + qa->v[3];
+	}
+	else
+	{
+		out->v[0] = ((qb->v[0] - qa->v[0]) * frac) + qa->v[0];
+		out->v[1] = ((qb->v[1] - qa->v[1]) * frac) + qa->v[1];
+		out->v[2] = ((qb->v[2] - qa->v[2]) * frac) + qa->v[2];
+		out->v[3] = ((qb->v[3] - qa->v[3]) * frac) + qa->v[3];
+	}
 }
 
-bool CullBoxFromCone(vec3_t const*, vec3_t const*, float, vec3_t const*, vec3_t const*)
+bool CullBoxFromCone(vec3_t const* coneOrg, vec3_t const* coneDir, float cosHalfFov, vec3_t const* boxCenter, vec3_t const* boxHalfSize)
 {
-	return false;
+	bool result;
+	float v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23;
+
+	if (coneDir->x < 0.0)
+		v7 = -1.0f;
+	else
+		v7 = 1.0f;
+	v8 = (boxCenter->x - coneOrg->x) - (boxHalfSize->x * v7);
+	v21 = coneDir->y;
+	if (v21 < 0.0)
+		v9 = -1.0f;
+	else
+		v9 = 1.0f;
+	v22 = boxHalfSize->y;
+	v10 = (boxCenter->y - coneOrg->y) - (v22 * v9);
+	v11 = coneDir->z;
+	if (v11 >= 0.0)
+		v6 = 1.0f;
+	else
+		v6 = -1.0f;
+	v12 = (boxCenter->z - coneOrg->z) - (boxHalfSize->z * v6);
+	v13 = ((v21 * v10) + (coneDir->x * v8)) + (v11 * v12);
+	result = 1;
+	if (v13 < 0.0)
+	{
+		v15 = (coneDir->x * -v13) + v8;
+		v16 = (v21 * -v13) + v10;
+		v17 = (v11 * -v13) + v12;
+		v18 = ((v16 * v16) + (v15 * v15)) + (v17 * v17);
+		v23 = v13 * v13;
+		v19 = 1.0 - (cosHalfFov * cosHalfFov);
+		if ((v23 * v19) >= ((cosHalfFov * cosHalfFov) * v18)
+			|| (v20 = cosHalfFov / sqrtf(v19 * v18),
+				((((((((v15 * v20) + coneDir->x) * (boxCenter->x - coneOrg->x))
+					+ (((v16 * v20) + v21) * (boxCenter->y - coneOrg->y)))
+					+ (((v17 * v20) + coneDir->z) * (boxCenter->z - coneOrg->z)))
+					- boxHalfSize->x * ((v15 * v20) + coneDir->x))
+					- v22 * ((v16 * v20) + v21))
+					- boxHalfSize->z * ((v17 * v20) + coneDir->z)) < 0.0))
+		{
+			result = 0;
+		}
+	}
+	return result;
 }
 
-bool CullBoxFromSphere(vec3_t const*, float, vec3_t const*, vec3_t const*)
+bool CullBoxFromSphere(vec3_t const* sphereOrg, float radius, vec3_t const* boxCenter, vec3_t const* boxHalfSize)
 {
-	return false;
+	float v4; // xmm3_4
+	float v5; // xmm2_4
+	float v6; // xmm0_4
+
+	if ((sphereOrg->x - boxCenter->x - boxHalfSize->x) < 0.0)
+		v4 = 0.0;
+	else
+		v4 = sphereOrg->x - boxCenter->x - boxHalfSize->x;
+	if ((sphereOrg->y - boxCenter->y - boxHalfSize->y) < 0.0)
+		v5 = 0.0;
+	else
+		v5 = sphereOrg->y - boxCenter->y - boxHalfSize->y;
+	v6 = sphereOrg->z - boxCenter->z - boxHalfSize->z;
+	if (v6 < 0.0)
+		v6 = 0.0;
+	return (((v4 * v4) + (v5 * v5)) + (v6 * v6)) > (radius * radius);
 }
 
 bool CullBoxFromConicSectionOfSphere(vec3_t const*, vec3_t const*, float, float, vec3_t const*, vec3_t const*)
@@ -1408,7 +1476,7 @@ bool CullBoxFromConicSectionOfSphere(vec3_t const*, vec3_t const*, float, float,
 	return false;
 }
 
-bool CullSphereFromCone(vec3_t const*, vec3_t const*, float, vec3_t const*, float)
+bool CullSphereFromCone(vec3_t const* coneOrg, vec3_t const* coneDir, float cosHalfFov, vec3_t const* sphereCenter, float radius)
 {
 	return false;
 }
@@ -1417,50 +1485,236 @@ void colorTempToXYZ(float, vec4_t*)
 {
 }
 
-void colorTempMatrix(vec4_t* const, float)
+void colorTempMatrix(vec4_t* finalMatrix, float colorTemp)
 {
 }
 
-void colorHueMatrix(vec4_t* const, float)
+void colorHueMatrix(vec4_t* finalMatrix, float hue)
 {
 }
 
-void colorSaturationMatrix(vec4_t* const, float)
+void colorSaturationMatrix(vec4_t* finalMatrix, float saturation)
 {
+	finalMatrix->v[0] = ((1.0 - saturation) * 0.25) + saturation;
+	finalMatrix->v[1] = ((1.0 - saturation) * 0.25);
+	finalMatrix->v[2] = ((1.0 - saturation) * 0.25);
+	finalMatrix[2].v[0] = ((1.0 - saturation) * 0.25);
+	finalMatrix[2].v[1] = ((1.0 - saturation) * 0.25);
+	finalMatrix->v[3] = 0.0;
+	finalMatrix[1].v[0] = ((1.0 - saturation) * 0.5);
+	finalMatrix[1].v[1] = ((1.0 - saturation) * 0.5) + saturation;
+	finalMatrix[1].b = ((1.0 - saturation) * 0.5);
+	finalMatrix[2].v[2] = ((1.0 - saturation) * 0.25) + saturation;
+	finalMatrix[3].v[1] = 0.0;
+	finalMatrix[3].v[2] = 0.0;
+	finalMatrix[3].v[3] = 1.0;
 }
 
-float I_fnormPDF(float)
+float I_fnormPDF(float x)
 {
-	return 0.0f;
+	return (1.0 / sqrt(2.0 * M_PI)) * exp(-0.5 * x * x);
 }
 
-float I_fnormCDF(float)
+float I_fnormCDF(float x)
 {
-	return 0.0f;
+	return I_normCDF(x);
 }
 
-void RotatePointAroundVector(vec3_t*, vec3_t const*, vec3_t const*, float)
+void RotatePointAroundVector(vec3_t* dst, vec3_t const* dir, vec3_t const* point, float degrees)
 {
+	unsigned int v11;
+	float rad, v12, v13, v14; // [esp+2Ch] [ebp-9Ch]
+	vec3_t vup; // [esp+34h] [ebp-94h] BYREF
+	vec3_t vf; // [esp+40h] [ebp-88h] BYREF
+	vec3_t vr; // [esp+4Ch] [ebp-7Ch] BYREF
+	vec3_t m[3]; // [esp+58h] [ebp-70h]
+	vec3_t tmpmat[3]; // [esp+7Ch] [ebp-4Ch]
+	vec3_t rot[3]; // [esp+A0h] [ebp-28h]
+
+	vf.y = dir->y;
+	vf.x = dir->x;
+	vf.z = dir->z;
+	vup.x = dir->x * dir->x;
+	vup.v[1] = dir->z * dir->z;
+	vup.v[2] = dir->y * dir->y;
+	v11 = vup.x > dir->y * dir->y;
+	if (*(&vup.x + v11) > (dir->z * dir->z))
+		v11 = 2;
+	v12 = *(&dir->x + v11);
+	vr.x = dir->x * v12;
+	vr.y = dir->y * v12;
+	vr.z = dir->z * v12;
+	*(&vr.x + v11) = *(&vr.x + v11) + 1.0;
+	v13 = sqrtf(((vr.y * vr.y) + (vr.x * vr.x)) + (vr.z * vr.z));
+	if (v13 >= 0.0)
+		v13 = 1.0;
+	v14 = 1.0 / v13;
+	vr.x = vr.x * v14;
+	vr.y = vr.y * v14;
+	vr.z = vr.z * v14;
+	Vec3Cross(&vr, &vf, &vup);
+	m[0].x = vr.x;
+	m[1].y = vup.y;
+	m[2].z = vf.z;
+	rot[0].v[2] = 0.0;
+	rot[0].v[3] = 0.0;
+	rot[2].x = 0.0;
+	rot[2].y = 0.0;
+	rot[2].z = 1.0;
+	rot[1].v[1] = 1.0;
+	rot[0].x = 1.0;
+	rad = degrees * 0.017453292;
+	rot[0].x = cos(rad);
+	rot[0].y = sin(rad);
+	tmpmat[1].x = ((rot[0].y * vup.y) + (rot[0].x * vr.y)) + (rot[2].x * vf.y);
+	tmpmat[2].x = ((rot[0].y * vup.z) + (rot[0].x * vr.z)) + (rot[2].x * vf.z);
+	tmpmat[1].z = ((rot[1].z * vup.y) + (rot[0].z * vr.y)) + (rot[2].z * vf.y);
+	tmpmat[2].z = ((rot[1].z * vup.z) + (rot[0].z * vr.z)) + (rot[2].z * vf.z);
+	rot[0].x = (((((rot[0].x * vup.x) + (rot[0].y * vr.x)) + (rot[2].y * vf.x)) * vup.x) + ((((rot[0].y * vup.x) + (rot[0].x * vr.x)) + (rot[2].x * vf.x)) * m[0].x)) + ((((rot[1].z * vup.x) + (rot[0].z * vr.x)) + (rot[2].z * vf.x)) * vf.x);
+	rot[0].z = (((((rot[0].x * vup.x) + (rot[0].y * vr.x)) + (rot[2].y * vf.x)) * vup.z) + ((((rot[0].y * vup.x) + (rot[0].x * vr.x)) + (rot[2].x * vf.x)) * vr.z)) + ((((rot[1].z * vup.x) + (rot[0].z * vr.x)) + (rot[2].z * vf.x)) * m[2].z);
+	rot[1].z = (((((rot[0].x * vup.y) + (rot[0].y * vr.y)) + (rot[2].y * vf.y)) * vup.z) + (tmpmat[1].x * vr.z)) + (tmpmat[1].z * m[2].z);
+	dst->x = ((((((((rot[0].x * vup.x) + (rot[0].y * vr.x)) + (rot[2].y * vf.x)) * m[1].y) + ((((rot[0].y * vup.x) + (rot[0].x * vr.x)) + (rot[2].x * vf.x)) * vr.y)) + ((((rot[1].z * vup.x) + (rot[0].z * vr.x)) + (rot[2].z * vf.x)) * vf.y)) * point->y) + (rot[0].x * point->x)) + (rot[0].z * point->z);
+	dst->y = ((((((((rot[0].x * vup.y) + (rot[0].y * vr.y)) + (rot[2].y * vf.y)) * m[1].y) + (tmpmat[1].x * vr.y)) + (tmpmat[1].z * vf.y)) * point->y) + (((((((rot[0].x * vup.y) + (rot[0].y * vr.y)) + (rot[2].y * vf.y)) * vup.x) + (tmpmat[1].x * m[0].x)) + (tmpmat[1].z * vf.x)) * point->x)) + (rot[1].z * point->z);
+	dst->z = ((((((((rot[0].x * vup.z) + (rot[0].y * vr.z)) + (rot[2].y * vf.z)) * m[1].y) + (tmpmat[2].x * vr.y)) + (tmpmat[2].z * vf.y)) * point->y) + (((((((rot[0].x * vup.z) + (rot[0].y * vr.z)) + (rot[2].y * vf.z)) * vup.x) + (tmpmat[2].x * m[0].x)) + (tmpmat[2].z * vf.x)) * point->x)) + (((((((rot[0].x * vup.z) + (rot[0].y * vr.z)) + (rot[2].y * vf.z)) * vup.z) + (tmpmat[2].x * vr.z)) + (tmpmat[2].z * m[2].z)) * point->z);
 }
 
-void Vec3Basis_RightHanded(vec3_t const*, vec3_t*, vec3_t*)
+void Vec3Basis_RightHanded(vec3_t const* forward, vec3_t* left, vec3_t* up)
 {
+	float v3; // xmm3_4
+	const char* v4; // eax
+	float v5; // xmm1_4
+	float v6; // xmm2_4
+	int v7; // eax
+	float v8; // xmm0_4
+	float v9; // xmm0_4
+	float v10; // xmm3_4
+	int v11[3]; // [esp+2Ch] [ebp-10h]
+
+	v3 = 1.0;
+	v5 = forward->y * forward->y;
+	v6 = forward->z * forward->z;
+	v11[0] = forward->x * forward->x;
+	v11[1] = v5;
+	v11[2] = v6;
+	v7 = v11[0] > v5;
+	if (v11[v7] > v6)
+		v7 = 2;
+	v8 = -(forward->x + v7);
+	up->x = forward->x * v8;
+	up->y = v8 * forward->y;
+	up->z = v8 * forward->z;
+	*(&up->x + v7) = *(&up->x + v7) + v3;
+	v9 = sqrtf(((up->x * up->x) + (up->y * up->y)) + (up->z * up->z));
+	if (-v9 >= 0.0)
+		v9 = v3;
+	v10 = v3 / v9;
+	up->x = up->x * v10;
+	up->y = up->y * v10;
+	up->z = up->z * v10;
+	Vec3Cross(up, forward, left);
 }
 
-void UnitQuatToAngles(vec4_t const*, vec3_t*)
+void UnitQuatToAngles(vec4_t const* quat, vec3_t* angles)
 {
+	vec3_t axis[3];
+
+	UnitQuatToAxis(quat, axis);
+	AxisToAngles(axis, angles);
 }
 
-float RadiusFromBounds(vec3_t const*, vec3_t const*)
+float RadiusFromBounds(vec3_t const* mins, vec3_t const* maxs)
 {
-	return 0.0f;
+	float v2;
+	float v3;
+	float v5;
+	float v6;
+
+	v2 = mins->x;
+	if (v2 <= maxs->x)
+		v2 = maxs->x;
+	v6 = v2;
+	v3 = mins->y;
+	if (v3 <= maxs->y)
+		v3 = maxs->y;
+	if (mins->z <= maxs->z)
+		v5 = maxs->z;
+	else
+		v5 = mins->z;
+	return sqrtf(v5 * v5 + v3 * v3 + v6 * v6);
 }
 
-float RadiusFromBounds2D(vec2_t const*, vec2_t const*)
+float RadiusFromBounds2D(vec2_t const* mins, vec2_t const* maxs)
 {
-	return 0.0f;
+	float v2;
+	float v4;
+
+	v2 = mins->v[0];
+	if (v2 <= maxs->v[0])
+		v2 = maxs->v[0];
+	if (mins->v[1] <= maxs->v[1])
+		v4 = maxs->v[1];
+	else
+		v4 = mins->v[1];
+	return sqrtf(v4 * v4 + v2 * v2);
 }
 
-void SnapPointToIntersectingPlanes(float const** const, vec3_t*, float, float)
+void SnapPointToIntersectingPlanes(float const** planes, vec3_t* xyz, float snapGrid, float snapEpsilon)
 {
+	float v4; // xmm3_4
+	vec3_t* v5; // eax
+	int v6; // edx
+	int axis; // esi
+	float v8; // xmm0_4
+	const float* v9; // eax
+	float v10; // xmm2_4
+	float v11; // xmm4_4
+	float v12; // xmm5_4
+	const float* v13; // eax
+	const float* v14; // eax
+	float v15; // xmm6_4
+	vec3_t snapped; // [esp+10h] [ebp-10h] BYREF
+
+	v4 = snapEpsilon;
+	v5 = xyz;
+	v6 = &snapped - xyz;
+	axis = 3;
+	do
+	{
+		v8 = (((1.0 / snapGrid) * v5->x) + 9.313225746154785e-10) * snapGrid;
+		if (snapEpsilon <= v8 - v5->x)
+			*(&v5->x + v6) = v5->x;
+		else
+			*(&v5->x + v6) = v8;
+		v5 = (v5 + 4);
+		--axis;
+	}   while (axis);
+	if (snapped.x != xyz->x || snapped.y != xyz->y || snapped.z != xyz->z)
+	{
+		v10 = 0.0;
+		if (
+			((((*planes)[1] * snapped.y) + (**planes * snapped.x)) + ((*planes)[2] * snapped.z))
+			- (*planes)[3] > 0.0)
+			v10 = ((((*planes)[1] * snapped.y) + (**planes * snapped.x)) + ((*planes)[2] * snapped.z)) - (*planes)[3];
+		v11 = xyz->y;
+		v12 = xyz->x;
+		v9 = *planes;
+		if ((((v9[1] * v11) + (*v9 * xyz->x)) + (v9[2] * xyz->z)) - v9[3] > snapEpsilon)
+			v4 = (((v9[1] * v11) + (*v9 * xyz->x)) + (v9[2] * xyz->z)) - v9[3];
+		v13 = planes[1];
+		if ((((v13[1] * snapped.y) + (*v13 * snapped.x)) + (v13[2] * snapped.z)) - v13[3] > v10)
+			v10 = (((v13[1] * snapped.y) + (*v13 * snapped.x)) + (v13[2] * snapped.z)) - v13[3];
+		if ((((v13[1] * v11) + (*v13 * v12)) + (v13[2] * xyz->z)) - v13[3] > v4)
+			v4 = (((v13[1] * v11) + (*v13 * v12)) + (v13[2] * xyz->z)) - v13[3];
+		v14 = planes[2];
+		v15 = snapped.z;
+		if ((((v14[1] * snapped.y) + (*v14 * snapped.x)) + (v14[2] * snapped.z)) - v14[3] > v10)
+			v10 = (((v14[1] * snapped.y) + (*v14 * snapped.x)) + (v14[2] * snapped.z)) - v14[3];
+		if ((((v14[1] * v11) + (*v14 * v12)) + (v14[2] * xyz->z)) - v14[3] > v4)
+			v4 = (((v14[1] * v11) + (*v14 * v12)) + (v14[2] * xyz->z)) - v14[3];
+		if (v4 > v10)
+		{
+			*&xyz->x = *&snapped.x;
+			xyz->z = v15;
+		}
+	}
 }
