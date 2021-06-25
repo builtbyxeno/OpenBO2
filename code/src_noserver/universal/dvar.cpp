@@ -11,13 +11,17 @@ typedef struct dvarCallBack_t
 	const dvar_t* dvar;
 } dvarCallBack_t;
 
-static bool s_isLoadingAutoExecGlobalFlag, s_isDvarSystemActive, s_nextFreeCallback;
+bool s_areDvarsSorted, s_canSetConfigDvars, s_isLoadingAutoExecGlobalFlag, s_isDvarSystemActive, s_nextFreeCallback;
 
-static dvarCallBack_t s_dvarCallbackPool[64];
+dvarCallBack_t s_dvarCallbackPool[64];
 
-static FastCriticalSection g_dvarCritSect;
+FastCriticalSection g_dvarCritSect;
 
-static dvar_t* s_dvarHashTable[1080];
+dvar_t* s_dvarHashTable[1080];
+dvar_t s_dvarPool[4320];
+const dvar_t* dvar_cheats, *s_sortedDvars[4320];
+
+int g_dvarCount, g_dvar_modifiedFlags;
 
 void TRACK_dvar(void)
 {
@@ -1200,141 +1204,575 @@ void Dvar_GetResetVec3(dvar_t const* dvar, vec3_t* result)
 
 char const** Dvar_GetDomainEnumStrings(dvar_t const* dvar)
 {
-	return nullptr;
+	if (!dvar)
+		return 0;
+	return dvar->domain.enumeration.strings;
 }
 
 int Dvar_GetDomainEnumStringCount(dvar_t const* dvar)
 {
-	return 0;
+	if (!dvar)
+		return 0;
+	return dvar->domain.enumeration.stringCount;
 }
 
 int Dvar_GetDomainIntMin(dvar_t const* dvar)
 {
-	return 0;
+	if (!dvar || dvar->type == DVAR_TYPE_ENUM)
+		return 0;
+	return dvar->domain.enumeration.stringCount;
 }
 
-int Dvar_GetDomainIntMax(dvar_t const*)
+int Dvar_GetDomainIntMax(dvar_t const* dvar)
 {
-	return 0;
+	if (!dvar)
+		return 0;
+	if (dvar->type == DVAR_TYPE_ENUM)
+		return dvar->domain.enumeration.stringCount;
+	return dvar->domain.integer.max;
 }
 
-__int64 Dvar_GetDomainInt64Min(dvar_t const*)
+__int64 Dvar_GetDomainInt64Min(dvar_t const* dvar)
 {
-	return 0;
+	if (!dvar)
+		return 0i64;
+	return dvar->domain.integer64.min;
 }
 
-__int64 Dvar_GetDomainInt64Max(dvar_t const*)
+__int64 Dvar_GetDomainInt64Max(dvar_t const* dvar)
 {
-	return 0;
+	if (!dvar)
+		return 0i64;
+	return dvar->domain.integer64.max;
 }
 
-float Dvar_GetDomainFloatMin(dvar_t const*)
+float Dvar_GetDomainFloatMin(dvar_t const* dvar)
 {
-	return 0.0f;
+	if (!dvar)
+		return 0.0f;
+	return dvar->domain.value.min;
 }
 
-float Dvar_GetDomainFloatMax(dvar_t const*)
+float Dvar_GetDomainFloatMax(dvar_t const* dvar)
 {
-	return 0.0f;
+	if (!dvar)
+		return 0.0f;
+	return dvar->domain.value.max;
 }
 
-float Dvar_GetDomainVecMin(dvar_t const*)
+float Dvar_GetDomainVecMin(dvar_t const* dvar)
 {
-	return 0.0f;
+	if (!dvar)
+		return 0.0;
+	return dvar->domain.value.min;
 }
 
-float Dvar_GetDomainVecMax(dvar_t const*)
+float Dvar_GetDomainVecMax(dvar_t const* dvar)
 {
-	return 0.0f;
+	if (!dvar)
+		return 0.0;
+	return dvar->domain.value.max;
 }
 
-dvarType_t Dvar_GetType(dvar_t const*)
+dvarType_t Dvar_GetType(dvar_t const* dvar)
 {
-	return dvarType_t();
+	if (dvar)
+		return dvar->type;
+	else
+		return DVAR_TYPE_COUNT;
 }
 
-DvarValue Dvar_GetCurrent(dvar_t const*)
+DvarValue Dvar_GetCurrent(dvar_t const* dvar)
 {
-	return DvarValue();
+	if (!dvar)
+		return DvarValue();
+	return dvar->current;
+
 }
 
-DvarLimits Dvar_GetDomain(dvar_t const*)
+DvarLimits Dvar_GetDomain(dvar_t const* dvar)
 {
-	return DvarLimits();
+	if (!dvar)
+		return DvarLimits();
+	return dvar->domain;
 }
 
-char const* Dvar_GetDescription(dvar_t const*)
+char const* Dvar_GetDescription(dvar_t const* dvar)
 {
-	return nullptr;
+	if (!dvar)
+		return "";
+	return dvar->description;
 }
 
-unsigned int Dvar_GetFlags(dvar_t const*)
+unsigned int Dvar_GetFlags(dvar_t const* dvar)
 {
-	return 0;
+	if (!dvar)
+		return 0;
+	return dvar->flags;
 }
 
-char const* Dvar_GetName(dvar_t const*)
+char const* Dvar_GetName(dvar_t const* dvar)
 {
-	return nullptr;
+	if (!dvar)
+		return "";
+	return dvar->name;
 }
 
 void Dvar_Shutdown(void)
 {
+	dvar_t* dvar;
+
+	Sys_LockWrite(&g_dvarCritSect);
+	s_isDvarSystemActive = 0;
+	if (g_dvarCount > 0) 
+	{
+		for (int dvarIter = 0; dvarIter < g_dvarCount; ++dvarIter)
+		{
+			dvar = &s_dvarPool[dvarIter];
+			if (dvar->type == DVAR_TYPE_STRING)
+			{
+				if (Dvar_ShouldFreeCurrentString(dvar))
+				{
+					Dvar_FreeString(&dvar->current);
+				}
+
+				dvar->current.integer = 0;
+				if (Dvar_ShouldFreeResetString(dvar))
+				{
+					Dvar_FreeString(&dvar->reset);
+				}
+
+				dvar->reset.integer = 0;
+				if (Dvar_ShouldFreeLatchedString(dvar))
+				{
+					Dvar_FreeString(&dvar->latched);
+				}
+				dvar->latched.integer = 0;
+			}
+
+			if (dvar->flags & 0x4000)
+			{
+				FreeString(dvar->name);
+			}
+		}
+	}
+	g_dvarCount = 0;
+	dvar_cheats = NULL;
+	g_dvar_modifiedFlags = 0;
+	memset(s_dvarHashTable, 0, sizeof(s_dvarHashTable));
+	Sys_UnlockWrite(&g_dvarCritSect);
 }
 
-void Dvar_PerformUnregistration(dvar_t*)
+void Dvar_PerformUnregistration(dvar_t* dvar)
 {
+	DvarValue resetString;
+
+	if (!(dvar->flags & 0x4000))
+	{
+		dvar->flags |= 0x4000u;
+		dvar->name = CopyString(dvar->name);
+	}
+	if (dvar->type != DVAR_TYPE_STRING)
+	{
+		Dvar_CopyString(Dvar_DisplayableLatchedValue(dvar), &dvar->current);
+		if (Dvar_ShouldFreeLatchedString(dvar))
+		{
+			Dvar_FreeString(&dvar->latched);
+		}
+
+		dvar->latched.integer = 0;
+		Dvar_WeakCopyString(dvar->current.string, &dvar->latched);
+		if (Dvar_ShouldFreeResetString(dvar))
+		{
+			Dvar_FreeString(&dvar->reset);
+		}
+
+		dvar->reset.integer = 0;
+		Dvar_AssignResetStringValue(dvar, &resetString, Dvar_DisplayableResetValue(dvar));
+		dvar->reset.integer = resetString.integer;
+		dvar->type = DVAR_TYPE_STRING;
+	}
 }
 
-void Dvar_UpdateResetValue(dvar_t*, DvarValue)
+void Dvar_UpdateResetValue(dvar_t* dvar, DvarValue value)
 {
+	DvarValue oldString, resetString;
+
+	switch (dvar->type)
+	{
+	case DVAR_TYPE_FLOAT_2:
+		dvar->reset.integer64 = value.integer64;
+		break;
+	case DVAR_TYPE_FLOAT_3:
+	case DVAR_TYPE_LINEAR_COLOR_RGB:
+	case DVAR_TYPE_COLOR_XYZ:
+		dvar->reset.integer64 = value.integer64;
+		dvar->reset.vector.v[2] = value.vector.v[2];
+		break;
+	case DVAR_TYPE_FLOAT_4:
+		dvar->reset = value;
+		break;
+	case DVAR_TYPE_STRING:
+		if (dvar->reset.integer != value.integer)
+		{
+			bool shouldFree = Dvar_ShouldFreeResetString(dvar);
+			if (shouldFree)
+			{
+				oldString.integer = dvar->reset.integer;
+			}
+			Dvar_AssignResetStringValue(dvar, &resetString, value.string);
+			dvar->reset.integer = resetString.integer;
+			if (shouldFree)
+			{
+				Dvar_FreeString(&oldString);
+			}
+		}
+		break;
+	default:
+		dvar->reset = value;
+		break;
+	}
 }
 
-void Dvar_ChangeResetValue(dvar_t const*, DvarValue)
+void Dvar_ChangeResetValue(dvar_t* dvar, DvarValue value)
 {
+	Dvar_UpdateResetValue(dvar, value);
 }
 
-void Dvar_UpdateValue(dvar_t*, DvarValue)
+void Dvar_UpdateValue(dvar_t* dvar, DvarValue value)
 {
+	const char* oldString;
+	bool shouldFree;
+
+	switch (dvar->type)
+	{
+	case DVAR_TYPE_FLOAT_2:
+		dvar->current.integer = value.integer;
+		dvar->current.vector.v[1] = value.vector.v[1];
+		dvar->latched.integer = value.integer;
+		dvar->latched.vector.v[1] = value.vector.v[1];
+		break;
+	case DVAR_TYPE_FLOAT_3:
+	case DVAR_TYPE_LINEAR_COLOR_RGB:
+	case DVAR_TYPE_COLOR_XYZ:
+		dvar->current.integer = value.integer;
+		dvar->current.vector.v[1] = value.vector.v[1];
+		dvar->current.vector.v[2] = value.vector.v[2];
+		dvar->latched.integer = value.integer;
+		dvar->latched.vector.v[1] = value.vector.v[1];
+		dvar->latched.vector.v[2] = value.vector.v[2];
+		break;
+	case DVAR_TYPE_FLOAT_4:
+		dvar->current.integer = value.integer;
+		dvar->current.vector.v[1] = value.vector.v[1];
+		dvar->current.vector.v[2] = value.vector.v[2];
+		dvar->current.vector.v[3] = value.vector.v[3];
+		dvar->latched.integer = value.integer;
+		dvar->latched.vector.v[1] = value.vector.v[1];
+		dvar->latched.vector.v[2] = value.vector.v[2];
+		dvar->latched.vector.v[3] = value.vector.v[3];
+		break;
+	case DVAR_TYPE_STRING:
+		if (value.integer != dvar->current.integer)
+		{
+			shouldFree = Dvar_ShouldFreeCurrentString(dvar);
+			if (shouldFree)
+				oldString = value.string;
+			Dvar_AssignCurrentStringValue(dvar, &value, value.string);
+			dvar->current.integer = value.integer;
+			if (Dvar_ShouldFreeLatchedString(dvar))
+				Dvar_FreeString(&dvar->latched);
+			dvar->latched.integer = 0;
+			Dvar_WeakCopyString(dvar->current.string, &dvar->latched);
+			if (shouldFree)
+				FreeString(oldString);
+		}
+		break;
+	default:
+		dvar->current.integer64 = value.integer64;
+		dvar->latched.integer64 = value.integer64;
+		dvar->current.string = value.string;
+		dvar->latched.string = value.string;
+		break;
+	}
 }
 
-void Dvar_MakeExplicitType(dvar_t*, char const*, dvarType_t, unsigned int, DvarValue, DvarLimits)
+void Dvar_MakeExplicitType(dvar_t* dvar, char const* dvarName, dvarType_t type, unsigned int flags, DvarValue resetValue, DvarLimits domain)
 {
+	bool wasString;
+	DvarValue castValue;
+
+	dvar->type = type;
+	if (flags & 0x40 || flags & 0x80 && dvar_cheats && !dvar_cheats->current.enabled)
+	{
+		castValue = resetValue;
+	}
+	else
+	{
+		castValue = Dvar_StringToValue(dvar->type, dvar->domain, dvar->current.string);
+		castValue = Dvar_ClampValueToDomain(type, Dvar_StringToValue(dvar->type, dvar->domain,
+			dvar->current.string), resetValue, domain);
+	}
+
+	if (dvar->type == DVAR_TYPE_STRING && castValue.integer)
+		castValue.string = CopyString(castValue.string);
+
+	if (dvar->type != 7 && Dvar_ShouldFreeCurrentString(dvar))
+	{
+		Dvar_FreeString(&dvar->current);
+	}
+
+	dvar->current.integer = 0;
+	if (Dvar_ShouldFreeLatchedString(dvar))
+	{
+		Dvar_FreeString(&dvar->latched);
+	}
+
+	dvar->latched.integer = 0;
+	if (Dvar_ShouldFreeResetString(dvar))
+	{
+		Dvar_FreeString(&dvar->reset);
+	}
+
+	dvar->reset.integer = 0;
+	Dvar_UpdateResetValue(dvar, resetValue);
+
+	Dvar_UpdateValue(dvar, castValue);
+	g_dvar_modifiedFlags |= flags;
+	if (wasString)
+	{
+		FreeString(castValue.string);
+	}
 }
 
-void Dvar_ReinterpretDvar(dvar_t*, char const*, dvarType_t, unsigned int, DvarValue, DvarLimits)
+void Dvar_ReinterpretDvar(dvar_t* dvar, char const* dvarName, dvarType_t type, unsigned int flags, DvarValue value, DvarLimits domain)
 {
+	DvarValue resetValue;
+
+	if ((dvar->flags & 0x4000) != 0 && (flags & 0x4000) == 0)
+	{
+		resetValue.string = value.string;
+		Dvar_PerformUnregistration(dvar);
+		FreeString(dvar->name);
+		dvar->name = dvarName;
+		dvar->flags &= 0xFFFFBFFF;
+
+		Dvar_MakeExplicitType(dvar, dvarName, type, flags, resetValue, domain);
+	}
 }
 
-dvar_t const* Dvar_RegisterNew(char const*, dvarType_t, unsigned int, DvarValue, DvarLimits, char const*)
+dvar_t const* Dvar_RegisterNew(char const* dvarName, dvarType_t type, unsigned int flags, DvarValue value, DvarLimits domain, char const* description)
 {
-	return nullptr;
+	dvar_t* dvar;
+	int hash;
+
+	Sys_LockWrite(&g_dvarCritSect);
+	if (g_dvarCount >= 4320)
+	{
+		Sys_UnlockWrite(&g_dvarCritSect);
+		//Com_Error(ERR_FATAL, "Can't create dvar '%s': %i dvars already exist", g_dvarCount, 4320);
+	}
+
+	dvar = &s_dvarPool[g_dvarCount];
+	s_sortedDvars[g_dvarCount] = dvar;
+	s_areDvarsSorted = false;
+	++g_dvarCount;
+
+	dvar->type = type;
+
+	if ((flags & 0x4000) != 0)
+		dvar->name = CopyString(dvarName);
+	else
+		dvar->name = dvarName;
+
+	switch (type)
+	{
+	case DVAR_TYPE_BOOL:
+		dvar->current.enabled = value.enabled;
+		dvar->latched.enabled = value.enabled;
+		dvar->reset.enabled = value.enabled;
+		break;
+	case DVAR_TYPE_FLOAT:
+		dvar->current.value = value.value;
+		dvar->latched.value = value.value;
+		dvar->reset.value = value.value;
+		break;
+	case DVAR_TYPE_FLOAT_2:
+		dvar->current.integer = value.integer;
+		dvar->current.vector.v[1] = value.vector.v[1];
+		dvar->latched.integer = value.integer;
+		dvar->latched.vector.v[1] = value.vector.v[1];
+		dvar->reset.integer = value.integer;
+		dvar->reset.vector.v[1] = value.vector.v[1];
+		break;
+	case DVAR_TYPE_FLOAT_3:
+	case DVAR_TYPE_FLOAT_4:
+		dvar->current.integer = value.integer;
+		dvar->current.vector.v[1] = value.vector.v[1];
+		dvar->current.vector.v[2] = value.vector.v[2];
+		dvar->current.vector.v[3] = value.vector.v[3];
+		dvar->latched.integer = value.integer;
+		dvar->latched.vector.v[1] = value.vector.v[1];
+		dvar->latched.vector.v[2] = value.vector.v[2];
+		dvar->latched.vector.v[3] = value.vector.v[3];
+		dvar->reset.integer = value.integer;
+		dvar->reset.vector.v[1] = value.vector.v[1];
+		dvar->reset.vector.v[2] = value.vector.v[2];
+		dvar->reset.vector.v[3] = value.vector.v[3];
+		break;
+	case DVAR_TYPE_COLOR_XYZ:
+		dvar->current.integer = value.integer;
+		dvar->current.vector.v[1] = value.vector.v[1];
+		dvar->current.vector.v[2] = value.vector.v[2];
+		dvar->latched.integer = value.integer;
+		dvar->latched.vector.v[1] = value.vector.v[1];
+		dvar->latched.vector.v[2] = value.vector.v[2];
+		dvar->reset.integer = value.integer;
+		dvar->reset.vector.v[1] = value.vector.v[1];
+		dvar->reset.vector.v[2] = value.vector.v[2];
+		break;
+	case DVAR_TYPE_INT:
+		dvar->current.integer = value.integer;
+		dvar->latched.integer = value.integer;
+		dvar->reset.integer = value.integer;
+		break;
+	case DVAR_TYPE_ENUM:
+		dvar->current.integer = value.integer;
+		dvar->latched.integer = value.integer;
+		dvar->reset.integer = value.integer;
+		break;
+	case DVAR_TYPE_STRING:
+		Dvar_CopyString(value.string, &dvar->current);
+		Dvar_WeakCopyString(dvar->current.string, &dvar->latched);
+		Dvar_WeakCopyString(dvar->current.string, &dvar->reset);
+		break;
+	case DVAR_TYPE_INT64:
+		dvar->current.integer64 = value.integer64;
+		dvar->latched.integer64 = value.integer64;
+		dvar->reset.integer64 = value.integer64;
+		break;
+	default:
+		dvar->current.integer64 = value.integer64;
+		dvar->latched.integer64 = value.integer64;
+		dvar->reset.integer64 = value.integer64;
+		dvar->current.string = value.string;
+		dvar->latched.string = value.string;
+		dvar->reset.string = value.string;
+		break;
+	}
+	dvar->domain = domain;
+	dvar->modified = 0;
+	dvar->flags = flags;
+	dvar->description = description;
+	hash = Com_HashString(dvarName, 0);
+	dvar->hash = hash;
+
+	for (dvar_t* var = s_dvarHashTable[hash & 0x3FF]; var; var = var->hashNext)
+	{
+		if (I_stricmp(dvarName, var->name) && hash == var->hash)
+		{
+			//Com_Error(ERR_FATAL, "dvar name hash collision between '%s' and '%s' Please change one of these names to remove the hash collision\n", dvarName, var->name);
+		}
+	}
+
+	dvar->hashNext = s_dvarHashTable[hash & 0x3FF];
+	s_dvarHashTable[hash & 0x3FF] = dvar;
+	Sys_UnlockWrite(&g_dvarCritSect);
+
+	return dvar;
 }
 
-void Dvar_AddFlags(dvar_t const*, int)
+void Dvar_AddFlags(dvar_t* dvar, int flags)
 {
+	dvar->flags |= flags;
 }
 
-int Com_SaveDvarsToBuffer(char const** const, unsigned int, char*, unsigned int)
+int Com_SaveDvarsToBuffer(char const** const dvarNames, unsigned int numDvars, char* buffer, unsigned int bufSize)
 {
+	const char* string;
+	int ret;
+	int written;
+	unsigned int i;
+	dvar_t* dvar;
+
+	ret = 1;
+	for (i = 0; i < numDvars; ++i)
+	{
+		dvar = Dvar_FindVar(dvarNames[i]);
+		assert(dvar);
+		string = Dvar_DisplayableValue(dvar);
+		written = _snprintf(buffer, bufSize, "%s \"%s\"\n", dvar->name, string);
+		if (written < 0)
+		{
+			return 0;
+		}
+
+		buffer += written;
+		bufSize -= written;
+	}
+
+	return ret;
+}
+
+void Dvar_SetCanSetConfigDvars(bool canSetConfigDvars)
+{
+	s_canSetConfigDvars = canSetConfigDvars;
+}
+
+bool Dvar_CanSetConfigDvar(dvar_t const* dvar)
+{
+	if (dvar)
+	{
+		if ((dvar->flags & 0x20000) != 0 && Sys_IsMainThread())
+			return s_canSetConfigDvars;
+		else
+			return true;
+	}
+	else
+		return false;
+}
+
+bool Dvar_CanChangeValue(dvar_t const* dvar, DvarValue value, DvarSetSource source)
+{
+	char* reason;
+
+	if (!dvar)
+	{
+		return 0;
+	}
+
+	if (Dvar_ValuesEqual(dvar->type, value, dvar->reset))
+	{
+		return 1;
+	}
+
+	reason = NULL;
+	if (dvar->flags & 0x40)
+	{
+		reason = va("%s is read only.\n", dvar->name);
+	}
+	else if (dvar->flags & 0x10)
+	{
+		reason = va("%s is write protected.\n", dvar->name);
+	}
+	else if (dvar->flags & 0x80 && !dvar_cheats->current.enabled)
+	{
+		if (source == 1 || source == 2)
+		{
+			reason = va("%s is cheat protected.\n", dvar->name);
+		}
+	}
+
+	if (!reason)
+	{
+		return 1;
+	}
+
+	//Com_Printf(CON_CHANNEL_ERROR, reason);
 	return 0;
 }
 
-void Dvar_SetCanSetConfigDvars(bool)
-{
-}
-
-bool Dvar_CanSetConfigDvar(dvar_t const*)
-{
-	return false;
-}
-
-bool Dvar_CanChangeValue(dvar_t const*, DvarValue, DvarSetSource)
-{
-	return false;
-}
-
-void Dvar_SetVariant(dvar_t*, DvarValue, DvarSetSource)
+void Dvar_SetVariant(dvar_t* dvar, DvarValue value, DvarSetSource source)
 {
 }
 
