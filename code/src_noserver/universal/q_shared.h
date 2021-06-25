@@ -7,6 +7,9 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <math.h>
+#include <synchapi.h>
+
+#include <qcommon/threads_interlock.h>
 
 typedef struct cspField_t
 {
@@ -70,6 +73,25 @@ char value1[3][2][BIG_INFO_KEY];
 inline void Com_Memcpy(void* dest, const void* src, int count) {
 	memcpy(dest, src, count);
 }
+
+inline int Com_HashString(const char* fname, int len)
+{
+	int hash;
+	int i;
+
+	if (!fname)
+	{
+		return 0;
+	}
+
+	hash = 5381;
+	for (i = 0; fname[i] && (!len || i < len); ++i)
+	{
+		hash = tolower(fname[i]) + 33 * hash;
+	}
+	return hash;
+}
+
 
 //int LongNoSwap(int);
 int FloatWriteNoSwap(float);

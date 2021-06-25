@@ -4,7 +4,20 @@
 #include <universal/com_memory.h>
 #include <universal/com_math.h>
 
-static bool s_isLoadingAutoExecGlobalFlag, s_isDvarSystemActive;
+typedef struct dvarCallBack_t
+{
+	bool needsCallback;
+	void(__cdecl* callback)(const dvar_t*);
+	const dvar_t* dvar;
+} dvarCallBack_t;
+
+static bool s_isLoadingAutoExecGlobalFlag, s_isDvarSystemActive, s_nextFreeCallback;
+
+static dvarCallBack_t s_dvarCallbackPool[64];
+
+static FastCriticalSection g_dvarCritSect;
+
+static dvar_t* s_dvarHashTable[1080];
 
 void TRACK_dvar(void)
 {
@@ -315,7 +328,7 @@ int Dvar_StringToEnum(DvarLimits const* domain, char const* string)
 	return -1337;
 }
 
-void Dvar_StringToColor(char const* string, unsigned char* const color)
+void Dvar_StringToColor(char const* string, unsigned char* color)
 {
 	vec4_t colorVec;
 
@@ -629,218 +642,573 @@ void Dvar_VectorDomainToString(int components, DvarLimits domain, char* outBuffe
 	}
 }
 
-char const* Dvar_DomainToString_Internal(dvarType_t, DvarLimits, char*, int, int*)
+char const* Dvar_DomainToString_Internal(dvarType_t type, DvarLimits domain, char* outBuffer, int outBufferLen, int* outLineCount)
 {
-	return nullptr;
+	char* outBufferEnd, char* outBufferWalk;
+	int charsWritten, stringIndex;
+
+	outBufferEnd = &outBuffer[outBufferLen];
+	if (outLineCount)
+	{
+		*outLineCount = 0;
+	}
+
+	switch (type) {
+	case DVAR_TYPE_BOOL:
+		_snprintf(outBuffer, outBufferLen, "Domain is 0 or 1");
+		break;
+	case DVAR_TYPE_FLOAT:
+		if (domain.value.min == -FLT_MAX)
+		{
+			if (domain.value.max == FLT_MAX)
+				_snprintf(outBuffer, outBufferLen, "Domain is any number");
+			else
+				_snprintf(outBuffer, outBufferLen, "Domain is any number %g or smaller", domain.value.max);
+		}
+		else
+		{
+			if (domain.value.max == 3.4028235e38)
+				_snprintf(outBuffer, outBufferLen, "Domain is any number %g or bigger", domain.value.min);
+			else
+				_snprintf(outBuffer, outBufferLen, "Domain is any number from %g to %g", domain.value.min, domain.value.max);
+		}
+		break;
+	case DVAR_TYPE_FLOAT_2:
+		Dvar_VectorDomainToString(2, domain, outBuffer, outBufferLen);
+		break;
+	case DVAR_TYPE_COLOR_XYZ:
+		Dvar_VectorDomainToString(3, domain, outBuffer, outBufferLen);
+		break;
+	case DVAR_TYPE_FLOAT_4:
+		Dvar_VectorDomainToString(4, domain, outBuffer, outBufferLen);
+		break;
+	case DVAR_TYPE_INT:
+		if (domain.integer.min == INT_MIN)
+		{
+			if (domain.integer.max == INT_MAX)
+				_snprintf(outBuffer, outBufferLen, "Domain is any integer");
+			else
+				_snprintf(outBuffer, outBufferLen, "Domain is any integer %i or smaller", domain.integer.max);
+		}
+		else if (domain.integer.max == INT_MAX)
+			_snprintf(outBuffer, outBufferLen, "Domain is any integer %i or bigger", domain.integer.min);
+		else
+			_snprintf(outBuffer, outBufferLen, "Domain is any integer from %i to %i", domain.integer64.min);
+		break;
+	case DVAR_TYPE_ENUM:
+		charsWritten = _snprintf(outBuffer, outBufferEnd - outBuffer, "Domain is one of the following:");
+		if (charsWritten >= 0)
+		{
+			outBufferWalk = &outBuffer[charsWritten];
+			for (stringIndex = 0; stringIndex < domain.enumeration.stringCount; ++stringIndex)
+			{
+				charsWritten = _snprintf(
+					outBufferWalk,
+					outBufferEnd - outBufferWalk,
+					"\n  %2i: %s",
+					stringIndex,
+					domain.enumeration.strings[stringIndex]);
+				if (charsWritten < 0)
+				{
+					break;
+				}
+				if (outLineCount)
+				{
+					++* outLineCount;
+				}
+				outBufferWalk += charsWritten;
+			}
+		}
+		break;
+	case DVAR_TYPE_STRING:
+		_snprintf(outBuffer, outBufferLen, "Domain is any text");
+		break;
+	case DVAR_TYPE_COLOR:
+		_snprintf(outBuffer, outBufferLen, "Domain is any 4-component color, in RGBA format");
+		break;
+	case DVAR_TYPE_INT64:
+		if (!domain.integer.min && domain.integer.max == 0x80000000)
+		{
+			if (domain.integer64.max == INT64_MAX)
+			{
+				_snprintf(outBuffer, outBufferLen, "Domain is any integer");
+			}
+			else
+			{
+				_snprintf(outBuffer, outBufferLen, "Domain is any integer %lli or smaller", domain.integer64.max);
+			}
+		}
+		else
+		{
+			if (domain.integer64.max == INT64_MAX)
+				_snprintf(outBuffer, outBufferLen, "Domain is any integer %lli or bigger", domain.integer64.min);
+			else
+				_snprintf(
+					outBuffer,
+					outBufferLen,
+					"Domain is any integer from %lli to %lli",
+					domain.integer64.min,
+					domain.integer64.max);
+		}
+		break;
+	}
+
+	*(outBufferEnd - 1) = 0;
+	return outBuffer;
 }
 
-char const* Dvar_DomainToString_GetLines(dvarType_t, DvarLimits, char*, int, int*)
+char const* Dvar_DomainToString_GetLines(dvarType_t type, DvarLimits domain, char* outBuffer, int outBufferLen, int* outLineCount)
 {
-	return nullptr;
+	return Dvar_DomainToString_Internal(type, domain, outBuffer, outBufferLen, outLineCount);
 }
 
 void Dvar_PrintDomain(dvarType_t, DvarLimits)
 {
+	char domainBuffer[1024];
+	//Com_Printf(10, "  %s\n", Dvar_DomainToString_Internal(type, domain, domainBuffer, 1024, 0));
 }
 
-int Dvar_ValuesEqual(dvarType_t, DvarValue, DvarValue)
+bool Dvar_ValuesEqual(dvarType_t type, DvarValue val0, DvarValue val1)
+{
+	vec4_t b;
+	vec4_t a;
+
+	a = val0.vector;
+	b = val1.vector;
+
+	switch (type)
+	{
+	case DVAR_TYPE_BOOL:
+		return val0.enabled == val1.enabled;
+	case DVAR_TYPE_FLOAT:
+		return val0.value == val1.value;
+	case DVAR_TYPE_FLOAT_2:
+		if (a.v[0] != b.v[0] || a.v[1] != b.v[1])
+			return false;
+		else
+			return true;
+	case DVAR_TYPE_FLOAT_3:
+	case DVAR_TYPE_LINEAR_COLOR_RGB:
+	case DVAR_TYPE_COLOR_XYZ:
+		if (a.v[0] != b.v[0] || a.v[1] != b.v[1] || a.v[2] != b.v[2])
+			return false;
+		else
+			return true;
+	case DVAR_TYPE_FLOAT_4:
+		return Vec4Compare(&a, &b);
+	case DVAR_TYPE_INT:
+		return val0.integer == val1.integer;
+	case DVAR_TYPE_ENUM:
+		return val0.integer == val1.integer;
+	case DVAR_TYPE_STRING:
+		return strcmp(val0.string, val1.string);
+	case DVAR_TYPE_COLOR:
+		return val0.integer == val1.integer;
+	case DVAR_TYPE_INT64:
+		return val0.integer64 == val1.integer64;
+	}
+}
+
+void Dvar_SetLatchedValue(dvar_t* dvar, DvarValue value)
+{
+	switch (dvar->type)
+	{
+	case DVAR_TYPE_BOOL:
+		dvar->latched.enabled = value.enabled;
+		break;
+	case DVAR_TYPE_FLOAT:
+		dvar->latched.value = value.value;
+		break;
+	case DVAR_TYPE_FLOAT_2:
+		dvar->latched.value = value.value;
+		dvar->latched.vector.v[1] = value.vector.v[1];
+		break;
+	case DVAR_TYPE_FLOAT_3:
+	case DVAR_TYPE_LINEAR_COLOR_RGB:
+	case DVAR_TYPE_COLOR_XYZ:
+		dvar->latched.value = value.value;
+		dvar->latched.vector.v[1] = value.vector.v[1];
+		dvar->latched.vector.v[2] = value.vector.v[2];
+		break;
+	case DVAR_TYPE_INT:
+		dvar->latched.integer = value.integer;
+		break;
+	case DVAR_TYPE_ENUM:
+		dvar->latched.integer = value.integer;
+		break;
+	case DVAR_TYPE_STRING:
+		dvar->latched.string = value.string;
+		break;
+	case DVAR_TYPE_INT64:
+		dvar->latched.integer64 = value.integer64;
+		break;
+	default:
+		dvar->latched = value;
+		break;
+	}
+}
+
+bool Dvar_HasLatchedValue(dvar_t const* dvar)
+{
+	return Dvar_ValuesEqual(dvar->type, dvar->current, dvar->latched) == 0;
+}
+
+dvarCallBack_t* findCallBackForDvar(dvar_t const* dvar)
+{
+	dvarCallBack_t* result;
+
+	int currCallback = 0;
+	if (s_nextFreeCallback <= 0)
+		return 0;
+	for (result = s_dvarCallbackPool; result->dvar->hash != dvar->hash; ++result)
+	{
+		if (++currCallback >= s_nextFreeCallback)
+			return 0;
+	}
+	return result;
+}
+
+dvar_t* Dvar_FindMalleableVar(int dvarHash)
+{
+	dvar_t* var;
+
+	_InterlockedExchangeAdd(&g_dvarCritSect.readCount, 1u);
+	while (g_dvarCritSect.writeCount)
+	{
+		//NET_Sleep(0);
+	}
+
+	for (var = s_dvarHashTable[dvarHash & 0x3FF]; var; var = var->hashNext)
+	{
+		if (var->hash == dvarHash)
+		{
+			Sys_UnlockRead(&g_dvarCritSect);
+			return var;
+		}
+	}
+
+	Sys_UnlockRead(&g_dvarCritSect);
+
+	return 0;
+}
+
+dvar_t* Dvar_FindMalleableVar(char const* dvarName)
+{
+	int hash;
+
+	hash = Com_HashString(dvarName, 0);
+	return Dvar_FindMalleableVar(hash);
+}
+
+dvar_t* Dvar_FindVar(char const* dvarName)
+{
+	if (!*dvarName)
+		return 0;
+	return Dvar_FindMalleableVar(dvarName);
+}
+
+dvar_t* Dvar_FindVar(int dvarHash)
+{
+	return Dvar_FindMalleableVar(dvarHash);
+}
+
+void Dvar_ClearModified(dvar_t* dvar)
+{
+	dvar->modified = 0;
+}
+
+void Dvar_SetModified(dvar_t* dvar)
+{
+	dvar->modified = 1;
+}
+
+bool Dvar_GetModified(dvar_t const* dvar)
+{
+	if (!dvar)
+		return 0;
+	return dvar->modified;
+}
+
+int Dvar_GetInt(int dvarHash)
+{
+	dvar_t* dvar = Dvar_FindVar(dvarHash);
+	if (!dvar)
+		return 0;
+
+	switch (dvar->type) {
+	case DVAR_TYPE_INT:
+	case DVAR_TYPE_BOOL:
+		return dvar->current.enabled;
+	case DVAR_TYPE_FLOAT:
+		return (int)dvar->current.value;
+	case DVAR_TYPE_ENUM:
+		return dvar->current.integer;
+	default:
+		return Dvar_StringToInt(dvar->current.string);
+	}
+}
+
+unsigned int Dvar_GetUnsignedInt(dvar_t const* dvar)
+{
+	if (!dvar)
+		return 0;
+	return dvar->current.integer;
+}
+
+float Dvar_GetFloat(int dvarHash)
+{
+	dvar_t* dvar = Dvar_FindMalleableVar(dvarHash);
+	if (!dvar)
+		return 0.0f;
+
+	if (dvar->type == DVAR_TYPE_FLOAT)
+		return dvar->current.value;
+	if (dvar->type == DVAR_TYPE_INT)
+		return (float)dvar->current.integer;
+	return Dvar_StringToFloat(dvar->current.string);
+}
+
+void Dvar_GetVec2(dvar_t const* dvar, vec2_t* result)
+{
+	if (dvar)
+		result = reinterpret_cast<vec2_t*>(dvar->current.integer64);
+	else
+		*result = vec2_origin;
+}
+
+void Dvar_GetVec3(dvar_t const* dvar, vec3_t* result)
+{
+	if (dvar)
+	{
+		result->x = dvar->current.value;
+		result->y = dvar->current.vector.v[1];
+		result->z = dvar->current.vector.v[2];
+	}
+	else
+		result = &vec3_origin;
+}
+
+void Dvar_GetVec4(dvar_t const* dvar, vec4_t* result)
+{
+	if (dvar)
+	{
+		result->x = dvar->current.value;
+		result->y = dvar->current.vector.v[1];
+		result->z = dvar->current.vector.v[2];
+		result->w = dvar->current.vector.v[3];
+	}
+	else
+		result = &vec4_origin;
+}
+
+char const* Dvar_GetString(dvar_t const* dvar)
+{
+	if (!dvar)
+		return "";
+
+	if (dvar->type == DVAR_TYPE_ENUM)
+		return Dvar_EnumToString(dvar);
+	else
+		return dvar->current.string;
+}
+
+char const* Dvar_GetVariantString(int dvarHash)
+{
+	dvar_t* dvar = Dvar_FindMalleableVar(dvarHash);
+	if (!dvar)
+		return "";
+	return Dvar_ValueToString(dvar, dvar->current);
+}
+
+char const* Dvar_GetVariantString(dvar_t const* dvar)
+{
+	if (!dvar)
+		return "";
+	return Dvar_ValueToString(dvar, dvar->current);
+}
+
+void Dvar_GetUnpackedColor(dvar_t const* dvar, vec4_t* expandedColor)
+{
+	unsigned __int8 color[4];
+
+	if (dvar->type == DVAR_TYPE_COLOR)
+		*color = (unsigned __int8)dvar->current.integer;
+	else
+		Dvar_StringToColor(dvar->current.string, color);
+
+	expandedColor->r = color[0] / 255.0;
+	expandedColor->g = color[1] / 255.0;
+	expandedColor->b = color[2] / 255.0;
+	expandedColor->a = color[3] / 255.0;
+
+}
+
+void Dvar_GetColor(dvar_t const* dvar, unsigned char* color)
+{
+	// ????
+	if (dvar->type == DVAR_TYPE_COLOR)
+		*color = dvar->current.integer;
+	else
+		*color = dvar->current.integer;
+}
+
+float Dvar_GetColorRed(dvar_t const* dvar)
+{
+	vec4_t expandedColor;
+
+	Dvar_GetUnpackedColor(dvar, &expandedColor);
+	return expandedColor.r;
+}
+
+float Dvar_GetColorRed(int dvarHash)
+{
+	vec4_t expandedColor;
+	dvar_t* dvar = Dvar_FindMalleableVar(dvarHash);
+}
+
+float Dvar_GetColorGreen(dvar_t const* dvar)
+{
+	vec4_t expandedColor;
+
+	Dvar_GetUnpackedColor(dvar, &expandedColor);
+	return expandedColor.g;
+}
+
+float Dvar_GetColorGreen(int dvarHash)
+{
+	vec4_t expandedColor;
+	dvar_t* dvar = Dvar_FindMalleableVar(dvarHash);
+	return Dvar_GetColorGreen(dvar);
+}
+
+float Dvar_GetColorBlue(dvar_t const* dvar)
+{
+	vec4_t expandedColor;
+
+	Dvar_GetUnpackedColor(dvar, &expandedColor);
+	return expandedColor.b;
+}
+
+float Dvar_GetColorBlue(int dvarHash)
+{
+	vec4_t expandedColor;
+	dvar_t* dvar = Dvar_FindMalleableVar(dvarHash);
+	return Dvar_GetColorBlue(dvar);
+}
+
+float Dvar_GetColorAlpha(dvar_t const* dvar)
+{
+	vec4_t expandedColor;
+
+	Dvar_GetUnpackedColor(dvar, &expandedColor);
+	return expandedColor.a;
+}
+
+float Dvar_GetColorAlpha(int dvarHash)
+{
+	dvar_t* dvar = Dvar_FindMalleableVar(dvarHash);
+	return Dvar_GetColorAlpha(dvar);
+}
+
+bool Dvar_GetLatchedBool(dvar_t const* dvar)
+{
+	if (!dvar)
+		return 0;
+	return dvar->latched.enabled;
+}
+
+int Dvar_GetLatchedInt(dvar_t const* dvar)
+{
+	if (!dvar)
+		return 0;
+	return dvar->latched.integer;
+}
+
+float Dvar_GetLatchedFloat(dvar_t const* dvar)
+{
+	if (!dvar)
+		return 0;
+	return dvar->latched.value;
+}
+
+void Dvar_GetLatchedVec2(dvar_t const* dvar, vec2_t* result)
+{
+	if (dvar) {
+		result->x = dvar->latched.value;
+		result->y = dvar->latched.vector.v[1];
+	}
+	else
+		*result = vec2_origin;
+}
+
+void Dvar_GetLatchedVec3(dvar_t const* dvar, vec3_t* result)
+{
+	if (dvar) {
+		result->x = dvar->latched.value;
+		result->y = dvar->latched.vector.v[1];
+		result->z = dvar->latched.vector.v[2];
+	}
+	else
+		*result = vec3_origin;
+}
+
+void Dvar_GetLatchedVec4(dvar_t const* dvar, vec4_t* result)
+{
+	if (dvar) {
+		result->x = dvar->latched.value;
+		result->y = dvar->latched.vector.v[1];
+		result->z = dvar->latched.vector.v[2];
+		result->w = dvar->latched.vector.v[3];
+	}
+	else
+		*result = vec4_origin;
+}
+
+void Dvar_GetLatchedColor(dvar_t const* dvar, unsigned __int8* color)
+{
+	if (dvar->type == DVAR_TYPE_COLOR)
+		*color = dvar->latched.integer;
+	else
+		*color = dvar->latched.integer;
+}
+
+int Dvar_GetResetInt(dvar_t const* dvar)
+{
+	if (!dvar)
+		return 0;
+	return dvar->reset.integer;
+}
+
+char const* Dvar_GetResetString(dvar_t const* dvar)
+{
+	if (!dvar)
+		return "";
+	return dvar->reset.string;
+}
+
+void Dvar_GetResetVec3(dvar_t const* dvar, vec3_t* result)
+{
+	if (dvar)
+	{
+		result->x = dvar->reset.value;
+		result->y = dvar->reset.vector.v[1];
+		result->z = dvar->reset.vector.v[2];
+	}
+	else
+		*result = vec3_origin;
+}
+
+char const** Dvar_GetDomainEnumStrings(dvar_t const* dvar)
+{
+	return nullptr;
+}
+
+int Dvar_GetDomainEnumStringCount(dvar_t const* dvar)
 {
 	return 0;
 }
 
-void Dvar_SetLatchedValue(dvar_t*, DvarValue)
-{
-}
-
-bool Dvar_HasLatchedValue(dvar_t const*)
-{
-	return false;
-}
-
-dvarCallBack_t* findCallBackForDvar(dvar_t const*)
-{
-	return nullptr;
-}
-
-dvar_t* Dvar_FindMalleableVar(long)
-{
-	return nullptr;
-}
-
-dvar_t* Dvar_FindMalleableVar(char const*)
-{
-	return nullptr;
-}
-
-dvar_t const* Dvar_FindVar(char const*)
-{
-	return nullptr;
-}
-
-dvar_t const* Dvar_FindVar(long)
-{
-	return nullptr;
-}
-
-void Dvar_ClearModified(dvar_t const*)
-{
-}
-
-void Dvar_SetModified(dvar_t const*)
-{
-}
-
-bool Dvar_GetModified(dvar_t const*)
-{
-	return false;
-}
-
-int Dvar_GetInt(long)
-{
-	return 0;
-}
-
-unsigned int Dvar_GetUnsignedInt(dvar_t const*)
-{
-	return 0;
-}
-
-float Dvar_GetFloat(long)
-{
-	return 0.0f;
-}
-
-void Dvar_GetVec2(dvar_t const*, vec2_t&)
-{
-}
-
-void Dvar_GetVec3(dvar_t const*, vec3_t&)
-{
-}
-
-void Dvar_GetVec4(dvar_t const*, vec4_t&)
-{
-}
-
-char const* Dvar_GetString(dvar_t const*)
-{
-	return nullptr;
-}
-
-char const* Dvar_GetVariantString(long)
-{
-	return nullptr;
-}
-
-char const* Dvar_GetVariantString(dvar_t const*)
-{
-	return nullptr;
-}
-
-void Dvar_GetUnpackedColor(dvar_t const*, vec4_t&)
-{
-}
-
-void Dvar_GetColor(dvar_t const*, unsigned char* const)
-{
-}
-
-float Dvar_GetColorRed(dvar_t const*)
-{
-	return 0.0f;
-}
-
-float Dvar_GetColorRed(long)
-{
-	return 0.0f;
-}
-
-float Dvar_GetColorGreen(dvar_t const*)
-{
-	return 0.0f;
-}
-
-float Dvar_GetColorGreen(long)
-{
-	return 0.0f;
-}
-
-float Dvar_GetColorBlue(dvar_t const*)
-{
-	return 0.0f;
-}
-
-float Dvar_GetColorBlue(long)
-{
-	return 0.0f;
-}
-
-float Dvar_GetColorAlpha(dvar_t const*)
-{
-	return 0.0f;
-}
-
-float Dvar_GetColorAlpha(long)
-{
-	return 0.0f;
-}
-
-bool Dvar_GetLatchedBool(dvar_t const*)
-{
-	return false;
-}
-
-int Dvar_GetLatchedInt(dvar_t const*)
-{
-	return 0;
-}
-
-float Dvar_GetLatchedFloat(dvar_t const*)
-{
-	return 0.0f;
-}
-
-void Dvar_GetLatchedVec2(dvar_t const*, vec2_t&)
-{
-}
-
-void Dvar_GetLatchedVec3(dvar_t const*, vec3_t&)
-{
-}
-
-void Dvar_GetLatchedVec4(dvar_t const*, vec4_t&)
-{
-}
-
-void Dvar_GetLatchedColor(dvar_t const*, unsigned char* const)
-{
-}
-
-int Dvar_GetResetInt(dvar_t const*)
-{
-	return 0;
-}
-
-char const* Dvar_GetResetString(dvar_t const*)
-{
-	return nullptr;
-}
-
-void Dvar_GetResetVec3(dvar_t const*, vec3_t&)
-{
-}
-
-char const** Dvar_GetDomainEnumStrings(dvar_t const*)
-{
-	return nullptr;
-}
-
-int Dvar_GetDomainEnumStringCount(dvar_t const*)
-{
-	return 0;
-}
-
-int Dvar_GetDomainIntMin(dvar_t const*)
+int Dvar_GetDomainIntMin(dvar_t const* dvar)
 {
 	return 0;
 }

@@ -90,6 +90,11 @@ inline void Vec3Cross(const vec3_t* v0, const vec3_t* v1, vec3_t* cross) {
 	cross->z = (v0->x * v1->y) - (v1->x * v0->y);
 }
 
+inline bool Vec4Compare(const vec4_t* a, const vec4_t* b)
+{
+	return a->v[0] == b->v[0] && a->v[1] == b->v[1] && a->v[2] == b->v[2] && a->v[3] == b->v[3];
+}
+
 typedef struct cplane_s
 {
 	vec3_t normal;
