@@ -1,4 +1,21 @@
-#define WIN32_LEAN_AND_MEAN
+/*
+ * Copyright (c) 2020-2021 OpenIW
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms and conditions of the GNU General Public License,
+ * version 2, as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef TL_SYSTEM_H
+#define TL_SYSTEM_H
 
 #include <Windows.h>
 #include <stdio.h>
@@ -8,9 +25,6 @@
 
 #include "tl_defs.h"
 #include "tl_thread.h"
-
-#ifndef TL_SYSTEM_H
-#define TL_SYSTEM_H
 
 struct tlFileBuf;
 

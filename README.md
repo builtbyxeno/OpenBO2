@@ -1,4 +1,4 @@
-[![License: GPL v2](https://img.shields.io/github/license/OpenIW/OpenBO2?style=for-the-badge)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+[![License: GPL v2](https://img.shields.io/github/license/OpenIW/OpenBO2)](https://github.com/OpenIW/OpenBO2/blob/cmake/LICENSE)
 
 ## OpenBO2
 This is still barebones, so **NOTHING** is working!
