@@ -22,11 +22,13 @@
 #include <universal/com_memory.h>
 #include <universal/com_shared.h>
 #include <universal/mem_userhunk.h>
-#include <universal/dvar.h>
 #include <universal/win_common.h>
 #include <qcommon/common.h>
 #include <qcommon/files.h>
 #include <stringed/stringed_hooks.h>
+
+#include <ShlObj.h>
+#include <ShlObj_core.h>
 
 enum FsThread : __int32
 {
@@ -39,28 +41,24 @@ enum FsThread : __int32
 	FS_THREAD_INVALID = 0x6,
 };
 
+enum fsMode_t : __int32
+{
+	FS_READ = 0x0,
+	FS_WRITE = 0x1,
+	FS_APPEND = 0x2,
+	FS_APPEND_SYNC = 0x3,
+};
+
+struct AddonMapDef
+{
+	const char* prefix;
+	unsigned int prefixLen;
+	int optionalBaseMap;
+};
+
 struct unz_file_info_internal_s
 {
 	unsigned int offset_curfile;
-};
-
-struct fileInIwd_s
-{
-	unsigned int pos;
-	char* name;
-	fileInIwd_s* next;
-};
-
-union qfile_gus
-{
-	FILE* o;
-	unsigned __int8* z;
-};
-
-struct qfile_us
-{
-	qfile_gus file;
-	int iwdIsClone;
 };
 
 struct file_in_zip_read_info_s
@@ -77,22 +75,6 @@ struct file_in_zip_read_info_s
 	FILE* file;
 	unsigned int compression_method;
 	unsigned int byte_before_the_zipfile;
-};
-
-struct unz_s
-{
-	FILE* file;
-	unz_global_info_s gi;
-	unsigned int byte_before_the_zipfile;
-	unsigned int num_file;
-	unsigned int pos_in_central_dir;
-	unsigned int current_file_ok;
-	unsigned int central_pos;
-	unsigned int size_central_dir;
-	unsigned int offset_central_dir;
-	unz_file_info_s cur_file_info;
-	unz_file_info_internal_s cur_file_info_internal;
-	file_in_zip_read_info_s* pfile_in_zip_read;
 };
 
 typedef struct iwd_t
@@ -119,17 +101,6 @@ typedef struct iwd_pure_check_s
 	char iwdGamename[256];
 } iwd_pure_check_s;
 
-typedef struct fileHandleData_t
-{
-	qfile_us handleFiles;
-	int handleSync;
-	int fileSize;
-	int zipFilePos;
-	iwd_t* zipFile;
-	int streamed;
-	char name[256];
-} fileHandleData_t;
-
 typedef struct directory_t
 {
 	char path[256];
@@ -147,29 +118,23 @@ struct searchpath_s
 	int language;
 };
 
-searchpath_s* fs_searchpaths;
-int fs_loadStack;
-int fs_serverIwds[1024];
-int fs_numServerReferencedIwds;
-int fs_numServerReferencedFFs;
-int fs_numServerIwds;
-int fs_iwdFileCount;
-char fs_gamedir[256];
-const char* fs_serverIwdNames[1024];
-const char* fs_serverReferencedIwdNames[1024];
-const char* fs_serverReferencedFFNames[64];
-const dvar_t* fs_debug;
-const dvar_t* fs_ignoreLocalized;
-const dvar_t* fs_homepath;
-const dvar_t* fs_restrict;
-const dvar_t* fs_usedevdir;
-const dvar_t* fs_basepath;
-const dvar_t* fs_cdpath;
-const dvar_t* fs_basegame;
-const dvar_t* fs_gameDirVar;
-iwd_pure_check_s* fs_iwdPureChecks;
+static searchpath_s* fs_searchpaths;
+static bool g_disablePureCheck;
+static int fs_loadStack;
+static int fs_serverIwds[1024];
+static int fs_numServerReferencedIwds;
+static int fs_numServerReferencedFFs;
+static int fs_numServerIwds;
+static int fs_iwdFileCount;
+static int fs_fakeChkSum;
+static int com_fileAccessed;
+static char fs_gamedir[256];
+static char* fs_serverIwdNames[1024];
+static char* fs_serverReferencedIwdNames[1024];
+static char* fs_serverReferencedFFNames[64];
+static iwd_pure_check_s* fs_iwdPureChecks;
 
-fileHandleData_t fsh[70];
+const AddonMapDef g_addonMapDefs[2]{ "so_", 3, 1, "zo_", 3, 1 };
 
 void TRACK_com_files(void)
 {
@@ -182,6 +147,7 @@ int FS_Initialized(void)
 
 void FS_CheckFileSystemStarted(void)
 {
+	assert(fs_searchpaths);
 }
 
 int FS_IwdIsPure(iwd_t const* iwd)
@@ -768,8 +734,6 @@ bool FS_SanitizeFilename(char const* filename, char* sanitizedName, int sanitize
 	int srcIndex;
 	int dstIndex;
 
-	assert(filename);
-	assert(sanitizedName);
 	assertMsg((sanitizedNameSize > 0), "(sanitizedNameSize) = %i", sanitizedNameSize);
 	for (srcIndex = 0; ; ++srcIndex)
 	{
@@ -854,7 +818,6 @@ int FS_Delete(char const* filename)
 	const char* basepath;
 
 	FS_CheckFileSystemStarted();
-	assert(filename);
 	if (!*filename)
 	{
 		return 0;
@@ -1886,6 +1849,35 @@ void FS_Shutdown(void)
 
 void FS_RegisterDvars(void)
 {
+	const char* homePath;
+	static char ospathPersonalDocuments[256];
+	char pszPath[1024];
+
+	fs_debug = _Dvar_RegisterInt("fs_debug", 0, 0, 2, 0, "Enable file system debugging information");
+	fs_copyfiles = _Dvar_RegisterBool("fs_copyfiles", 0, 0x10u, "Copy all used files to another location");
+	fs_cdpath = _Dvar_RegisterString("fs_cdpath", Sys_DefaultCDPath(), 0x10u, "CD path");
+	fs_basepath = _Dvar_RegisterString("fs_basepath", Sys_Cwd(), 0x210u, "Base game path");
+	fs_basegame = _Dvar_RegisterString("fs_basegame", "", 0x10u, "Base game name");
+	fs_gameDirVar = _Dvar_RegisterString("fs_game", "", 0x114u,
+		"Game data directory. Must be \"\" or a sub directory of 'mods/'.");
+	fs_usermapDir = _Dvar_RegisterString("fs_usermapdir", "", 0x144u, "Usermap data directory.");
+	fs_ignoreLocalized = _Dvar_RegisterBool("fs_ignoreLocalized", 0, 0xA0u, "Ignore localized files");
+	homePath = Sys_DefaultHomePath();
+	if (!homePath || !*homePath)
+	{
+		homePath = fs_basepath->reset.string;
+	}
+
+	fs_homepath = _Dvar_RegisterString("fs_homepath", homePath, 0x210u, "Game home path");
+	SHGetFolderPathA(0, 32773, 0, 0, pszPath);
+	I_strncpyz(ospathPersonalDocuments, pszPath, 256);
+	I_strncat(ospathPersonalDocuments, 256, "\\Activision\\CoD");
+	fs_userDocuments = _Dvar_RegisterString("fs_userDocuments", ospathPersonalDocuments, 0x10u,
+		"user documents path(screenshots).");
+	fs_restrict = _Dvar_RegisterBool("fs_restrict", 0, 0x10u, "Restrict file access for demos etc.");
+
+	// no devdirs for now
+	fs_usedevdir = _Dvar_RegisterBool("fs_usedevdir", 0, 0x10u, "Use development directories.");
 }
 
 void FS_AddDevGameDirs(char const* path, bool allow_devraw)
@@ -2067,24 +2059,8 @@ void FS_InitFilesystem(bool allow_devraw)
 void FS_Restart(int checksumFeed)
 {
 	FS_Shutdown();
-	fs_checksumFeed = checksumFeed;
-	for (i = fs_searchpaths; i; i = i->next)
-	{
-		v4 = i->iwd;
-		if (v4)
-			v4->referenced = 0;
-	}
-	v5 = fs_iwdPureChecks;
-	if (fs_iwdPureChecks)
-	{
-		do
-		{
-			v6 = v5->next;
-			Z_Free(v5, 3);
-			v5 = v6;
-		}     while (v6);
-	}
-	fs_iwdPureChecks = 0;
+	FS_ClearIwdReferences();
+	FS_ShutDownIwdPureCheckReferences();
 	ProfLoad_Begin("Start file system");
 	FS_Startup("main", 1);
 	ProfLoad_End();
@@ -2097,9 +2073,9 @@ void FS_Restart(int checksumFeed)
 	ProfLoad_End();
 }
 
-bool FS_IsInCompressedIwd(int)
+bool FS_IsInCompressedIwd(int f)
 {
-	return false;
+	return fsh[f].zipFile && ((unz_s*)fsh[f].handleFiles.file.z)->pfile_in_zip_read->compression_method;
 }
 
 void FS_Flush(int f)
@@ -2110,50 +2086,443 @@ void FS_Flush(int f)
 	fflush(file);
 }
 
-bool Com_IsAddonMap(char const*, char const**)
+bool Com_IsAddonMap(char const* mapName, char const** pBaseMapName)
 {
-	return false;
+	int* v3;
+	const char* v4;
+	int v6;
+	unsigned int v8;
+
+	v3 = (int*)&g_addonMapDefs[0].prefixLen;
+	v8 = 0;
+	while (1)
+	{
+		if (!I_strnicmp(mapName, (const char*)*(v3 - 1), *v3))
+		{
+			v4 = &mapName[*v3];
+			strchr(v4, 0x5Fu);
+			if (!v3[1] || v6)
+				break;
+		}
+		v3 += 3;
+		v8 += 12;
+		if (v8 >= 0x18)
+			return 0;
+	}
+	if (pBaseMapName)
+	{
+		if (v3[1] && I_strnicmp(v4, "mp_", 3) && I_strnicmp(v4, "zm_", 3))
+		{
+			*pBaseMapName = (const char*)(v6 + 1);
+			return 1;
+		}
+		*pBaseMapName = v4;
+	}
+	return 1;
 }
 
-void FS_DisablePureCheck(bool)
+void FS_DisablePureCheck(bool disable)
 {
+	if (*Dvar_GetString(fs_gameDirVar))
+		g_disablePureCheck = disable;
+	if (disable)
+		FS_ShutdownServerFileReferences(&fs_numServerIwds, fs_serverIwdNames);
 }
 
-int FS_FOpenFileReadForThread(char const*, int*, FsThread, char*, int)
+int FS_FOpenFileReadForThread(char const* filename, int* file, FsThread thread)
 {
-	return 0;
+	unsigned int result;
+	char copypath[256];
+	fileInIwd_s* i;
+	fileInIwd_s* iwdFile;
+	int hash;
+	iwd_t* iwd;
+	char sanitizedName[256];
+	directory_t* dir;
+	unz_s* zfi;
+	iwd_t* impureIwd;
+	file_in_zip_read_info_s* ziptemp;
+	char netpath[256];
+	bool wasSkipped;
+	searchpath_s* search;
+	FILE* filetemp;
+
+	impureIwd = NULL;
+	wasSkipped = 0;
+	assert(filename);
+
+	FS_CheckFileSystemStarted();
+
+	if (!FS_SanitizeFilename(filename, sanitizedName, sizeof(sanitizedName)))
+	{
+		if (file)
+		{
+			*file = 0;
+		}
+
+		if (fs_debug->current.integer)
+		{
+			Com_Printf(CON_CHANNEL_FILES, "fs_debug: %s is invalid or contains and invalid substring\n", filename);
+		}
+
+		return -1;
+	}
+
+	if (file == NULL)
+	{
+		// just wants to see if file is there
+		for (search = fs_searchpaths; search; search = search->next)
+		{
+			if (!FS_UseSearchPath(search))
+			{
+				continue;
+			}
+
+			// look through all the pak file elements
+			iwd = search->iwd;
+			if (iwd && iwd->numFiles)
+			{
+				assert(iwd->hashTable && iwd->hashSize);
+				hash = FS_HashFileName(sanitizedName, iwd->hashSize);
+				iwdFile = iwd->hashTable[hash];
+				do
+				{
+					// case and separator insensitive comparisons
+					if (!FS_FilenameCompare(iwdFile->name, sanitizedName))
+					{
+						// found it!
+						return 1;
+					}
+					iwdFile = iwdFile->next;
+				}                 while (iwdFile != NULL);
+			}
+			else if (search->dir)
+			{
+				dir = search->dir;
+
+				FS_BuildOSPathForThread(dir->path, dir->gamedir, sanitizedName, netpath, thread);
+				filetemp = FS_FileOpenReadBinary(netpath);
+				if (!filetemp)
+				{
+					continue;
+				}
+				FS_FileClose(filetemp);
+				return 1;
+			}
+		}
+		return -1;
+	}
+
+	//
+	// search through the path, one element at a time
+	//
+
+	*file = FS_HandleForFile(filename, thread);
+	if (!*file)
+	{
+		return -1;
+	}
+
+	for (search = fs_searchpaths; search; search = search->next)
+	{
+		if (!FS_UseSearchPath(search))
+		{
+			continue;
+		}
+
+		// look through all the iwd file elements
+		iwd = search->iwd;
+		if (iwd && iwd->numFiles)
+		{
+			assert(iwd->hashTable && iwd->hashSize);
+			hash = FS_HashFileName(sanitizedName, iwd->hashSize);
+			for (i = iwd->hashTable[hash]; i; i = i->next)
+			{
+				if (!FS_FilenameCompare(i->name, sanitizedName))
+				{
+					if (!g_disablePureCheck && !search->bLocalized && !search->ignorePureCheck &&
+						!FS_IwdIsPure(iwd))
+					{
+						impureIwd = iwd;
+						break;
+					}
+
+					if (!iwd->referenced && !FS_FilesAreLoadedGlobally(sanitizedName))
+					{
+						iwd->referenced = 1;
+						FS_AddIwdPureCheckReference(search);
+					}
+
+					if (InterlockedCompareExchange((volatile LONG*)&iwd->hasOpenFile, 1, 0) == 1)
+					{
+						// open a new file on the iwdfile
+						fsh[*file].handleFiles.iwdIsClone = 1;
+						fsh[*file].handleFiles.file.z = (unsigned char*)unzReOpen(iwd->iwdFilename, iwd->handle);
+						if (fsh[*file].handleFiles.file.z == NULL)
+						{
+							if (thread)
+							{
+								FS_FCloseFile(*file);
+								*file = 0;
+								return -1;
+							}
+							Com_Error(ERR_FATAL, "\\x15Couldn\'t reopen %s", iwd->iwdFilename);
+						}
+					}
+					else
+					{
+						fsh[*file].handleFiles.iwdIsClone = 0;
+						fsh[*file].handleFiles.file.z = iwd->handle;
+					}
+
+					I_strncpyz(fsh[*file].name, sanitizedName, sizeof(fsh[*file].name));
+					fsh[*file].zipFile = iwd;
+					zfi = (unz_s*)fsh[*file].handleFiles.file.z;
+					// in case the file was new
+					filetemp = zfi->file;
+					ziptemp = zfi->pfile_in_zip_read;
+					// set the file position in the zip file (also sets the current file info)
+					unzSetCurrentFileInfoPosition(iwd->handle, i->pos);
+					// copy the file info into the unzip structure
+					Com_Memcpy(zfi, iwd->handle, sizeof(unz_s));
+					// we copy this back into the structure
+					zfi->file = filetemp;
+					zfi->pfile_in_zip_read = ziptemp;
+					// open the file in the zip
+					unzOpenCurrentFile(fsh[*file].handleFiles.file.z);
+					fsh[*file].zipFilePos = i->pos;
+
+					if (fs_debug->current.integer)
+					{
+						Com_Printf(
+							10,
+							"FS_FOpenFileReadfrom thread '%s', handle '%d', %s (found in '%s')\n",
+							Sys_GetCurrentThreadName(),
+							*file,
+							sanitizedName,
+							iwd->iwdFilename);
+					}
+					return zfi->cur_file_info.uncompressed_size;
+				}
+			}
+		}
+		else if (search->dir)
+		{
+			// check a file in the directory tree
+
+			if (!search->ignore && !fs_restrict->current.enabled && !fs_numServerIwds
+				|| search->bLocalized
+				|| search->ignorePureCheck
+				|| FS_PureIgnoreFiles(sanitizedName))
+			{
+				dir = search->dir;
+
+				FS_BuildOSPathForThread(dir->path, dir->gamedir, sanitizedName, netpath, thread);
+				fsh[*file].handleFiles.file.o = FS_FileOpenReadBinary(netpath);
+				if (fsh[*file].handleFiles.file.o)
+				{
+					if (!search->bLocalized && !search->ignorePureCheck &&
+						!FS_PureIgnoreFiles(sanitizedName))
+					{
+						fs_fakeChkSum = rand() + 1;
+					}
+
+					I_strncpyz(fsh[*file].name, sanitizedName, sizeof(fsh[*file].name));
+					fsh[*file].zipFile = NULL;
+					if (fs_debug->current.integer)
+					{
+						Com_Printf(
+							10,
+							"FS_FOpenFileRead from thread '%s', handle '%d', %s (found in '%s/%s')\n",
+							Sys_GetCurrentThreadName(),
+							*file,
+							sanitizedName,
+							dir,
+							dir->gamedir);
+					}
+
+					// if we are getting it from the cdpath, optionally copy it
+					//  to the basepath
+					if (fs_copyfiles->current.enabled &&
+						!I_stricmp(dir->path, fs_cdpath->current.string))
+					{
+						FS_BuildOSPathForThread(fs_basepath->current.string, dir->gamedir,
+							sanitizedName, copypath, thread);
+						FS_CopyFile(netpath, copypath);
+					}
+
+					return FS_filelength(*file);
+				}
+			}
+			else if (!wasSkipped)
+			{
+				dir = search->dir;
+
+				FS_BuildOSPathForThread(dir->path, dir->gamedir, sanitizedName, netpath, thread);
+				filetemp = FS_FileOpenReadBinary(netpath);
+				if (filetemp)
+				{
+					wasSkipped = 1;
+					FS_FileClose(filetemp);
+				}
+			}
+		}
+	}
+
+	if (fs_debug->current.integer && thread == FS_THREAD_MAIN)
+	{
+		Com_Printf(CON_CHANNEL_FILES, "Can't find %s\n", filename);
+	}
+
+	FS_FCloseFile(*file);
+	*file = 0;
+	if (impureIwd)
+	{
+		Com_Error(ERR_DROP, va("%s\n%s", "Impure client detected. Invalid .IWD files referenced!",
+			impureIwd->iwdFilename));
+	}
+
+	if (wasSkipped)
+	{
+		if (fs_numServerIwds || fs_restrict->current.enabled)
+		{
+			Com_Printf(CON_CHANNEL_FILES, "Error: %s must be in an IWD\n", filename);
+		}
+		else
+		{
+			Com_Printf(CON_CHANNEL_FILES, "Error: %s must be in an IWD or not in the main directory\n",
+				filename);
+		}
+		result = -2;
+	}
+	else
+	{
+		result = -1;
+	}
+
+	return result;
 }
 
-int FS_FOpenFileReadCurrentThread(char const*, int*)
+int FS_FOpenFileReadCurrentThread(char const* filename, int* file)
 {
-	return 0;
+	int thread;
+
+	thread = FS_GetCurrentThread();
+	if (thread != FS_THREAD_INVALID)
+	{
+		return FS_FOpenFileReadForThread(filename, file, (FsThread)thread);
+	}
+
+	Com_PrintError(1, "FS_FOpenFileReadCurrentThread for an unknown thread\n");
+	if (file)
+	{
+		*file = 0;
+	}
+	return -1;
 }
 
-int FS_ReadFile(const char*, void**)
+int FS_ReadFile(const char* qpath, void** buffer)
 {
-	return 0;
+	char* buf;
+	int len;
+	int h;
+
+	FS_CheckFileSystemStarted();
+	if (!qpath || !qpath[0])
+	{
+		Com_Error(ERR_FATAL, "FS_ReadFile with empty name\n");
+	}
+
+	// look for it in the filesystem or iwd files
+	len = FS_FOpenFileReadCurrentThread(qpath, &h);
+	if (h == 0)
+	{
+		if (buffer)
+		{
+			*buffer = NULL;
+		}
+		return -1;
+	}
+
+	if (buffer)
+	{
+		++fs_loadStack;
+		buf = (char*)Hunk_AllocateTempMemory(len + 1, "FS_AllocMem");
+		*buffer = buf;
+
+		FS_Read(buf, len, h);
+
+		// guarantee that it will have a trailing 0 for string operations
+		buf[len] = 0;
+	}
+
+	FS_FCloseFile(h);
+	return len;
 }
 
-const char** FS_ListFilesInLocation(const char*, const char*, FsListBehavior_e, int*, int, int)
+const char** FS_ListFilesInLocation(const char* path, const char* extension, FsListBehavior_e behavior, int* numfiles, int lookInFlags, int allocTrackType)
 {
-	return nullptr;
+	return FS_ListFilteredFilesInLocation(path, extension, 0, behavior, numfiles, lookInFlags, allocTrackType);
 }
 
-void Com_GetBspFilename(char* const, int, char const*)
+void Com_GetBspFilename(char* filename, int size, char const* mapname)
 {
+	Com_sprintf(filename, size, "maps/mp/%s.d3dbsp", mapname);
 }
 
-int FS_FOpenFileRead(char const*, int*)
+int FS_FOpenFileRead(char const* filename, int* file)
 {
-	return 0;
+	com_fileAccessed = 1;
+	return FS_FOpenFileReadCurrentThread(filename, file);
 }
 
-int FS_TouchFile(char const*)
+int FS_TouchFile(char const* name)
 {
-	return 0;
+	return FS_FOpenFileRead(name, NULL) != -1;
 }
 
-int FS_FOpenFileByMode(char const*, int*, fsMode_t)
+int FS_FOpenFileByMode(char const* qpath, int* f, fsMode_t mode)
 {
-	return 0;
+	int r;
+	int sync;
+
+	sync = 0;
+	switch (mode)
+	{
+	case FS_READ:
+		r = FS_FOpenFileRead(qpath, f);
+		break;
+	case FS_WRITE:
+		*f = FS_FOpenFileWrite(qpath);
+		r = 0;
+		if (!*f)
+		{
+			r = -1;
+		}
+		break;
+	case FS_APPEND_SYNC:
+		sync = 1;
+	case FS_APPEND:
+		*f = FS_FOpenFileAppend(qpath);
+		r = 0;
+		if (!*f)
+		{
+			r = -1;
+		}
+		break;
+	}
+
+	if (!f)
+	{
+		return r;
+	}
+
+	if (*f)
+	{
+		fsh[*f].fileSize = r;
+		fsh[*f].streamed = 0;
+	}
+
+	fsh[*f].handleSync = sync;
+	return r;
 }

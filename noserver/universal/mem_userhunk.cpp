@@ -16,7 +16,7 @@
 
 #include "mem_userhunk.h"
 
-HunkUser* Hunk_UserDebugInit(void*, int, HU_ALLOCATION_SCHEME, unsigned long, void*, char const*, int)
+HunkUser* Hunk_UserDebugInit(void* buffer, int size, HU_ALLOCATION_SCHEME scheme, unsigned long flags, void* scheme_specific_data, char const* name, int type)
 {
 	return nullptr;
 }

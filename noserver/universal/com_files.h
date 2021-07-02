@@ -17,7 +17,70 @@
 #ifndef COM_FILES_H
 #define COM_FILES_H
 
+#include <universal/dvar.h>
+
+union qfile_gus
+{
+	FILE* o;
+	unsigned __int8* z;
+};
+
+struct qfile_us
+{
+	qfile_gus file;
+	int iwdIsClone;
+};
+
+struct fileInIwd_s
+{
+	unsigned int pos;
+	char* name;
+	fileInIwd_s* next;
+};
+
+typedef struct iwd_t
+{
+	char iwdFilename[256];
+	char iwdBasename[256];
+	char iwdGamename[256];
+	unsigned __int8* handle;
+	int checksum;
+	int pure_checksum;
+	volatile int hasOpenFile;
+	int numFiles;
+	unsigned __int8 referenced;
+	unsigned int hashSize;
+	fileInIwd_s** hashTable;
+	fileInIwd_s* buildBuffer;
+} iwd_t;
+
+typedef struct fileHandleData_t
+{
+	qfile_us handleFiles;
+	int handleSync;
+	int fileSize;
+	int zipFilePos;
+	iwd_t* zipFile;
+	int streamed;
+	char name[256];
+} fileHandleData_t;
+
 extern int fs_numServerIwds;
+
+static dvar_t* fs_debug;
+static dvar_t* fs_ignoreLocalized;
+static dvar_t* fs_homepath;
+static dvar_t* fs_restrict;
+static dvar_t* fs_usedevdir;
+static dvar_t* fs_basepath;
+static dvar_t* fs_cdpath;
+static dvar_t* fs_basegame;
+static dvar_t* fs_gameDirVar;
+static dvar_t* fs_copyfiles;
+static dvar_t* fs_userDocuments;
+static dvar_t* fs_usermapDir;
+
+static fileHandleData_t fsh[70];
 
 void TRACK_com_files(void);
 int FS_Initialized(void);
@@ -99,11 +162,11 @@ bool FS_IsInCompressedIwd(int);
 void FS_Flush(int);
 bool Com_IsAddonMap(char const*, char const**);
 void FS_DisablePureCheck(bool);
-int FS_FOpenFileReadForThread(char const*, int*, enum FsThread, char*, int);
+int FS_FOpenFileReadForThread(char const*, int*, enum FsThread);
 int FS_FOpenFileReadCurrentThread(char const*, int*);
 int FS_ReadFile(const char*, void**);
 const char** FS_ListFilesInLocation(const char*, const char*, enum FsListBehavior_e, int*, int, int);
-void Com_GetBspFilename(char* const, int, char const*);
+void Com_GetBspFilename(char*, int, char const*);
 int FS_FOpenFileRead(char const*, int*);
 int FS_TouchFile(char const*);
 int FS_FOpenFileByMode(char const*, int*, enum fsMode_t);

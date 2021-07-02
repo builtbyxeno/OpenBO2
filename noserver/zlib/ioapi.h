@@ -6,7 +6,8 @@
    Copyright (C) 1998-2005 Gilles Vollant
 */
 
-#pragma once
+#ifndef _ZLIBIOAPI_H
+#define _ZLIBIOAPI_H
 
 
 #define ZLIB_FILEFUNC_SEEK_CUR (1)
@@ -28,10 +29,6 @@
 #else
 #define ZCALLBACK
 #endif
-#endif
-
-#ifndef OF
-#define OF(args) args
 #endif
 
 #ifdef __cplusplus
@@ -73,3 +70,6 @@ void fill_fopen_filefunc OF((zlib_filefunc_def* pzlib_filefunc_def));
 #ifdef __cplusplus
 }
 #endif
+
+#endif
+

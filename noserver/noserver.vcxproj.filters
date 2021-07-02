@@ -69,13 +69,25 @@
     <ClInclude Include="universal\com_fileaccess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="universal\mem_userhunk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="universal\com_shared.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\files.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zutil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="zlib\crc32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="zlib\deflate.h">
+    <ClInclude Include="zlib\crypt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="zlib\gzguts.h">
+    <ClInclude Include="zlib\deflate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="zlib\inffast.h">
@@ -90,6 +102,9 @@
     <ClInclude Include="zlib\inftrees.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="zlib\ioapi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="zlib\trees.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -102,19 +117,13 @@
     <ClInclude Include="zlib\zlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="zlib\zutil.h">
+    <ClInclude Include="universal\physicalmemory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="zlib\ioapi.h">
+    <ClInclude Include="universal\blackbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="universal\mem_userhunk.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="universal\com_shared.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\files.h">
+    <ClInclude Include="universal\blackbox_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -161,57 +170,6 @@
     <ClCompile Include="universal\com_fileaccess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="zlib\adler32.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\compress.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\crc32.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\deflate.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\gzclose.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\gzlib.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\gzread.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\gzwrite.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\infback.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\inffast.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\inflate.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\inftrees.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\trees.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\uncompr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\unzip.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zutil.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\ioapi.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="universal\mem_userhunk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -219,6 +177,42 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="qcommon\files.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\adler32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\crc32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\deflate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\inffast.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\inflate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\inftrees.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\trees.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\unzip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zutil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="universal\physicalmemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="universal\blackbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="universal\blackbox_data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

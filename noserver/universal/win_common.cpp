@@ -17,6 +17,8 @@
 #include "win_common.h"
 
 #include <universal/com_memory.h>
+#include <universal/com_shared.h>
+#include <universal/mem_userhunk.h>
 #include <universal/q_shared.h>
 #include <win32/win_main.h>
 #include <direct.h>
@@ -68,7 +70,7 @@ char const* Sys_Cwd(void)
 
 char const* Sys_DefaultCDPath(void)
 {
-	return nullptr;
+	return "";
 }
 
 char const* Sys_DefaultHomePath(void)
@@ -121,6 +123,14 @@ char const* Sys_DefaultInstallPath(void)
 
 }
 
+int HasFileExtension(const char* name, const char* extension)
+{
+	char search[256];
+
+	Com_sprintf(search, 256, "*.%s", extension);
+	return I_stricmpwild(search, name) == 0;
+}
+
 bool Sys_FileExists(char const* path)
 {
 	return GetFileAttributes(path) != -1;
@@ -162,17 +172,118 @@ void Sys_ListFilteredFiles(HunkUser* user, char const* basedir, char const* subd
 	}
 }
 
-char** Sys_ListFiles(char const*, char const*, char const*, int*, int)
+char** Sys_ListFiles(char const* directory, char const* extension, char const* filter, int* numfiles, int wantsubs)
 {
-	return nullptr;
-}
+	char** result;
+	_finddata64i32_t findinfo;
+	int flag;
+	char** listCopy;
+	int findhandle;
+	char* list[16384];
+	int nfiles;
+	HunkUser* user;
+	char search[256];
+	int i;
 
-void _FS_FreeFileList(const char**)
-{
-}
+	if (filter)
+	{
+		user = Hunk_UserCreate(0x20000, HU_SCHEME_DEFAULT, 0, NULL, "Sys_ListFiles", 3);
+		nfiles = 0;
+		Sys_ListFilteredFiles(user, directory, "", filter, list, &nfiles);
+		list[nfiles] = NULL;
+		*numfiles = nfiles;
+		if (nfiles)
+		{
+			listCopy = (char**)Hunk_UserAlloc(user, 4 * nfiles + 8, 4, NULL);
+			*listCopy = (char*)user;
+			++listCopy;
+			for (i = 0; i < nfiles; ++i)
+			{
+				listCopy[i] = list[i];
+			}
+			listCopy[i] = NULL;
+			result = listCopy;
+		}
+		else
+		{
+			Hunk_UserDestroy(user);
+			result = NULL;
+		}
+	}
+	else
+	{
+		if (!extension)
+		{
+			extension = "";
+		}
 
-void Sys_FreeFileList(char**)
-{
+		if (*extension != 47 || extension[1])
+		{
+			flag = 16;
+		}
+		else
+		{
+			extension = "";
+			flag = 0;
+		}
+
+		if (*extension)
+		{
+			Com_sprintf(search, 256, "%s\\*.%s", directory, extension);
+		}
+		else
+		{
+			Com_sprintf(search, 256, "%s\\*", directory);
+		}
+
+		nfiles = 0;
+		findhandle = _findfirst64i32(search, &findinfo);
+		if (findhandle == -1)
+		{
+			*numfiles = 0;
+			result = NULL;
+		}
+		else
+		{
+			user = Hunk_UserCreate(0x20000, HU_SCHEME_DEFAULT, 0, NULL, "Sys_ListFiles", 3);
+			do
+			{
+				if ((!wantsubs && flag != (findinfo.attrib & 0x10) || wantsubs && findinfo.attrib & 0x10)
+					&& (!(findinfo.attrib & 0x10)
+						|| I_stricmp(findinfo.name, ".") && I_stricmp(findinfo.name, "..") && I_stricmp(findinfo.name, "CVS"))
+					&& (!*extension || HasFileExtension(findinfo.name, extension)))
+				{
+					list[nfiles++] = Hunk_CopyString(user, findinfo.name);
+					if (nfiles == 0x3FFF)
+					{
+						break;
+					}
+				}
+			}             while (_findnext64i32(findhandle, &findinfo) != -1);
+
+			list[nfiles] = NULL;
+			_findclose(findhandle);
+			*numfiles = nfiles;
+			if (nfiles)
+			{
+				listCopy = (char**)Hunk_UserAlloc(user, 4 * nfiles + 8, 4, NULL);
+				*listCopy = (char*)user;
+				++listCopy;
+				for (i = 0; i < nfiles; ++i)
+				{
+					listCopy[i] = list[i];
+				}
+				listCopy[i] = NULL;
+				result = listCopy;
+			}
+			else
+			{
+				Hunk_UserDestroy(user);
+				result = NULL;
+			}
+		}
+	}
+	return result;
 }
 
 int Sys_DirectoryHasContents(char const* directory)
