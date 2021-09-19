@@ -1,0 +1,139 @@
+#include "types.h"
+#include "functions.h"
+
+/*
+==============
+Helicopter_RegisterDvars
+==============
+*/
+void Helicopter_RegisterDvars()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+HELI_CmdScale
+==============
+*/
+void HELI_CmdScale(const char *move, vec4_t *outFracs)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+HELI_UpdateJitter
+==============
+*/
+void HELI_UpdateJitter(VehicleJitter *jitter)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+HELI_CalcAccel
+==============
+*/
+void HELI_CalcAccel(gentity_t *ent, char *move, vec3_t *bodyAccel, vec3_t *rotAccel, vec3_t *viewangles)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+HELI_CancelAIMove
+==============
+*/
+void HELI_CancelAIMove(gentity_t *ent)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+HELI_SoftenCollisions
+==============
+*/
+void HELI_SoftenCollisions(gentity_t *ent, vec3_t *worldAccel)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+VEH_CheckForCrash
+==============
+*/
+
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
+}
+
+/*
+==============
+VEH_HandleHeliLockHeight
+==============
+*/
+int VEH_HandleHeliLockHeight(gentity_t *ent)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+Vehicle_AdjustRollForInputDeadZone
+==============
+*/
+double Vehicle_AdjustRollForInputDeadZone(float rollPercent)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+Vehicle_AddRotate
+==============
+*/
+void Vehicle_AddRotate(vehicle_physic_t *phys, float fRoll, float fPitch, float fYaw)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+VEH_CheckForPredictedCrash
+==============
+*/
+
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
+}
+
+/*
+==============
+VEH_UpdateClientChopper
+==============
+*/
+void VEH_UpdateClientChopper(gentity_t *ent)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+VEH_UpdateClientPlane
+==============
+*/
+void VEH_UpdateClientPlane(gentity_t *ent)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+

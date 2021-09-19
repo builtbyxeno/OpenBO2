@@ -1,0 +1,24 @@
+#include "types.h"
+#include "functions.h"
+
+/*
+==============
+LowerCase
+==============
+*/
+unsigned int LowerCase(unsigned int stringValue)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+ScriptParse
+==============
+*/
+void ScriptParse(scriptInstance_t inst, sval_u *parseData, unsigned __int8 user)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+

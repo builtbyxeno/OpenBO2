@@ -1,0 +1,249 @@
+#include "types.h"
+#include "functions.h"
+
+/*
+==============
+XModelBad
+==============
+*/
+BOOL XModelBad(const XModel *model)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+TRACK_xmodel
+==============
+*/
+void TRACK_xmodel()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+XModelReleaseResources
+==============
+*/
+void XModelReleaseResources(XModel *model)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+XModelPartsFree
+==============
+*/
+void XModelPartsFree(XModelPartsLoad *modelParts)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+XModelMakeDefault
+==============
+*/
+void XModelMakeDefault(XModel *model)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+XModelPartsFindData
+==============
+*/
+XModelPartsLoad *XModelPartsFindData(const char *name)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return NULL;
+}
+
+/*
+==============
+XModelPartsSetData
+==============
+*/
+void XModelPartsSetData(const char *name, XModelPartsLoad *modelParts, void *(*Alloc)(int))
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+XModelPrecache_LoadObj
+==============
+*/
+XModel *XModelPrecache_LoadObj(const char *name, void *(*Alloc)(int), void *(*AllocColl)(int))
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return NULL;
+}
+
+/*
+==============
+XModelPrecache_FastFile
+==============
+*/
+XModel *XModelPrecache_FastFile(const char *name)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return NULL;
+}
+
+/*
+==============
+XModelPrecache
+==============
+*/
+XModel *XModelPrecache()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return NULL;
+}
+
+/*
+==============
+XModelBoneNames
+==============
+*/
+unsigned __int16 *XModelBoneNames(XModel *model)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return NULL;
+}
+
+/*
+==============
+XModelGetRadius
+==============
+*/
+double XModelGetRadius(const XModel *model)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+XModelGetBounds
+==============
+*/
+void XModelGetBounds(const XModel *model, vec3_t *mins, vec3_t *maxs)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+XModelRenderString
+==============
+*/
+void XModelRenderString(const vec3_t *pos, const char *string)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+XModelTraceLineAnimated
+==============
+*/
+
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
+}
+
+/*
+==============
+XModelTraceLineAnimatedPartBits
+==============
+*/
+void XModelTraceLineAnimatedPartBits(
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+XSurfaceVisitTrianglesInAabb_ConvertAabb
+==============
+*/
+void XSurfaceVisitTrianglesInAabb_ConvertAabb(
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+XSurfaceVisitTrianglesInAabb_ProcessVertices
+==============
+*/
+bool XSurfaceVisitTrianglesInAabb_ProcessVertices(XSurfaceGetTriCandidatesLocals *locals)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+XSurfaceVisitTrianglesInAabb_ProcessTriangles
+==============
+*/
+bool XSurfaceVisitTrianglesInAabb_ProcessTriangles(XSurfaceGetTriCandidatesLocals *locals)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+XModelTraceLine
+==============
+*/
+
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
+}
+
+/*
+==============
+XSurfaceVisitTrianglesInAabb_ProcessLeaf
+==============
+*/
+bool XSurfaceVisitTrianglesInAabb_ProcessLeaf(XSurfaceGetTriCandidatesLocals *locals)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+XSurfaceVisitTrianglesInAabb_ProcessNode
+==============
+*/
+char XSurfaceVisitTrianglesInAabb_ProcessNode(XSurfaceGetTriCandidatesLocals *locals)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+XSurfaceVisitTrianglesInAabb
+==============
+*/
+char XSurfaceVisitTrianglesInAabb(
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+

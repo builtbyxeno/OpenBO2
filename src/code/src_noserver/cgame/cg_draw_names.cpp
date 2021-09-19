@@ -1,0 +1,321 @@
+#include "types.h"
+#include "functions.h"
+
+/*
+==============
+TRACK_cg_draw_names
+==============
+*/
+void TRACK_cg_draw_names()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+CG_ClearOverheadFade
+==============
+*/
+void CG_ClearOverheadFade()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+CG_GetOverheadFade
+==============
+*/
+OverheadFade *CG_GetOverheadFade(LocalClientNum_t localClientNum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return NULL;
+}
+
+/*
+==============
+CG_ClearPlayerDetails
+==============
+*/
+void CG_ClearPlayerDetails()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+CG_InitPlayerDetails
+==============
+*/
+void CG_InitPlayerDetails(LocalClientNum_t localClientNum, int targetClientNum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+CG_CalcNamePosition
+==============
+*/
+bool CG_CalcNamePosition(LocalClientNum_t localClientNum, const vec3_t *origin, float *xOut, float *yOut)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+CG_GetZombiePlayerColorIndex
+==============
+*/
+int CG_GetZombiePlayerColorIndex(LocalClientNum_t localClientNum, ClientNum_t currentClientNum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+CG_DrawOverheadNames
+==============
+*/
+void CG_DrawOverheadNames(LocalClientNum_t localClientNum, const centity_t *cent, float alpha, int mode)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+CG_CanSeeFriendlyHeadInView
+==============
+*/
+bool CG_CanSeeFriendlyHeadInView(
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+CG_GetFriendlyHeadPos
+==============
+*/
+void CG_GetFriendlyHeadPos(LocalClientNum_t localClientNum, const centity_t *cent, vec3_t *end)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+CG_CheckIfDrivingRemoteControlVehicle
+==============
+*/
+int CG_CheckIfDrivingRemoteControlVehicle(LocalClientNum_t localClientNum, unsigned __int16 EntId)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+CG_ScanForCrosshairEntityInternal
+==============
+*/
+
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
+}
+
+/*
+==============
+CG_ScanForCrosshairEntity
+==============
+*/
+void CG_ScanForCrosshairEntity(LocalClientNum_t localClientNum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+compareEntityDist
+==============
+*/
+int compareEntityDist(const void *v1, const void *v2)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+CG_AddDrawName
+==============
+*/
+void CG_AddDrawName(LocalClientNum_t localClientNum, int entnum, float alpha, team_indicator teamIndicator)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+CG_DrawNames
+==============
+*/
+void CG_DrawNames(LocalClientNum_t localClientNum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+CG_IsValidCrosshairEntity
+==============
+*/
+bool CG_IsValidCrosshairEntity(
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+ShouldDrawCrosshairNames
+==============
+*/
+bool ShouldDrawCrosshairNames(LocalClientNum_t localClientNum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+CG_DrawCrosshairNames
+==============
+*/
+/*void CG_DrawCrosshairNames(LocalClientNum_t a1@<ecx>, int a2@<ebx>, LocalClientNum_t localClientNum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}*/
+
+/*
+==============
+activeKillstreakWithLineOfSightOverlay
+==============
+*/
+bool activeKillstreakWithLineOfSightOverlay(LocalClientNum_t localClientNum, const cg_t *cgameGlob, int entnum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+PlayerCanSeeEnemyNames
+==============
+*/
+bool PlayerCanSeeEnemyNames(LocalClientNum_t localClientNum, int entnum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+ShouldDrawPlayerName
+==============
+*/
+bool ShouldDrawPlayerName(LocalClientNum_t localClientNum, int entnum, int team)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+ShouldDrawFriendlyName
+==============
+*/
+bool ShouldDrawFriendlyName(LocalClientNum_t localClientNum, const centity_t *cent, int entnum, int team)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+GetVehicleDriverEntNum
+==============
+*/
+int GetVehicleDriverEntNum(const cg_t *cgameGlob, const centity_t *cent, int entnum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+CG_CanSeeFriendlyHeadTrace
+==============
+*/
+
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
+}
+
+/*
+==============
+CG_CanSeeFriendlyHead
+==============
+*/
+/*char CG_CanSeeFriendlyHead@<al>(vec3_t *a1@<edi>, LocalClientNum_t localClientNum, const centity_t *cent)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}*/
+
+/*
+==============
+CG_DrawActorName
+==============
+*/
+void CG_DrawActorName(LocalClientNum_t localClientNum, const centity_t *cent, bool flashed)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+CG_DrawFriendlyName
+==============
+*/
+void CG_DrawFriendlyName(
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+CG_DrawFriendlyNames
+==============
+*/
+void CG_DrawFriendlyNames(LocalClientNum_t localClientNum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+CG_DrawVisibleNames
+==============
+*/
+void CG_DrawVisibleNames(LocalClientNum_t localClientNum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+

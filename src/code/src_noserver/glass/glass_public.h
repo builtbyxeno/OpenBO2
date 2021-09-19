@@ -1,0 +1,233 @@
+#pragma once
+
+#include "types.h"
+
+//t6/code/src_noserver/glass/glass_allocator.cpp
+// void __thiscall SmallAllocator::Init(SmallAllocator *this, void *buffer, unsigned int bs, unsigned int nb);
+// void **__thiscall SmallAllocator::Allocate(SmallAllocator *this, unsigned int size);
+// char __thiscall Allocator::Memory::MakeFree(Allocator::Memory *this);
+// void __thiscall Allocator::FreeAll(Allocator *this);
+// int __thiscall Allocator::GetMemorySize(Allocator *this, void *ptr);
+// void __thiscall Allocator::Split(Allocator *this, Allocator::Memory *mem, int size);
+// void __thiscall Allocator::Merge(Allocator *this, Allocator::Memory *mem1, Allocator::Memory *mem2);
+// int __thiscall Allocator::Defrag(Allocator *this, void (*func)(void *), int count);
+// int __thiscall Allocator::GetFree(Allocator *this);
+// int __thiscall Allocator::GetLargestFree(Allocator *this);
+// void __thiscall SmallAllocator::Free(SmallAllocator *this, void *ptr, unsigned int num);
+// void __thiscall Allocator::Init(Allocator *this, void *buf, int size);
+// Allocator::Memory **__thiscall Allocator::Allocate(Allocator *this, int size, void *userData);
+// void __thiscall Allocator::Free(Allocator *this, void *ptr);
+
+//#include "glass/glass_allocator.h"
+
+//t6/code/src_noserver/glass/glass_client.cpp
+// void *GlassesClient::Allocate(int size, int align, const char *file, int line);
+// void GlassesClient::Free(void *ptr);
+// unsigned int GlassesClient::GetFreeMem();
+// GlassClient *__thiscall GlassesClient::GetGlass(GlassesClient *this, int idx);
+// void __thiscall GlassesClient::WriteDemoSnapshot(GlassesClient *this, msg_t *msg);
+int compareOutlineEdges(const void *s1, const void *s2);
+// void __thiscall GlassClient::PlayShatterFX(;
+bool GlassIsVisible(LocalClientNum_t localClientNum, const Glass *glass);
+// void __thiscall GlassClient::SetBrushMaterial(GlassClient *this, GlassState::State state);
+void GlassCl_WriteDemoSnapshot(msg_t *msg);
+void GlassCl_BeginGenerateVerts(LocalClientNum_t localClientNum, unsigned int viewIndex);
+void GlassCl_WaitUpdate();
+void GlassCl_GenerateVerts(LocalClientNum_t localClientNum, unsigned int viewIndex);
+void GlassCl_ExplosionEvent(;
+void GlassCl_MeleeEvent(LocalClientNum_t localClientNum, int attackerEntNum);
+void GlassCl_DrawDebug(LocalClientNum_t localClientNum);
+// unsigned int __thiscall GlassesClient::AreaGlasses(;
+// void __thiscall GlassesClient::ClipMoveTrace(GlassesClient *this, const moveclip_t *clip, trace_t *results);
+// void __thiscall GlassesClient::Update(GlassesClient *this, LocalClientNum_t localClientNum);
+// void __thiscall GlassClient::Init(GlassClient *this, const Glass *gls);
+// void __thiscall GlassClient::SetState(;
+// unsigned int __thiscall GlassClient::Outlines::InitShards(;
+void GlassCl_Update(LocalClientNum_t localClientNum);
+// void __thiscall GlassesClient::TracePoint(GlassesClient *this, const pointtrace_t *clip, trace_t *results);
+unsigned int GlassCl_AreaGlasses(;
+void GlassCl_ClipMoveTrace(const moveclip_t *clip, trace_t *results);
+// void __thiscall GlassesClient::GlassesClient(GlassesClient *this, const Glasses *glss);
+// void __thiscall GlassesClient::Reset(GlassesClient *this);
+// void __thiscall GlassesClient::ParseSnapshot(;
+// void __thiscall GlassClient::Outlines::SaveOutlines(;
+void GlassCl_AllocateMemory();
+void GlassCl_FreeMemory();
+void GlassCl_Reset(LocalClientNum_t localClientNum);
+void GlassCl_ReadGameState(LocalClientNum_t localClientNum, msg_t *msg);
+void GlassCl_ParseSnapshot(LocalClientNum_t localClientNum, msg_t *msg);
+void GlassCl_TracePoint(const pointtrace_t *clip, trace_t *results);
+// char __thiscall GlassClient::Shatter(GlassClient *this, GlassShard **newShards, int *numNewShards);
+// void __thiscall GlassesClient::PreShatterNext(GlassesClient *this);
+// void __thiscall GlassClient::Shatter(GlassClient *this, const vec3_t *pos, const vec3_t *dir);
+
+//#include "glass/glass_load_db.h"
+
+//t6/code/src_noserver/glass/glass_load_obj.cpp
+Glasses *GetGlasses_LoadObj();
+XModelPieces *GetGlasses_FastFile();
+Glasses *GetGlasses();
+
+//t6/code/src_noserver/glass/glass_renderer.cpp
+int Remove(const SimplePlaneIntersection **pts, int ptsCount, const SimplePlaneIntersection *removePoint);
+// void *GlassRenderer::operator new(unsigned int size);
+// void GlassRenderer::operator delete(void *ptr);
+// void __thiscall GlassRenderer::InitShardMeshVertexLists(GlassRenderer *this);
+// GlassShardMeshVertex *__thiscall GlassRenderer::GetVertexList(GlassRenderer *this, unsigned int numOutlineVerts);
+// void __thiscall GlassRenderer::AddGroupChange(GlassRenderer *this, GlassShard *shard);
+int GroupChangeSort(const void *a, const void *b);
+// int __thiscall GlassRenderer::CalcPackedPos(GlassRenderer *this, const vec3_t *pos);
+// Allocator::Memory **__thiscall GlassRenderer::AllocateShardMemory(;
+// void __thiscall GlassRenderer::FreeShardMemory(GlassRenderer *this, void *ptr);
+// int __thiscall GlassRenderer::ShardMemorySize(GlassRenderer *this, void *ptr);
+// void __thiscall GlassRenderer::AddShatterAction(;
+// void __thiscall GlassRenderer::AddExplosionAction(;
+// void __thiscall GlassRenderer::AddTraceAction(GlassRenderer *this, const vec3_t *p0, const vec3_t *p1);
+// void __thiscall GlassRenderer::AddMeleeAction(;
+// void __thiscall GlassRenderer::AddUsedShardMaterial(GlassRenderer *this, Material *material);
+// void __thiscall sd_xa2_callback::OnLoopEnd(bdLobbyEventHandler *this, unsigned __int64 __formal);
+// void __thiscall ShardGroup::UpdateBBox(ShardGroup *this);
+// void __thiscall ShardGroup::GenerateVertsInternal(ShardGroup *this, const GlassRenderer *renderer);
+// void __thiscall ShardGroup::FreeRenderMemory(ShardGroup *this);
+// int __thiscall ShardGroup::TracePoint(ShardGroup *this, const vec3_t *p0, const vec3_t *p1);
+// void __thiscall GlassRenderer::~GlassRenderer(GlassRenderer *this);
+// void GlassRenderer::CrashGlassCmd();
+// void __thiscall GlassRenderer::PrintHwm(GlassRenderer *this);
+// void __thiscall ShardGroup::Add(ShardGroup *this, GlassShard *shard);
+// void __thiscall ShardGroup::Update(ShardGroup *this, float deltaTime, GlassUpdateCmd *cmd);
+// void __thiscall ShardGroup::GenerateVertsFinish(ShardGroup *this);
+// void __thiscall GlassRenderer::Reset(GlassRenderer *this);
+// GlassShard *__thiscall GlassRenderer::AllocShard(GlassRenderer *this);
+// void __thiscall GlassRenderer::FreeShard(GlassRenderer *this, GlassShard *shard);
+// GlassPhysics *__thiscall GlassRenderer::AllocPhysics(GlassRenderer *this);
+// void __thiscall GlassRenderer::FreePhysics(GlassRenderer *this, GlassPhysics *phys);
+// void __thiscall GlassRenderer::AddDelayedPhysicsShard(GlassRenderer *this, GlassShard *shard);
+// void __thiscall GlassRenderer::RemoveDelayedPhysicsShard(GlassRenderer *this, GlassShard *shard);
+// void __thiscall GlassRenderer::DoDelayedPhysics(GlassRenderer *this, float deltaTime);
+// void __thiscall GlassRenderer::ExplosionEvent(;
+// int __thiscall GlassRenderer::TracePoint(GlassRenderer *this, const vec3_t *p0, const vec3_t *p1);
+// void __thiscall GlassRenderer::Melee(;
+// ShardGroup *__thiscall GlassRenderer::GetShardGroup(;
+// void GlassRenderer::PrintHwmCmd();
+// void __thiscall GlassRenderer::Broom(GlassRenderer *this);
+// void __thiscall GlassRenderer::DrawDebug(GlassRenderer *this, LocalClientNum_t localClientNum);
+// void __thiscall ShardGroup::Remove(ShardGroup *this, GlassShard *shard);
+// void __thiscall ShardGroup::GenerateVerts(;
+// void __thiscall GlassRenderer::DoGroupChanges(GlassRenderer *this);
+// ShardGroup *__thiscall GlassRenderer::GetShardGroup(GlassRenderer *this, const vec3_t *pos, const GlassDef *glassDef);
+// void __thiscall GlassRenderer::RemoveColidingShard(GlassRenderer *this, GlassShard *shard);
+// void __thiscall GlassRenderer::GlassRenderer(GlassRenderer *this, const Glasses *glasses);
+// void __thiscall GlassRenderer::RemoveGlassShards(GlassRenderer *this, unsigned int glassIndex);
+// GlassShard *__thiscall GlassRenderer::GetSmallestColidingShard(GlassRenderer *this);
+// void __thiscall GlassRenderer::SortedShardsList::Insert(GlassRenderer::SortedShardsList *this, GlassShard *shard);
+// void __thiscall GlassRenderer::SortedShardsList::InsertReverse(;
+// BOOL __thiscall GlassRenderer::AddColidingShard(GlassRenderer *this, GlassShard *shard);
+// void __thiscall GlassRenderer::GetSmallestShards(;
+// void __thiscall GlassRenderer::GetLargestShards(;
+// void __thiscall GlassRenderer::DoMaintenance(GlassRenderer *this);
+// void __thiscall GlassRenderer::CrashGlass(GlassRenderer *this);
+// void __thiscall GlassRenderer::RemovePhysicsShards(GlassRenderer *this);
+// void __thiscall GlassRenderer::ExecuteActions(GlassRenderer *this);
+// char __thiscall GlassRenderer::Update(GlassRenderer *this);
+// void __thiscall GlassRenderer::GenerateVerts(;
+// void *operator new(unsigned int size);
+
+//t6/code/src_noserver/glass/glass_server.cpp
+// void __thiscall GlassesServer::Load(GlassesServer *this, MemoryFile *memFile);
+// void __thiscall GlassesServer::ResetAll(GlassesServer *this);
+void GlassSv_Shutdown();
+unsigned int GlassSv_AreaGlasses(;
+void GlassSv_ClipMoveTrace(const moveclip_t *clip, trace_t *results);
+void GlassSv_PointTrace(const pointtrace_t *clip, trace_t *results);
+void GlassSv_Damage(unsigned int glassId, int damage, int mod, const vec3_t *pos, const vec3_t *dir);
+void GlassSv_RadiusDamage(;
+GlassServer *GlassSv_GetGlassByIndex(unsigned int index);
+// void __thiscall GlassesServer::WriteSnapshotToClient(GlassesServer *this, msg_t *msg, int sinceTime);
+void GlassSv_WriteSnapshotToClient(msg_t *msg, int sinceTime);
+void GlassSv_WriteEmptySnapshotToClient(msg_t *msg);
+void GlassSv_WriteGameState(msg_t *msg);
+void GlassSv_Load(MemoryFile *memFile);
+// void __thiscall GlassesServer::Update(GlassesServer *this);
+// void __thiscall GlassesServer::ShatterAll(GlassesServer *this);
+// void GlassesServer::ResetAllCmd();
+void GlassSv_Update();
+void GlassSv_Touch(unsigned int glassId, gentity_t *other);
+void GlassSv_PredictTouch(gentity_t *other);
+// void GlassesServer::ShatterAllCmd();
+// void __thiscall GlassesServer::Init(GlassesServer *this);
+void GlassSv_Init();
+
+//t6/code/src_noserver/glass/glass_shard.cpp
+// void GlassPhysics::InitStatics();
+// void __thiscall GlassPhysics::AddForce(GlassPhysics *this, const vec3_t *worldPos, const vec3_t *impulse);
+// void __thiscall GlassPhysics::tensor_transform_principle(;
+// bool __thiscall GlassOutline::Add(GlassOutline *this, const vec2_t *pos);
+// bool __thiscall GlassOutline::Add(GlassOutline *this, const vec2_t *dir, float len);
+// void __thiscall GlassOutline::AddSafe(GlassOutline *this, float x, float y, bool isOriginalEdge);
+// double __thiscall GlassOutline::EdgeRatio(GlassOutline *this);
+// void __thiscall GlassOutline::GetBBox(GlassOutline *this, vec2_t *mn, vec2_t *mx);
+// void __thiscall GlassOutline::Recenter(GlassOutline *this, vec2_t *offset);
+// BOOL __thiscall GlassOutline::HasNarrowAngle(GlassOutline *this);
+// bool __thiscall GlassOutline::IsNarrow(GlassOutline *this);
+// char __thiscall GlassOutline::DoesIntersect(;
+// void __thiscall GlassOutline::GetNearestDistances(;
+int compareOutlines(const void *o1, const void *o2);
+// int __thiscall GlassPackedOutline::Init(GlassPackedOutline *this, void *ptr, unsigned __int8 num);
+// int __thiscall GlassPackedOutline::GetStreamSize(GlassPackedOutline *this);
+// unsigned __int8 *__thiscall GlassPackedOutline::StreamOut(GlassPackedOutline *this, unsigned __int8 *streamBuff);
+// void __thiscall GlassPackedOutline::GetBBox(GlassPackedOutline *this, vec2_t *mn, vec2_t *mx);
+// void __thiscall GlassPackedOutline::Recenter(GlassPackedOutline *this, vec2_t *offset);
+// double __thiscall GlassPackedOutline::EdgeRatio(GlassPackedOutline *this);
+// void __thiscall GlassShard::Mesh::Init(;
+// ;
+// bool __thiscall GlassShard::Triangles::Triangulate(GlassShard::Triangles *this);
+// void __thiscall GlassShard::Init(GlassShard *this);
+// void __thiscall GlassShard::ToLocal(;
+// void __thiscall GlassShard::GetLocalBBox(GlassShard *this, vec3_t *mins, vec3_t *maxs);
+// void __thiscall GlassShard::UpdateBBox(GlassShard *this);
+// void __thiscall GlassShard::GenerateVerts(;
+// double __thiscall GlassShard::GetMass(GlassShard *this);
+// void __thiscall GlassShard::DestroyPhysicsObj(GlassShard *this);
+// void __thiscall GlassShard::AddForce(GlassShard *this, const vec3_t *pos, const vec3_t *forceIn);
+// void __thiscall GlassShard::SetVelocity(GlassShard *this, const vec3_t *t_vel, const vec3_t *a_vel);
+// int GetNumIntersections<GlassOutline>(;
+// int GetNumIntersections<GlassPackedOutline>(;
+// void GlassPhysics::CreateAxis(;
+// void GlassPhysics::IntegrateVelocity(GlassPhysics *this@<ecx>, int a2@<ebp>, float deltaTime);
+// void __thiscall GlassPhysics::GetPosition(GlassPhysics *this, vec3_t *position, vec3_t *axis);
+// GlassOutline *__thiscall GlassOutline::operator=(GlassOutline *this, const GlassOutline *o);
+// bool __thiscall GlassOutline::CloseOutline(GlassOutline *this);
+// void __thiscall GlassOutline::Reverse(GlassOutline *this);
+// int __thiscall GlassOutline::InitSplitOutlines(;
+// const unsigned __int8 *__thiscall GlassOutline::StreamIn(GlassOutline *this, const unsigned __int8 *streamBuff);
+// bool __thiscall GlassPackedOutline::LeaveOnEdge(GlassPackedOutline *this, float stickiness);
+// void __thiscall GlassShard::Destroy(GlassShard *this);
+// char __thiscall GlassShard::AllocateMemory(;
+// bool __thiscall GlassShard::Intersect(GlassShard *this, const vec3_t *pos, const vec3_t *dir, vec2_t *hitPoint);
+// bool __thiscall GlassOutline::LeaveOnEdge(GlassOutline *this, float stickiness);
+// bool __thiscall GlassOutline::IsOnBottomEdge(GlassOutline *this, const GlassShard *shard);
+// void GlassPhysics::Step(GlassPhysics *this@<ecx>, int a2@<ebp>, float deltaTime);
+// void __thiscall GlassOutline::GlassOutline(;
+// void __thiscall GlassOutline::GlassOutline(;
+// int __thiscall GlassOutline::Split(;
+// int __thiscall GlassOutline::Chip(;
+// int __thiscall GlassOutline::HitPoint(;
+// void __thiscall GlassPackedOutline::Init(GlassPackedOutline *this, const GlassOutline *other, const GlassShard *shard);
+// void __thiscall GlassShard::Remove(GlassShard *this, GlassShard::RemoveReason reason, bool delay);
+// char __thiscall GlassShard::Init(;
+// void __thiscall GlassShard::DisableCollisions(GlassShard *this);
+// unsigned int __thiscall GlassOutline::Shatter(;
+// GlassShard *GlassShard::Create(const Glass *glass, GlassOutline *outline);
+// GlassShard *GlassShard::Create(const Glass *glass, GlassPackedOutline *outline);
+// bool __thiscall GlassShard::InitPhysicsObj(GlassShard *this, bool enableCollisions);
+// char __thiscall GlassShard::InitPhysics(;
+// void __thiscall GlassShard::DrawOutline(GlassShard *this);
+// void GlassShard::InitPhysics(;
+// void __thiscall GlassShard::ExplosionEvent(;
+// char __thiscall GlassShard::TracePoint(;
+// char __thiscall GlassShard::DelayedUpdate(GlassShard *this, float deltaTime);
+// void __thiscall GlassShard::UpdateInternal(GlassShard *this, GlassRenderer *localRenderer, float deltaTime);
+// void __thiscall GlassShard::Update(GlassShard *this, float deltaTime, GlassUpdateCmd *cmd);
+
+//#include "glass/glass_shard.h"
+

@@ -1,0 +1,14 @@
+#include "types.h"
+#include "functions.h"
+
+/*
+==============
+yyparse
+==============
+*/
+int yyparse()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+

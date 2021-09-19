@@ -1,0 +1,14 @@
+#include "types.h"
+#include "functions.h"
+
+/*
+==============
+StringValue
+==============
+*/
+int StringValue(char *str, int len)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
