@@ -139,22 +139,20 @@ void G_Player3rdPersonVehicle_GetLookAtPosition(const gentity_t *vehicle, const 
 ClientConnect
 ==============
 */
-/*const char *ClientConnect@<eax>(char *a1@<edi>, ClientNum_t clientNum, unsigned __int16 scriptPersId)
+const char *ClientConnect(char *a1, ClientNum_t clientNum, unsigned __int16 scriptPersId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 G_GetPlayer3rdPersonVehicleViewOrigin
 ==============
 */
-
+void G_GetPlayer3rdPersonVehicleViewOrigin(unsigned int a1, const playerState_s *ps, vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

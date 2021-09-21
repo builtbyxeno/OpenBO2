@@ -27,11 +27,11 @@ int DestructiblePiece_ParseDefSpecificFieldType(unsigned __int8 *pStruct, const 
 DestructiblePieceLoadFile
 ==============
 */
-/*DestructiblePiece *DestructiblePieceLoadFile@<eax>(fsMode_t a1@<esi>, const char *name, DestructiblePiece *destructiblePiece)
+DestructiblePiece *DestructiblePieceLoadFile(fsMode_t a1, const char *name, DestructiblePiece *destructiblePiece)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -49,9 +49,9 @@ int Destructible_ParseDefSpecificFieldType(unsigned __int8 *pStruct, const char 
 DestructibleDefLoadFile
 ==============
 */
-/*DestructibleDef *DestructibleDefLoadFile@<eax>(fsMode_t a1@<esi>, const char *name, void *(*Alloc)(int))
+DestructibleDef *DestructibleDefLoadFile(fsMode_t a1, const char *name, void *(*Alloc)(int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 

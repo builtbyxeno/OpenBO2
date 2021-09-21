@@ -197,7 +197,7 @@ float getStdDevForPeer(peerResults_t *peerResults)
 handleTestPacketAck
 ==============
 */
-void handleTestPacketAck(ControllerIndex_t localControllerIndex, __int64 from_8, int from_16, msg_t *msga, msg_t *msg)
+void handleTestPacketAck(__int64 localControllerIndex, __int64 from_8, int from_16, msg_t *msga, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -207,7 +207,7 @@ void handleTestPacketAck(ControllerIndex_t localControllerIndex, __int64 from_8,
 PartyMigrate_HandleTestPacket
 ==============
 */
-void PartyMigrate_HandleTestPacket(ControllerIndex_t localControllerIndex, const netadr_t from, msg_t* msg)
+void __cdecl PartyMigrate_HandleTestPacket(ControllerIndex_t localControllerIndex, const netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

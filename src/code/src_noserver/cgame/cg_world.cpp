@@ -70,11 +70,9 @@ void CG_UnlinkEntity(LocalClientNum_t localClientNum, int entIndex)
 CG_CalcWorldBounds
 ==============
 */
-
+void CG_CalcWorldBounds(int a1, centity_t *cent, DObj *dobj, float scale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -216,11 +214,9 @@ void CG_PointTraceToEntities(const pointtrace_t *clip, trace_t *results, col_con
 CG_TracePoint
 ==============
 */
-
+void CG_TracePoint(const vec3_t *start, const vec3_t *end, col_context_t *context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -238,11 +234,10 @@ void CG_LocationalTrace(trace_t *results, const vec3_t *start, const vec3_t *end
 CG_SightTracePointInternal
 ==============
 */
-
+BOOL CG_SightTracePointInternal(int a1, int *hitNum, const vec3_t *start, const vec3_t *end, int mask, trace_t *trace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -250,11 +245,10 @@ CG_SightTracePointInternal
 CG_SightTracePoint
 ==============
 */
-
+bool CG_SightTracePoint(float hitNum, int *a2, const vec3_t *start, const vec3_t *end, int mask, trace_t *trace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

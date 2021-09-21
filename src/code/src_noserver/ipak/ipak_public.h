@@ -15,7 +15,7 @@ char IPak_NextIndexEntry(int a1, IPakWorkData *work, IPakIndexEntry *entry);
 void IPak_EndIndexRead(IPakWorkData *work);
 int IPak_CompareImagePartHashes(const void *A, const void *B);
 int IPak_CompareImageOffsets(const void *A, const void *B);
-// void IPak_BuildAdjacencyInfo(const char *a1@<edi>, unsigned __int8 *workBuffer, int workBufferSize);
+void IPak_BuildAdjacencyInfo(const char *a1, unsigned __int8 *workBuffer, int workBufferSize);
 void IPak_InvalidateImages();
 void IPak_RemovePackfilesForZone(const char *zoneName);
 

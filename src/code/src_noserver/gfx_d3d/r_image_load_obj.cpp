@@ -79,11 +79,9 @@ void Image_LoadDxtc(GfxImage *image, const GfxImageFileHeader *fileHeader, const
 Image_LoadFromData
 ==============
 */
-
+void __cdecl Image_LoadFromData(GfxImage *image, GfxImageFileHeader *fileHeader, unsigned __int8 *srcData, unsigned int allocFlags, unsigned int *outStreamedSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -102,11 +100,10 @@ char Image_LoadFromFileInternal(const GfxImageFileHeader *a1, unsigned int a2, G
 Image_LoadFromFile
 ==============
 */
-
+char __cdecl Image_LoadFromFile(GfxImage *image)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -215,10 +212,9 @@ GfxImage *Image_LoadBuiltin(const char *name, unsigned __int8 semantic, int imag
 Image_Load
 ==============
 */
-
+GfxImage *__cdecl Image_Load(const char *name, int semantic, int imageTrack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 

@@ -155,11 +155,10 @@ XModelPartsLoad *XModelPartsLoadFile(XModel *model, const char *name, void *(*Al
 XModelPartsPrecache
 ==============
 */
-
+XModelPartsLoad *XModelPartsPrecache(XModel *model, const char *name, void *(__cdecl *Alloc)(int), __int64 *xmodelModifiedTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*

@@ -38,11 +38,10 @@ bool Com_SessionMode_ReadModes(msg_t *msg)
 BG_EmblemsInit
 ==============
 */
-
+bool __cdecl BG_EmblemsInit()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

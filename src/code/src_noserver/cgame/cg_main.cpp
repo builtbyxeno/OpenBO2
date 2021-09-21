@@ -38,11 +38,10 @@ double CG_flrand(float min, float max)
 CG_rand
 ==============
 */
-
+int __cdecl CG_rand()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

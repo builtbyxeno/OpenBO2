@@ -134,11 +134,10 @@ int CG_GetMatchScoreboardIndexForTeamByScore(LocalClientNum_t localClientNum, in
 CG_GetMatchScoreboardIndexForTeam
 ==============
 */
-
+int CG_GetMatchScoreboardIndexForTeam(int a1, LocalClientNum_t localClientNum, int index, team_t team, cgScoreboardSort_e sort)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -146,11 +145,10 @@ CG_GetMatchScoreboardIndexForTeam
 CG_GetMatchscoreboardTeam
 ==============
 */
-
+int CG_GetMatchscoreboardTeam(int a1, LocalClientNum_t a2, LocalClientNum_t localClientNum, int index, cgScoreboardSort_e sort)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -448,11 +446,10 @@ const char *CG_GetColumnValueString(LocalClientNum_t localClientNum, const score
 CG_GetMatchScoreboardInfo
 ==============
 */
-
+const char *__cdecl CG_GetMatchScoreboardInfo(LocalClientNum_t localClientNum, float feederID, int column, int index, team_t team, cgScoreboardSort_e sort)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*

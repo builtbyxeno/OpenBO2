@@ -37,11 +37,11 @@ void PhysConstraintsPostLoadFixup(PhysConstraints *physConstraints)
 PhysConstraintsLoadFile
 ==============
 */
-/*PhysConstraints *PhysConstraintsLoadFile@<eax>(fsMode_t a1@<esi>, const char *name, void *(*Alloc)(int))
+PhysConstraints *PhysConstraintsLoadFile(fsMode_t a1, const char *name, void *(*Alloc)(int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============

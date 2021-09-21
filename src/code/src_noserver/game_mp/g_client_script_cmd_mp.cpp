@@ -87,10 +87,10 @@ void WeaponComponentListToName(const WeaponComponentList *componentList, char *n
 PlayerCmd_calcWeaponOptions
 ==============
 */
-/*void PlayerCmd_calcWeaponOptions(char *a1@<edi>, scr_entref_t entref)
+void PlayerCmd_calcWeaponOptions(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -117,10 +117,10 @@ void PlayerCmd_setPlayerRenderOptions(scr_entref_t entref)
 SetBBLoadoutData
 ==============
 */
-/*void SetBBLoadoutData(loadoutSlot_t a1@<edx>, bbLoadoutData *bbData, const CACRoot *cacRoot, loadoutClass_t customClass)
+void SetBBLoadoutData(loadoutSlot_t a1, bbLoadoutData *bbData, const CACRoot *cacRoot, loadoutClass_t customClass)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -448,11 +448,9 @@ void PlayerCmd_getLockOnSpeed(scr_entref_t entref)
 PlayerCmd_giveStartAmmo
 ==============
 */
-
+void PlayerCmd_giveStartAmmo(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -920,10 +918,10 @@ void PlayerCmd_BotSetDefaultClass(scr_entref_t entref)
 PlayerCmd_BotClassAddItem
 ==============
 */
-/*void PlayerCmd_BotClassAddItem(char *a1@<edi>, scr_entref_t entref)
+void PlayerCmd_BotClassAddItem(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1402,60 +1400,60 @@ void PlayerCmd_RecordKillstreak(unsigned __int8 *a1, scr_entref_t entref)
 PlayerCmd_RecordKillstreakEnd
 ==============
 */
-/*void PlayerCmd_RecordKillstreakEnd(char *a1@<edi>, scr_entref_t entref)
+void PlayerCmd_RecordKillstreakEnd(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 PlayerCmd_RecordGameEvent
 ==============
 */
-/*void PlayerCmd_RecordGameEvent(char *a1@<edi>, scr_entref_t entref)
+void PlayerCmd_RecordGameEvent(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 PlayerCmd_RecordKillModifier
 ==============
 */
-/*void PlayerCmd_RecordKillModifier(char *a1@<edi>, scr_entref_t entref)
+void PlayerCmd_RecordKillModifier(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 PlayerCmd_RecordMedal
 ==============
 */
-/*void PlayerCmd_RecordMedal(char *a1@<edi>, scr_entref_t entref)
+void PlayerCmd_RecordMedal(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 PlayerCmd_RecordLoadoutPerksAndKillStreaks
 ==============
 */
-/*void PlayerCmd_RecordLoadoutPerksAndKillStreaks(char *a1@<edi>, scr_entref_t entref)
+void PlayerCmd_RecordLoadoutPerksAndKillStreaks(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 PlayerCmd_RecordMultiKill
 ==============
 */
-/*void PlayerCmd_RecordMultiKill(char *a1@<edi>, scr_entref_t entref)
+void PlayerCmd_RecordMultiKill(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1562,11 +1560,9 @@ void SetClientDvar(scr_entref_t entref, dvar_cmd_t dvarCmd)
 PlayerCmd_SetClientAimLockonPitchStrength
 ==============
 */
-
+void __cdecl PlayerCmd_SetClientAimLockonPitchStrength(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1574,11 +1570,9 @@ PlayerCmd_SetClientAimLockonPitchStrength
 PlayerCmd_SetClientAmmoCounterHide
 ==============
 */
-
+void __cdecl PlayerCmd_SetClientAmmoCounterHide(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1586,11 +1580,9 @@ PlayerCmd_SetClientAmmoCounterHide
 PlayerCmd_SetClientCGObjectiveText
 ==============
 */
-
+void __cdecl PlayerCmd_SetClientCGObjectiveText(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1598,11 +1590,9 @@ PlayerCmd_SetClientCGObjectiveText
 PlayerCmd_SetClientCompass
 ==============
 */
-
+void __cdecl PlayerCmd_SetClientCompass(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1610,11 +1600,9 @@ PlayerCmd_SetClientCompass
 PlayerCmd_SetClientDrawTalk
 ==============
 */
-
+void __cdecl PlayerCmd_SetClientDrawTalk(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1622,11 +1610,9 @@ PlayerCmd_SetClientDrawTalk
 PlayerCmd_SetClientFOV
 ==============
 */
-
+void __cdecl PlayerCmd_SetClientFOV(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1634,11 +1620,9 @@ PlayerCmd_SetClientFOV
 PlayerCmd_SetClientHUDHardcore
 ==============
 */
-
+void __cdecl PlayerCmd_SetClientHUDHardcore(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1646,11 +1630,9 @@ PlayerCmd_SetClientHUDHardcore
 PlayerCmd_SetClientPlayerSprintTime
 ==============
 */
-
+void __cdecl PlayerCmd_SetClientPlayerSprintTime(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1658,11 +1640,9 @@ PlayerCmd_SetClientPlayerSprintTime
 PlayerCmd_SetClientMiniScoreboardHide
 ==============
 */
-
+void __cdecl PlayerCmd_SetClientMiniScoreboardHide(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1670,11 +1650,9 @@ PlayerCmd_SetClientMiniScoreboardHide
 PlayerCmd_SetClientNumLives
 ==============
 */
-
+void __cdecl PlayerCmd_SetClientNumLives(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1682,11 +1660,9 @@ PlayerCmd_SetClientNumLives
 PlayerCmd_SetClientPlayerPushAmount
 ==============
 */
-
+void __cdecl PlayerCmd_SetClientPlayerPushAmount(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1694,11 +1670,9 @@ PlayerCmd_SetClientPlayerPushAmount
 PlayerCmd_SetClientScriptMainMenu
 ==============
 */
-
+void __cdecl PlayerCmd_SetClientScriptMainMenu(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1706,11 +1680,9 @@ PlayerCmd_SetClientScriptMainMenu
 PlayerCmd_SetClientThirdPersonAngle
 ==============
 */
-
+void __cdecl PlayerCmd_SetClientThirdPersonAngle(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

@@ -71,11 +71,10 @@ PacketQueueEntry *PacketQueue_Peek(PacketQueue *queue)
 PacketQueue_EnqueueInternal
 ==============
 */
-
+PacketQueueEntry *PacketQueue_EnqueueInternal(PacketQueue *queue, unsigned int flags, int dequeueTime, netsrc_t sock, const netadr_t *addr, int length, const void *data)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -94,11 +93,10 @@ bool PacketQueue_DequeueInternal(PacketQueue *queue)
 PacketQueue_Enqueue
 ==============
 */
-
+PacketQueueEntry *PacketQueue_Enqueue(PacketQueue *queue, unsigned int flags, netsrc_t sock, const netadr_t *addr, int length, const void *data)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -137,11 +135,10 @@ void NET_InitQueue(PacketQueue *queue, const char *name, bool emulation)
 NET_DequeuePacket
 ==============
 */
-
+bool NET_DequeuePacket(char *a1, PacketQueue *queue, unsigned int *flags, netsrc_t *sock, netadr_t *addr, int maxlength, int *length)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -149,11 +146,10 @@ NET_DequeuePacket
 NET_EnqueuePacket
 ==============
 */
-
+bool __cdecl NET_EnqueuePacket(PacketQueue *queue, unsigned int flags, netsrc_t sock, const netadr_t *addr, int length)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

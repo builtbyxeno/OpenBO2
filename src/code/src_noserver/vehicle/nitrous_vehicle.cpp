@@ -6,7 +6,7 @@
 NitrousVehicle::is_peeling_out
 ==============
 */
-/*bool __thiscall NitrousVehicle::is_peeling_out(NitrousVehicle *this)
+/*bool NitrousVehicle::is_peeling_out(NitrousVehicle *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -17,7 +17,7 @@ NitrousVehicle::is_peeling_out
 NitrousVehicle::destructible_damage
 ==============
 */
-/*void __thiscall NitrousVehicle::destructible_damage(NitrousVehicle *this, const char *notifyLabel, int damageStage)
+/*void NitrousVehicle::destructible_damage(NitrousVehicle *notthis, const char *notifyLabel, int damageStage)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -27,7 +27,7 @@ NitrousVehicle::destructible_damage
 NitrousVehicle::get_velocity
 ==============
 */
-/*phys_vec3 *__thiscall NitrousVehicle::get_velocity(NitrousVehicle *this, phys_vec3 *result)
+/*phys_vec3 *NitrousVehicle::get_velocity(NitrousVehicle *notthis, phys_vec3 *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -38,7 +38,7 @@ NitrousVehicle::get_velocity
 NitrousVehicle::_get_stuck_accel_factor
 ==============
 */
-/*double __thiscall NitrousVehicle::_get_stuck_accel_factor(NitrousVehicle *this, float delta_t)
+/*double NitrousVehicle::_get_stuck_accel_factor(NitrousVehicle *notthis, float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -49,7 +49,7 @@ NitrousVehicle::_get_stuck_accel_factor
 NitrousVehicle::remove_wheels
 ==============
 */
-/*void __thiscall NitrousVehicle::remove_wheels(NitrousVehicle *this)
+/*void NitrousVehicle::remove_wheels(NitrousVehicle *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -59,7 +59,7 @@ NitrousVehicle::remove_wheels
 NitrousVehicle::update_braking_and_acceleration
 ==============
 */
-/*void __thiscall NitrousVehicle::update_braking_and_acceleration(NitrousVehicle *this, const float __formal)
+/*void NitrousVehicle::update_braking_and_acceleration(NitrousVehicle *notthis, const float __formal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -69,7 +69,7 @@ NitrousVehicle::update_braking_and_acceleration
 NitrousVehicle::get_max_speed
 ==============
 */
-/*double __thiscall NitrousVehicle::get_max_speed(NitrousVehicle *this, bool include_perks)
+/*double NitrousVehicle::get_max_speed(NitrousVehicle *notthis, bool include_perks)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -80,7 +80,7 @@ NitrousVehicle::get_max_speed
 NitrousVehicle::update_control_from_network
 ==============
 */
-/*void __thiscall NitrousVehicle::update_control_from_network(NitrousVehicle *this, LerpEntityStateVehicle *vehicleState)
+/*void NitrousVehicle::update_control_from_network(NitrousVehicle *notthis, LerpEntityStateVehicle *vehicleState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -90,7 +90,7 @@ NitrousVehicle::update_control_from_network
 NitrousVehicle::GetEntityPose
 ==============
 */
-/*void __thiscall NitrousVehicle::GetEntityPose(NitrousVehicle *this, vec3_t *origin, vec3_t *angles, const int curTime, bool isDriver)
+/*void NitrousVehicle::GetEntityPose(NitrousVehicle *notthis, vec3_t *origin, vec3_t *angles, const int curTime, bool isDriver)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -121,7 +121,7 @@ int Phys_ObjCreateNitrousVehicle(const phys_mat44 *po, const vec3_t *velocity, c
 NitrousVehicle::pause_physics
 ==============
 */
-/*void __thiscall NitrousVehicle::pause_physics(NitrousVehicle *this, bool shutdown)
+/*void NitrousVehicle::pause_physics(NitrousVehicle *notthis, bool shutdown)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -131,7 +131,7 @@ NitrousVehicle::pause_physics
 NitrousVehicle::_setup_wheels
 ==============
 */
-/*void NitrousVehicle::_setup_wheels(NitrousVehicle *this, unsigned int a2, LocalClientNum_t localClientNum)
+/*void NitrousVehicle::_setup_wheels(NitrousVehicle *notthis, unsigned int a2, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -141,7 +141,7 @@ NitrousVehicle::_setup_wheels
 NitrousVehicle::_update_orientation_constraint
 ==============
 */
-/*void __thiscall NitrousVehicle::_update_orientation_constraint(NitrousVehicle *this)
+/*void NitrousVehicle::_update_orientation_constraint(NitrousVehicle *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -151,11 +151,9 @@ NitrousVehicle::_update_orientation_constraint
 NitrousVehicle::_update_gravity
 ==============
 */
-/*
+/*void NitrousVehicle::_update_gravity(NitrousVehicle *notthis, unsigned int a2, const float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -163,7 +161,7 @@ NitrousVehicle::_update_gravity
 NitrousVehicle::_update_boost
 ==============
 */
-/*void __thiscall NitrousVehicle::_update_boost(NitrousVehicle *this, const float delta_t)
+/*void NitrousVehicle::_update_boost(NitrousVehicle *notthis, const float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -173,7 +171,7 @@ NitrousVehicle::_update_boost
 NitrousVehicle::_update_friction
 ==============
 */
-/*void __thiscall NitrousVehicle::_update_friction(NitrousVehicle *this, const float delta_t)
+/*void NitrousVehicle::_update_friction(NitrousVehicle *notthis, const float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -183,7 +181,7 @@ NitrousVehicle::_update_friction
 NitrousVehicle::_update_fakey_stuff
 ==============
 */
-/*void __thiscall NitrousVehicle::_update_fakey_stuff(NitrousVehicle *this, const float delta_t)
+/*void NitrousVehicle::_update_fakey_stuff(NitrousVehicle *notthis, const float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -193,7 +191,7 @@ NitrousVehicle::_update_fakey_stuff
 NitrousVehicle::start_path
 ==============
 */
-/*void __thiscall NitrousVehicle::start_path(NitrousVehicle *this, int attach_mode)
+/*void NitrousVehicle::start_path(NitrousVehicle *notthis, int attach_mode)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -203,7 +201,7 @@ NitrousVehicle::start_path
 NitrousVehicle::end_path
 ==============
 */
-/*void __thiscall NitrousVehicle::end_path(NitrousVehicle *this)
+/*void NitrousVehicle::end_path(NitrousVehicle *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -213,11 +211,9 @@ NitrousVehicle::end_path
 NitrousVehicle::debug_render
 ==============
 */
-/*
+/*void NitrousVehicle::debug_render(NitrousVehicle *notthis, int a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -225,7 +221,7 @@ NitrousVehicle::debug_render
 NitrousVehicle::update_steering
 ==============
 */
-/*void NitrousVehicle::update_steering(NitrousVehicle *this, float delta_t, float a3, const float a4)
+/*void NitrousVehicle::update_steering(NitrousVehicle *notthis, float delta_t, float a3, const float a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -235,11 +231,9 @@ NitrousVehicle::update_steering
 NitrousVehicle::update_from_network
 ==============
 */
-/*
+/*void NitrousVehicle::update_from_network(NitrousVehicle *notthis, int a2, trajectory_t pos, trajectory_t apos, LerpEntityStateVehicle *vehicleState, float timeDifference)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -257,7 +251,7 @@ void G_SetVehDriverInputs(const LocalClientNum_t localClientNum, playerState_s *
 NitrousVehicle::init
 ==============
 */
-/*void __thiscall NitrousVehicle::init(NitrousVehicle *this, gentity_t *owner, const VehicleParameter *parameter)
+/*void NitrousVehicle::init(NitrousVehicle *notthis, gentity_t *owner, const VehicleParameter *parameter)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -267,7 +261,7 @@ NitrousVehicle::init
 NitrousVehicle::init
 ==============
 */
-/*void __thiscall NitrousVehicle::init(NitrousVehicle *this, LocalClientNum_t localClientNum, centity_t *owner, const VehicleParameter *parameter)
+/*void NitrousVehicle::init(NitrousVehicle *notthis, LocalClientNum_t localClientNum, centity_t *owner, const VehicleParameter *parameter)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -277,11 +271,9 @@ NitrousVehicle::init
 NitrousVehicle::update_parms
 ==============
 */
-/*
+/*void NitrousVehicle::update_parms(NitrousVehicle *notthis, int a2, int params, const VehicleParameter *initialization, bool a5)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -329,7 +321,7 @@ void G_ClearVehicleInputs()
 NitrousVehicle::unpause_physics
 ==============
 */
-/*void __thiscall NitrousVehicle::unpause_physics(NitrousVehicle *this)
+/*void NitrousVehicle::unpause_physics(NitrousVehicle *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -339,7 +331,7 @@ NitrousVehicle::unpause_physics
 NitrousVehicle::_update_prolog
 ==============
 */
-/*void NitrousVehicle::_update_prolog(NitrousVehicle *this@<ecx>, const char *a2@<edi>, const float delta_t)
+/*void NitrousVehicle::_update_prolog(NitrousVehicle *notthis, const char *a2, const float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -389,7 +381,7 @@ void Vehicle_Launch(const LocalClientNum_t localClientNum, centity_t *cent, cons
 NitrousVehicle::NitrousVehicle
 ==============
 */
-/*void __thiscall NitrousVehicle::NitrousVehicle(NitrousVehicle *this)
+/*void NitrousVehicle::NitrousVehicle(NitrousVehicle *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

@@ -153,11 +153,10 @@ void XModelRenderString(const vec3_t *pos, const char *string)
 XModelTraceLineAnimated
 ==============
 */
-
+int XModelTraceLineAnimated(unsigned int a1, const DObj *obj, unsigned int modelIndex, int baseBoneIndex, trace_t *results, const DObjAnimMat *boneMtxList, vec3_t *localStart, vec3_t *localEnd, int contentmask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -207,11 +206,10 @@ bool XSurfaceVisitTrianglesInAabb_ProcessTriangles(XSurfaceGetTriCandidatesLocal
 XModelTraceLine
 ==============
 */
-
+int XModelTraceLine(int a1, const XModel *model, trace_t *results, const vec3_t *localStart, const vec3_t *localEnd, int contentmask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

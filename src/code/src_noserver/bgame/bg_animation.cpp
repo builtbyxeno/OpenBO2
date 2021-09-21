@@ -430,7 +430,7 @@ void BG_Player_DoControllersSetup(const entityState_s *es, clientInfo_t *ci, int
 BG_PlayerAnimation
 ==============
 */
-void __fastcall BG_PlayerAnimation(LocalClientNum_t localClientNum, const entityState_s* es, clientInfo_t* ci, vec3_t origin, vec3_t angles)
+void BG_PlayerAnimation(const entityState_s *a1, LocalClientNum_t localClientNum, const entityState_s *es, clientInfo_t *ci, vec3_t origin, vec3_t angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

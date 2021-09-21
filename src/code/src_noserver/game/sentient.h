@@ -17,7 +17,7 @@ int Sentient_EnemyTeamFlags(team_t eTeam)
 SentientHandle::isDefined
 ==============
 */
-/*BOOL __thiscall SentientHandle::isDefined(SentientHandle *this)
+/*BOOL SentientHandle::isDefined(SentientHandle *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -28,7 +28,7 @@ SentientHandle::isDefined
 SentientHandle::sentient
 ==============
 */
-/*sentient_t *__thiscall SentientHandle::sentient(SentientHandle *this)
+/*sentient_t *SentientHandle::sentient(SentientHandle *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

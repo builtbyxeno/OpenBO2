@@ -17,11 +17,10 @@ const entityState_s *SV_GetNextEnt(const int entCount, const int firstEntIndex, 
 SV_EntLinkedToEnt
 ==============
 */
-
+bool SV_EntLinkedToEnt(const entityState_s *childEnt, int parentEntIndex, const int entCount, const int firstEntityIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -29,11 +28,10 @@ SV_EntLinkedToEnt
 SV_ShouldEntityGoToClient
 ==============
 */
-
+bool SV_ShouldEntityGoToClient(const entityState_s *ent, const int clientNum, const int entCount, const int firstEntityIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -71,10 +69,10 @@ void SV_WritePerformanceData(const ClientNum_t clientNum, msg_t *msg)
 SV_WriteSnapshotToClient
 ==============
 */
-/*void SV_WriteSnapshotToClient(char *a1@<edi>, client_t *client, msg_t *msg, const bool sendEntities, const bool writeClientsAndOtherData)
+void SV_WriteSnapshotToClient(char *a1, client_t *client, msg_t *msg, const bool sendEntities, const bool writeClientsAndOtherData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -112,10 +110,8 @@ void SV_GetServerStaticHeader_Project()
 SV_SendClientMessages
 ==============
 */
-
+void SV_SendClientMessages(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

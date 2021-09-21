@@ -134,7 +134,7 @@ const char *DB_GetXAssetTypeName(int type)
 bdLeagueSubdivisionResult::sizeOf
 ==============
 */
-/*unsigned int __thiscall bdLeagueSubdivisionResult::sizeOf(bdLeagueSubdivisionResult *this)
+/*unsigned int bdLeagueSubdivisionResult::sizeOf(bdLeagueSubdivisionResult *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -145,7 +145,7 @@ bdLeagueSubdivisionResult::sizeOf
 bdLeagueSubdivisionInfo::sizeOf
 ==============
 */
-/*unsigned int __thiscall bdLeagueSubdivisionInfo::sizeOf(bdStatsInfo *this)
+/*unsigned int bdLeagueSubdivisionInfo::sizeOf(bdStatsInfo *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -167,7 +167,7 @@ CCallback<CSteamAchievements,UserAchievementStored_t,0>::GetCallbackSizeBytes
 bdMatchMakingInfo::sizeOf
 ==============
 */
-/*unsigned int __thiscall bdMatchMakingInfo::sizeOf(bdMatchMakingInfo *this)
+/*unsigned int bdMatchMakingInfo::sizeOf(bdMatchMakingInfo *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -178,7 +178,7 @@ bdMatchMakingInfo::sizeOf
 bdBoolResult::sizeOf
 ==============
 */
-/*unsigned int __thiscall bdBoolResult::sizeOf(bdYouTubeRegistrationResult *this)
+/*unsigned int bdBoolResult::sizeOf(bdYouTubeRegistrationResult *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

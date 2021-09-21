@@ -180,11 +180,10 @@ void BG_VehicleClipVelocity(const vec3_t *velocity, const vec3_t *normal, vec3_t
 BG_VehicleGroundPlant
 ==============
 */
-
+int BG_VehicleGroundPlant(pmove_t *pm, VehicleState *vehicleState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -202,11 +201,10 @@ void BG_PlayerStateToVehicleState(LocalClientNum_t localClientNum, const playerS
 BG_VehicleCorrectAllSolid
 ==============
 */
-
+int BG_VehicleCorrectAllSolid(pmove_t *pm, VehicleState *vehicleState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -224,11 +222,10 @@ void BG_VehicleGroundTrace(pmove_t *pm, VehicleState *vehicleState, GroundTrace 
 BG_VehicleSlideMove
 ==============
 */
-
+bool BG_VehicleSlideMove(unsigned int a1, pmove_t *pm, VehicleState *vehicleState, const GroundTrace *groundTrace, int gravity, float dt)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -236,11 +233,9 @@ BG_VehicleSlideMove
 BG_VehicleStepSlideMove
 ==============
 */
-
+void BG_VehicleStepSlideMove(VehicleState *vehicleState, const GroundTrace *groundTrace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -258,11 +253,9 @@ void BG_VehicleGroundMove(pmove_t *pm, VehicleState *vehicleState, const GroundT
 BG_VehicleSteerMove
 ==============
 */
-
+void BG_VehicleSteerMove(unsigned int a1, pmove_t *pm, const pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -270,11 +263,9 @@ BG_VehicleSteerMove
 BG_VehicleStrafeMove
 ==============
 */
-
+void BG_VehicleStrafeMove(unsigned int a1, pmove_t *pm, const pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

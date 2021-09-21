@@ -116,11 +116,10 @@ bool Voting_ParseViewCount(int *a1, const char *a2)
 Voting_ParseTitle
 ==============
 */
-
+bool Voting_ParseTitle(char *a1, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -128,11 +127,10 @@ Voting_ParseTitle
 Voting_ParseSubtitle
 ==============
 */
-
+bool Voting_ParseSubtitle(char *a1, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -140,11 +138,10 @@ Voting_ParseSubtitle
 Voting_ParseVoteForString
 ==============
 */
-
+bool Voting_ParseVoteForString(char *a1, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -152,11 +149,10 @@ Voting_ParseVoteForString
 Voting_ParseVotingItem_ImageName
 ==============
 */
-
+bool Voting_ParseVotingItem_ImageName(int a1, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -175,11 +171,10 @@ bool Voting_ParseVotingItem_IsLocalImage(int a1, const char *a2)
 Voting_ParseVotingItem_CounterName
 ==============
 */
-
+bool Voting_ParseVotingItem_CounterName(int a1, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -187,11 +182,10 @@ Voting_ParseVotingItem_CounterName
 Voting_ParseVotingItem_SelectStringRef
 ==============
 */
-
+bool Voting_ParseVotingItem_SelectStringRef(int a1, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -199,11 +193,10 @@ Voting_ParseVotingItem_SelectStringRef
 Voting_ParseVotingItem_Position
 ==============
 */
-
+bool Voting_ParseVotingItem_Position(int a1, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

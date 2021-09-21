@@ -458,10 +458,10 @@ void Session_WaitForTaskToComplete(TaskRecord *sessionTask, int startTime, int t
 Session_FinishOngoingSessionJoinTasksForXUID
 ==============
 */
-/*void Session_FinishOngoingSessionJoinTasksForXUID(const char *a1@<edi>, SessionData *session, unsigned __int64 player)
+void Session_FinishOngoingSessionJoinTasksForXUID(const char *a1, SessionData *session, unsigned __int64 player)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -570,10 +570,10 @@ void Session_RemoveAllPlayersFromSession(SessionData *session)
 Session_CleanUpSearches
 ==============
 */
-/*void Session_CleanUpSearches(const char *a1@<esi>)
+void Session_CleanUpSearches(const char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

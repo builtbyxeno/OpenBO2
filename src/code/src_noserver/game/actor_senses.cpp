@@ -216,7 +216,7 @@ char Actor_CanSeeEntityEx(actor_t *self, const gentity_t *ent, float fovDot, flo
 Actor_CanShootFrom
 ==============
 */
-BOOL Actor_CanShootFrom(actor_t* self, const vec3_t* vTarget, const vec3_t* vFrom)
+bool Actor_CanShootFrom(actor_t *self, const vec3_t *vTarget, int vFrom, const vec3_t *a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -227,7 +227,7 @@ BOOL Actor_CanShootFrom(actor_t* self, const vec3_t* vTarget, const vec3_t* vFro
 Actor_CanShootEnemy
 ==============
 */
-bool Actor_CanShootEnemy(actor_t *self, const int cacheDuration)
+bool Actor_CanShootEnemy(actor_t *self, const int cacheDuration, const char *a3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

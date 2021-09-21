@@ -509,11 +509,10 @@ int Sys_VerifyPacketChecksum(int a1, const unsigned __int8 *payload, int paylen)
 Sys_CheckSumPacketCopy
 ==============
 */
-
+unsigned int Sys_CheckSumPacketCopy(const unsigned __int8 *a1, unsigned __int8 *dest, const unsigned __int8 *payload, int paylen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

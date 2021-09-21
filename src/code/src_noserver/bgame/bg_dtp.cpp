@@ -99,11 +99,10 @@ BOOL Dtp_CanMove(pmove_t *pm)
 Dtp_ReduceFriction
 ==============
 */
-
+double Dtp_ReduceFriction(unsigned int a1, pmove_t *pm, const playerState_s *ps)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

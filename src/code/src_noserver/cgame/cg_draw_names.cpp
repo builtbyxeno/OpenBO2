@@ -121,11 +121,9 @@ int CG_CheckIfDrivingRemoteControlVehicle(LocalClientNum_t localClientNum, unsig
 CG_ScanForCrosshairEntityInternal
 ==============
 */
-
+void CG_ScanForCrosshairEntityInternal(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -261,11 +259,10 @@ int GetVehicleDriverEntNum(const cg_t *cgameGlob, const centity_t *cent, int ent
 CG_CanSeeFriendlyHeadTrace
 ==============
 */
-
+bool CG_CanSeeFriendlyHeadTrace(const centity_t *cent, const vec3_t *start, const vec3_t *end)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -294,11 +291,9 @@ void CG_DrawActorName(LocalClientNum_t localClientNum, const centity_t *cent, bo
 CG_DrawFriendlyName
 ==============
 */
-
+void CG_DrawFriendlyName(LocalClientNum_t a1, vec3_t *a2, LocalClientNum_t localClientNum, const cg_t *cgameGlob, const centity_t *cent, int team, int friendlyNameFadeIn, int friendlyNameFadeOut, int enemyNameFadeIn, int enemyNameFadeOut, bool flashed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

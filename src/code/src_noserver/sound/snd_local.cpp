@@ -6,11 +6,11 @@
 SNDL_Play
 ==============
 */
-/*int SNDL_Play@<eax>(const char *a1@<edi>, unsigned int aliasHash, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, const vec3_t *notify, SndPlayback *playback, bool startPaused, float setScriptValues, float scriptPitch, float scriptPitchRate, float scriptAttenuation)
+int SNDL_Play(const char *a1, unsigned int aliasHash, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, const vec3_t *notify, SndPlayback *playback, bool startPaused, float setScriptValues, float scriptPitch, float scriptPitchRate, float scriptAttenuation)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -247,11 +247,9 @@ void SNDL_StopLineAt(unsigned int id, const vec3_t *origin0, const vec3_t *origi
 SNDL_UpdateStaticSounds
 ==============
 */
-
+void SNDL_UpdateStaticSounds(unsigned int a1, SndListener *listeners)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -270,10 +268,10 @@ int SNDL_GetPlaybackTime(int playbackId)
 SNDL_GameReset
 ==============
 */
-/*void SNDL_GameReset(float a1@<edi>)
+void SNDL_GameReset(float a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -290,11 +288,9 @@ void SNDL_SetContext(unsigned int type, unsigned int value)
 SNDL_RestartDriver
 ==============
 */
-
+void __cdecl SNDL_RestartDriver()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -372,10 +368,10 @@ void SNDL_SetLoopState(SndEntHandle sndEnt, unsigned int alias, float attenuatio
 SNDL_PlayLoops
 ==============
 */
-/*void SNDL_PlayLoops(const char *a1@<edi>, int count, const SndEntLoop *loops)
+void SNDL_PlayLoops(const char *a1, int count, const SndEntLoop *loops)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

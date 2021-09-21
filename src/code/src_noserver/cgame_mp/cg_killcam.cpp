@@ -191,11 +191,9 @@ void CG_UpdateDestructibleKillCam(vec3_t *a1, LocalClientNum_t a2, LocalClientNu
 CG_UpdateArtilleryKillCam
 ==============
 */
-
+void CG_UpdateArtilleryKillCam(unsigned int a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -234,10 +232,10 @@ void CG_CacheKillCamEntityPose(const LocalClientNum_t localClientNum)
 CG_CacheKillCamLookAtEntityOrigin
 ==============
 */
-/*void CG_CacheKillCamLookAtEntityOrigin(char *a1@<edi>, const LocalClientNum_t localClientNum)
+void CG_CacheKillCamLookAtEntityOrigin(char *a1, const LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -254,11 +252,9 @@ void CG_UpdateKillCamEntityCache(LocalClientNum_t localClientNum)
 CG_LerpKillCamView
 ==============
 */
-
+void CG_LerpKillCamView(vec3_t *a1, LocalClientNum_t a2, unsigned int localClientNum, LocalClientNum_t a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -287,11 +283,10 @@ void CG_UpdateVehicleKillCam(LocalClientNum_t localClientNum)
 CG_KillcamCameraTrace
 ==============
 */
-
+bool CG_KillcamCameraTrace(const vec3_t *desiredCamPos, vec3_t *campos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -299,11 +294,9 @@ CG_KillcamCameraTrace
 CG_UpdateExplosiveKillCam
 ==============
 */
-
+void CG_UpdateExplosiveKillCam(vec3_t *a1, LocalClientNum_t a2, unsigned int localClientNum, vec3_t *killCamEntityType, LocalClientNum_t upDist, KillCamEntityType backDist, float outDist, float sideDist)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

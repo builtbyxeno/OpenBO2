@@ -99,11 +99,9 @@ bool IsWeaponRetrieveable(LocalClientNum_t localClientNum, const centity_t *cent
 CG_UpdateBModelWorldBounds
 ==============
 */
-
+void CG_UpdateBModelWorldBounds(int a1, LocalClientNum_t localClientNum, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -344,11 +342,9 @@ void CG_ReduceAnglesError(LocalClientNum_t localClientNum, vec3_t *angles, vec3_
 CG_LerpOriginAnglesError
 ==============
 */
-
+void CG_LerpOriginAnglesError(vec3_t *a1, float localClientNum, LocalClientNum_t a3, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -522,11 +518,9 @@ bool ShouldInterpolateFromNitrousVehicleLocally(const cg_t *cgameGlob, centity_t
 CG_InterpolateVehicle
 ==============
 */
-
+void CG_InterpolateVehicle(const cg_t *cgameGlob, centity_t *cent, int curTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -584,11 +578,9 @@ void CG_InterpolateEntityAngles(cg_t *cgameGlob, centity_t *cent, LocalClientNum
 CG_CreateNitrousVehicle
 ==============
 */
-
+void CG_CreateNitrousVehicle(LocalClientNum_t localClientNum, cg_t *cgameGlob, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -929,11 +921,9 @@ void CG_Item(LocalClientNum_t localClientNum, centity_t *cent)
 CG_SensorGrenade
 ==============
 */
-
+void CG_SensorGrenade(int a1, LocalClientNum_t localClientNum, centity_t *grenadeCent, DObj *obj, int time)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1013,11 +1003,9 @@ void CG_UpdateZBarrierPieceState(LocalClientNum_t localClientNum, cg_t *cgameGlo
 CG_ZBarrier
 ==============
 */
-
+void CG_ZBarrier(LocalClientNum_t localClientNum, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1078,11 +1066,10 @@ int CG_DObjGetWorldTagMatrix(DObj *a1, const cpose_t *pose, DObj *obj, unsigned 
 CG_DObjGetWorldTagPos
 ==============
 */
-
+DObjAnimMat *CG_DObjGetWorldTagPos(DObj *a1, const cpose_t *a2, const cpose_t *pose, DObj *objEA, unsigned int tagName, vec3_t *pos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -1120,11 +1107,9 @@ void CG_CalcEntityPhysicsPositions(LocalClientNum_t localClientNum, centity_t *c
 CG_CalcEntityLerpPositions
 ==============
 */
-
+void CG_CalcEntityLerpPositions(cg_t *a1, LocalClientNum_t localClientNum, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

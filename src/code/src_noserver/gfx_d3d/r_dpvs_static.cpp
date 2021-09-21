@@ -39,11 +39,10 @@ vec4_t *TestOccludersPartial(const vec3_t *bounds, int *numOccludersPtr, vec4_t 
 R_AddAabbTreeSurfacesInFrustum_r
 ==============
 */
-
+int R_AddAabbTreeSurfacesInFrustum_r(int a1, DpvsClipPlanes *a2, DpvsClipPlanes *tree, const GfxAabbTree *planes, const DpvsClipPlanes *treeDepth, int numOccluders, int occluderPlanes, vec4_t *a8)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

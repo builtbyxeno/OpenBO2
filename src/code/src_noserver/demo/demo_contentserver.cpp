@@ -215,11 +215,9 @@ void Demo_WriteSummary_SuccessCallback(ControllerIndex_t controllerIndex, unsign
 Demo_StreamingSuccessCallback
 ==============
 */
-
+void __cdecl Demo_StreamingSuccessCallback(ControllerIndex_t controllerIndex, unsigned __int64 fileID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

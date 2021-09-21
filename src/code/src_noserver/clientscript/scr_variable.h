@@ -89,7 +89,7 @@ unsigned int FindNextSibling(scriptInstance_t inst, unsigned int id)
 ChildVariableValue::GetName
 ==============
 */
-/*int __thiscall ChildVariableValue::GetName(ChildVariableValue *this)
+/*int ChildVariableValue::GetName(ChildVariableValue *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

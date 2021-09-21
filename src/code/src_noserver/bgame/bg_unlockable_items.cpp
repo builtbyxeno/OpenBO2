@@ -123,11 +123,10 @@ int BG_UnlockablesGetItemIndex(const CACRoot *cacRoot, loadoutClass_t customClas
 BG_UnlockablesGetLoadoutItem
 ==============
 */
-
+int BG_UnlockablesGetLoadoutItem(loadoutSlot_t a1, char *a2, const CACRoot *cacRoot, int customClass, int loadoutSlot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -135,10 +134,10 @@ BG_UnlockablesGetLoadoutItem
 BG_UnlockablesEquipClassToSlot
 ==============
 */
-/*void BG_UnlockablesEquipClassToSlot(const char **a1@<edx>, const char *a2@<ecx>, char *a3@<edi>, const CACRoot *cacRoot, loadoutClass_t customClass, int itemIndex, const char *loadoutName)
+void BG_UnlockablesEquipClassToSlot(const char **a1, const char *a2, char *a3, const CACRoot *cacRoot, loadoutClass_t customClass, int itemIndex, const char *loadoutName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

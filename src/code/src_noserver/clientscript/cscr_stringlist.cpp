@@ -220,11 +220,9 @@ void SL_FreeString(unsigned int stringValue, RefString *refStr, unsigned int len
 SL_RemoveRefToString
 ==============
 */
-
+void __cdecl SL_RemoveRefToString(unsigned int stringValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

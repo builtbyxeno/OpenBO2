@@ -149,7 +149,7 @@ void Actor_ReceivePointEvent(actor_t *self, gentity_t *originator, ai_event_t eT
 Actor_ReceiveLineEvent
 ==============
 */
-void Actor_ReceiveLineEvent(actor_t* self, gentity_t* originator, gentity_t* hitEnt, ai_event_t eType, const vec3_t* vStart, const vec3_t* vEnd, const vec3_t* vClosest, float fDistSqrd, float fRadiusSqrd)
+void Actor_ReceiveLineEvent(actor_t *self, gentity_t *originator, gentity_t *hitEnt, ai_event_t eType, const vec3_t *vStart, const vec3_t *vEnd, const vec3_t *vClosest, float fDistSqrd, float fRadiusSqrd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

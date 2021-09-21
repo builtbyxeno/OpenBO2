@@ -13,17 +13,17 @@ char dwInstantHandleTestMessage(unsigned __int64 senderID, const ControllerIndex
 bool dwInstantHandlePartyMessage(unsigned __int64 senderID, const ControllerIndex_t controllerIndex, msg_t *msg);
 bool dwInstantHandleFriendMessage(unsigned __int64 senderID, const ControllerIndex_t controllerIndex, msg_t *msg);
 bool dwInstantDispatchMessage_Internal(unsigned __int64 senderID, const ControllerIndex_t controllerIndex, void *message, unsigned int messageSize);
-// void __thiscall dwLobbyEventHandler::onNewNotification(dwLobbyEventHandler *this);
-// void __thiscall dwLobbyEventHandler::onTeamProposal(dwLobbyEventHandler *this);
-// void __thiscall dwLobbyEventHandler::onPlayerBanned(dwLobbyEventHandler *this, unsigned __int64 userID, unsigned int reputationLevel);
-// void __thiscall dwLobbyEventHandler::onMultipleLogon(dwLobbyEventHandler *this, unsigned __int64 userID);
-// void __thiscall dwLobbyEventHandler::onYouTubeRegistration(dwLobbyEventHandler *this, const bdYouTubeRegistrationResult *registrationResult);
-// ;
+// void dwLobbyEventHandler::onNewNotification(dwLobbyEventHandler *notthis);
+// void dwLobbyEventHandler::onTeamProposal(dwLobbyEventHandler *notthis);
+// void dwLobbyEventHandler::onPlayerBanned(dwLobbyEventHandler *notthis, unsigned __int64 userID, unsigned int reputationLevel);
+// void dwLobbyEventHandler::onMultipleLogon(dwLobbyEventHandler *notthis, unsigned __int64 userID);
+// void dwLobbyEventHandler::onYouTubeRegistration(dwLobbyEventHandler *notthis, const bdYouTubeRegistrationResult *registrationResult);
+// void dwLobbyEventHandler::onGlobalInstantMessage(dwLobbyEventHandler *notthis, unsigned __int64 senderID, char *senderName, void *message, unsigned int messageSize);
 void dwInitMessaging(ControllerIndex_t controllerIndex);
 TaskRecord *dwInstantSendMessage(ControllerIndex_t controllerIndex, const unsigned __int64 *recipientUIDs, unsigned int numRecipients, char msgType, const void *message, unsigned int msgSize);
 void dwInstantSendTestMessage();
 char dwProcessNotifications(TaskRecord *task);
-// void __thiscall dwLobbyEventHandler::onChallengesReceived(dwLobbyEventHandler *this, unsigned __int64 userID, bdReference<bdAntiCheatChallenges> challenges);
+// void dwLobbyEventHandler::onChallengesReceived(dwLobbyEventHandler *notthis, unsigned __int64 userID, bdReference<bdAntiCheatChallenges> challenges);
 
 //t6/code/src_noserver/dw/dwnet.cpp
 bdSecurityID *FindCommonAddrGroup(const bdSecurityID *id);
@@ -54,13 +54,13 @@ void dwNetPump();
 void dwNetStart(const bool online);
 
 //t6/code/src_noserver/dw/dwqos.cpp
-// LocalTaskState __thiscall dwQoSMultiProbeListener::complete(dwQoSMultiProbeListener *this);
+// LocalTaskState dwQoSMultiProbeListener::complete(dwQoSMultiProbeListener *notthis);
 void dwClearQoSProbes();
-// void __thiscall dwQoSMultiProbeListener::onQoSProbeFail(dwQoSMultiProbeListener *this, bdReference<bdCommonAddr> addr);
-// void __thiscall dwQoSMultiProbeListener::clean(dwQoSMultiProbeListener *this);
-// void __thiscall dwQoSMultiProbeListener::dwQoSMultiProbeListener(dwQoSMultiProbeListener *this);
-// void __thiscall dwQoSMultiProbeListener::addProbe(dwQoSMultiProbeListener *this, const bdQoSRemoteAddr addr);
-// void __thiscall dwQoSMultiProbeListener::onQoSProbeSuccess(dwQoSMultiProbeListener *this, const bdQoSProbeInfo *info);
+// void dwQoSMultiProbeListener::onQoSProbeFail(dwQoSMultiProbeListener *notthis, bdReference<bdCommonAddr> addr);
+// void dwQoSMultiProbeListener::clean(dwQoSMultiProbeListener *notthis);
+// void dwQoSMultiProbeListener::dwQoSMultiProbeListener(dwQoSMultiProbeListener *notthis);
+// void dwQoSMultiProbeListener::addProbe(dwQoSMultiProbeListener *notthis, const bdQoSRemoteAddr addr);
+// void dwQoSMultiProbeListener::onQoSProbeSuccess(dwQoSMultiProbeListener *notthis, const bdQoSProbeInfo *info);
 void dwStartQoSProbes(dwQoSMultiProbeListener *listener, const unsigned int numProbes, XSESSION_INFO *xenonsInfo);
 
 //t6/code/src_noserver/dw/dwrecordevent.cpp
@@ -83,9 +83,9 @@ TaskRecord *dwGetFileMetadata(const ControllerIndex_t controllerIndex, dwFileMet
 char dwReadFileFailure(TaskRecord *task);
 char dwReadFileSuccess(TaskRecord *task);
 TaskRecord *dwReadFileInternal(ControllerIndex_t localControllerIndex, dwFileTask *const fileTask, bool userFile, unsigned __int64 ownerUID);
-;
-;
-;
+TaskRecord *dwReadFile(dwFileTask *a1, ControllerIndex_t a2, ControllerIndex_t localControllerIndex, dwFileTask *const fileTask);
+TaskRecord *dwReadUserFile(dwFileTask *a1, ControllerIndex_t a2, ControllerIndex_t localControllerIndex, dwFileTask *const fileTask);
+TaskRecord *__cdecl dwReadUserFileByUserID(ControllerIndex_t localControllerIndex, dwFileTask *const fileTask, unsigned __int64 xuid);
 char dwDeleteFileFailure(TaskRecord *task);
 char dwWriteFileFailure(TaskRecord *task);
 TaskRecord *dwWriteFile(ControllerIndex_t localControllerIndex, const char *const filename, void *data, const unsigned int dataSize, bdFileInfo *fileInfo, unsigned __int64 ownerID);
@@ -168,23 +168,23 @@ TaskRecord *dwYouTubeIsRegistered(const ControllerIndex_t localControllerIndex, 
 TaskRecord *dwYouTubeUpload(const ControllerIndex_t localControllerIndex, dwYouTubeUploadTask_t *ytTask);
 
 //t6/code/src_noserver/dw/leaderboardinfo.cpp
-// void __thiscall LeaderboardFileShareRow::LeaderboardFileShareRow(LeaderboardFileShareRow *this);
+// void LeaderboardFileShareRow::LeaderboardFileShareRow(LeaderboardFileShareRow *notthis);
 // char LeaderboardFileShareRow::setColumnCount(int columnCount);
-// unsigned int __thiscall LeaderboardFileShareRow::sizeOf(LeaderboardFileShareRow *this);
-// bool __thiscall LeaderboardFileShareRow::deserialize(LeaderboardFileShareRow *this, bdReference<bdByteBuffer> buffer);
+// unsigned int LeaderboardFileShareRow::sizeOf(LeaderboardFileShareRow *notthis);
+// bool LeaderboardFileShareRow::deserialize(LeaderboardFileShareRow *notthis, bdReference<bdByteBuffer> buffer);
 
 //#include "dw/leaderboardinfo.h"
 
 //t6/code/src_noserver/dw/matchmakinginfo.cpp
-// void __thiscall MatchMakingInfo::MatchMakingInfo(MatchMakingInfo *this);
-// void __thiscall MatchMakingInfo::serialize(MatchMakingInfo *this, bdByteBuffer *buffer);
-// char __thiscall MatchMakingInfo::setSecurityID(MatchMakingInfo *this, const bdSecurityID *secID);
-// char __thiscall MatchMakingInfo::getSecurityID(MatchMakingInfo *this, bdSecurityID *secID);
-// char __thiscall MatchMakingInfo::setSecurityKey(MatchMakingInfo *this, const bdSecurityKey *secKey);
-// char __thiscall MatchMakingInfo::getSecurityKey(MatchMakingInfo *this, bdSecurityKey *secKey);
-// unsigned int __thiscall MatchMakingInfo::sizeOf(MatchMakingInfo *this);
-// bool __thiscall MatchMakingInfo::doUpdate(MatchMakingInfo *this, const int msec, const unsigned int updateIntervalMsec, const unsigned int forceUpdateIntervalMsec);
-// bool __thiscall MatchMakingInfo::deserialize(MatchMakingInfo *this, bdReference<bdByteBuffer> buffer);
+// void MatchMakingInfo::MatchMakingInfo(MatchMakingInfo *notthis);
+// void MatchMakingInfo::serialize(MatchMakingInfo *notthis, bdByteBuffer *buffer);
+// char MatchMakingInfo::setSecurityID(MatchMakingInfo *notthis, const bdSecurityID *secID);
+// char MatchMakingInfo::getSecurityID(MatchMakingInfo *notthis, bdSecurityID *secID);
+// char MatchMakingInfo::setSecurityKey(MatchMakingInfo *notthis, const bdSecurityKey *secKey);
+// char MatchMakingInfo::getSecurityKey(MatchMakingInfo *notthis, bdSecurityKey *secKey);
+// unsigned int MatchMakingInfo::sizeOf(MatchMakingInfo *notthis);
+// bool MatchMakingInfo::doUpdate(MatchMakingInfo *notthis, const int msec, const unsigned int updateIntervalMsec, const unsigned int forceUpdateIntervalMsec);
+// bool MatchMakingInfo::deserialize(MatchMakingInfo *notthis, bdReference<bdByteBuffer> buffer);
 
 //t6/code/src_noserver/dw/matchrecorder.cpp
 void MatchRecorderDDLSetFloat(ddlState_t *searchState, const char *name, float value);
@@ -211,20 +211,20 @@ unsigned __int64 MatchRecord_GetXUIDForPlayerSlot(int playerSlot);
 bool MatchRecord_GetLifeInSlot(int lifeSlot, ddlState_t *lifeSlotState);
 bool MatchRecord_GetDownInSlot(int downSlot, ddlState_t *downSlotState);
 void MatchRecorder_UpdateSubparties();
-;
-;
+int MatchRecord_SearchCreateForPlayer(gclient_t *client, ddlState_t *playerState);
+int __cdecl GetCurrentPlaylistIndex();
 void FindBitchForPlayer(int attackingPlayerSlot);
 void FindNemesisForPlayer(int attackingPlayerSlot);
 void SaveTeamScores();
 void MatchRecorder_RecordGameResult(team_t winner, bool isDraw);
 void GetWorldLocation(float xPos, float yPos, float zPos, unsigned __int8 *xWorld, unsigned __int8 *yWorld, unsigned __int8 *zWorld);
-;
-;
+void __cdecl MatchRecord_ReviveZombie(gclient_t *client, gclient_t *reviver);
+void __cdecl MatchRecordSpawn(gclient_t *client);
 void MatchRecordSetHitStat(ddlState_t playerState, gclient_t *attackerClient, const hitLocation_t hitLocation, const char *hitLocStatName);
 void MatchRecordHit(gclient_t *attackerClient, hitLocation_t hitLocation);
-;
+void __cdecl MatchRecordDeath(gclient_t *client, gclient_t *attackerClient, const char *weaponName, hitLocation_t hitLocation);
 void MatchRecordEnd(gclient_t *client);
-;
+void __cdecl MatchRecordBegin();
 void MatchRecordPlayerDetails(gclient_t *client, const char *reason);
 void MatchRecordSetPlayerStat(gclient_t *client, const char *statName, int statValue);
 char MatchRecordEventFailure();
@@ -234,11 +234,11 @@ void MatchRecorder_RecordKillstreakEndEvent(ddlState_t *a1, gclient_t *a2, gclie
 void MatchRecorder_RecordGameEvent(ddlState_t *a1, gclient_t *a2, float client, gclient_t *gameEvent, const char *a5);
 void MatchRecorder_RecordKillModifier(ddlState_t *a1, gclient_t *a2, gclient_t *client, const char *killModifier);
 void MatchRecorder_RecordScoreEvent(ddlState_t *a1, gclient_t *a2, gclient_t *client, const char *scoreEvent);
-;
-;
+void MatchRecorder_RecordLoadoutAndPerks(ddlState_t *a1, gclient_t *a2, gclient_t *client, int primaryWeaponIndex, int attachmentBitsPrimary, int secondaryWeaponIndex, int attachmentBitsSecondary, int grenadeTypePrimary, int grenadeTypeSecondary, int killstreak1, int killstreak2, int killstreak3);
+void MatchRecorder_RecordNumZombieRounds(ddlState_t *a1, const char *a2);
 void MatchRecorder_RecordMultiKill(ddlState_t *a1, gclient_t *a2, gclient_t *client, int killCount);
 void MatchRecord_WriteItemStats(char *a1, gentity_t *playerEnt, ClientNum_t clientNum, int weaponStatIndex, int weaponIndex, int attachmentBits, const char *weapName, const char *statName, unsigned int addValue, int statNameHash);
-;
+void MatchRecorder_IncrementHeaderStat(const char *a1, ddlState_t *a2, const char *statName);
 void MatchRecorder_RecordZombieGameInfoEnd(const char *a1, ddlState_t *a2, const char *gameModeGroup, const char *gameMode, const char *mapLocation, int numRounds);
 void MatchRecorder_RecordZombiePlayerDeath();
 void MatchRecorder_RecordZombiePlayerDown(float client, gclient_t *a2);
@@ -247,21 +247,21 @@ bool GetPlayerRoundSlot(unsigned __int64 xuid, ddlState_t *playerRoundSlot);
 void MatchRecord_ZombieRoundStart(ddlState_t *a1, const char *a2);
 void MatchRecord_ZombieRoundEnd(ddlState_t *a1, const char *a2);
 void MatchRecorder_IncrementPlayerStat(gclient_t *client, const char *statName);
-;
+int MatchRecord_InitMatchDataInternal(char *inputBuffer, int buffSize);
 void MatchRecord_InitMatchData();
-;
+void GenerateBinaryMatchSummary(unsigned int titleID, const char *gameMode, unsigned __int64 fileID);
 void GenerateRecordedMatchData(ControllerIndex_t controllerIndex, const char *gameMode, char **matchRecordBuffer, int *matchRecordBufferSize, unsigned __int64 fileID);
 BOOL MatchRecord_ParseDownloadedMatchData(int a1, char *a2, const ControllerIndex_t controllerIndex, char *inputBuffer, int buffsize);
 void MatchRecordPointsSpent(ControllerIndex_t controllerIndex, int amount, pointsSpent_t reasonType, int reasonIndex);
 char MatchRecordEventSuccess(TaskRecord *task);
 
 //t6/code/src_noserver/dw/teamprofile.cpp
-// void __thiscall PublicTeamProfile::PublicTeamProfile(PublicTeamProfile *this);
-// void __thiscall PublicTeamProfile::serialize(PublicTeamProfile *this, bdByteBuffer *buffer);
-// void __thiscall PrivateTeamProfile::PrivateTeamProfile(PrivateTeamProfile *this);
-// void __thiscall PrivateTeamProfile::serialize(PrivateTeamProfile *this, bdByteBuffer *buffer);
-// unsigned int __thiscall PublicTeamProfile::sizeOf(PublicTeamProfile *this);
-// unsigned int __thiscall PrivateTeamProfile::sizeOf(PrivateTeamProfile *this);
-// bool __thiscall PublicTeamProfile::deserialize(PublicTeamProfile *this, bdReference<bdByteBuffer> buffer);
-// bool __thiscall PrivateTeamProfile::deserialize(PrivateTeamProfile *this, bdReference<bdByteBuffer> buffer);
+// void PublicTeamProfile::PublicTeamProfile(PublicTeamProfile *notthis);
+// void PublicTeamProfile::serialize(PublicTeamProfile *notthis, bdByteBuffer *buffer);
+// void PrivateTeamProfile::PrivateTeamProfile(PrivateTeamProfile *notthis);
+// void PrivateTeamProfile::serialize(PrivateTeamProfile *notthis, bdByteBuffer *buffer);
+// unsigned int PublicTeamProfile::sizeOf(PublicTeamProfile *notthis);
+// unsigned int PrivateTeamProfile::sizeOf(PrivateTeamProfile *notthis);
+// bool PublicTeamProfile::deserialize(PublicTeamProfile *notthis, bdReference<bdByteBuffer> buffer);
+// bool PrivateTeamProfile::deserialize(PrivateTeamProfile *notthis, bdReference<bdByteBuffer> buffer);
 

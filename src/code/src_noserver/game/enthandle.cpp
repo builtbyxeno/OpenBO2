@@ -107,7 +107,7 @@ unsigned int AddEntHandleInfo(EntHandleList *entHandleList, void *handle)
 EntHandle::setEnt
 ==============
 */
-/*void __thiscall EntHandle::setEnt(EntHandle *this, gentity_t *ent)
+/*void EntHandle::setEnt(EntHandle *notthis, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -117,7 +117,7 @@ EntHandle::setEnt
 SentientHandle::setSentient
 ==============
 */
-/*void __thiscall SentientHandle::setSentient(SentientHandle *this, sentient_t *sentient)
+/*void SentientHandle::setSentient(SentientHandle *notthis, sentient_t *sentient)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

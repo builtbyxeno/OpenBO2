@@ -70,11 +70,9 @@ void MissileLandAngles(gentity_t *ent, trace_t *trace, vec3_t *vAngles, int bFor
 MissileLandAnglesFlat
 ==============
 */
-
+void MissileLandAnglesFlat(gentity_t *ent, trace_t *trace, vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -82,11 +80,9 @@ MissileLandAnglesFlat
 MissileLandAnglesFlatMaintainingDirection
 ==============
 */
-
+void MissileLandAnglesFlatMaintainingDirection(gentity_t *ent, trace_t *trace, vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -533,11 +529,9 @@ float DroneRotateDir(gentity_t *ent, const vec3_t *currentDir, const vec3_t *tar
 DroneRotateVelocity
 ==============
 */
-
+void DroneRotateVelocity(gentity_t *ent, vec3_t *resultVel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -703,11 +697,10 @@ void PredictBounceMissile(gentity_t *ent, trajectory_t *pos, trace_t *trace, int
 G_PredictMissile
 ==============
 */
-
+int G_PredictMissile(unsigned int a1, gentity_t *ent, int duration, vec3_t *vLandPos, int allowBounce, int *timeAtRest)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -767,11 +760,10 @@ int G_SetMissileClientControlled(const gentity_t *missile)
 BounceMissile
 ==============
 */
-
+int BounceMissile(gentity_t *ent, trace_t *trace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -809,11 +801,9 @@ void MissileImpact(gentity_t *ent, trace_t *trace, vec3_t *dir, vec3_t *endpos)
 G_ExplodeMissile
 ==============
 */
-
+void G_ExplodeMissile(unsigned int a1, float ent, gentity_t *a3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -861,11 +851,9 @@ void TVMissileTrajectoryClientControlled(gentity_t *ent, vec3_t *result)
 GuidedMissileSteering
 ==============
 */
-
+void GuidedMissileSteering(gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -905,11 +893,9 @@ bool UpdateGuidedMissileFuelTime(gentity_t *ent, bool initTimer)
 G_RunMissileInternal
 ==============
 */
-
+void G_RunMissileInternal(unsigned int a1, char *a2, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

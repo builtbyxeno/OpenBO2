@@ -38,11 +38,11 @@ LeaderboardDef *LB_LoadDef_LoadObj(const char *filename)
 LB_LoadDef_FastFile
 ==============
 */
-/*LeaderboardDef *LB_LoadDef_FastFile@<eax>(char *a1@<edi>, const char *name)
+LeaderboardDef *LB_LoadDef_FastFile(char *a1, const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============

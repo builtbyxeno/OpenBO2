@@ -17,11 +17,10 @@ int Tracer_GetStringArrayIndex(const char *value, const char **stringArray, int 
 BG_ParseTracerDefSpecificFieldType
 ==============
 */
-
+int BG_ParseTracerDefSpecificFieldType(const char **a1, const char *a2, unsigned __int8 *pStruct, const char *pValue, const int iFieldType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

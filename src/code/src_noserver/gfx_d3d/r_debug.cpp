@@ -26,11 +26,9 @@ void R_AddDebugPolygonInternal(PolySet *polySet, int pointCount, const vec3_t *p
 R_AddDebugPolygon
 ==============
 */
-
+void __cdecl R_AddDebugPolygon(DebugGlobals *debugGlobalsEntry, int pointCount, const vec3_t *points, const vec4_t *faceColor, int faceDepthTest, const vec4_t *edgeColor, bool edgeDepthTest)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -38,11 +36,9 @@ R_AddDebugPolygon
 R_AddPersistentDebugPolygon
 ==============
 */
-
+void __cdecl R_AddPersistentDebugPolygon(DebugGlobals *debugGlobalsEntry, int pointCount, const vec3_t *points, const vec4_t *faceColor, int faceDepthTest, const vec4_t *edgeColor, bool edgeDepthTest)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -80,11 +76,9 @@ void R_AddDebugBox(DebugGlobals *debugGlobalsEntry, const vec3_t *mins, const ve
 R_AddDebugFrustum
 ==============
 */
-
+void R_AddDebugFrustum(int a1, const GfxViewParms *viewParms)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -132,11 +126,9 @@ void R_ShutdownDebugEntry(DebugGlobals *debugGlobalsEntry)
 R_UpdatePersistentDebugPolys
 ==============
 */
-
+void R_UpdatePersistentDebugPolys(DebugGlobals *debugGlobalsEntry)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

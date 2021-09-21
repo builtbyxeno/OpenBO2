@@ -442,11 +442,9 @@ const dvar_t *Playlist_RegisterDvars()
 Playlist_Init
 ==============
 */
-
+void __cdecl Playlist_Init()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -486,11 +484,10 @@ const char *Playlist_GetPlaylistName(const ControllerIndex_t controllerIndex, co
 Playlist_ChooseEntry
 ==============
 */
-
+int Playlist_ChooseEntry(int a1, int a2, const ControllerIndex_t localControllerIndex, const int lastSelection, const int lastToLastSelection)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -498,11 +495,10 @@ Playlist_ChooseEntry
 Playlist_ChooseEntry
 ==============
 */
-
+int Playlist_ChooseEntry(int a1, const PartyData_s *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

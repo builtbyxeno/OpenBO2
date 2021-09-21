@@ -6,11 +6,10 @@
 BG_AnimStateDef_InUse
 ==============
 */
-
+bool __cdecl BG_AnimStateDef_InUse()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -58,11 +57,9 @@ void BG_AnimStateDef_SetFlag(AnimState *state, int flag)
 BG_AnimStateDef_TokenizeNotify
 ==============
 */
-
+void BG_AnimStateDef_TokenizeNotify(char *a1, AnimState *state, const char **data_p, char *token, const char *filename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -154,11 +151,9 @@ void BG_AnimStateDef_SetNewAnimationState(LocalClientNum_t localClientNum, actor
 BG_AnimStateDef_Update
 ==============
 */
-
+void __cdecl BG_AnimStateDef_Update(LocalClientNum_t localClientNum, const entityState_s *es, actorInfo_t *actorInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

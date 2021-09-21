@@ -76,11 +76,9 @@ void R_GPU_BeginTimer(int a1, int a2, GPUTimerId timerId)
 R_GPU_EndTimer
 ==============
 */
-
+void R_GPU_EndTimer(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

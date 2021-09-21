@@ -109,11 +109,9 @@ void DrawClipAmmoBeltfed(cg_t *cgameGlob, const vec2_t *base, Weapon weapon, vec
 DrawClipAmmo
 ==============
 */
-
+void DrawClipAmmo(const vec2_t *a1, char *a2, cg_t *cgameGlob, const vec2_t *base, Weapon weapon, const WeaponDef *weapDef, const WeaponVariantDef *weapVarDef, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

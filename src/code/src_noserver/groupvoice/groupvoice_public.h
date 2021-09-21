@@ -15,21 +15,21 @@ int Encode_Sample(__int16 *buffer_in, char *buffer_out, int maxLength);
 int Encode_GetFrameSize();
 
 //t6/code/src_noserver/groupvoice/play.cpp
-;
-;
-;
-;
-;
-;
+int __cdecl Sound_UpdateSample(dsound_sample_t *sample, char *data, unsigned int data_len);
+dsound_sample_t *__cdecl Sound_NewSample();
+int __cdecl Sound_DestroySample(dsound_sample_t *sample);
+bool __cdecl Sound_StopSample(dsound_sample_t *sample);
+void __cdecl Sound_SampleFrame(dsound_sample_t *sample);
+void __cdecl Sound_SetVolume(dsound_sample_t *sample, int level);
 int Sound_Init(const void *handle);
-;
+void __cdecl Sound_Shutdown();
 
 //t6/code/src_noserver/groupvoice/play_dsound.cpp
 HRESULT CreateBasicBuffer(IDirectSound8 *lpDirectSound, IDirectSoundBuffer **ppDsb, int sampleRate, int channels, int bufferSize);
 void DSound_AdjustSamplePlayback(dsound_sample_t *sample, int bytesLeft);
 void DSound_HandleBufferUnderrun(dsound_sample_t *sample);
 void DSound_SetVolume(dsound_sample_t *sample, int level);
-;
+dsound_sample_t *DSound_NewSample(int a1);
 char DSound_StopSample(dsound_sample_t *sample);
 int DSound_Init(bool callDsoundInit, const void *handle);
 void DSound_Shutdown();

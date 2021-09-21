@@ -70,11 +70,9 @@ int FX_DecideVisualSampleCount(const FxEditorElemDef *edElem, const FxSampleChan
 FX_SampleVelocityInFrame
 ==============
 */
-
+void FX_SampleVelocityInFrame(FxElemDef *elemDef, const vec3_t *velScale, FxElemVelStateInFrame *velState, int velStateStride, int useGraphBit, const FxEditorElemDef *edElemDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -82,11 +80,9 @@ FX_SampleVelocityInFrame
 FX_SampleVisualStateScalar
 ==============
 */
-
+void FX_SampleVisualStateScalar(const FxEditorElemDef *edElemDef, float sampleTime, FxSampleChannel routing, float scaleFactor, float *base, float *amplitude)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -155,11 +151,9 @@ void FX_ConvertTrail_CompileVertices(const FxEditorElemDef *edElemDef, FxTrailDe
 FX_ConvertTrail
 ==============
 */
-
+void FX_ConvertTrail(FxTrailDef **outTrailDef, const FxEditorElemDef *edElemDef, unsigned __int8 **mempool)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -221,11 +215,9 @@ bool FX_ValidateVisuals(const FxEditorEffectDef *editorEffect, const FxEditorEle
 FX_ConvertElemDef
 ==============
 */
-
+void FX_ConvertElemDef(FxElemDef *elemDef, const FxEditorElemDef *edElemDef, int velStateCount, int visStateCount, int emitIndex, unsigned __int8 **memPool)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -233,11 +225,10 @@ FX_ConvertElemDef
 FX_ConvertElemDefsOfType
 ==============
 */
-
+int FX_ConvertElemDefsOfType(FxElemDef *elemDefArray, const FxEditorEffectDef *editorEffect, int loopingFlagState, const int *velStateCount, const int *visStateCount, const int *emitIndex, unsigned __int8 **memPool)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -245,9 +236,9 @@ FX_ConvertElemDefsOfType
 FX_Convert
 ==============
 */
-/*const FxEffectDef *FX_Convert@<eax>(char *a1@<edi>, const FxEditorEffectDef *editorEffect, void *(*Alloc)(int))
+const FxEffectDef *FX_Convert(char *a1, const FxEditorEffectDef *editorEffect, void *(*Alloc)(int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 

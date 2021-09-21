@@ -37,11 +37,10 @@ bool Vec4HomogenousClipZW(__m128 *pt0, __m128 *pt1, const __m128 *coeffZW)
 FX_GenerateBeam_GetFlatDelta
 ==============
 */
-
+bool FX_GenerateBeam_GetFlatDelta(const vector4 *invClipMtx, const __m128 *beamWorldBegin, const __m128 *beamWorldEnd, __m128 *outFlatDelta)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -80,10 +79,8 @@ FxBeamInfo *FX_Beam_GetInfo()
 FX_Beam_GenerateVerts
 ==============
 */
-
+void FX_Beam_GenerateVerts(int a1, const vec3_t *a2, __m128 *cmd, FxGenerateVertsCmd *a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

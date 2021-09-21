@@ -26,7 +26,7 @@ void process_destructible_hits()
 destructible_ent_aa::has_auto_activated
 ==============
 */
-/*unsigned __int8 __thiscall destructible_ent_aa::has_auto_activated(bdDTLSHeader *this)
+/*unsigned __int8 destructible_ent_aa::has_auto_activated(bdDTLSHeader *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -37,7 +37,7 @@ destructible_ent_aa::has_auto_activated
 destructible_ent_aa::auto_activate
 ==============
 */
-/*void __thiscall destructible_ent_aa::auto_activate(destructible_ent_aa *this, broad_phase_info *bpi_impactor)
+/*void destructible_ent_aa::auto_activate(destructible_ent_aa *notthis, broad_phase_info *bpi_impactor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -98,7 +98,7 @@ void set_cpi_params(contact_point_info *cpi, phys_collision_pair *pcp)
 dynamic_ent_aa::auto_activate
 ==============
 */
-/*void __thiscall dynamic_ent_aa::auto_activate(dynamic_ent_aa *this, broad_phase_info *bpi_impactor)
+/*void dynamic_ent_aa::auto_activate(dynamic_ent_aa *notthis, broad_phase_info *bpi_impactor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -108,7 +108,7 @@ dynamic_ent_aa::auto_activate
 gjk_physics_collision_visitor::allocate
 ==============
 */
-/*void *__thiscall gjk_physics_collision_visitor::allocate(gjk_physics_collision_visitor *this, const int size, const int alignment, const bool no_error)
+/*void *gjk_physics_collision_visitor::allocate(gjk_physics_collision_visitor *notthis, const int size, const int alignment, const bool no_error)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -119,7 +119,7 @@ gjk_physics_collision_visitor::allocate
 gjk_physics_collision_visitor::get_local_query_aabb
 ==============
 */
-/*void __thiscall gjk_physics_collision_visitor::get_local_query_aabb(gjk_physics_collision_visitor *this, vec3_t *local_query_aabb_min, vec3_t *local_query_aabb_max)
+/*void gjk_physics_collision_visitor::get_local_query_aabb(gjk_physics_collision_visitor *notthis, vec3_t *local_query_aabb_min, vec3_t *local_query_aabb_max)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -129,7 +129,7 @@ gjk_physics_collision_visitor::get_local_query_aabb
 gjk_physics_collision_visitor::query_create_prolog_1
 ==============
 */
-/*bool gjk_physics_collision_visitor::query_create_prolog_1(gjk_physics_collision_visitor *this, float local_aabb_min, const vec3_t *a3, const vec3_t *local_aabb_max, const void *geom)
+/*bool gjk_physics_collision_visitor::query_create_prolog_1(gjk_physics_collision_visitor *notthis, float local_aabb_min, const vec3_t *a3, const vec3_t *local_aabb_max, const void *geom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -162,7 +162,7 @@ phys_auto_activate_callback *create_ent_aac(gjk_physics_collision_visitor *colli
 gjk_physics_collision_visitor::query_create_epilog
 ==============
 */
-/*void __thiscall gjk_physics_collision_visitor::query_create_epilog(gjk_physics_collision_visitor *this, gjk_base_t *gjk_geom)
+/*void gjk_physics_collision_visitor::query_create_epilog(gjk_physics_collision_visitor *notthis, gjk_base_t *gjk_geom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -182,11 +182,9 @@ void prop_system_collision_process()
 collide_vehicle_wheels
 ==============
 */
-
+void collide_vehicle_wheels(int a1, NitrousVehicle *nveh_in)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -214,7 +212,7 @@ generic_avl_map_destroy_all
 gjk_physics_collision_visitor::query_create_prolog
 ==============
 */
-/*char __thiscall gjk_physics_collision_visitor::query_create_prolog(gjk_physics_collision_visitor *this, const void *geom)
+/*char gjk_physics_collision_visitor::query_create_prolog(gjk_physics_collision_visitor *notthis, const void *geom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -235,7 +233,7 @@ void create_entity_bpi(LONG a1, gjk_physics_collision_visitor *collision_visitor
 standard_query::query
 ==============
 */
-/*void standard_query::query(standard_query *this, int a2, const broad_phase_environment_query_input *bpeqi, broad_phase_environement_query_results *bpeqr)
+/*void standard_query::query(standard_query *notthis, int a2, const broad_phase_environment_query_input *bpeqi, broad_phase_environement_query_results *bpeqr)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

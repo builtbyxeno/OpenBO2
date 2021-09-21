@@ -111,11 +111,9 @@ void PartyProber_ClearHosts(PartyProber *prober)
 PartyProber_Clear
 ==============
 */
-
+void __cdecl PartyProber_Clear(PartyProber *prober)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -123,11 +121,9 @@ PartyProber_Clear
 PartyProber_StartInvite
 ==============
 */
-
+void __cdecl PartyProber_StartInvite(PartyProber *prober, ControllerIndex_t controllerIndex, XSESSION_INFO *hostInfo, int numPublicSlots, int occupiedPublicSlots, bool isDedicated)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -135,11 +131,9 @@ PartyProber_StartInvite
 PartyProber_StartNewlobby
 ==============
 */
-
+void __cdecl PartyProber_StartNewlobby(PartyProber *prober, ControllerIndex_t controllerIndex, XSESSION_INFO *hostInfo, int challenge, int hostNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -190,11 +184,10 @@ bool PartyProber_Connect(XSESSION_INFO *info, bool dedicated, netadr_t *addr)
 PartyProber_HandlePartyAccept
 ==============
 */
-
+bool PartyProber_HandlePartyAccept(PartyProber *prober, int partyId, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -202,11 +195,10 @@ PartyProber_HandlePartyAccept
 PartyProber_HandlePartyJoinFailed
 ==============
 */
-
+bool PartyProber_HandlePartyJoinFailed(PartyProber *prober, int partyId, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -214,11 +206,10 @@ PartyProber_HandlePartyJoinFailed
 PartyProber_HandleEchoReply
 ==============
 */
-
+bool PartyProber_HandleEchoReply(PartyProber *prober, int partyId, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -248,11 +239,10 @@ char PartyProber_HandleMasterReply(PartyProber *prober, int partyId, netadr_t fr
 PartyProber_HandlePacket
 ==============
 */
-
+char __cdecl PartyProber_HandlePacket(PartyProber *prober, const char *c, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

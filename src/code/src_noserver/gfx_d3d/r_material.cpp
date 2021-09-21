@@ -99,11 +99,11 @@ MaterialTechniqueSet *Material_FindTechniqueSet_LoadObj(int *a1, const char *a2,
 Material_FindTechniqueSet_FastFile
 ==============
 */
-/*MaterialTechniqueSet *Material_FindTechniqueSet_FastFile@<eax>(char *a1@<edi>, const char *name, MtlTechSetNotFoundBehavior notFoundBehavior)
+MaterialTechniqueSet *Material_FindTechniqueSet_FastFile(char *a1, const char *name, MtlTechSetNotFoundBehavior notFoundBehavior)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============

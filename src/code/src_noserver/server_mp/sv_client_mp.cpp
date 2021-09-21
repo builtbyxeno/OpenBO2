@@ -88,10 +88,10 @@ void SV_ClientEnterWorld(client_t *client, usercmd_s *cmd)
 SV_VerifyIwds_f
 ==============
 */
-/*void SV_VerifyIwds_f(char *a1@<edi>, client_t *cl)
+void SV_VerifyIwds_f(char *a1, client_t *cl)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -182,10 +182,10 @@ void SV_FX_FreeVisBlocker(const gentity_t *ent)
 SV_ExecuteClientCommand
 ==============
 */
-/*void SV_ExecuteClientCommand(char *a1@<edi>, client_t *cl, const char *s, int clientOK, int fromOldServer)
+void SV_ExecuteClientCommand(char *a1, client_t *cl, const char *s, int clientOK, int fromOldServer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -334,11 +334,10 @@ void SV_MigrateTestClient(client_t *cl)
 SV_AddTestClient
 ==============
 */
-
+gentity_t *SV_AddTestClient(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*

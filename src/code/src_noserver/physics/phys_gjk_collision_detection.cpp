@@ -16,7 +16,7 @@ void gjk_collision_epilog(const bool is_server_thread)
 gjk_query_output::calc_query_aabb
 ==============
 */
-/*void __thiscall gjk_query_output::calc_query_aabb(gjk_query_output *this, const gjk_query_input *input)
+/*void gjk_query_output::calc_query_aabb(gjk_query_output *notthis, const gjk_query_input *input)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -26,7 +26,7 @@ gjk_query_output::calc_query_aabb
 gjk_query_output::query_epilog
 ==============
 */
-/*void __thiscall gjk_query_output::query_epilog(gjk_query_output *this)
+/*void gjk_query_output::query_epilog(gjk_query_output *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -36,7 +36,7 @@ gjk_query_output::query_epilog
 gjk_physics_collision_visitor::query_create_epilog_1
 ==============
 */
-/*void __thiscall gjk_physics_collision_visitor::query_create_epilog_1(gjk_physics_collision_visitor *this, gjk_base_t *gjk_geom)
+/*void gjk_physics_collision_visitor::query_create_epilog_1(gjk_physics_collision_visitor *notthis, gjk_base_t *gjk_geom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -46,7 +46,7 @@ gjk_physics_collision_visitor::query_create_epilog_1
 gjk_query_output::set_local_query_info
 ==============
 */
-/*void __thiscall gjk_query_output::set_local_query_info(gjk_query_output *this, const gjk_query_input *input, gjk_entity_info_t *ent_info)
+/*void gjk_query_output::set_local_query_info(gjk_query_output *notthis, const gjk_query_input *input, gjk_entity_info_t *ent_info)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -78,7 +78,7 @@ char query_should_pass_centity(const gjk_query_input *input, const centity_t *ce
 gjk_query_output::accum_query_reset
 ==============
 */
-/*void __thiscall gjk_query_output::accum_query_reset(gjk_query_output *this, const phys_vec3 *start_origin)
+/*void gjk_query_output::accum_query_reset(gjk_query_output *notthis, const phys_vec3 *start_origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -150,7 +150,7 @@ bool is_walkable(float gto, const gjk_trace_output_t *a2)
 gjk_query_output::allocate
 ==============
 */
-/*char *__thiscall gjk_query_output::allocate(gjk_query_output *this, const int size, const int alignment, const bool no_error)
+/*char *gjk_query_output::allocate(gjk_query_output *notthis, const int size, const int alignment, const bool no_error)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -161,7 +161,7 @@ gjk_query_output::allocate
 gjk_query_output::get_local_query_aabb
 ==============
 */
-/*void __thiscall gjk_query_output::get_local_query_aabb(gjk_query_output *this, vec3_t *local_query_aabb_min, vec3_t *local_query_aabb_max)
+/*void gjk_query_output::get_local_query_aabb(gjk_query_output *notthis, vec3_t *local_query_aabb_min, vec3_t *local_query_aabb_max)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -171,7 +171,7 @@ gjk_query_output::get_local_query_aabb
 gjk_query_output::query_create_prolog_1
 ==============
 */
-/*bool __thiscall gjk_query_output::query_create_prolog_1(gjk_query_output *this, const vec3_t *local_aabb_min, const vec3_t *local_aabb_max, const void *geom)
+/*bool gjk_query_output::query_create_prolog_1(gjk_query_output *notthis, const vec3_t *local_aabb_min, const vec3_t *local_aabb_max, const void *geom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -182,7 +182,7 @@ gjk_query_output::query_create_prolog_1
 gjk_query_output::create_geom_info
 ==============
 */
-/*gjk_geom_info_t *__thiscall gjk_query_output::create_geom_info(gjk_query_output *this, gjk_base_t *cg, gjk_entity_info_t *ent_info, const vec3_t *aabb_min, const vec3_t *aabb_max)
+/*gjk_geom_info_t *gjk_query_output::create_geom_info(gjk_query_output *notthis, gjk_base_t *cg, gjk_entity_info_t *ent_info, const vec3_t *aabb_min, const vec3_t *aabb_max)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -213,7 +213,7 @@ void setup_gjk_cylinder(const vec3_t *mins, const vec3_t *maxs, const float radi
 gjk_aabb_t::is_walkable
 ==============
 */
-/*bool gjk_aabb_t::is_walkable(gjk_aabb_t *this, int a2, const phys_vec3 *hit_point, const phys_vec3 *up)
+/*bool gjk_aabb_t::is_walkable(gjk_aabb_t *notthis, int a2, const phys_vec3 *hit_point, const phys_vec3 *up)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -256,7 +256,7 @@ void fill_results(const gjk_trace_output_t *gto, const bool is_walkable, trace_t
 gjk_query_output::query_prolog
 ==============
 */
-/*void __thiscall gjk_query_output::query_prolog(gjk_query_output *this, const gjk_query_input *input)
+/*void gjk_query_output::query_prolog(gjk_query_output *notthis, const gjk_query_input *input)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -266,7 +266,7 @@ gjk_query_output::query_prolog
 gjk_query_output::query_create_epilog
 ==============
 */
-/*void __thiscall gjk_query_output::query_create_epilog(gjk_query_output *this, gjk_base_t *gjk_geom)
+/*void gjk_query_output::query_create_epilog(gjk_query_output *notthis, gjk_base_t *gjk_geom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -276,19 +276,17 @@ gjk_query_output::query_create_epilog
 project
 ==============
 */
-
+/*void project(float point, const phys_vec3 *a2, phys_static_array<geom_plane,128> *list_geom_plane, phys_vec3 *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
-}
+}*/
 
 /*
 ==============
 gjk_query_output::reset_cache
 ==============
 */
-/*void __thiscall gjk_query_output::reset_cache(gjk_query_output *this)
+/*void gjk_query_output::reset_cache(gjk_query_output *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -298,7 +296,7 @@ gjk_query_output::reset_cache
 gjk_query_output::query_create_prolog
 ==============
 */
-/*bool __thiscall gjk_query_output::query_create_prolog(gjk_query_output *this, const void *geom)
+/*bool gjk_query_output::query_create_prolog(gjk_query_output *notthis, const void *geom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -309,7 +307,7 @@ gjk_query_output::query_create_prolog
 gjk_query_output::add
 ==============
 */
-/*void __thiscall gjk_query_output::add(gjk_query_output *this, const gjk_query_input *input, gentity_t *gent)
+/*void gjk_query_output::add(gjk_query_output *notthis, const gjk_query_input *input, gentity_t *gent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -319,7 +317,7 @@ gjk_query_output::add
 gjk_query_output::add
 ==============
 */
-/*void __thiscall gjk_query_output::add(gjk_query_output *this, const gjk_query_input *input, centity_t *cent)
+/*void gjk_query_output::add(gjk_query_output *notthis, const gjk_query_input *input, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -329,7 +327,7 @@ gjk_query_output::add
 gjk_query_output::add
 ==============
 */
-/*void __thiscall gjk_query_output::add(gjk_query_output *this, const gjk_query_input *input, const Glass *glass)
+/*void gjk_query_output::add(gjk_query_output *notthis, const gjk_query_input *input, const Glass *glass)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -339,7 +337,7 @@ gjk_query_output::add
 gjk_query_output::add
 ==============
 */
-/*void __thiscall gjk_query_output::add(gjk_query_output *this, const gjk_query_input *input, const DynEntityDef *dent)
+/*void gjk_query_output::add(gjk_query_output *notthis, const gjk_query_input *input, const DynEntityDef *dent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -409,7 +407,7 @@ void gjk_query_dents(const gjk_query_input *input, gjk_query_output *output)
 gjk_query
 ==============
 */
-/*void gjk_query(const gjk_query_input *a1@<edx>, colgeom_visitor_inlined_t<300> *a2@<ecx>, const gjk_query_input *input, gjk_query_output *output)
+/*void gjk_query(const gjk_query_input *a1, colgeom_visitor_inlined_t<300> *a2, const gjk_query_input *input, gjk_query_output *output)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -419,11 +417,9 @@ gjk_query
 gjk_query_output::cached_query_resize
 ==============
 */
-/*
+/*void gjk_query_output::cached_query_resize(gjk_query_output *notthis, int a2, const bool is_server_thread, colgeom_visitor_inlined_t<300> *proximity_data, const int proximity_mask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -431,7 +427,7 @@ gjk_query_output::cached_query_resize
 gjk_query_output::cached_query_prolog
 ==============
 */
-/*void __thiscall gjk_query_output::cached_query_prolog(gjk_query_output *this, const bool is_server_thread, colgeom_visitor_inlined_t<300> *proximity_data, const int proximity_mask, const phys_vec3 *start_origin)
+/*void gjk_query_output::cached_query_prolog(gjk_query_output *notthis, const bool is_server_thread, colgeom_visitor_inlined_t<300> *proximity_data, const int proximity_mask, const phys_vec3 *start_origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -441,7 +437,7 @@ gjk_query_output::cached_query_prolog
 gjk_query_output::cached_query_epilog
 ==============
 */
-/*void __thiscall gjk_query_output::cached_query_epilog(gjk_query_output *this)
+/*void gjk_query_output::cached_query_epilog(gjk_query_output *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

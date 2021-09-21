@@ -4195,11 +4195,10 @@ const GfxViewParms *GetExpressionResultString(itemDef_s *a1, const LocalClientNu
 IsExpressionTrue
 ==============
 */
-
+bool IsExpressionTrue(itemDef_s *a1, const LocalClientNum_t localClientNum, itemDef_s *item, ExpressionStatement *statement)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -4207,11 +4206,10 @@ IsExpressionTrue
 GetExpressionInt64
 ==============
 */
-
+__int64 GetExpressionInt64(itemDef_s *a1, const LocalClientNum_t localClientNum, itemDef_s *item, ExpressionStatement *statement)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -4219,11 +4217,10 @@ GetExpressionInt64
 GetExpressionFloat
 ==============
 */
-
+double GetExpressionFloat(itemDef_s *a1, const LocalClientNum_t localClientNum, itemDef_s *item, ExpressionStatement *statement)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

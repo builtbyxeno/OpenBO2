@@ -238,10 +238,10 @@ void CG_CalcCubemapViewValues(cg_t *cgameGlob)
 CG_CalcTurretViewValues
 ==============
 */
-/*void CG_CalcTurretViewValues(char *a1@<edi>, LocalClientNum_t localClientNum)
+void CG_CalcTurretViewValues(char *a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -329,11 +329,10 @@ const ClientViewParams *CG_GetLocalClientViewParams(LocalClientNum_t localClient
 CG_GetLocalClientViewParams
 ==============
 */
-
+const ClientViewParams *__cdecl CG_GetLocalClientViewParams(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -341,11 +340,10 @@ CG_GetLocalClientViewParams
 CG_IsClientViewportLarge
 ==============
 */
-
+bool __cdecl CG_IsClientViewportLarge(const LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -414,11 +412,9 @@ bool ShouldDoDefaultAdsDof(LocalClientNum_t localClientNum)
 CG_UpdateAdsDof
 ==============
 */
-
+void CG_UpdateAdsDof(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -579,11 +575,11 @@ bool CG_IsTvguided(LocalClientNum_t localClientNum, bool onlyADS)
 CG_ProcessButDontDrawActiveFrame
 ==============
 */
-/*int CG_ProcessButDontDrawActiveFrame@<eax>(char *a1@<edi>, LocalClientNum_t localClientNum, int serverTime)
+int CG_ProcessButDontDrawActiveFrame(char *a1, LocalClientNum_t localClientNum, int serverTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -600,11 +596,9 @@ void CG_CreateBeamCent(LocalClientNum_t localClientNum, clientInfo_t *ci)
 CG_DrawBeamEffect
 ==============
 */
-
+void CG_DrawBeamEffect(LocalClientNum_t localClientNum, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -733,11 +727,9 @@ void CG_InitView(LocalClientNum_t localClientNum)
 GetCeilingHeight
 ==============
 */
-
+void GetCeilingHeight(unsigned int a1, cg_t *cgameGlob)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

@@ -136,11 +136,10 @@ bool AddBoneName(unsigned int *boneNameArray, const int boneNameLen, const char 
 Xmodel_CountPhysicsCollMaps
 ==============
 */
-
+int Xmodel_CountPhysicsCollMaps(const char *name, const char **file, unsigned int *boneHashes, const int boneNameLen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

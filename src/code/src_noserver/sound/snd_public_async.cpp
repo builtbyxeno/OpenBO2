@@ -16,11 +16,9 @@ void SND_PlayInternal(unsigned int id, int fadeTimeMs, float attenuation, SndEnt
 SND_Play
 ==============
 */
-
+void __cdecl SND_Play(unsigned int id, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, SndPlayback *notify)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -28,11 +26,9 @@ SND_Play
 SND_Play
 ==============
 */
-
+void __cdecl SND_Play(const char *alias, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, SndPlayback *notify)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -402,11 +398,9 @@ void SND_ResetEntState()
 SND_ResetAliases
 ==============
 */
-
+void __cdecl SND_ResetAliases()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -549,7 +543,7 @@ void SND_Update()
 SND_UpdateWait
 ==============
 */
-void __thiscall SND_UpdateWait(void *this)
+void SND_UpdateWait(void *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -629,11 +623,10 @@ void SND_Shutdown()
 SND_PlaybackBundle
 ==============
 */
-
+int __cdecl SND_PlaybackBundle(unsigned int alias, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, SndPlayback *lengthNotify, bool startPaused, float scriptPitch, float scriptPitchRate, float scriptAttenuation)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -641,11 +634,10 @@ SND_PlaybackBundle
 SND_Playback
 ==============
 */
-
+int __cdecl SND_Playback(unsigned int alias, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, SndPlayback *notify, bool startPaused)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

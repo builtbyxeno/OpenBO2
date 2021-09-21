@@ -206,11 +206,9 @@ void RB_StretchPicCmd(GfxRenderCommandExecState *execState)
 RB_StretchPicCmdFlipST
 ==============
 */
-
+void RB_StretchPicCmdFlipST(unsigned int a1, GfxRenderCommandExecState *execState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -318,11 +316,9 @@ void TessQuad(unsigned __int16 v0, unsigned __int16 v1, unsigned __int16 v2, uns
 RB_DrawFramedCmd
 ==============
 */
-
+void __cdecl RB_DrawFramedCmd(GfxRenderCommandExecState *execState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -543,11 +539,9 @@ void RB_DrawUITrianglesCmd(GfxRenderCommandExecState *execState)
 RB_DrawTrianglesCmd
 ==============
 */
-
+void __cdecl RB_DrawTrianglesCmd(GfxRenderCommandExecState *execState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -657,11 +651,10 @@ float RB_DrawButton(const char *text, float x, float y, float sinAngle, float co
 RB_DrawChar
 ==============
 */
-
+int RB_DrawChar(unsigned int color, const Material *material, float x, float y, float w, float width, float height, float sinAngle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -669,11 +662,9 @@ RB_DrawChar
 RB_DrawCursor
 ==============
 */
-
+void RB_DrawCursor(const Material *material, unsigned __int8 cursor, float x, float y, float sinAngle, float cosAngle, Font_s *font, float xScale, float yScale, unsigned int color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -797,11 +788,9 @@ void GetDecayingLetterInfo(unsigned int letter, Font_s *font, int *randSeed, int
 DrawTextFxExtraCharacter
 ==============
 */
-
+void DrawTextFxExtraCharacter(const Material *material, int charIndex, float x, float y, float w0, float w, float h, float sinAngle, float cosAngle, unsigned int color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -809,11 +798,9 @@ DrawTextFxExtraCharacter
 DrawText2D
 ==============
 */
-
+void DrawText2D(int *a1, int *a2, bool *text, const char *x, float y, float w, float font, Font_s *xScale, float yScale, float sinAngle, float cosAngle, float color, const GfxColor maxLength, int renderFlags, int cursorPos, int cursorLetter, float padding, float glowForcedColor, GfxColor fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, int fxRedactDecayStartTime, int fxRedactDecayDuration, int fxMaterial, const Material *fxMaterialGlow, const Material *a27)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -821,11 +808,9 @@ DrawText2D
 DrawTeleType
 ==============
 */
-
+void __cdecl DrawTeleType(const char *text, float x, float y, float w, float h, Font_s *font, float xScale, float yScale, const GfxColor color, int renderFlags, int cursorPos, float cursorLetter, float padding, int fxBirthTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -863,10 +848,10 @@ void RB_DrawTextInSpace(unsigned int a1, const char *text, Font_s *font, const v
 RB_DrawText2DCmd
 ==============
 */
-/*void RB_DrawText2DCmd(const Material *a1@<edi>, GfxRenderCommandExecState *execState)
+void RB_DrawText2DCmd(const Material *a1, GfxRenderCommandExecState *execState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

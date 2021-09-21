@@ -76,11 +76,9 @@ void XAnimApplyAdditives(DObjAnimMat *rotTransArray, DObjAnimMat *additiveArray,
 XAnim_CalcDeltaForTime
 ==============
 */
-
+void XAnim_CalcDeltaForTime(int a1, const XAnimDeltaPart *a2, const XAnimParts *anim, const float time, vec2_t *rotDelta, __m128 *posDelta)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -88,11 +86,9 @@ XAnim_CalcDeltaForTime
 XAnim_CalcDelta3DForTime
 ==============
 */
-
+void XAnim_CalcDelta3DForTime(int a1, const XAnimDeltaPart *a2, const XAnimParts *anim, const float time, vec4_t *rotDelta, __m128 *posDelta)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -110,11 +106,9 @@ XAnimCalcLeafInternal
 XAnimCalcLeaf
 ==============
 */
-
+void XAnimCalcLeaf(XAnimInfo *info, float weightScale, DObjAnimMat *rotTransArray, XAnimCalcAnimInfo *animInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

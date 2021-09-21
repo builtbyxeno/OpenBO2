@@ -69,7 +69,7 @@ int SV_GameCommand();
 const char *SV_Archived_Dvar_GetVariantString(const char *dvarName);
 int SV_Archived_Dvar_GetInt(int dvarHash);
 double SV_Archived_Dvar_GetFloat(int dvarHash);
-;
+int SV_EntityContact(unsigned int a1, const vec3_t *mins, const vec3_t *maxs, const gentity_t *gEnt);
 void SV_ShutdownGameProgs();
 
 //t6/code/src_noserver/server/sv_main.cpp
@@ -89,7 +89,7 @@ void SV_MigrationInit();
 netadr_t *ClientRemoteAddr(const ClientNum_t clientNum);
 bool IsClientConnected(const ClientNum_t clientNum);
 bool SendToClient(const ClientNum_t clientNum, const unsigned __int8 *data, int len);
-;
+void SendStartMessage(const ClientNum_t clientNum);
 void CreateBlock(const int blockNum, Block *block);
 bool SendBlock(const ClientNum_t clientNum, Block *block);
 void SendSave();
@@ -100,7 +100,7 @@ int SV_GetMigrationCount();
 void SV_MigrationStart(const char *reason);
 bool HasTimedOut(const ClientNum_t clientNum);
 void TimedOut(const ClientNum_t clientNum);
-void __thiscall CheckTimeouts(void *this);
+void CheckTimeouts(void *notthis);
 void SendMigrateToMessages();
 void SendFrame();
 void SV_MigrationUpdateCount(const int count);
@@ -137,7 +137,7 @@ signedStatsHash_t *getCachedSignedStatsHashForClient(client_t *client);
 char SV_StatSign_SetCheckSumForClient(client_t *client);
 void actionOnBadStats(client_t *client, const unsigned __int64 clientXUID, const dvar_t *dvar, const char *bbstring);
 void SV_SignedStats_Breadcrumb(client_t *client);
-;
+bool SV_SignedStats_VerifyClient(char *a1, client_t *client);
 void SV_AddModifiedStats(ClientNum_t clientNum);
 
 //t6/code/src_noserver/server/sv_world.cpp
@@ -150,9 +150,9 @@ void SV_SetupIgnoreEntParams(IgnoreEntParams *ignoreEntParams, int baseEntity);
 BOOL SV_SightTraceCapsule(int *hitNum, const vec3_t *start, const vec3_t *mins, const vec3_t *maxs, const vec3_t *end, col_context_t *context);
 BOOL SV_SightTracePoint(int *hitNum, const vec3_t *start, const vec3_t *end, col_context_t *context);
 int SV_PointContents(const vec3_t *p, int passEntityNum, int contentmask);
-;
-;
-;
+void SV_LinkEntity(int a1, gentity_t *gEnt);
+int SV_SightTracePointToEntity(unsigned int a1, const sightpointtrace_t *clip, int entnum);
+void SV_TracePoint(int a1, trace_t *results, const vec3_t *start, const vec3_t *end, col_context_t *context);
 void SV_TraceCapsule(int a1, trace_t *results, const vec3_t *start, const vec3_t *mins, const vec3_t *maxs, const vec3_t *end, col_context_t *context);
 void G_TraceCapsule(trace_t *results, const vec3_t *start, const vec3_t *mins, const vec3_t *maxs, const vec3_t *end, int passEntityNum, int contentmask, col_context_t *context);
 void G_LocationalTrace(trace_t *results, const vec3_t *start, const vec3_t *end, int passEntityNum, int contentmask, unsigned __int8 *priorityMap, int (*collide_entity_func)(int));

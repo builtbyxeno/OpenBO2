@@ -438,7 +438,7 @@ void Cmd_AI_SetValue(actor_t *pSelf, int argc, unsigned __int8 *pBase, const act
 Cmd_AI_Dispatch
 ==============
 */
-void Cmd_AI_Dispatch(int argc, actor_t* pSelf, const actor_fields_s* fields, const actor_fields_s* pField)
+void Cmd_AI_Dispatch(int argc, actor_t *pSelf, const actor_fields_s *fields, const actor_fields_s *pField)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -448,7 +448,7 @@ void Cmd_AI_Dispatch(int argc, actor_t* pSelf, const actor_fields_s* fields, con
 Cmd_AI_EntityNumber
 ==============
 */
-void Cmd_AI_EntityNumber(int argc, const actor_fields_s* fields, const actor_fields_s* pField, const char* szNum, int bInvertSelection)
+void Cmd_AI_EntityNumber(int argc, const actor_fields_s *fields, const actor_fields_s *pField, const char *szNum, int bInvertSelection)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -498,10 +498,10 @@ void GScr_AddFieldsForActor()
 Scr_SetActorField
 ==============
 */
-/*void Scr_SetActorField(const char *a1@<esi>, actor_t *actor, int offset)
+void Scr_SetActorField(const char *a1, actor_t *actor, int offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

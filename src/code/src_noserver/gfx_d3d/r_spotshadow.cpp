@@ -6,11 +6,9 @@
 R_SetViewParmsForLight
 ==============
 */
-
+void R_SetViewParmsForLight(const GfxLight *light, GfxViewParms *viewParms)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -38,10 +36,10 @@ void R_AddSpotShadowModelEntities(LocalClientNum_t localClientNum, unsigned int 
 R_EmitSpotShadowMapSurfs
 ==============
 */
-/*void R_EmitSpotShadowMapSurfs(const char *a1@<edi>, GfxViewInfo *viewInfo)
+void R_EmitSpotShadowMapSurfs(const char *a1, GfxViewInfo *viewInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -58,10 +56,9 @@ void R_GenerateAllSortedSpotShadowDrawSurfs(GfxViewInfo *viewInfo, int viewIndex
 R_AddSpotShadowsForLight
 ==============
 */
-
+char __cdecl R_AddSpotShadowsForLight(GfxViewInfo *viewInfo, GfxLight *light, unsigned int shadowableLightIndex, unsigned int totalSpotLightCount, float spotShadowFade)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 

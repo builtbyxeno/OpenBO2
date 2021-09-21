@@ -140,11 +140,9 @@ void Ragdoll_Shutdown()
 Ragdoll_DebugDraw
 ==============
 */
-
+void Ragdoll_DebugDraw(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

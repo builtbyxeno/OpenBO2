@@ -364,11 +364,10 @@ gentity_t *G_SpawnStaticEntity(int start, int range, const char *entity_type)
 G_SpawnTurret
 ==============
 */
-
+gentity_t *G_SpawnTurret(int a1, int a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -376,11 +375,10 @@ G_SpawnTurret
 G_SpawnActor
 ==============
 */
-
+gentity_t *G_SpawnActor(int a1, int a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -732,11 +730,10 @@ void G_TraceBulletPathForVehTurret(gentity_t *ent, DObjTrace_s *trace, int gunne
 G_SpawnVehicle
 ==============
 */
-
+gentity_t *G_SpawnVehicle(int a1, int a2, char *a3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -797,11 +794,10 @@ gentity_t *G_PlaySoundAlias(gentity_t *ent, unsigned int alias, unsigned int not
 G_PlaySoundAliasWithNotify
 ==============
 */
-
+gentity_t *G_PlaySoundAliasWithNotify(unsigned int a1, gentity_t *a2, gentity_t *ent, unsigned int alias, unsigned int notifyString, unsigned int tag)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*

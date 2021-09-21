@@ -239,7 +239,7 @@ AimScreenTarget *AimAssist_GetTargetFromEntity(AimAssistGlobals *aaGlob, int ent
 AimAssist_GetBestTarget
 ==============
 */
-AimScreenTarget* AimAssist_GetBestTarget(AimAssistGlobals* aaGlob, float range, float regionWidth, float regionHeight)
+AimScreenTarget *AimAssist_GetBestTarget(const vec2_t *a1, const vec2_t *a2, AimAssistGlobals *aaGlob, float range, float regionWidth, float regionHeight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -250,7 +250,7 @@ AimScreenTarget* AimAssist_GetBestTarget(AimAssistGlobals* aaGlob, float range, 
 AimAssist_GetPrevOrBestTarget
 ==============
 */
-AimScreenTarget* AimAssist_GetPrevOrBestTarget(AimAssistGlobals* aaGlob, float range, float regionWidth, float regionHeight)
+AimScreenTarget *AimAssist_GetPrevOrBestTarget(int a1, AimAssistGlobals *a2, AimAssistGlobals *aaGlob, float range, float regionWidth, float regionHeight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -366,7 +366,7 @@ bool AimAssit_ShouldMeleeChargeMoveLimit(const AimAssistGlobals *aaGlob, const A
 AimAssist_ScreenTargetGetAimPos
 ==============
 */
-void AimAssist_ScreenTargetGetAimPos(LocalClientNum_t localClientNum, AimScreenTarget* aimScreenTarget, vec3_t* aimPos)
+void __cdecl AimAssist_ScreenTargetGetAimPos(LocalClientNum_t localClientNum, AimScreenTarget *aimScreenTarget, vec3_t *aimPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -396,7 +396,7 @@ void AimAssist_DrawTargets(LocalClientNum_t localClientNum, const playerState_s 
 AimAssist_DrawDebugOverlay
 ==============
 */
-void AimAssist_DrawDebugOverlay(LocalClientNum_t localClientNum)
+void AimAssist_DrawDebugOverlay(bool a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -478,10 +478,10 @@ void AimAssist_ApplyAutoAim(const AimInput *input, AimOutput *output)
 AimAssist_ApplyLockOn
 ==============
 */
-/*void AimAssist_ApplyLockOn(char *a1@<edi>, const AimInput *input, AimOutput *output)
+void AimAssist_ApplyLockOn(char *a1, const AimInput *input, AimOutput *output)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

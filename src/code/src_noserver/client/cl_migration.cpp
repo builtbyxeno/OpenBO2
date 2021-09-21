@@ -36,11 +36,9 @@ void SendToHost(const LocalClientNum_t localClientNum, const char *cmd, const un
 Migration_SendMigrateToAck
 ==============
 */
-
+void Migration_SendMigrateToAck(const char *a1, LocalClientNum_t a2, char *localClientNum, const LocalClientNum_t a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -89,11 +87,9 @@ void HandleSaveDataMsg(const LocalClientNum_t localClientNum, netadr_t from, msg
 HandlePingMsg
 ==============
 */
-
+void __cdecl HandlePingMsg(const LocalClientNum_t localClientNum, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -111,11 +107,9 @@ void HandlePingAckMsg(const LocalClientNum_t localClientNum, netadr_t from, msg_
 HandleHeaderMsg
 ==============
 */
-
+void __cdecl HandleHeaderMsg(const LocalClientNum_t localClientNum, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

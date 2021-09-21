@@ -72,10 +72,10 @@ vec2_t *ScrPlace_CalcSafeAreaOffsets(float *a1, float *a2, float viewportY, floa
 ScrPlace_SetupFloatViewport
 ==============
 */
-/*void ScrPlace_SetupFloatViewport(vec2_t *a1@<edi>, vec2_t *a2@<esi>, ScreenPlacement *scrPlace, float viewportX, float viewportY, float viewportWidth, float viewportHeight, float aspect, bool splitScreen)
+void ScrPlace_SetupFloatViewport(vec2_t *a1, vec2_t *a2, ScreenPlacement *scrPlace, float viewportX, float viewportY, float viewportWidth, float viewportHeight, float aspect, bool splitScreen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -156,11 +156,9 @@ void ApplySplitscreenScaling(float *x, float *y, float *w, float *h, float hudSp
 ScrPlace_ApplyRect
 ==============
 */
-
+void ScrPlace_ApplyRect(float *a1, const ScreenPlacement *scrPlace, float *x, float *y, float *w, float *h, int horzAlign, int vertAlign)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

@@ -59,11 +59,10 @@ bool Dvar_ToggleInternal()
 Dvar_Toggle_f
 ==============
 */
-
+bool __cdecl Dvar_Toggle_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

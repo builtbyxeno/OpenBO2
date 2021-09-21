@@ -350,11 +350,10 @@ int PC_DollarEvaluate(source_s *source, int *intvalue, long double *floatvalue, 
 PC_Directive_elif
 ==============
 */
-
+int __cdecl PC_Directive_elif(source_s *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -427,11 +426,10 @@ int PC_Directive_eval(int a1, source_s *source)
 PC_Directive_evalfloat
 ==============
 */
-
+int __cdecl PC_Directive_evalfloat(source_s *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

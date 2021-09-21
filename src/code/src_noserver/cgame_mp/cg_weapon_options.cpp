@@ -6,7 +6,7 @@
 WeaponOptions::InitWeaponOptions
 ==============
 */
-/*void __thiscall WeaponOptions::InitWeaponOptions(WeaponOptions *this)
+/*void WeaponOptions::InitWeaponOptions(WeaponOptions *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -16,7 +16,7 @@ WeaponOptions::InitWeaponOptions
 WeaponOptions::SetupWeaponCamoRender
 ==============
 */
-/*void __thiscall WeaponOptions::SetupWeaponCamoRender(WeaponOptions *this, LocalClientNum_t localClientNum, const float dist, WeaponDobjInfo::Slot weaponSlot, unsigned int camo, const WeaponDobjInfo *weaponDobjInfo, int *textureOverrideIndex)
+/*void WeaponOptions::SetupWeaponCamoRender(WeaponOptions *notthis, LocalClientNum_t localClientNum, const float dist, WeaponDobjInfo::Slot weaponSlot, unsigned int camo, const WeaponDobjInfo *weaponDobjInfo, int *textureOverrideIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -26,7 +26,7 @@ WeaponOptions::SetupWeaponCamoRender
 WeaponOptions::SetReticle
 ==============
 */
-/*void __thiscall WeaponOptions::SetReticle(WeaponOptions *this, WeaponOptions::ReticleType type, int reticle, unsigned int dobjModelMask, int *textureOverrideIndex)
+/*void WeaponOptions::SetReticle(WeaponOptions *notthis, WeaponOptions::ReticleType type, int reticle, unsigned int dobjModelMask, int *textureOverrideIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -36,7 +36,7 @@ WeaponOptions::SetReticle
 WeaponOptions::IsValidRenderOption
 ==============
 */
-/*bool __thiscall WeaponOptions::IsValidRenderOption(WeaponOptions *this, renderOptions_s renderOptions, Weapon weapon)
+/*bool WeaponOptions::IsValidRenderOption(WeaponOptions *notthis, renderOptions_s renderOptions, Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -47,7 +47,7 @@ WeaponOptions::IsValidRenderOption
 WeaponOptions::DisplayRenderOption
 ==============
 */
-/*void __thiscall WeaponOptions::DisplayRenderOption(WeaponOptions *this, renderOptions_s renderOptions, Weapon weapon)
+/*void WeaponOptions::DisplayRenderOption(WeaponOptions *notthis, renderOptions_s renderOptions, Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -169,7 +169,7 @@ void CG_SetWeaponMMSConstants(LocalClientNum_t localClientNum, ShaderConstantSet
 WeaponOptions::SetupWeaponOptionsRender
 ==============
 */
-/*void __thiscall WeaponOptions::SetupWeaponOptionsRender(WeaponOptions *this, LocalClientNum_t localClientNum, const vec3_t *origin, WeaponDobjInfo::Slot weaponSlot, renderOptions_s renderOptions, const WeaponDobjInfo *weaponDobjInfo, ShaderConstantSet *constantSet, int *textureOverrideIndex)
+/*void WeaponOptions::SetupWeaponOptionsRender(WeaponOptions *notthis, LocalClientNum_t localClientNum, const vec3_t *origin, WeaponDobjInfo::Slot weaponSlot, renderOptions_s renderOptions, const WeaponDobjInfo *weaponDobjInfo, ShaderConstantSet *constantSet, int *textureOverrideIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

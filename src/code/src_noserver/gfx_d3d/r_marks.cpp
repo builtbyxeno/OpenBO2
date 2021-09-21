@@ -130,11 +130,9 @@ void R_CellBoxSurfacesTwoLists(int cellIndex, const vec3_t *mins, const vec3_t *
 R_BoxSurfaces_r
 ==============
 */
-
+void __cdecl R_BoxSurfaces_r(mnode_t *node, const vec3_t *mins, const vec3_t *maxs, int (__cdecl **allowSurf)(int, void *), void *callbackContext, GfxSurface ***surfLists, unsigned int surfListSize, unsigned int *surfCounts, unsigned int listCount, unsigned __int8 *cellBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -289,11 +287,9 @@ void R_MarkUtil_GetDObjAnimMatAndHideParts(const DObj *dobj, const cpose_t *pose
 R_MarkFragments_Begin
 ==============
 */
-
+void __cdecl R_MarkFragments_Begin(MarkInfo *markInfo, MarkFragmentsAgainstEnum markAgainst, const vec3_t *origin, const vec3_t *axis, float radius, const vec3_t *viewOffset, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -356,11 +352,10 @@ bool R_MarkFragments_EntirelyRigidXModel(MarkInfo *markInfo, const XModel *xmode
 R_MarkFragments_AnimatedXModel_VertList
 ==============
 */
-
+bool R_MarkFragments_AnimatedXModel_VertList(GfxMarkContext *markContext, XSurface *surfaceEA)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

@@ -66,11 +66,9 @@ void FX_FreeMarkFromList(FxMarksSystem *marksSystem, FxMark *mark, unsigned __in
 FX_FreeMark
 ==============
 */
-
+void FX_FreeMark(FxMark *a1, FxMarksSystem *a2, FxMarksSystem *marksSystem, FxMark *mark)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -78,10 +76,10 @@ FX_FreeMark
 FX_FreeLruMark
 ==============
 */
-/*void FX_FreeLruMark(char *a1@<edi>, FxMarksSystem *marksSystem)
+void FX_FreeLruMark(char *a1, FxMarksSystem *marksSystem)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -173,11 +171,10 @@ bool FX_CompareMarkTris(const FxMarkTri *tri0, const FxMarkTri *tri1)
 FX_ImpactMark_Generate_AddEntityBrush
 ==============
 */
-
+char FX_ImpactMark_Generate_AddEntityBrush(LocalClientNum_t localClientNum, MarkInfo *a2, unsigned int a3, int a4, float a5, float *a6)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -215,10 +212,10 @@ void FX_BeginMarks(LocalClientNum_t clientIndex)
 FX_MarkEntDetachAll
 ==============
 */
-/*void FX_MarkEntDetachAll(char *a1@<edi>, LocalClientNum_t localClientNum, int entnum)
+void FX_MarkEntDetachAll(char *a1, LocalClientNum_t localClientNum, int entnum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -235,20 +232,20 @@ void FX_MarkEntDetachAllViewmodel(LocalClientNum_t localClientNum)
 FX_MarkGlassDetachAll
 ==============
 */
-/*void FX_MarkGlassDetachAll(char *a1@<edi>, LocalClientNum_t localClientNum, int glassIndex)
+void FX_MarkGlassDetachAll(char *a1, LocalClientNum_t localClientNum, int glassIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 FX_MarkEntDetachAllOfType
 ==============
 */
-/*void FX_MarkEntDetachAllOfType(char *a1@<edi>, LocalClientNum_t localClientNum, int entnum, int markType)
+void FX_MarkEntDetachAllOfType(char *a1, LocalClientNum_t localClientNum, int entnum, int markType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -305,11 +302,9 @@ void FX_MarkEntUpdateEndDObj(FxMarkDObjUpdateContext *context, LocalClientNum_t 
 FX_MarkEntUpdateEnd
 ==============
 */
-
+void FX_MarkEntUpdateEnd(LocalClientNum_t a1, FxMarkDObjUpdateContext *a2, FxMarkDObjUpdateContext *context, LocalClientNum_t localClientNum, int entnum, DObj *obj, bool isBrush, unsigned __int16 brushIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -317,10 +312,10 @@ FX_MarkEntUpdateEnd
 FX_ClearViewmodelMarks
 ==============
 */
-/*void FX_ClearViewmodelMarks(char *a1@<edi>, LocalClientNum_t localClientNum)
+void FX_ClearViewmodelMarks(char *a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -347,11 +342,10 @@ void FX_DrawMarkTris(FxMarksSystem *marksSystem, const FxMark *mark, unsigned __
 FX_GenerateMarkVertsForMark_Begin
 ==============
 */
-
+char FX_GenerateMarkVertsForMark_Begin(float marksSystem, FxMarksSystem *a2, FxMark *mark, unsigned int *indexCount, unsigned __int16 *outBaseVertex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -481,10 +475,10 @@ void FX_MarkDrawSpatialHashDebug(FxMarksSystem *marksSystem)
 FX_MarksGridUpdate
 ==============
 */
-/*void FX_MarksGridUpdate(char *a1@<edi>, LocalClientNum_t localClientNum)
+void FX_MarksGridUpdate(char *a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -555,11 +549,9 @@ bool FX_GenerateMarkVertsForList_WorldBrush(FxMarksSystem *marksSystem, unsigned
 FX_GenerateMarkVertsForEntXModel
 ==============
 */
-
+void FX_GenerateMarkVertsForEntXModel(char *a1, LocalClientNum_t localClientNum, int entId, unsigned int *indexCount, unsigned __int16 lightHandle, unsigned __int8 reflectionProbeIndex, const GfxScaledPlacement *placement, const GfxLight *visibleLights, int visibleLightCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -587,11 +579,9 @@ void FX_GenerateMarkVertsForEntDObj(LocalClientNum_t localClientNum, int entId, 
 FX_GenerateMarkVertsForEntBrush
 ==============
 */
-
+void FX_GenerateMarkVertsForEntBrush(char *a1, LocalClientNum_t localClientNum, int entId, unsigned int *indexCount, unsigned __int8 reflectionProbeIndex, const GfxPlacement *placement, const GfxLight *visibleLights, int visibleLightCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -599,11 +589,9 @@ FX_GenerateMarkVertsForEntBrush
 FX_GenerateMarkVertsForStaticModels
 ==============
 */
-
+void FX_GenerateMarkVertsForStaticModels(char *a1, float indexCount, LocalClientNum_t localClientNum, int smodelCount, const unsigned __int8 *smodelVisLods, const GfxStaticModelDrawInst *smodelDrawInsts, const GfxLight *visibleLights)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -611,11 +599,9 @@ FX_GenerateMarkVertsForStaticModels
 FX_GenerateMarkVertsForWorld
 ==============
 */
-
+void FX_GenerateMarkVertsForWorld(float localClientNum, LocalClientNum_t a2, const GfxLight *visibleLights)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -643,11 +629,9 @@ void FX_AllocAndConstructMark(LocalClientNum_t localClientNum, int triCount, int
 FX_ImpactMark_Generate_Callback
 ==============
 */
-
+void __cdecl FX_ImpactMark_Generate_Callback(void *context, int triCount, FxMarkTri *tris, int pointCount, FxMarkPoint *points, const vec3_t *markOrigin, const vec3_t *markTexCoordAxis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -665,11 +649,9 @@ void FX_ImpactMark_Generate(LocalClientNum_t localClientNum, MarkFragmentsAgains
 FX_ImpactMark
 ==============
 */
-
+void FX_ImpactMark(LocalClientNum_t localClientNum, Material *worldMaterial, Material *modelMaterial, const vec3_t *origin, const vec4_t *quat, float orientation, const unsigned __int8 *nativeColor, float radius, const vec3_t *viewOffset, unsigned int markEntnum, const FxMarkAlphaFade *markAlpha, bool markViewmodel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -687,11 +669,9 @@ void FX_CreateImpactMarkInternal(LocalClientNum_t localClientNum, const FxElemDe
 FX_CreateImpactMark
 ==============
 */
-
+void __cdecl FX_CreateImpactMark(LocalClientNum_t localClientNum, const FxElemDef *elemDef, const FxSpatialFrame *spatialFrame, int randomSeed, unsigned int markEntnum, bool markViewmodel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -699,10 +679,9 @@ FX_CreateImpactMark
 fx_add_markCallback
 ==============
 */
-
+int __cdecl fx_add_markCallback(jqBatch *batch)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 

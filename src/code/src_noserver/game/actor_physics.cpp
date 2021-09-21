@@ -66,11 +66,9 @@ void ai_physics_trace(trace_t *trace, const vec3_t *start, const vec3_t *mins, c
 ai_gjk_slide_move_input_t::custom_process
 ==============
 */
-/*
+/*void ai_gjk_slide_move_input_t::custom_process(ai_gjk_slide_move_input_t *notthis, int a2, gjk_trace_output_t *gto)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -78,7 +76,7 @@ ai_gjk_slide_move_input_t::custom_process
 AIPhys_GroundTrace
 ==============
 */
-void AIPhys_GroundTrace(actor_physics_t* pPhys)
+void AIPhys_GroundTrace(actor_physics_t *pPhys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -88,7 +86,7 @@ void AIPhys_GroundTrace(actor_physics_t* pPhys)
 AIPhys_FoliageSounds
 ==============
 */
-void AIPhys_FoliageSounds(actor_physics_t* pPhys)
+void AIPhys_FoliageSounds(unsigned int a1, actor_physics_t *pPhys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -108,7 +106,7 @@ void Actor_PostPhysics(actor_physics_t *pPhys)
 AIPhys_SlideMove
 ==============
 */
-SlideMoveResult AIPhys_SlideMove(actor_physics_t* pPhys)
+SlideMoveResult AIPhys_SlideMove(actor_physics_t *pPhys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	SlideMoveResult tmp;
@@ -120,7 +118,7 @@ SlideMoveResult AIPhys_SlideMove(actor_physics_t* pPhys)
 AdjustBigDog
 ==============
 */
-void AdjustBigDog(actor_physics_t *pPhys)
+void AdjustBigDog(int a1, actor_physics_t *pPhys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -130,7 +128,7 @@ void AdjustBigDog(actor_physics_t *pPhys)
 AIPhys_StepSlideMove
 ==============
 */
-int AIPhys_StepSlideMove(actor_physics_t* pPhys)
+int AIPhys_StepSlideMove(actor_physics_t *pPhys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

@@ -46,11 +46,9 @@ void Fire_Lead(gentity_t *ent, gentity_t *activator, int bUseAccuracy)
 turret_shoot_internal
 ==============
 */
-
+void turret_shoot_internal(gentity_t *self, gentity_t *other)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -361,11 +359,9 @@ void turret_think_auto_nonai(gentity_t *self)
 turret_RestoreDefaultDropPitch
 ==============
 */
-
+void turret_RestoreDefaultDropPitch(unsigned int a1, gentity_t *self)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -383,10 +379,10 @@ void turret_UpdateOverheating(gentity_t *self, gentity_t *owner)
 turret_think
 ==============
 */
-/*void turret_think(char *a1@<edi>, gentity_t *self)
+void turret_think(char *a1, gentity_t *self)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -435,11 +431,9 @@ void G_DeactivateTurret(gentity_t *self)
 turret_find_max_angles
 ==============
 */
-
+void turret_find_max_angles(unsigned int a1, gentity_t *pOwner, gentity_t *pTurret)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -477,11 +471,9 @@ void Turret_SetTurretOwner(gentity_t *self, gentity_t *owner)
 G_PlayerTurretPositionAndBlend
 ==============
 */
-
+void G_PlayerTurretPositionAndBlend(gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

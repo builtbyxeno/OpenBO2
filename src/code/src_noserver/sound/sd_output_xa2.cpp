@@ -6,7 +6,7 @@
 sd_xa2_callback::OnBufferEnd
 ==============
 */
-/*void sd_xa2_callback::OnBufferEnd(sd_xa2_callback *this, void *pBufferContext)
+/*void sd_xa2_callback::OnBufferEnd(sd_xa2_callback *notthis, void *pBufferContext)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -68,11 +68,9 @@ void SD_SwitchDevice()
 SD_XAudio2Callbacks::OnCriticalError
 ==============
 */
-/*
+/*void __stdcall SD_XAudio2Callbacks::OnCriticalError(SD_XAudio2Callbacks *notthis, HRESULT Error)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*

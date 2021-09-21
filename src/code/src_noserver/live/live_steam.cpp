@@ -49,7 +49,7 @@ void LiveSteam_ShowStore(unsigned int appID)
 LiveSteam_ShowFriendsList
 ==============
 */
-void __thiscall LiveSteam_ShowFriendsList(void *this)
+void LiveSteam_ShowFriendsList(void *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -176,11 +176,9 @@ void LiveSteam_Client_SteamDisconnect()
 LiveSteam_PopOverlayForSteamID
 ==============
 */
-
+void __cdecl LiveSteam_PopOverlayForSteamID(unsigned __int64 steamID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

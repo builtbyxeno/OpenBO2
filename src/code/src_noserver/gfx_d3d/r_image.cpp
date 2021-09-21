@@ -99,11 +99,10 @@ GfxImage *Image_GetProg(int imageProgType)
 Image_Alloc
 ==============
 */
-
+GfxImage *__cdecl Image_Alloc(const char *name, const char *category, int semantic, int imageTrack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*

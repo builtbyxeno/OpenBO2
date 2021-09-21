@@ -149,11 +149,10 @@ char Scr_CompileMethod(scriptInstance_t inst, sval_u *expr, sval_u *func_name, s
 Scr_CompileCallExpression
 ==============
 */
-
+char Scr_CompileCallExpression(scriptInstance_t inst, sval_u *expr)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -312,11 +311,9 @@ void Scr_CompilePrimitiveExpression(scriptInstance_t inst, sval_u *expr)
 Scr_EvalExpression
 ==============
 */
-
+void Scr_EvalExpression(VariableValue *a1, scriptInstance_t inst, sval_u expr, unsigned int localId, VariableValue *value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

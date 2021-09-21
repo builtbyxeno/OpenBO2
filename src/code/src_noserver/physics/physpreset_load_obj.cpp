@@ -16,11 +16,11 @@ void PhysPreset_Strcpy(unsigned __int8 *member, const char *keyValue)
 PhysPresetLoadFile
 ==============
 */
-/*PhysPreset *PhysPresetLoadFile@<eax>(fsMode_t a1@<esi>, const char *name, void *(*Alloc)(int))
+PhysPreset *PhysPresetLoadFile(fsMode_t a1, const char *name, void *(*Alloc)(int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============

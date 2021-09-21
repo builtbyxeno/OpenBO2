@@ -6,7 +6,7 @@
 CStringEdPackage::Filename_WithoutExt
 ==============
 */
-/*char *__thiscall CStringEdPackage::Filename_WithoutExt(CStringEdPackage *this, const char *psFilename)
+/*char *CStringEdPackage::Filename_WithoutExt(CStringEdPackage *notthis, const char *psFilename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -17,7 +17,7 @@ CStringEdPackage::Filename_WithoutExt
 CStringEdPackage::Filename_WithoutPath
 ==============
 */
-/*char *__thiscall CStringEdPackage::Filename_WithoutPath(CStringEdPackage *this, const char *psFilename)
+/*char *CStringEdPackage::Filename_WithoutPath(CStringEdPackage *notthis, const char *psFilename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -28,7 +28,7 @@ CStringEdPackage::Filename_WithoutPath
 CStringEdPackage::CheckLineForKeyword
 ==============
 */
-/*int __thiscall CStringEdPackage::CheckLineForKeyword(CStringEdPackage *this, const char *psKeyword, const char **psLine)
+/*int CStringEdPackage::CheckLineForKeyword(CStringEdPackage *notthis, const char *psKeyword, const char **psLine)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -39,7 +39,7 @@ CStringEdPackage::CheckLineForKeyword
 CStringEdPackage::IsStringFormatCorrect
 ==============
 */
-/*char __thiscall CStringEdPackage::IsStringFormatCorrect(CStringEdPackage *this, const char *string)
+/*char CStringEdPackage::IsStringFormatCorrect(CStringEdPackage *notthis, const char *string)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -50,7 +50,7 @@ CStringEdPackage::IsStringFormatCorrect
 CStringEdPackage::REMKill
 ==============
 */
-/*void __thiscall CStringEdPackage::REMKill(CStringEdPackage *this, char *psBuffer)
+/*void CStringEdPackage::REMKill(CStringEdPackage *notthis, char *psBuffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -60,7 +60,7 @@ CStringEdPackage::REMKill
 CStringEdPackage::ReadLine
 ==============
 */
-/*int __thiscall CStringEdPackage::ReadLine(CStringEdPackage *this, const char **psParsePos, char *psDest)
+/*int CStringEdPackage::ReadLine(CStringEdPackage *notthis, const char **psParsePos, char *psDest)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -82,7 +82,7 @@ SE_GetFoundFile
 CStringEdPackage::SetupNewFileParse
 ==============
 */
-/*void __thiscall CStringEdPackage::SetupNewFileParse(CStringEdPackage *this, const char *psFileName)
+/*void CStringEdPackage::SetupNewFileParse(CStringEdPackage *notthis, const char *psFileName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -92,7 +92,7 @@ CStringEdPackage::SetupNewFileParse
 CStringEdPackage::SetString
 ==============
 */
-/*void __thiscall CStringEdPackage::SetString(CStringEdPackage *this, const char *psLocalReference, const char *psNewString, int bSentenceIsEnglish)
+/*void CStringEdPackage::SetString(CStringEdPackage *notthis, const char *psLocalReference, const char *psNewString, int bSentenceIsEnglish)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -113,7 +113,7 @@ SE_GetString_LoadObj
 CStringEdPackage::ConvertCRLiterals_Read
 ==============
 */
-/*std::string *__thiscall CStringEdPackage::ConvertCRLiterals_Read(CStringEdPackage *this, std::string *result, std::string string)
+/*std::string *CStringEdPackage::ConvertCRLiterals_Read(CStringEdPackage *notthis, std::string *result, std::string string)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -124,7 +124,7 @@ CStringEdPackage::ConvertCRLiterals_Read
 CStringEdPackage::InsideQuotes
 ==============
 */
-/*std::string *__thiscall CStringEdPackage::InsideQuotes(CStringEdPackage *this, std::string *result, const char *psLine)
+/*std::string *CStringEdPackage::InsideQuotes(CStringEdPackage *notthis, std::string *result, const char *psLine)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -135,7 +135,7 @@ CStringEdPackage::InsideQuotes
 CStringEdPackage::Clear
 ==============
 */
-/*void __thiscall CStringEdPackage::Clear(CStringEdPackage *this)
+/*void CStringEdPackage::Clear(CStringEdPackage *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -155,7 +155,7 @@ void SE_NewLanguage()
 CStringEdPackage::AddEntry
 ==============
 */
-/*void __thiscall CStringEdPackage::AddEntry(CStringEdPackage *this, const char *psLocalReference)
+/*void CStringEdPackage::AddEntry(CStringEdPackage *notthis, const char *psLocalReference)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -185,7 +185,7 @@ void SE_ShutDown()
 CStringEdPackage::ParseLine
 ==============
 */
-/*const char *__thiscall CStringEdPackage::ParseLine(CStringEdPackage *this, const char *psLine, bool forceEnglish)
+/*const char *CStringEdPackage::ParseLine(CStringEdPackage *notthis, const char *psLine, bool forceEnglish)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

@@ -2052,11 +2052,9 @@ void CScr_GetGenericEnt(LocalClientNum_t localClientNum, int offset, const char 
 CScr_GetEnt
 ==============
 */
-
+void __cdecl CScr_GetEnt()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2144,11 +2142,9 @@ void CScr_PlayRumbleOnPosition_Internal()
 CScr_PlayRumbleOnPosition
 ==============
 */
-
+void __cdecl CScr_PlayRumbleOnPosition()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2217,7 +2213,7 @@ void CScr_FPrintFields()
 CScr_FReadLn
 ==============
 */
-void __thiscall CScr_FReadLn(const char *this)
+void CScr_FReadLn(const char *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2795,11 +2791,9 @@ void (*CScr_GetFunction(const char **pName, int *type, int *min_args, int *max_a
 CScr_Print
 ==============
 */
-
+void __cdecl CScr_Print()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -3207,11 +3201,9 @@ void CScrCmd_RotateTo(scr_entref_t entref)
 CScrCmd_RotateVelocity
 ==============
 */
-
+void __cdecl CScrCmd_RotateVelocity(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -4450,11 +4442,10 @@ unsigned __int16 CScr_ExecEntThread(centity_t *ent, int handle, unsigned int par
 CG_EntityContact
 ==============
 */
-
+int CG_EntityContact(unsigned int a1, const vec3_t *mins, const vec3_t *maxs, const centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -4523,11 +4514,10 @@ void CScr_GetObjectField(unsigned int classnum, int entnum, LocalClientNum_t cli
 CScr_SetObjectField
 ==============
 */
-
+int CScr_SetObjectField(LocalClientNum_t a1, int a2, unsigned int classnum, int entnum, LocalClientNum_t clientNum, int offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -4729,11 +4719,9 @@ void generic_flickering_light_behavior(_mixerLight_t *pMixer, _lightParams_t *pP
 CG_HandleSpinnerLights
 ==============
 */
-
+void CG_HandleSpinnerLights(vec3_t *a1, vec3_t *a2, cg_t *cgameGlob, _mixerLight_t *pMixer, int time)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -4761,11 +4749,10 @@ void CScr_SpawnPlane()
 CScr_BulletTrace
 ==============
 */
-
+char CScr_BulletTrace(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

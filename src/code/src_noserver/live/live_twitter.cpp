@@ -125,11 +125,10 @@ char LiveTwitter_SearchFailure(TaskRecord *task)
 LiveTwitter_RegisterAccountFailure
 ==============
 */
-
+char LiveTwitter_RegisterAccountFailure(bdLobbyErrorCode a1, TaskRecord *task)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -137,11 +136,10 @@ LiveTwitter_RegisterAccountFailure
 LiveTwitter_PostFailure
 ==============
 */
-
+char LiveTwitter_PostFailure(bdLobbyErrorCode a1, TaskRecord *task)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

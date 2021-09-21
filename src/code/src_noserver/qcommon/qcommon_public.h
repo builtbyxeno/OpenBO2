@@ -24,14 +24,14 @@ void Cmd_EmitString(const char *str, CmdArgs *argsPriv);
 void Cmd_EvaluateExpression(const char **text_in, CmdArgs *argsPriv);
 int Cmd_TokenizeStringInternal(const char *text_in, int max_tokens, bool evalExpressions, const char **argv, CmdArgs *argsPriv);
 void AssertCmdArgsConsistency(const CmdArgs *args);
-;
+void Cmd_TokenizeStringKernel(LocalClientNum_t localClientNum, ControllerIndex_t localControllerIndex, itemDef_s *item, const char *text_in, int max_tokens, bool evalExpressions, CmdArgs *args);
 void Cmd_EndTokenizedStringKernel(CmdArgs *args);
-;
-;
-;
+void __cdecl Cmd_TokenizeStringWithLimit(const char *text_in);
+void Cmd_TokenizeString(char *a1, const char *text_in);
+void __cdecl Cmd_TokenizeStringNoEval(const char *text_in);
 void Cmd_EndTokenizedString();
-;
-void __thiscall SV_Cmd_EndTokenizedString(CmdArgs *this);
+void SV_Cmd_TokenizeString(ControllerIndex_t a1, LocalClientNum_t a2, const char *text_in);
+void SV_Cmd_EndTokenizedString(CmdArgs *notthis);
 cmd_function_s *Cmd_FindCommand(const char *cmdName);
 void Cmd_AddCommandInternal(const char *cmdName, void (*function)(), cmd_function_s *allocedCmd);
 void Cmd_RemoveCommand(const char *cmdName);
@@ -42,18 +42,18 @@ void Cmd_ForEach(LocalClientNum_t localClientNum, void (*callback)(LocalClientNu
 const char **Cmd_GetAutoCompleteFileList(const char *cmdName, int *fileCount, int allocTrackType);
 void Cmd_ComErrorCleanup();
 void Cmd_List_f();
-;
+void __cdecl Cmd_DObjDump();
 void Cmd_HandleMissingCommand(const char *msg, bool fromRemoteConsole);
-;
+void Cmd_ExecuteServerString(ControllerIndex_t a1, LocalClientNum_t a2, const char *text);
 void Cbuf_SV_Execute();
-;
+void Cmd_ExecuteSingleCommandInternal(char *a1, LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, itemDef_s *item, const char *text, bool fromRemoteConsole);
 void Cmd_ExecuteSingleCommand(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, const char *text, bool fromRemoteConsole);
 void SV_Cmd_ExecuteString(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, const char *text);
 void ExecuteRestOfCommand();
-;
+void __cdecl Cmd_IfMP_f();
 void Cbuf_ExecuteBufferInternal(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, itemDef_s *item, const char *buffer);
-;
-;
+void Cbuf_ExecuteBuffer(ControllerIndex_t a1, LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, const char *buffer);
+void __cdecl Cbuf_ExecuteBufferUI(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, itemDef_s *item, const char *buffer);
 void Cbuf_ExecuteInternal(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex);
 void Cbuf_Execute(LocalClientNum_t localClientNum);
 bool Cmd_ExecFromDisk(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, const char *filename);
@@ -82,9 +82,9 @@ void CM_Unload();
 void CM_ModelBounds(unsigned int model, vec3_t *mins, vec3_t *maxs);
 int CM_ModelSurfaceFlags(unsigned int model);
 void *CM_Hunk_Alloc(int size, const char *name, int type);
-;
+void CM_Hunk_CheckTempMemoryHighClear(int a1, int a2);
 void *CM_Hunk_AllocateTempMemoryHigh(int size, const char *name);
-;
+void __cdecl CM_Hunk_ClearTempMemoryHigh();
 
 //t6/code/src_noserver/qcommon/cm_load_obj.cpp
 unsigned int CMod_LoadMaterials();
@@ -140,7 +140,7 @@ void CM_TraceThroughPartition(int a1, const traceWork_t *tw, int partitionIndex,
 void CM_PositionTestInAabbTree_r(const traceWork_t *tw, CollisionAabbTree *aabbTree, trace_t *trace);
 void CM_TraceThroughAabbTree(const traceWork_t *tw, const CollisionAabbTree *aabbTree, trace_t *trace);
 void CM_MeshTestInLeaf(const traceWork_t *tw, cLeaf_s *leaf, trace_t *trace);
-;
+void __cdecl CM_MeshTest(const traceWork_t *tw, const CollisionAabbTree *tree, trace_t *trace);
 
 //#include "qcommon/cm_public.h"
 
@@ -164,11 +164,11 @@ void *CM_Hunk_AllocXModel(int size);
 void *CM_Hunk_AllocXModelColl(int size);
 XModel *CM_XModelPrecache(const char *name);
 void CM_TraceStaticModel(cStaticModel_s *sm, trace_t *results, const vec3_t *start, const vec3_t *end, int contentmask);
-;
+BOOL CM_TraceStaticModelComplete(unsigned int a1, cStaticModel_s *sm, const vec3_t *start, const vec3_t *end, int contentmask);
 
 //t6/code/src_noserver/qcommon/cm_staticmodel_load_obj.cpp
 void CM_InitStaticModel(cStaticModel_s *staticModel, vec3_t *origin, vec3_t *angles, float scale);
-;
+bool CM_CreateStaticModel(cStaticModel_s *staticModel, const char *name, vec3_t *origin, vec3_t *angles, float scale);
 void CM_LoadStaticModels(char *a1);
 
 //t6/code/src_noserver/qcommon/cm_test.cpp
@@ -180,10 +180,10 @@ int CM_PointContents(const vec3_t *p, unsigned int model);
 int CM_TransformedPointContents(const vec3_t *p, unsigned int model, const vec3_t *origin, const vec3_t *angles);
 
 //t6/code/src_noserver/qcommon/cm_trace.cpp
-// void __thiscall col_context_t::col_context_t(col_context_t *this);
-// void __thiscall col_context_t::col_context_t(col_context_t *this, int _mask);
-// void __thiscall col_context_t::init_locational(col_context_t *this, int ent0);
-// void __thiscall col_context_t::init_locational(col_context_t *this, int ent0, int ent1);
+// void col_context_t::col_context_t(col_context_t *notthis);
+// void col_context_t::col_context_t(col_context_t *notthis, int _mask);
+// void col_context_t::init_locational(col_context_t *notthis, int ent0);
+// void col_context_t::init_locational(col_context_t *notthis, int ent0, int ent1);
 int Trace_GetEntityHitId(const trace_t *trace);
 unsigned __int16 Trace_GetDynEntHitId(const trace_t *trace, DynEntityDrawType *drawType);
 int Trace_GetGlassHitId(const trace_t *trace);
@@ -203,9 +203,9 @@ void CM_PositionTest(traceWork_t *tw, trace_t *trace, col_context_t *context);
 void CM_TraceThroughBrush(const traceWork_t *tw, const cbrush_t *brush, trace_t *trace);
 void CM_TraceThroughLeafBrushNode_r(const traceWork_t *tw, cLeafBrushNode_s *node, const vec4_t *p1_, const vec4_t *p2, trace_t *trace);
 bool CM_TraceThroughLeafBrushNode(const traceWork_t *tw, cLeaf_s *leaf, trace_t *trace);
-;
+void CM_TraceThroughLeaf(const traceWork_t *tw, cLeaf_s *leaf, trace_t *trace);
 void CM_TestInTempBrush(const traceWork_t *tw, trace_t *trace);
-;
+void __cdecl CM_TraceThroughTempBrush(const traceWork_t *tw, trace_t *trace);
 int CM_TraceSphereThroughSphere(const traceWork_t *tw, const vec3_t *vStart, const vec3_t *vEnd, const vec3_t *vStationary, float radius, trace_t *trace);
 int CM_TraceCylinderThroughCylinder(const traceWork_t *tw, const vec3_t *vStationary, float fStationaryHalfHeight, float radius, trace_t *trace);
 void CM_TraceCapsuleThroughCapsule(const traceWork_t *tw, trace_t *trace);
@@ -215,7 +215,7 @@ int CM_SightTraceThroughBrush(const traceWork_t *tw, const cbrush_t *brush, int 
 int CM_SightTracePointThroughBrush(const TraceExtents *extents, const cbrush_t *brush);
 int CM_SightTraceThroughLeafBrushNode_r(const traceWork_t *tw, cLeafBrushNode_s *remoteNode, const vec3_t *p1_, const vec3_t *p2, trace_t *trace);
 int CM_SightTraceThroughLeafBrushNode(const traceWork_t *tw, const cLeaf_s *leaf, trace_t *trace);
-;
+int CM_SightTraceThroughLeaf(const traceWork_t *tw, const cLeaf_s *leaf, trace_t *trace);
 int CM_SightTraceSphereThroughSphere(const traceWork_t *tw, const vec3_t *vStart, const vec3_t *vEnd, const vec3_t *vStationary, float radius, trace_t *trace);
 int CM_SightTraceCylinderThroughCylinder(const traceWork_t *tw, const vec3_t *vStationary, float fStationaryHalfHeight, float radius, trace_t *trace);
 int CM_SightTraceCapsuleThroughCapsule(const traceWork_t *tw, trace_t *trace);
@@ -242,17 +242,17 @@ int collide_segment(const vec3_t *p0, const vec3_t *p1, col_context_t *context);
 bool CM_GetWaterForce(cmodel_t **plane, const vec3_t *pt, vec3_t *dir, float *force);
 void CM_GetClosestPointToBrush(const vec3_t *p, const cbrush_t *brush, vec3_t *result);
 int CM_SightTraceThroughTempBrush(const traceWork_t *tw, trace_t *trace);
-;
-;
+int CM_BoxSightTrace(int a1, int oldHitNum, const vec3_t *start, const vec3_t *end, const vec3_t *mins, const vec3_t *maxs, unsigned int model, int brushmask);
+int CM_SightTracePoint(int a1, int oldHitNum, const vec3_t *start, const vec3_t *end, col_context_t *context);
 int CM_TransformedBoxSightTrace(int hitNum, const vec3_t *start, const vec3_t *end, const vec3_t *mins, const vec3_t *maxs, unsigned int model, int brushmask, const vec3_t *origin, const vec3_t *angles);
-;
-;
-;
+int CM_TracePointDown(int a1, const vec3_t *start, const vec3_t *end, int contentmask, int surf_type, vec3_t *endpos, float *fraction, vec3_t *normal);
+double CM_GetWaterHeight(unsigned int a1, const vec3_t *pos, float z_up, float z_down);
+void CM_Trace(unsigned int a1, col_context_t *a2, trace_t *results, const vec3_t *start, const vec3_t *end, const vec3_t *mins, const vec3_t *maxs, unsigned int model, int brushmask, col_context_t *context);
 void CM_BoxTrace(col_context_t *a1, trace_t *results, const vec3_t *start, const vec3_t *end, const vec3_t *mins, const vec3_t *maxs, int brushmask, col_context_t *context);
 void CM_TransformedBoxTraceRotated(trace_t *results, const vec3_t *start, const vec3_t *end, const vec3_t *mins, const vec3_t *maxs, unsigned int model, int brushmask, const vec3_t *origin, const vec3_t *matrix);
 void CM_TransformedBoxTrace(trace_t *results, const vec3_t *start, const vec3_t *end, const vec3_t *mins, const vec3_t *maxs, unsigned int model, int brushmask, const vec3_t *origin, const vec3_t *angles);
 void CM_TransformedBoxTraceExternal(trace_t *results, const vec3_t *start, const vec3_t *end, const vec3_t *mins, const vec3_t *maxs, unsigned int model, int brushmask, const vec3_t *origin, const vec3_t *angles);
-;
+char CM_GetHeliHeight(unsigned int a1, const vec3_t *pt, const float checkdist, float *result, const bool checkDisabledPatches);
 
 //t6/code/src_noserver/qcommon/cm_tracebox.cpp
 void CM_CalcTraceExtents(TraceExtents *extents);
@@ -283,7 +283,7 @@ void CM_PointTraceToEntities(pointtrace_t *clip, trace_t *trace, col_context_t *
 int CM_PointSightTraceToEntities_r(const sightpointtrace_t *clip, unsigned __int16 nodeIndex, const vec3_t *p1, const vec3_t *p2);
 int CM_PointSightTraceToEntities(sightpointtrace_t *clip);
 void CM_LinkWorld();
-;
+int CM_PointTraceStaticModelsComplete(int a1, const vec3_t *start, const vec3_t *end, int contentmask);
 void CM_PointTraceStaticModels(unsigned int a1, trace_t *results, const vec3_t *start, const vec3_t *end, int contentmask);
 
 //t6/code/src_noserver/qcommon/common.cpp
@@ -318,7 +318,7 @@ void Com_AddStartupCommands(char *a1, const char *a2);
 void Info_Print(const char *s);
 void *Com_AllocEvent(int size);
 void Com_PacketEventLoop(LocalClientNum_t localClientNum, msg_t *netmsg);
-;
+char Com_ClientPacketEvent(int a1);
 void Com_ServerPacketEvent();
 void Com_EventLoop();
 void Com_Error_f();
@@ -386,19 +386,19 @@ void Com_UnloadWorld();
 //t6/code/src_noserver/qcommon/com_bsp_load_obj.cpp
 unsigned int Com_GetBspLumpCountForVersion(const int version);
 const void *Com_ValidateBspLumpData(LumpType type, unsigned int offset, unsigned int length, unsigned int elemSize, unsigned int *count);
-;
+const void *Com_GetBspLump(char *a1, LumpType type, unsigned int elemSize, unsigned int *count);
 const void *Com_ReadLumpOutOfBspAtOffset(int h, LumpType type, unsigned int offset, unsigned int length, unsigned int elemSize, unsigned int *count);
 const void *Com_ReadLumpOutOfBsp(int h, LumpType type, unsigned int elemSize, unsigned int *count);
 const void *Com_LoadBspLump(const char *mapname, LumpType type, unsigned int elemSize, unsigned int *count);
 void Com_UnloadBspLump(LumpType type);
-// BOOL Com_BspHasLump@<eax>(LumpType a1@<edx>, LumpType type);
+BOOL Com_BspHasLump(LumpType a1, LumpType type);
 unsigned int Com_GetBspVersion();
 unsigned int Com_GetBspChecksum();
 bool Com_CheckVersionLumpCountError(int version);
 void Com_LoadBsp(const char *filename);
 void Com_UnloadBsp();
 void Com_CleanupBsp();
-// const char *Com_EntityString@<eax>(LumpType a1@<edx>, char *a2@<ecx>, char *a3@<edi>, int *numEntityChars);
+const char *Com_EntityString(LumpType a1, char *a2, char *a3, int *numEntityChars);
 void Com_SaveLump(LumpType type, const void *newLump, unsigned int size, ComSaveLumpBehavior behavior);
 const char *Com_GetHunkStringCopy(const char *string);
 const char *Com_GetLightDefName(const char *defName, const ComPrimaryLight *primaryLights, unsigned int primaryLightCount);
@@ -496,13 +496,13 @@ void Com_GametypeSettings_Upload_f();
 void Com_GametypeSettings_ClearUploadInfo_f();
 void Com_GametypeSettings_SetName(const char *name);
 void Com_GametypeSettings_SetDescription(const char *description);
-// void Com_GametypeSettings_SetGametype(const char *a1@<edx>, const dvar_t *a2@<ecx>, char *a3@<edi>, const char *gametype, bool loadDefaultSettings);
+void Com_GametypeSettings_SetGametype(const char *a1, const dvar_t *a2, char *a3, const char *gametype, bool loadDefaultSettings);
 void Com_GametypeSettings_SetGametype_f();
 void Com_GametypeSettings_RestrictItem_f();
 void Com_GametypeSettings_RestrictAttachment_f();
 void Com_GametypeSetting_DownloadSuccess(const ControllerIndex_t controllerIndex, dwFileShareReadFileTask *task);
 void Com_GametypeSetting_Download(const ControllerIndex_t controllerIndex, unsigned __int64 fileID, const char *gameType);
-;
+void __cdecl Com_GametypeSettings_Download_f();
 void Com_GametypeSettings_Init();
 
 //t6/code/src_noserver/qcommon/com_loadutils.cpp
@@ -541,7 +541,7 @@ void ProfLoad_Deactivate();
 bool Com_SessionMode_IsMode(eSessionModes mode);
 void Com_SessionMode_WriteModes(msg_t *msg);
 bool Com_SessionMode_ReadModes(msg_t *msg);
-;
+bool __cdecl BG_EmblemsInit();
 bool Com_SessionMode_IsOnlineGame();
 void Com_SessionMode_SetMode(eSessionModes mode, bool value);
 bool Com_SessionMode_IsPrivateOnlineGame();
@@ -618,7 +618,7 @@ void Cmd_GetCombinedString(char *combined, int first);
 int Dvar_Command();
 bool Dvar_ToggleSimple(const dvar_t *dvar);
 bool Dvar_ToggleInternal();
-;
+bool __cdecl Dvar_Toggle_f();
 void Dvar_TogglePrint_f();
 void Dvar_Set_f();
 void Dvar_RegisterBool_f();
@@ -665,8 +665,8 @@ void FS_ReferencedIwds(const char **checksums, const char **names);
 char *FS_ReferencedIwdPureChecksums();
 char FS_PureServerSetLoadedIwds(const char *iwdSums, const char *iwdNames);
 int FS_ServerSetReferencedFiles(const char *fileSums, const char *fileNames, int maxFiles, int *fs_sums, const char **fs_names);
-;
-;
+void FS_ServerSetReferencedIwds(const char **a1, int *a2, const char *iwdSums, const char *iwdNames);
+void FS_ServerSetReferencedFFs(const char **a1, int *a2, const char *FFSums, const char *FFNames);
 char *FS_GetMapBaseName(const char *mapname);
 
 //t6/code/src_noserver/qcommon/gdt_remote.cpp
@@ -752,7 +752,7 @@ unsigned __int8 *Migration_GetBuffer();
 int Migration_GetBufferSize();
 
 //t6/code/src_noserver/qcommon/msg.cpp
-;
+vec3_t *__cdecl MSG_GetMapCenter();
 int GetMinBitCountForNum(const unsigned int num);
 void MSG_BeginReading(msg_t *msg);
 void MSG_Discard(msg_t *msg);
@@ -826,7 +826,7 @@ int MSG_ReadNumFieldsSkipped(msg_t *msg, const int skippedFieldBits, const int m
 void MSG_CopyFieldOver(const NetField *stateFields, const void *from, void *to, const int fieldNum);
 void MSG_ReadDeltaFields(msg_t *msg, const int time, const void *from, void *to, int numFields, const NetField *stateFields, const int skippedFieldBits);
 int MSG_ReadDeltaStruct(msg_t *msg, const int time, const void *from, void *to, unsigned int number, int numFields, int indexBits, const NetField *stateFields, const int skippedFieldBits);
-;
+void MSG_ReadDeltaMatchState(int a1, msg_t *msg, const int time, const MatchState *remoteFrom, const MatchState *remoteTo);
 int MSG_ReadDeltaClient(msg_t *msg, const int time, const clientState_s *remoteFrom, clientState_s *remoteTo, int number);
 int MSG_ReadDeltaActor(msg_t *msg, const int time, const actorState_s *remoteFrom, actorState_s *remoteTo, int number);
 int MSG_ReadDeltaEntity(msg_t *msg, const int time, const entityState_s *from, entityState_s *to, int number, const ClientNum_t clientNum);
@@ -914,7 +914,7 @@ void StringToXNAddr(const char *str, XNADDR *xnaddr);
 unsigned __int16 Sys_Checksum(const unsigned __int8 *src, int len);
 unsigned __int16 Sys_ChecksumCopy(unsigned __int8 *dest, const unsigned __int8 *src, int len);
 int Sys_VerifyPacketChecksum(int a1, const unsigned __int8 *payload, int paylen);
-;
+unsigned int Sys_CheckSumPacketCopy(const unsigned __int8 *a1, unsigned __int8 *dest, const unsigned __int8 *payload, int paylen);
 char *XNKEYToString(const bdSecurityKey *xnkey);
 char *XNAddrToString(const XNADDR *xnaddr);
 int Netchan_TransmitFragment(netchan_t *chan, int fragmentLength, int fragmentIndex, int maxFragmentIndex);
@@ -932,14 +932,14 @@ PacketQueueEntry *PacketQueueBlock_Peek(PacketQueueBlock *block);
 bool PacketQueue_AddTailBlock(PacketQueue *queue);
 void PacketQueue_RemoveHeadBlock(PacketQueue *queue);
 PacketQueueEntry *PacketQueue_Peek(PacketQueue *queue);
-;
+PacketQueueEntry *PacketQueue_EnqueueInternal(PacketQueue *queue, unsigned int flags, int dequeueTime, netsrc_t sock, const netadr_t *addr, int length, const void *data);
 bool PacketQueue_DequeueInternal(PacketQueue *queue);
-;
+PacketQueueEntry *PacketQueue_Enqueue(PacketQueue *queue, unsigned int flags, netsrc_t sock, const netadr_t *addr, int length, const void *data);
 bool PacketQueue_Dequeue(PacketQueue *queue, unsigned int *flags, netsrc_t *sock, netadr_t *addr, int maxlength, int *length, void *data);
 void NET_InitQueues();
 void NET_InitQueue(PacketQueue *queue, const char *name, bool emulation);
-;
-;
+bool NET_DequeuePacket(char *a1, PacketQueue *queue, unsigned int *flags, netsrc_t *sock, netadr_t *addr, int maxlength, int *length);
+bool __cdecl NET_EnqueuePacket(PacketQueue *queue, unsigned int flags, netsrc_t sock, const netadr_t *addr, int length);
 void NET_QueueCmd();
 
 //#include "qcommon/qdb_load_db.h"
@@ -1044,7 +1044,7 @@ void MSG_WriteDemoRoundedFloat(msg_t *msg, int bits, float value, float oldValue
 bool MSG_CompareRangedFloat(const float oldValue, const float value, const float begin, const float end, const int precision);
 bool MSG_ValuesAreEqual(const ClientNum_t clientNum, int bits, int size, const int *fromF, const int *toF);
 bool MSG_ShouldSendPsViewAngles(const SnapshotInfo_s *snapInfo, const playerState_s *ps, const playerState_s *oldPs, const NetField *field);
-;
+bool MSG_ShouldSendPSField(const SnapshotInfo_s *snapInfo, bool sendOriginAndVel, bool sendVehicleState, const playerState_s *ps, const playerState_s *oldPs, const NetField *field);
 void MSG_WriteEntityIndex(const SnapshotInfo_s *snapInfo, msg_t *msg, const int index, const int indexBits);
 void MSG_WriteLastChangedField(msg_t *msg, const int lastChangedFieldNum, int numFields);
 void MSG_WriteDeltaTime(const ClientNum_t clientNum, msg_t *msg, int timeBase, int time);
@@ -1060,20 +1060,20 @@ void MSG_WriteValueNoXor(const SnapshotInfo_s *snapInfo, msg_t *msg, int value, 
 void MSG_WriteValue(const SnapshotInfo_s *snapInfo, msg_t *msg, const int *fromF, const int *toF, const int bits, const int size);
 void MSG_WriteDeltaAngle(const SnapshotInfo_s *snapInfo, msg_t *msg, const float oldFloat, const float fullFloat);
 bool MSG_WriteDeltaField_Internal(msg_t *a1, const SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const unsigned __int8 *from, const unsigned __int8 *to, const NetField *field, const int fieldNum, const int *fromF, const int *toF);
-// bool MSG_WriteDeltaField@<al>(char *a1@<edi>, const SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const unsigned __int8 *from, const unsigned __int8 *to, const NetField *field, const int fieldNum, const bool forceSend, const bool xorValue, const int lastChangedField, const int skippedFieldBits, const bool sendSkippedFields);
+bool MSG_WriteDeltaField(char *a1, const SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const unsigned __int8 *from, const unsigned __int8 *to, const NetField *field, const int fieldNum, const bool forceSend, const bool xorValue, const int lastChangedField, const int skippedFieldBits, const bool sendSkippedFields);
 void MSG_WriteDeltaFields(const SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const unsigned __int8 *from, const unsigned __int8 *to, const int force, int lastChanged, int numFields, const NetField *stateFields, const int skippedFieldBits, bool writeEntUnlinkBit);
 void MSG_WriteEntityRemoval(SnapshotInfo_s *snapInfo, msg_t *msg, unsigned __int8 *from, int indexBits, bool changeBit);
 int MSG_WriteEntityDeltaForEType(SnapshotInfo_s *snapInfo, msg_t *msg, const int time, int eType, const entityState_s *from, const entityState_s *to, DeltaFlags flags);
 bool MSG_ShouldEntityFieldBeForcedSent(const SnapshotInfo_s *snapInfo, const NetField *field, const EntityFieldInfoFlags fromFlags, const EntityFieldInfoFlags toFlags);
 void MSG_GetEntityFieldInfoFlags(const entityState_s *es, EntityFieldInfoFlags *flags);
-;
+bool MSG_ShouldSendEntityField(const NetField *a1, const SnapshotInfo_s *snapInfo, const entityState_s *from, const entityState_s *to, const NetField *field, const EntityFieldInfoFlags fromFlags, const EntityFieldInfoFlags toFlags);
 void MSG_WriteDeltaClient(SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const clientState_s *from, const clientState_s *to, int force);
 void MSG_WriteDeltaActor(SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const actorState_s *from, const actorState_s *to, int force);
 BOOL MSG_WithinAllowedPredictionError(float dist, const playerState_s *to);
 int MSG_GetLastChangedField(const SnapshotInfo_s *snapInfo, const unsigned __int8 *from, const unsigned __int8 *to, int numFields, const NetField *stateFields);
 unsigned int MSG_GetBitFieldIndex(unsigned int *fieldsChanged, const BitField *bitFields, bool *bMatch, int entNum);
-;
-;
+void __cdecl MSG_WriteDeltaPlayerstate(SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const playerState_s *from, const playerState_s *to);
+void MSG_WriteDeltaMatchState(int a1, SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const MatchState *from, const MatchState *to);
 int MSG_WriteDeltaHudElems_LastChangedField(SnapshotInfo_s *snapInfo, int i, const hudelem_s *from, const hudelem_s *to);
 void MSG_WriteDeltaHudElems_ValidateHudElem(const hudelem_s *from, const hudelem_s *to);
 

@@ -410,11 +410,10 @@ int Destructible_GetXDollHandle(Destructible *obj, int piece_index)
 Destructible_GetRigidBody
 ==============
 */
-
+environment_rigid_body *__cdecl Destructible_GetRigidBody()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -629,11 +628,10 @@ unsigned int CG_DestructibleUpdate(centity_t *ent, DObjModel_s *dobjModels, unsi
 CG_DestructibleSpawnDynEnt
 ==============
 */
-
+unsigned __int16 CG_DestructibleSpawnDynEnt(unsigned int a1, const centity_t *cent, XModel *model, vec3_t *origin, vec3_t *mat, const vec3_t *hitp, const vec3_t *hitd, int mod)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -723,10 +721,10 @@ void CG_DestructibleHitEvent(LocalClientNum_t localClientNum, int event, const e
 CG_DestructibleDamage
 ==============
 */
-/*void CG_DestructibleDamage(const char *a1@<edi>, centity_t *self, const centity_t *attacker, const vec3_t *dir, const vec3_t *point, int damage, int mod, unsigned int modelIndex, unsigned int partName, const int lazyprocess)
+void CG_DestructibleDamage(const char *a1, centity_t *self, const centity_t *attacker, const vec3_t *dir, const vec3_t *point, int damage, int mod, unsigned int modelIndex, unsigned int partName, const int lazyprocess)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

@@ -305,11 +305,9 @@ void CG_ResetLowHealthOverlay(cg_t *cgameGlob)
 CG_DrawPlayerLowHealthOverlay
 ==============
 */
-
+void CG_DrawPlayerLowHealthOverlay(cg_t *a1, char *a2, double localClientNum, LocalClientNum_t material, const rectDef_s *rect, Material *a6, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -857,10 +855,8 @@ void CG_OwnerDraw(double localClientNum, LocalClientNum_t a2, rectDef_s parentRe
 CG_OwnerDrawText
 ==============
 */
-
+void CG_OwnerDrawText(Material *a1, LocalClientNum_t localClientNum, rectDef_s parentRect, float x, float y, float w, float h, int horzAlign, int vertAlign, float text_x, float text_y, int ownerDraw, int ownerDrawFlags, int align, Font_s *font, float scale, vec4_t *color, Material *material, int textStyle, int textAlignMode, itemDef_s *item, const char *text)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

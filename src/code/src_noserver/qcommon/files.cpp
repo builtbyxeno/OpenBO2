@@ -184,11 +184,9 @@ int FS_ServerSetReferencedFiles(const char *fileSums, const char *fileNames, int
 FS_ServerSetReferencedIwds
 ==============
 */
-
+void FS_ServerSetReferencedIwds(const char **a1, int *a2, const char *iwdSums, const char *iwdNames)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -196,11 +194,9 @@ FS_ServerSetReferencedIwds
 FS_ServerSetReferencedFFs
 ==============
 */
-
+void FS_ServerSetReferencedFFs(const char **a1, int *a2, const char *FFSums, const char *FFNames)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

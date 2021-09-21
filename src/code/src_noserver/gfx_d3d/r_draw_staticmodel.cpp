@@ -36,11 +36,9 @@ void R_DrawStaticModelUnlitNoPrepass(GfxStaticModelDrawStream *drawStream)
 R_DrawStaticModelLitNoPrepass
 ==============
 */
-
+void R_DrawStaticModelLitNoPrepass(GfxStaticModelDrawStream *drawStream)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -48,11 +46,9 @@ R_DrawStaticModelLitNoPrepass
 R_DrawStaticModelLitLightmapVCNoPrepass
 ==============
 */
-
+void R_DrawStaticModelLitLightmapVCNoPrepass(GfxStaticModelDrawStream *drawStream)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

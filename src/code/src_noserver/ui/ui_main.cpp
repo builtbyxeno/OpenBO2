@@ -342,11 +342,9 @@ bool UI_DvarValueTest(const char *cmd, const char *dvarName, const char *testVal
 UI_OpenMenuOnDvar
 ==============
 */
-
+void UI_OpenMenuOnDvar(LocalClientNum_t localClientNum, uiInfo_s *uiInfo, const char *cmd, const char *menuName, const char *dvarName, const char *testValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -354,11 +352,9 @@ UI_OpenMenuOnDvar
 UI_CloseMenuOnDvar
 ==============
 */
-
+void UI_CloseMenuOnDvar(const LocalClientNum_t localClientNum, uiInfo_s *uiInfo, const char *cmd, const char *menuName, const char *dvarName, const char *testValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -543,11 +539,10 @@ bool CheckCurrentChar(char charToCheck, const char *testChars)
 UI_CheckCODClanTag
 ==============
 */
-
+bool __cdecl UI_CheckCODClanTag(const char *clanTag)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -689,11 +684,9 @@ void UI_DrawControllerIcon(const LocalClientNum_t localClientNum, const UIContex
 UI_OwnerDraw
 ==============
 */
-
+void UI_OwnerDraw(double localClientNum, LocalClientNum_t a2, itemDef_s *item, float x, float y, float w, float h, int horzAlign, int vertAlign, int ownerDraw, int ownerDrawFlags, vec4_t *color, Material *material, rectDef_s parentRect)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1062,11 +1055,9 @@ void UI_DrawSessionAndGameModeLine(LocalClientNum_t localClientNum, const UICont
 UI_DrawSessionAndGameModes
 ==============
 */
-
+void __cdecl UI_DrawSessionAndGameModes(LocalClientNum_t localClientNum, const UIContextIndex_t contextIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

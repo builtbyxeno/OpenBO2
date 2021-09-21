@@ -210,11 +210,9 @@ void CG_GibEvent(LocalClientNum_t localClientNum, centity_t *cent, unsigned int 
 CG_GrabWeapon
 ==============
 */
-
+void __cdecl CG_GrabWeapon(LocalClientNum_t localClientNum, int entityNum, int event, const Weapon weapon, bool isPlayerView)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -243,11 +241,9 @@ bool CG_CheckIfDualWieldEmpty(playerState_s *ps, Weapon weapon)
 CG_EntityEvent
 ==============
 */
-
+void CG_EntityEvent(unsigned int a1, int a2, LocalClientNum_t localClientNum, centity_t *cent, int event)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -255,10 +251,10 @@ CG_EntityEvent
 CG_CheckEvents
 ==============
 */
-/*void CG_CheckEvents(char *a1@<edi>, LocalClientNum_t localClientNum, centity_t *cent)
+void CG_CheckEvents(char *a1, LocalClientNum_t localClientNum, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

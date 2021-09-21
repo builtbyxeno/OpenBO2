@@ -16,11 +16,10 @@ void CM_InitStaticModel(cStaticModel_s *staticModel, vec3_t *origin, vec3_t *ang
 CM_CreateStaticModel
 ==============
 */
-
+bool CM_CreateStaticModel(cStaticModel_s *staticModel, const char *name, vec3_t *origin, vec3_t *angles, float scale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

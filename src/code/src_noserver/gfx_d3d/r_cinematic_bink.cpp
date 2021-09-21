@@ -123,11 +123,9 @@ BinkMoviePlayer::R_Cinematic_BlackRendererImages
 BinkMoviePlayer::InitMemory
 ==============
 */
-/*
+/*void __cdecl BinkMoviePlayer::InitMemory(void *mainMemory, unsigned int mainBytes, void *textureMemory, unsigned int textureBytes, unsigned int playbackFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -135,7 +133,7 @@ BinkMoviePlayer::InitMemory
 BinkMoviePlayer::Destroy
 ==============
 */
-/*void __thiscall BinkMoviePlayer::Destroy(CinematicHunk *this)
+/*void BinkMoviePlayer::Destroy(CinematicHunk *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -178,10 +176,10 @@ BinkMoviePlayer::R_Cinematic_MakeBinkDrawTextures
 BinkMoviePlayer::R_Cinematic_InitBinkTextures
 ==============
 */
-/*
+/*HRESULT BinkMoviePlayer::R_Cinematic_InitBinkTextures(unsigned int *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
+	HRESULT tmp;
 	return tmp;
 }*/
 
@@ -252,7 +250,7 @@ BinkMoviePlayer::GetBufferFillPercentage
 BinkMoviePlayer::IsUnderrun
 ==============
 */
-/*bool __thiscall BinkMoviePlayer::IsUnderrun(void *this)
+/*bool BinkMoviePlayer::IsUnderrun(void *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -274,7 +272,7 @@ BinkMoviePlayer::R_Cinematic_BinkWaitAsyncDecode
 BinkMoviePlayer::IsReadyToStart
 ==============
 */
-/*bool __thiscall BinkMoviePlayer::IsReadyToStart(void *this)
+/*bool BinkMoviePlayer::IsReadyToStart(void *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -418,11 +416,10 @@ BinkMoviePlayer::PostOpen_Common
 BinkMoviePlayer::GetLastError
 ==============
 */
-/*
+/*const char *__cdecl BinkMoviePlayer::GetLastError()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }*/
 
 /*
@@ -430,11 +427,10 @@ BinkMoviePlayer::GetLastError
 BinkMoviePlayer::OpenFromFastfile
 ==============
 */
-/*
+/*BINK *BinkMoviePlayer::OpenFromFastfile(char *a1, const char *assetname, unsigned int playbackFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }*/
 
 /*

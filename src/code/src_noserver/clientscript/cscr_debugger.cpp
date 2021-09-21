@@ -88,11 +88,9 @@ void Scr_RemoveAllBreakpoint(unsigned __int8 *a1, scriptInstance_t a2, scriptIns
 Scr_Step
 ==============
 */
-
+void __cdecl Scr_Step(scriptInstance_t inst, int step_mode)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -163,11 +161,9 @@ int SortEntCompare(const void *e1, const void *e2)
 Scr_Msg_SetBreakpoint
 ==============
 */
-
+void Scr_Msg_SetBreakpoint()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

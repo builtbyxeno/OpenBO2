@@ -36,11 +36,9 @@ void Load_MaterialVertexShader(bool atStreamStart)
 Load_MaterialPixelShader
 ==============
 */
-
+void __cdecl Load_MaterialPixelShader(bool atStreamStart)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

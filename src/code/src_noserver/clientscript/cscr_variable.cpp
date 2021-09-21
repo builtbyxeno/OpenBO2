@@ -208,11 +208,10 @@ unsigned __int16 GetNewVariableIndexInternal3(scriptInstance_t inst, unsigned in
 GetNewVariableIndexInternal2
 ==============
 */
-
+unsigned __int16 GetNewVariableIndexInternal2(scriptInstance_t inst, unsigned int parentId, unsigned int name, unsigned __int16 *bucket, unsigned int match)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -220,11 +219,10 @@ GetNewVariableIndexInternal2
 GetNewVariableIndexReverseInternal2
 ==============
 */
-
+unsigned __int16 GetNewVariableIndexReverseInternal2(scriptInstance_t inst, unsigned int parentId, unsigned int name, unsigned __int16 *bucket, unsigned int match)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -232,11 +230,10 @@ GetNewVariableIndexReverseInternal2
 GetNewVariable
 ==============
 */
-
+unsigned __int16 __cdecl GetNewVariable(scriptInstance_t inst, unsigned int parentId, unsigned int name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -244,11 +241,10 @@ GetNewVariable
 GetNewVariableIndexReverseInternal
 ==============
 */
-
+unsigned __int16 GetNewVariableIndexReverseInternal(scriptInstance_t inst, unsigned int parentId, unsigned int name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -256,11 +252,10 @@ GetNewVariableIndexReverseInternal
 GetVariable
 ==============
 */
-
+int __cdecl GetVariable(scriptInstance_t inst, unsigned int parentId, unsigned int name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -298,11 +293,9 @@ void FreeChildValuePart3(scriptInstance_t inst, ChildVariableValue *value, unsig
 RemoveVariableValue
 ==============
 */
-
+void __cdecl RemoveVariableValue(scriptInstance_t inst, unsigned int parentId, unsigned int index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -504,11 +497,9 @@ unsigned int Scr_GetSelf(scriptInstance_t inst, unsigned int threadId)
 FreeValue
 ==============
 */
-
+void FreeValue(ChildVariableValue *a1, scriptInstance_t a2, scriptInstance_t inst, unsigned int id)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -658,11 +649,10 @@ unsigned int GetNewObjectVariable(scriptInstance_t inst, unsigned int parentId, 
 GetNewObjectVariableReverse
 ==============
 */
-
+unsigned int __cdecl GetNewObjectVariableReverse(scriptInstance_t inst, unsigned int parentId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -793,11 +783,10 @@ VariableValue Scr_EvalVariableEntityField(scriptInstance_t inst, unsigned int en
 Scr_EvalVariableField
 ==============
 */
-
+int __cdecl Scr_EvalVariableField(scriptInstance_t inst, unsigned int id)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1030,11 +1019,10 @@ unsigned int FindEntityId(scriptInstance_t inst, int entnum, unsigned int classn
 Scr_GetEntityId
 ==============
 */
-
+unsigned int __cdecl Scr_GetEntityId(scriptInstance_t inst, int entnum, unsigned int classnum, LocalClientNum_t clientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1108,10 +1096,10 @@ scriptInstance_t Scr_FirstArrayKey(scriptInstance_t inst, unsigned int parentId,
 Scr_NextArrayKey
 ==============
 */
-
+scriptInstance_t __cdecl Scr_NextArrayKey(scriptInstance_t inst, unsigned int parentId, VariableValue *value, VariableValue *valuea)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
+	scriptInstance_t __cdecl tmp;
 	return tmp;
 }
 
@@ -1181,11 +1169,9 @@ void CopyEntity(scriptInstance_t inst, unsigned int parentId, unsigned int newPa
 Scr_CopyEntityNum
 ==============
 */
-
+void __cdecl Scr_CopyEntityNum(scriptInstance_t inst, int fromEntnum, int toEntnum, unsigned int classnum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1475,11 +1461,9 @@ void Scr_RemoveThreadNotifyName(scriptInstance_t inst, unsigned int startLocalId
 RemoveRefToObject
 ==============
 */
-
+void __cdecl RemoveRefToObject(scriptInstance_t inst, unsigned int id)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1620,11 +1604,9 @@ void Scr_EvalAnd(scriptInstance_t inst, VariableValue *value1, VariableValue *va
 Scr_EvalEquality
 ==============
 */
-
+void __cdecl Scr_EvalEquality(scriptInstance_t inst, VariableValue *value1, VariableValue *value2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1642,11 +1624,9 @@ void Scr_EvalInequality(scriptInstance_t inst, VariableValue *value1, VariableVa
 Scr_EvalLess
 ==============
 */
-
+void __cdecl Scr_EvalLess(scriptInstance_t inst, VariableValue *value1, VariableValue *value2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1664,11 +1644,9 @@ void Scr_EvalGreaterEqual(scriptInstance_t inst, VariableValue *value1, Variable
 Scr_EvalGreater
 ==============
 */
-
+void __cdecl Scr_EvalGreater(scriptInstance_t inst, VariableValue *value1, VariableValue *value2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1716,11 +1694,9 @@ void Scr_EvalPlus(VariableValue *a1, scriptInstance_t inst, VariableValue *value
 Scr_EvalMinus
 ==============
 */
-
+void __cdecl Scr_EvalMinus(scriptInstance_t inst, VariableValue *value1, VariableValue *value2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1728,11 +1704,9 @@ Scr_EvalMinus
 Scr_EvalMultiply
 ==============
 */
-
+void __cdecl Scr_EvalMultiply(scriptInstance_t inst, VariableValue *value1, VariableValue *value2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1740,11 +1714,9 @@ Scr_EvalMultiply
 Scr_EvalDivide
 ==============
 */
-
+void __cdecl Scr_EvalDivide(scriptInstance_t inst, VariableValue *value1, VariableValue *value2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1802,11 +1774,9 @@ void Scr_RemoveClassMap(scriptInstance_t inst, unsigned int classnum)
 Scr_EvalArray
 ==============
 */
-
+void __cdecl Scr_EvalArray(scriptInstance_t inst, VariableValue *value, VariableValue *index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

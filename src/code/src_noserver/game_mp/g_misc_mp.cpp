@@ -87,10 +87,10 @@ void EntInfo_Trigger(char *a1, gentity_t *self, vec3_t *source)
 EntInfo_Vehicle
 ==============
 */
-/*void EntInfo_Vehicle(gentity_t *a1@<edx>, char *a2@<ecx>, gentity_t *self)
+void EntInfo_Vehicle(gentity_t *a1, char *a2, gentity_t *self)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

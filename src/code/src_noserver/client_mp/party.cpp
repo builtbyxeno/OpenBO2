@@ -761,11 +761,9 @@ void PartyClient_SwitchToLobby(ControllerIndex_t localControllerIndex, int menu,
 PartyClient_SwitchLobbiesIfNeeded
 ==============
 */
-
+void __cdecl PartyClient_SwitchLobbiesIfNeeded(ControllerIndex_t localControllerIndex, PartyData_s *party, ControllerIndex_t resetDvars)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1215,11 +1213,10 @@ void Party_AddToTempBannedXuidList(unsigned __int64 xuid)
 Party_IsPrivateOnlineGame
 ==============
 */
-
+bool __cdecl Party_IsPrivateOnlineGame()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1500,11 +1497,9 @@ bool Party_IsChangeTeamAllowed(PartyData_s *party, team_t team, bool isSplitscre
 Party_UpdateTeamSwitch
 ==============
 */
-
+void Party_UpdateTeamSwitch(team_t a1, PartyData_s *a2, char *party, PartyData_s *memberIndex, ClientNum_t a5)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1625,11 +1620,9 @@ void Party_StopParty(PartyData_s *party, bool keepPartyTogether, bool deleteSess
 Party_StopParty
 ==============
 */
-
+void Party_StopParty(bool a1, PartyData_s *a2, PartyData_s *party, bool keepPartyTogether)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1658,11 +1651,9 @@ char Party_CheckPlaylistRules(const ControllerIndex_t localControllerIndex)
 PartyClient_ParsePartyStateHeaderData
 ==============
 */
-
+void PartyClient_ParsePartyStateHeaderData(PartyData_s *party, ControllerIndex_t localControllerIndex, msg_t *msg, netadr_t from, bool migrateHost)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1690,11 +1681,9 @@ void PartyClient_SetUpPartyForHost(PartyData_s *party, const ControllerIndex_t l
 PartyClient_HandleBadLeague
 ==============
 */
-
+void __cdecl PartyClient_HandleBadLeague(PartyData_s *party, const ControllerIndex_t localControllerIndex, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1712,11 +1701,9 @@ void PartyClient_HandleKicked(PartyData_s *party, const ControllerIndex_t localC
 PartyClient_PartyAwakeMsg
 ==============
 */
-
+void PartyClient_PartyAwakeMsg(int a1, PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1754,11 +1741,9 @@ void Party_Init()
 Party_Sleep
 ==============
 */
-
+void __cdecl Party_Sleep(PartyData_s *party)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1816,11 +1801,9 @@ void PartyClient_HostTimedOut(PartyData_s *party, ControllerIndex_t localControl
 PartyClient_HostTimedOutMidGame
 ==============
 */
-
+void __cdecl PartyClient_HostTimedOutMidGame(PartyData_s *party, ControllerIndex_t localControllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1878,11 +1861,9 @@ void PartyClient_HandleNewLobby(PartyData_s *party, ControllerIndex_t localContr
 PartyClient_HandleEndParty
 ==============
 */
-
+void __cdecl PartyClient_HandleEndParty(PartyData_s *party, const ControllerIndex_t localControllerIndex, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1890,11 +1871,9 @@ PartyClient_HandleEndParty
 PartyClient_HandleEndPartyKeepPartyTogether
 ==============
 */
-
+void __cdecl PartyClient_HandleEndPartyKeepPartyTogether(PartyData_s *party, const ControllerIndex_t localControllerIndex, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1902,11 +1881,10 @@ PartyClient_HandleEndPartyKeepPartyTogether
 PartyClient_ParsePartyStateMsg
 ==============
 */
-
+bool PartyClient_ParsePartyStateMsg(PartyData_s *party, const ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1914,11 +1892,9 @@ PartyClient_ParsePartyStateMsg
 PartyClient_HandlePartyStateMsg
 ==============
 */
-
+void PartyClient_HandlePartyStateMsg(char *a1, PartyData_s *party, const ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

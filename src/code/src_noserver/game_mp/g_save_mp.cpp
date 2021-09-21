@@ -139,11 +139,9 @@ void G_LoadModelPrecacheList(MemoryFile *memFile)
 G_LoadInitState
 ==============
 */
-
+void __cdecl G_LoadInitState(MemoryFile *memFile)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

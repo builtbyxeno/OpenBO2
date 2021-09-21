@@ -559,11 +559,10 @@ char League_FetchSubdivisionFailure(TaskRecord *task)
 League_RefetchSubdivisionSuccess
 ==============
 */
-
+char League_RefetchSubdivisionSuccess(bool *a1, TaskRecord *task)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -815,11 +814,10 @@ bool League_FetchTeamsListInternal(const ControllerIndex_t controllerIndex, int 
 LeagueFetchSoloTeamIDSuccess
 ==============
 */
-
+char __cdecl LeagueFetchSoloTeamIDSuccess(TaskRecord *task)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -838,11 +836,10 @@ bool League_FetchSoloTeamID(const ControllerIndex_t controllerIndex)
 League_FetchTeamsList
 ==============
 */
-
+bool __cdecl League_FetchTeamsList(const ControllerIndex_t controllerIndex, int offset, int numResultsToFetch, unsigned __int64 xuid)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -915,11 +912,10 @@ char League_FetchLeagueHistorySuccess(TaskRecord *task)
 League_FetchSubdivisionSuccess
 ==============
 */
-
+char League_FetchSubdivisionSuccess(bool *a1, TaskRecord *task)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

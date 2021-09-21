@@ -274,11 +274,9 @@ void Demo_WriteExtraNetworkProfileData(msg_t *msg)
 Demo_BuildDemoSnapshotInternal
 ==============
 */
-
+void __cdecl Demo_BuildDemoSnapshotInternal(msg_t *msg, bool liveStreamNoDelta)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -400,11 +398,10 @@ void Demo_StartSaveProcess(bool gameState)
 Demo_SaveCallback
 ==============
 */
-
+int __cdecl Demo_SaveCallback(jqBatch *batch)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

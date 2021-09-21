@@ -357,11 +357,10 @@ void GamerProfile_ExecControllerBindings(ControllerIndex_t a1, ControllerIndex_t
 GamerProfile_AreBothBuffersInitialized
 ==============
 */
-
+bool GamerProfile_AreBothBuffersInitialized(const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -433,11 +432,10 @@ void GamerProfile_ExecuteIntCallback(profile_setting setting, ControllerIndex_t 
 GamerProfile_SetInt_Internal
 ==============
 */
-
+bool GamerProfile_SetInt_Internal(ControllerIndex_t controllerIndex, ddlState_t *profileItemState, int newValue, unsigned __int8 *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -476,11 +474,10 @@ bool GamerProfile_SetVariableFromString_Internal(const char *settingName, Contro
 GamerProfile_SetVariableFromString
 ==============
 */
-
+bool GamerProfile_SetVariableFromString(ControllerIndex_t a1, const char *settingKey, ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -488,11 +485,10 @@ GamerProfile_SetVariableFromString
 GamerProfile_SetArrayVariableFromString
 ==============
 */
-
+bool GamerProfile_SetArrayVariableFromString(ControllerIndex_t a1, const char *settingKey, ControllerIndex_t controllerIndex, int index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -500,11 +496,9 @@ GamerProfile_SetArrayVariableFromString
 GamerProfile_ResetCommonVarsToDefault
 ==============
 */
-
+void __cdecl GamerProfile_ResetCommonVarsToDefault(ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -512,11 +506,9 @@ GamerProfile_ResetCommonVarsToDefault
 GamerProfile_ResetExeVarsToDefault
 ==============
 */
-
+void __cdecl GamerProfile_ResetExeVarsToDefault(ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -524,11 +516,9 @@ GamerProfile_ResetExeVarsToDefault
 GamerProfile_SaveChanges
 ==============
 */
-
+void __cdecl GamerProfile_SaveChanges(ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -576,11 +566,9 @@ void GamerProfile_InitProfileWithoutSignin(int a1, ControllerIndex_t controllerI
 GamerProfile_Set_f
 ==============
 */
-
+void __cdecl GamerProfile_Set_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -588,11 +576,9 @@ GamerProfile_Set_f
 GamerProfile_Reset_f
 ==============
 */
-
+void __cdecl GamerProfile_Reset_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

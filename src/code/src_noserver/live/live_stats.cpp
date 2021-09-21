@@ -116,11 +116,9 @@ void LiveStats_SetDInt64StatFromBuffer(unsigned __int8 *buffer, ddlState_t *sear
 LiveStats_SetDInt64Stat
 ==============
 */
-
+void LiveStats_SetDInt64Stat(char *a1, const ControllerIndex_t controllerIndex, ddlState_t *searchState, const unsigned __int64 value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -953,11 +951,9 @@ void LiveStats_SetDemonwareFlagsWithUTCTime(ControllerIndex_t controllerIndex, i
 LiveStats_SetVotingMenuViewedCmd
 ==============
 */
-
+void __cdecl LiveStats_SetVotingMenuViewedCmd()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -985,11 +981,9 @@ void LiveStats_SetVoteOptOutCmd()
 LiveStats_SetDSPPromotionOptOutCmd
 ==============
 */
-
+void __cdecl LiveStats_SetDSPPromotionOptOutCmd()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1007,11 +1001,9 @@ void LiveStats_SetDSPPromotionViewedCmd()
 LiveStats_SetGhostUpsellOptOutCmd
 ==============
 */
-
+void __cdecl LiveStats_SetGhostUpsellOptOutCmd()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1382,11 +1374,9 @@ int LiveStats_GetLastGameWeaponStat(unsigned __int8 *liveStatsBuffer, unsigned _
 LiveStats_UpdateBestWeaponIndexAAR
 ==============
 */
-
+void __cdecl LiveStats_UpdateBestWeaponIndexAAR(unsigned __int8 *liveStatsBuffer, unsigned __int8 *oldStatsBuffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1477,11 +1467,9 @@ void LiveStats_GameHistory_AddMatchTimeout(const ControllerIndex_t localControll
 LiveStats_GameHistory_InitializeMatchHistory
 ==============
 */
-
+void __cdecl LiveStats_GameHistory_InitializeMatchHistory(ClientNum_t clientNum, unsigned int gameTypeIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1531,11 +1519,9 @@ bool LiveStats_GameHistory_MoveToHistory(unsigned __int8 *liveStatsBuffer, const
 LiveStats_GameHistory_FinishMatch
 ==============
 */
-
+void LiveStats_GameHistory_FinishMatch(char *a1, unsigned int a2, ClientNum_t clientNum, int finishType, int kills, int deaths, int score, int scoreboardPosition, float teamScoreRatio)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1543,11 +1529,9 @@ LiveStats_GameHistory_FinishMatch
 LiveStats_GameHistory_FinishMatch
 ==============
 */
-
+void LiveStats_GameHistory_FinishMatch(ddlState_t *a1, const ControllerIndex_t controllerIndex, int finishType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1630,11 +1614,10 @@ float LiveStats_Probation_GetProbationPoints(const ControllerIndex_t controllerI
 LiveStats_Probation_CheckGettingProbation
 ==============
 */
-
+bool LiveStats_Probation_CheckGettingProbation(eGameModes a1, ControllerIndex_t a2, float controllerIndex, const ControllerIndex_t gamemode, eGameModes a5)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1662,11 +1645,10 @@ void LiveStats_Probation_ReportProbationStats(const ControllerIndex_t controller
 LiveStats_Probation_CheckForProbation
 ==============
 */
-
+bool LiveStats_Probation_CheckForProbation(double controllerIndex, float noPopups, const ControllerIndex_t a3, eGameModes gamemode, bool a5)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -2184,11 +2166,9 @@ void LiveStats_SetRankXPCmd(unsigned int a1)
 LiveStats_SetZombieRank
 ==============
 */
-
+void __cdecl LiveStats_SetZombieRank(ControllerIndex_t controllerIndex, unsigned int rank, unsigned int daysPlayed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

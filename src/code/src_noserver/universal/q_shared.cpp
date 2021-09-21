@@ -614,11 +614,10 @@ int KeyValueToField(unsigned __int8 *pStruct, const cspField_t *pField, const ch
 ParseConfigStringToStruct
 ==============
 */
-
+BOOL ParseConfigStringToStruct(int (__cdecl *a1)(unsigned __int8 *, const char *, const int, const int), unsigned __int8 *pStruct, const cspField_t *pFieldList, const int iNumFields, const char *pszBuffer, const int iMaxFieldTypes, int (__cdecl *parseSpecialFieldType)(unsigned __int8 *, const char *, const int, const int), void (__cdecl *parseStrCpy)(unsigned __int8 *, const char *))
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

@@ -27,7 +27,7 @@ unsigned __int8 *CL_GetUnlocksForRankID(const int rankID)
 CL_BuildRankXPTable
 ==============
 */
-void __thiscall CL_BuildRankXPTable(const StringTable *this)
+void CL_BuildRankXPTable(const StringTable *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

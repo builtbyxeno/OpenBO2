@@ -1045,11 +1045,9 @@ int GScr_GetGunXPScaled(const ClientNum_t clientNum, statValue_t addValue)
 GScr_AddRankXPToPlayerEnt
 ==============
 */
-
+void __cdecl GScr_AddRankXPToPlayerEnt(gentity_t *playerEnt, const ClientNum_t clientNum, statValue_t addValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1057,11 +1055,9 @@ GScr_AddRankXPToPlayerEnt
 GScr_AddGameTypeStatMoreInternal
 ==============
 */
-
+void __cdecl GScr_AddGameTypeStatMoreInternal(gentity_t *playerEnt, ClientNum_t clientNum, const char *statNameInput, statValue_t addValue, ddlState_t *searchState, int gameTypeIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1069,11 +1065,9 @@ GScr_AddGameTypeStatMoreInternal
 GScr_AddGameTypeStatInternal
 ==============
 */
-
+void GScr_AddGameTypeStatInternal(gentity_t *playerEnt, ClientNum_t clientNum, const char *statNameInput, statValue_t addValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1081,11 +1075,9 @@ GScr_AddGameTypeStatInternal
 GScr_AddPlayerStatWithGameTypeGroupInternal
 ==============
 */
-
+void GScr_AddPlayerStatWithGameTypeGroupInternal(ClientNum_t clientNum, const char *statName, statValue_t addValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1093,11 +1085,9 @@ GScr_AddPlayerStatWithGameTypeGroupInternal
 GScr_AddAttachmentStatInternal
 ==============
 */
-
+void GScr_AddAttachmentStatInternal(gentity_t *playerEnt, ClientNum_t clientNum, int attachmentNum, const char *statNameInput, int statNameHash, statValue_t addValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1105,11 +1095,9 @@ GScr_AddAttachmentStatInternal
 GScr_AddGroupStatInternal
 ==============
 */
-
+void GScr_AddGroupStatInternal(gentity_t *playerEnt, ClientNum_t clientNum, int groupIndex, const char *statNameInput, int statNameHash, statValue_t addValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1117,11 +1105,10 @@ GScr_AddGroupStatInternal
 GScr_AddWeaponStatMoreInternal
 ==============
 */
-
+int __cdecl GScr_AddWeaponStatMoreInternal(gentity_t *playerEnt, ClientNum_t clientNum, int weaponStatIndex, const char *statNameInput, int statNameHash, statValue_t addValue, challengeTableRow_t *challengeRow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1140,11 +1127,10 @@ int GScr_AddSpecialWeaponStatInternal(gentity_t *playerEnt, ClientNum_t clientNu
 GScr_AddSpecialWeaponStat
 ==============
 */
-
+int GScr_AddSpecialWeaponStat(gentity_t *playerEnt, ClientNum_t clientNum, int weaponStatIndex, const char *statName, int statNameHash, const char *prefix, itemGroup_t groupIndex, statValue_t addValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1152,11 +1138,9 @@ GScr_AddSpecialWeaponStat
 GScr_AddBonusCardStatInternal
 ==============
 */
-
+void GScr_AddBonusCardStatInternal(char *a1, gentity_t *playerEnt, ClientNum_t clientNum, statValue_t addValue, const char *statName, int statNameHash, loadoutClass_t loadoutClassNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1164,11 +1148,10 @@ GScr_AddBonusCardStatInternal
 GScr_AddWeaponStatInternal
 ==============
 */
-
+int __cdecl GScr_AddWeaponStatInternal(gentity_t *playerEnt, ClientNum_t clientNum, int weaponStatIndex, int weaponIndex, int attachmentBits, const char *weapName, const char *statName, statValue_t addValue, int statNameHash, loadoutClass_t loadoutClassNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1532,7 +1515,7 @@ void GScr_FPrintFields()
 GScr_FReadLn
 ==============
 */
-void __thiscall GScr_FReadLn(const char *this)
+void GScr_FReadLn(const char *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2394,11 +2377,9 @@ void PlayerLinkTo_Internal(scr_entref_t entref, PlayerLinkToType linkType)
 ScrCmd_PlayerLinkTo
 ==============
 */
-
+void __cdecl ScrCmd_PlayerLinkTo(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2406,11 +2387,9 @@ ScrCmd_PlayerLinkTo
 ScrCmd_PlayerLinkToDelta
 ==============
 */
-
+void __cdecl ScrCmd_PlayerLinkToDelta(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2418,11 +2397,9 @@ ScrCmd_PlayerLinkToDelta
 ScrCmd_PlayerLinkWeaponViewToDelta
 ==============
 */
-
+void __cdecl ScrCmd_PlayerLinkWeaponViewToDelta(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2864,11 +2841,10 @@ char IsItemLockedForChallenge(scr_entref_t entref, int itemIndex, bool purchaseR
 GScr_AddChallengeStat
 ==============
 */
-
+int GScr_AddChallengeStat(gentity_t *playerEnt, int itemIndex, challengeTableRow_t *challengeRow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -2947,11 +2923,9 @@ void GScr_HasSeasonPass(scr_entref_t entref)
 GScr_AddPlayerStatInternal
 ==============
 */
-
+void __cdecl GScr_AddPlayerStatInternal(gentity_t *playerEnt, ClientNum_t clientNum, const char *statName, statValue_t addValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2969,11 +2943,9 @@ void GScr_AddPlayerStat(scr_entref_t entref)
 GScr_AddPlayerStatWithGameTypeInternal
 ==============
 */
-
+void __cdecl GScr_AddPlayerStatWithGameTypeInternal(scr_entref_t entref, bool setGlobalStat)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -3011,11 +2983,9 @@ void GScr_AddDStat(scr_entref_t entref)
 GScr_AddBonusCardStat
 ==============
 */
-
+void __cdecl GScr_AddBonusCardStat(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

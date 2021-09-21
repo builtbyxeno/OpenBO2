@@ -16,7 +16,7 @@ void GetPositionOnCubic(int a1, vec3_t *startPos, vec3_t *startVel, vec3_t *endP
 cCurve::Reset
 ==============
 */
-/*void __thiscall cCurve::Reset(cCurve *this)
+/*void cCurve::Reset(cCurve *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -26,7 +26,7 @@ cCurve::Reset
 cCurve::Reinit
 ==============
 */
-/*void __thiscall cCurve::Reinit(cCurve *this)
+/*void cCurve::Reinit(cCurve *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -36,7 +36,7 @@ cCurve::Reinit
 cCurve::AddNode
 ==============
 */
-/*void __thiscall cCurve::AddNode(cCurve *this, vec3_t *p)
+/*void cCurve::AddNode(cCurve *notthis, vec3_t *p)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -46,7 +46,7 @@ cCurve::AddNode
 cCurve::AddNode
 ==============
 */
-/*void __thiscall cCurve::AddNode(cCurve *this, vec3_t *p, float timePeriod)
+/*void cCurve::AddNode(cCurve *notthis, vec3_t *p, float timePeriod)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -56,7 +56,7 @@ cCurve::AddNode
 cCurve::GetPosition
 ==============
 */
-/*void __thiscall cCurve::GetPosition(cCurve *this, float time, vec3_t *pos)
+/*void cCurve::GetPosition(cCurve *notthis, float time, vec3_t *pos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -77,7 +77,7 @@ cCurve::CurveSortCompare
 cCurve::Sort
 ==============
 */
-/*void __thiscall cCurve::Sort(cCurve *this, vec3_t *p, bool is_increasing_sort_order)
+/*void cCurve::Sort(cCurve *notthis, vec3_t *p, bool is_increasing_sort_order)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -87,7 +87,7 @@ cCurve::Sort
 cCurve::BuildBSpline
 ==============
 */
-/*void __thiscall cCurve::BuildBSpline(cCurve *this)
+/*void cCurve::BuildBSpline(cCurve *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -97,7 +97,7 @@ cCurve::BuildBSpline
 cCurve::GetPos
 ==============
 */
-/*void __thiscall cCurve::GetPos(cCurve *this, float t, vec3_t *p)
+/*void cCurve::GetPos(cCurve *notthis, float t, vec3_t *p)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -107,7 +107,7 @@ cCurve::GetPos
 cCurve::GetLength
 ==============
 */
-/*double __thiscall cCurve::GetLength(cCurve *this)
+/*double cCurve::GetLength(cCurve *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -118,7 +118,7 @@ cCurve::GetLength
 cCurve::SetDraw
 ==============
 */
-/*void __thiscall cCurve::SetDraw(cCurve *this, const vec4_t *userColor)
+/*void cCurve::SetDraw(cCurve *notthis, const vec4_t *userColor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -128,7 +128,7 @@ cCurve::SetDraw
 cCurve::cCurve
 ==============
 */
-/*void __thiscall cCurve::cCurve(cCurve *this)
+/*void cCurve::cCurve(cCurve *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -138,7 +138,7 @@ cCurve::cCurve
 cCurve::BuildNonUniform
 ==============
 */
-/*void __thiscall cCurve::BuildNonUniform(cCurve *this)
+/*void cCurve::BuildNonUniform(cCurve *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -148,7 +148,7 @@ cCurve::BuildNonUniform
 cCurve::Build
 ==============
 */
-/*void __thiscall cCurve::Build(cCurve *this)
+/*void cCurve::Build(cCurve *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

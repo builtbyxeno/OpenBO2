@@ -48,11 +48,9 @@ void RB_DrawSunFlareCore(vec4_t *colorTint, float alpha, float sizeIn640x480)
 RB_DrawSunFlare
 ==============
 */
-
+void RB_DrawSunFlare(vec4_t *colorTint, SunFlareDynamic *sunFlare, int frameTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -60,11 +58,9 @@ RB_DrawSunFlare
 RB_CalcSunBlind
 ==============
 */
-
+void RB_CalcSunBlind(SunFlareDynamic *sunFlare, int frameTime, float *blind, float *glare)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

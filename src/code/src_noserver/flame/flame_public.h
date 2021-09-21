@@ -67,20 +67,20 @@ void Flame_Impact_Process(bool is_server, flameGeneric_s *gen, trace_t *trace);
 void Flame_Phys_Update_Item_Stream(flameGeneric_s *gen, int time);
 void Flame_Phys_Update_Item_Fire(flameGeneric_s *gen, int time);
 void Flame_Phys_Update_Item_Smoke(flameGeneric_s *gen, int time);
-;
+void Flame_Client_Trace(const vec3_t *endPos, unsigned __int16 (*dynEnts)[2][100]);
 // void Flame_Phys_Update_Item_Chunk(flameGeneric_s *gen, int time, phys_static_array<flameGeneric_s *,1000> *flames);
 // void Flame_Phys_Update_Item_Drip(flameGeneric_s *gen, int time, phys_static_array<flameGeneric_s *,1000> *flames);
-;
+void Flame_Server_Trace(const vec3_t *startPos, const vec3_t *endPos);
 void Flame_Phys_Collision(bool is_server, trace_t *trace, flameGeneric_s *gen, col_context_t *context, unsigned __int16 (*dynEnts)[2][100]);
-;
-// void Flame_Phys_Update_Items(const char *a1@<edi>, int is_server);
+void Flame_Phys_Update_Items_PerStream(int a1, bool is_server, int nitems, flameGeneric_s **items);
+void Flame_Phys_Update_Items(const char *a1, int is_server);
 
 //t6/code/src_noserver/flame/flame_sound.cpp
 void Flame_Class_Source_Sound_Init(flameSource_t *source);
 void Flame_Class_Source_Sound(LocalClientNum_t localClientNum, bool isFiring, bool isFirstPerson, int time, flameTable *table, flameSource_t *source);
 
 //t6/code/src_noserver/flame/flame_system.cpp
-// unsigned __int8 *FlameAlloc@<eax>(const char *a1@<edx>, char *a2@<ecx>, unsigned int size, const char *name);
+unsigned __int8 *FlameAlloc(const char *a1, char *a2, unsigned int size, const char *name);
 void FlameFree(void *ptr, const char *name);
 void Flame_Init_FlameVars();
 void Flame_Init_DVars();
@@ -121,7 +121,7 @@ void Flame_Init();
 void Flame_Reset();
 void CG_Flame_Age_All_Objects(int time, LocalClientNum_t localClientNum);
 void SV_Flame_Age_All_Objects(int time);
-;
+void CG_Flame_Update_Source(int a1, LocalClientNum_t localClientNum);
 void Flame_Enable_And_Allocate(void *buffer, unsigned int bufsize, int max_flame_sources, int max_flame_chunks, int max_flame_drips, int max_flame_fire, int max_flame_smoke, int max_flame_streams);
 void Flame_System_Disable();
 

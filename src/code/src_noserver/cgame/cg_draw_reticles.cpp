@@ -224,10 +224,9 @@ bool ShouldDrawCrosshair(const cg_t *cgameGlob, const playerState_s *ps)
 CG_DrawCrosshair
 ==============
 */
-
+bool CG_DrawCrosshair(unsigned int a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 

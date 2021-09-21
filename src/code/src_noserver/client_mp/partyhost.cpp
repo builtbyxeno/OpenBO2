@@ -800,11 +800,9 @@ int PartyHost_HashLeagueValues(int visiblePoints, int hiddenPoints, float skill,
 PartyHost_HandleLeagueOutcomesAck
 ==============
 */
-
+void __cdecl PartyHost_HandleLeagueOutcomesAck(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -977,10 +975,10 @@ void PartyHost_StoreMapVoteStats(const ControllerIndex_t localControllerIndex, c
 PartyHost_UpdateLocalClient
 ==============
 */
-/*void PartyHost_UpdateLocalClient(ClientNum_t a1@<edi>, PartyData_s *party, const ControllerIndex_t localControllerIndex)
+void PartyHost_UpdateLocalClient(ClientNum_t a1, PartyData_s *party, const ControllerIndex_t localControllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1280,11 +1278,10 @@ void PartyHost_AddAnonymousMemberAtSlot(PartyData_s *party, const ClientNum_t sl
 PartyHost_AddAnonymousMember
 ==============
 */
-
+bool PartyHost_AddAnonymousMember(PartyData_s *party, netadr_t *addr, unsigned int challenge, unsigned __int64 lanChalRespKey)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1368,11 +1365,9 @@ void PartyHost_MarkPacketReceivedForClients(PartyData_s *party, const netadr_t f
 PartyHost_HandleFinishedLoadingDemoMsg
 ==============
 */
-
+void __cdecl PartyHost_HandleFinishedLoadingDemoMsg(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1472,11 +1467,9 @@ void PartyHost_AutoStart(PartyData_s *party, ControllerIndex_t localControllerIn
 PartyHost_HandleHeartbeatAck
 ==============
 */
-
+void __cdecl PartyHost_HandleHeartbeatAck(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1484,11 +1477,10 @@ PartyHost_HandleHeartbeatAck
 PartyHost_AttemptJoinParty
 ==============
 */
-
+bool PartyHost_AttemptJoinParty(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, int netVersion, int msgChecksum, int playlistVersion, int playlistID, unsigned __int64 lanChalRespKey, int ping, int newSubPartyCount, int clientChangeList, SubpartyInfo *newSubParties, JoinPartyResponse *response)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

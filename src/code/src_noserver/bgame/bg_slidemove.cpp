@@ -17,7 +17,7 @@ gjk_polygon_cylinder_t *create_gjkcc_gjk_geom(const vec3_t *mins, const vec3_t *
 gjkcc_info::update_cg
 ==============
 */
-/*void gjkcc_info::update_cg(gjkcc_info *this, int a2, int mins, const vec3_t *maxs, const vec3_t *force, const bool a6)
+/*void gjkcc_info::update_cg(gjkcc_info *notthis, int a2, int mins, const vec3_t *maxs, const vec3_t *force, const bool a6)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -27,7 +27,7 @@ gjkcc_info::update_cg
 gjk_double_sphere_t::is_foot
 ==============
 */
-/*bool __thiscall gjk_double_sphere_t::is_foot(gjk_double_sphere_t *this, const phys_vec3 *hit_point)
+/*bool gjk_double_sphere_t::is_foot(gjk_double_sphere_t *notthis, const phys_vec3 *hit_point)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -38,7 +38,7 @@ gjk_double_sphere_t::is_foot
 gjk_polygon_cylinder_t::is_foot
 ==============
 */
-/*bool __thiscall gjk_polygon_cylinder_t::is_foot(gjk_polygon_cylinder_t *this, const phys_vec3 *hit_point)
+/*bool gjk_polygon_cylinder_t::is_foot(gjk_polygon_cylinder_t *notthis, const phys_vec3 *hit_point)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -49,7 +49,7 @@ gjk_polygon_cylinder_t::is_foot
 gjk_brush_t::is_walkable
 ==============
 */
-/*bool __thiscall gjk_brush_t::is_walkable(gjk_brush_t *this, const phys_vec3 *hit_point, const phys_vec3 *up)
+/*bool gjk_brush_t::is_walkable(gjk_brush_t *notthis, const phys_vec3 *hit_point, const phys_vec3 *up)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -60,7 +60,7 @@ gjk_brush_t::is_walkable
 gjk_partition_t::is_walkable
 ==============
 */
-/*bool __thiscall gjk_partition_t::is_walkable(gjk_partition_t *this, const phys_vec3 *hit_point, const phys_vec3 *up)
+/*bool gjk_partition_t::is_walkable(gjk_partition_t *notthis, const phys_vec3 *hit_point, const phys_vec3 *up)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -156,7 +156,7 @@ void setup_player_gjk_slide_move_input(player_gjk_slide_move_input_t *input, pmo
 gjkcc_info_database_t::gjkcc_info_find
 ==============
 */
-/*gjkcc_info *__thiscall gjkcc_info_database_t::gjkcc_info_find(gjkcc_info_database_t *this, const unsigned int gjkcc_id, const bool is_server_thread)
+/*gjkcc_info *gjkcc_info_database_t::gjkcc_info_find(gjkcc_info_database_t *notthis, const unsigned int gjkcc_id, const bool is_server_thread)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -167,7 +167,7 @@ gjkcc_info_database_t::gjkcc_info_find
 gjk_cylinder_t::is_foot
 ==============
 */
-/*bool gjk_cylinder_t::is_foot(gjk_cylinder_t *this, float hit_point, const phys_vec3 *a3)
+/*bool gjk_cylinder_t::is_foot(gjk_cylinder_t *notthis, float hit_point, const phys_vec3 *a3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -198,11 +198,9 @@ void setup_trace_info(int a1, int a2, int gjkcc_in, const gjkcc_input_t *start, 
 player_gjk_slide_move_input_t::custom_process
 ==============
 */
-/*
+/*void player_gjk_slide_move_input_t::custom_process(player_gjk_slide_move_input_t *notthis, int a2, gjk_trace_output_t *gto)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -252,11 +250,11 @@ BOOL gjk_slide_move1(int a1, const gjkcc_input_t *gjkcc_in, const gjk_slide_move
 gjk_slide_move
 ==============
 */
-/*BOOL gjk_slide_move@<eax>(const gjkcc_input_t *a1@<edx>, int a2@<ecx>, const gjkcc_input_t *gjkcc_in, const gjk_slide_move_input_t *input, gjk_slide_move_output_t *output)
+BOOL gjk_slide_move(const gjkcc_input_t *a1, int a2, const gjkcc_input_t *gjkcc_in, const gjk_slide_move_input_t *input, gjk_slide_move_output_t *output)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -273,11 +271,9 @@ void gjk_sentient_push(int a1, pmove_t *pm, pml_t *pml, const vec3_t *origin, co
 render_gjkcc_collision
 ==============
 */
-
+void render_gjkcc_collision(int a1, int a2, const vec3_t *mins, const vec3_t *maxs, const vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -305,11 +301,10 @@ void PM_gjk_ground_trace(float gjkcc_in, const gjkcc_input_t *a2, trace_t *resul
 PM_SlideMove
 ==============
 */
-
+int PM_SlideMove(pmove_t *pm, pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -317,11 +312,9 @@ PM_SlideMove
 PM_StepSlideMove
 ==============
 */
-
+void PM_StepSlideMove(unsigned int a1, pmove_t *pm, pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -349,7 +342,7 @@ void gjk_player_trace(gjk_trace_output_t **a1, int a2, const gjkcc_input_t *gjkc
 gjkcc_info_database_t::create_gjkcc_info
 ==============
 */
-/*gjkcc_info *__thiscall gjkcc_info_database_t::create_gjkcc_info(gjkcc_info_database_t *this, const gjkcc_input_t *gjkcc_in, const bool is_server_thread, const vec3_t *origin)
+/*gjkcc_info *gjkcc_info_database_t::create_gjkcc_info(gjkcc_info_database_t *notthis, const gjkcc_input_t *gjkcc_in, const bool is_server_thread, const vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -370,7 +363,7 @@ void destroy_gjkcc_info(void *gcci_)
 gjkcc_info_database_t::gjkcc_info_find_or_create
 ==============
 */
-/*gjkcc_info *__thiscall gjkcc_info_database_t::gjkcc_info_find_or_create(gjkcc_info_database_t *this, const gjkcc_input_t *gjkcc_in, const bool is_server_thread, const vec3_t *origin)
+/*gjkcc_info *gjkcc_info_database_t::gjkcc_info_find_or_create(gjkcc_info_database_t *notthis, const gjkcc_input_t *gjkcc_in, const bool is_server_thread, const vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -381,7 +374,7 @@ gjkcc_info_database_t::gjkcc_info_find_or_create
 gjkcc_info_database_t::gjkcc_info_destroy
 ==============
 */
-/*void __thiscall gjkcc_info_database_t::gjkcc_info_destroy(gjkcc_info_database_t *this, const unsigned int gjkcc_id, const bool is_server_thread)
+/*void gjkcc_info_database_t::gjkcc_info_destroy(gjkcc_info_database_t *notthis, const unsigned int gjkcc_id, const bool is_server_thread)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -391,7 +384,7 @@ gjkcc_info_database_t::gjkcc_info_destroy
 gjkcc_info_database_t::gjkcc_info_destroy_all
 ==============
 */
-/*void __thiscall gjkcc_info_database_t::gjkcc_info_destroy_all(gjkcc_info_database_t *this, const bool is_server_thread)
+/*void gjkcc_info_database_t::gjkcc_info_destroy_all(gjkcc_info_database_t *notthis, const bool is_server_thread)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

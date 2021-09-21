@@ -182,11 +182,9 @@ unsigned __int8 ReadPIA(Machine *machine, unsigned __int16 address)
 WritePIA
 ==============
 */
-
+void WritePIA(Machine *machine, unsigned __int16 address, unsigned __int8 b)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -194,11 +192,9 @@ WritePIA
 WriteTIA
 ==============
 */
-
+void WriteTIA(Machine *machine, unsigned __int16 address, unsigned __int8 b)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -228,11 +224,9 @@ unsigned __int16 ReadWord(Machine *machine, unsigned __int16 address)
 WriteByte
 ==============
 */
-
+void WriteByte(Machine *machine, unsigned __int16 address, unsigned __int8 b)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -250,11 +244,9 @@ void SetNZ(MOSState *MOS, unsigned __int8 value)
 PushByte
 ==============
 */
-
+void PushByte(Machine *machine, unsigned __int8 b)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -273,11 +265,9 @@ unsigned __int8 PopByte(Machine *machine)
 PushWord
 ==============
 */
-
+void PushWord(Machine *machine, unsigned __int16 w)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -307,11 +297,9 @@ unsigned __int8 ReadOperand(Machine *machine, Operand *operand)
 WriteOperand
 ==============
 */
-
+void WriteOperand(Machine *machine, Operand *operand, unsigned __int8 b)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

@@ -213,10 +213,9 @@ void UI_RaiseFeederEvent(LocalClientNum_t localClientNum, itemDef_s *item, const
 UI_FeederItemText
 ==============
 */
-
+char *__cdecl UI_FeederItemText(LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, itemDef_s *item, const float feederID, int index, int column, Material **handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 

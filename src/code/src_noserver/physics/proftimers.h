@@ -6,7 +6,7 @@
 cdl_proftimer::reset
 ==============
 */
-/*void __thiscall cdl_proftimer::reset(cdl_proftimer *this)
+/*void cdl_proftimer::reset(cdl_proftimer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

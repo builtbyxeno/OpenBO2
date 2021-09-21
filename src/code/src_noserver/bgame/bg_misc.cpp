@@ -149,11 +149,10 @@ bool WeaponEntCanBeGrabbed(const entityState_s *weaponEntState, const playerStat
 BG_CanItemBeGrabbed
 ==============
 */
-
+BOOL __cdecl BG_CanItemBeGrabbed(const entityState_s *ent, const playerState_s *ps, int touched)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -203,11 +202,10 @@ bool BG_ValidateOrigin(const vec3_t *pos, unsigned int xyBits, unsigned int zBit
 BG_ValidateOrigin
 ==============
 */
-
+bool BG_ValidateOrigin(int a1, unsigned int a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -546,11 +544,9 @@ void BG_PlayerToEntitySetMisc(playerState_s *ps, entityState_s *s)
 BG_PlayerStateToEntityState
 ==============
 */
-
+void BG_PlayerStateToEntityState(entityState_s *a1, playerState_s *a2, playerState_s *ps, entityState_s *s, int snap, playerState_s *handler)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -558,11 +554,10 @@ BG_PlayerStateToEntityState
 BG_CheckProne
 ==============
 */
-
+char BG_CheckProne(unsigned int a1, const playerState_s *ps, int passEntityNum, const vec3_t *vPos, const float fSize, const float fHeight, const float fYaw, float *pfTorsoPitch, float *pfWaistPitch, bool isAlreadyProne, bool isOnGround, bool groundIsWalkable, unsigned __int8 handler, proneCheckType_t proneCheckType, float prone_feet_dist)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

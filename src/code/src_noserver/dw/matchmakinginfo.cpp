@@ -6,7 +6,7 @@
 MatchMakingInfo::MatchMakingInfo
 ==============
 */
-/*void __thiscall MatchMakingInfo::MatchMakingInfo(MatchMakingInfo *this)
+/*void MatchMakingInfo::MatchMakingInfo(MatchMakingInfo *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -16,7 +16,7 @@ MatchMakingInfo::MatchMakingInfo
 MatchMakingInfo::serialize
 ==============
 */
-/*void __thiscall MatchMakingInfo::serialize(MatchMakingInfo *this, bdByteBuffer *buffer)
+/*void MatchMakingInfo::serialize(MatchMakingInfo *notthis, bdByteBuffer *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -26,7 +26,7 @@ MatchMakingInfo::serialize
 MatchMakingInfo::setSecurityID
 ==============
 */
-/*char __thiscall MatchMakingInfo::setSecurityID(MatchMakingInfo *this, const bdSecurityID *secID)
+/*char MatchMakingInfo::setSecurityID(MatchMakingInfo *notthis, const bdSecurityID *secID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -37,7 +37,7 @@ MatchMakingInfo::setSecurityID
 MatchMakingInfo::getSecurityID
 ==============
 */
-/*char __thiscall MatchMakingInfo::getSecurityID(MatchMakingInfo *this, bdSecurityID *secID)
+/*char MatchMakingInfo::getSecurityID(MatchMakingInfo *notthis, bdSecurityID *secID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -48,7 +48,7 @@ MatchMakingInfo::getSecurityID
 MatchMakingInfo::setSecurityKey
 ==============
 */
-/*char __thiscall MatchMakingInfo::setSecurityKey(MatchMakingInfo *this, const bdSecurityKey *secKey)
+/*char MatchMakingInfo::setSecurityKey(MatchMakingInfo *notthis, const bdSecurityKey *secKey)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -59,7 +59,7 @@ MatchMakingInfo::setSecurityKey
 MatchMakingInfo::getSecurityKey
 ==============
 */
-/*char __thiscall MatchMakingInfo::getSecurityKey(MatchMakingInfo *this, bdSecurityKey *secKey)
+/*char MatchMakingInfo::getSecurityKey(MatchMakingInfo *notthis, bdSecurityKey *secKey)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -70,7 +70,7 @@ MatchMakingInfo::getSecurityKey
 MatchMakingInfo::sizeOf
 ==============
 */
-/*unsigned int __thiscall MatchMakingInfo::sizeOf(MatchMakingInfo *this)
+/*unsigned int MatchMakingInfo::sizeOf(MatchMakingInfo *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -81,7 +81,7 @@ MatchMakingInfo::sizeOf
 MatchMakingInfo::doUpdate
 ==============
 */
-/*bool __thiscall MatchMakingInfo::doUpdate(MatchMakingInfo *this, const int msec, const unsigned int updateIntervalMsec, const unsigned int forceUpdateIntervalMsec)
+/*bool MatchMakingInfo::doUpdate(MatchMakingInfo *notthis, const int msec, const unsigned int updateIntervalMsec, const unsigned int forceUpdateIntervalMsec)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -92,7 +92,7 @@ MatchMakingInfo::doUpdate
 MatchMakingInfo::deserialize
 ==============
 */
-/*bool __thiscall MatchMakingInfo::deserialize(MatchMakingInfo *this, bdReference<bdByteBuffer> buffer)
+/*bool MatchMakingInfo::deserialize(MatchMakingInfo *notthis, bdReference<bdByteBuffer> buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

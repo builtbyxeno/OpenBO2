@@ -16,11 +16,9 @@ void SetupVertex(const __m128 *pos, const __m128 *normal, const __m128 *tangent,
 R_Rope_GenerateVerts_Internal
 ==============
 */
-
+void R_Rope_GenerateVerts_Internal(const RopeGenerateVertsCmd *cmd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

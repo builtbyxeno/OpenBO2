@@ -70,11 +70,10 @@ challengeTableRow_t *FindFirstChallengeRowBSearch(int startEntry, int numEntries
 CL_FindFirstChallengeRow
 ==============
 */
-
+challengeTableRow_t *CL_FindFirstChallengeRow(int a1, int challengeType, int statNameHash, int itemIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -82,11 +81,10 @@ CL_FindFirstChallengeRow
 CL_FindFirstWeaponChallengeRow
 ==============
 */
-
+challengeTableRow_t *__cdecl CL_FindFirstWeaponChallengeRow(int challengeType, int statNameHash, int itemIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -116,11 +114,10 @@ challengeTableRow_t *FindNextCompletedChallenge(challengeTableRow_t *challengeRo
 CL_GetNextCompletedChallenge
 ==============
 */
-
+challengeTableRow_t *__cdecl CL_GetNextCompletedChallenge(int oldValue, int currentValue, int rank, int pLevel, challengeTableRow_t *challengeRow, int itemIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*

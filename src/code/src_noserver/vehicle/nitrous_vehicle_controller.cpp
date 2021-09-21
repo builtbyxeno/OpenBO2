@@ -6,7 +6,7 @@
 NitrousVehicleController::UpdateControlsTank
 ==============
 */
-/*void __thiscall NitrousVehicleController::UpdateControlsTank(NitrousVehicleController *this, NitrousVehicle *rbveh)
+/*void NitrousVehicleController::UpdateControlsTank(NitrousVehicleController *notthis, NitrousVehicle *rbveh)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -16,7 +16,7 @@ NitrousVehicleController::UpdateControlsTank
 NitrousVehicleController::GetJumpCharge
 ==============
 */
-/*double __thiscall NitrousVehicleController::GetJumpCharge(NitrousVehicleController *this)
+/*double NitrousVehicleController::GetJumpCharge(NitrousVehicleController *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -27,11 +27,9 @@ NitrousVehicleController::GetJumpCharge
 NitrousVehicleController::UpdateVehicleInputs
 ==============
 */
-/*
+/*void NitrousVehicleController::UpdateVehicleInputs(NitrousVehicleController *notthis, unsigned int a2, NitrousVehicle *rbveh, float target_yaw, float target_accel, float forward_preference)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -50,7 +48,7 @@ float StunRandomBrake(const usercmd_s *cmd, float desired_brake, float last_brak
 NitrousVehicleController::UpdateStun
 ==============
 */
-/*void __thiscall NitrousVehicleController::UpdateStun(NitrousVehicleController *this, NitrousVehicle *rbveh, float delta_t)
+/*void NitrousVehicleController::UpdateStun(NitrousVehicleController *notthis, NitrousVehicle *rbveh, float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -60,7 +58,7 @@ NitrousVehicleController::UpdateStun
 NitrousVehicleController::UpdateControlsDefault
 ==============
 */
-/*void NitrousVehicleController::UpdateControlsDefault(NitrousVehicleController *this, int a2, NitrousVehicle *rbveh, const float delta_t)
+/*void NitrousVehicleController::UpdateControlsDefault(NitrousVehicleController *notthis, int a2, NitrousVehicle *rbveh, const float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -70,11 +68,9 @@ NitrousVehicleController::UpdateControlsDefault
 NitrousVehicleController::UpdateControlsSpiderBot
 ==============
 */
-/*
+/*void NitrousVehicleController::UpdateControlsSpiderBot(NitrousVehicleController *notthis, unsigned int a2, NitrousVehicle *rbveh, const float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -82,7 +78,7 @@ NitrousVehicleController::UpdateControlsSpiderBot
 NitrousVehicleController::SetScriptTarget
 ==============
 */
-/*void __thiscall NitrousVehicleController::SetScriptTarget(NitrousVehicleController *this, NitrousVehicle *rbveh, const phys_vec3 *goal_position, const float goal_radius, const float goal_speed, const bool stopAtGoal)
+/*void NitrousVehicleController::SetScriptTarget(NitrousVehicleController *notthis, NitrousVehicle *rbveh, const phys_vec3 *goal_position, const float goal_radius, const float goal_speed, const bool stopAtGoal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -92,11 +88,9 @@ NitrousVehicleController::SetScriptTarget
 NitrousVehicleController::UpdateJump
 ==============
 */
-/*
+/*void NitrousVehicleController::UpdateJump(NitrousVehicleController *notthis, int a2, NitrousVehicle *rbveh, const float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -104,11 +98,9 @@ NitrousVehicleController::UpdateJump
 NitrousVehicleController::UpdateApplyBoatAccel
 ==============
 */
-/*
+/*void NitrousVehicleController::UpdateApplyBoatAccel(NitrousVehicleController *notthis, int a2, NitrousVehicle *rbveh, const float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -116,11 +108,9 @@ NitrousVehicleController::UpdateApplyBoatAccel
 NitrousVehicleController::UpdateScriptVehicleControl
 ==============
 */
-/*
+/*void NitrousVehicleController::UpdateScriptVehicleControl(NitrousVehicleController *notthis, unsigned int a2, long double rbveh, NitrousVehicle *a4, const float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -128,7 +118,7 @@ NitrousVehicleController::UpdateScriptVehicleControl
 NitrousVehicleController::UpdateControlsStrafeMode
 ==============
 */
-/*void __thiscall NitrousVehicleController::UpdateControlsStrafeMode(NitrousVehicleController *this, NitrousVehicle *rbveh)
+/*void NitrousVehicleController::UpdateControlsStrafeMode(NitrousVehicleController *notthis, NitrousVehicle *rbveh)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -138,7 +128,7 @@ NitrousVehicleController::UpdateControlsStrafeMode
 NitrousVehicleController::UpdateControlsHorse
 ==============
 */
-/*void __thiscall NitrousVehicleController::UpdateControlsHorse(NitrousVehicleController *this, NitrousVehicle *rbveh, const float delta_t)
+/*void NitrousVehicleController::UpdateControlsHorse(NitrousVehicleController *notthis, NitrousVehicle *rbveh, const float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -148,7 +138,7 @@ NitrousVehicleController::UpdateControlsHorse
 NitrousVehicleController::UpdateControls
 ==============
 */
-/*void NitrousVehicleController::UpdateControls(NitrousVehicleController *this, unsigned int a2, NitrousVehicle *rbveh, float delta_t)
+/*void NitrousVehicleController::UpdateControls(NitrousVehicleController *notthis, unsigned int a2, NitrousVehicle *rbveh, float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

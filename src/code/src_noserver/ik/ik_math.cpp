@@ -86,11 +86,9 @@ void ikMatrix44ToQuatTrans(vec4_t *mat, vec4_t *quat, vec3_t *trans)
 ikCalcBoneModelMatrix_r
 ==============
 */
-
+void ikCalcBoneModelMatrix_r(int a1, IKState *ikState, int boneNum, float *inMatArray, vec4_t *out)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -108,11 +106,9 @@ void ikCalcBoneModelMatrix()
 ikMap2DTo3D
 ==============
 */
-
+void ikMap2DTo3D(int a1, float UpperLimbLength, float SinUpper, float CosUpper, float SinLower, float CosLower, const vec3_t *ModelBaseJoint, const vec3_t *ModelTargetDir, const vec3_t *ModelMidJointDir, float sinTwist, float cosTwist, vec4_t *UpperLocalToModel, vec4_t *LowerLocalToModel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -120,11 +116,9 @@ ikMap2DTo3D
 ikSolveLegJoint
 ==============
 */
-
+void ikSolveLegJoint(int a1, IKState *ikState, IKJointBones *jointBones, IKJointVars *jointVars, vec3_t *footPos, vec4_t *outParentMat, vec4_t *outJointMat, bool flipHack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -132,11 +126,9 @@ ikSolveLegJoint
 ikSolveArmJoint
 ==============
 */
-
+void ikSolveArmJoint(int a1, IKState *ikState, IKJointBones *jointBones, IKJointVars *jointVars, vec3_t *handPos, vec4_t *outParentMat, vec4_t *outJointMat, bool flipHack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -144,11 +136,9 @@ ikSolveArmJoint
 ikRotateBone
 ==============
 */
-
+void ikRotateBone(int a1, IKState *ikState, IKBoneNames boneName, vec3_t *rot, bool local)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

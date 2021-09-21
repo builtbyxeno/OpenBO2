@@ -6,7 +6,7 @@
 LeaderboardRow<10>::serialize
 ==============
 */
-/*void __thiscall LeaderboardRow<10>::serialize(LeaderboardRow<10> *this, bdByteBuffer *buffer)
+/*void LeaderboardRow<10>::serialize(LeaderboardRow<10> *notthis, bdByteBuffer *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -16,7 +16,7 @@ LeaderboardRow<10>::serialize
 bdLeagueStatsInfo::sizeOf
 ==============
 */
-/*unsigned int __thiscall bdLeagueStatsInfo::sizeOf(bdLeagueStatsInfo *this)
+/*unsigned int bdLeagueStatsInfo::sizeOf(bdLeagueStatsInfo *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -27,7 +27,7 @@ bdLeagueStatsInfo::sizeOf
 LeaderboardRow<10>::deserialize
 ==============
 */
-/*bool __thiscall LeaderboardRow<10>::deserialize(LeaderboardRow<10> *this, bdReference<bdByteBuffer> buffer)
+/*bool LeaderboardRow<10>::deserialize(LeaderboardRow<10> *notthis, bdReference<bdByteBuffer> buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

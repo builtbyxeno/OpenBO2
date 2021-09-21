@@ -79,11 +79,10 @@ bool Bullet_IgnoreHitEntity(const BulletFireParams *bp, const BulletTraceResults
 Bullet_Trace
 ==============
 */
-
+bool Bullet_Trace(const BulletFireParams *bp, const WeaponVariantDef *weapVariantDef, gentity_t *attacker, BulletTraceResults *br, int lastSurfaceType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -205,11 +204,10 @@ bool Bullet_ProcessShieldHit(unsigned int *randSeed, BulletFireParams *bp, Bulle
 Bullet_Process
 ==============
 */
-
+bool Bullet_Process(unsigned int *randSeed, BulletFireParams *bp, BulletTraceResults *br, const Weapon weapon, gentity_t *attacker, int dFlags, int gameTime, int *outImpactFlags, bool processFx)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -217,11 +215,9 @@ Bullet_Process
 Bullet_HitNothing
 ==============
 */
-
+void Bullet_HitNothing(unsigned int *randSeed, BulletFireParams *bp, BulletTraceResults *br, const Weapon weapon, gentity_t *attacker)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -240,11 +236,9 @@ bool G_WeaponBounceShot(Weapon weapon, BulletFireParams *incomingbp, BulletTrace
 Bullet_FirePenetrate
 ==============
 */
-
+void Bullet_FirePenetrate(BulletFireParams *bp, gentity_t *attacker)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -252,11 +246,9 @@ Bullet_FirePenetrate
 Bullet_FireExtended
 ==============
 */
-
+void Bullet_FireExtended(BulletFireParams *bp, gentity_t *attacker)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

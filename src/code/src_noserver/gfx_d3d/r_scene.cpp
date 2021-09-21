@@ -311,11 +311,9 @@ Material *R_MaterialOverride(unsigned int modelIndex, int textureOverrideIdx, Ma
 R_AddXModelSurfacesCamera
 ==============
 */
-
+void R_AddXModelSurfacesCamera(unsigned int a1, XModelRigidCullInfoContext *a2, XModelDrawInfo *modelInfo, const XModel *model, vec3_t *origin, unsigned int gfxEntIndex, unsigned int lightingHandle, unsigned int primaryLightIndex, int depthHack, GfxDrawSurf **drawSurfs, GfxDrawSurf **lastDrawSurfs, unsigned int reflectionProbeIndex, unsigned int constantSetIndex, unsigned int visLightsMask, bool isVisibleForSunShadow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -690,11 +688,9 @@ void R_SetHDRControlConstants(float input, GfxCmdBufInput *a2, const GfxViewInfo
 R_SetDLightsConstants
 ==============
 */
-
+void R_SetDLightsConstants(GfxCmdBufInput *input)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -804,11 +800,9 @@ void R_MergeAndEmitDrawSurfListsIntoList(GfxDrawSurfListInfo *info, int start, i
 R_FinishDecalAndEmissiveDrawSurfs
 ==============
 */
-
+void R_FinishDecalAndEmissiveDrawSurfs(GfxViewInfo *viewInfo, const GfxViewParms *viewParmsDraw, GfxBackEndData *backendData, bool forExtraCamView)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1104,10 +1098,10 @@ void R_UnlinkEntity(LocalClientNum_t localClientNum, unsigned int entnum)
 R_LinkDynEnt
 ==============
 */
-/*void R_LinkDynEnt(DynEntityDrawType a1@<edx>, unsigned int a2@<ecx>, unsigned int dynEntId, DynEntityDrawType drawType, vec3_t *mins, vec3_t *maxs)
+void R_LinkDynEnt(DynEntityDrawType a1, unsigned int a2, unsigned int dynEntId, DynEntityDrawType drawType, vec3_t *mins, vec3_t *maxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1175,11 +1169,9 @@ void R_PerMap_Init()
 R_AddDObjSurfacesCamera
 ==============
 */
-
+void R_AddDObjSurfacesCamera(XModelRigidCullInfoContext *a1, float sceneEnt, GfxSceneEntity *a3, unsigned int lightingHandle, unsigned int primaryLightIndex, GfxDrawSurf **drawSurfs, GfxDrawSurf **lastDrawSurfs, unsigned int visLightsMask, bool isExtraCamera, bool isVisibleForSunShadow, const GfxViewParms *viewParms, XModelRigidCullInfoContext *cullInfoContext, bool sonarUseThermalMaterial)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

@@ -332,11 +332,9 @@ float PM_ViewHeightTableLerp(int iFrac, viewLerpWaypoint_s *pTable, int lowVal, 
 PM_ViewHeightAdjust
 ==============
 */
-
+void __cdecl PM_ViewHeightAdjust(pmove_t *pm, pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -484,11 +482,9 @@ int BG_CalcBob(pmove_t *pm, pml_t *pml, int old, float bobmove)
 PM_ApplyMovementAnimations
 ==============
 */
-
+void PM_ApplyMovementAnimations(pmove_t *pm, pml_t *pml, PmStanceFrontBack stanceFrontBack, int walking, int sprinting)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -496,11 +492,9 @@ PM_ApplyMovementAnimations
 PM_ApplyLegAnimations
 ==============
 */
-
+void PM_ApplyLegAnimations(pmove_t *pm, pml_t *pml, int iStance, PmStanceFrontBack stanceFrontBack, int walking, int sprinting)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -611,11 +605,9 @@ void PM_UpdateViewAngles_PronePitchClamp(playerState_s *ps)
 PM_UpdateViewAngles_Prone
 ==============
 */
-
+void PM_UpdateViewAngles_Prone(playerState_s *ps, float msec, usercmd_s *cmd, unsigned __int8 handler, float oldViewYaw)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -957,11 +949,9 @@ void PM_Footsteps(float ps, pmove_t *pm, pml_t *pml)
 PM_UpdateLean
 ==============
 */
-
+void PM_UpdateLean(unsigned int a1, playerState_s *ps, float msec, usercmd_s *cmd, void (__cdecl *capsuleTrace)(trace_t *, const vec3_t *, const vec3_t *, const vec3_t *, const vec3_t *, int, int, col_context_t *))
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -969,11 +959,9 @@ PM_UpdateLean
 PM_UpdateViewAngles
 ==============
 */
-
+void PM_UpdateViewAngles(usercmd_s *a1, playerState_s *a2, unsigned int localClientNum, LocalClientNum_t oldViewYaw, playerState_s *ps, float msec, usercmd_s *cmd, unsigned __int8 handler, float a9)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1031,11 +1019,10 @@ void PM_playerTrace(int a1, pmove_t *pm, trace_t *results, const vec3_t *start, 
 is_not_penetrating
 ==============
 */
-
+bool is_not_penetrating(const vec3_t *start, const vec3_t *mins, const vec3_t *maxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1054,11 +1041,10 @@ bool PM_CanCrouch(playerState_s *ps, pmove_t *pm)
 PM_CanStand
 ==============
 */
-
+bool __cdecl PM_CanStand(playerState_s *ps, pmove_t *pm)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1097,11 +1083,9 @@ int PM_CorrectAllSolid(pmove_t *pm, pml_t *pml, trace_t *trace)
 PM_GroundTraceMissed
 ==============
 */
-
+void PM_GroundTraceMissed(pmove_t *pm, pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1109,11 +1093,9 @@ PM_GroundTraceMissed
 PM_GroundTrace
 ==============
 */
-
+void PM_GroundTrace(pmove_t *pm)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1121,11 +1103,9 @@ PM_GroundTrace
 PM_CheckDuck
 ==============
 */
-
+void PM_CheckDuck(pmove_t *pm)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1133,11 +1113,9 @@ PM_CheckDuck
 PM_FoliageSounds
 ==============
 */
-
+void PM_FoliageSounds(pmove_t *pm)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1175,11 +1153,9 @@ void PM_WalkMove(pmove_t *pm, pml_t *pml)
 PM_LadderMove
 ==============
 */
-
+void PM_LadderMove(pmove_t *pm, pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1187,10 +1163,10 @@ PM_LadderMove
 PmoveSingle
 ==============
 */
-/*void PmoveSingle(const char *a1@<edi>, float a2@<esi>, pmove_t *pm)
+void PmoveSingle(const char *a1, float a2, pmove_t *pm)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

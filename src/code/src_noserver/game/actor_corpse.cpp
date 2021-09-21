@@ -78,7 +78,7 @@ void ActorCorpse_Free(gentity_t *ent)
 Actor_SetBodyPlantAngle
 ==============
 */
-float Actor_SetBodyPlantAngle(const int iEntNum, const vec3_t* vOrigin)
+float Actor_SetBodyPlantAngle(const int iEntNum, const vec3_t *vOrigin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

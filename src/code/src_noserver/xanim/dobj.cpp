@@ -6,11 +6,9 @@
 DObjInit
 ==============
 */
-
+void DObjInit(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -208,11 +206,9 @@ void DObjTracelinePartBits(DObj *obj, int *partBits)
 DObjGeomTraceline
 ==============
 */
-
+void DObjGeomTraceline(int a1, DObj *obj, vec3_t *localStart, vec3_t *localEnd, int contentmask, DObjTrace_s *results)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -463,11 +459,9 @@ BOOL DObjIsLeftHandGripIKActive(const DObj *obj)
 DObjTraceline
 ==============
 */
-
+void DObjTraceline(int a1, DObj *obj, vec3_t *start, vec3_t *end, unsigned __int8 *priorityMap, DObjTrace_s *trace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -485,11 +479,9 @@ void DObjSetTree(DObj *obj, XAnimTree_s *tree)
 DObjCreate
 ==============
 */
-
+void __cdecl DObjCreate(DObjModel_s *dobjModels, unsigned int numModels, XAnimTree_s *tree, void *buf, unsigned int entnum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

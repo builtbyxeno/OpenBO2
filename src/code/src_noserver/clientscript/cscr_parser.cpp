@@ -60,11 +60,10 @@ char *Scr_ReadFile(scriptInstance_t inst, const char *filename, const char *extF
 Scr_AddSourceBuffer
 ==============
 */
-
+char *Scr_AddSourceBuffer(char *a1, scriptInstance_t inst, const char *filename, const char *extFilename, unsigned __int8 *codePos, bool archive)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -82,11 +81,10 @@ void Scr_CopyFormattedLine(char *line, const char *rawLine)
 Scr_GetLineInfo
 ==============
 */
-
+int Scr_GetLineInfo(const char *buf, unsigned int sourcePos, int *col, char *line, SourceBufferInfo *binfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

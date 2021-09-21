@@ -132,10 +132,10 @@ int IPak_CompareImageOffsets(const void *A, const void *B)
 IPak_BuildAdjacencyInfo
 ==============
 */
-/*void IPak_BuildAdjacencyInfo(const char *a1@<edi>, unsigned __int8 *workBuffer, int workBufferSize)
+void IPak_BuildAdjacencyInfo(const char *a1, unsigned __int8 *workBuffer, int workBufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

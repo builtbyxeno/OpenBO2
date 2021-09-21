@@ -202,11 +202,9 @@ void CG_DrawGfxStatsMatrix(const ScreenPlacement *scrPlace, GfxPrimStatsCounters
 CG_DrawGfxStats
 ==============
 */
-
+void CG_DrawGfxStats(int a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

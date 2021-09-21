@@ -29,11 +29,10 @@ int LiveVote_History_GetEntryLinear(int startIndex, unsigned __int64 entityID, d
 LiveVote_History_GetEntry
 ==============
 */
-
+int LiveVote_History_GetEntry(const ControllerIndex_t localControllerIndex, dwVoteCategory_e category, unsigned __int64 entityToFind)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -62,11 +61,9 @@ void LiveVote_History_Sort()
 LiveVote_History_RecordVote
 ==============
 */
-
+void LiveVote_History_RecordVote(dwVoteCategory_e a1, const ControllerIndex_t localControllerIndex, unsigned __int64 entity, dwVoteCategory_e category, dwVote_e vote)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -74,11 +71,10 @@ LiveVote_History_RecordVote
 LiveVote_History_GetVoteForEntity
 ==============
 */
-
+int LiveVote_History_GetVoteForEntity(dwVoteCategory_e a1, ControllerIndex_t a2, const ControllerIndex_t localControllerIndex, unsigned __int64 entity, dwVoteCategory_e category)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -106,11 +102,9 @@ void LiveVote_RecentlyLiked_Remove(const ControllerIndex_t localControllerIndex,
 LiveVote_RecentlyLiked_Add
 ==============
 */
-
+void LiveVote_RecentlyLiked_Add(const ControllerIndex_t localControllerIndex, unsigned __int64 entity, dwVoteCategory_e category)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -118,11 +112,10 @@ LiveVote_RecentlyLiked_Add
 LiveVote_Task_SubmitVoteSuccess
 ==============
 */
-
+char __cdecl LiveVote_Task_SubmitVoteSuccess(TaskRecord *task)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -163,11 +156,9 @@ char LiveVote_Task_DownloadHistoryFailure(TaskRecord *task)
 LiveVote_SubmitCmd
 ==============
 */
-
+void __cdecl LiveVote_SubmitCmd(dwVote_e vote)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

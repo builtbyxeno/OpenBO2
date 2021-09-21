@@ -27,11 +27,10 @@ XModel *DynEntCl_GetCurrentXModel(const DynEntityDef *dynEntDef, const DynEntity
 DynEntCl_UpdateBModelWorldBounds
 ==============
 */
-
+float DynEntCl_UpdateBModelWorldBounds(const GfxPlacement *pose)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -39,11 +38,9 @@ DynEntCl_UpdateBModelWorldBounds
 DynEntCl_LinkModel
 ==============
 */
-
+void DynEntCl_LinkModel(unsigned int a1, unsigned __int16 dynEntId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -358,11 +355,9 @@ void DynEntCl_Shutdown(LocalClientNum_t localClientNum)
 DynEnt_SetupConstraints
 ==============
 */
-
+void DynEnt_SetupConstraints(unsigned int a1, const DynEntityDef *dynEntDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -433,11 +428,9 @@ void DynEntCl_EntityImpactEvent(const trace_t *trace, LocalClientNum_t localClie
 DynEntCl_HitTrace
 ==============
 */
-
+void DynEntCl_HitTrace(const vec3_t *end, trace_t *results)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -445,11 +438,10 @@ DynEntCl_HitTrace
 DynEntCl_DynEntImpactEvent
 ==============
 */
-
+bool DynEntCl_DynEntImpactEvent(const vec3_t *end, vec3_t *hitPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

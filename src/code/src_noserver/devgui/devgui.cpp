@@ -206,11 +206,9 @@ void DevGui_DrawMenuHorizontally(LocalClientNum_t localClientNum, const DevMenuI
 DevGui_DrawMenu
 ==============
 */
-
+void DevGui_DrawMenu(const DevMenuItem *a1, LocalClientNum_t localClientNum, int *menuHandle, int *activeChild, int *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -259,11 +257,9 @@ void DevGui_DrawSingleSlider(int x, int y, int rowWidth, int rowHeight, float fr
 DevGui_DrawDvarValue
 ==============
 */
-
+void DevGui_DrawDvarValue(int x, int y, const dvar_t *dvar)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

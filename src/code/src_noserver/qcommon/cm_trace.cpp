@@ -6,7 +6,7 @@
 col_context_t::col_context_t
 ==============
 */
-/*void __thiscall col_context_t::col_context_t(col_context_t *this)
+/*void col_context_t::col_context_t(col_context_t *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -16,7 +16,7 @@ col_context_t::col_context_t
 col_context_t::col_context_t
 ==============
 */
-/*void __thiscall col_context_t::col_context_t(col_context_t *this, int _mask)
+/*void col_context_t::col_context_t(col_context_t *notthis, int _mask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -26,7 +26,7 @@ col_context_t::col_context_t
 col_context_t::init_locational
 ==============
 */
-/*void __thiscall col_context_t::init_locational(col_context_t *this, int ent0)
+/*void col_context_t::init_locational(col_context_t *notthis, int ent0)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -36,7 +36,7 @@ col_context_t::init_locational
 col_context_t::init_locational
 ==============
 */
-/*void __thiscall col_context_t::init_locational(col_context_t *this, int ent0, int ent1)
+/*void col_context_t::init_locational(col_context_t *notthis, int ent0, int ent1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -247,11 +247,9 @@ bool CM_TraceThroughLeafBrushNode(const traceWork_t *tw, cLeaf_s *leaf, trace_t 
 CM_TraceThroughLeaf
 ==============
 */
-
+void CM_TraceThroughLeaf(const traceWork_t *tw, cLeaf_s *leaf, trace_t *trace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -269,11 +267,9 @@ void CM_TestInTempBrush(const traceWork_t *tw, trace_t *trace)
 CM_TraceThroughTempBrush
 ==============
 */
-
+void __cdecl CM_TraceThroughTempBrush(const traceWork_t *tw, trace_t *trace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -377,11 +373,10 @@ int CM_SightTraceThroughLeafBrushNode(const traceWork_t *tw, const cLeaf_s *leaf
 CM_SightTraceThroughLeaf
 ==============
 */
-
+int CM_SightTraceThroughLeaf(const traceWork_t *tw, const cLeaf_s *leaf, trace_t *trace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -662,11 +657,10 @@ int CM_SightTraceThroughTempBrush(const traceWork_t *tw, trace_t *trace)
 CM_BoxSightTrace
 ==============
 */
-
+int CM_BoxSightTrace(int a1, int oldHitNum, const vec3_t *start, const vec3_t *end, const vec3_t *mins, const vec3_t *maxs, unsigned int model, int brushmask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -674,11 +668,10 @@ CM_BoxSightTrace
 CM_SightTracePoint
 ==============
 */
-
+int CM_SightTracePoint(int a1, int oldHitNum, const vec3_t *start, const vec3_t *end, col_context_t *context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -697,11 +690,10 @@ int CM_TransformedBoxSightTrace(int hitNum, const vec3_t *start, const vec3_t *e
 CM_TracePointDown
 ==============
 */
-
+int CM_TracePointDown(int a1, const vec3_t *start, const vec3_t *end, int contentmask, int surf_type, vec3_t *endpos, float *fraction, vec3_t *normal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -709,11 +701,10 @@ CM_TracePointDown
 CM_GetWaterHeight
 ==============
 */
-
+double CM_GetWaterHeight(unsigned int a1, const vec3_t *pos, float z_up, float z_down)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -721,11 +712,9 @@ CM_GetWaterHeight
 CM_Trace
 ==============
 */
-
+void CM_Trace(unsigned int a1, col_context_t *a2, trace_t *results, const vec3_t *start, const vec3_t *end, const vec3_t *mins, const vec3_t *maxs, unsigned int model, int brushmask, col_context_t *context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -773,10 +762,9 @@ void CM_TransformedBoxTraceExternal(trace_t *results, const vec3_t *start, const
 CM_GetHeliHeight
 ==============
 */
-
+char CM_GetHeliHeight(unsigned int a1, const vec3_t *pt, const float checkdist, float *result, const bool checkDisabledPatches)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 

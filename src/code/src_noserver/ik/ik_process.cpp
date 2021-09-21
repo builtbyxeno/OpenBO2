@@ -6,11 +6,9 @@
 IK_GenerateIKXformMatrices
 ==============
 */
-
+void IK_GenerateIKXformMatrices(int a1, IKState *ikState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

@@ -303,11 +303,9 @@ void Cmd_Give_f(gentity_t *ent)
 StopFollowing
 ==============
 */
-
+void StopFollowing(unsigned int a1, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

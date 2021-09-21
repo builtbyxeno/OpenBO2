@@ -18,7 +18,7 @@ void SD_SetVcsCallback(bool (*callback)(float *, unsigned int, unsigned int, boo
 //t6/code/src_noserver/sound/sd_decode.cpp
 void SD_DecoderShutdown();
 sd_decoder *SD_DecoderAllocate(sd_source *source, const SndAssetBankEntry *entry, sd_decoder *pool, unsigned int count);
-;
+sd_decoder *SD_DecoderAllocate(const SndAssetBankEntry *a1, sd_source *source, const SndAssetBankEntry *entry);
 
 //t6/code/src_noserver/sound/sd_mixer.cpp
 sd_mix_master_param *SD_MixParamAllocate();
@@ -26,13 +26,13 @@ void SD_MixParamFree(sd_mix_master_param *param);
 void SD_MixSetParam(sd_mix_master_param *param);
 
 //t6/code/src_noserver/sound/sd_output_xa2.cpp
-// void sd_xa2_callback::OnBufferEnd(sd_xa2_callback *this, void *pBufferContext);
+// void sd_xa2_callback::OnBufferEnd(sd_xa2_callback *notthis, void *pBufferContext);
 void SD_OutputShutdown(bool reset);
 void SD_OutputForceWakeup();
 bool SD_XAudio2GetDeviceGUID(wchar_t *inGUID, _GUID *guid, char *outGUID, int size);
 bool SD_XAudio2CheckDevice(IXAudio2 *pXAudio2, const XAUDIO2_DEVICE_DETAILS *deviceDetails, unsigned int deviceIndex);
 void SD_SwitchDevice();
-// ;
+// void __stdcall SD_XAudio2Callbacks::OnCriticalError(SD_XAudio2Callbacks *notthis, HRESULT Error);
 char SD_XAudio2EnumerateDevices(int a1);
 bool SD_XAudio2InitPC(int a1);
 void SD_OutputInit(int a1, bool reset);
@@ -97,7 +97,7 @@ void SNDL_AddGlobals(SndDriverGlobals *globals);
 void SNDL_RemoveGlobals(SndDriverGlobals *globals);
 void SND_ErrorIfSoundGlobalsTrashed();
 void SND_Init();
-;
+void __cdecl SND_ResetDriver();
 double SND_GetPitch(SndVoice *voice);
 double SND_GetBaseLevel(const SndVoice *voice);
 float SND_GetDryLevel(const SndVoice *voice, float baseLevel);
@@ -113,7 +113,7 @@ void SND_DuckRateLimit(unsigned int count, const float *rate, const float *negra
 void SND_SetDuckByCategory(SndDuckCategoryType category, unsigned int duckId, const SndDuck *duck, float amount);
 SndDuckActive *SND_DuckStartAlias(const SndDuck *duck);
 void SND_StopDuck(SndDuckActive *duck);
-;
+void SND_DuckUpdate(int a1, char *a2, float dt);
 unsigned int SND_GetCurrentGfutzId();
 char SND_AddLengthNotify(SndLengthType a1, char *a2, int playbackId, void *lengthNotifyData, SndLengthType id);
 void SND_ResetVoiceInfo(int index);
@@ -123,12 +123,12 @@ void SND_ShutdownVoices();
 void SND_UpdateVoiceDuck(SndVoice *voice);
 void SND_UpdateVoice(SndVoice *voice, float dt);
 void SND_DuckReset();
-;
+void __cdecl SND_SetVoiceStartInfo(int index, SndStartAliasInfo *SndStartAliasInfo);
 int SND_FindFreeVoice(const vec3_t *a1, float volume, SndStartAliasInfo *startAliasInfo);
 bool SND_Limit(const char *name, int aliasHash, SndLimitType limitType, int limitCount, SndEntHandle ent, bool useEnt, float priority);
 char SND_LimitVoice(const SndAlias *alias, SndEntHandle ent);
-;
-;
+unsigned int SND_PlaySoundAlias(int a1, const SndAliasList *aliasList, float volumeScale, SndEntHandle sndEnt, const vec3_t *org, int timeshift, int fadeTime, const vec3_t *direction, SndPlayback *playback, SndOcclusionStartCache *ocache, bool notify, const vec3_t *startPaused, bool setScriptValues, float scriptPitch, float scriptPitchRate, float scriptAttenuation, float scriptAttenuationRate);
+void SND_UpdateDebug(unsigned int a1, float a2);
 void SNDL_Update(float a1);
 void SNDL_Shutdown();
 void SND_SetGlobalFutz(unsigned int id, SndCallLocation callLocation);
@@ -161,7 +161,7 @@ SndAssetToLoad *SND_FindNextAssetToLoad();
 void SND_LoadAssetCallback(int id, stream_status result, unsigned int numBytesRead, void *b);
 void SND_LoadAssetUpdate();
 int SND_AllocateEntries(const char *bankName, int entryCount);
-// void SND_GetRuntimeAssetBankFileName(const char *a1@<edi>, bool stream, const char *zone, const char *language, int length, char *path);
+void SND_GetRuntimeAssetBankFileName(const char *a1, bool stream, const char *zone, const char *language, int length, char *path);
 char SND_AssetBankFindStreamed(unsigned int id, SndAssetBankEntry **entry, int *fid);
 char SND_AssetBankFindLoaded(unsigned int id, SndAssetBankEntry **entry, void **data);
 bool SND_FindInIndex(unsigned int key, const SndBank *bank, SndAliasList **result);
@@ -231,7 +231,7 @@ void SND_DspSub(unsigned int count, const float *a, const float *b, float *c);
 void SND_DspSub(unsigned int count, const float *a, float *c);
 void SND_DspBiquadInPlace(const SndDspBiQuadCoef *coef, SndDspBiquadState *state0, unsigned int count, float *i0);
 void SND_DspBiquadNormalize(float *a, float *b, SndDspBiQuadCoef *coef);
-;
+void __cdecl SND_DspBiquadHShelve(float Fs, float db, float Fhz, float q, SndDspBiQuadCoef *coef);
 
 //t6/code/src_noserver/sound/snd_dsp_radverb.cpp
 void SND_RvParamsDefault(SndRvParams *params);
@@ -259,7 +259,7 @@ double SND_GroupGetAttenuation(unsigned int group);
 //#include "sound/snd_load_db.h"
 
 //t6/code/src_noserver/sound/snd_local.cpp
-// int SNDL_Play@<eax>(const char *a1@<edi>, unsigned int aliasHash, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, const vec3_t *notify, SndPlayback *playback, bool startPaused, float setScriptValues, float scriptPitch, float scriptPitchRate, float scriptAttenuation);
+int SNDL_Play(const char *a1, unsigned int aliasHash, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, const vec3_t *notify, SndPlayback *playback, bool startPaused, float setScriptValues, float scriptPitch, float scriptPitchRate, float scriptAttenuation);
 void StopSoundAliasesOnEnt(SndEntHandle sndEnt, unsigned int name);
 void SNDL_StopSoundAliasOnEnt(SndEntHandle sndEnt, unsigned int name);
 void SNDL_StopSoundsOnEnt(SndEntHandle sndEnt);
@@ -283,11 +283,11 @@ void SNDL_PlayLoopAt(unsigned int id, const vec3_t *origin);
 void SNDL_StopLoopAt(unsigned int id, const vec3_t *origin);
 void SNDL_PlayLineAt(unsigned int id, const vec3_t *origin0, const vec3_t *origin1);
 void SNDL_StopLineAt(unsigned int id, const vec3_t *origin0, const vec3_t *origin1);
-;
+void SNDL_UpdateStaticSounds(unsigned int a1, SndListener *listeners);
 int SNDL_GetPlaybackTime(int playbackId);
-// void SNDL_GameReset(float a1@<edi>);
+void SNDL_GameReset(float a1);
 void SNDL_SetContext(unsigned int type, unsigned int value);
-;
+void __cdecl SNDL_RestartDriver();
 void SNDL_SetEntContext(SndEntHandle handle, unsigned int type, unsigned int value);
 void SNDL_UpdateLoopingSounds(SndListener *a1);
 void SNDL_SetMusicState(unsigned int id);
@@ -295,7 +295,7 @@ void SNDL_PrefetchLoadedAlias(unsigned int aliasId);
 void SNDL_SetGlobalFutz(unsigned int id, SndCallLocation callLocation);
 void SNDL_SetFrontendMusic(unsigned int musicAlias);
 void SNDL_SetLoopState(SndEntHandle sndEnt, unsigned int alias, float attenuation, float attenuationRate, float pitch, float pitchRate);
-// void SNDL_PlayLoops(const char *a1@<edi>, int count, const SndEntLoop *loops);
+void SNDL_PlayLoops(const char *a1, int count, const SndEntLoop *loops);
 void SNDL_SetGameState(bool isMature, bool isPaused, float timescale, unsigned int cg_time, unsigned int seed, float voiceScale, float musicScale, float sfxScale, float masterScale, float cinematicScale, int masterPatch, bool hearingImpaired);
 
 //t6/code/src_noserver/sound/snd_log.cpp
@@ -305,9 +305,9 @@ void SND_LogMissingAliasId(unsigned int hash);
 void SND_LosOcclusionUpdate();
 void SND_LosOcclusionSync();
 void SND_LosOcclusionFini();
-;
+double SND_TrimEnd(unsigned int a1, const char *debug, int *cache, const vec3_t *start, vec3_t *toEnd);
 double SND_Trace(unsigned int a1, char *debug, int *trimCache, int *cache, float delta, const vec3_t *listener, const vec3_t *playback, vec3_t *toRight, int *totalTraces);
-;
+double SND_LosOcclusionTrace(unsigned int a1, int *ccache, int *lcache, int *rcache, int *ltcache, int *rtcache, const vec3_t *listener, const vec3_t *playback, int *totalTraces);
 double SND_LosOcclusionTrace(bool fancy, int *cache, const vec3_t *listener, const vec3_t *playback);
 void SND_LosOcclusionDoTraces(int a1, unsigned int traceCount, SndOcclusionTrace *traces, unsigned int traceSequence, int *totalTraces, int *voiceTraces);
 void SND_LosOcclusionMultipleCmd(snd_occlusion_multiple *cmd);
@@ -316,8 +316,8 @@ int snd_occlusionCallback(jqBatch *batch);
 
 //t6/code/src_noserver/sound/snd_public_async.cpp
 void SND_PlayInternal(unsigned int id, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, bool notify, SndPlayback *playback, bool startPaused, bool setScriptValues, float scriptPitch, float scriptPitchRate, float scriptAttenuation, float scriptAttenuationRate);
-;
-;
+void __cdecl SND_Play(unsigned int id, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, SndPlayback *notify);
+void __cdecl SND_Play(const char *alias, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, SndPlayback *notify);
 void SND_StopSoundAliasOnEnt(SndEntHandle ent, unsigned int alias_name);
 void SND_StopSoundsOnEnt(SndEntHandle ent);
 void SND_NotifyCinematicStart(float volume);
@@ -354,7 +354,7 @@ void SND_Whizby(SndEntHandle sndEnt, const vec3_t *shotPosition, const vec3_t *s
 SndEntState **SND_FindEntState(SndEntHandle handle, bool createNew);
 void SNDL_SetEntState(SndEntHandle handle, const vec3_t *origin, const vec3_t *velocity, const vec3_t *orientation);
 void SND_ResetEntState();
-;
+void __cdecl SND_ResetAliases();
 void SND_SubtitleNotify(const char *subtitle, unsigned int lengthMs);
 void SND_LengthNotify(unsigned int ent, unsigned int lengthMs);
 void SND_FreePlaybackNotify(SndPlayback *playback);
@@ -368,7 +368,7 @@ int SND_Frame(float a1);
 void updatesound_workerCallback_Implementation(jqBatch *,void *);
 void SND_PossiblyUpdate(int minUpdateMs);
 void SND_Update();
-void __thiscall SND_UpdateWait(void *this);
+void SND_UpdateWait(void *notthis);
 void SND_GameReset();
 void SND_BeginFrame(bool isMature, bool isPaused, float timescale, unsigned int cgTime, unsigned int seed, float voiceScale, float musicScale, float sfxScale, float masterScale, float cinematicScale, int masterPatch, bool hearingImpaired);
 void SND_SetFrontendMusic(const char *musicAlias);
@@ -376,8 +376,8 @@ void SND_SetLoopState(SndEntHandle ent, unsigned int alias, float attenuation, f
 void SND_PlayLoops(int count, const SndEntLoop *loops);
 void SND_EndFrame();
 void SND_Shutdown();
-;
-;
+int __cdecl SND_PlaybackBundle(unsigned int alias, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, SndPlayback *lengthNotify, bool startPaused, float scriptPitch, float scriptPitchRate, float scriptAttenuation);
+int __cdecl SND_Playback(unsigned int alias, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, SndPlayback *notify, bool startPaused);
 int SND_Playback(const char *alias, int fadeTimeMs, float attenuation, int entHandle, const vec3_t *position, const vec3_t *direction, SndPlayback *notify, bool startPaused);
 void SND_StopSounds(SndStopSoundFlags flags);
 void SND_RemoveBank(SndBank *bank);
@@ -402,10 +402,10 @@ SndNotify *SND_NotifyPeek();
 void SND_NotifyPop();
 void SND_NotifyPump();
 bool SND_ShouldMuteAllSounds();
-;
+int SND_CommandPump(SndCommand *a1);
 
 //t6/code/src_noserver/sound/snd_utils.cpp
-unsigned int __thiscall SND_GetSpeakerConfigCount(gjk_double_sphere_t *this);
+unsigned int SND_GetSpeakerConfigCount(gjk_double_sphere_t *notthis);
 SndSpeakerConfig *Snd_GetSpeakerConfig(unsigned int index);
 int Snd_GetMixChannelCount(unsigned int speakerConfig);
 double Snd_PanMono(float angle);
@@ -422,7 +422,7 @@ double Snd_GetGlobalPriority(const SndAlias *alias, float volume);
 double Snd_CurveEval(const SndCurve *curve, float x);
 unsigned int SND_HashAlias(const SndAliasList *alias);
 void Snd_PanStereo(float angle, float boost, float *left, float *right);
-// void Snd_Pan(const char *a1@<edi>, unsigned int speakerCount, const float *angles, float toSound, float *levels);
+void Snd_Pan(const char *a1, unsigned int speakerCount, const float *angles, float toSound, float *levels);
 void Snd_SpeakerMapSetVolume(SndSpeakerMap *map, int in, int out, float volume);
 void SND_PanToSpeakermap11(const SndPan *pan, SndSpeakerMap *map);
 void SND_PanToSpeakermap12(const SndPan *pan, SndSpeakerMap *map);

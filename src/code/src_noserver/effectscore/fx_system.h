@@ -50,7 +50,7 @@ unsigned int FX_IndexFromElemHandle(unsigned __int16 handle)
 EffectDefGetter::EffectDefGetter
 ==============
 */
-/*void __thiscall EffectDefGetter::EffectDefGetter(EffectDefGetter *this, const FxEffect *effect)
+/*void EffectDefGetter::EffectDefGetter(EffectDefGetter *notthis, const FxEffect *effect)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -102,7 +102,7 @@ FxTrail *FX_TrailFromHandle(const FxSystem *system, unsigned __int16 handle)
 ElemDefGetter::ElemDefGetter
 ==============
 */
-/*void __thiscall ElemDefGetter::ElemDefGetter(ElemDefGetter *this, const FxEffectDef *effectDef, int index)
+/*void ElemDefGetter::ElemDefGetter(ElemDefGetter *notthis, const FxEffectDef *effectDef, int index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

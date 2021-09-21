@@ -17,11 +17,10 @@ int Attachment_GetStringArrayIndex(const char *value, const char **stringArray, 
 BG_ParseAttachmentSpecificFieldType
 ==============
 */
-
+int BG_ParseAttachmentSpecificFieldType(const char **a1, char *a2, unsigned __int8 *pStruct, const char *pValue, const int iFieldType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -62,9 +61,9 @@ WeaponAttachment *BG_LoadDefaultWeaponAttachment()
 BG_AttachmentUpdateField
 ==============
 */
-/*char BG_AttachmentUpdateField@<al>(int (*a1)(unsigned __int8 *, const char *, const int, const int)@<edi>, const char *attachmentName, const char *keyValue)
+char BG_AttachmentUpdateField(int (*a1)(unsigned __int8 *, const char *, const int, const int), const char *attachmentName, const char *keyValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 

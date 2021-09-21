@@ -299,10 +299,8 @@ void G_SensorGrenadeDetonate(gentity_t *grenadeEnt, const WeaponDef *weapDef, ge
 MurderLine
 ==============
 */
-
+void MurderLine(int a1, gentity_t *attacker, const Weapon weapon, vec3_t from, vec3_t to)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

@@ -282,10 +282,10 @@ void Com_GametypeSettings_SetDescription(const char *description)
 Com_GametypeSettings_SetGametype
 ==============
 */
-/*void Com_GametypeSettings_SetGametype(const char *a1@<edx>, const dvar_t *a2@<ecx>, char *a3@<edi>, const char *gametype, bool loadDefaultSettings)
+void Com_GametypeSettings_SetGametype(const char *a1, const dvar_t *a2, char *a3, const char *gametype, bool loadDefaultSettings)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -342,11 +342,9 @@ void Com_GametypeSetting_Download(const ControllerIndex_t controllerIndex, unsig
 Com_GametypeSettings_Download_f
 ==============
 */
-
+void __cdecl Com_GametypeSettings_Download_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

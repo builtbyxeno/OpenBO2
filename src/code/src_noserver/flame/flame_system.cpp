@@ -6,11 +6,11 @@
 FlameAlloc
 ==============
 */
-/*unsigned __int8 *FlameAlloc@<eax>(const char *a1@<edx>, char *a2@<ecx>, unsigned int size, const char *name)
+unsigned __int8 *FlameAlloc(const char *a1, char *a2, unsigned int size, const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -431,11 +431,9 @@ void SV_Flame_Age_All_Objects(int time)
 CG_Flame_Update_Source
 ==============
 */
-
+void CG_Flame_Update_Source(int a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

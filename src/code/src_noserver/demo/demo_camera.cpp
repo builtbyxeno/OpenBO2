@@ -338,11 +338,9 @@ void Demo_DrawDollyCamTrack()
 Demo_UpdateDollyCamera
 ==============
 */
-
+void Demo_UpdateDollyCamera(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -566,11 +564,9 @@ void Demo_UpdateLockOnCameraHighlight(LocalClientNum_t localClientNum)
 Demo_FreeCameraViewTrace
 ==============
 */
-
+void Demo_FreeCameraViewTrace(int a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

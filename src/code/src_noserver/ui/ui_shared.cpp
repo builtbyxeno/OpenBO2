@@ -6,7 +6,7 @@
 MenuNameHash_t::MenuNameHash_t
 ==============
 */
-/*void __thiscall MenuNameHash_t::MenuNameHash_t(MenuNameHash_t *this, const char *s)
+/*void MenuNameHash_t::MenuNameHash_t(MenuNameHash_t *notthis, const char *s)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -258,11 +258,9 @@ int Menus_RemoveFromStack(const LocalClientNum_t localClientNum, UiContext *dc, 
 Menus_AddToStack
 ==============
 */
-
+void Menus_AddToStack(const LocalClientNum_t localClientNum, UiContext *dc, menuDef_t *pMenu)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -593,11 +591,9 @@ BOOL Script_ExecIfFloatsEqual(const char *dvarValue, const char *testValue)
 Script_ExecOnDvarStringValue
 ==============
 */
-
+void __cdecl Script_ExecOnDvarStringValue(LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, const char **args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -605,11 +601,9 @@ Script_ExecOnDvarStringValue
 Script_ExecOnDvarIntValue
 ==============
 */
-
+void __cdecl Script_ExecOnDvarIntValue(LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, const char **args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -617,11 +611,9 @@ Script_ExecOnDvarIntValue
 Script_ExecOnDvarFloatValue
 ==============
 */
-
+void __cdecl Script_ExecOnDvarFloatValue(LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, const char **args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -629,11 +621,9 @@ Script_ExecOnDvarFloatValue
 Script_ExecNowOnDvarStringValue
 ==============
 */
-
+void __cdecl Script_ExecNowOnDvarStringValue(LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, const char **args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -641,11 +631,9 @@ Script_ExecNowOnDvarStringValue
 Script_ExecNowOnDvarIntValue
 ==============
 */
-
+void __cdecl Script_ExecNowOnDvarIntValue(LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, const char **args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -653,11 +641,9 @@ Script_ExecNowOnDvarIntValue
 Script_ExecNowOnDvarFloatValue
 ==============
 */
-
+void __cdecl Script_ExecNowOnDvarFloatValue(LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, const char **args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -665,11 +651,9 @@ Script_ExecNowOnDvarFloatValue
 Script_RespondOnDvarStringValue
 ==============
 */
-
+void Script_RespondOnDvarStringValue(UiContext *a1, LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, const char **args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -677,11 +661,9 @@ Script_RespondOnDvarStringValue
 Script_RespondOnDvarIntValue
 ==============
 */
-
+void Script_RespondOnDvarIntValue(UiContext *a1, LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, const char **args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -689,11 +671,9 @@ Script_RespondOnDvarIntValue
 Script_RespondOnDvarFloatValue
 ==============
 */
-
+void Script_RespondOnDvarFloatValue(UiContext *a1, LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, const char **args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -791,11 +771,9 @@ void Script_GameMode_SetMode(LocalClientNum_t localClientNum, UiContext *dc, ite
 Script_GameMode_ResetModes
 ==============
 */
-
+void __cdecl Script_GameMode_ResetModes()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -803,11 +781,9 @@ Script_GameMode_ResetModes
 Script_SessionMode_ResetModes
 ==============
 */
-
+void __cdecl Script_SessionMode_ResetModes()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -897,11 +873,9 @@ void UI_SetLocalVarString_f()
 UI_FadeItem_f
 ==============
 */
-
+void __cdecl UI_FadeItem_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1154,11 +1128,10 @@ void Item_MouseLeave(LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *
 Item_ShouldHandleKey
 ==============
 */
-
+bool Item_ShouldHandleKey(UiContext *dc, itemDef_s *item, int key)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1298,11 +1271,10 @@ int Item_ProfileMulti_HandleKey(LocalClientNum_t localClientNum, UiContext *dc, 
 Item_DvarEnum_HandleKey
 ==============
 */
-
+int Item_DvarEnum_HandleKey(UiContext *dc, itemDef_s *item, int key)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1477,11 +1449,9 @@ void DrawWrappedTextScissored(LocalClientNum_t localClientNum, const ScreenPlace
 UI_DrawWrappedText
 ==============
 */
-
+void UI_DrawWrappedText(const vec4_t *a1, bool a2, LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, const char *text, const rectDef_s *rect, Font_s *font, float x, float y, float scale, const vec4_t *color, int style, int textAlignMode, rectDef_s *textRect)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1489,11 +1459,9 @@ UI_DrawWrappedText
 UI_DrawWrappedTextScissored
 ==============
 */
-
+void UI_DrawWrappedTextScissored(const vec4_t *a1, bool a2, LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, const char *text, const rectDef_s *rect, Font_s *font, float x, float y, float scale, const vec4_t *color, int style, int textAlignMode, rectDef_s *textRect)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1501,11 +1469,9 @@ UI_DrawWrappedTextScissored
 Item_Text_AutoWrapped_Paint
 ==============
 */
-
+void Item_Text_AutoWrapped_Paint(LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, itemDef_s *item, const char *text, const vec4_t *color, bool subtitle, const vec4_t *subtitleGlowColor, bool cinematic)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1555,11 +1521,10 @@ int Display_KeyBindPending()
 Item_Bind_IsActionKey
 ==============
 */
-
+bool Item_Bind_IsActionKey(UiContext *dc, itemDef_s *item, int key)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1692,11 +1657,10 @@ void UI_SetSystemCursorPos(UiContext *dc, float x, float y)
 Menu_OverActiveItem
 ==============
 */
-
+int Menu_OverActiveItem(UIContextIndex_t contextIndex, menuDef_t *menu, float x, float y)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1859,11 +1823,10 @@ float Item_ListBox_ThumbPosition(const LocalClientNum_t localClientNum, UIContex
 Item_ListBox_ThumbDrawPosition
 ==============
 */
-
+float Item_ListBox_ThumbDrawPosition(const LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1871,11 +1834,10 @@ Item_ListBox_ThumbDrawPosition
 Item_ListBox_OverLB
 ==============
 */
-
+int Item_ListBox_OverLB(const LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, itemDef_s *item, float x, float y)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1985,11 +1947,9 @@ void Item_Bind_Paint(const LocalClientNum_t localClientNum, UiContext *dc, itemD
 Item_ListBox_Paint
 ==============
 */
-
+void __cdecl Item_ListBox_Paint(LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2038,11 +1998,9 @@ itemDef_s *Menu_ClearFocus(LocalClientNum_t localClientNum, UiContext *dc, menuD
 Item_UpdateAnimation
 ==============
 */
-
+void Item_UpdateAnimation(UIContextIndex_t a1, const LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2060,11 +2018,9 @@ void Item_AnimateToState(const LocalClientNum_t localClientNum, UiContext *dc, i
 UI_AnimateItemInternal
 ==============
 */
-
+void UI_AnimateItemInternal(const LocalClientNum_t localClientNum, UiContext *dc, menuDef_t *menu, const char *itemName, const char *newStateName, int milliseconds, bool sysTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2072,11 +2028,9 @@ UI_AnimateItemInternal
 UI_AnimateItem
 ==============
 */
-
+void __cdecl UI_AnimateItem(const LocalClientNum_t localClientNum, UiContext *dc, const char *menuName, const char *itemName, const char *newStateName, int milliseconds)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2084,11 +2038,9 @@ UI_AnimateItem
 UI_AnimateItemSysTime
 ==============
 */
-
+void __cdecl UI_AnimateItemSysTime(const LocalClientNum_t localClientNum, UiContext *dc, const char *menuName, const char *itemName, const char *newStateName, int milliseconds)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2116,11 +2068,9 @@ void Menu_CallOnFocusDueToOpen(const LocalClientNum_t localClientNum, UiContext 
 Menu_GainFocusDueToClose
 ==============
 */
-
+void Menu_GainFocusDueToClose(const LocalClientNum_t localClientNum, UiContext *dc, menuDef_t *menu)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2138,10 +2088,10 @@ void Menu_RunCloseScript(UiContext *dc, menuDef_t *menu)
 Menus_CompleteItemAnimations
 ==============
 */
-/*void Menus_CompleteItemAnimations(char *animDuration@<edi>, const LocalClientNum_t localClientNum, UiContext *dc, menuDef_t *menu)
+void Menus_CompleteItemAnimations(char *animDuration, const LocalClientNum_t localClientNum, UiContext *dc, menuDef_t *menu)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -2198,11 +2148,10 @@ void Menus_CloseFromMenuToTopOfStack(const LocalClientNum_t localClientNum, UiCo
 RemoveMenuFromBlurStack
 ==============
 */
-
+bool RemoveMenuFromBlurStack(const LocalClientNum_t localClientNum, UiContext *dc, const char *menuName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -2210,11 +2159,9 @@ RemoveMenuFromBlurStack
 Script_ActivateBlur
 ==============
 */
-
+void __cdecl Script_ActivateBlur(LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2222,11 +2169,9 @@ Script_ActivateBlur
 Script_DeactivateBlur
 ==============
 */
-
+void __cdecl Script_DeactivateBlur(LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2335,11 +2280,11 @@ void UI_MoveFeeder_f()
 Item_SetFocus
 ==============
 */
-/*int Item_SetFocus@<eax>(char *a1@<edi>, LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, float x, float y)
+int Item_SetFocus(char *a1, LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, float x, float y)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -2356,11 +2301,9 @@ void Item_ListBox_ModalSelection(const LocalClientNum_t localClientNum, UIContex
 Item_ListBox_MouseEnter
 ==============
 */
-
+void Item_ListBox_MouseEnter(const LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, itemDef_s *item, float x, float y)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2378,11 +2321,10 @@ void Item_MouseEnter(LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *
 Item_ListBox_HandleKey
 ==============
 */
-
+int Item_ListBox_HandleKey(LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, int key, int down, int force)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -2390,11 +2332,9 @@ Item_ListBox_HandleKey
 Scroll_ListBox_AutoFunc
 ==============
 */
-
+void __cdecl Scroll_ListBox_AutoFunc(const LocalClientNum_t localClientNum, UiContext *dc, void *p)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2412,11 +2352,9 @@ void Scroll_ListBox_ThumbFunc(const LocalClientNum_t localClientNum, UiContext *
 Item_StartCapture
 ==============
 */
-
+void Item_StartCapture(const LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, int key)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2424,11 +2362,10 @@ Item_StartCapture
 Item_HandleKey
 ==============
 */
-
+int Item_HandleKey(LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item, int key, int down)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -2458,11 +2395,10 @@ itemDef_s *Menu_SetNextCursorItem(LocalClientNum_t localClientNum, UiContext *dc
 Menu_HandleMouseMove
 ==============
 */
-
+int Menu_HandleMouseMove(menuDef_t *a1, LocalClientNum_t localClientNum, UiContext *dc, menuDef_t *menu)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -2501,11 +2437,9 @@ void UI_AddMenuList(const LocalClientNum_t localClientNum, UiContext *dc, MenuLi
 Menus_SetFocusToItem
 ==============
 */
-
+void __cdecl Menus_SetFocusToItem(LocalClientNum_t localClientNum, UiContext *dc, const char *menuName, const char *itemName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2524,11 +2458,9 @@ itemDef_s *Menu_FocusFirstSelectableItem(LocalClientNum_t localClientNum, UiCont
 Script_FocusFirstInMenu
 ==============
 */
-
+void Script_FocusFirstInMenu(UiContext *a1, LocalClientNum_t a2, LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2638,11 +2570,9 @@ Script_ExecKeyPress
 Menus_Open
 ==============
 */
-
+void __cdecl Menus_Open(LocalClientNum_t localClientNum, UiContext *dc, menuDef_t *menu)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

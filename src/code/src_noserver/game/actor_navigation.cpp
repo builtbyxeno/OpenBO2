@@ -153,7 +153,7 @@ int Path_CheckFromAndToNodes(PathFindInput *pathFindInput, PathBlockPlanes *bloc
 CustomSearchInfo_FindPath::CustomSearchInfo_FindPath
 ==============
 */
-/*void __thiscall CustomSearchInfo_FindPath::CustomSearchInfo_FindPath(CustomSearchInfo_FindPath *this, int randomPercent, int useChokePoints)
+/*void CustomSearchInfo_FindPath::CustomSearchInfo_FindPath(CustomSearchInfo_FindPath *notthis, int randomPercent, int useChokePoints)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -513,7 +513,7 @@ ai_stance_e Path_AllowedStancesForPath(path_t *pPath)
 Path_CheckNodeCountForDodge
 ==============
 */
-void Path_CheckNodeCountForDodge(path_t* pPath, int numNeeded, pathpoint_t** pt, int* startIndex)
+void Path_CheckNodeCountForDodge(path_t *pPath, int numNeeded, pathpoint_t **pt, int *startIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -565,7 +565,7 @@ void Path_TrimToBadPlaceLink(path_t *pPath, team_t eTeam, char *a3)
 BotSearchInfo::GetNodeCost
 ==============
 */
-/*double __thiscall BotSearchInfo::GetNodeCost(BotSearchInfo *this, const pathnode_t *pSuccessor, const vec3_t *vGoalPos)
+/*double BotSearchInfo::GetNodeCost(BotSearchInfo *notthis, const pathnode_t *pSuccessor, const vec3_t *vGoalPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -597,7 +597,7 @@ int Path_FindPath(PathFindInput *pathFindInput, char *a2)
 Path_PredictionTrace
 ==============
 */
-BOOL Path_PredictionTrace(const vec3_t* vStartPos, const vec3_t* vEndPos, unsigned int entityIgnore, int mask, int vTraceEndPos, vec3_t* stepheight, float allowStartSolid, int radius, float height, float flying, int usingAvoidance)
+char Path_PredictionTrace(const vec3_t *vStartPos, const vec3_t *vEndPos, unsigned int entityIgnore, int mask, int vTraceEndPos, vec3_t *stepheight, float allowStartSolid, int radius, float height, float flying, int usingAvoidance, int a12)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -608,11 +608,11 @@ BOOL Path_PredictionTrace(const vec3_t* vStartPos, const vec3_t* vEndPos, unsign
 Path_PredictionTraceCheckForEntities
 ==============
 */
-/*int Path_PredictionTraceCheckForEntities@<eax>(const vec3_t *vStartPos@<ecx>, const vec3_t *vEndPos@<edx>, int a3@<edi>, const int *entities, const int entityCount, int entityIgnore, int mask, vec3_t *vTraceEndPos)
+int Path_PredictionTraceCheckForEntities(const vec3_t *vStartPos, const vec3_t *vEndPos, int a3, const int *entities, const int entityCount, int entityIgnore, int mask, vec3_t *vTraceEndPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============

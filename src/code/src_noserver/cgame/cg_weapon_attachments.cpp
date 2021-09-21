@@ -38,11 +38,10 @@ void CG_InitRangeFinderParameters(LocalClientNum_t localClientNum)
 CG_DrawFhj18HUD
 ==============
 */
-
+unsigned int CG_DrawFhj18HUD(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -115,10 +114,8 @@ void CG_DrawWeaponDynamicTextures(LocalClientNum_t localClientNum)
 CG_RangeFinderUpdate
 ==============
 */
-
+void CG_RangeFinderUpdate(unsigned int a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

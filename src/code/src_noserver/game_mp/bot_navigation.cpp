@@ -173,11 +173,9 @@ void Bot_UpdateLookahead(bot_t *bot)
 Bot_MantleGlassTrace
 ==============
 */
-
+void Bot_MantleGlassTrace(const bot_t *bot, const playerState_s *ps)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -206,11 +204,10 @@ bool Bot_AtNegotiationBegin(const bot_t *bot)
 Bot_AvoidTracePassed
 ==============
 */
-
+bool Bot_AvoidTracePassed(const bot_t *bot, const vec3_t *avoidPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

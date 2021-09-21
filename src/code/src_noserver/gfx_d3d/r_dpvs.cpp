@@ -509,11 +509,9 @@ void R_CacheCell(int cellIndex, int planeIndex, int planeCount, int frustumPlane
 R_AddCellSurfaces
 ==============
 */
-
+void R_AddCellSurfaces(int cellIndex, const DpvsPlane *planes, int planeCount, int frustumPlaneCount, DpvsDynamicCellCmd *dpvsDynamicBatch)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -531,11 +529,9 @@ void R_AssertValidQueue()
 R_EnqueuePortal
 ==============
 */
-
+void R_EnqueuePortal(const vec3_t *a1, const DpvsPlane *a2, float dist, GfxPortal *portal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -564,11 +560,10 @@ void R_AddVertToPortalHullPoints(GfxPortal *portal, const vec3_t *v)
 R_ChopPortal
 ==============
 */
-
+int R_ChopPortal(const GfxPortal *portal, const DpvsPlane *parentPlane, const DpvsPlane *planes, int planeCount, vec3_t (*v)[128], const vec3_t **finalVerts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -598,11 +593,10 @@ bool R_ChopPortalAndAddHullPointsNoFrustum(GfxPortal *portal, const DpvsPlane *p
 R_GetFurtherCellList_r
 ==============
 */
-
+int __cdecl R_GetFurtherCellList_r(const GfxCell *cell, const DpvsPlane *parentPlane, const DpvsPlane *planes, int planeCount, vec3_t (*v)[128], const GfxCell **list, int count)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -661,11 +655,9 @@ void R_VisitPortals(const GfxCell *cell, const DpvsPlane *parentPlane, DpvsPlane
 R_VisitPortalsForCellNoFrustum
 ==============
 */
-
+void R_VisitPortalsForCellNoFrustum(const GfxCell *cell, GfxPortal *parentPortal, const DpvsPlane *parentPlane, const DpvsPlane *planes, int planeCount, unsigned int recursionDepth)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -673,11 +665,9 @@ R_VisitPortalsForCellNoFrustum
 R_VisitPortalsNoFrustum
 ==============
 */
-
+void R_VisitPortalsNoFrustum(const GfxCell *cell)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

@@ -16,7 +16,7 @@ void BG_Dog_SetNewAnimationState(LocalClientNum_t localClientNum, animInfo_t *an
 BG_Dog_UpdateAnimationState
 ==============
 */
-void BG_Dog_UpdateAnimationState(LocalClientNum_t localClientNum, const entityState_s* es, actorInfo_t* actorInfo)
+void __cdecl BG_Dog_UpdateAnimationState(LocalClientNum_t localClientNum, const entityState_s *es, actorInfo_t *actorInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

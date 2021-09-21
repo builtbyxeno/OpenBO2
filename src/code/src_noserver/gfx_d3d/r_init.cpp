@@ -27,11 +27,10 @@ const char *R_ErrorDescription(int hr)
 R_IsNullRenderer
 ==============
 */
-
+bool __cdecl R_IsNullRenderer(LocalClientNum_t a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -90,7 +89,7 @@ void SetGfxConfig(const GfxConfiguration *config)
 R_MakeDedicated
 ==============
 */
-void __thiscall R_MakeDedicated(const GfxConfiguration *this)
+void R_MakeDedicated(const GfxConfiguration *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -200,7 +199,7 @@ void R_TrackStatistics(trStatistics_t *stats)
 R_ConfigureRenderer
 ==============
 */
-void __thiscall R_ConfigureRenderer(const GfxConfiguration *this)
+void R_ConfigureRenderer(const GfxConfiguration *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

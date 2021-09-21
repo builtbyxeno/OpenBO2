@@ -118,11 +118,9 @@ void CG_CopyFlagsFromSnapshotEntity(LocalClientNum_t localClientNum)
 CG_InterpolatePlayerState
 ==============
 */
-
+void CG_InterpolatePlayerState(char *a1, LocalClientNum_t localClientNum, int grabAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

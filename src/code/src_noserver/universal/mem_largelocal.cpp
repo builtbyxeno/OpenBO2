@@ -26,7 +26,7 @@ void LargeLocalEndRight(int startPos)
 LargeLocal::~LargeLocal
 ==============
 */
-/*void __thiscall LargeLocal::~LargeLocal(LargeLocal *this)
+/*void LargeLocal::~LargeLocal(LargeLocal *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -79,7 +79,7 @@ unsigned __int8 *LargeLocalGetBuf(int startPos, int size)
 LargeLocal::LargeLocal
 ==============
 */
-/*void __thiscall LargeLocal::LargeLocal(LargeLocal *this, int sizeParam)
+/*void LargeLocal::LargeLocal(LargeLocal *notthis, int sizeParam)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -89,7 +89,7 @@ LargeLocal::LargeLocal
 LargeLocal::GetBuf
 ==============
 */
-/*unsigned __int8 *__thiscall LargeLocal::GetBuf(LargeLocal *this)
+/*unsigned __int8 *LargeLocal::GetBuf(LargeLocal *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

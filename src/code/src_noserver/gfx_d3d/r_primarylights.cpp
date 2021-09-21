@@ -142,11 +142,9 @@ void R_LinkDynEntToPrimaryLights(unsigned int dynEntId, DynEntityDrawType drawTy
 R_UnlinkEntityFromPrimaryLights
 ==============
 */
-
+void R_UnlinkEntityFromPrimaryLights(GfxWorld *world, LocalClientNum_t a2, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -164,11 +162,10 @@ void R_UnlinkDynEntFromPrimaryLights(GfxWorld *world, unsigned int a2, unsigned 
 R_IsEntityVisibleToPrimaryLight
 ==============
 */
-
+BOOL R_IsEntityVisibleToPrimaryLight(unsigned int a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

@@ -152,10 +152,9 @@ void Jump_AddSurfaceEvent(playerState_s *ps, pml_t *pml)
 Jump_Check
 ==============
 */
-
+char __cdecl Jump_Check(pmove_t *pm, pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 

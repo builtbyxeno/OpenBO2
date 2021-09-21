@@ -181,11 +181,9 @@ void R_DrawXModelSkinnedUncached(GfxCmdBufContext context, XSurface *xsurf, GfxP
 R_DrawXModelSkinnedModelSurf
 ==============
 */
-
+void __cdecl R_DrawXModelSkinnedModelSurf(GfxCmdBufContext context, const GfxModelSkinnedSurface *modelSurf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -193,11 +191,10 @@ R_DrawXModelSkinnedModelSurf
 R_TessXModelSkinnedDrawSurfList
 ==============
 */
-
+unsigned int __cdecl R_TessXModelSkinnedDrawSurfList(const GfxDrawSurfListArgs *listArgs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

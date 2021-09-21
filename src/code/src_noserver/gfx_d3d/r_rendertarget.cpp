@@ -36,11 +36,9 @@ void R_AssignImageToRenderTargetColor(GfxRenderTarget *renderTarget, GfxImage *i
 R_InitRenderTargetImage
 ==============
 */
-
+void R_InitRenderTargetImage(int imageProgType, unsigned __int16 width, unsigned __int16 height, DXGI_FORMAT format, RenderTargetUsage usage, GfxRenderTarget *renderTarget, unsigned int allocFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -58,11 +56,9 @@ void R_InitSizedRenderTargetImage(int imageProgType, int fullscreenWidth, int fu
 R_InitShadowmapRenderTarget
 ==============
 */
-
+void R_InitShadowmapRenderTarget(int imageProgType, unsigned __int16 tileRes, unsigned __int16 tileRowCount, GfxRenderTarget *renderTarget, ShadowmapRTTiling tilingMethond)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -81,11 +77,9 @@ const char *R_RenderTargetName(unsigned __int8 renderTargetId)
 R_InitExtraCamRenderTargets
 ==============
 */
-
+void __cdecl R_InitExtraCamRenderTargets(unsigned int width, unsigned int height, unsigned int multiExtraCamWidth, unsigned int multiExtraCamHeight, int location)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -103,11 +97,9 @@ void R_ShutdownExtraCamRenderTargets()
 R_InitUI3DRenderTarget
 ==============
 */
-
+void __cdecl R_InitUI3DRenderTarget(int width, int height, int location, bool allocatePingPongBuffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -125,11 +117,9 @@ void R_ShutdownUI3DRenderTarget(bool freePingPongBuffer)
 R_ResizeSunShadowmapRenderTarget_PC
 ==============
 */
-
+void __cdecl R_ResizeSunShadowmapRenderTarget_PC()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -137,10 +127,8 @@ R_ResizeSunShadowmapRenderTarget_PC
 R_ResizeSpotShadowmapRenderTarget_PC
 ==============
 */
-
+void __cdecl R_ResizeSpotShadowmapRenderTarget_PC()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

@@ -37,11 +37,10 @@ persistentStats *LiveStorage_GetPersStatsBuffer(const ControllerIndex_t controll
 LiveStorage_GetStatsBufferForDownload
 ==============
 */
-
+persistentStats *LiveStorage_GetStatsBufferForDownload(statsLocation a1, const ControllerIndex_t controllerIndex, statsLocation playerStatsLocation, bool verifyLocation)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -71,11 +70,10 @@ classSets_t *LiveStorage_GetClassSetsBuffer(const ControllerIndex_t controllerIn
 LiveStorage_GetStatsChecksumValid
 ==============
 */
-
+bool LiveStorage_GetStatsChecksumValid(statsLocation a1, const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -83,11 +81,9 @@ LiveStorage_GetStatsChecksumValid
 LiveStorage_SetStatsChecksumValid
 ==============
 */
-
+void LiveStorage_SetStatsChecksumValid(statsLocation a1, const ControllerIndex_t controllerIndex, statsLocation playerStatsLocation, bool isValid)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -95,11 +91,10 @@ LiveStorage_SetStatsChecksumValid
 LiveStorage_AreStatsDDLValidated
 ==============
 */
-
+bool LiveStorage_AreStatsDDLValidated(statsLocation a1, const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -107,11 +102,9 @@ LiveStorage_AreStatsDDLValidated
 LiveStorage_SetStatsDDLValidated
 ==============
 */
-
+void LiveStorage_SetStatsDDLValidated(statsLocation a1, const ControllerIndex_t controllerIndex, statsLocation playerStatsLocation, bool statsValidatedWithDDL)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -129,11 +122,10 @@ void LiveStorage_StatsBackupFetchCompleted(const ControllerIndex_t controllerInd
 LiveStorage_DoWeHaveStats
 ==============
 */
-
+bool LiveStorage_DoWeHaveStats(statsLocation a1, const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -163,11 +155,9 @@ bool LiveStorage_DoWeHaveAllStats(const ControllerIndex_t controllerIndex)
 LiveStorage_SetStatsFetched
 ==============
 */
-
+void LiveStorage_SetStatsFetched(statsLocation a1, const ControllerIndex_t localControllerIndex, statsLocation playerStatsLocation, bool isFetched)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -564,11 +554,10 @@ int LiveStorage_OtherPlayerStatsFileNotFound(const ControllerIndex_t controllerI
 LiveStorage_ReadCommonStats
 ==============
 */
-
+TaskRecord *LiveStorage_ReadCommonStats(const ControllerIndex_t controllerIndex, bool silent, statsLocation location, const TaskDefinition *taskDef, dwFileOperationInfo *fileInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -597,11 +586,9 @@ void LiveStorage_CheckParityBits(unsigned __int8 *buffer, int bufferSize, int *p
 LiveStorage_AppendParityToStats
 ==============
 */
-
+void LiveStorage_AppendParityToStats(unsigned __int8 *tempStatsBuffer, int bufferSize, dwFileOperationInfo *fileInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -620,11 +607,9 @@ TaskRecord *LiveStorage_WriteBackupStatsInternal(const ControllerIndex_t control
 LiveStorage_BackupCorruptedStatsDecompressError
 ==============
 */
-
+void __cdecl LiveStorage_BackupCorruptedStatsDecompressError(const ControllerIndex_t controllerIndex, unsigned __int8 *buffer, int bufferSize, char *fileName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -793,7 +778,7 @@ ControllerIndex_t LiveStorage_FileShare_GetUploadingFileTotalSize(const Controll
 fileShareDownloadInterceptor::handleDownload
 ==============
 */
-/*unsigned int __thiscall fileShareDownloadInterceptor::handleDownload(fileShareDownloadInterceptor *this, void *data, unsigned int dataSize)
+/*unsigned int fileShareDownloadInterceptor::handleDownload(fileShareDownloadInterceptor *notthis, void *data, unsigned int dataSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -859,7 +844,7 @@ unsigned int LiveStorage_FileShare_WriteFileData(void *data, unsigned int dataSi
 fileShareUploadInterceptor::handleUpload
 ==============
 */
-/*unsigned int __thiscall fileShareUploadInterceptor::handleUpload(fileShareUploadInterceptor *this, void *data, unsigned int dataSize, unsigned int bytesUploaded)
+/*unsigned int fileShareUploadInterceptor::handleUpload(fileShareUploadInterceptor *notthis, void *data, unsigned int dataSize, unsigned int bytesUploaded)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -969,11 +954,11 @@ BOOL LiveStorage_FileShare_ReadSummaryInProgress()
 LiveStorage_FileShare_ReadSummary
 ==============
 */
-/*TaskRecord *LiveStorage_FileShare_ReadSummary@<eax>(const char *a1@<esi>, const ControllerIndex_t controllerIndex, unsigned __int64 fileID, int summarySize, fileShareLocation location, void (*successCallback)(const ControllerIndex_t, unsigned __int64), void (*failureCallback)(const ControllerIndex_t))
+TaskRecord *LiveStorage_FileShare_ReadSummary(const char *a1, const ControllerIndex_t controllerIndex, unsigned __int64 fileID, int summarySize, fileShareLocation location, void (*successCallback)(const ControllerIndex_t, unsigned __int64), void (*failureCallback)(const ControllerIndex_t))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -1002,11 +987,11 @@ char LiveStorage_FileShare_ReadSummarySuccess(TaskRecord *task)
 LiveStorage_FileShare_ReadMetaDataByID
 ==============
 */
-/*TaskRecord *LiveStorage_FileShare_ReadMetaDataByID@<eax>(const char *a1@<esi>, const ControllerIndex_t controllerIndex, bdFileID *fileIDs, int numFiles, bdFileMetaData *outDescriptors, fileShareLocation location, void (*successCallback)(const ControllerIndex_t), void (*failureCallback)(const ControllerIndex_t))
+TaskRecord *LiveStorage_FileShare_ReadMetaDataByID(const char *a1, const ControllerIndex_t controllerIndex, bdFileID *fileIDs, int numFiles, bdFileMetaData *outDescriptors, fileShareLocation location, void (*successCallback)(const ControllerIndex_t), void (*failureCallback)(const ControllerIndex_t))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -1133,11 +1118,9 @@ void LiveStorage_AssertDWConnectionCmd()
 LiveStorage_GeneratePopulationDataCmd
 ==============
 */
-
+void __cdecl LiveStorage_GeneratePopulationDataCmd()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1155,11 +1138,9 @@ void LiveStorage_FakeComErrorCmd()
 LiveStorage_CopyStatsBuffer
 ==============
 */
-
+void LiveStorage_CopyStatsBuffer(statsLocation a1, const ControllerIndex_t controllerIndex, const ControllerIndex_t fromControllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1178,11 +1159,10 @@ char LiveStorage_VerifyStatsPresent(statsLocation a1, const ControllerIndex_t co
 LiveStorage_GetStatsBufferWithCaller
 ==============
 */
-
+persistentStats *__cdecl LiveStorage_GetStatsBufferWithCaller(const ControllerIndex_t controllerIndex, const char *file, const char *func, int line, statsLocation playerStatsLocation, bool verifyLocation)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -1190,11 +1170,10 @@ LiveStorage_GetStatsBufferWithCaller
 LiveStorage_GetStatsWriteNeeded
 ==============
 */
-
+bool LiveStorage_GetStatsWriteNeeded(statsLocation a1, const ControllerIndex_t controllerIndex, statsLocation location)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1202,11 +1181,9 @@ LiveStorage_GetStatsWriteNeeded
 LiveStorage_SetStatsWriteNeeded
 ==============
 */
-
+void LiveStorage_SetStatsWriteNeeded(statsLocation a1, const ControllerIndex_t controllerIndex, bool isWriteNeeded, statsLocation location)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1277,7 +1254,7 @@ void LiveStorage_ResetClassSets(const ControllerIndex_t controllerIndex)
 LiveStorage_ClassSetsFileNotFound
 ==============
 */
-int __thiscall LiveStorage_ClassSetsFileNotFound(void *this)
+int LiveStorage_ClassSetsFileNotFound(void *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1351,11 +1328,10 @@ TaskRecord *LiveStorage_ReadOtherPlayerStats(const ControllerIndex_t controllerI
 LiveStorage_WriteStats
 ==============
 */
-
+TaskRecord *LiveStorage_WriteStats(const ControllerIndex_t controllerIndex, bool backup, statsLocation location, const TaskDefinition *taskDef, dwFileOperationInfo *fileInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -1374,11 +1350,10 @@ bool LiveStorage_WritePlayerStatsFailure(TaskRecord *task)
 LiveStorage_WritePlayerStats
 ==============
 */
-
+TaskRecord *__cdecl LiveStorage_WritePlayerStats(const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -1596,11 +1571,10 @@ TaskRecord *LiveStorage_ReadStatsBackup(const ControllerIndex_t controllerIndex)
 LiveStorage_ReadPlayerStats
 ==============
 */
-
+TaskRecord *LiveStorage_ReadPlayerStats(dwFileOperationInfo *a1, const ControllerIndex_t controllerIndex, bool validate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -1608,28 +1582,28 @@ LiveStorage_ReadPlayerStats
 LiveStorage_ReadStats
 ==============
 */
-/*void LiveStorage_ReadStats(ControllerIndex_t a1@<edx>, const ControllerIndex_t controllerIndex, dwFileOperationInfo *validate)
+void LiveStorage_ReadStats(ControllerIndex_t a1, const ControllerIndex_t controllerIndex, dwFileOperationInfo *validate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 LiveStorage_FileShare_LoadPage
 ==============
 */
-/*TaskRecord *LiveStorage_FileShare_LoadPage@<eax>(const char *a1@<edi>, const ControllerIndex_t controllerIndex, int numFiles, bdFileID *fileIDs, fileShareLocation location, bdFileMetaData *outDescriptors, int *outDescriptorCount, bool shouldSort, void (*successCallback)(const ControllerIndex_t), void (*failureCallback)(const ControllerIndex_t))
+TaskRecord *LiveStorage_FileShare_LoadPage(const char *a1, const ControllerIndex_t controllerIndex, int numFiles, bdFileID *fileIDs, fileShareLocation location, bdFileMetaData *outDescriptors, int *outDescriptorCount, bool shouldSort, void (*successCallback)(const ControllerIndex_t), void (*failureCallback)(const ControllerIndex_t))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 LiveStorage_FileShare_ReadFile
 ==============
 */
-/*TaskRecord *LiveStorage_FileShare_ReadFile@<eax>(const char *a1@<ebx>, const char *a2@<esi>, const ControllerIndex_t controllerIndex, fileShareReadFileInfo *fileInfo)
+/*TaskRecord *LiveStorage_FileShare_ReadFile(const char *a1@<ebx>, const char *a2, const ControllerIndex_t controllerIndex, fileShareReadFileInfo *fileInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -1640,11 +1614,11 @@ LiveStorage_FileShare_ReadFile
 LiveStorage_FileShare_WriteFile
 ==============
 */
-/*TaskRecord *LiveStorage_FileShare_WriteFile@<eax>(const char *a1@<edi>, const char *a2@<esi>, const ControllerIndex_t controllerIndex, fileShareWriteFileInfo *writeFileInfo)
+TaskRecord *LiveStorage_FileShare_WriteFile(const char *a1, const char *a2, const ControllerIndex_t controllerIndex, fileShareWriteFileInfo *writeFileInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============

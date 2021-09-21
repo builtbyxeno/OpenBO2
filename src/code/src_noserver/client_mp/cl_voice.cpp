@@ -39,11 +39,10 @@ int Session_GetConnectivityBitsForAddr(SessionData *session, const netadr_t from
 Session_GetConnectivityBitsForClientAddress
 ==============
 */
-
+int __cdecl Session_GetConnectivityBitsForClientAddress(SessionData *session, const ClientNum_t clientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -72,11 +71,9 @@ void CL_UpdateConnectivityBits(LocalClientNum_t localClientNum, SessionData *ses
 CL_WeNowCantHearSomeone
 ==============
 */
-
+void CL_WeNowCantHearSomeone(char *a1, LocalClientNum_t localClientNum, SessionData *session, ClientNum_t remoteClient)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -138,11 +135,9 @@ void CL_BuildRouteList(SessionData *session, LocalClientNum_t localClientNum, Cl
 CL_VoiceConnectionTestPacket
 ==============
 */
-
+void __cdecl CL_VoiceConnectionTestPacket(LocalClientNum_t localClientNum, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

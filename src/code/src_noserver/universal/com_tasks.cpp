@@ -222,11 +222,9 @@ void TaskManager2_HandleTimedOutTask(TaskRecord *TimedOutTask)
 TaskManager2_ProcessLocalTask
 ==============
 */
-
+void __cdecl TaskManager2_ProcessLocalTask(TaskRecord *task)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -254,11 +252,9 @@ void TaskManager2_ProcessDemonwareTask(TaskRecord *task)
 TaskManager2_ProcessNestedTask
 ==============
 */
-
+void __cdecl TaskManager2_ProcessNestedTask(TaskRecord *task)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

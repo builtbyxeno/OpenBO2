@@ -188,11 +188,10 @@ char LiveLeaderboard_GetStatsByXuidsFailure(TaskRecord *task)
 LiveLeaderboard_GetByRank
 ==============
 */
-
+char __cdecl LiveLeaderboard_GetByRank(Leaderboard *lb, const ControllerIndex_t localControllerIndex, const unsigned int rankIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -300,12 +299,11 @@ LiveLeaderboard_MakeRow
 LiveLeaderboard_RankUpdate
 ==============
 */
-
+/*bool LiveLeaderboard_RankUpdate(const ControllerIndex_t localControllerIndex, const unsigned __int64 userID, const LeaderboardDef *lbDef, LeaderboardRow<10> *lbRow, const int aggType, const int trackType, int *uploadRows)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
-}
+	return 0;
+}*/
 
 /*
 ==============

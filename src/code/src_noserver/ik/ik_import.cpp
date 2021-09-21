@@ -176,11 +176,9 @@ char IKImport_CheckIKPartBits(IKState *ikState)
 IKImport_ApplyIKToSkeletonLocalBones
 ==============
 */
-
+void IKImport_ApplyIKToSkeletonLocalBones(unsigned int a1, IKState *ikState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -252,10 +250,10 @@ bool IKImport_ApplyRightHandIK(IKState *ikState)
 IKImport_DrawAxisOrigin
 ==============
 */
-/*void IKImport_DrawAxisOrigin(const vec3_t *a1@<edx>, vec4_t *mat44, float colorScale)
+void IKImport_DrawAxisOrigin(const vec3_t *a1, vec4_t *mat44, float colorScale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -293,11 +291,10 @@ int IKImport_GetFrameNum()
 IKImport_IsMainThread
 ==============
 */
-
+BOOL __cdecl IKImport_IsMainThread()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -621,11 +618,9 @@ bool IKImport_ApplyTerrainMapping(IKState *ikState)
 IKImport_GetEntityXform
 ==============
 */
-
+void IKImport_GetEntityXform(int a1, IKState *ikState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -643,11 +638,10 @@ void IKImport_UpdateCollisionCache(IKState *ikState)
 IKImport_TraceBox
 ==============
 */
-
+char IKImport_TraceBox(int a1, IKState *ikState, vec3_t *startPos, vec3_t *endPos, float boxRadius, vec3_t *tracePos, vec3_t *outNormal, int hintIndexListItem, float *outTraceFraction, bool bIgnoreStartSolid)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

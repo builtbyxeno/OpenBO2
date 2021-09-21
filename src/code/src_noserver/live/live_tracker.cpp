@@ -39,11 +39,10 @@ int LiveTracker_GetColumnByName(const char *name)
 LiveTracker_WriteByID
 ==============
 */
-
+int __cdecl LiveTracker_WriteByID(trackerColumn_e col, unsigned __int64 ent, int val)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

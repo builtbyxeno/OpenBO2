@@ -86,11 +86,9 @@ void CG_Vehicle_PostDObjCalcSkel(const cpose_t *pose, const DObj *obj, int *part
 CG_Vehicle_DoControllersGround
 ==============
 */
-
+void CG_Vehicle_DoControllersGround(const cpose_t *pose, const DObj *obj)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

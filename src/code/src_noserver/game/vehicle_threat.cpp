@@ -238,11 +238,10 @@ bool Vehicle_SightTrace(vehicle_t *self, const vec3_t *start, const vec3_t *end,
 Vehicle_CanSeePointExInternal
 ==============
 */
-
+bool Vehicle_CanSeePointExInternal(vehicle_t *self, const vec3_t *vPoint, float fovDot, float fMaxDistSqrd, int ignoreEntityNum, vec3_t *vViewPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -282,11 +281,11 @@ char Vehicle_CanSeeEntityEx(char *a1, vehicle_t *self, const gentity_t *ent, flo
 Vehicle_CanSeeEntity
 ==============
 */
-/*char Vehicle_CanSeeEntity@<al>(vehicle_t *a1@<edx>, char *a2@<ecx>, vehicle_t *self, const gentity_t *ent)
+char Vehicle_CanSeeEntity(vehicle_t *a1, char *a2, vehicle_t *self, const gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============

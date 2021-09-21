@@ -66,11 +66,9 @@ void HELI_SoftenCollisions(gentity_t *ent, vec3_t *worldAccel)
 VEH_CheckForCrash
 ==============
 */
-
+void VEH_CheckForCrash(int a1, gentity_t *ent, vec3_t *newPosition)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -110,11 +108,9 @@ void Vehicle_AddRotate(vehicle_physic_t *phys, float fRoll, float fPitch, float 
 VEH_CheckForPredictedCrash
 ==============
 */
-
+void VEH_CheckForPredictedCrash(unsigned int a1, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -132,8 +128,8 @@ void VEH_UpdateClientChopper(char *a1, gentity_t *ent)
 VEH_UpdateClientPlane
 ==============
 */
-/*void VEH_UpdateClientPlane(char *a1@<edi>, gentity_t *ent)
+void VEH_UpdateClientPlane(char *a1, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 

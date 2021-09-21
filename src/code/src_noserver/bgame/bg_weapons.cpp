@@ -1022,7 +1022,7 @@ void UpdateRiotShieldSwitchingFlag(playerState_s *ps)
 PM_ResetWeaponState
 ==============
 */
-void __thiscall PM_ResetWeaponState(playerState_s *this)
+void PM_ResetWeaponState(playerState_s *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1205,11 +1205,10 @@ Weapon BG_GetViewmodelWeaponIndex(const playerState_s *ps)
 BG_TakePlayerWeapon
 ==============
 */
-
+int __cdecl BG_TakePlayerWeapon(playerState_s *ps, const Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1496,11 +1495,10 @@ bool PM_Weapon_IsHoldingGrenade(pmove_t *pm)
 PM_AllowTacticalInsertion
 ==============
 */
-
+bool PM_AllowTacticalInsertion(pmove_t *pm, const playerState_s *ps)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1508,11 +1506,10 @@ PM_AllowTacticalInsertion
 PM_WeaponAllowPlant
 ==============
 */
-
+bool PM_WeaponAllowPlant(pmove_t *pm)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1733,11 +1730,9 @@ void BG_IncrementWeaponMovementIdleTime(const playerState_s *ps, float frametime
 PM_UpdateSwayPrediction
 ==============
 */
-
+void PM_UpdateSwayPrediction(playerState_s *ps, float frametime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1869,10 +1864,8 @@ int BG_CheckForUniversalActionDW(playerState_s *ps)
 PM_Weapon
 ==============
 */
-
+void __cdecl PM_Weapon(pmove_t *pm, pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

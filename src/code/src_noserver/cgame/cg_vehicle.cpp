@@ -329,11 +329,9 @@ void CG_TriggerLoopingVehFire(LocalClientNum_t localClientNum, centity_t *cent, 
 CG_UpdateLoopingVehicleFireSounds
 ==============
 */
-
+void __cdecl CG_UpdateLoopingVehicleFireSounds(LocalClientNum_t localClientNum, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -391,11 +389,9 @@ void CG_Vehicle_PreControllersAir(LocalClientNum_t localClientNum, const DObj *o
 CG_Vehicle_PreControllersGround
 ==============
 */
-
+void CG_Vehicle_PreControllersGround(float localClientNum, LocalClientNum_t a2, const DObj *obj, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -403,10 +399,8 @@ CG_Vehicle_PreControllersGround
 CG_Vehicle_PreControllers
 ==============
 */
-
+void __cdecl CG_Vehicle_PreControllers(LocalClientNum_t localClientNum, const DObj *obj, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

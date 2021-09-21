@@ -227,12 +227,11 @@ LiveAntiCheat_AnswerExpressionRequest
 LiveAntiCheat_GetChallengeResponse
 ==============
 */
-
+/*bool __cdecl LiveAntiCheat_GetChallengeResponse(const ControllerIndex_t controllerIndex, unsigned __int16 functionID, const bdArray<bdAntiCheatChallengeParam> *params, __int64 *response)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
-}
+	return 0;
+}*/
 
 /*
 ==============

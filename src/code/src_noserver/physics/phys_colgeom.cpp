@@ -16,11 +16,10 @@ void setup_gjk_polygon_cylinder(int a1, const vec3_t *mins, const vec3_t *maxs, 
 collision_get_area_persistent_code_collision
 ==============
 */
-
+unsigned int collision_get_area_persistent_code_collision(int a1, const broad_phase_environment_query_input *bpeqi, gjk_base_t **colgeoms, unsigned int max)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -126,11 +125,10 @@ void create_brush_gjk_geom()
 create_capsule_gjk_geom
 ==============
 */
-
+gjk_double_sphere_t *create_capsule_gjk_geom(int a1, const vec3_t *center, float radius, float halfHeight, int direction, int stype, gjk_collision_visitor *allocator)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -159,7 +157,7 @@ void create_brush_model_gjk_geom_r(cLeafBrushNode_s *node, int *index_base, gjk_
 query_brush_model_gjk_geom_visitor::visit
 ==============
 */
-/*void __thiscall query_brush_model_gjk_geom_visitor::visit(query_brush_model_gjk_geom_visitor *this, const cbrush_t *brush)
+/*void query_brush_model_gjk_geom_visitor::visit(query_brush_model_gjk_geom_visitor *notthis, const cbrush_t *brush)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -169,11 +167,9 @@ query_brush_model_gjk_geom_visitor::visit
 create_xmodel_gjk_geom
 ==============
 */
-
+void create_xmodel_gjk_geom(unsigned int a1, const XModel *model, gjk_collision_visitor *allocator, int bone_index, unsigned int brush_mask, bool b_fallback_to_bounding_box, int contents_for_proxy_collision, phys_mat44 *worldMat)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -271,11 +267,9 @@ gjk_polygon_cylinder_t::destroy
 query_brush_model_gjk_geom
 ==============
 */
-
+void query_brush_model_gjk_geom(int a1, int a2, int brushModel, unsigned __int16 contents_mask, const int allocator, gjk_collision_visitor *a6)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -323,10 +317,10 @@ void create_gjk_geom(int a1, const Glass *glass, gjk_collision_visitor *allocato
 create_gjk_geom
 ==============
 */
-/*void create_gjk_geom(const XModel *a1@<edx>, int a2@<ecx>, const DynEntityDef *dynEntDef, gjk_collision_visitor *allocator, unsigned int brush_mask)
+void create_gjk_geom(const XModel *a1, int a2, const DynEntityDef *dynEntDef, gjk_collision_visitor *allocator, unsigned int brush_mask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

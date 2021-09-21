@@ -560,7 +560,7 @@ void CG_Draw2DInternal(LocalClientNum_t localClientNum)
 CG_Draw2D
 ==============
 */
-void __thiscall CG_Draw2D(LocalClientNum_t this)
+void CG_Draw2D(LocalClientNum_t this)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

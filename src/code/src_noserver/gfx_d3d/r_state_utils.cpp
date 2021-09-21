@@ -67,11 +67,9 @@ GfxCmdBufSourceState *R_GetActiveWorldMatrix(GfxCmdBufSourceState *source)
 R_CmdBufSet2D
 ==============
 */
-
+void R_CmdBufSet2D(GfxViewport *viewport)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

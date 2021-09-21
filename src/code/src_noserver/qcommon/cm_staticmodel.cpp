@@ -49,10 +49,9 @@ void CM_TraceStaticModel(cStaticModel_s *sm, trace_t *results, const vec3_t *sta
 CM_TraceStaticModelComplete
 ==============
 */
-
+BOOL CM_TraceStaticModelComplete(unsigned int a1, cStaticModel_s *sm, const vec3_t *start, const vec3_t *end, int contentmask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 

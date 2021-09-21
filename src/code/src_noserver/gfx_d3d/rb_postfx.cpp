@@ -72,11 +72,9 @@ int RB_FindActivePostFX(const GfxViewInfo *viewInfo)
 RB_SetVisionSetColorCorrection
 ==============
 */
-
+void RB_SetVisionSetColorCorrection(int a1, const GfxViewInfo *viewInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -114,11 +112,9 @@ void RB_SSAO(const GfxViewInfo *viewInfo)
 RB_TXAA
 ==============
 */
-
+void RB_TXAA(float viewInfo, int a2, int a3, const GfxViewInfo *a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -147,11 +143,9 @@ void RB_PoisonFX(const GfxViewInfo *viewInfo)
 RB_GenericFilterFX
 ==============
 */
-
+void RB_GenericFilterFX(int a1, const GfxViewInfo *viewInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

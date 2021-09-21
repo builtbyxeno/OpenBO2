@@ -69,11 +69,9 @@ void Image_Upload3D_CopyData_PC(const GfxImage *image, DXGI_FORMAT format, unsig
 Image_UploadData
 ==============
 */
-
+void __cdecl Image_UploadData(GfxImage *image, DXGI_FORMAT format, D3D11_TEXTURECUBE_FACE face, unsigned int mipLevel, const unsigned __int8 *src)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

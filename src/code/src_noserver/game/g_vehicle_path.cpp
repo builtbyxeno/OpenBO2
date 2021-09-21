@@ -318,10 +318,10 @@ vehicle_custom_path_t *VP_GetCustomPath(int index)
 VP_DrawCustomPath
 ==============
 */
-/*void VP_DrawCustomPath(const vec3_t *a1@<edx>, vehicle_custom_path_t *customPath)
+void VP_DrawCustomPath(const vec3_t *a1, vehicle_custom_path_t *customPath)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

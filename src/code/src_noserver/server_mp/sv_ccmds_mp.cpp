@@ -60,10 +60,10 @@ void ShowLoadErrorsSummary(const char *mapName, unsigned int count)
 SV_Map_f
 ==============
 */
-/*void SV_Map_f(char *a1@<edi>)
+void SV_Map_f(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -121,11 +121,10 @@ int SV_KickClient(client_t *cl, char *playerName, int maxPlayerNameLen)
 SV_KickUser_f
 ==============
 */
-
+int SV_KickUser_f(char *a1, char *playerName, int maxPlayerNameLen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -133,11 +132,10 @@ SV_KickUser_f
 SV_KickClient_f
 ==============
 */
-
+client_t *SV_KickClient_f(char *a1, char *playerName, int maxPlayerNameLen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -345,11 +343,9 @@ void SV_ScriptVarUsage_f()
 SV_StringUsage_f
 ==============
 */
-
+void __cdecl SV_StringUsage_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

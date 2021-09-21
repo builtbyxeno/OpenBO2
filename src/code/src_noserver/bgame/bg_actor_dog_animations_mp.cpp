@@ -617,7 +617,7 @@ void BG_Dog_Move_Run(LocalClientNum_t localClientNum, const entityState_s *es, A
 BG_Dog_Move_Walk
 ==============
 */
-void BG_Dog_Move_Walk(LocalClientNum_t localClientNum, const entityState_s* es, ActorAnimStates prevState)
+void __cdecl BG_Dog_Move_Walk(LocalClientNum_t localClientNum, const entityState_s *es, ActorAnimStates prevState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

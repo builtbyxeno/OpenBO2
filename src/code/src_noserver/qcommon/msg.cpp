@@ -6,11 +6,10 @@
 MSG_GetMapCenter
 ==============
 */
-
+vec3_t *__cdecl MSG_GetMapCenter()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -788,11 +787,9 @@ int MSG_ReadDeltaStruct(msg_t *msg, const int time, const void *from, void *to, 
 MSG_ReadDeltaMatchState
 ==============
 */
-
+void MSG_ReadDeltaMatchState(int a1, msg_t *msg, const int time, const MatchState *remoteFrom, const MatchState *remoteTo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

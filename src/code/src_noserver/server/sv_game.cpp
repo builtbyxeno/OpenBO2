@@ -503,11 +503,10 @@ double SV_Archived_Dvar_GetFloat(int dvarHash)
 SV_EntityContact
 ==============
 */
-
+int SV_EntityContact(unsigned int a1, const vec3_t *mins, const vec3_t *maxs, const gentity_t *gEnt)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

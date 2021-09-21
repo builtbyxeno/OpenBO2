@@ -91,11 +91,9 @@ void FX_DrawMarkProfile_MarkPrint(FxMarksSystem *marksSystem, unsigned __int16 h
 FX_DrawMarkProfile
 ==============
 */
-
+void __cdecl FX_DrawMarkProfile(LocalClientNum_t clientIndex, void (__cdecl *drawFunc)(const char *, vec2_t *), vec2_t *profilePos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

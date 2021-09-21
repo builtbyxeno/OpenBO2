@@ -56,21 +56,21 @@ void G_ParsePathnodeFields(SpawnVar *a1, SpawnVar *spawnVar, pathnode_t *node, n
 SP_spawn_node
 ==============
 */
-/*void SP_spawn_node(const char *a1@<esi>, SpawnVar *spawnVar, nodeType type)
+void SP_spawn_node(const char *a1, SpawnVar *spawnVar, nodeType type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 SP_spawn_node_dynamic
 ==============
 */
-/*pathnode_t *SP_spawn_node_dynamic@<eax>(const char *a1@<esi>, SpawnVar *spawnVar, nodeType type)
+pathnode_t *SP_spawn_node_dynamic(const char *a1, SpawnVar *spawnVar, nodeType type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -227,11 +227,10 @@ char Path_FindLinkToNode_r(const pathnode_t *searchNode, unsigned __int16 search
 Path_RemoveRedundantLink
 ==============
 */
-
+bool Path_RemoveRedundantLink(const pathnode_t *sourceNode, unsigned int sourceIndex, unsigned __int16 goalIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -303,11 +302,10 @@ bool isDeflectionOK(float *a1, float *a2, float movedir, const vec2_t *a4)
 Path_NodeCanBeDoubleWide
 ==============
 */
-
+bool Path_NodeCanBeDoubleWide(unsigned int a1, pathnode_t *node)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -315,11 +313,10 @@ Path_NodeCanBeDoubleWide
 Path_NodeCanBeQuadrotorNode
 ==============
 */
-
+bool Path_NodeCanBeQuadrotorNode(unsigned int a1, col_context_t *a2, pathnode_t *node, const float defaultHeightOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -463,11 +460,10 @@ void Path_LoadPaths()
 Path_CanLinkQuadrotorNodes
 ==============
 */
-
+int Path_CanLinkQuadrotorNodes(pathnode_t *pNodeFrom, pathnode_t *pNodeTo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -497,11 +493,10 @@ bool Path_AttemptLink1(pathnode_t *pNodeFrom, pathnode_t *pNodeTo, pathlink_s *p
 Path_AttemptLink
 ==============
 */
-
+bool __cdecl Path_AttemptLink(pathnode_t *pNodeFrom, pathnode_t *pNodeTo, pathlink_s *pLinks, int iMaxLinks)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

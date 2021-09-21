@@ -98,11 +98,9 @@ int CG_RemapVehicleButton(LocalClientNum_t localClientNum, int *twokeys, int but
 CG_UpdateVehicleBindings
 ==============
 */
-
+void __cdecl CG_UpdateVehicleBindings(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -254,11 +252,9 @@ float CG_GetViewFov(LocalClientNum_t localClientNum, const playerState_s *forWea
 CG_CalcFovInternal
 ==============
 */
-
+void CG_CalcFovInternal(LocalClientNum_t localClientNum, bool forWeapon, float *fov_x, float *dxDzAtDefaultAspectRatio, float *dxDz, float *dyDz)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -266,11 +262,9 @@ CG_CalcFovInternal
 CG_CalcFov
 ==============
 */
-
+void __cdecl CG_CalcFov(LocalClientNum_t localClientNum, float fov_x)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -288,11 +282,9 @@ void CG_CalculateGunnerOffset_Sway(const vec3_t *playerViewAngles, Weapon weapon
 CG_OffsetVehicleGunner
 ==============
 */
-
+void __cdecl CG_OffsetVehicleGunner(LocalClientNum_t localClientNum, cg_t *cgameGlob)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -549,7 +541,7 @@ BOOL CG_IsUsingMultiExtraCam(LocalClientNum_t localClientNum)
 ExtraCamClientStateRestore::ExtraCamClientStateRestore
 ==============
 */
-/*void __thiscall ExtraCamClientStateRestore::ExtraCamClientStateRestore(ExtraCamClientStateRestore *this, LocalClientNum_t localClientNum)
+/*void ExtraCamClientStateRestore::ExtraCamClientStateRestore(ExtraCamClientStateRestore *notthis, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -559,7 +551,7 @@ ExtraCamClientStateRestore::ExtraCamClientStateRestore
 ExtraCamClientStateRestore::~ExtraCamClientStateRestore
 ==============
 */
-/*void __thiscall ExtraCamClientStateRestore::~ExtraCamClientStateRestore(ExtraCamClientStateRestore *this)
+/*void ExtraCamClientStateRestore::~ExtraCamClientStateRestore(ExtraCamClientStateRestore *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -589,11 +581,10 @@ void CG_CaptureCameraOffset(LocalClientNum_t localClientNum)
 ThirdPersonViewTrace
 ==============
 */
-
+double ThirdPersonViewTrace(unsigned int a1, cg_t *cgameGlob, const vec3_t *start, const vec3_t *end, int contentMask, vec3_t *result, bool pitch_up, bool ignoreStartSolid)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -622,10 +613,10 @@ bool CG_ShouldVehicleCamAutoRecenter(LocalClientNum_t localClientNum, const Vehi
 CG_CalcVehicleViewValues
 ==============
 */
-/*void CG_CalcVehicleViewValues(char *a1@<edi>, LocalClientNum_t localClientNum)
+void CG_CalcVehicleViewValues(char *a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

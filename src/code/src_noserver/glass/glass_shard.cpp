@@ -16,7 +16,7 @@ GlassPhysics::InitStatics
 GlassPhysics::AddForce
 ==============
 */
-/*void __thiscall GlassPhysics::AddForce(GlassPhysics *this, const vec3_t *worldPos, const vec3_t *impulse)
+/*void GlassPhysics::AddForce(GlassPhysics *notthis, const vec3_t *worldPos, const vec3_t *impulse)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -26,7 +26,7 @@ GlassPhysics::AddForce
 GlassPhysics::tensor_transform_principle
 ==============
 */
-/*void __thiscall GlassPhysics::tensor_transform_principle(GlassPhysics *this, const phys_vec3 *diag, const phys_mat44 *mat, phys_mat44 *tensor)
+/*void GlassPhysics::tensor_transform_principle(GlassPhysics *notthis, const phys_vec3 *diag, const phys_mat44 *mat, phys_mat44 *tensor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -36,7 +36,7 @@ GlassPhysics::tensor_transform_principle
 GlassOutline::Add
 ==============
 */
-/*bool __thiscall GlassOutline::Add(GlassOutline *this, const vec2_t *pos)
+/*bool GlassOutline::Add(GlassOutline *notthis, const vec2_t *pos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -47,7 +47,7 @@ GlassOutline::Add
 GlassOutline::Add
 ==============
 */
-/*bool __thiscall GlassOutline::Add(GlassOutline *this, const vec2_t *dir, float len)
+/*bool GlassOutline::Add(GlassOutline *notthis, const vec2_t *dir, float len)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -58,7 +58,7 @@ GlassOutline::Add
 GlassOutline::AddSafe
 ==============
 */
-/*void __thiscall GlassOutline::AddSafe(GlassOutline *this, float x, float y, bool isOriginalEdge)
+/*void GlassOutline::AddSafe(GlassOutline *notthis, float x, float y, bool isOriginalEdge)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -68,7 +68,7 @@ GlassOutline::AddSafe
 GlassOutline::EdgeRatio
 ==============
 */
-/*double __thiscall GlassOutline::EdgeRatio(GlassOutline *this)
+/*double GlassOutline::EdgeRatio(GlassOutline *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -79,7 +79,7 @@ GlassOutline::EdgeRatio
 GlassOutline::GetBBox
 ==============
 */
-/*void __thiscall GlassOutline::GetBBox(GlassOutline *this, vec2_t *mn, vec2_t *mx)
+/*void GlassOutline::GetBBox(GlassOutline *notthis, vec2_t *mn, vec2_t *mx)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -89,7 +89,7 @@ GlassOutline::GetBBox
 GlassOutline::Recenter
 ==============
 */
-/*void __thiscall GlassOutline::Recenter(GlassOutline *this, vec2_t *offset)
+/*void GlassOutline::Recenter(GlassOutline *notthis, vec2_t *offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -99,7 +99,7 @@ GlassOutline::Recenter
 GlassOutline::HasNarrowAngle
 ==============
 */
-/*BOOL __thiscall GlassOutline::HasNarrowAngle(GlassOutline *this)
+/*BOOL GlassOutline::HasNarrowAngle(GlassOutline *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -110,7 +110,7 @@ GlassOutline::HasNarrowAngle
 GlassOutline::IsNarrow
 ==============
 */
-/*bool __thiscall GlassOutline::IsNarrow(GlassOutline *this)
+/*bool GlassOutline::IsNarrow(GlassOutline *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -121,7 +121,7 @@ GlassOutline::IsNarrow
 GlassOutline::DoesIntersect
 ==============
 */
-/*char __thiscall GlassOutline::DoesIntersect(GlassOutline *this, const vec2_t *start, const vec2_t *dir, float len, float padding)
+/*char GlassOutline::DoesIntersect(GlassOutline *notthis, const vec2_t *start, const vec2_t *dir, float len, float padding)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -132,7 +132,7 @@ GlassOutline::DoesIntersect
 GlassOutline::GetNearestDistances
 ==============
 */
-/*void __thiscall GlassOutline::GetNearestDistances(GlassOutline *this, const vec2_t *p, GlassOutline::EdgeDistance *dists, int nDists)
+/*void GlassOutline::GetNearestDistances(GlassOutline *notthis, const vec2_t *p, GlassOutline::EdgeDistance *dists, int nDists)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -153,7 +153,7 @@ int compareOutlines(const void *o1, const void *o2)
 GlassPackedOutline::Init
 ==============
 */
-/*int __thiscall GlassPackedOutline::Init(GlassPackedOutline *this, void *ptr, unsigned __int8 num)
+/*int GlassPackedOutline::Init(GlassPackedOutline *notthis, void *ptr, unsigned __int8 num)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -164,7 +164,7 @@ GlassPackedOutline::Init
 GlassPackedOutline::GetStreamSize
 ==============
 */
-/*int __thiscall GlassPackedOutline::GetStreamSize(GlassPackedOutline *this)
+/*int GlassPackedOutline::GetStreamSize(GlassPackedOutline *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -175,7 +175,7 @@ GlassPackedOutline::GetStreamSize
 GlassPackedOutline::StreamOut
 ==============
 */
-/*unsigned __int8 *__thiscall GlassPackedOutline::StreamOut(GlassPackedOutline *this, unsigned __int8 *streamBuff)
+/*unsigned __int8 *GlassPackedOutline::StreamOut(GlassPackedOutline *notthis, unsigned __int8 *streamBuff)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -186,7 +186,7 @@ GlassPackedOutline::StreamOut
 GlassPackedOutline::GetBBox
 ==============
 */
-/*void __thiscall GlassPackedOutline::GetBBox(GlassPackedOutline *this, vec2_t *mn, vec2_t *mx)
+/*void GlassPackedOutline::GetBBox(GlassPackedOutline *notthis, vec2_t *mn, vec2_t *mx)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -196,7 +196,7 @@ GlassPackedOutline::GetBBox
 GlassPackedOutline::Recenter
 ==============
 */
-/*void __thiscall GlassPackedOutline::Recenter(GlassPackedOutline *this, vec2_t *offset)
+/*void GlassPackedOutline::Recenter(GlassPackedOutline *notthis, vec2_t *offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -206,7 +206,7 @@ GlassPackedOutline::Recenter
 GlassPackedOutline::EdgeRatio
 ==============
 */
-/*double __thiscall GlassPackedOutline::EdgeRatio(GlassPackedOutline *this)
+/*double GlassPackedOutline::EdgeRatio(GlassPackedOutline *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -217,7 +217,7 @@ GlassPackedOutline::EdgeRatio
 GlassShard::Mesh::Init
 ==============
 */
-/*void __thiscall GlassShard::Mesh::Init(GlassShard::Mesh *this, const GlassPackedOutline *outline, float thickness, const vec3_t *tangt)
+/*void GlassShard::Mesh::Init(GlassShard::Mesh *notthis, const GlassPackedOutline *outline, float thickness, const vec3_t *tangt)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -227,11 +227,9 @@ GlassShard::Mesh::Init
 GlassShard::Mesh::InitVertexList
 ==============
 */
-/*
+/*void __cdecl GlassShard::Mesh::InitVertexList(unsigned __int8 numOutlineVerts, GlassShardMeshVertex *verts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -239,7 +237,7 @@ GlassShard::Mesh::InitVertexList
 GlassShard::Triangles::Triangulate
 ==============
 */
-/*bool __thiscall GlassShard::Triangles::Triangulate(GlassShard::Triangles *this)
+/*bool GlassShard::Triangles::Triangulate(GlassShard::Triangles *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -250,7 +248,7 @@ GlassShard::Triangles::Triangulate
 GlassShard::Init
 ==============
 */
-/*void __thiscall GlassShard::Init(GlassShard *this)
+/*void GlassShard::Init(GlassShard *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -260,7 +258,7 @@ GlassShard::Init
 GlassShard::ToLocal
 ==============
 */
-/*void __thiscall GlassShard::ToLocal(GlassShard *this, const vec3_t *pos, const vec3_t *dir, vec3_t *localPos, vec3_t *localDir)
+/*void GlassShard::ToLocal(GlassShard *notthis, const vec3_t *pos, const vec3_t *dir, vec3_t *localPos, vec3_t *localDir)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -270,7 +268,7 @@ GlassShard::ToLocal
 GlassShard::GetLocalBBox
 ==============
 */
-/*void __thiscall GlassShard::GetLocalBBox(GlassShard *this, vec3_t *mins, vec3_t *maxs)
+/*void GlassShard::GetLocalBBox(GlassShard *notthis, vec3_t *mins, vec3_t *maxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -280,7 +278,7 @@ GlassShard::GetLocalBBox
 GlassShard::UpdateBBox
 ==============
 */
-/*void __thiscall GlassShard::UpdateBBox(GlassShard *this)
+/*void GlassShard::UpdateBBox(GlassShard *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -290,7 +288,7 @@ GlassShard::UpdateBBox
 GlassShard::GenerateVerts
 ==============
 */
-/*void __thiscall GlassShard::GenerateVerts(GlassShard *this, const GlassRenderer *renderer, bool highLod, GfxPackedVertex *baseVerts, unsigned __int16 vertsBaseIndex, unsigned __int16 *idxOut)
+/*void GlassShard::GenerateVerts(GlassShard *notthis, const GlassRenderer *renderer, bool highLod, GfxPackedVertex *baseVerts, unsigned __int16 vertsBaseIndex, unsigned __int16 *idxOut)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -300,7 +298,7 @@ GlassShard::GenerateVerts
 GlassShard::GetMass
 ==============
 */
-/*double __thiscall GlassShard::GetMass(GlassShard *this)
+/*double GlassShard::GetMass(GlassShard *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -311,7 +309,7 @@ GlassShard::GetMass
 GlassShard::DestroyPhysicsObj
 ==============
 */
-/*void __thiscall GlassShard::DestroyPhysicsObj(GlassShard *this)
+/*void GlassShard::DestroyPhysicsObj(GlassShard *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -321,7 +319,7 @@ GlassShard::DestroyPhysicsObj
 GlassShard::AddForce
 ==============
 */
-/*void GlassShard::AddForce(GlassShard *this@<ecx>, const char *a2@<edi>, const vec3_t *pos, const vec3_t *forceIn)
+/*void GlassShard::AddForce(GlassShard *notthis, const char *a2, const vec3_t *pos, const vec3_t *forceIn)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -331,7 +329,7 @@ GlassShard::AddForce
 GlassShard::SetVelocity
 ==============
 */
-/*void __thiscall GlassShard::SetVelocity(GlassShard *this, const vec3_t *t_vel, const vec3_t *a_vel)
+/*void GlassShard::SetVelocity(GlassShard *notthis, const vec3_t *t_vel, const vec3_t *a_vel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -363,7 +361,7 @@ GetNumIntersections<GlassPackedOutline>
 GlassPhysics::CreateAxis
 ==============
 */
-/*void GlassPhysics::CreateAxis(GlassPhysics *this, float position, const vec3_t *a3, const vec3_t *axis, const vec3_t *tVel, const vec3_t *aVel, float mass, const vec3_t *localBBoxMin, const vec3_t *localBBoxMax)
+/*void GlassPhysics::CreateAxis(GlassPhysics *notthis, float position, const vec3_t *a3, const vec3_t *axis, const vec3_t *tVel, const vec3_t *aVel, float mass, const vec3_t *localBBoxMin, const vec3_t *localBBoxMax)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -373,7 +371,7 @@ GlassPhysics::CreateAxis
 GlassPhysics::IntegrateVelocity
 ==============
 */
-/*void GlassPhysics::IntegrateVelocity(GlassPhysics *this, int a2, float deltaTime)
+/*void GlassPhysics::IntegrateVelocity(GlassPhysics *notthis, int a2, float deltaTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -383,7 +381,7 @@ GlassPhysics::IntegrateVelocity
 GlassPhysics::GetPosition
 ==============
 */
-/*void __thiscall GlassPhysics::GetPosition(GlassPhysics *this, vec3_t *position, vec3_t *axis)
+/*void GlassPhysics::GetPosition(GlassPhysics *notthis, vec3_t *position, vec3_t *axis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -393,7 +391,7 @@ GlassPhysics::GetPosition
 GlassOutline::operator=
 ==============
 */
-/*GlassOutline *__thiscall GlassOutline::operator=(GlassOutline *this, const GlassOutline *o)
+/*GlassOutline *GlassOutline::operator=(GlassOutline *notthis, const GlassOutline *o)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -404,7 +402,7 @@ GlassOutline::operator=
 GlassOutline::CloseOutline
 ==============
 */
-/*bool __thiscall GlassOutline::CloseOutline(GlassOutline *this)
+/*bool GlassOutline::CloseOutline(GlassOutline *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -415,7 +413,7 @@ GlassOutline::CloseOutline
 GlassOutline::Reverse
 ==============
 */
-/*void __thiscall GlassOutline::Reverse(GlassOutline *this)
+/*void GlassOutline::Reverse(GlassOutline *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -425,7 +423,7 @@ GlassOutline::Reverse
 GlassOutline::InitSplitOutlines
 ==============
 */
-/*int __thiscall GlassOutline::InitSplitOutlines(GlassOutline *this, GlassOutline *newOutline, GlassOutline *outline1, GlassOutline *outline2, float minShardSize)
+/*int GlassOutline::InitSplitOutlines(GlassOutline *notthis, GlassOutline *newOutline, GlassOutline *outline1, GlassOutline *outline2, float minShardSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -436,7 +434,7 @@ GlassOutline::InitSplitOutlines
 GlassOutline::StreamIn
 ==============
 */
-/*const unsigned __int8 *__thiscall GlassOutline::StreamIn(GlassOutline *this, const unsigned __int8 *streamBuff)
+/*const unsigned __int8 *GlassOutline::StreamIn(GlassOutline *notthis, const unsigned __int8 *streamBuff)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -447,7 +445,7 @@ GlassOutline::StreamIn
 GlassPackedOutline::LeaveOnEdge
 ==============
 */
-/*bool __thiscall GlassPackedOutline::LeaveOnEdge(GlassPackedOutline *this, float stickiness)
+/*bool GlassPackedOutline::LeaveOnEdge(GlassPackedOutline *notthis, float stickiness)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -458,7 +456,7 @@ GlassPackedOutline::LeaveOnEdge
 GlassShard::Destroy
 ==============
 */
-/*void __thiscall GlassShard::Destroy(GlassShard *this)
+/*void GlassShard::Destroy(GlassShard *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -468,7 +466,7 @@ GlassShard::Destroy
 GlassShard::AllocateMemory
 ==============
 */
-/*char __thiscall GlassShard::AllocateMemory(GlassShard *this, unsigned int numVerts, const GlassShard::Triangles *triangles)
+/*char GlassShard::AllocateMemory(GlassShard *notthis, unsigned int numVerts, const GlassShard::Triangles *triangles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -479,7 +477,7 @@ GlassShard::AllocateMemory
 GlassShard::Intersect
 ==============
 */
-/*bool __thiscall GlassShard::Intersect(GlassShard *this, const vec3_t *pos, const vec3_t *dir, vec2_t *hitPoint)
+/*bool GlassShard::Intersect(GlassShard *notthis, const vec3_t *pos, const vec3_t *dir, vec2_t *hitPoint)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -490,7 +488,7 @@ GlassShard::Intersect
 GlassOutline::LeaveOnEdge
 ==============
 */
-/*bool __thiscall GlassOutline::LeaveOnEdge(GlassOutline *this, float stickiness)
+/*bool GlassOutline::LeaveOnEdge(GlassOutline *notthis, float stickiness)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -501,7 +499,7 @@ GlassOutline::LeaveOnEdge
 GlassOutline::IsOnBottomEdge
 ==============
 */
-/*bool __thiscall GlassOutline::IsOnBottomEdge(GlassOutline *this, const GlassShard *shard)
+/*bool GlassOutline::IsOnBottomEdge(GlassOutline *notthis, const GlassShard *shard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -512,7 +510,7 @@ GlassOutline::IsOnBottomEdge
 GlassPhysics::Step
 ==============
 */
-/*void GlassPhysics::Step(GlassPhysics *this, int a2, float deltaTime)
+/*void GlassPhysics::Step(GlassPhysics *notthis, int a2, float deltaTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -522,7 +520,7 @@ GlassPhysics::Step
 GlassOutline::GlassOutline
 ==============
 */
-/*void __thiscall GlassOutline::GlassOutline(GlassOutline *this, const GlassPackedOutline *other, GlassOutline::Vertex *_verts, unsigned __int8 _maxVerts)
+/*void GlassOutline::GlassOutline(GlassOutline *notthis, const GlassPackedOutline *other, GlassOutline::Vertex *_verts, unsigned __int8 _maxVerts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -532,7 +530,7 @@ GlassOutline::GlassOutline
 GlassOutline::GlassOutline
 ==============
 */
-/*void __thiscall GlassOutline::GlassOutline(GlassOutline *this, const Glass *glass, GlassOutline::Vertex *v, unsigned __int8 mv)
+/*void GlassOutline::GlassOutline(GlassOutline *notthis, const Glass *glass, GlassOutline::Vertex *v, unsigned __int8 mv)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -542,7 +540,7 @@ GlassOutline::GlassOutline
 GlassOutline::Split
 ==============
 */
-/*int __thiscall GlassOutline::Split(GlassOutline *this, GlassOutline *newOutline, float minShardSize, unsigned int startEdge, float startEdgeParam)
+/*int GlassOutline::Split(GlassOutline *notthis, GlassOutline *newOutline, float minShardSize, unsigned int startEdge, float startEdgeParam)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -553,7 +551,7 @@ GlassOutline::Split
 GlassOutline::Chip
 ==============
 */
-/*int __thiscall GlassOutline::Chip(GlassOutline *this, GlassOutline *newOutline, const GlassOutline::EdgeDistance *dist, const vec2_t *hitPoint, float minShardSize)
+/*int GlassOutline::Chip(GlassOutline *notthis, GlassOutline *newOutline, const GlassOutline::EdgeDistance *dist, const vec2_t *hitPoint, float minShardSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -564,7 +562,7 @@ GlassOutline::Chip
 GlassOutline::HitPoint
 ==============
 */
-/*int __thiscall GlassOutline::HitPoint(GlassOutline *this, const GlassShard *shard, GlassOutline **newOutlines, int maxNewOutlines, float minShardSize, float maxShardSize, const vec2_t *hitPoint2d)
+/*int GlassOutline::HitPoint(GlassOutline *notthis, const GlassShard *shard, GlassOutline **newOutlines, int maxNewOutlines, float minShardSize, float maxShardSize, const vec2_t *hitPoint2d)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -575,7 +573,7 @@ GlassOutline::HitPoint
 GlassPackedOutline::Init
 ==============
 */
-/*void __thiscall GlassPackedOutline::Init(GlassPackedOutline *this, const GlassOutline *other, const GlassShard *shard)
+/*void GlassPackedOutline::Init(GlassPackedOutline *notthis, const GlassOutline *other, const GlassShard *shard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -585,7 +583,7 @@ GlassPackedOutline::Init
 GlassShard::Remove
 ==============
 */
-/*void __thiscall GlassShard::Remove(GlassShard *this, GlassShard::RemoveReason reason, bool delay)
+/*void GlassShard::Remove(GlassShard *notthis, GlassShard::RemoveReason reason, bool delay)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -595,7 +593,7 @@ GlassShard::Remove
 GlassShard::Init
 ==============
 */
-/*char __thiscall GlassShard::Init(GlassShard *this, const GlassOutline *outline, const vec2_t *offset, float _thickness, float _uvScale, const vec2_t *_uvOffset, float _binormalSign, unsigned __int16 _glassIndex, const vec3_t *_axis, const vec3_t *_origin)
+/*char GlassShard::Init(GlassShard *notthis, const GlassOutline *outline, const vec2_t *offset, float _thickness, float _uvScale, const vec2_t *_uvOffset, float _binormalSign, unsigned __int16 _glassIndex, const vec3_t *_axis, const vec3_t *_origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -606,7 +604,7 @@ GlassShard::Init
 GlassShard::DisableCollisions
 ==============
 */
-/*void __thiscall GlassShard::DisableCollisions(GlassShard *this)
+/*void GlassShard::DisableCollisions(GlassShard *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -616,7 +614,7 @@ GlassShard::DisableCollisions
 GlassOutline::Shatter
 ==============
 */
-/*unsigned int __thiscall GlassOutline::Shatter(GlassOutline *this, FixedSizeAllocator<TempPackedOutline> *newOutlines, unsigned int maxNewOutlines, float maxShardSize, float minShardSize)
+/*unsigned int GlassOutline::Shatter(GlassOutline *notthis, FixedSizeAllocator<TempPackedOutline> *newOutlines, unsigned int maxNewOutlines, float maxShardSize, float minShardSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -649,7 +647,7 @@ GlassShard::Create
 GlassShard::InitPhysicsObj
 ==============
 */
-/*bool __thiscall GlassShard::InitPhysicsObj(GlassShard *this, bool enableCollisions)
+/*bool GlassShard::InitPhysicsObj(GlassShard *notthis, bool enableCollisions)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -660,7 +658,7 @@ GlassShard::InitPhysicsObj
 GlassShard::InitPhysics
 ==============
 */
-/*char __thiscall GlassShard::InitPhysics(GlassShard *this, bool enableCollisions, const vec3_t *hitPos, const vec3_t *hitDir, float glassSize, float stickiness)
+/*char GlassShard::InitPhysics(GlassShard *notthis, bool enableCollisions, const vec3_t *hitPos, const vec3_t *hitDir, float glassSize, float stickiness)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -671,7 +669,7 @@ GlassShard::InitPhysics
 GlassShard::DrawOutline
 ==============
 */
-/*void __thiscall GlassShard::DrawOutline(GlassShard *this)
+/*void GlassShard::DrawOutline(GlassShard *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -691,7 +689,7 @@ GlassShard::InitPhysics
 GlassShard::ExplosionEvent
 ==============
 */
-/*void __thiscall GlassShard::ExplosionEvent(GlassShard *this, const vec3_t *expOrigin, const float damageInner, const float damageOuter, const float radius, int mod)
+/*void GlassShard::ExplosionEvent(GlassShard *notthis, const vec3_t *expOrigin, const float damageInner, const float damageOuter, const float radius, int mod)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -701,7 +699,7 @@ GlassShard::ExplosionEvent
 GlassShard::TracePoint
 ==============
 */
-/*char __thiscall GlassShard::TracePoint(GlassShard *this, const vec3_t *p0, const vec3_t *p1, const vec3_t *dir, float length, const vec3_t *mins, const vec3_t *maxs)
+/*char GlassShard::TracePoint(GlassShard *notthis, const vec3_t *p0, const vec3_t *p1, const vec3_t *dir, float length, const vec3_t *mins, const vec3_t *maxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -712,7 +710,7 @@ GlassShard::TracePoint
 GlassShard::DelayedUpdate
 ==============
 */
-/*char __thiscall GlassShard::DelayedUpdate(GlassShard *this, float deltaTime)
+/*char GlassShard::DelayedUpdate(GlassShard *notthis, float deltaTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -723,7 +721,7 @@ GlassShard::DelayedUpdate
 GlassShard::UpdateInternal
 ==============
 */
-/*void __thiscall GlassShard::UpdateInternal(GlassShard *this, GlassRenderer *localRenderer, float deltaTime)
+/*void GlassShard::UpdateInternal(GlassShard *notthis, GlassRenderer *localRenderer, float deltaTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -733,7 +731,7 @@ GlassShard::UpdateInternal
 GlassShard::Update
 ==============
 */
-/*void __thiscall GlassShard::Update(GlassShard *this, float deltaTime, GlassUpdateCmd *cmd)
+/*void GlassShard::Update(GlassShard *notthis, float deltaTime, GlassUpdateCmd *cmd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

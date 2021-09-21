@@ -476,11 +476,11 @@ void FX_WaitForFxSpawnWorkers(LocalClientNum_t localClientNum)
 FX_SpawnOrientedEffect
 ==============
 */
-/*unsigned int FX_SpawnOrientedEffect@<eax>(char *a1@<edi>, LocalClientNum_t localClientNum, const FxEffectDef *def, int msecBegin, const vec3_t *origin, const vec3_t *axis, unsigned int markEntnum, unsigned int markViewmodel, int groundEntity)
+unsigned int FX_SpawnOrientedEffect(char *a1, LocalClientNum_t localClientNum, const FxEffectDef *def, int msecBegin, const vec3_t *origin, const vec3_t *axis, unsigned int markEntnum, unsigned int markViewmodel, int groundEntity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -810,11 +810,9 @@ void FX_ThroughWithEffect(LocalClientNum_t localClientNum, unsigned int hEffect,
 FX_SpawnElem
 ==============
 */
-
+void FX_SpawnElem(float system, const FxSystem *a2, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef, const FxElemDef *elemDef, int elemDefIndex, const FxSpatialFrame *effectFrameWhenPlayed, int msecWhenPlayed, float distanceWhenPlayed, int sequence)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

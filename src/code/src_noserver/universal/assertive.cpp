@@ -166,9 +166,10 @@ int Assert_BuildAssertMessageWithStack(const char *expr, const char *extra, cons
 IsDebuggerConnected
 ==============
 */
-BOOL IsDebuggerConnected()
+BOOL __stdcall IsDebuggerConnected()
 {
-	return IsDebuggerPresent();
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
 }
 
 /*

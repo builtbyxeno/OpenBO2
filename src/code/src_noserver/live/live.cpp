@@ -70,11 +70,9 @@ bool Live_IsUserSignedInToDemonware(const ControllerIndex_t controllerIndex)
 Live_ComErrorIfBuildExpired
 ==============
 */
-
+void __cdecl Live_ComErrorIfBuildExpired()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -92,11 +90,9 @@ void Live_LeaveAllPartiesCmd()
 Sound_Frame
 ==============
 */
-
+void __cdecl Sound_Frame()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

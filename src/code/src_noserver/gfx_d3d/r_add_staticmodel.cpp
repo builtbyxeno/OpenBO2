@@ -68,11 +68,9 @@ void R_StaticModelWriteInfo(int fileHandle, const GfxStaticModelDrawInst *smodel
 R_DumpStaticModelLodInfo
 ==============
 */
-
+void R_DumpStaticModelLodInfo(const GfxStaticModelDrawInst *smodelDrawInst, const float dist)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -141,11 +139,9 @@ void R_SortAllStaticModelSurfacesSunShadow()
 R_AddAllStaticModelSurfacesSunShadow
 ==============
 */
-
+void R_AddAllStaticModelSurfacesSunShadow(unsigned int a1, int viewIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

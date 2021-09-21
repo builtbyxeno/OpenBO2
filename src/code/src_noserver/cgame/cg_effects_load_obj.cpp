@@ -39,11 +39,10 @@ int CG_GetIncludesForFile(const char *file, char **list, int *count, int max)
 CG_BuildFileList
 ==============
 */
-
+int CG_BuildFileList(int a1, const char *rootFilePath, char **list, int *count)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

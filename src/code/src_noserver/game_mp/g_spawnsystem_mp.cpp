@@ -265,7 +265,7 @@ void SpawnSystem_ClearEntityInfluencers(gentity_t *ent)
 SpawnSystem_ClearTimedOutInfluencers
 ==============
 */
-void __thiscall SpawnSystem_ClearTimedOutInfluencers(SpawnInfluencer *this)
+void SpawnSystem_ClearTimedOutInfluencers(SpawnInfluencer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -383,11 +383,9 @@ int SpawnSystem_GetSortedPointEntNum(int team, int index)
 SpawnSystem_DebugRenderVisibilityCheck
 ==============
 */
-
+void SpawnSystem_DebugRenderVisibilityCheck(vec3_t *point2, gentity_t *ignore_entity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -457,11 +455,9 @@ void SpawnSystem_ArchiveInfluencers(gentity_t *ent, int point_team, int influenc
 SpawnSystem_CalculateCylinderLength
 ==============
 */
-
+void SpawnSystem_CalculateCylinderLength(SpawnInfluencer *influencer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -541,7 +537,7 @@ void SpawnSystem_SortPoints()
 SpawnSystem_Update
 ==============
 */
-void __thiscall SpawnSystem_Update(SpawnInfluencer *this)
+void SpawnSystem_Update(SpawnInfluencer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

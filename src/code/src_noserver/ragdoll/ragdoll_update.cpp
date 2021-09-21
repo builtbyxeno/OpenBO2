@@ -340,11 +340,10 @@ void Ragdoll_LaunchUpdate(RagdollBody *body)
 Ragdoll_TunnelTest
 ==============
 */
-
+bool Ragdoll_TunnelTest(RagdollBody *body)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -467,10 +466,10 @@ Ragdoll_GetRBForBone
 Ragdoll_ExplosionEvent
 ==============
 */
-/*void Ragdoll_ExplosionEvent(const char *a1@<edi>, const char *a2@<esi>, LocalClientNum_t localClientNum, bool isCylinder, const vec3_t *origin, float innerRadius, float outerRadius, const vec3_t *impulse, float inScale)
+void Ragdoll_ExplosionEvent(const char *a1, const char *a2, LocalClientNum_t localClientNum, bool isCylinder, const vec3_t *origin, float innerRadius, float outerRadius, const vec3_t *impulse, float inScale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

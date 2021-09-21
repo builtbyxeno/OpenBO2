@@ -46,11 +46,11 @@ void BG_HelicopterGroundTrace(pmove_t *pm, VehicleState *vehicleState, GroundTra
 BG_VehicleHeliLockHeight
 ==============
 */
-/*int BG_VehicleHeliLockHeight@<eax>(const vec3_t *a1@<edx>, const char *a2@<esi>, VehicleState *vehicleState)
+int BG_VehicleHeliLockHeight(const vec3_t *a1, const char *a2, VehicleState *vehicleState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -97,11 +97,10 @@ void BG_PlayerStateToVehicleStateHelicopter(LocalClientNum_t localClientNum, con
 BG_HeliMaintainHeight_CalcAccel
 ==============
 */
-
+double BG_HeliMaintainHeight_CalcAccel(int a1, pmove_t *pm, const pml_t *pml, VehicleState *vehicleState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -109,21 +108,19 @@ BG_HeliMaintainHeight_CalcAccel
 BG_VehicleHelicopterVerticalMove
 ==============
 */
-/*char BG_VehicleHelicopterVerticalMove@<al>(const vec3_t *a1@<edx>, const char *a2@<esi>, pmove_t *pm, const pml_t *pml, VehicleState *vehicleState)
+char BG_VehicleHelicopterVerticalMove(const vec3_t *a1, const char *a2, pmove_t *pm, const pml_t *pml, VehicleState *vehicleState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 BG_VehicleHelicopterMove
 ==============
 */
-
+void BG_VehicleHelicopterMove(unsigned int a1, pmove_t *pm, const pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

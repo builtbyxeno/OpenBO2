@@ -302,11 +302,10 @@ void CopyPoolTextToCmd(const char *textPool, int poolSize, int firstChar, int ch
 AddBaseDrawConsoleTextCmd
 ==============
 */
-
+GfxCmdDrawText2D *AddBaseDrawConsoleTextCmd(const char *textPool, int poolSize, int firstChar, int charCount, Font_s *font, float x, float y, float xScale, float yScale, const vec4_t *color, int style)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -314,11 +313,9 @@ AddBaseDrawConsoleTextCmd
 R_AddCmdDrawConsoleTextInternal
 ==============
 */
-
+void __cdecl R_AddCmdDrawConsoleTextInternal(const char *textPool, int poolSize, int firstChar, int charCount, Font_s *font, float x, float y, float xScale, float yScale, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -326,11 +323,9 @@ R_AddCmdDrawConsoleTextInternal
 R_AddCmdDrawConsoleTextTypewriterFXInternal
 ==============
 */
-
+void __cdecl R_AddCmdDrawConsoleTextTypewriterFXInternal(const char *textPool, int poolSize, int firstChar, int charCount, Font_s *font, float x, float y, float xScale, float yScale, const vec4_t *color, int style, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -338,11 +333,9 @@ R_AddCmdDrawConsoleTextTypewriterFXInternal
 R_AddCmdDrawConsoleTextSubtitleInternal
 ==============
 */
-
+void __cdecl R_AddCmdDrawConsoleTextSubtitleInternal(const char *textPool, int poolSize, int firstChar, int charCount, Font_s *font, float x, float y, float xScale, float yScale, const vec4_t *color, int style, const vec4_t *glowColor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -350,11 +343,9 @@ R_AddCmdDrawConsoleTextSubtitleInternal
 R_AddCmdDrawConsoleTextPulseFXInternal
 ==============
 */
-
+void __cdecl R_AddCmdDrawConsoleTextPulseFXInternal(const char *textPool, int poolSize, int firstChar, int charCount, Font_s *font, float x, float y, float xScale, float yScale, const vec4_t *color, int style, const vec4_t *glowColor, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, Material *fxMaterial, Material *fxMaterialGlow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

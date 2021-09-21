@@ -6,7 +6,7 @@
 LeaderboardFileShareRow::LeaderboardFileShareRow
 ==============
 */
-/*void __thiscall LeaderboardFileShareRow::LeaderboardFileShareRow(LeaderboardFileShareRow *this)
+/*void LeaderboardFileShareRow::LeaderboardFileShareRow(LeaderboardFileShareRow *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -27,7 +27,7 @@ LeaderboardFileShareRow::setColumnCount
 LeaderboardFileShareRow::sizeOf
 ==============
 */
-/*unsigned int __thiscall LeaderboardFileShareRow::sizeOf(LeaderboardFileShareRow *this)
+/*unsigned int LeaderboardFileShareRow::sizeOf(LeaderboardFileShareRow *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -38,7 +38,7 @@ LeaderboardFileShareRow::sizeOf
 LeaderboardFileShareRow::deserialize
 ==============
 */
-/*bool __thiscall LeaderboardFileShareRow::deserialize(LeaderboardFileShareRow *this, bdReference<bdByteBuffer> buffer)
+/*bool LeaderboardFileShareRow::deserialize(LeaderboardFileShareRow *notthis, bdReference<bdByteBuffer> buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

@@ -287,11 +287,9 @@ void FireWeapon(gentity_t *ent, int gametime, int shotCount)
 DeployWeapon
 ==============
 */
-
+void DeployWeapon(unsigned int a1, clientDebugLineInfo_t *a2, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -452,11 +450,10 @@ void G_AddShieldSplashDamageEvent(gentity_t *ent, float originalDamageRawPoints,
 Melee_Trace
 ==============
 */
-
+bool Melee_Trace(gentity_t *ent, vec3_t *hitOrigin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -474,11 +471,10 @@ void Weapon_Melee_NotifyClient(gentity_t *attacker, gentity_t *victim, int event
 Weapon_Melee_internal
 ==============
 */
-
+gentity_t *Weapon_Melee_internal(gentity_t *ent, weaponParms *wp)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*

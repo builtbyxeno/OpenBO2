@@ -81,10 +81,8 @@ void SeatTransformForClientInfo(LocalClientNum_t localClientNum, clientInfo_t *c
 CG_Vehicle_SeatTransformForPlayer
 ==============
 */
-
+void CG_Vehicle_SeatTransformForPlayer(int a1, LocalClientNum_t localClientNum, int entNum, vec3_t *resultOrigin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

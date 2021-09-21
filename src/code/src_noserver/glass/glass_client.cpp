@@ -38,7 +38,7 @@ GlassesClient::GetFreeMem
 GlassesClient::GetGlass
 ==============
 */
-/*GlassClient *__thiscall GlassesClient::GetGlass(GlassesClient *this, int idx)
+/*GlassClient *GlassesClient::GetGlass(GlassesClient *notthis, int idx)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -49,7 +49,7 @@ GlassesClient::GetGlass
 GlassesClient::WriteDemoSnapshot
 ==============
 */
-/*void __thiscall GlassesClient::WriteDemoSnapshot(GlassesClient *this, msg_t *msg)
+/*void GlassesClient::WriteDemoSnapshot(GlassesClient *notthis, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -70,7 +70,7 @@ int compareOutlineEdges(const void *s1, const void *s2)
 GlassClient::PlayShatterFX
 ==============
 */
-/*void __thiscall GlassClient::PlayShatterFX(GlassClient *this, LocalClientNum_t localClientNum, const vec3_t *hitPos, const vec3_t *hitDir)
+/*void GlassClient::PlayShatterFX(GlassClient *notthis, LocalClientNum_t localClientNum, const vec3_t *hitPos, const vec3_t *hitDir)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -91,7 +91,7 @@ bool GlassIsVisible(LocalClientNum_t localClientNum, const Glass *glass)
 GlassClient::SetBrushMaterial
 ==============
 */
-/*void __thiscall GlassClient::SetBrushMaterial(GlassClient *this, GlassState::State state)
+/*void GlassClient::SetBrushMaterial(GlassClient *notthis, GlassState::State state)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -171,7 +171,7 @@ void GlassCl_DrawDebug(LocalClientNum_t localClientNum)
 GlassesClient::AreaGlasses
 ==============
 */
-/*unsigned int __thiscall GlassesClient::AreaGlasses(GlassesClient *this, const vec3_t *mins, const vec3_t *maxs, const Glass **glss, unsigned int maxGlasses)
+/*unsigned int GlassesClient::AreaGlasses(GlassesClient *notthis, const vec3_t *mins, const vec3_t *maxs, const Glass **glss, unsigned int maxGlasses)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -182,7 +182,7 @@ GlassesClient::AreaGlasses
 GlassesClient::ClipMoveTrace
 ==============
 */
-/*void __thiscall GlassesClient::ClipMoveTrace(GlassesClient *this, const moveclip_t *clip, trace_t *results)
+/*void GlassesClient::ClipMoveTrace(GlassesClient *notthis, const moveclip_t *clip, trace_t *results)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -192,7 +192,7 @@ GlassesClient::ClipMoveTrace
 GlassesClient::Update
 ==============
 */
-/*void __thiscall GlassesClient::Update(GlassesClient *this, LocalClientNum_t localClientNum)
+/*void GlassesClient::Update(GlassesClient *notthis, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -202,7 +202,7 @@ GlassesClient::Update
 GlassClient::Init
 ==============
 */
-/*void __thiscall GlassClient::Init(GlassClient *this, const Glass *gls)
+/*void GlassClient::Init(GlassClient *notthis, const Glass *gls)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -212,7 +212,7 @@ GlassClient::Init
 GlassClient::SetState
 ==============
 */
-/*void __thiscall GlassClient::SetState(GlassClient *this, LocalClientNum_t localClientNum, GlassState::State newState, const vec3_t *hitPos, const vec3_t *hitDir, bool gameState)
+/*void GlassClient::SetState(GlassClient *notthis, LocalClientNum_t localClientNum, GlassState::State newState, const vec3_t *hitPos, const vec3_t *hitDir, bool gameState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -222,7 +222,7 @@ GlassClient::SetState
 GlassClient::Outlines::InitShards
 ==============
 */
-/*unsigned int __thiscall GlassClient::Outlines::InitShards(GlassClient::Outlines *this, const Glass *glass, GlassShard **shards, int maxNewShards)
+/*unsigned int GlassClient::Outlines::InitShards(GlassClient::Outlines *notthis, const Glass *glass, GlassShard **shards, int maxNewShards)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -243,7 +243,7 @@ void GlassCl_Update(LocalClientNum_t localClientNum)
 GlassesClient::TracePoint
 ==============
 */
-/*void __thiscall GlassesClient::TracePoint(GlassesClient *this, const pointtrace_t *clip, trace_t *results)
+/*void GlassesClient::TracePoint(GlassesClient *notthis, const pointtrace_t *clip, trace_t *results)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -274,7 +274,7 @@ void GlassCl_ClipMoveTrace(const moveclip_t *clip, trace_t *results)
 GlassesClient::GlassesClient
 ==============
 */
-/*void __thiscall GlassesClient::GlassesClient(GlassesClient *this, const Glasses *glss)
+/*void GlassesClient::GlassesClient(GlassesClient *notthis, const Glasses *glss)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -284,7 +284,7 @@ GlassesClient::GlassesClient
 GlassesClient::Reset
 ==============
 */
-/*void __thiscall GlassesClient::Reset(GlassesClient *this)
+/*void GlassesClient::Reset(GlassesClient *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -294,7 +294,7 @@ GlassesClient::Reset
 GlassesClient::ParseSnapshot
 ==============
 */
-/*void __thiscall GlassesClient::ParseSnapshot(GlassesClient *this, LocalClientNum_t localClientNum, msg_t *msg, bool gameState)
+/*void GlassesClient::ParseSnapshot(GlassesClient *notthis, LocalClientNum_t localClientNum, msg_t *msg, bool gameState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -304,7 +304,7 @@ GlassesClient::ParseSnapshot
 GlassClient::Outlines::SaveOutlines
 ==============
 */
-/*void __thiscall GlassClient::Outlines::SaveOutlines(GlassClient::Outlines *this, FixedSizeAllocator<TempPackedOutline> *newOutlines)
+/*void GlassClient::Outlines::SaveOutlines(GlassClient::Outlines *notthis, FixedSizeAllocator<TempPackedOutline> *newOutlines)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -374,7 +374,7 @@ void GlassCl_TracePoint(const pointtrace_t *clip, trace_t *results)
 GlassClient::Shatter
 ==============
 */
-/*char __thiscall GlassClient::Shatter(GlassClient *this, GlassShard **newShards, int *numNewShards)
+/*char GlassClient::Shatter(GlassClient *notthis, GlassShard **newShards, int *numNewShards)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -385,7 +385,7 @@ GlassClient::Shatter
 GlassesClient::PreShatterNext
 ==============
 */
-/*void __thiscall GlassesClient::PreShatterNext(GlassesClient *this)
+/*void GlassesClient::PreShatterNext(GlassesClient *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -395,7 +395,7 @@ GlassesClient::PreShatterNext
 GlassClient::Shatter
 ==============
 */
-/*void __thiscall GlassClient::Shatter(GlassClient *this, const vec3_t *pos, const vec3_t *dir)
+/*void GlassClient::Shatter(GlassClient *notthis, const vec3_t *pos, const vec3_t *dir)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

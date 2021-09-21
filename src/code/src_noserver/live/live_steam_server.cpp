@@ -37,7 +37,7 @@ void RunClientChecks(const int clientNum)
 LiveSteamServer::OnSteamServersConnected
 ==============
 */
-/*void __thiscall LiveSteamServer::OnSteamServersConnected(LiveSteamServer *this, SteamServersConnected_t *pLogonSuccess)
+/*void LiveSteamServer::OnSteamServersConnected(LiveSteamServer *notthis, SteamServersConnected_t *pLogonSuccess)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -47,7 +47,7 @@ LiveSteamServer::OnSteamServersConnected
 LiveSteamServer::OnSteamServerConnectFailure
 ==============
 */
-/*void __thiscall LiveSteamServer::OnSteamServerConnectFailure(LiveSteamServer *this, SteamServerConnectFailure_t *pConnectFailure)
+/*void LiveSteamServer::OnSteamServerConnectFailure(LiveSteamServer *notthis, SteamServerConnectFailure_t *pConnectFailure)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -57,7 +57,7 @@ LiveSteamServer::OnSteamServerConnectFailure
 LiveSteamServer::OnSteamServersDisconnected
 ==============
 */
-/*void __thiscall LiveSteamServer::OnSteamServersDisconnected(LiveSteamServer *this, SteamServersDisconnected_t *pLoggedOff)
+/*void LiveSteamServer::OnSteamServersDisconnected(LiveSteamServer *notthis, SteamServersDisconnected_t *pLoggedOff)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -67,7 +67,7 @@ LiveSteamServer::OnSteamServersDisconnected
 LiveSteamServer::OnPolicyResponse
 ==============
 */
-/*void __thiscall LiveSteamServer::OnPolicyResponse(LiveSteamServer *this, GSPolicyResponse_t *pPolicyResponse)
+/*void LiveSteamServer::OnPolicyResponse(LiveSteamServer *notthis, GSPolicyResponse_t *pPolicyResponse)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -77,7 +77,7 @@ LiveSteamServer::OnPolicyResponse
 LiveSteamServer::KickClientFromSteamGameServer
 ==============
 */
-/*void __thiscall LiveSteamServer::KickClientFromSteamGameServer(LiveSteamServer *this, CSteamID clientID, EDenyReason reason)
+/*void LiveSteamServer::KickClientFromSteamGameServer(LiveSteamServer *notthis, CSteamID clientID, EDenyReason reason)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -87,7 +87,7 @@ LiveSteamServer::KickClientFromSteamGameServer
 LiveSteamServer::OnGSClientApprove
 ==============
 */
-/*void __thiscall LiveSteamServer::OnGSClientApprove(LiveSteamServer *this, GSClientApprove_t *pGSClientApprove)
+/*void LiveSteamServer::OnGSClientApprove(LiveSteamServer *notthis, GSClientApprove_t *pGSClientApprove)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -97,7 +97,7 @@ LiveSteamServer::OnGSClientApprove
 LiveSteamServer::OnGSClientDeny
 ==============
 */
-/*void __thiscall LiveSteamServer::OnGSClientDeny(LiveSteamServer *this, GSClientDeny_t *pGSClientDeny)
+/*void LiveSteamServer::OnGSClientDeny(LiveSteamServer *notthis, GSClientDeny_t *pGSClientDeny)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -107,7 +107,7 @@ LiveSteamServer::OnGSClientDeny
 LiveSteamServer::OnGSClientKick
 ==============
 */
-/*void __thiscall LiveSteamServer::OnGSClientKick(LiveSteamServer *this, GSClientKick_t *pGSClientKick)
+/*void LiveSteamServer::OnGSClientKick(LiveSteamServer *notthis, GSClientKick_t *pGSClientKick)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -169,7 +169,7 @@ void LiveSteam_Server_ClientSteamDisconnect(unsigned __int64 clientSteamID)
 LiveSteamServer::~LiveSteamServer
 ==============
 */
-/*void __thiscall LiveSteamServer::~LiveSteamServer(LiveSteamServer *this)
+/*void LiveSteamServer::~LiveSteamServer(LiveSteamServer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -179,7 +179,7 @@ LiveSteamServer::~LiveSteamServer
 LiveSteamServer::LiveSteamServer
 ==============
 */
-/*void __thiscall LiveSteamServer::LiveSteamServer(LiveSteamServer *this, unsigned int ip)
+/*void LiveSteamServer::LiveSteamServer(LiveSteamServer *notthis, unsigned int ip)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -209,7 +209,7 @@ void LiveSteam_Server_Init(const char *mapname)
 LiveSteamServer::RunFrame
 ==============
 */
-/*void __thiscall LiveSteamServer::RunFrame(LiveSteamServer *this)
+/*void LiveSteamServer::RunFrame(LiveSteamServer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

@@ -166,10 +166,10 @@ void GamepadButtonEvent_Cheats(LocalClientNum_t localClientNum, ControllerIndex_
 CL_GamepadButtonEvent
 ==============
 */
-/*void CL_GamepadButtonEvent(char *a1@<edi>, LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, int key, int buttonEvent, unsigned int time, int gamePadButton)
+void CL_GamepadButtonEvent(char *a1, LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, int key, int buttonEvent, unsigned int time, int gamePadButton)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

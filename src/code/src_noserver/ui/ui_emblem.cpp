@@ -609,11 +609,9 @@ void UI_EmblemDump_f()
 UI_EmblemClearDefaults_f
 ==============
 */
-
+void __cdecl UI_EmblemClearDefaults_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -641,11 +639,9 @@ void UI_EmblemSetFromDefault_f()
 UI_EmblemUploadToSlot_f
 ==============
 */
-
+void __cdecl UI_EmblemUploadToSlot_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

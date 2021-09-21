@@ -60,10 +60,8 @@ bool CL_CheckForSnapshotValidity(clientActive_t *cl, clSnapshot_t *old, int delt
 CL_ParseSnapshot
 ==============
 */
-
+void __cdecl CL_ParseSnapshot(LocalClientNum_t localClientNum, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

@@ -239,11 +239,9 @@ void VEH_ClearGround()
 VEH_GroundTrace
 ==============
 */
-
+void VEH_GroundTrace(gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -251,11 +249,9 @@ VEH_GroundTrace
 VEH_MoveTrace
 ==============
 */
-
+void VEH_MoveTrace(gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -314,11 +310,9 @@ void VEH_AirMove(gentity_t *ent, int gravity)
 VEH_GroundPlant
 ==============
 */
-
+void VEH_GroundPlant(float ent, vec3_t *a2, int a3, gentity_t *phys, vehicle_physic_t *gravity, int a6)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -378,11 +372,9 @@ bool VEH_ClampPointToBoundingBox(gentity_t *a1, vec3_t *a2, gentity_t *vehicle, 
 VEH_PushEntity
 ==============
 */
-
+void VEH_PushEntity(gentity_t *ent, gentity_t *target, vec3_t *pushDir, vec3_t *deltaOrigin, vec3_t *deltaAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -420,11 +412,9 @@ void VEH_PredictPlayerPosition(const gentity_t *ent, const playerState_s *ps, ve
 VEH_UpdateAim
 ==============
 */
-
+void VEH_UpdateAim(gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -760,11 +750,10 @@ void VEH_LinkPlayer(gentity_t *ent, gentity_t *player, int seatIndex, bool chang
 VEH_ExitPosOkay
 ==============
 */
-
+bool VEH_ExitPosOkay(gentity_t *vehEnt, int exitIndex, vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -834,7 +823,7 @@ void G_InitScrVehicles()
 G_SetupScrVehicles
 ==============
 */
-void __thiscall G_SetupScrVehicles(void *this)
+void G_SetupScrVehicles(void *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -995,11 +984,10 @@ void Scr_Vehicle_Controller(const gentity_t *pSelf, int *partBits)
 VEH_AvoidTracePassed
 ==============
 */
-
+bool VEH_AvoidTracePassed(const gentity_t *pSelf, const vec3_t *avoidPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1146,10 +1134,10 @@ char VEH_ValidatePosition(unsigned int a1, gentity_t *ent, const vec3_t *origin)
 VEH_SetPosition
 ==============
 */
-/*void VEH_SetPosition(gentity_t *a1@<edx>, unsigned int a2@<ecx>, gentity_t *ent, const vec3_t *origin, const vec3_t *vel, const vec3_t *angles)
+void VEH_SetPosition(gentity_t *a1, unsigned int a2, gentity_t *ent, const vec3_t *origin, const vec3_t *vel, const vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1229,11 +1217,9 @@ void VEH_UpdateGunnerWeapon(gentity_t *ent, int gunnerIndex, int msec)
 VEH_UpdateDriverWeapons
 ==============
 */
-
+void VEH_UpdateDriverWeapons(gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1292,11 +1278,10 @@ void VEH_UpdateMoveToGoal(gentity_t *ent, const vec3_t *goalPos)
 VEH_UpdateMoveToGoalAircraft
 ==============
 */
-
+vec3_t *VEH_UpdateMoveToGoalAircraft(gentity_t *ent, const vec3_t *goalPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -1304,11 +1289,9 @@ VEH_UpdateMoveToGoalAircraft
 VEH_UpdateMoveToGoalBoat
 ==============
 */
-
+void VEH_UpdateMoveToGoalBoat(gentity_t *ent, const vec3_t *goalPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1427,11 +1410,9 @@ int VEH_NextAvailableSeat(gentity_t *player)
 VEH_SwitchClientToNextSeat
 ==============
 */
-
+void __cdecl VEH_SwitchClientToNextSeat(gentity_t *ent, gentity_t *player)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1512,10 +1493,10 @@ void VEH_Teleport(unsigned int a1, gentity_t *pSelf, vec3_t *origin, vec3_t *ang
 VEH_UpdateDebug
 ==============
 */
-/*void VEH_UpdateDebug(char *a1@<edi>, gentity_t *pSelf)
+void VEH_UpdateDebug(char *a1, gentity_t *pSelf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

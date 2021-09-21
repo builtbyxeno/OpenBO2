@@ -157,7 +157,7 @@ void R_CopyCubemapShot(CubemapShot shotIndex)
 R_EndCubemapShot
 ==============
 */
-void __thiscall R_EndCubemapShot(void *this)
+void R_EndCubemapShot(void *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

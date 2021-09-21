@@ -246,10 +246,8 @@ void XDoll_UpdateHealth(int xdoll_handle, int health)
 XDoll_ApplyForce
 ==============
 */
-
+void __cdecl XDoll_ApplyForce(int xdoll_handle, const vec3_t *hitp, const vec3_t *hitd, const int mod)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

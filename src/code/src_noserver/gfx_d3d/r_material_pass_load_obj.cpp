@@ -28,10 +28,8 @@ int R_IsMaterialPassConflict(unsigned int argCount, const MaterialShaderArgument
 R_MaterialPrecompilePass
 ==============
 */
-
+void R_MaterialPrecompilePass(VertexConstantMappingEntry *a1, MaterialPass *pass)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

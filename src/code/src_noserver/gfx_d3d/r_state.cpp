@@ -46,11 +46,9 @@ void R_DeriveViewMatrix(GfxCmdBufSourceState *source)
 R_DeriveWorldViewMatrix
 ==============
 */
-
+void R_DeriveWorldViewMatrix(GfxCmdBufSourceState *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -78,11 +76,9 @@ void R_DeriveViewProjectionMatrix(GfxCmdBufSourceState *source)
 R_DeriveWorldViewProjectionMatrix
 ==============
 */
-
+void R_DeriveWorldViewProjectionMatrix(GfxCmdBufSourceState *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -100,11 +96,9 @@ void R_DeriveShadowLookupMatrix(GfxCmdBufSourceState *source)
 R_GenerateWorldOutdoorLookupMatrix
 ==============
 */
-
+void R_GenerateWorldOutdoorLookupMatrix(GfxCmdBufSourceState *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

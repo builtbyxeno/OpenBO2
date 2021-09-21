@@ -119,7 +119,7 @@ void CL_ToggleStance(LocalClientNum_t localClientNum, StanceState preferredStanc
 IN_UpDown
 ==============
 */
-void __thiscall IN_UpDown(kbutton_t *this)
+void IN_UpDown(kbutton_t *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -129,7 +129,7 @@ void __thiscall IN_UpDown(kbutton_t *this)
 IN_UpUp
 ==============
 */
-void __thiscall IN_UpUp(kbutton_t *this)
+void IN_UpUp(kbutton_t *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -319,21 +319,19 @@ void IN_Smoke_Up(LocalClientNum_t localClientNum, int key, unsigned int time)
 IN_Stance_Down
 ==============
 */
-/*void IN_Stance_Down(unsigned int a1@<esi>, LocalClientNum_t localClientNum, int key, unsigned int time, float value)
+void IN_Stance_Down(unsigned int a1, LocalClientNum_t localClientNum, int key, unsigned int time, float value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 IN_Stance_Up
 ==============
 */
-
+void __cdecl IN_Stance_Up(LocalClientNum_t localClientNum, int key, unsigned int time)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -533,11 +531,9 @@ void CL_ClearKeys(LocalClientNum_t localClientNum)
 CL_ExecBinding
 ==============
 */
-
+void CL_ExecBinding(int a1, kbutton_t *a2, LocalClientNum_t localClientNum, Bind_t kb, int key, float value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

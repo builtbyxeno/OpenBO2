@@ -369,11 +369,9 @@ void G_ShutdownGame(int freeScripts)
 ShowEntityInfo
 ==============
 */
-
+void ShowEntityInfo(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -391,8 +389,8 @@ void G_UpdateClientLinkInfo(gentity_t *ent)
 G_RunFrame
 ==============
 */
-/*void G_RunFrame(char *a1@<edi>, int levelTime)
+void G_RunFrame(char *a1, int levelTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 

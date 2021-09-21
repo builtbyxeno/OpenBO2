@@ -144,10 +144,10 @@ char SVC_ClientUIDs(netadr_t from)
 SV_ConnectionlessPacket
 ==============
 */
-/*void SV_ConnectionlessPacket(char *a1@<edi>, netadr_t from, msg_t *msg)
+void SV_ConnectionlessPacket(char *a1, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

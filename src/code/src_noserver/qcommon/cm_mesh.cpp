@@ -161,10 +161,8 @@ void CM_MeshTestInLeaf(const traceWork_t *tw, cLeaf_s *leaf, trace_t *trace)
 CM_MeshTest
 ==============
 */
-
+void __cdecl CM_MeshTest(const traceWork_t *tw, const CollisionAabbTree *tree, trace_t *trace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

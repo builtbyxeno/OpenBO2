@@ -92,11 +92,10 @@ TaskRecord *dwReadFileInternal(ControllerIndex_t localControllerIndex, dwFileTas
 dwReadFile
 ==============
 */
-
+TaskRecord *dwReadFile(dwFileTask *a1, ControllerIndex_t a2, ControllerIndex_t localControllerIndex, dwFileTask *const fileTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -104,11 +103,10 @@ dwReadFile
 dwReadUserFile
 ==============
 */
-
+TaskRecord *dwReadUserFile(dwFileTask *a1, ControllerIndex_t a2, ControllerIndex_t localControllerIndex, dwFileTask *const fileTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -116,11 +114,10 @@ dwReadUserFile
 dwReadUserFileByUserID
 ==============
 */
-
+TaskRecord *__cdecl dwReadUserFileByUserID(ControllerIndex_t localControllerIndex, dwFileTask *const fileTask, unsigned __int64 xuid)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*

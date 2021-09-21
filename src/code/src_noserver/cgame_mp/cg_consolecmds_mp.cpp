@@ -136,11 +136,9 @@ void CG_RestartSmokeGrenades_f()
 UpdateFilmTweaks_f
 ==============
 */
-
+void __cdecl UpdateFilmTweaks_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -148,11 +146,9 @@ UpdateFilmTweaks_f
 UpdateCharPrimaryTweaks_f
 ==============
 */
-
+void __cdecl UpdateCharPrimaryTweaks_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -160,11 +156,9 @@ UpdateCharPrimaryTweaks_f
 UpdateBloomTweaks_f
 ==============
 */
-
+void __cdecl UpdateBloomTweaks_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

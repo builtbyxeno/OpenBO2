@@ -98,11 +98,9 @@ void R_SetupPassPerPrimArgs(GfxCmdBufContext context)
 R_SetupPassPerObjectArgs
 ==============
 */
-
+void __cdecl R_SetupPassPerObjectArgs(GfxCmdBufContext context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -130,11 +128,9 @@ void R_SetPassVertexShaderStableArguments(const GfxCmdBufContext *context, unsig
 R_SetupPassCriticalPixelShaderArgs
 ==============
 */
-
+void __cdecl R_SetupPassCriticalPixelShaderArgs(GfxCmdBufContext context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -163,11 +159,9 @@ const MaterialTextureDef *R_SetPixelSamplerFromMaterial(const GfxCmdBufContext *
 R_SetPassShaderStableArguments
 ==============
 */
-
+void __cdecl R_SetPassShaderStableArguments(const GfxCmdBufContext *context, unsigned int argCount, const MaterialShaderArgument *arg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

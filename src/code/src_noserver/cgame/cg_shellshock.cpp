@@ -138,11 +138,9 @@ void UpdateShellShockVisionSet(LocalClientNum_t localClientNum, const shellshock
 CG_UpdateShellShock
 ==============
 */
-
+void __cdecl CG_UpdateShellShock(LocalClientNum_t localClientNum, const shellshock_parms_t *parms, int start, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

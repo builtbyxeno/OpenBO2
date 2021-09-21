@@ -126,10 +126,8 @@ void SND_DspBiquadNormalize(float *a, float *b, SndDspBiQuadCoef *coef)
 SND_DspBiquadHShelve
 ==============
 */
-
+void __cdecl SND_DspBiquadHShelve(float Fs, float db, float Fhz, float q, SndDspBiQuadCoef *coef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

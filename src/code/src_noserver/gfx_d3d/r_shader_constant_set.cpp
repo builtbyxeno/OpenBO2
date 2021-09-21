@@ -220,7 +220,7 @@ void RB_SaveCurrentShaderConstantSetValues(ShaderConstantSet *destSet, GfxCmdBuf
 ScopedShaderConstantSetUndo::ScopedShaderConstantSetUndo
 ==============
 */
-/*void __thiscall ScopedShaderConstantSetUndo::ScopedShaderConstantSetUndo(ScopedShaderConstantSetUndo *this, GfxCmdBufSourceState *sourceState, const ShaderConstantSet *cscEA)
+/*void ScopedShaderConstantSetUndo::ScopedShaderConstantSetUndo(ScopedShaderConstantSetUndo *notthis, GfxCmdBufSourceState *sourceState, const ShaderConstantSet *cscEA)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -230,7 +230,7 @@ ScopedShaderConstantSetUndo::ScopedShaderConstantSetUndo
 ScopedShaderConstantSetUndo::~ScopedShaderConstantSetUndo
 ==============
 */
-/*void __thiscall ScopedShaderConstantSetUndo::~ScopedShaderConstantSetUndo(ScopedShaderConstantSetUndo *this)
+/*void ScopedShaderConstantSetUndo::~ScopedShaderConstantSetUndo(ScopedShaderConstantSetUndo *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

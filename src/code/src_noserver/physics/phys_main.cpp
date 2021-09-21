@@ -137,7 +137,7 @@ void Phys_RenderHeliMesh(int a1, cmodel_t **a2)
 colgeom_debug_renderer_t::update
 ==============
 */
-/*void __thiscall colgeom_debug_renderer_t::update(colgeom_debug_renderer_t *this, const vec3_t *_mn, const vec3_t *_mx, int mask, const vec3_t *expand_vec)
+/*void colgeom_debug_renderer_t::update(colgeom_debug_renderer_t *notthis, const vec3_t *_mn, const vec3_t *_mx, int mask, const vec3_t *expand_vec)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -365,11 +365,9 @@ void Phys_ObjAddTorque(float id, int a2, const vec3_t *torque)
 Phys_ObjBulletImpact
 ==============
 */
-
+void Phys_ObjBulletImpact(unsigned int a1, int id, const vec3_t *worldPosRaw, const vec3_t *bulletDirRaw, float bulletSpeed, float scale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -512,11 +510,9 @@ void Phys_ObjAddCustomForce(unsigned int a1, int physObjId, const vec3_t *hitPos
 Phys_FindAndRenderBulletMesh
 ==============
 */
-
+void Phys_FindAndRenderBulletMesh(unsigned int a1, const vec3_t *start, const vec3_t *end, int contentmask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -632,7 +628,7 @@ void Phys_FindAndRenderEntityBrushes(int a1, const vec3_t *pos, int contentmask)
 colgeom_debug_renderer_t::visit
 ==============
 */
-/*void __thiscall colgeom_debug_renderer_t::visit(colgeom_debug_renderer_t *this, const CollisionAabbTree *tree)
+/*void colgeom_debug_renderer_t::visit(colgeom_debug_renderer_t *notthis, const CollisionAabbTree *tree)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -642,7 +638,7 @@ colgeom_debug_renderer_t::visit
 colgeom_debug_renderer_t::visit
 ==============
 */
-/*void __thiscall colgeom_debug_renderer_t::visit(colgeom_debug_renderer_t *this, const cbrush_t *brush)
+/*void colgeom_debug_renderer_t::visit(colgeom_debug_renderer_t *notthis, const cbrush_t *brush)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

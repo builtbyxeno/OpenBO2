@@ -27,11 +27,9 @@ int Z_TryVirtualCommitInternal(void *ptr, int size)
 Com_AllMemInfo_f
 ==============
 */
-
+void __cdecl Com_AllMemInfo_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

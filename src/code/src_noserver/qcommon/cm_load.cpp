@@ -179,11 +179,9 @@ void *CM_Hunk_Alloc(int size, const char *name, int type)
 CM_Hunk_CheckTempMemoryHighClear
 ==============
 */
-
+void CM_Hunk_CheckTempMemoryHighClear(int a1, int a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -202,10 +200,8 @@ void *CM_Hunk_AllocateTempMemoryHigh(int size, const char *name)
 CM_Hunk_ClearTempMemoryHigh
 ==============
 */
-
+void __cdecl CM_Hunk_ClearTempMemoryHigh()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

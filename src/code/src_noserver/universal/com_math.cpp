@@ -525,11 +525,9 @@ void FinitePerspectiveMatrix(float tanHalfFovX, float tanHalfFovY, float zNear, 
 SpotLightViewMatrix
 ==============
 */
-
+void SpotLightViewMatrix(int a1, const vec3_t *direction, float rotation, vec4_t *mtx)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -537,11 +535,9 @@ SpotLightViewMatrix
 SpotLightViewMatrixDir3
 ==============
 */
-
+void SpotLightViewMatrixDir3(int a1, const vec3_t *dirx, const vec3_t *diry, const vec3_t *dirz, vec4_t *mtx)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -805,11 +801,10 @@ void SetPlaneSignbits(cplane_s *out)
 BoxOnPlaneSide
 ==============
 */
-
+int __cdecl BoxOnPlaneSide(const vec3_t *emins, const vec3_t *emaxs, const cplane_s *p, const cplane_s *pa, float a5, float a6, float a7)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -999,11 +994,9 @@ int colorTempToXYZ(int result, float a2)
 colorTempMatrix
 ==============
 */
-
+void colorTempMatrix(__m128 a1, vec4_t *finalMatrix, float colorTemp)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1011,11 +1004,9 @@ colorTempMatrix
 colorHueMatrix
 ==============
 */
-
+void colorHueMatrix(float finalMatrix, __m128 a2, vec4_t *a3, float hue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

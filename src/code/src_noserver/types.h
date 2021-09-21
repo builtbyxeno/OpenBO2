@@ -31852,6 +31852,16 @@ struct BulletFireParams
   vec3_t dir;
 };
 
+class __declspec(align(16)) BulletTraceResults
+{
+public:
+    trace_t trace;
+    gentity_t* hitEnt;
+    vec3_t hitPos;
+    bool ignoreHitEnt;
+    int depthSurfaceType;
+};
+
 class __declspec(align(16)) pmove_t
 {
 public:
@@ -49285,4 +49295,509 @@ public:
     LocalClientNum_t localClientNum;
     const playerState_s* ps;
     float adsFrac;
+};
+
+const class cached_simplex_info
+{
+public:
+    phys_vec3 m_indices[3];
+};
+
+class phys_mat44
+{
+public:
+    phys_vec3 x;
+    phys_vec3 y;
+    phys_vec3 z;
+    phys_vec3 w;
+};
+
+const class phys_gjk_geom
+{
+public:
+    void set_simplex(const phys_vec3* simplex_inds, const int w_set, const phys_vec3* normal, cached_simplex_info* cache_info);
+    double get_geom_radius();
+    BOOL ray_cast(const phys_vec3* ray_pos, const phys_vec3* ray_dir, const float t_input, float* t_output, phys_vec3* hitn);
+    const phys_vec3* support_only(const phys_vec3* xform, const phys_mat44* v);
+};
+
+class gjk_base_t : public phys_gjk_geom
+{
+public:
+    __declspec(align(16)) phys_vec3 m_aabb_mn_loc;
+    phys_vec3 m_aabb_mx_loc;
+    unsigned int m_gjk_geom_id;
+    const phys_mat44* m_xform_;
+    gjk_base_t* m_next_geom;
+    unsigned int m_flags;
+    int stype;
+    int m_contents;
+};
+
+class __declspec(align(8)) gjk_polygon_cylinder_t : public gjk_base_t
+{
+public:
+    struct poly_verts
+    {
+        enum
+        {
+            NUM_QUAD_VERTS = 4
+        };
+        enum
+        {
+            NUM_VERTS_ = 12
+        };
+        float m_co[4];
+        float m_si[4];
+        int support(const phys_vec3* v);
+        void get_co_si(const int i, float* co_, float* si_);
+    };
+    phys_vec3 m_center;
+    float m_polygon_cylinder_radius;
+    float m_capsule_radius;
+    float m_half_height;
+    float m_geom_radius;
+    float m_head_offset;
+    float m_foot_offset;
+    int m_mode;
+};
+
+class gjk_collision_visitor
+{
+public:
+    void get_local_query_aabb(vec3_t*, vec3_t*);
+};
+
+class phys_gjk_collision_info
+{
+public:
+    phys_vec3 m_p1;
+    phys_vec3 m_p2;
+    phys_vec3 m_n;
+};
+
+class phys_gjk_info
+{
+    enum gjk_flags_e
+    {
+        FLAG_EXIT_ON_SEP_THRESH = 0x1,
+        INTERSECTION_TEST_ONLY = 0x2,
+        FLAG_TEST_CONVERGENCE = 0x4,
+        CONTINUOUS_COLLISION = 0x8,
+        FLAG_TEST_UD_LT_SP = 0x10,
+        FLAG_IS_SEPARATED = 0x20,
+        FLAG_GI_DANGEROUS = 0x40,
+    };
+    enum gjk_retval_e
+    {
+        GJK_SEPARATED = 0x0,
+        GJK_VALID = 0x1,
+        GJK_PENETRATING = 0x2,
+        GJK_INVALID = 0x3,
+    };
+public:
+    phys_mat44 cg2_to_cg1_xform;
+    phys_vec3 m_cg1_relative_translation_loc;
+    float m_continuous_collision_lambda;
+    __declspec(align(16)) phys_gjk_collision_info cg1_cinfo_loc;
+    phys_vec3 m_gjk_origin;
+    phys_vec3 m_w_verts[4];
+    phys_vec3 m_a_verts[4];
+    phys_vec3 m_b_verts[4];
+    phys_vec3 m_a_inds[4];
+    phys_vec3 m_b_inds[4];
+    phys_vec3 m_support_dir;
+    float m_geom_radii_sum;
+    int m_cc_reset_iter;
+    int m_flags;
+    int m_w_set;
+    int m_last_w_set;
+    int m_gjk_iter;
+    float m_gjk_sep_thresh;
+    float m_gjk_pen_thresh_sq;
+    float m_upper_dist_sq;
+    float m_lower_dist_sq;
+    float m_dot_ij[4][4];
+    struct phys_gjk_set_info {
+        float m_lamda[4];
+        int m_candidate;
+    } m_set_list[16];
+};
+
+class phys_gjk_geom_id_pair_key
+{
+public:
+    unsigned int m_id1;
+    unsigned int m_id2;
+};
+
+class phys_gjk_cache_info
+{
+public:
+    phys_vec3 m_support_dir;
+    cached_simplex_info m_support_a;
+    cached_simplex_info m_support_b;
+    int m_support_count;
+    phys_gjk_geom_id_pair_key m_key;
+    unsigned int m_flags;
+};
+
+class __declspec(align(8)) phys_gjk_input
+{
+public:
+    phys_vec3 m_cg1_translation;
+    phys_vec3 m_cg2_translation;
+    float m_start_time;
+    float m_end_time;
+    const phys_gjk_geom* gjk_cg1;
+    const phys_gjk_geom* gjk_cg2;
+    const phys_mat44* cg1_to_world_xform;
+    const phys_mat44* cg2_to_world_xform;
+    phys_gjk_cache_info* gjk_ci;
+    float cg1_radius;
+    float cg2_radius;
+    float m_sep_thresh;
+    bool m_intersection_test_only;
+    bool m_continuous_collision;
+};
+
+class __declspec(align(8)) gjk_entity_info_t
+{
+public:
+    phys_mat44 m_mat;
+    enum ENTITY_TYPE {
+        ET_GENT = 0x0,
+        ET_CENT = 0x1,
+        ET_DENT = 0x2,
+        ET_GLASS = 0x3,
+        ET_NONE = 0x4,
+    } m_ent_type;
+    const void* m_ent;
+    int m_query_visitor_count;
+};
+
+class __declspec(align(16)) gjk_geom_info_t
+{
+public:
+    phys_vec3 m_aabb_min;
+    phys_vec3 m_aabb_max;
+    gjk_base_t* m_cg;
+    gjk_entity_info_t* m_ent_info;
+    int m_query_visitor_count;
+    float m_hit_time;
+    gjk_geom_info_t* m_next_link;
+    gjk_geom_info_t* m_total_next_link;
+};
+
+class __declspec(align(16)) gjk_trace_output_t
+{
+public:
+    phys_vec3 m_hit_normal;
+    phys_vec3 m_hit_point;
+    phys_vec3 m_arm;
+    float m_hit_time;
+    float m_hit_dist;
+    bool m_is_foot;
+    gjk_geom_info_t* m_gi;
+    gjk_trace_output_t* m_next_link;
+};
+
+template <typename T>
+class phys_simple_allocator
+{
+    int m_count;
+};
+
+template <typename T>
+class phys_inplace_avl_tree_node
+{
+    T* m_left;
+    T* m_right;
+    int m_balance;
+};
+
+template <typename T, typename TT, typename TTT>
+class phys_inplace_avl_tree
+{
+    TTT* m_tree_root;
+};
+
+class phys_heap_gjk_cache_system_avl_tree
+{
+    class phys_gjk_cache_info_internal {
+    public:
+        struct avl_tree_accessor {
+        };
+        phys_inplace_avl_tree_node<phys_gjk_cache_info_internal> m_avl_tree_node;
+        phys_gjk_cache_info_internal* m_next_gjk_ci;
+    };
+    phys_simple_allocator<phys_gjk_cache_info_internal> m_list_phys_gjk_cache_info_internal;
+    phys_inplace_avl_tree<phys_gjk_geom_id_pair_key, phys_gjk_cache_info_internal, phys_gjk_cache_info_internal::avl_tree_accessor> m_search_tree;
+    int m_max_num_gjk_ci;
+    phys_heap_gjk_cache_system_avl_tree::phys_gjk_cache_info_internal* m_list_head;
+};
+
+template <typename T>
+class phys_link_list
+{
+public:
+    T* m_first;
+    T** m_last_next_ptr;
+};
+
+const class __declspec(align(16)) gjk_query_input
+{
+public:
+    phys_vec3 m_cg_aabb_min;
+    phys_vec3 m_cg_aabb_max;
+    phys_vec3 m_cg_position;
+    phys_vec3 m_cg_translation;
+    phys_vec3 m_ac_eps_vec;
+    int m_contents;
+    int m_pass_entity_num;
+    int m_pass_owner_num;
+    bool m_is_server_thread;
+    colgeom_visitor_inlined_t<300>* m_proximity_data;
+    int m_proximity_mask;
+    unsigned int m_gjk_query_flags;
+    phys_link_list<gjk_geom_info_t> m_geom_skip_list;
+};
+
+class minspec_mutex
+{
+public:
+    volatile unsigned int m_token;
+    minspec_mutex();
+    void Lock();
+    void Unlock();
+};
+
+class minspec_read_write_mutex
+{
+public:
+    volatile unsigned int m_count;
+    minspec_read_write_mutex();
+    void ReadLock();
+    void ReadUnlock();
+    void WriteLock();
+    void WriteUnlock();
+};
+
+class bpei_database_id
+{
+public:
+    unsigned int m_id1;
+    unsigned int m_id2;
+};
+
+class broad_phase_environment_info
+{
+public:
+    void* m_data;
+    minspec_mutex m_mutex;
+    unsigned int m_gjk_geom_id;
+    broad_phase_environment_info* m_next_bpei;
+    phys_inplace_avl_tree_node<broad_phase_environment_info> m_avl_tree_node;
+    bpei_database_id m_database_id;
+    struct avl_tree_accessor
+    {
+    };
+};
+
+class bpei_database_t
+{
+public:
+    phys_inplace_avl_tree<bpei_database_id, broad_phase_environment_info, broad_phase_environment_info::avl_tree_accessor> m_bpei_map;
+    phys_simple_allocator<broad_phase_environment_info> m_bpei_allocator;
+    broad_phase_environment_info* m_bpei_list;
+    minspec_read_write_mutex m_mutex;
+};
+
+class phys_transient_allocator
+{
+public:
+    struct block_header
+    {
+        unsigned int m_block_size;
+        unsigned int m_block_alignment;
+        struct block_header* m_next_block;
+    };
+    block_header* m_first_block;
+    char* m_cur;
+    char* m_end;
+    unsigned int m_total_memory_allocated;
+    struct minspec_read_write_mutex m_mutex;
+    void* m_slot_pool;
+    enum
+    {
+        BLOCK_SIZE = 16384,
+        BLOCK_ALIGNMENT = 4
+    };
+    void resize();
+    void* mt_allocate_internal(const int size, const int alignment);
+    phys_transient_allocator();
+    ~phys_transient_allocator();
+    void* allocate(const int size, const int alignment, const int no_error, char* error_msg);
+    void* mt_allocate(const int size, const int alignment, const int no_error, char* error_msg);
+    void  reset();
+    struct allocator_state
+    {
+        struct phys_transient_allocator::block_header* m_first_block;
+        char* m_cur;
+        char* m_end;
+        unsigned int m_total_memory_allocated;
+    };
+    const allocator_state capture_state();
+    void reset_to_state(allocator_state* as);
+};
+
+struct cached_query_info_t
+{
+    phys_vec3 m_query_aabb_min;
+    phys_vec3 m_query_aabb_max;
+    int m_query_contents;
+    unsigned int m_query_flags;
+    void add_query(phys_vec3* query_aabb_min, phys_vec3* query_aabb_max, phys_vec3* extra, const int query_content, const unsigned int query_flags);
+    bool is_subset(phys_vec3* query_aabb_min, phys_vec3* query_aabb_max, const int query_content, const unsigned int query_flags);
+};
+
+class gjk_query_output : public gjk_collision_visitor
+{
+public:
+    __declspec(align(16)) phys_vec3 m_query_aabb_min;
+    phys_vec3 m_query_aabb_max;
+    phys_vec3 m_local_query_aabb_min;
+    phys_vec3 m_local_query_aabb_max;
+    const gjk_query_input* m_local_query_input;
+    bpei_database_id m_local_database_id;
+    broad_phase_environment_info* m_local_bpei;
+    gjk_entity_info_t* m_local_ent_info;
+    bpei_database_t m_bpei_database;
+    phys_transient_allocator m_allocator;
+    phys_transient_allocator::allocator_state m_allocator_state;
+    int m_ent_count;
+    int m_geom_count;
+    gjk_geom_info_t* m_total_list_geom_info;
+    phys_link_list<gjk_geom_info_t> m_list_geom_info;
+    int m_query_visitor_count;
+    int m_gent_query_visitor_count;
+    int m_cent_query_visitor_count;
+    int m_dent_query_visitor_count;
+    cached_query_info_t m_cached_query_info;
+    phys_vec3 m_accum_start_origin;
+    cached_query_info_t m_accum_query_info;
+    int m_total_query_count;
+    int m_total_cached_query_count;
+};
+
+class __declspec(align(16)) gjkcc_info
+{
+public:
+    phys_mat44 m_cg_to_world_xform;
+    phys_vec3 m_cg_aabb_min;
+    phys_vec3 m_cg_aabb_max;
+    vec3_t m_mins;
+    vec3_t m_maxs;
+    phys_heap_gjk_cache_system_avl_tree m_gjk_cache;
+    gjk_query_output m_gjk_query_output;
+    int m_active;
+    bool m_is_server_thread;
+    gjk_base_t* m_cg_;
+    vec3_t m_last_origin;
+
+    void update_cg(int mins, const vec3_t* maxs, const vec3_t* force);
+};
+
+class __declspec(align(4)) gjkcc_info_database_t
+{
+    phys_inplace_avl_tree<unsigned int, generic_avl_map_node_t, generic_avl_map_node_t> m_map;
+    int m_token;
+    int m_gcci_count;
+    bool m_is_server_thread;
+
+    gjkcc_info* create_gjkcc_info(const gjkcc_input_t* gjkcc_in, const bool is_server_thread, const vec3_t* origin);
+};
+
+class __declspec(align(16)) gjk_trace_input_t
+{
+public:
+    const gjk_base_t* m_cg;
+    float m_gjk_ac_eps;
+    bool m_keep_all_collisions;
+    bool m_exit_on_penetration;
+    float m_extra_time;
+    float m_skip_sentients;
+    phys_heap_gjk_cache_system_avl_tree* m_gjk_cache;
+    gjk_query_output* m_query_output;
+    gjkcc_info* m_gcci;
+    gjk_query_input m_query_input;
+    phys_transient_allocator* m_allocator;
+};
+
+class pml_t
+{
+public:
+    vec3_t forward;
+    vec3_t right;
+    vec3_t up;
+    float frametime;
+    int msec;
+    int walking;
+    int groundPlane;
+    int almostGroundPlane;
+    trace_t groundTrace;
+    float impactSpeed;
+    vec3_t previous_origin;
+    vec3_t previous_velocity;
+    unsigned int holdrand;
+};
+
+class __declspec(align(4)) gjk_slide_move_input_t
+{
+public:
+    const vec3_t* position;
+    const vec3_t* velocity;
+    int gravity;
+    int has_gravity;
+    const vec3_t* mins;
+    const vec3_t* maxs;
+    int tracemask;
+    int clientnum;
+    float frametime;
+    bool do_step_down;
+};
+
+class veh_gjk_slide_move_input_t : gjk_slide_move_input_t
+{
+public:
+    slide_move_params_t* m_params;
+};
+
+class ai_gjk_slide_move_input_t : gjk_slide_move_input_t
+{
+public:
+    actor_physics_t* m_pPhys;
+};
+
+class player_gjk_slide_move_input_t : gjk_slide_move_input_t
+{
+public:
+    pmove_t* pm;
+};
+
+class list_gjk_trace_output
+{
+public:
+    phys_link_list<gjk_trace_output_t> m_list;
+    gjk_trace_output_t* m_first_hit;
+};
+
+class __declspec(align(16)) GroundTrace
+{
+public:
+    trace_t trace;
+    vec3_t location;
+    int onGround;
+    int hasGround;
+    int validGroundNormal;
 };

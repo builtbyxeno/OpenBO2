@@ -133,11 +133,9 @@ ActiveRumble *NextAvailableRumble(const cg_t *cgameGlob, ActiveRumble *arArray)
 PlayRumbleInternal
 ==============
 */
-
+void __cdecl PlayRumbleInternal(LocalClientNum_t localClientNum, const char *rumbleName, const cg_t *loop, RumbleSourceType type, int entityNum, const vec3_t *pos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -285,10 +283,8 @@ void CG_InitDevguiRumbleGraph(dvarType_t a1, LocalClientNum_t localClientNum)
 CG_UpdateRumble
 ==============
 */
-
+void CG_UpdateRumble(dvarType_t a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

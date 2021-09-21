@@ -215,11 +215,10 @@ char CG_ShouldSendPeerVoiceData(SessionData *session, const LocalClientNum_t loc
 CG_IsWeaponVisible
 ==============
 */
-
+bool CG_IsWeaponVisible(centity_t *cent, XModel *weapModel, vec3_t *forward)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -279,11 +278,9 @@ void CG_CopyPerks(LocalClientNum_t localClientNum, ClientNum_t clientNum, unsign
 CG_PlayerTurretPositionAndBlend
 ==============
 */
-
+void CG_PlayerTurretPositionAndBlend(LocalClientNum_t localClientNum, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

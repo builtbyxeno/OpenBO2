@@ -16,11 +16,9 @@ void PMem_InitPhysicalMemory(PhysicalMemory *pmem, const char *name, void *memor
 PMem_Init
 ==============
 */
-
+void PMem_Init(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -38,11 +36,9 @@ void PMem_BeginAllocInPrim(PhysicalMemoryPrim *prim, const char *name, EMemTrack
 PMem_BeginAlloc
 ==============
 */
-
+void PMem_BeginAlloc(char *a1, const char *name, unsigned int allocType, EMemTrack memTrack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

@@ -46,11 +46,9 @@ void Demo_PopulateDefaultMetaInformation(demoDefaultMetaInfo *metaInfo, char *ma
 Demo_HiResScreenshot
 ==============
 */
-
+void Demo_HiResScreenshot(char *a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -712,11 +710,9 @@ void Demo_AdjustTimeForPlayerStateHudElement(int currentTime, int clipTime, int 
 Demo_AdjustTimeForPlayerState
 ==============
 */
-
+void Demo_AdjustTimeForPlayerState(int currentTime, int clipTime, playerState_s *ps)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1120,11 +1116,9 @@ void Demo_ReadConfigStrings(LocalClientNum_t localClientNum, msg_t *msg)
 Demo_InitClipRecord
 ==============
 */
-
+void Demo_InitClipRecord(LocalClientNum_t localClientNum, bool newClip)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1244,11 +1238,9 @@ BOOL Demo_IsTimeStopped()
 Demo_SwitchPlayer
 ==============
 */
-
+void __cdecl Demo_SwitchPlayer(LocalClientNum_t localClientNum, bool anticlockwise)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1409,7 +1401,7 @@ void Demo_ProcessPlayback(ControllerIndex_t controllerIndex)
 Demo_ReadDemoMessage
 ==============
 */
-/*char Demo_ReadDemoMessage@<al>(const char *a1@<ebx>, LocalClientNum_t localClientNum)
+/*char Demo_ReadDemoMessage(const char *a1@<ebx>, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

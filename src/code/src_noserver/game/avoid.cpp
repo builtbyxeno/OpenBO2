@@ -26,7 +26,7 @@ void Avoid_Init(int index, vec3_t origin, float radius, float timeHorizon, float
 Avoid_Allocate
 ==============
 */
-unsigned __int8 Avoid_Allocate(int entnum, vec3_t origin, float radius, float timeHorizon, float maxSpeed)
+unsigned __int8 Avoid_Allocate(char *a1, int entnum, vec3_t origin, float radius, float timeHorizon, float maxSpeed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -128,7 +128,7 @@ void AvoidUpdateOne(float curr, Avoid *a2, Avoid **inRange, int inRangeCount)
 Avoid_UpdateGoal
 ==============
 */
-void Avoid_UpdateGoal(int index, const float dt, const vec3_t *position, const vec3_t *vel, vec3_t *goalPos, float *speed, int team)
+void Avoid_UpdateGoal(char *a1, int index, const float dt, const vec3_t *position, const vec3_t *vel, vec3_t *goalPos, float *speed, int team)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -66,11 +66,9 @@ void Flame_Phys_Update_Item_Smoke(flameGeneric_s *gen, int time)
 Flame_Client_Trace
 ==============
 */
-
+void Flame_Client_Trace(const vec3_t *endPos, unsigned __int16 (*dynEnts)[2][100])
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -98,11 +96,9 @@ Flame_Phys_Update_Item_Drip
 Flame_Server_Trace
 ==============
 */
-
+void Flame_Server_Trace(const vec3_t *startPos, const vec3_t *endPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -120,11 +116,9 @@ void Flame_Phys_Collision(bool is_server, trace_t *trace, flameGeneric_s *gen, c
 Flame_Phys_Update_Items_PerStream
 ==============
 */
-
+void Flame_Phys_Update_Items_PerStream(int a1, bool is_server, int nitems, flameGeneric_s **items)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -132,8 +126,8 @@ Flame_Phys_Update_Items_PerStream
 Flame_Phys_Update_Items
 ==============
 */
-/*void Flame_Phys_Update_Items(const char *a1@<edi>, int is_server)
+void Flame_Phys_Update_Items(const char *a1, int is_server)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 

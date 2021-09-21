@@ -48,11 +48,9 @@ unsigned int SEH_VerifyLanguageSelection(int iLanguageSelection)
 SEH_Init_StringEd
 ==============
 */
-
+void __cdecl SEH_Init_StringEd()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -60,11 +58,9 @@ SEH_Init_StringEd
 SEH_Shutdown_StringEd
 ==============
 */
-
+void __cdecl SEH_Shutdown_StringEd()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -235,11 +231,9 @@ int SEH_StringEd_SetLanguageStrings(int iLanguage)
 SEH_TranslateMessage
 ==============
 */
-
+void SEH_TranslateMessage(char *a1, LocalClientNum_t localClientNum, const char *message, const char *messageType, char *finalString, unsigned int size)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

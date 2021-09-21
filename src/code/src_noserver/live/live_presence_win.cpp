@@ -6,7 +6,7 @@
 offsetOfBufInHunkUserDefault
 ==============
 */
-unsigned int __thiscall offsetOfBufInHunkUserDefault(bdChannelInfo *this)
+unsigned int offsetOfBufInHunkUserDefault(bdChannelInfo *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

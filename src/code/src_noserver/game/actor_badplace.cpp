@@ -48,7 +48,7 @@ char Path_CheckLineSegmentIntersectsAnyBadPlaceCylinder(const vec3_t *start, con
 Path_MakeBadPlaceEx
 ==============
 */
-void Path_MakeBadPlaceEx(unsigned int name, int duration, int teamflags, int type, badplace_parms_t* parms)
+void Path_MakeBadPlaceEx(unsigned int name, int duration, int teamflags, int type, badplace_parms_t *parms)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -131,11 +131,11 @@ bool Actor_BadPlace_HasPotentialNodeDuplicates(pathsort_t *potentialNodes, int p
 Actor_BadPlace_IsPointInAnyBadPlace
 ==============
 */
-/*int Actor_BadPlace_IsPointInAnyBadPlace@<eax>(const vec3_t *a1@<edx>, vec3_t *point)
+int Actor_BadPlace_IsPointInAnyBadPlace(const vec3_t *a1, vec3_t *point)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -164,7 +164,7 @@ pathnode_t *Actor_BadPlace_FindSafeNodeAlongPath(actor_t *self)
 Path_UpdateBadPlaces
 ==============
 */
-void Path_UpdateBadPlaces()
+void __cdecl Path_UpdateBadPlaces()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

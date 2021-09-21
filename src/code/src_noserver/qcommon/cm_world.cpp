@@ -234,11 +234,10 @@ void CM_LinkWorld()
 CM_PointTraceStaticModelsComplete
 ==============
 */
-
+int CM_PointTraceStaticModelsComplete(int a1, const vec3_t *start, const vec3_t *end, int contentmask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

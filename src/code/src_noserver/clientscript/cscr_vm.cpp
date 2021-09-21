@@ -189,11 +189,9 @@ void VM_CancelNotifyInternal(scriptInstance_t inst, unsigned int notifyListOwner
 VM_CancelNotify
 ==============
 */
-
+void __cdecl VM_CancelNotify(scriptInstance_t inst, unsigned int notifyListOwnerId, unsigned int startLocalId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -357,11 +355,9 @@ unsigned int Scr_GetWaittillThreadStackId(scriptInstance_t inst, unsigned int lo
 Scr_TerminateThread
 ==============
 */
-
+void Scr_TerminateThread(scriptInstance_t inst, unsigned int localId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -369,11 +365,10 @@ Scr_TerminateThread
 Scr_GetThreadPos
 ==============
 */
-
+unsigned __int8 *__cdecl Scr_GetThreadPos(scriptInstance_t inst, unsigned int localId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -381,11 +376,9 @@ Scr_GetThreadPos
 Scr_SetThreadPos
 ==============
 */
-
+void __cdecl Scr_SetThreadPos(scriptInstance_t inst, unsigned int localId, unsigned __int8 *codePos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -483,11 +476,9 @@ void Scr_CancelNotifyList(scriptInstance_t inst, unsigned int notifyListOwnerId)
 VM_TerminateTime
 ==============
 */
-
+void VM_TerminateTime(scriptInstance_t inst, unsigned int timeId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1029,10 +1020,10 @@ void VM_SetTime(scriptInstance_t inst)
 Scr_ShutdownSystem
 ==============
 */
-/*void Scr_ShutdownSystem(const char *a1@<edi>, scriptInstance_t inst, unsigned __int8 sys, bool bComplete)
+void Scr_ShutdownSystem(const char *a1, scriptInstance_t inst, unsigned __int8 sys, bool bComplete)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

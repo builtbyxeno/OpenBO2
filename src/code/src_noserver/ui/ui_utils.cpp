@@ -366,7 +366,7 @@ void UI_ListMenus_f()
 CL_SelectStringTableEntryInDvar_f
 ==============
 */
-void __thiscall CL_SelectStringTableEntryInDvar_f(const StringTable *this)
+void CL_SelectStringTableEntryInDvar_f(const StringTable *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -430,10 +430,8 @@ void Item_SetScreenCoords(UIContextIndex_t contextIndex, itemDef_s *item, float 
 Menu_UpdatePosition
 ==============
 */
-
+void __cdecl Menu_UpdatePosition(UIContextIndex_t contextIndex, menuDef_t *menu)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

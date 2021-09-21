@@ -13,7 +13,7 @@ TracerDef *Tracer_FindTracer(const char *tracerName);
 
 //t6/code/src_noserver/tracers/tracer_load_obj.cpp
 int Tracer_GetStringArrayIndex(const char *value, const char **stringArray, int arraySize);
-;
+int BG_ParseTracerDefSpecificFieldType(const char **a1, const char *a2, unsigned __int8 *pStruct, const char *pValue, const int iFieldType);
 int Tracer_ValidateDef(const char *tracerFilePath, const TracerDef *trDef);
 void Tracer_Load_StringCopy(char **strDest, const char *strSrc);
 void Tracer_Load_StringCopy_BatchInternal(char **a1, const char *a2);

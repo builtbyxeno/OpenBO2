@@ -41,10 +41,8 @@ DWORD GamerProfile_WriteCommonProfile()
 GamerProfile_WriteSettings
 ==============
 */
-
+void __cdecl GamerProfile_WriteSettings(ControllerIndex_t controllerIndex, GamerProfileBuffer *profileBuffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

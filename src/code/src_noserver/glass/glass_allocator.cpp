@@ -6,7 +6,7 @@
 SmallAllocator::Init
 ==============
 */
-/*void __thiscall SmallAllocator::Init(SmallAllocator *this, void *buffer, unsigned int bs, unsigned int nb)
+/*void SmallAllocator::Init(SmallAllocator *notthis, void *buffer, unsigned int bs, unsigned int nb)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -16,7 +16,7 @@ SmallAllocator::Init
 SmallAllocator::Allocate
 ==============
 */
-/*void **__thiscall SmallAllocator::Allocate(SmallAllocator *this, unsigned int size)
+/*void **SmallAllocator::Allocate(SmallAllocator *notthis, unsigned int size)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -27,7 +27,7 @@ SmallAllocator::Allocate
 Allocator::Memory::MakeFree
 ==============
 */
-/*char __thiscall Allocator::Memory::MakeFree(Allocator::Memory *this)
+/*char Allocator::Memory::MakeFree(Allocator::Memory *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -38,7 +38,7 @@ Allocator::Memory::MakeFree
 Allocator::FreeAll
 ==============
 */
-/*void __thiscall Allocator::FreeAll(Allocator *this)
+/*void Allocator::FreeAll(Allocator *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -48,7 +48,7 @@ Allocator::FreeAll
 Allocator::GetMemorySize
 ==============
 */
-/*int __thiscall Allocator::GetMemorySize(Allocator *this, void *ptr)
+/*int Allocator::GetMemorySize(Allocator *notthis, void *ptr)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -59,7 +59,7 @@ Allocator::GetMemorySize
 Allocator::Split
 ==============
 */
-/*void __thiscall Allocator::Split(Allocator *this, Allocator::Memory *mem, int size)
+/*void Allocator::Split(Allocator *notthis, Allocator::Memory *mem, int size)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -69,7 +69,7 @@ Allocator::Split
 Allocator::Merge
 ==============
 */
-/*void __thiscall Allocator::Merge(Allocator *this, Allocator::Memory *mem1, Allocator::Memory *mem2)
+/*void Allocator::Merge(Allocator *notthis, Allocator::Memory *mem1, Allocator::Memory *mem2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -79,7 +79,7 @@ Allocator::Merge
 Allocator::Defrag
 ==============
 */
-/*int __thiscall Allocator::Defrag(Allocator *this, void (*func)(void *), int count)
+/*int Allocator::Defrag(Allocator *notthis, void (*func)(void *), int count)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -90,7 +90,7 @@ Allocator::Defrag
 Allocator::GetFree
 ==============
 */
-/*int __thiscall Allocator::GetFree(Allocator *this)
+/*int Allocator::GetFree(Allocator *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -101,7 +101,7 @@ Allocator::GetFree
 Allocator::GetLargestFree
 ==============
 */
-/*int __thiscall Allocator::GetLargestFree(Allocator *this)
+/*int Allocator::GetLargestFree(Allocator *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -112,7 +112,7 @@ Allocator::GetLargestFree
 SmallAllocator::Free
 ==============
 */
-/*void __thiscall SmallAllocator::Free(SmallAllocator *this, void *ptr, unsigned int num)
+/*void SmallAllocator::Free(SmallAllocator *notthis, void *ptr, unsigned int num)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -122,7 +122,7 @@ SmallAllocator::Free
 Allocator::Init
 ==============
 */
-/*void __thiscall Allocator::Init(Allocator *this, void *buf, int size)
+/*void Allocator::Init(Allocator *notthis, void *buf, int size)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -132,7 +132,7 @@ Allocator::Init
 Allocator::Allocate
 ==============
 */
-/*Allocator::Memory **__thiscall Allocator::Allocate(Allocator *this, int size, void *userData)
+/*Allocator::Memory **Allocator::Allocate(Allocator *notthis, int size, void *userData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -143,7 +143,7 @@ Allocator::Allocate
 Allocator::Free
 ==============
 */
-/*void __thiscall Allocator::Free(Allocator *this, void *ptr)
+/*void Allocator::Free(Allocator *notthis, void *ptr)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

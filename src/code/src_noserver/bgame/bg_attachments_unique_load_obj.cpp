@@ -26,11 +26,10 @@ void SetConfigString2(char **a1, const char *a2)
 BG_ParseAttachmentUniqueSpecificFieldType
 ==============
 */
-
+int BG_ParseAttachmentUniqueSpecificFieldType(const char **a1, char *a2, unsigned __int8 *pStruct, const char *pValue, const int iFieldType, const int iOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

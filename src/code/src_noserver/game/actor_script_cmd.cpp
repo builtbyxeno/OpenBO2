@@ -1088,7 +1088,7 @@ void (*Actor_GetMethod(const char **pName, int *min_args, int *max_args))(scr_en
 MayMove_TraceCheck
 ==============
 */
-int MayMove_TraceCheck(actor_t* self, const vec3_t* vEnd)
+int MayMove_TraceCheck(actor_t *self, const vec3_t *vEnd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

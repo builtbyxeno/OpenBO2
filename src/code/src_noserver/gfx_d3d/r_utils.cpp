@@ -92,10 +92,9 @@ char R_GetClearColor(vec4_t *unpackedRgba)
 R_PickEntityBone
 ==============
 */
-
+int R_PickEntityBone(unsigned int a1, int traceMask, const vec3_t *org, const vec3_t *dir, int boneIndex, const char **boneName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 

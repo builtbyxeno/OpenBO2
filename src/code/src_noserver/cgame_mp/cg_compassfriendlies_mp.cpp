@@ -206,11 +206,9 @@ void CG_CompassUpdateVehicleOccupantInfo(LocalClientNum_t localClientNum, int en
 CG_CompassUpdateDogInfo
 ==============
 */
-
+void __cdecl CG_CompassUpdateDogInfo(LocalClientNum_t localClientNum, int entityIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -218,11 +216,9 @@ CG_CompassUpdateDogInfo
 CG_CompassUpdateZombieInfo
 ==============
 */
-
+void __cdecl CG_CompassUpdateZombieInfo(LocalClientNum_t localClientNum, int entityIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -230,11 +226,9 @@ CG_CompassUpdateZombieInfo
 CG_CompassUpdateTurretInfo
 ==============
 */
-
+void __cdecl CG_CompassUpdateTurretInfo(LocalClientNum_t localClientNum, int entityIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -272,11 +266,9 @@ void CG_CompassRadarPingEnemyPlayers(LocalClientNum_t localClientNum, float oldR
 CG_CompassIncreaseRadarTime
 ==============
 */
-
+void __cdecl CG_CompassIncreaseRadarTime(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -294,11 +286,9 @@ void CG_SensorGrenadePingPlayer(LocalClientNum_t localClientNum, const clientInf
 CG_AddTurretWeaponPingInfo
 ==============
 */
-
+void __cdecl CG_AddTurretWeaponPingInfo(LocalClientNum_t localClientNum, const centity_t *cent, const vec3_t *origin, int msec)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -306,11 +296,9 @@ CG_AddTurretWeaponPingInfo
 CG_CompassAddWeaponPingInfoInternal
 ==============
 */
-
+void __cdecl CG_CompassAddWeaponPingInfoInternal(LocalClientNum_t localClientNum, ClientNum_t clientNum, const vec3_t *origin, int msec, bool isSuppressedFire)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

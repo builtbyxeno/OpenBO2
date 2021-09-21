@@ -46,11 +46,9 @@ void CG_CheckPlayerstateEvents(LocalClientNum_t localClientNum, playerState_s *p
 CG_TransitionPlayerState
 ==============
 */
-
+void CG_TransitionPlayerState(playerState_s *a1, LocalClientNum_t a2, LocalClientNum_t localClientNum, playerState_s *ps, const transPlayerState_t *ops)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

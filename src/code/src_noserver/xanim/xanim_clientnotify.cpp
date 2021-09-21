@@ -6,7 +6,7 @@
 XAnimClientNotifyList::XAnimClientNotifyList
 ==============
 */
-/*void __thiscall XAnimClientNotifyList::XAnimClientNotifyList(XAnimClientNotifyList *this)
+/*void XAnimClientNotifyList::XAnimClientNotifyList(XAnimClientNotifyList *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -16,7 +16,7 @@ XAnimClientNotifyList::XAnimClientNotifyList
 XAnimClientNotifyList::GetNotifyList
 ==============
 */
-/*void __thiscall XAnimClientNotifyList::GetNotifyList(bdTrulyRandomImpl *this)
+/*void XAnimClientNotifyList::GetNotifyList(bdTrulyRandomImpl *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -26,7 +26,7 @@ XAnimClientNotifyList::GetNotifyList
 XAnimClientNotify::IsClientAnimNotify
 ==============
 */
-/*BOOL __thiscall XAnimClientNotify::IsClientAnimNotify(XAnimClientNotify *this)
+/*BOOL XAnimClientNotify::IsClientAnimNotify(XAnimClientNotify *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -37,7 +37,7 @@ XAnimClientNotify::IsClientAnimNotify
 XAnimClientNotify::GetNotifyStringName
 ==============
 */
-/*const char *__thiscall XAnimClientNotify::GetNotifyStringName(XAnimClientNotify *this)
+/*const char *XAnimClientNotify::GetNotifyStringName(XAnimClientNotify *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -48,7 +48,7 @@ XAnimClientNotify::GetNotifyStringName
 XAnimClientNotify::GetNotifyType
 ==============
 */
-/*unsigned int __thiscall XAnimClientNotify::GetNotifyType(XAnimClientNotify *this)
+/*unsigned int XAnimClientNotify::GetNotifyType(XAnimClientNotify *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -59,7 +59,7 @@ XAnimClientNotify::GetNotifyType
 XAnimClientNotify::GetNotifyName
 ==============
 */
-/*unsigned int __thiscall XAnimClientNotify::GetNotifyName(XAnimClientNotify *this)
+/*unsigned int XAnimClientNotify::GetNotifyName(XAnimClientNotify *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -70,7 +70,7 @@ XAnimClientNotify::GetNotifyName
 XAnimClientNotifyList::~XAnimClientNotifyList
 ==============
 */
-/*void __thiscall XAnimClientNotifyList::~XAnimClientNotifyList(XAnimClientNotifyList *this)
+/*void XAnimClientNotifyList::~XAnimClientNotifyList(XAnimClientNotifyList *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -80,7 +80,7 @@ XAnimClientNotifyList::~XAnimClientNotifyList
 XAnimClientNotifyList::AddNotify
 ==============
 */
-/*void __thiscall XAnimClientNotifyList::AddNotify(XAnimClientNotifyList *this, const ClientNotifyData *notifyData)
+/*void XAnimClientNotifyList::AddNotify(XAnimClientNotifyList *notthis, const ClientNotifyData *notifyData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

@@ -216,11 +216,11 @@ flameTable *BG_GetFlameTable(const char *folder, const char *name)
 BG_LoadWeaponFile
 ==============
 */
-/*char BG_LoadWeaponFile@<al>(const char *a1@<edx>, const char *a2@<ecx>, const char *szFileName, char *szBuffer, int iBufferSize)
+char BG_LoadWeaponFile(const char *a1, const char *a2, const char *szFileName, char *szBuffer, int iBufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -401,11 +401,10 @@ char BG_WeaponCamoUpdateField(const char *camoName, const char *keyValue)
 BG_LoadDefaultWeaponVariantDef_LoadObj
 ==============
 */
-
+WeaponFullDef *BG_LoadDefaultWeaponVariantDef_LoadObj(WeaponFullDef *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*

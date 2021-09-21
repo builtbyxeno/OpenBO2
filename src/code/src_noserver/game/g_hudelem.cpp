@@ -478,11 +478,9 @@ void HudElem_SetFontScale(game_hudelem_s *hud, int offset)
 HudElem_SetFont
 ==============
 */
-
+void __cdecl HudElem_SetFont(game_hudelem_s *hud, int offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -490,11 +488,9 @@ HudElem_SetFont
 HudElem_GetFont
 ==============
 */
-
+void HudElem_GetFont(game_hudelem_s *a1, const game_hudelem_field_t *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -502,11 +498,9 @@ HudElem_GetFont
 HudElem_SetAlignX
 ==============
 */
-
+void __cdecl HudElem_SetAlignX(game_hudelem_s *hud, int offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -514,11 +508,9 @@ HudElem_SetAlignX
 HudElem_GetAlignX
 ==============
 */
-
+void HudElem_GetAlignX(game_hudelem_s *a1, const game_hudelem_field_t *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -526,11 +518,9 @@ HudElem_GetAlignX
 HudElem_SetAlignY
 ==============
 */
-
+void __cdecl HudElem_SetAlignY(game_hudelem_s *hud, int offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -538,11 +528,9 @@ HudElem_SetAlignY
 HudElem_GetAlignY
 ==============
 */
-
+void HudElem_GetAlignY(game_hudelem_s *a1, const game_hudelem_field_t *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -550,11 +538,9 @@ HudElem_GetAlignY
 HudElem_SetHorzAlign
 ==============
 */
-
+void __cdecl HudElem_SetHorzAlign(game_hudelem_s *hud, int offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -562,11 +548,9 @@ HudElem_SetHorzAlign
 HudElem_GetHorzAlign
 ==============
 */
-
+void HudElem_GetHorzAlign(game_hudelem_s *a1, const game_hudelem_field_t *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -574,11 +558,9 @@ HudElem_GetHorzAlign
 HudElem_SetVertAlign
 ==============
 */
-
+void __cdecl HudElem_SetVertAlign(game_hudelem_s *hud, int offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -586,11 +568,9 @@ HudElem_SetVertAlign
 HudElem_GetVertAlign
 ==============
 */
-
+void HudElem_GetVertAlign(game_hudelem_s *a1, const game_hudelem_field_t *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

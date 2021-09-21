@@ -152,7 +152,7 @@ void AimTarget_UpdateClientTargets(LocalClientNum_t localClientNum)
 AimTarget_IsTargetVisible
 ==============
 */
-BOOL AimTarget_IsTargetVisible(LocalClientNum_t localClientNum, const centity_t* targetEnt)
+bool AimTarget_IsTargetVisible(unsigned int a1, const centity_t *a2, unsigned int localClientNum, LocalClientNum_t targetEnt, const centity_t *a5)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

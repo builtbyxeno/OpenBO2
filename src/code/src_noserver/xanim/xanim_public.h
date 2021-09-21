@@ -3,7 +3,7 @@
 #include "types.h"
 
 //t6/code/src_noserver/xanim/dobj.cpp
-;
+void DObjInit(int a1);
 void DObjShutdown();
 void DObjDumpCreationInfo(DObjModel_s *dobjModels, unsigned int numModels);
 void DObjGetHierarchyBits(const DObj *obj, int boneIndex, int *partBits);
@@ -22,7 +22,7 @@ const char *DObjGetModelParentBoneName(const DObj *obj, int modelIndex);
 XAnimTree_s *DObjGetTree(const DObj *obj);
 int DObjBad(const DObj *obj);
 void DObjTracelinePartBits(DObj *obj, int *partBits);
-;
+void DObjGeomTraceline(int a1, DObj *obj, vec3_t *localStart, vec3_t *localEnd, int contentmask, DObjTrace_s *results);
 void DObjGeomTracelinePartBits(DObj *obj, int contentmask, int *partBits);
 int DObjHasContents(DObj *obj, int contentmask);
 int DObjGetContents(const DObj *obj);
@@ -46,9 +46,9 @@ BOOL DObjIsServer(const DObj *obj);
 int DObjIsLocalPlayer(const DObj *obj);
 int DObjIsPlayerShadow(const DObj *obj);
 BOOL DObjIsLeftHandGripIKActive(const DObj *obj);
-;
+void DObjTraceline(int a1, DObj *obj, vec3_t *start, vec3_t *end, unsigned __int8 *priorityMap, DObjTrace_s *trace);
 void DObjSetTree(DObj *obj, XAnimTree_s *tree);
-;
+void __cdecl DObjCreate(DObjModel_s *dobjModels, unsigned int numModels, XAnimTree_s *tree, void *buf, unsigned int entnum);
 void DObjCreateExt(DObjModel_s *dobjModels, unsigned int numModels, XAnimTree_s *tree, void *buf, unsigned int entnum, bool isServer, bool isLocalPlayer, LocalClientNum_t localClientIndex);
 int DObjGetModelBoneIndex(const DObj *obj, int model_index, unsigned int name, unsigned __int8 *index);
 
@@ -119,7 +119,7 @@ XAnimTree_s *XAnimCreateTree(XAnim_s *anims, void *(*Alloc)(int));
 XAnim_s *XAnimGetAnims(const XAnimTree_s *tree);
 int XAnimGetAnimIndex(XAnim_s *anims, const char *name);
 void XAnimInitModelMap(XModel *const *models, unsigned int numModels, XModelNameMap *modelMap);
-;
+void XAnimCalcRelDeltaParts(const XAnimParts *parts, XAnimRotPos *rotPos);
 void XAnimFreeInfo(XAnimTree_s *tree, unsigned int infoIndex);
 void XAnimCheckFreeInfo(XAnimTree_s *tree, unsigned int infoIndex, int hasWeight);
 double XAnimGetAverageRateFrequency(const XAnimTree_s *tree, unsigned int infoIndex);
@@ -151,14 +151,14 @@ void DObjSetServerNotifies(XAnimServerNotifyList *pNotifyList);
 void DObjClearClientNotifies();
 void DObjSetClientNotifies(XAnimClientNotifyList *pNotifyList);
 XAnimClientNotifyList *DObjGetClientNotifies();
-// unsigned int XAnimAllocInfoWithParent@<eax>(const char *a1@<esi>, XAnimTree_s *tree, unsigned int animToModel, unsigned int animIndex, unsigned int parentInfoIndex, int after);
+unsigned int XAnimAllocInfoWithParent(const char *a1, XAnimTree_s *tree, unsigned int animToModel, unsigned int animIndex, unsigned int parentInfoIndex, int after);
 unsigned int XAnimEnsureGoalWeightParent(DObj *obj, unsigned int animIndex, int cmdIndex);
 void XAnimClearGoalWeightInternal(XAnimTree_s *tree, unsigned int infoIndex, float blendTime, int forceBlendTime, int cmdIndex);
-;
-;
+void XAnimClearGoalWeight(unsigned int a1, char *a2, XAnimTree_s *tree, unsigned int animIndex, float blendTime, int cmdIndex);
+void XAnimClearTreeGoalWeightsInternal(unsigned int a1, XAnimTree_s *tree, unsigned int infoIndex, float blendTime, int forceBlendTime, int cmdIndex);
 void XAnimClearTreeGoalWeights(unsigned int a1, XAnimTree_s *tree, unsigned int animIndex, float blendTime, int cmdIndex);
 void XAnimClearTreeGoalWeightsStrict(unsigned int a1, XAnimTree_s *tree, unsigned int animIndex, float blendTime, int cmdIndex);
-;
+void __cdecl XAnimClearGoalWeightKnobInternal(XAnimTree_s *tree, unsigned int infoIndex, float goalWeight, float goalTime, int cmdIndex);
 void XAnimClearTree(XAnimTree_s *tree);
 unsigned int XAnimGetDescendantWithGreatestWeight(const XAnimTree_s *tree, unsigned int infoIndex);
 int XAnimSetGoalWeightNode(XAnimTree_s *tree, unsigned int infoIndex, float goalWeight, float goalTime, float rate, unsigned int notifyName, unsigned int notifyType, int cmdIndex);
@@ -176,20 +176,20 @@ char XAnimNotetrackExists(const XAnim_s *anims, unsigned int animIndex, unsigned
 void XAnimAddNotetrackTimesToScriptArray(const XAnim_s *anims, unsigned int animIndex, unsigned int name);
 char XAnimDoesNoteTrackExistAtPosAfterTime(const XAnim_s *anims, unsigned int animIndex, unsigned int name, float startTime, float checkTime);
 void XAnimCloneAnimInfo(XAnimTree_s *toTree, const XAnimInfo *from, XAnimInfo *to);
-;
-// void XAnimCloneAnimTree(const XAnimTree_s *a1@<edx>, const XAnimTree_s *from, XAnimTree_s *to);
+void XAnimCloneAnimTree_r(XAnimInfo *a1, const XAnimTree_s *from, XAnimTree_s *to, unsigned int fromInfoIndex, unsigned int toInfoParentIndex);
+void XAnimCloneAnimTree(const XAnimTree_s *a1, const XAnimTree_s *from, XAnimTree_s *to);
 XAnimInfo *GetAnimInfo(int infoIndex);
 char XAnimGetParamValue(const XAnim_s *anims, unsigned int animIndex, const char *paramName, float *outValue);
 bool XAnimGetParamValueTree(const XAnim_s *anims, unsigned int animIndex, const char *paramName, float *outValue);
-;
+bool __cdecl XAnimGetParamValue(XAnimTree_s *tree, unsigned int animIndex, const char *paramName, float *outValue);
 XAnim_s *XAnimCreateAnims(const char *debugName, int size, void *(*Alloc)(int));
 void XAnimFreeTree(XAnimTree_s *tree, void (*Free)(void *, int));
-;
+void XAnimCalcAbsDeltaParts(XAnimRotPos *rotPos);
 void XAnimUpdateInfoSync(int a1, const XAnimState *a2, const DObj *obj, unsigned int infoIndex, int notifyFlags, XAnimState *syncState, float dtime);
 void XAnimUpdateTimeAndNotetrackLeaf(const DObj *obj, const XAnimParts *parts, unsigned int infoIndex, float dtime, int notifyFlags);
 void XAnimUpdateTimeAndNotetrackSyncSubTree(const DObj *obj, unsigned int infoIndex, float dtime, int notifyFlags);
-;
-;
+void XAnimUpdateTimeAndNotetrack(const XAnimParts *a1, const DObj *obj, unsigned int infoIndex, float dtime, int notifyFlags);
+unsigned int __cdecl XAnimCloneInitTime(XAnimTree_s *tree, unsigned int infoIndex, unsigned int parentIndex, int cmdIndex);
 unsigned int XAnimInitTime(XAnimTree_s *tree, unsigned int infoIndex, float goalTime, int cmdIndex);
 void XAnimUpdateOldTime(DObj *obj, unsigned int infoIndex, XAnimState *syncState, float dtime, bool parentHasWeight, bool *childHasTimeForParent);
 void XAnimCalcDeltaTree(XAnimRotPos *a1, XAnimRotPos *a2, const DObj *obj, const unsigned int infoIndex, const float weightScale, const XAnimDeltaInfo deltaInfo, XAnimRotPos *rotPos);
@@ -205,19 +205,19 @@ void XAnimGetRelDelta(const XAnim_s *anims, unsigned int animIndex, vec2_t *rot,
 void XAnimGetAbsDelta(const XAnim_s *anims, unsigned int animIndex, vec4_t *rot, vec3_t *trans);
 int XAnimSetCompleteGoalWeightNode(unsigned int notifyType, unsigned int notifyName, XAnimTree_s *tree, unsigned int infoIndex, float goalWeight, float goalTime, int cmdIndex);
 void XAnimSetTime(unsigned int a1, XAnimTree_s *tree, unsigned int animIndex, float time, int cmdIndex);
-;
+unsigned int __cdecl XAnimRestart(XAnimTree_s *tree, unsigned int infoIndex, float goalTime, int cmdIndex);
 unsigned int XAnimGetAnimMap(const XAnimParts *parts, const XModelNameMap *modelMap);
 void XAnimResetAnimMapLeaf(const XModelNameMap *modelMap, unsigned int infoIndex);
 void XAnimResetAnimMap_r(unsigned int a1, const XModelNameMap *a2, XModelNameMap *modelMap, unsigned int infoIndex);
 void XAnimResetAnimMap(int a1, const DObj *obj, unsigned int infoIndex);
 unsigned int XAnimAllocInfoIndex(unsigned int animIndex);
 XAnimInfo *XAnimAllocInfo(DObj *obj, unsigned int animIndex);
-;
+int XAnimSetCompleteGoalWeightKnob(unsigned int a1, char *a2, DObj *obj, unsigned int animIndex, float goalWeight, float goalTime, float rate, unsigned int notifyName, unsigned int notifyType, int bRestart, int cmdIndex);
 int XAnimSetGoalWeightKnob(unsigned int a1, DObj *obj, unsigned int animIndex, float goalWeight, float goalTime, float rate, unsigned int notifyName, unsigned int notifyType, int bRestart, int cmdIndex);
 int XAnimSetGoalWeight(unsigned int a1, DObj *obj, unsigned int animIndex, float goalWeight, float goalTime, float rate, unsigned int notifyName, unsigned int notifyType, int bRestart, int cmdIndex);
-;
+int XAnimSetCompleteGoalWeight(unsigned int a1, DObj *obj, unsigned int animIndex, float goalWeight, float goalTime, float rate, unsigned int notifyName, unsigned int notifyType, int bRestart, int cmdIndex);
 int XAnimSetGoalWeightKnobAll(DObj *obj, unsigned int animIndex, unsigned int rootIndex, float goalWeight, float goalTime, float rate, unsigned int notifyName, unsigned int notifyType, int bRestart, int cmdIndex);
-;
+int XAnimSetCompleteGoalWeightKnobAll(char *a1, DObj *obj, unsigned int animIndex, unsigned int rootIndex, float goalWeight, float goalTime, float rate, unsigned int notifyName, unsigned int notifyType, int bRestart, int cmdIndex);
 
 //t6/code/src_noserver/xanim/xanim_calc.cpp
 void XAnim_CalcPosDeltaEntire(const XAnimDeltaPart *animDelta, __m128 *posDelta);
@@ -227,22 +227,22 @@ void XAnimScaleRotTransArray(int numBones, const XAnimCalcAnimInfo *info, DObjAn
 void XAnimNormalizeRotScaleTransArray(int numBones, const XAnimCalcAnimInfo *info, float weightScale, DObjAnimMat *rotTransArray);
 void XAnimMadRotTransArray(int numBones, const XAnimCalcAnimInfo *info, float weightScale, const DObjAnimMat *rotTrans, DObjAnimMat *totalRotTrans);
 void XAnimApplyAdditives(DObjAnimMat *rotTransArray, DObjAnimMat *additiveArray, float weight, int boneCount, XAnimCalcAnimInfo *info);
-;
-;
+void XAnim_CalcDeltaForTime(int a1, const XAnimDeltaPart *a2, const XAnimParts *anim, const float time, vec2_t *rotDelta, __m128 *posDelta);
+void XAnim_CalcDelta3DForTime(int a1, const XAnimDeltaPart *a2, const XAnimParts *anim, const float time, vec4_t *rotDelta, __m128 *posDelta);
 // void XAnimCalcLeafInternal(const XAnimParts *parts, unsigned __int16 animToModelIndex, float time, float weightScale, DObjAnimMat *rotTransArray, bitarray<160> *animPartBits, const bitarray<160> *ignorePartBits);
-;
+void XAnimCalcLeaf(XAnimInfo *info, float weightScale, DObjAnimMat *rotTransArray, XAnimCalcAnimInfo *animInfo);
 void XAnimCalc(const DObj *obj, XAnimInfo *info, float weightScale, bool bClear, bool bNormQuat, XAnimCalcAnimInfo *animInfo, int rotTransArrayIndex, DObjAnimMat *rotTransArray);
 void DObjCalcAnim(int a1, const DObj *obj, int *partBits);
 
 //t6/code/src_noserver/xanim/xanim_clientnotify.cpp
-// void __thiscall XAnimClientNotifyList::XAnimClientNotifyList(XAnimClientNotifyList *this);
-// void __thiscall XAnimClientNotifyList::GetNotifyList(bdTrulyRandomImpl *this);
-// BOOL __thiscall XAnimClientNotify::IsClientAnimNotify(XAnimClientNotify *this);
-// const char *__thiscall XAnimClientNotify::GetNotifyStringName(XAnimClientNotify *this);
-// unsigned int __thiscall XAnimClientNotify::GetNotifyType(XAnimClientNotify *this);
-// unsigned int __thiscall XAnimClientNotify::GetNotifyName(XAnimClientNotify *this);
-// void __thiscall XAnimClientNotifyList::~XAnimClientNotifyList(XAnimClientNotifyList *this);
-// void __thiscall XAnimClientNotifyList::AddNotify(XAnimClientNotifyList *this, const ClientNotifyData *notifyData);
+// void XAnimClientNotifyList::XAnimClientNotifyList(XAnimClientNotifyList *notthis);
+// void XAnimClientNotifyList::GetNotifyList(bdTrulyRandomImpl *notthis);
+// BOOL XAnimClientNotify::IsClientAnimNotify(XAnimClientNotify *notthis);
+// const char *XAnimClientNotify::GetNotifyStringName(XAnimClientNotify *notthis);
+// unsigned int XAnimClientNotify::GetNotifyType(XAnimClientNotify *notthis);
+// unsigned int XAnimClientNotify::GetNotifyName(XAnimClientNotify *notthis);
+// void XAnimClientNotifyList::~XAnimClientNotifyList(XAnimClientNotifyList *notthis);
+// void XAnimClientNotifyList::AddNotify(XAnimClientNotifyList *notthis, const ClientNotifyData *notifyData);
 
 //#include "xanim/xanim_load_db.h"
 
@@ -281,12 +281,12 @@ unsigned __int16 *XModelBoneNames(XModel *model);
 double XModelGetRadius(const XModel *model);
 void XModelGetBounds(const XModel *model, vec3_t *mins, vec3_t *maxs);
 void XModelRenderString(const vec3_t *pos, const char *string);
-;
+int XModelTraceLineAnimated(unsigned int a1, const DObj *obj, unsigned int modelIndex, int baseBoneIndex, trace_t *results, const DObjAnimMat *boneMtxList, vec3_t *localStart, vec3_t *localEnd, int contentmask);
 void XModelTraceLineAnimatedPartBits(const DObj *obj, unsigned int modelIndex, int baseBoneIndex, int contentmask, int *partBits);
 void XSurfaceVisitTrianglesInAabb_ConvertAabb(const XSurfaceCollisionTree *tree, const vec3_t *aabbMins, const vec3_t *aabbMaxs, int *mins, int *maxs);
 bool XSurfaceVisitTrianglesInAabb_ProcessVertices(XSurfaceGetTriCandidatesLocals *locals);
 bool XSurfaceVisitTrianglesInAabb_ProcessTriangles(XSurfaceGetTriCandidatesLocals *locals);
-;
+int XModelTraceLine(int a1, const XModel *model, trace_t *results, const vec3_t *localStart, const vec3_t *localEnd, int contentmask);
 bool XSurfaceVisitTrianglesInAabb_ProcessLeaf(XSurfaceGetTriCandidatesLocals *locals);
 char XSurfaceVisitTrianglesInAabb_ProcessNode(XSurfaceGetTriCandidatesLocals *locals);
 char XSurfaceVisitTrianglesInAabb(const XSurface *surface, unsigned int vertListIndex, const vec3_t *aabbMins, const vec3_t *aabbMaxs, bool (*visitorFunc)(void *, const unsigned __int8 **, const unsigned __int8 **), void *visitorContext);
@@ -308,7 +308,7 @@ int XModelGetStaticBoundsExact(const XModel *model, const vec3_t *axis, vec3_t *
 int XModelGetStaticBounds(const XModel *model, vec3_t *mins, vec3_t *maxs);
 void XModelCalcBasePose(XModelPartsLoad *modelParts);
 XModelPartsLoad *XModelPartsLoadFile(XModel *model, const char *name, void *(*Alloc)(int), __int64 *xmodelModifiedTime);
-;
+XModelPartsLoad *XModelPartsPrecache(XModel *model, const char *name, void *(__cdecl *Alloc)(int), __int64 *xmodelModifiedTime);
 XModel *XModelLoadFile(const char *name, void *(*Alloc)(int), void *(*AllocColl)(int), __int64 *xmodelModifiedTime);
 XModel *XModelLoad(const char *name, void *(*Alloc)(int), void *(*AllocColl)(int));
 
@@ -325,7 +325,7 @@ bool Xmodel_ParsePhysicsBox(const char **file, PhysGeomInfo *geom);
 bool Xmodel_ParsePhysicsCylinder(const char **file, PhysGeomInfo *geom);
 char SkipEpair(const char *token, const char **file);
 bool AddBoneName(unsigned int *boneNameArray, const int boneNameLen, const char *boneName);
-;
+int Xmodel_CountPhysicsCollMaps(const char *name, const char **file, unsigned int *boneHashes, const int boneNameLen);
 unsigned int Xmodel_CountPhysicsCollMapGeoms(const char **file, const char *name, unsigned int boneHash);
 PhysGeomList *Xmodel_ParsePhysicsCollMap(DObjAnimMat *boneMat, void *(*Alloc)(int), const char **file, const char *name, unsigned int geomCount, unsigned int boneHash);
 void XModel_LoadCollMap(const char *name, void *(*Alloc)(int), XModel *model, const char *xmodelName);

@@ -6,7 +6,7 @@
 NitrousVehicle::set_steer_factor
 ==============
 */
-/*void __thiscall NitrousVehicle::set_steer_factor(NitrousVehicle *this, float steer_factor, float physics_steer_scale)
+/*void NitrousVehicle::set_steer_factor(NitrousVehicle *notthis, float steer_factor, float physics_steer_scale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -16,7 +16,7 @@ NitrousVehicle::set_steer_factor
 NitrousVehicle::set_throttle
 ==============
 */
-/*void __thiscall NitrousVehicle::set_throttle(NitrousVehicle *this, float throttle)
+/*void NitrousVehicle::set_throttle(NitrousVehicle *notthis, float throttle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -26,7 +26,7 @@ NitrousVehicle::set_throttle
 NitrousVehicle::set_brake
 ==============
 */
-/*void __thiscall NitrousVehicle::set_brake(NitrousVehicle *this, float braking)
+/*void NitrousVehicle::set_brake(NitrousVehicle *notthis, float braking)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -36,7 +36,7 @@ NitrousVehicle::set_brake
 NitrousVehicle::set_hand_brake
 ==============
 */
-/*void __thiscall NitrousVehicle::set_hand_brake(NitrousVehicle *this, float braking)
+/*void NitrousVehicle::set_hand_brake(NitrousVehicle *notthis, float braking)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

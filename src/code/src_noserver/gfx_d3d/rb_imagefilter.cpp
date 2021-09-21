@@ -48,11 +48,10 @@ void RB_GenerateGaussianFilter2D(float radius, int srcWidth, int srcHeight, int 
 RB_GenerateGaussianFilterChain
 ==============
 */
-
+int RB_GenerateGaussianFilterChain(float radiusX, float radiusY, int srcWidth, int srcHeight, int dstWidth, int dstHeight, int passLimit, GfxImageFilterPass *filterPass)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -90,11 +89,9 @@ void RB_FilterImage(int a1, GfxImageFilter *filter)
 RB_GaussianFilterImage
 ==============
 */
-
+void __cdecl RB_GaussianFilterImage(float radius, unsigned __int8 srcRenderTargetId, unsigned __int8 dstRenderTargetId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

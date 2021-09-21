@@ -69,11 +69,10 @@ void Bot_FireRecoil(int clientNum, vec3_t *kickAVel)
 Bot_ProjectileArcTrace
 ==============
 */
-
+bool Bot_ProjectileArcTrace(const vec3_t *vOrigin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -125,11 +124,10 @@ bool Bot_TryThrowGrenade(const client_t *cl, vec3_t *target, Weapon weapon)
 Bot_SightCheck
 ==============
 */
-
+bool Bot_SightCheck(int a1, const vec3_t *start, const vec3_t *end, int botNum, int enemyNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

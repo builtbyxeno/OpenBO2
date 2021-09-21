@@ -195,11 +195,9 @@ void XAnimInitModelMap(XModel *const *models, unsigned int numModels, XModelName
 XAnimCalcRelDeltaParts
 ==============
 */
-
+void XAnimCalcRelDeltaParts(const XAnimParts *parts, XAnimRotPos *rotPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -536,11 +534,11 @@ XAnimClientNotifyList *DObjGetClientNotifies()
 XAnimAllocInfoWithParent
 ==============
 */
-/*unsigned int XAnimAllocInfoWithParent@<eax>(const char *a1@<esi>, XAnimTree_s *tree, unsigned int animToModel, unsigned int animIndex, unsigned int parentInfoIndex, int after)
+unsigned int XAnimAllocInfoWithParent(const char *a1, XAnimTree_s *tree, unsigned int animToModel, unsigned int animIndex, unsigned int parentInfoIndex, int after)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -568,11 +566,9 @@ void XAnimClearGoalWeightInternal(XAnimTree_s *tree, unsigned int infoIndex, flo
 XAnimClearGoalWeight
 ==============
 */
-
+void XAnimClearGoalWeight(unsigned int a1, char *a2, XAnimTree_s *tree, unsigned int animIndex, float blendTime, int cmdIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -580,11 +576,9 @@ XAnimClearGoalWeight
 XAnimClearTreeGoalWeightsInternal
 ==============
 */
-
+void XAnimClearTreeGoalWeightsInternal(unsigned int a1, XAnimTree_s *tree, unsigned int infoIndex, float blendTime, int forceBlendTime, int cmdIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -612,11 +606,9 @@ void XAnimClearTreeGoalWeightsStrict(unsigned int a1, XAnimTree_s *tree, unsigne
 XAnimClearGoalWeightKnobInternal
 ==============
 */
-
+void __cdecl XAnimClearGoalWeightKnobInternal(XAnimTree_s *tree, unsigned int infoIndex, float goalWeight, float goalTime, int cmdIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -805,11 +797,9 @@ void XAnimCloneAnimInfo(XAnimTree_s *toTree, const XAnimInfo *from, XAnimInfo *t
 XAnimCloneAnimTree_r
 ==============
 */
-
+void XAnimCloneAnimTree_r(XAnimInfo *a1, const XAnimTree_s *from, XAnimTree_s *to, unsigned int fromInfoIndex, unsigned int toInfoParentIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -817,10 +807,10 @@ XAnimCloneAnimTree_r
 XAnimCloneAnimTree
 ==============
 */
-/*void XAnimCloneAnimTree(const XAnimTree_s *a1@<edx>, const XAnimTree_s *from, XAnimTree_s *to)
+void XAnimCloneAnimTree(const XAnimTree_s *a1, const XAnimTree_s *from, XAnimTree_s *to)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -860,11 +850,10 @@ bool XAnimGetParamValueTree(const XAnim_s *anims, unsigned int animIndex, const 
 XAnimGetParamValue
 ==============
 */
-
+bool __cdecl XAnimGetParamValue(XAnimTree_s *tree, unsigned int animIndex, const char *paramName, float *outValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -893,11 +882,9 @@ void XAnimFreeTree(XAnimTree_s *tree, void (*Free)(void *, int))
 XAnimCalcAbsDeltaParts
 ==============
 */
-
+void XAnimCalcAbsDeltaParts(XAnimRotPos *rotPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -935,11 +922,9 @@ void XAnimUpdateTimeAndNotetrackSyncSubTree(const DObj *obj, unsigned int infoIn
 XAnimUpdateTimeAndNotetrack
 ==============
 */
-
+void XAnimUpdateTimeAndNotetrack(const XAnimParts *a1, const DObj *obj, unsigned int infoIndex, float dtime, int notifyFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -947,11 +932,10 @@ XAnimUpdateTimeAndNotetrack
 XAnimCloneInitTime
 ==============
 */
-
+unsigned int __cdecl XAnimCloneInitTime(XAnimTree_s *tree, unsigned int infoIndex, unsigned int parentIndex, int cmdIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1111,11 +1095,10 @@ void XAnimSetTime(unsigned int a1, XAnimTree_s *tree, unsigned int animIndex, fl
 XAnimRestart
 ==============
 */
-
+unsigned int __cdecl XAnimRestart(XAnimTree_s *tree, unsigned int infoIndex, float goalTime, int cmdIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1186,11 +1169,10 @@ XAnimInfo *XAnimAllocInfo(DObj *obj, unsigned int animIndex)
 XAnimSetCompleteGoalWeightKnob
 ==============
 */
-
+int XAnimSetCompleteGoalWeightKnob(unsigned int a1, char *a2, DObj *obj, unsigned int animIndex, float goalWeight, float goalTime, float rate, unsigned int notifyName, unsigned int notifyType, int bRestart, int cmdIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1220,11 +1202,10 @@ int XAnimSetGoalWeight(unsigned int a1, DObj *obj, unsigned int animIndex, float
 XAnimSetCompleteGoalWeight
 ==============
 */
-
+int XAnimSetCompleteGoalWeight(unsigned int a1, DObj *obj, unsigned int animIndex, float goalWeight, float goalTime, float rate, unsigned int notifyName, unsigned int notifyType, int bRestart, int cmdIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1243,10 +1224,9 @@ int XAnimSetGoalWeightKnobAll(DObj *obj, unsigned int animIndex, unsigned int ro
 XAnimSetCompleteGoalWeightKnobAll
 ==============
 */
-
+int XAnimSetCompleteGoalWeightKnobAll(char *a1, DObj *obj, unsigned int animIndex, unsigned int rootIndex, float goalWeight, float goalTime, float rate, unsigned int notifyName, unsigned int notifyType, int bRestart, int cmdIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 

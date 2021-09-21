@@ -134,11 +134,10 @@ void LiveTwitch_UnRegister_f()
 LiveTwitch_RegisterAccountFailure
 ==============
 */
-
+char LiveTwitch_RegisterAccountFailure(bdLobbyErrorCode a1, TaskRecord *task)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

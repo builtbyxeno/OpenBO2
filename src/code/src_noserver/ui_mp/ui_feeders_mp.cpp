@@ -83,11 +83,10 @@ bool UI_FeederItemColor_AARScoreboard(ControllerIndex_t controllerIndex, UIConte
 UI_Project_FeederItemColor
 ==============
 */
-
+bool UI_Project_FeederItemColor(UIContextIndex_t a1, ControllerIndex_t controllerIndex, UIContextIndex_t contextIndex, itemDef_s *item, const float feederID, int index, int column)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -157,11 +156,10 @@ void UI_OverrideCursorPos_Contracts(const LocalClientNum_t localClientNum, UICon
 UI_Project_OverrideCursorPos
 ==============
 */
-
+bool UI_Project_OverrideCursorPos(itemDef_s *a1, listBoxDef_s *a2, const LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

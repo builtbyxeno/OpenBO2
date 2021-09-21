@@ -113,11 +113,9 @@ void R_AddStaticModelToAabbTree_r(GfxWorld *world, GfxAabbTree *tree, int smodel
 R_AddStaticModelToCell
 ==============
 */
-
+void R_AddStaticModelToCell(GfxWorld *world, GfxStaticModelInst *smodelInst, const int cellIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -157,11 +155,10 @@ int R_CellForPoint(const GfxWorld *world, const vec3_t *origin)
 R_CalcReflectionProbeIndex
 ==============
 */
-
+unsigned int R_CalcReflectionProbeIndex(const GfxWorld *world, const vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

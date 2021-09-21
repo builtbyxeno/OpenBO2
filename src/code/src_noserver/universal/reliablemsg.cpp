@@ -39,7 +39,7 @@ int RMsg_FindSlotForAddr(netadr_t *to)
 RMsg_DropAllPacketsToAddr
 ==============
 */
-void __thiscall RMsg_DropAllPacketsToAddr(netadr_t *this)
+void RMsg_DropAllPacketsToAddr(netadr_t *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -79,11 +79,10 @@ void RMsg_ShiftMessagesBackInBuffer(reliableClient *client, int bytesShifted)
 RMsg_AddMessageForClient
 ==============
 */
-
+char __cdecl RMsg_AddMessageForClient(int clientSlot, netsrc_t from, netadr_t *to, const unsigned __int8 *msg, int length)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

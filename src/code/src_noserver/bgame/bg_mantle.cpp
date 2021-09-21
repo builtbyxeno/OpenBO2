@@ -205,7 +205,7 @@ BOOL Mantle_DoAnim(const playerState_s *ps)
 Mantle_GetDuration
 ==============
 */
-int __thiscall Mantle_GetDuration(const MantleState *this)
+int Mantle_GetDuration(const MantleState *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -238,11 +238,9 @@ bool Mount_CanPlayerDeployTurret(playerState_s *ps)
 Mantle_CalcEndPos
 ==============
 */
-
+void Mantle_CalcEndPos(pmove_t *pm, MantleResults *mresults)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -250,11 +248,9 @@ Mantle_CalcEndPos
 Mount_CheckProne
 ==============
 */
-
+void Mount_CheckProne(pmove_t *pm)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -262,11 +258,9 @@ Mount_CheckProne
 Mount_CheckLedge
 ==============
 */
-
+void Mount_CheckLedge(MantleResults *mresults)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -274,11 +268,10 @@ Mount_CheckLedge
 Mantle_CheckLedge
 ==============
 */
-
+char Mantle_CheckLedge(MantleResults *mresults, unsigned int a2, float a3, pmove_t *a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -286,11 +279,10 @@ Mantle_CheckLedge
 Hatch_CheckHatch
 ==============
 */
-
+char __cdecl Hatch_CheckHatch(pmove_t *pm, pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -298,11 +290,10 @@ Hatch_CheckHatch
 Hatch_Check
 ==============
 */
-
+char Hatch_Check(unsigned int a1, pmove_t *pm, pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -310,10 +301,8 @@ Hatch_Check
 Mantle_Check
 ==============
 */
-
+void Mantle_Check(unsigned int a1, pmove_t *pm, pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

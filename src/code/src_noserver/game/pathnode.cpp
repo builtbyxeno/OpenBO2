@@ -360,10 +360,10 @@ void Path_CheckSpawnExitNodesConnectivity()
 Path_DrawDebugNoLinks
 ==============
 */
-/*void Path_DrawDebugNoLinks(const vec3_t *a1@<edx>, const pathnode_t *node, const vec4_t *color)
+void Path_DrawDebugNoLinks(const vec3_t *a1, const pathnode_t *node, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -410,10 +410,10 @@ void Path_DrawDebugPeekOuts(const pathnode_t *node)
 Path_DrawDebugFindPath
 ==============
 */
-/*void Path_DrawDebugFindPath(int a1@<edi>, const vec3_t *vOrigin)
+void Path_DrawDebugFindPath(int a1, const vec3_t *vOrigin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1125,11 +1125,9 @@ void Path_DrawDebugNodeBox(const pathnode_t *node, float size, const vec4_t *col
 Path_DrawDebugNodeBox
 ==============
 */
-
+void Path_DrawDebugNodeBox(const vec4_t *a1, int a2, const pathnode_t *node, const vec4_t *color, int depthTest)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1227,11 +1225,9 @@ void G_SetPathnodeScriptVariable(const char *key, const char *value, pathnode_t 
 G_ParsePathnodeScriptFields
 ==============
 */
-
+void G_ParsePathnodeScriptFields(pathnode_t *node, SpawnVar *spawnVar)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1361,11 +1357,9 @@ void pathnode_load(MemoryFile *memFile)
 node_droptofloor
 ==============
 */
-
+void node_droptofloor(int a1, pathnode_t *node, int force_drop)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1373,10 +1367,10 @@ node_droptofloor
 G_DropPathNodeToFloor
 ==============
 */
-/*void G_DropPathNodeToFloor(pathnode_t *a1@<edx>, unsigned int nodeIndex)
+void G_DropPathNodeToFloor(pathnode_t *a1, unsigned int nodeIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1658,10 +1652,10 @@ void Path_DrawDebugUnconnected(pathnode_t *node)
 Path_DrawDebug
 ==============
 */
-/*void Path_DrawDebug(int a1@<edi>)
+void Path_DrawDebug(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

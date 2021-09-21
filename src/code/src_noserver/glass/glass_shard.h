@@ -6,7 +6,7 @@
 GlassOutline::Area
 ==============
 */
-/*double __thiscall GlassOutline::Area(GlassOutline *this)
+/*double GlassOutline::Area(GlassOutline *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -27,7 +27,7 @@ GlassShard::Defrag
 GlassOutline::MarkAllEdge
 ==============
 */
-/*void __thiscall GlassOutline::MarkAllEdge(GlassOutline *this, bool e)
+/*void GlassOutline::MarkAllEdge(GlassOutline *notthis, bool e)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -37,7 +37,7 @@ GlassOutline::MarkAllEdge
 GlassShard::Defrag
 ==============
 */
-/*void __thiscall GlassShard::Defrag(GlassShard *this)
+/*void GlassShard::Defrag(GlassShard *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

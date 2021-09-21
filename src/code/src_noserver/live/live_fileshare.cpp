@@ -407,7 +407,7 @@ void LiveFileshare_CopyFile(const ControllerIndex_t controllerIndex, unsigned __
 LiveFileshare_Update
 ==============
 */
-void __thiscall LiveFileshare_Update(void *this)
+void LiveFileshare_Update(void *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

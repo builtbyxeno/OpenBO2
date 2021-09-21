@@ -16,7 +16,7 @@ void GetWheelStateColor(WheelEffectState state, vec4_t *color, float rate)
 NitrousVehicle::_update_wheel_effect_states
 ==============
 */
-/*void __thiscall NitrousVehicle::_update_wheel_effect_states(NitrousVehicle *this, const float delta_t)
+/*void NitrousVehicle::_update_wheel_effect_states(NitrousVehicle *notthis, const float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -26,10 +26,8 @@ NitrousVehicle::_update_wheel_effect_states
 NitrousVehicle::debug_render_effects
 ==============
 */
-/*
+/*void NitrousVehicle::debug_render_effects(NitrousVehicle *notthis, int a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 

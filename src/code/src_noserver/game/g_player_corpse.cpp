@@ -69,11 +69,9 @@ void G_BounceCorpse(gentity_t *ent, corpseInfo_t *corpseInfo, trace_t *trace, ve
 G_RunCorpseMove
 ==============
 */
-
+void G_RunCorpseMove(unsigned int a1, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

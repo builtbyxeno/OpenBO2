@@ -50,7 +50,7 @@ bool dwInstantDispatchMessage_Internal(unsigned __int64 senderID, const Controll
 dwLobbyEventHandler::onNewNotification
 ==============
 */
-/*void __thiscall dwLobbyEventHandler::onNewNotification(dwLobbyEventHandler *this)
+/*void dwLobbyEventHandler::onNewNotification(dwLobbyEventHandler *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -60,7 +60,7 @@ dwLobbyEventHandler::onNewNotification
 dwLobbyEventHandler::onTeamProposal
 ==============
 */
-/*void __thiscall dwLobbyEventHandler::onTeamProposal(dwLobbyEventHandler *this)
+/*void dwLobbyEventHandler::onTeamProposal(dwLobbyEventHandler *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -70,7 +70,7 @@ dwLobbyEventHandler::onTeamProposal
 dwLobbyEventHandler::onPlayerBanned
 ==============
 */
-/*void __thiscall dwLobbyEventHandler::onPlayerBanned(dwLobbyEventHandler *this, unsigned __int64 userID, unsigned int reputationLevel)
+/*void dwLobbyEventHandler::onPlayerBanned(dwLobbyEventHandler *notthis, unsigned __int64 userID, unsigned int reputationLevel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -80,7 +80,7 @@ dwLobbyEventHandler::onPlayerBanned
 dwLobbyEventHandler::onMultipleLogon
 ==============
 */
-/*void __thiscall dwLobbyEventHandler::onMultipleLogon(dwLobbyEventHandler *this, unsigned __int64 userID)
+/*void dwLobbyEventHandler::onMultipleLogon(dwLobbyEventHandler *notthis, unsigned __int64 userID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -90,7 +90,7 @@ dwLobbyEventHandler::onMultipleLogon
 dwLobbyEventHandler::onYouTubeRegistration
 ==============
 */
-/*void __thiscall dwLobbyEventHandler::onYouTubeRegistration(dwLobbyEventHandler *this, const bdYouTubeRegistrationResult *registrationResult)
+/*void dwLobbyEventHandler::onYouTubeRegistration(dwLobbyEventHandler *notthis, const bdYouTubeRegistrationResult *registrationResult)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -100,11 +100,9 @@ dwLobbyEventHandler::onYouTubeRegistration
 dwLobbyEventHandler::onGlobalInstantMessage
 ==============
 */
-/*
+/*void dwLobbyEventHandler::onGlobalInstantMessage(dwLobbyEventHandler *notthis, unsigned __int64 senderID, char *senderName, void *message, unsigned int messageSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }*/
 
 /*
@@ -154,7 +152,7 @@ char dwProcessNotifications(TaskRecord *task)
 dwLobbyEventHandler::onChallengesReceived
 ==============
 */
-/*void __thiscall dwLobbyEventHandler::onChallengesReceived(dwLobbyEventHandler *this, unsigned __int64 userID, bdReference<bdAntiCheatChallenges> challenges)
+/*void dwLobbyEventHandler::onChallengesReceived(dwLobbyEventHandler *notthis, unsigned __int64 userID, bdReference<bdAntiCheatChallenges> challenges)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

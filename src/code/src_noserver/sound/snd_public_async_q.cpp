@@ -151,10 +151,9 @@ bool SND_ShouldMuteAllSounds()
 SND_CommandPump
 ==============
 */
-
+int SND_CommandPump(SndCommand *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 

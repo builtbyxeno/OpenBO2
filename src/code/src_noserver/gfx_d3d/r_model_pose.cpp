@@ -27,11 +27,10 @@ void R_SetNoDraw(GfxSceneEntity *sceneEnt, GfxSceneEntity *localSceneEnt)
 R_UpdateSceneEntBounds
 ==============
 */
-
+DObjAnimMat *R_UpdateSceneEntBounds(int a1, GfxSceneEntity *sceneEnt, GfxSceneEntity **pLocalSceneEnt, const DObj **pObj, int waitForCullState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -60,8 +59,8 @@ int R_SkinSceneModel(int a1, int a2, int drawInfo, XModelDrawInfo *model, const 
 R_ModelSkelCmd
 ==============
 */
-/*void R_ModelSkelCmd(const char *a1@<edi>, void *data)
+void R_ModelSkelCmd(const char *a1, void *data)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 

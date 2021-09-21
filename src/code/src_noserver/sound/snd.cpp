@@ -371,11 +371,9 @@ void SND_Init()
 SND_ResetDriver
 ==============
 */
-
+void __cdecl SND_ResetDriver()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -544,11 +542,9 @@ void SND_StopDuck(SndDuckActive *duck)
 SND_DuckUpdate
 ==============
 */
-
+void SND_DuckUpdate(int a1, char *a2, float dt)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -648,11 +644,9 @@ void SND_DuckReset()
 SND_SetVoiceStartInfo
 ==============
 */
-
+void __cdecl SND_SetVoiceStartInfo(int index, SndStartAliasInfo *SndStartAliasInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -693,11 +687,10 @@ char SND_LimitVoice(const SndAlias *alias, SndEntHandle ent)
 SND_PlaySoundAlias
 ==============
 */
-
+unsigned int SND_PlaySoundAlias(int a1, const SndAliasList *aliasList, float volumeScale, SndEntHandle sndEnt, const vec3_t *org, int timeshift, int fadeTime, const vec3_t *direction, SndPlayback *playback, SndOcclusionStartCache *ocache, bool notify, const vec3_t *startPaused, bool setScriptValues, float scriptPitch, float scriptPitchRate, float scriptAttenuation, float scriptAttenuationRate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -705,11 +698,9 @@ SND_PlaySoundAlias
 SND_UpdateDebug
 ==============
 */
-
+void SND_UpdateDebug(unsigned int a1, float a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

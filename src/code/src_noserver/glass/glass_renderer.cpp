@@ -6,11 +6,10 @@
 Remove
 ==============
 */
-
+int Remove(const SimplePlaneIntersection **pts, int ptsCount, const SimplePlaneIntersection *removePoint)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -39,7 +38,7 @@ GlassRenderer::operator delete
 GlassRenderer::InitShardMeshVertexLists
 ==============
 */
-/*void __thiscall GlassRenderer::InitShardMeshVertexLists(GlassRenderer *this)
+/*void GlassRenderer::InitShardMeshVertexLists(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -49,7 +48,7 @@ GlassRenderer::InitShardMeshVertexLists
 GlassRenderer::GetVertexList
 ==============
 */
-/*GlassShardMeshVertex *__thiscall GlassRenderer::GetVertexList(GlassRenderer *this, unsigned int numOutlineVerts)
+/*GlassShardMeshVertex *GlassRenderer::GetVertexList(GlassRenderer *notthis, unsigned int numOutlineVerts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -60,7 +59,7 @@ GlassRenderer::GetVertexList
 GlassRenderer::AddGroupChange
 ==============
 */
-/*void __thiscall GlassRenderer::AddGroupChange(GlassRenderer *this, GlassShard *shard)
+/*void GlassRenderer::AddGroupChange(GlassRenderer *notthis, GlassShard *shard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -81,7 +80,7 @@ int GroupChangeSort(const void *a, const void *b)
 GlassRenderer::CalcPackedPos
 ==============
 */
-/*int __thiscall GlassRenderer::CalcPackedPos(GlassRenderer *this, const vec3_t *pos)
+/*int GlassRenderer::CalcPackedPos(GlassRenderer *notthis, const vec3_t *pos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -92,7 +91,7 @@ GlassRenderer::CalcPackedPos
 GlassRenderer::AllocateShardMemory
 ==============
 */
-/*Allocator::Memory **__thiscall GlassRenderer::AllocateShardMemory(GlassRenderer *this, unsigned int size, GlassShard *shard)
+/*Allocator::Memory **GlassRenderer::AllocateShardMemory(GlassRenderer *notthis, unsigned int size, GlassShard *shard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -103,7 +102,7 @@ GlassRenderer::AllocateShardMemory
 GlassRenderer::FreeShardMemory
 ==============
 */
-/*void __thiscall GlassRenderer::FreeShardMemory(GlassRenderer *this, void *ptr)
+/*void GlassRenderer::FreeShardMemory(GlassRenderer *notthis, void *ptr)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -113,7 +112,7 @@ GlassRenderer::FreeShardMemory
 GlassRenderer::ShardMemorySize
 ==============
 */
-/*int __thiscall GlassRenderer::ShardMemorySize(GlassRenderer *this, void *ptr)
+/*int GlassRenderer::ShardMemorySize(GlassRenderer *notthis, void *ptr)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -124,7 +123,7 @@ GlassRenderer::ShardMemorySize
 GlassRenderer::AddShatterAction
 ==============
 */
-/*void __thiscall GlassRenderer::AddShatterAction(GlassRenderer *this, GlassClient *glass, const vec3_t *hitPos, const vec3_t *hitDir, bool gameState)
+/*void GlassRenderer::AddShatterAction(GlassRenderer *notthis, GlassClient *glass, const vec3_t *hitPos, const vec3_t *hitDir, bool gameState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -134,7 +133,7 @@ GlassRenderer::AddShatterAction
 GlassRenderer::AddExplosionAction
 ==============
 */
-/*void __thiscall GlassRenderer::AddExplosionAction(GlassRenderer *this, const vec3_t *origin, const float damageInner, const float damageOuter, const float radius, int mod)
+/*void GlassRenderer::AddExplosionAction(GlassRenderer *notthis, const vec3_t *origin, const float damageInner, const float damageOuter, const float radius, int mod)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -144,7 +143,7 @@ GlassRenderer::AddExplosionAction
 GlassRenderer::AddTraceAction
 ==============
 */
-/*void __thiscall GlassRenderer::AddTraceAction(GlassRenderer *this, const vec3_t *p0, const vec3_t *p1)
+/*void GlassRenderer::AddTraceAction(GlassRenderer *notthis, const vec3_t *p0, const vec3_t *p1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -154,7 +153,7 @@ GlassRenderer::AddTraceAction
 GlassRenderer::AddMeleeAction
 ==============
 */
-/*void __thiscall GlassRenderer::AddMeleeAction(GlassRenderer *this, const vec3_t *eyePos, const vec3_t *forward, const vec3_t *right, const vec3_t *up, float range)
+/*void GlassRenderer::AddMeleeAction(GlassRenderer *notthis, const vec3_t *eyePos, const vec3_t *forward, const vec3_t *right, const vec3_t *up, float range)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -164,7 +163,7 @@ GlassRenderer::AddMeleeAction
 GlassRenderer::AddUsedShardMaterial
 ==============
 */
-/*void __thiscall GlassRenderer::AddUsedShardMaterial(GlassRenderer *this, Material *material)
+/*void GlassRenderer::AddUsedShardMaterial(GlassRenderer *notthis, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -174,7 +173,7 @@ GlassRenderer::AddUsedShardMaterial
 sd_xa2_callback::OnLoopEnd
 ==============
 */
-/*void __thiscall sd_xa2_callback::OnLoopEnd(bdLobbyEventHandler *this, unsigned __int64 __formal)
+/*void sd_xa2_callback::OnLoopEnd(bdLobbyEventHandler *notthis, unsigned __int64 __formal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -184,7 +183,7 @@ sd_xa2_callback::OnLoopEnd
 ShardGroup::UpdateBBox
 ==============
 */
-/*void __thiscall ShardGroup::UpdateBBox(ShardGroup *this)
+/*void ShardGroup::UpdateBBox(ShardGroup *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -194,7 +193,7 @@ ShardGroup::UpdateBBox
 ShardGroup::GenerateVertsInternal
 ==============
 */
-/*void __thiscall ShardGroup::GenerateVertsInternal(ShardGroup *this, const GlassRenderer *renderer)
+/*void ShardGroup::GenerateVertsInternal(ShardGroup *notthis, const GlassRenderer *renderer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -204,7 +203,7 @@ ShardGroup::GenerateVertsInternal
 ShardGroup::FreeRenderMemory
 ==============
 */
-/*void __thiscall ShardGroup::FreeRenderMemory(ShardGroup *this)
+/*void ShardGroup::FreeRenderMemory(ShardGroup *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -214,7 +213,7 @@ ShardGroup::FreeRenderMemory
 ShardGroup::TracePoint
 ==============
 */
-/*int __thiscall ShardGroup::TracePoint(ShardGroup *this, const vec3_t *p0, const vec3_t *p1)
+/*int ShardGroup::TracePoint(ShardGroup *notthis, const vec3_t *p0, const vec3_t *p1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -225,7 +224,7 @@ ShardGroup::TracePoint
 GlassRenderer::~GlassRenderer
 ==============
 */
-/*void __thiscall GlassRenderer::~GlassRenderer(GlassRenderer *this)
+/*void GlassRenderer::~GlassRenderer(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -245,7 +244,7 @@ GlassRenderer::CrashGlassCmd
 GlassRenderer::PrintHwm
 ==============
 */
-/*void __thiscall GlassRenderer::PrintHwm(GlassRenderer *this)
+/*void GlassRenderer::PrintHwm(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -255,7 +254,7 @@ GlassRenderer::PrintHwm
 ShardGroup::Add
 ==============
 */
-/*void __thiscall ShardGroup::Add(ShardGroup *this, GlassShard *shard)
+/*void ShardGroup::Add(ShardGroup *notthis, GlassShard *shard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -265,7 +264,7 @@ ShardGroup::Add
 ShardGroup::Update
 ==============
 */
-/*void __thiscall ShardGroup::Update(ShardGroup *this, float deltaTime, GlassUpdateCmd *cmd)
+/*void ShardGroup::Update(ShardGroup *notthis, float deltaTime, GlassUpdateCmd *cmd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -275,7 +274,7 @@ ShardGroup::Update
 ShardGroup::GenerateVertsFinish
 ==============
 */
-/*void __thiscall ShardGroup::GenerateVertsFinish(ShardGroup *this)
+/*void ShardGroup::GenerateVertsFinish(ShardGroup *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -285,7 +284,7 @@ ShardGroup::GenerateVertsFinish
 GlassRenderer::Reset
 ==============
 */
-/*void __thiscall GlassRenderer::Reset(GlassRenderer *this)
+/*void GlassRenderer::Reset(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -295,7 +294,7 @@ GlassRenderer::Reset
 GlassRenderer::AllocShard
 ==============
 */
-/*GlassShard *__thiscall GlassRenderer::AllocShard(GlassRenderer *this)
+/*GlassShard *GlassRenderer::AllocShard(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -306,7 +305,7 @@ GlassRenderer::AllocShard
 GlassRenderer::FreeShard
 ==============
 */
-/*void __thiscall GlassRenderer::FreeShard(GlassRenderer *this, GlassShard *shard)
+/*void GlassRenderer::FreeShard(GlassRenderer *notthis, GlassShard *shard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -316,7 +315,7 @@ GlassRenderer::FreeShard
 GlassRenderer::AllocPhysics
 ==============
 */
-/*GlassPhysics *__thiscall GlassRenderer::AllocPhysics(GlassRenderer *this)
+/*GlassPhysics *GlassRenderer::AllocPhysics(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -327,7 +326,7 @@ GlassRenderer::AllocPhysics
 GlassRenderer::FreePhysics
 ==============
 */
-/*void __thiscall GlassRenderer::FreePhysics(GlassRenderer *this, GlassPhysics *phys)
+/*void GlassRenderer::FreePhysics(GlassRenderer *notthis, GlassPhysics *phys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -337,7 +336,7 @@ GlassRenderer::FreePhysics
 GlassRenderer::AddDelayedPhysicsShard
 ==============
 */
-/*void __thiscall GlassRenderer::AddDelayedPhysicsShard(GlassRenderer *this, GlassShard *shard)
+/*void GlassRenderer::AddDelayedPhysicsShard(GlassRenderer *notthis, GlassShard *shard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -347,7 +346,7 @@ GlassRenderer::AddDelayedPhysicsShard
 GlassRenderer::RemoveDelayedPhysicsShard
 ==============
 */
-/*void __thiscall GlassRenderer::RemoveDelayedPhysicsShard(GlassRenderer *this, GlassShard *shard)
+/*void GlassRenderer::RemoveDelayedPhysicsShard(GlassRenderer *notthis, GlassShard *shard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -357,7 +356,7 @@ GlassRenderer::RemoveDelayedPhysicsShard
 GlassRenderer::DoDelayedPhysics
 ==============
 */
-/*void __thiscall GlassRenderer::DoDelayedPhysics(GlassRenderer *this, float deltaTime)
+/*void GlassRenderer::DoDelayedPhysics(GlassRenderer *notthis, float deltaTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -367,7 +366,7 @@ GlassRenderer::DoDelayedPhysics
 GlassRenderer::ExplosionEvent
 ==============
 */
-/*void __thiscall GlassRenderer::ExplosionEvent(GlassRenderer *this, const vec3_t *origin, const float damageInner, const float damageOuter, const float radius, int mod)
+/*void GlassRenderer::ExplosionEvent(GlassRenderer *notthis, const vec3_t *origin, const float damageInner, const float damageOuter, const float radius, int mod)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -377,7 +376,7 @@ GlassRenderer::ExplosionEvent
 GlassRenderer::TracePoint
 ==============
 */
-/*int __thiscall GlassRenderer::TracePoint(GlassRenderer *this, const vec3_t *p0, const vec3_t *p1)
+/*int GlassRenderer::TracePoint(GlassRenderer *notthis, const vec3_t *p0, const vec3_t *p1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -388,7 +387,7 @@ GlassRenderer::TracePoint
 GlassRenderer::Melee
 ==============
 */
-/*void __thiscall GlassRenderer::Melee(GlassRenderer *this, const vec3_t *eyePos, const vec3_t *forward, const vec3_t *right, const vec3_t *up, float range)
+/*void GlassRenderer::Melee(GlassRenderer *notthis, const vec3_t *eyePos, const vec3_t *forward, const vec3_t *right, const vec3_t *up, float range)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -398,7 +397,7 @@ GlassRenderer::Melee
 GlassRenderer::GetShardGroup
 ==============
 */
-/*ShardGroup *__thiscall GlassRenderer::GetShardGroup(GlassRenderer *this, unsigned int packedPos, const GlassDef *glassDef)
+/*ShardGroup *GlassRenderer::GetShardGroup(GlassRenderer *notthis, unsigned int packedPos, const GlassDef *glassDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -419,7 +418,7 @@ GlassRenderer::PrintHwmCmd
 GlassRenderer::Broom
 ==============
 */
-/*void __thiscall GlassRenderer::Broom(GlassRenderer *this)
+/*void GlassRenderer::Broom(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -429,7 +428,7 @@ GlassRenderer::Broom
 GlassRenderer::DrawDebug
 ==============
 */
-/*void __thiscall GlassRenderer::DrawDebug(GlassRenderer *this, LocalClientNum_t localClientNum)
+/*void GlassRenderer::DrawDebug(GlassRenderer *notthis, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -439,7 +438,7 @@ GlassRenderer::DrawDebug
 ShardGroup::Remove
 ==============
 */
-/*void __thiscall ShardGroup::Remove(ShardGroup *this, GlassShard *shard)
+/*void ShardGroup::Remove(ShardGroup *notthis, GlassShard *shard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -449,7 +448,7 @@ ShardGroup::Remove
 ShardGroup::GenerateVerts
 ==============
 */
-/*void __thiscall ShardGroup::GenerateVerts(ShardGroup *this, bool firstView, LocalClientNum_t localClientNum, GlassGenVertsCmd *cmd)
+/*void ShardGroup::GenerateVerts(ShardGroup *notthis, bool firstView, LocalClientNum_t localClientNum, GlassGenVertsCmd *cmd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -459,7 +458,7 @@ ShardGroup::GenerateVerts
 GlassRenderer::DoGroupChanges
 ==============
 */
-/*void __thiscall GlassRenderer::DoGroupChanges(GlassRenderer *this)
+/*void GlassRenderer::DoGroupChanges(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -469,7 +468,7 @@ GlassRenderer::DoGroupChanges
 GlassRenderer::GetShardGroup
 ==============
 */
-/*ShardGroup *__thiscall GlassRenderer::GetShardGroup(GlassRenderer *this, const vec3_t *pos, const GlassDef *glassDef)
+/*ShardGroup *GlassRenderer::GetShardGroup(GlassRenderer *notthis, const vec3_t *pos, const GlassDef *glassDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -480,7 +479,7 @@ GlassRenderer::GetShardGroup
 GlassRenderer::RemoveColidingShard
 ==============
 */
-/*void __thiscall GlassRenderer::RemoveColidingShard(GlassRenderer *this, GlassShard *shard)
+/*void GlassRenderer::RemoveColidingShard(GlassRenderer *notthis, GlassShard *shard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -490,7 +489,7 @@ GlassRenderer::RemoveColidingShard
 GlassRenderer::GlassRenderer
 ==============
 */
-/*void __thiscall GlassRenderer::GlassRenderer(GlassRenderer *this, const Glasses *glasses)
+/*void GlassRenderer::GlassRenderer(GlassRenderer *notthis, const Glasses *glasses)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -500,7 +499,7 @@ GlassRenderer::GlassRenderer
 GlassRenderer::RemoveGlassShards
 ==============
 */
-/*void __thiscall GlassRenderer::RemoveGlassShards(GlassRenderer *this, unsigned int glassIndex)
+/*void GlassRenderer::RemoveGlassShards(GlassRenderer *notthis, unsigned int glassIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -510,7 +509,7 @@ GlassRenderer::RemoveGlassShards
 GlassRenderer::GetSmallestColidingShard
 ==============
 */
-/*GlassShard *__thiscall GlassRenderer::GetSmallestColidingShard(GlassRenderer *this)
+/*GlassShard *GlassRenderer::GetSmallestColidingShard(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -521,7 +520,7 @@ GlassRenderer::GetSmallestColidingShard
 GlassRenderer::SortedShardsList::Insert
 ==============
 */
-/*void __thiscall GlassRenderer::SortedShardsList::Insert(GlassRenderer::SortedShardsList *this, GlassShard *shard)
+/*void GlassRenderer::SortedShardsList::Insert(GlassRenderer::SortedShardsList *notthis, GlassShard *shard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -531,7 +530,7 @@ GlassRenderer::SortedShardsList::Insert
 GlassRenderer::SortedShardsList::InsertReverse
 ==============
 */
-/*void __thiscall GlassRenderer::SortedShardsList::InsertReverse(GlassRenderer::SortedShardsList *this, GlassShard *shard)
+/*void GlassRenderer::SortedShardsList::InsertReverse(GlassRenderer::SortedShardsList *notthis, GlassShard *shard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -541,7 +540,7 @@ GlassRenderer::SortedShardsList::InsertReverse
 GlassRenderer::AddColidingShard
 ==============
 */
-/*BOOL __thiscall GlassRenderer::AddColidingShard(GlassRenderer *this, GlassShard *shard)
+/*BOOL GlassRenderer::AddColidingShard(GlassRenderer *notthis, GlassShard *shard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -552,7 +551,7 @@ GlassRenderer::AddColidingShard
 GlassRenderer::GetSmallestShards
 ==============
 */
-/*void __thiscall GlassRenderer::GetSmallestShards(GlassRenderer *this, unsigned int maxShards, bool checkVisible, bool isVisible)
+/*void GlassRenderer::GetSmallestShards(GlassRenderer *notthis, unsigned int maxShards, bool checkVisible, bool isVisible)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -562,7 +561,7 @@ GlassRenderer::GetSmallestShards
 GlassRenderer::GetLargestShards
 ==============
 */
-/*void __thiscall GlassRenderer::GetLargestShards(GlassRenderer *this, unsigned int maxShards, bool checkVisible, bool isVisible)
+/*void GlassRenderer::GetLargestShards(GlassRenderer *notthis, unsigned int maxShards, bool checkVisible, bool isVisible)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -572,7 +571,7 @@ GlassRenderer::GetLargestShards
 GlassRenderer::DoMaintenance
 ==============
 */
-/*void __thiscall GlassRenderer::DoMaintenance(GlassRenderer *this)
+/*void GlassRenderer::DoMaintenance(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -582,7 +581,7 @@ GlassRenderer::DoMaintenance
 GlassRenderer::CrashGlass
 ==============
 */
-/*void __thiscall GlassRenderer::CrashGlass(GlassRenderer *this)
+/*void GlassRenderer::CrashGlass(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -592,7 +591,7 @@ GlassRenderer::CrashGlass
 GlassRenderer::RemovePhysicsShards
 ==============
 */
-/*void __thiscall GlassRenderer::RemovePhysicsShards(GlassRenderer *this)
+/*void GlassRenderer::RemovePhysicsShards(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -602,7 +601,7 @@ GlassRenderer::RemovePhysicsShards
 GlassRenderer::ExecuteActions
 ==============
 */
-/*void __thiscall GlassRenderer::ExecuteActions(GlassRenderer *this)
+/*void GlassRenderer::ExecuteActions(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -612,7 +611,7 @@ GlassRenderer::ExecuteActions
 GlassRenderer::Update
 ==============
 */
-/*char __thiscall GlassRenderer::Update(GlassRenderer *this)
+/*char GlassRenderer::Update(GlassRenderer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -623,7 +622,7 @@ GlassRenderer::Update
 GlassRenderer::GenerateVerts
 ==============
 */
-/*void __thiscall GlassRenderer::GenerateVerts(GlassRenderer *this, LocalClientNum_t localClientNum, unsigned int viewIndex)
+/*void GlassRenderer::GenerateVerts(GlassRenderer *notthis, LocalClientNum_t localClientNum, unsigned int viewIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

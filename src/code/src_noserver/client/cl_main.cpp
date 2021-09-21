@@ -410,11 +410,9 @@ void CL_AnimateUI_f()
 CL_ResetSelectedPlayerXuid_f
 ==============
 */
-
+void __cdecl CL_ResetSelectedPlayerXuid_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -649,11 +647,9 @@ void CL_SetupViewport()
 CL_SetupViewport_f
 ==============
 */
-
+void __cdecl CL_SetupViewport_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -813,11 +809,10 @@ char Playlist_ReadFromDisk()
 Playlist_CmdReadFromDisk
 ==============
 */
-
+char __cdecl Playlist_CmdReadFromDisk()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -925,11 +920,9 @@ void CL_FlushGump(int slot)
 CL_FlushGumps
 ==============
 */
-
+void __cdecl CL_FlushGumps()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1343,7 +1336,7 @@ void CL_DrawLogo(LocalClientNum_t localClientNum)
 CL_ShowIP_f
 ==============
 */
-void __thiscall CL_ShowIP_f(bdCommonAddr *this)
+void CL_ShowIP_f(bdCommonAddr *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -90,11 +90,10 @@ void SV_SignedStats_Breadcrumb(client_t *client)
 SV_SignedStats_VerifyClient
 ==============
 */
-
+bool SV_SignedStats_VerifyClient(char *a1, client_t *client)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

@@ -270,11 +270,9 @@ int Key_GetMouseKeyboardCommandAssignment(LocalClientNum_t localClientNum, Bind_
 Key_BindMustHaveCommands
 ==============
 */
-
+void __cdecl Key_BindMustHaveCommands(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -292,11 +290,10 @@ void Key_UpdateMustHaveBindings_f()
 Key_GetCommandAssignment
 ==============
 */
-
+int __cdecl Key_GetCommandAssignment(LocalClientNum_t localClientNum, Bind_t binding, int *twokeys, BindIndex_t bindNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -481,11 +478,9 @@ char Field_CharEvent(LocalClientNum_t localClientNum, const ScreenPlacement *scr
 Console_Key
 ==============
 */
-
+void __cdecl Console_Key(LocalClientNum_t localClientNum, int key)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -606,11 +601,10 @@ void CL_CharEvent(LocalClientNum_t localClientNum, int key)
 CL_GetKeyBindingInternal
 ==============
 */
-
+int __cdecl CL_GetKeyBindingInternal(LocalClientNum_t localClientNum, const char *command, char (*keyNames)[128], int gamePadOnly, BindIndex_t bindNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

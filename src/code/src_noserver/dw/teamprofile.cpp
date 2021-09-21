@@ -6,7 +6,7 @@
 PublicTeamProfile::PublicTeamProfile
 ==============
 */
-/*void __thiscall PublicTeamProfile::PublicTeamProfile(PublicTeamProfile *this)
+/*void PublicTeamProfile::PublicTeamProfile(PublicTeamProfile *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -16,7 +16,7 @@ PublicTeamProfile::PublicTeamProfile
 PublicTeamProfile::serialize
 ==============
 */
-/*void __thiscall PublicTeamProfile::serialize(PublicTeamProfile *this, bdByteBuffer *buffer)
+/*void PublicTeamProfile::serialize(PublicTeamProfile *notthis, bdByteBuffer *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -26,7 +26,7 @@ PublicTeamProfile::serialize
 PrivateTeamProfile::PrivateTeamProfile
 ==============
 */
-/*void __thiscall PrivateTeamProfile::PrivateTeamProfile(PrivateTeamProfile *this)
+/*void PrivateTeamProfile::PrivateTeamProfile(PrivateTeamProfile *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -36,7 +36,7 @@ PrivateTeamProfile::PrivateTeamProfile
 PrivateTeamProfile::serialize
 ==============
 */
-/*void __thiscall PrivateTeamProfile::serialize(PrivateTeamProfile *this, bdByteBuffer *buffer)
+/*void PrivateTeamProfile::serialize(PrivateTeamProfile *notthis, bdByteBuffer *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -46,7 +46,7 @@ PrivateTeamProfile::serialize
 PublicTeamProfile::sizeOf
 ==============
 */
-/*unsigned int __thiscall PublicTeamProfile::sizeOf(PublicTeamProfile *this)
+/*unsigned int PublicTeamProfile::sizeOf(PublicTeamProfile *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -57,7 +57,7 @@ PublicTeamProfile::sizeOf
 PrivateTeamProfile::sizeOf
 ==============
 */
-/*unsigned int __thiscall PrivateTeamProfile::sizeOf(PrivateTeamProfile *this)
+/*unsigned int PrivateTeamProfile::sizeOf(PrivateTeamProfile *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -68,7 +68,7 @@ PrivateTeamProfile::sizeOf
 PublicTeamProfile::deserialize
 ==============
 */
-/*bool __thiscall PublicTeamProfile::deserialize(PublicTeamProfile *this, bdReference<bdByteBuffer> buffer)
+/*bool PublicTeamProfile::deserialize(PublicTeamProfile *notthis, bdReference<bdByteBuffer> buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -79,7 +79,7 @@ PublicTeamProfile::deserialize
 PrivateTeamProfile::deserialize
 ==============
 */
-/*bool __thiscall PrivateTeamProfile::deserialize(PrivateTeamProfile *this, bdReference<bdByteBuffer> buffer)
+/*bool PrivateTeamProfile::deserialize(PrivateTeamProfile *notthis, bdReference<bdByteBuffer> buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

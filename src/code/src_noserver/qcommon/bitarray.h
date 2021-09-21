@@ -6,7 +6,7 @@
 bitarray<64>::testBit
 ==============
 */
-/*BOOL __thiscall bitarray<64>::testBit(bitarray<64> *this, unsigned int pos)
+/*BOOL bitarray<64>::testBit(bitarray<64> *notthis, unsigned int pos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -17,7 +17,7 @@ bitarray<64>::testBit
 bitarray<64>::anyBitsOn
 ==============
 */
-/*char __thiscall bitarray<64>::anyBitsOn(bitarray<64> *this)
+/*char bitarray<64>::anyBitsOn(bitarray<64> *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -28,7 +28,7 @@ bitarray<64>::anyBitsOn
 bitarray<64>::bitarray<64>
 ==============
 */
-/*void bitarray<64>::bitarray<64>(bitarray<64> *this, int first, ...)
+/*void bitarray<64>::bitarray<64>(bitarray<64> *notthis, int first, ...)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -38,7 +38,7 @@ bitarray<64>::bitarray<64>
 bitarray<64>::resetBit
 ==============
 */
-/*void __thiscall bitarray<64>::resetBit(bitarray<64> *this, unsigned int pos)
+/*void bitarray<64>::resetBit(bitarray<64> *notthis, unsigned int pos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -48,7 +48,7 @@ bitarray<64>::resetBit
 bitarray<58>::bitarray<58>
 ==============
 */
-/*void bitarray<58>::bitarray<58>(bitarray<58> *this, int first, ...)
+/*void bitarray<58>::bitarray<58>(bitarray<58> *notthis, int first, ...)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -58,7 +58,7 @@ bitarray<58>::bitarray<58>
 bitarray<64>::areAllBitsEqual
 ==============
 */
-/*char __thiscall bitarray<64>::areAllBitsEqual(bitarray<64> *this, const bitarray<64> *otherBitSet, const bitarray<64> *ignoreMaskBitSet)
+/*char bitarray<64>::areAllBitsEqual(bitarray<64> *notthis, const bitarray<64> *otherBitSet, const bitarray<64> *ignoreMaskBitSet)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

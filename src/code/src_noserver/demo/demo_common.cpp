@@ -247,11 +247,9 @@ void Demo_End()
 Demo_MatchEnded
 ==============
 */
-
+void __cdecl Demo_MatchEnded()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -450,10 +448,10 @@ void Demo_RebuildHighlightReelTimeline_f()
 Demo_SwitchControls_f
 ==============
 */
-/*void Demo_SwitchControls_f(const char *a1@<esi>)
+void Demo_SwitchControls_f(const char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

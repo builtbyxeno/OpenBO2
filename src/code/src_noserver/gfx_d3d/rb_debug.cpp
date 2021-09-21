@@ -139,11 +139,9 @@ void RB_SetDebugBrushesAndPatchesCallback(void (*callback)())
 RB_DrawDebug
 ==============
 */
-
+void __cdecl RB_DrawDebug(const GfxViewParms *viewParms)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -192,10 +190,8 @@ materialCommands_t *RB_GetCmd()
 RB_EndCollisionPolygons
 ==============
 */
-
+void __cdecl RB_EndCollisionPolygons()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

@@ -223,11 +223,9 @@ char G_ShouldClientLinkTo()
 EntUnlink_Internal
 ==============
 */
-
+void EntUnlink_Internal(gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -246,11 +244,10 @@ int EntLinkTo_Internal(gentity_t *ent, gentity_t *parent, unsigned int tagName)
 G_EntLinkTo
 ==============
 */
-
+int __cdecl G_EntLinkTo(gentity_t *ent, gentity_t *parent, unsigned int tagName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -258,11 +255,10 @@ G_EntLinkTo
 G_EntLinkToWithOffset
 ==============
 */
-
+int __cdecl G_EntLinkToWithOffset(gentity_t *ent, gentity_t *parent, unsigned int tagName, const vec3_t *originOffset, const vec3_t *anglesOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

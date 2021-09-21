@@ -244,11 +244,10 @@ void UI_SetupLobby(LocalClientNum_t localClientNum, bool partyLobby, const char 
 UI_SetActiveMenu
 ==============
 */
-
+int __cdecl UI_SetActiveMenu(LocalClientNum_t localClientNum, int menu)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -372,7 +371,7 @@ void UI_DrawGameTypeOnMapName(const LocalClientNum_t localClientNum, rectDef_s *
 EditPlaylistPopulationTexture::EditPlaylistPopulationTexture
 ==============
 */
-/*void __thiscall EditPlaylistPopulationTexture::EditPlaylistPopulationTexture(EditPlaylistPopulationTexture *this, GfxImage *img)
+/*void EditPlaylistPopulationTexture::EditPlaylistPopulationTexture(EditPlaylistPopulationTexture *notthis, GfxImage *img)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

@@ -427,7 +427,7 @@ char *LiveElite_GetClanTag_VA(bool useGold, const char *clanTag, const char *pla
 jsonWriter::checkJSON
 ==============
 */
-/*bool __thiscall jsonWriter::checkJSON(jsonWriter *this, char *strJSON)
+/*bool jsonWriter::checkJSON(jsonWriter *notthis, char *strJSON)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -438,7 +438,7 @@ jsonWriter::checkJSON
 eventAccumulator::reset
 ==============
 */
-/*void __thiscall eventAccumulator::reset(eventAccumulator *this)
+/*void eventAccumulator::reset(eventAccumulator *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -448,7 +448,7 @@ eventAccumulator::reset
 eventAccumulator::setMatchID
 ==============
 */
-/*void __thiscall eventAccumulator::setMatchID(eventAccumulator *this, unsigned __int64 inputFileID)
+/*void eventAccumulator::setMatchID(eventAccumulator *notthis, unsigned __int64 inputFileID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -458,7 +458,7 @@ eventAccumulator::setMatchID
 eventAccumulator::getSegmentJSON
 ==============
 */
-/*int __thiscall eventAccumulator::getSegmentJSON(eventAccumulator *this, segment *segmentData, char *outBuffer, int outBufferSize)
+/*int eventAccumulator::getSegmentJSON(eventAccumulator *notthis, segment *segmentData, char *outBuffer, int outBufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -469,7 +469,7 @@ eventAccumulator::getSegmentJSON
 eventAccumulator::canFlush
 ==============
 */
-/*BOOL __thiscall eventAccumulator::canFlush(eventAccumulator *this)
+/*BOOL eventAccumulator::canFlush(eventAccumulator *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -513,7 +513,7 @@ char LiveElite_GetTeamPublicProfileSuccess(TaskRecord *task)
 jsonWriter::beginObject
 ==============
 */
-/*void __thiscall jsonWriter::beginObject(jsonWriter *this)
+/*void jsonWriter::beginObject(jsonWriter *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -523,7 +523,7 @@ jsonWriter::beginObject
 jsonWriter::writeValue
 ==============
 */
-/*void __thiscall jsonWriter::writeValue(jsonWriter *this, char *strValue, bool isNameValuePair, segment *segmentType)
+/*void jsonWriter::writeValue(jsonWriter *notthis, char *strValue, bool isNameValuePair, segment *segmentType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -533,7 +533,7 @@ jsonWriter::writeValue
 jsonWriter::terminate
 ==============
 */
-/*void __thiscall jsonWriter::terminate(jsonWriter *this, int minObjectCounter)
+/*void jsonWriter::terminate(jsonWriter *notthis, int minObjectCounter)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -543,7 +543,7 @@ jsonWriter::terminate
 eventAccumulator::writeCategoryValue
 ==============
 */
-/*void __thiscall eventAccumulator::writeCategoryValue(eventAccumulator *this, char *strValue, bool isNameValuePair, bool checkDvarAllowedWrite)
+/*void eventAccumulator::writeCategoryValue(eventAccumulator *notthis, char *strValue, bool isNameValuePair, bool checkDvarAllowedWrite)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -553,7 +553,7 @@ eventAccumulator::writeCategoryValue
 eventAccumulator::endMatch
 ==============
 */
-/*void __thiscall eventAccumulator::endMatch(eventAccumulator *this)
+/*void eventAccumulator::endMatch(eventAccumulator *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -563,7 +563,7 @@ eventAccumulator::endMatch
 eventAccumulator::endCategory
 ==============
 */
-/*void __thiscall eventAccumulator::endCategory(eventAccumulator *this)
+/*void eventAccumulator::endCategory(eventAccumulator *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -573,7 +573,7 @@ eventAccumulator::endCategory
 eventAccumulator::flush
 ==============
 */
-/*bool __thiscall eventAccumulator::flush(eventAccumulator *this)
+/*bool eventAccumulator::flush(eventAccumulator *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -584,7 +584,7 @@ eventAccumulator::flush
 eventAccumulator::flushCheck
 ==============
 */
-/*void __thiscall eventAccumulator::flushCheck(eventAccumulator *this)
+/*void eventAccumulator::flushCheck(eventAccumulator *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -604,7 +604,7 @@ void LiveElite_Clear(const ControllerIndex_t localControllerIndex)
 LiveElite_Init
 ==============
 */
-void __thiscall LiveElite_Init(void *this)
+void LiveElite_Init(void *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -614,7 +614,7 @@ void __thiscall LiveElite_Init(void *this)
 eventAccumulator::startMatch
 ==============
 */
-/*void __thiscall eventAccumulator::startMatch(eventAccumulator *this)
+/*void eventAccumulator::startMatch(eventAccumulator *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -624,7 +624,7 @@ eventAccumulator::startMatch
 eventAccumulator::beginCategory
 ==============
 */
-/*void __thiscall eventAccumulator::beginCategory(eventAccumulator *this, char *categoryName)
+/*void eventAccumulator::beginCategory(eventAccumulator *notthis, char *categoryName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

@@ -101,11 +101,9 @@ int SV_PointContents(const vec3_t *p, int passEntityNum, int contentmask)
 SV_LinkEntity
 ==============
 */
-
+void SV_LinkEntity(int a1, gentity_t *gEnt)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -113,11 +111,10 @@ SV_LinkEntity
 SV_SightTracePointToEntity
 ==============
 */
-
+int SV_SightTracePointToEntity(unsigned int a1, const sightpointtrace_t *clip, int entnum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -125,11 +122,9 @@ SV_SightTracePointToEntity
 SV_TracePoint
 ==============
 */
-
+void SV_TracePoint(int a1, trace_t *results, const vec3_t *start, const vec3_t *end, col_context_t *context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

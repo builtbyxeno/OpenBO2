@@ -142,11 +142,9 @@ bool Live_Base_HandleAuthServiceReady(const ControllerIndex_t controllerIndex, d
 Live_Base_StateAuthorizing
 ==============
 */
-
+void Live_Base_StateAuthorizing(const ControllerIndex_t controllerIndex, dediUserData_t *userData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

@@ -6,7 +6,7 @@
 WeaponVariantDefHash::Set
 ==============
 */
-/*void __thiscall WeaponVariantDefHash::Set(WeaponVariantDefHash *this, int wi)
+/*void WeaponVariantDefHash::Set(WeaponVariantDefHash *notthis, int wi)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -240,11 +240,10 @@ int GunPerkFromIndex(int index)
 BG_SetupWeaponVariantDef
 ==============
 */
-
+unsigned int __cdecl BG_SetupWeaponVariantDef(WeaponVariantDef *weapVariantDef, void (__cdecl *regWeap)(unsigned int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -296,11 +295,9 @@ void BG_SetupAltWeaponIndex(const Weapon baseWeapon, WeaponVariantDef *weapVaria
 BG_WeaponVariantPrecache
 ==============
 */
-
+void BG_WeaponVariantPrecache(const Weapon baseWeapon, void (__cdecl *regWeap)(unsigned int), const char *namePrefix, const char *namePostfix)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

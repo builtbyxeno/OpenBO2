@@ -16,7 +16,7 @@ void BG_EvaluateTrajectory(const trajectory_t *tr, int atTime, vec3_t *result)
 WeaponDobjInfo::Add
 ==============
 */
-/*void __thiscall WeaponDobjInfo::Add(WeaponDobjInfo *this, const WeaponDef *weapDef, unsigned int dobjModelMask)
+/*void WeaponDobjInfo::Add(WeaponDobjInfo *notthis, const WeaponDef *weapDef, unsigned int dobjModelMask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -49,7 +49,7 @@ long double BG_GetSpeed(const playerState_s *ps, int time)
 WeaponDobjInfo::GetWeapon
 ==============
 */
-/*const WeaponDef *__thiscall WeaponDobjInfo::GetWeapon(WeaponDobjInfo *this, WeaponDobjInfo::Slot slot)
+/*const WeaponDef *WeaponDobjInfo::GetWeapon(WeaponDobjInfo *notthis, WeaponDobjInfo::Slot slot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -60,7 +60,7 @@ WeaponDobjInfo::GetWeapon
 WeaponDobjInfo::Add
 ==============
 */
-/*void __thiscall WeaponDobjInfo::Add(WeaponDobjInfo *this, const WeaponAttachmentUnique *attachment, unsigned int dobjModelMask)
+/*void WeaponDobjInfo::Add(WeaponDobjInfo *notthis, const WeaponAttachmentUnique *attachment, unsigned int dobjModelMask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

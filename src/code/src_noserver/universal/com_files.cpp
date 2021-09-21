@@ -156,11 +156,9 @@ void FS_BuildOSPathForThread(const char *base, const char *game, const char *qpa
 FS_BuildOSPath
 ==============
 */
-
+void __cdecl FS_BuildOSPath(const char *base, const char *game, const char *qpath)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -220,11 +218,10 @@ int FS_GetHandleAndOpenFile(const char *filename, const char *ospath, FsThread t
 FS_FOpenFileWriteToDirForThread
 ==============
 */
-
+int FS_FOpenFileWriteToDirForThread(const char *filename, const char *dir, const char *osbasepath, FsThread thread)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -232,11 +229,10 @@ FS_FOpenFileWriteToDirForThread
 FS_FOpenFileWriteToDir
 ==============
 */
-
+int FS_FOpenFileWriteToDir(const char *a1, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -244,11 +240,10 @@ FS_FOpenFileWriteToDir
 FS_FOpenFileWrite
 ==============
 */
-
+int FS_FOpenFileWrite(const char *a1, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -256,11 +251,10 @@ FS_FOpenFileWrite
 FS_FOpenFileWriteCurrentThread
 ==============
 */
-
+int FS_FOpenFileWriteCurrentThread(FsThread a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -409,11 +403,10 @@ void FS_ResetFiles()
 FS_WriteFile
 ==============
 */
-
+int FS_WriteFile(const char *a1, const char *a2, FsThread filename, const char *buffer, const void *size, int a6)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -649,11 +642,9 @@ void FS_AddDevGameDirs(const char *path, bool allow_devraw)
 FS_Startup
 ==============
 */
-
+void __cdecl FS_Startup(const char *gameName, const char *allow_devraw)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -764,11 +755,10 @@ int FS_FOpenFileReadForThread(const char *filename, int *file, FsThread thread, 
 FS_FOpenFileReadCurrentThread
 ==============
 */
-
+int __cdecl FS_FOpenFileReadCurrentThread(const char *filename, int *file)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

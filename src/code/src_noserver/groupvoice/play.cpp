@@ -6,11 +6,10 @@
 Sound_UpdateSample
 ==============
 */
-
+int __cdecl Sound_UpdateSample(dsound_sample_t *sample, char *data, unsigned int data_len)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -18,11 +17,10 @@ Sound_UpdateSample
 Sound_NewSample
 ==============
 */
-
+dsound_sample_t *__cdecl Sound_NewSample()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -30,11 +28,10 @@ Sound_NewSample
 Sound_DestroySample
 ==============
 */
-
+int __cdecl Sound_DestroySample(dsound_sample_t *sample)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -42,11 +39,10 @@ Sound_DestroySample
 Sound_StopSample
 ==============
 */
-
+bool __cdecl Sound_StopSample(dsound_sample_t *sample)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -54,11 +50,9 @@ Sound_StopSample
 Sound_SampleFrame
 ==============
 */
-
+void __cdecl Sound_SampleFrame(dsound_sample_t *sample)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -66,11 +60,9 @@ Sound_SampleFrame
 Sound_SetVolume
 ==============
 */
-
+void __cdecl Sound_SetVolume(dsound_sample_t *sample, int level)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -89,10 +81,8 @@ int Sound_Init(const void *handle)
 Sound_Shutdown
 ==============
 */
-
+void __cdecl Sound_Shutdown()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

@@ -16,11 +16,9 @@ void DynEntSv_RegisterDvars()
 DynEntSv_LinkModel
 ==============
 */
-
+void DynEntSv_LinkModel(unsigned __int16 dynEntId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -28,11 +26,9 @@ DynEntSv_LinkModel
 DynEntSv_LinkBrush
 ==============
 */
-
+void DynEntSv_LinkBrush(unsigned __int16 dynEntId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

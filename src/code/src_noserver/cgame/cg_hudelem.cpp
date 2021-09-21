@@ -143,11 +143,10 @@ float HudElemMaterialHeight(const ScreenPlacement *scrPlace, const hudelem_s *el
 HudElemWidth
 ==============
 */
-
+float HudElemWidth(const ScreenPlacement *scrPlace, const hudelem_s *elem, const cg_hudelem_t *cghe)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -176,11 +175,9 @@ void GetHudElemOrg(const ScreenPlacement *scrPlace, int alignOrg, int alignScree
 SetHudElemPos
 ==============
 */
-
+void SetHudElemPos(const ScreenPlacement *scrPlace, const hudelem_s *elem, cg_hudelem_t *cghe)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -219,11 +216,9 @@ void CopyStringToHudElemString(const char *string, char *hudElemString)
 GetHudElemInfo
 ==============
 */
-
+void __cdecl GetHudElemInfo(LocalClientNum_t localClientNum, const hudelem_s *elem, cg_hudelem_t *cghe)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -368,11 +363,9 @@ float DrawHudElemPerk(LocalClientNum_t localClientNum, const hudelem_s *elem, cg
 DrawHudElemPerkName
 ==============
 */
-
+void DrawHudElemPerkName(LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, const hudelem_s *elem, cg_hudelem_t *cghe, float yOffset, const char *text, int specialtyTypeCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -443,11 +436,9 @@ void CG_Draw2dHudElemList(hudelem_s **elems, int elemCount, LocalClientNum_t loc
 CG_Draw2dHudElems
 ==============
 */
-
+void __cdecl CG_Draw2dHudElems(LocalClientNum_t localClientNum, int foreground)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

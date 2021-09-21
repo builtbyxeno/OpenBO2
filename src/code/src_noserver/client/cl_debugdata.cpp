@@ -38,10 +38,10 @@ float *AddDebugStringInternal(float *result, float *a2, _DWORD *text, int durati
 CL_AddDebugString
 ==============
 */
-/*void CL_AddDebugString(const char *a1@<edi>, int a2@<esi>, const vec3_t *xyz, const vec4_t *color, float scale, const char *text, int duration)
+void CL_AddDebugString(const char *a1, int a2, const vec3_t *xyz, const vec4_t *color, float scale, const char *text, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -70,10 +70,10 @@ int AddDebugSphereInternal(float *a1, _DWORD *a2, int center, const vec3_t *side
 CL_AddDebugSphere
 ==============
 */
-/*void CL_AddDebugSphere(int a1@<esi>, const vec3_t *center, const float radius, const vec4_t *color, int sideCount, int depthTest, int duration)
+void CL_AddDebugSphere(int a1, const vec3_t *center, const float radius, const vec4_t *color, int sideCount, int depthTest, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -101,11 +101,9 @@ void AddDebugLineInternal(const vec3_t *start, const vec3_t *end, const vec4_t *
 CL_AddDebugLine
 ==============
 */
-
+void CL_AddDebugLine(clientDebugLineInfo_t *a1, const vec3_t *start, const vec3_t *end, const vec4_t *color, int depthTest, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -123,11 +121,9 @@ void CL_AddDebugAxis(clientDebugLineInfo_t *a1, clientDebugLineInfo_t *a2, clien
 CL_AddDebugStarWithText
 ==============
 */
-
+void CL_AddDebugStarWithText(clientDebugLineInfo_t *a1, const vec3_t *point, const vec4_t *starColor, const vec4_t *textColor, const char *string, float fontsize, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

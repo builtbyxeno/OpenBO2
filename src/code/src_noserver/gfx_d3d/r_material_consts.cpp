@@ -16,11 +16,9 @@ void R_RegisterShaderConst(unsigned int buffer, unsigned int offset, const vec4_
 R_GetPixelLiteralConsts
 ==============
 */
-
+void R_GetPixelLiteralConsts(int a1, int a2, int mtl, const Material *argCount, const MaterialPass *pass, GfxShaderConstantBlock *pixelLiteralConsts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

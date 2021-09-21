@@ -37,11 +37,10 @@ void R_RegisterOutdoorImage(const vec3_t *a1, GfxWorld *world, const vec3_t *out
 Outdoor_ComputeTexels
 ==============
 */
-
+int Outdoor_ComputeTexels(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

@@ -81,11 +81,9 @@ bool SendToClient(const ClientNum_t clientNum, const unsigned __int8 *data, int 
 SendStartMessage
 ==============
 */
-
+void SendStartMessage(const ClientNum_t clientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -196,7 +194,7 @@ void TimedOut(const ClientNum_t clientNum)
 CheckTimeouts
 ==============
 */
-void __thiscall CheckTimeouts(void *this)
+void CheckTimeouts(void *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

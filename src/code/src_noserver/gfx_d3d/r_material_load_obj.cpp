@@ -160,10 +160,10 @@ MtlParseSuccess Material_ParseRuleSetConditionTest(const char **text, const char
 Material_ParseRuleSetCondition
 ==============
 */
-
+MtlParseSuccess Material_ParseRuleSetCondition(const char **text, const char *token, MaterialStateMapRule *rule)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
+	MtlParseSuccess tmp;
 	return tmp;
 }
 
@@ -205,11 +205,10 @@ bool Material_ParseRuleSet(const char **text, const char *ruleSetName, const Mtl
 Material_ParseStateMap
 ==============
 */
-
+bool Material_ParseStateMap(const char **text, MaterialStateMap *stateMap)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -382,11 +381,10 @@ bool Material_ParseVector(const char **text, int elemCount, vec4_t *vector)
 Material_ParseLiteral
 ==============
 */
-
+bool Material_ParseLiteral(const char **text, const char *token, vec4_t *literal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -449,11 +447,10 @@ unsigned int Material_ElemCountForParamName(const char *shaderName, const Shader
 Material_ParseArgumentSource
 ==============
 */
-
+bool Material_ParseArgumentSource(MaterialShaderType shaderType, const char **text, const char *shaderName, ShaderParamType paramType, ShaderArgumentSource *argSource)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -461,11 +458,10 @@ Material_ParseArgumentSource
 Material_DefaultArgumentSource
 ==============
 */
-
+bool Material_DefaultArgumentSource(MaterialShaderType shaderType, const char *constantName, ShaderParamType paramType, const ShaderIndexRange *indexRange, ShaderArgumentSource *argSource)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -562,11 +558,10 @@ bool MaterialAddShaderArgument(const char *shaderName, const char *paramName, Ma
 Material_AddShaderArgumentFromLiteral
 ==============
 */
-
+bool Material_AddShaderArgumentFromLiteral(const char *shaderName, const char *paramName, unsigned __int16 type, const float *literal, ShaderUniformDef *dest, MaterialShaderArgument *arg, char (*registerUsage)[64])
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -574,11 +569,10 @@ Material_AddShaderArgumentFromLiteral
 Material_AddShaderArgumentFromCodeConst
 ==============
 */
-
+bool Material_AddShaderArgumentFromCodeConst(const char *shaderName, const char *paramName, unsigned __int16 type, unsigned int codeIndex, unsigned int offset, ShaderUniformDef *dest, MaterialShaderArgument *arg, char (*registerUsage)[64])
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -586,11 +580,10 @@ Material_AddShaderArgumentFromCodeConst
 Material_AddShaderArgumentFromMaterial
 ==============
 */
-
+bool Material_AddShaderArgumentFromMaterial(const char *shaderName, const char *paramName, unsigned __int16 type, const char *name, ShaderUniformDef *dest, MaterialShaderArgument *arg, char (*registerUsage)[64])
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -598,11 +591,10 @@ Material_AddShaderArgumentFromMaterial
 Material_AddShaderArgument
 ==============
 */
-
+bool __cdecl Material_AddShaderArgument(const char *shaderName, MaterialShaderType shaderType, ShaderArgumentSource *argSource, const ShaderArgumentDest *argDest, ShaderUniformDef *paramTable, unsigned int paramCount, unsigned int *usedCount, MaterialShaderArgument *argTable)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -709,11 +701,10 @@ bool Material_SetPassShaderArguments_DX(const char **text, const char *shaderNam
 Material_LoadPassVertexShader
 ==============
 */
-
+bool Material_LoadPassVertexShader(const char **text, unsigned __int16 *techFlags, ShaderParameterSet *paramSet, MaterialPass *pass, unsigned int argLimit, unsigned int *argCount, MaterialShaderArgument *args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -732,11 +723,10 @@ bool Material_LoadDeclTypes(const char **text, MaterialPass *pass)
 Material_LoadPassPixelShader
 ==============
 */
-
+bool Material_LoadPassPixelShader(const char **text, unsigned __int16 *techFlags, ShaderParameterSet *paramSet, MaterialPass *pass, unsigned int argLimit, unsigned int *argCount, MaterialShaderArgument *args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -777,11 +767,10 @@ unsigned __int8 Material_CountArgsWithUpdateFrequency(MaterialUpdateFrequency up
 Material_LoadPass
 ==============
 */
-
+bool Material_LoadPass(const char **text, unsigned __int16 *techFlags, MaterialPass *pass, MaterialStateMap **stateMap, int materialType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -1068,11 +1057,10 @@ unsigned int Material_CreateLayeredStateBitsTable(const Material **layerMtl, uns
 Material_CreateLayered
 ==============
 */
-
+Material *Material_CreateLayered(const char *name, const Material **layerMtl, unsigned int layerCount, MaterialTechniqueSet *techSet)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*

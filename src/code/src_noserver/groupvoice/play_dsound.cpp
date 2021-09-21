@@ -48,11 +48,10 @@ void DSound_SetVolume(dsound_sample_t *sample, int level)
 DSound_NewSample
 ==============
 */
-
+dsound_sample_t *DSound_NewSample(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*

@@ -27,10 +27,9 @@ sd_decoder *SD_DecoderAllocate(sd_source *source, const SndAssetBankEntry *entry
 SD_DecoderAllocate
 ==============
 */
-
+sd_decoder *SD_DecoderAllocate(const SndAssetBankEntry *a1, sd_source *source, const SndAssetBankEntry *entry)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 

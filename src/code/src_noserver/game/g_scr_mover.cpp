@@ -17,11 +17,9 @@ int ScriptMover_UpdateMove(trajectory_t *pTr, vec3_t *vCurrPos, const mover_posi
 Reached_ScriptMover
 ==============
 */
-
+void Reached_ScriptMover(vec3_t *a1, trajectory_t *a2, gentity_t *pEnt)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

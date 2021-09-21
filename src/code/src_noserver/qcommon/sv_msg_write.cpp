@@ -131,11 +131,10 @@ bool MSG_ShouldSendPsViewAngles(const SnapshotInfo_s *snapInfo, const playerStat
 MSG_ShouldSendPSField
 ==============
 */
-
+bool MSG_ShouldSendPSField(const SnapshotInfo_s *snapInfo, bool sendOriginAndVel, bool sendVehicleState, const playerState_s *ps, const playerState_s *oldPs, const NetField *field)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -298,11 +297,11 @@ bool MSG_WriteDeltaField_Internal(msg_t *a1, const SnapshotInfo_s *snapInfo, msg
 MSG_WriteDeltaField
 ==============
 */
-/*bool MSG_WriteDeltaField@<al>(char *a1@<edi>, const SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const unsigned __int8 *from, const unsigned __int8 *to, const NetField *field, const int fieldNum, const bool forceSend, const bool xorValue, const int lastChangedField, const int skippedFieldBits, const bool sendSkippedFields)
+bool MSG_WriteDeltaField(char *a1, const SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const unsigned __int8 *from, const unsigned __int8 *to, const NetField *field, const int fieldNum, const bool forceSend, const bool xorValue, const int lastChangedField, const int skippedFieldBits, const bool sendSkippedFields)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -361,11 +360,10 @@ void MSG_GetEntityFieldInfoFlags(const entityState_s *es, EntityFieldInfoFlags *
 MSG_ShouldSendEntityField
 ==============
 */
-
+bool MSG_ShouldSendEntityField(const NetField *a1, const SnapshotInfo_s *snapInfo, const entityState_s *from, const entityState_s *to, const NetField *field, const EntityFieldInfoFlags fromFlags, const EntityFieldInfoFlags toFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -426,11 +424,9 @@ unsigned int MSG_GetBitFieldIndex(unsigned int *fieldsChanged, const BitField *b
 MSG_WriteDeltaPlayerstate
 ==============
 */
-
+void __cdecl MSG_WriteDeltaPlayerstate(SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const playerState_s *from, const playerState_s *to)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -438,11 +434,9 @@ MSG_WriteDeltaPlayerstate
 MSG_WriteDeltaMatchState
 ==============
 */
-
+void MSG_WriteDeltaMatchState(int a1, SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const MatchState *from, const MatchState *to)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

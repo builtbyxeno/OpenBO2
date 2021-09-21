@@ -221,7 +221,7 @@ bool Live_IsSystemUiActive()
 Live_ShowFriendsList
 ==============
 */
-bool __thiscall Live_ShowFriendsList(void *this)
+bool Live_ShowFriendsList(void *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

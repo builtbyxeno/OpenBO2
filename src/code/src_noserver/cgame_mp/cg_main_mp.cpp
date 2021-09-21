@@ -496,11 +496,10 @@ int CachedTag_NoCache_GetTagPos(const centity_t *ent, unsigned int tagName, vec3
 CachedTag_GetCachedTagPos
 ==============
 */
-
+int CachedTag_GetCachedTagPos(unsigned int a1, const centity_t *ent, cached_client_tag_t *cachedTag, unsigned int tagName, vec3_t *pos, int updateInterval, cached_client_tag_t *forceUpdate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -508,11 +507,10 @@ CachedTag_GetCachedTagPos
 CachedTag_GetTagPos
 ==============
 */
-
+int __cdecl CachedTag_GetTagPos(const centity_t *ent, unsigned int tagName, vec3_t *pos, int updateInterval, cached_client_tag_t *forceUpdate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

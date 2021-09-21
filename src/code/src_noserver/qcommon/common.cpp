@@ -323,11 +323,10 @@ void Com_PacketEventLoop(LocalClientNum_t localClientNum, msg_t *netmsg)
 Com_ClientPacketEvent
 ==============
 */
-
+char Com_ClientPacketEvent(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

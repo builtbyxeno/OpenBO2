@@ -78,11 +78,9 @@ void GScr_LoadSingleAnimScript(scriptInstance_t inst, scr_animscript_t *pAnim, c
 GScr_LoadDogAnimScripts
 ==============
 */
-
+void GScr_LoadDogAnimScripts(scriptInstance_t inst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -90,11 +88,9 @@ GScr_LoadDogAnimScripts
 GScr_LoadZombieAnimScripts
 ==============
 */
-
+void GScr_LoadZombieAnimScripts(scriptInstance_t inst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -102,11 +98,9 @@ GScr_LoadZombieAnimScripts
 GScr_LoadZombieDogAnimScripts
 ==============
 */
-
+void GScr_LoadZombieDogAnimScripts(scriptInstance_t inst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -187,11 +181,9 @@ void GScr_LoadAnimScripts()
 GScr_HandleMapRestart
 ==============
 */
-
+void __cdecl GScr_HandleMapRestart()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2423,11 +2415,10 @@ int GScr_GetLocSelIndex(const char *mtlName)
 Scr_GroundTrace
 ==============
 */
-
+char Scr_GroundTrace(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -2445,11 +2436,10 @@ void Scr_BulletTracePassed()
 Scr_PlayerBulletTrace
 ==============
 */
-
+char Scr_PlayerBulletTrace(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -2467,11 +2457,9 @@ void Scr_SightTracePassed()
 Scr_WorldTrace
 ==============
 */
-
+void Scr_WorldTrace(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2479,11 +2467,9 @@ Scr_WorldTrace
 Scr_PhysicsTrace
 ==============
 */
-
+void Scr_PhysicsTrace(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2491,11 +2477,9 @@ Scr_PhysicsTrace
 Scr_PlayerPhysicsTrace
 ==============
 */
-
+void Scr_PlayerPhysicsTrace(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -2737,11 +2721,10 @@ int Scr_PrecacheRumble()
 Scr_GrenadeExplosionEffect
 ==============
 */
-
+int Scr_GrenadeExplosionEffect(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -2759,7 +2742,7 @@ void GScr_RadiusDamageInternal(gentity_t *inflictor)
 GScr_RadiusDamage
 ==============
 */
-void __thiscall GScr_RadiusDamage(gentity_t *this)
+void GScr_RadiusDamage(gentity_t *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3454,11 +3437,9 @@ void GScr_GetWeaponMuzzlePoint(scr_entref_t entref)
 GScr_GetTagOrigin
 ==============
 */
-
+void __cdecl GScr_GetTagOrigin(scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -3566,11 +3547,9 @@ void GScr_SetBottomArc(scr_entref_t entref)
 GScr_PlaceSpawnPoint
 ==============
 */
-
+void GScr_PlaceSpawnPoint(unsigned int a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -3588,11 +3567,9 @@ void ScrCmd_SendFaceEvent(scr_entref_t entref)
 GScr_TestSpawnPoint
 ==============
 */
-
+void GScr_TestSpawnPoint(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -3916,11 +3893,9 @@ void GScr_SetPlayerFinalForMatchRecording()
 GScr_SetBeginForMatchRecording
 ==============
 */
-
+void __cdecl GScr_SetBeginForMatchRecording()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -4755,11 +4730,9 @@ void GScr_EnableAllDestructiblePieces()
 GScr_ClearSpawnPoints
 ==============
 */
-
+void __cdecl GScr_ClearSpawnPoints()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -4857,10 +4830,10 @@ void GScr_SetSpawnClientFlag(scr_entref_t entref)
 GScr_PredictGrenade
 ==============
 */
-/*void GScr_PredictGrenade(char *a1@<edi>, scr_entref_t entref)
+void GScr_PredictGrenade(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -4957,11 +4930,9 @@ void GScr_CollisionTestPointsInCone()
 GScr_CollisionTestPointsInBox
 ==============
 */
-
+void GScr_CollisionTestPointsInBox()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -6300,11 +6271,10 @@ int GScr_Objective_VisibleTeams()
 Scr_BulletTrace
 ==============
 */
-
+char Scr_BulletTrace(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

@@ -78,11 +78,9 @@ void *R_Cinematic_OpenMovie_Now(CinematicInfo *cinematicInfo, const char *filena
 StreamThread_OpenMovie
 ==============
 */
-
+void __cdecl StreamThread_OpenMovie(int msAllotted, void *user)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

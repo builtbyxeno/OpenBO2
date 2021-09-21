@@ -228,11 +228,9 @@ void Rope_Draw(int rope_index, LocalClientNum_t localClientNum)
 Rope_Create
 ==============
 */
-
+void __cdecl Rope_Create(int rope_index, const vec3_t *start, const vec3_t *end, const float length, const float scale, const float width, const float force_scale, int static_rope)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -290,11 +288,9 @@ void Rope_CollideEntities(int rope_index)
 Rope_CollideWorld
 ==============
 */
-
+void Rope_CollideWorld(unsigned int a1, int rope_index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -302,10 +298,10 @@ Rope_CollideWorld
 Rope_UpdateInternal
 ==============
 */
-/*void Rope_UpdateInternal(const char *a1@<edi>, const RopeUpdateCmdData *cmd)
+void Rope_UpdateInternal(const char *a1, const RopeUpdateCmdData *cmd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -322,8 +318,8 @@ void Rope_Update(unsigned int a1, LocalClientNum_t localClientNum, int curtime)
 Rope_Settle
 ==============
 */
-/*void Rope_Settle(const char *a1@<esi>, int rope_index)
+void Rope_Settle(const char *a1, int rope_index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 

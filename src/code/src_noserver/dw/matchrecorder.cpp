@@ -260,11 +260,10 @@ void MatchRecorder_UpdateSubparties()
 MatchRecord_SearchCreateForPlayer
 ==============
 */
-
+int MatchRecord_SearchCreateForPlayer(gclient_t *client, ddlState_t *playerState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -272,11 +271,10 @@ MatchRecord_SearchCreateForPlayer
 GetCurrentPlaylistIndex
 ==============
 */
-
+int __cdecl GetCurrentPlaylistIndex()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -334,11 +332,9 @@ void GetWorldLocation(float xPos, float yPos, float zPos, unsigned __int8 *xWorl
 MatchRecord_ReviveZombie
 ==============
 */
-
+void __cdecl MatchRecord_ReviveZombie(gclient_t *client, gclient_t *reviver)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -346,11 +342,9 @@ MatchRecord_ReviveZombie
 MatchRecordSpawn
 ==============
 */
-
+void __cdecl MatchRecordSpawn(gclient_t *client)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -378,11 +372,9 @@ void MatchRecordHit(gclient_t *attackerClient, hitLocation_t hitLocation)
 MatchRecordDeath
 ==============
 */
-
+void __cdecl MatchRecordDeath(gclient_t *client, gclient_t *attackerClient, const char *weaponName, hitLocation_t hitLocation)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -400,11 +392,9 @@ void MatchRecordEnd(gclient_t *client)
 MatchRecordBegin
 ==============
 */
-
+void __cdecl MatchRecordBegin()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -503,11 +493,9 @@ void MatchRecorder_RecordScoreEvent(ddlState_t *a1, gclient_t *a2, gclient_t *cl
 MatchRecorder_RecordLoadoutAndPerks
 ==============
 */
-
+void MatchRecorder_RecordLoadoutAndPerks(ddlState_t *a1, gclient_t *a2, gclient_t *client, int primaryWeaponIndex, int attachmentBitsPrimary, int secondaryWeaponIndex, int attachmentBitsSecondary, int grenadeTypePrimary, int grenadeTypeSecondary, int killstreak1, int killstreak2, int killstreak3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -515,11 +503,9 @@ MatchRecorder_RecordLoadoutAndPerks
 MatchRecorder_RecordNumZombieRounds
 ==============
 */
-
+void MatchRecorder_RecordNumZombieRounds(ddlState_t *a1, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -547,11 +533,9 @@ void MatchRecord_WriteItemStats(char *a1, gentity_t *playerEnt, ClientNum_t clie
 MatchRecorder_IncrementHeaderStat
 ==============
 */
-
+void MatchRecorder_IncrementHeaderStat(const char *a1, ddlState_t *a2, const char *statName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -641,11 +625,10 @@ void MatchRecorder_IncrementPlayerStat(gclient_t *client, const char *statName)
 MatchRecord_InitMatchDataInternal
 ==============
 */
-
+int MatchRecord_InitMatchDataInternal(char *inputBuffer, int buffSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -663,11 +646,9 @@ void MatchRecord_InitMatchData()
 GenerateBinaryMatchSummary
 ==============
 */
-
+void GenerateBinaryMatchSummary(unsigned int titleID, const char *gameMode, unsigned __int64 fileID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

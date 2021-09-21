@@ -119,11 +119,9 @@ void R_UI3D_IncrementRenderCmdCount(int wndIndex, int renderCmdDrawsSomething)
 R_UI3D_SetupTextureWindow
 ==============
 */
-
+void R_UI3D_SetupTextureWindow(int a1, ScreenPlacement *a2, int windowIndex, float normX, float normY, float normWidth, float normHeight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

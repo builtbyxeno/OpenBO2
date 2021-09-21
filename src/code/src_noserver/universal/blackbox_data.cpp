@@ -48,11 +48,9 @@ int BB_CacheString(const char *str, int len)
 BB_WriteString
 ==============
 */
-
+void __cdecl BB_WriteString(bb_msg_t *msg, const char *str, int len)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -90,11 +88,9 @@ void BB_InitDefinitions()
 BB_RewriteDefinitions
 ==============
 */
-
+void BB_RewriteDefinitions(bb_msg_t *a1, const void *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -102,11 +98,10 @@ BB_RewriteDefinitions
 BB_BeginDefinition
 ==============
 */
-
+int __cdecl BB_BeginDefinition(const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

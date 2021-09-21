@@ -6,7 +6,7 @@
 GlassesServer::Load
 ==============
 */
-/*void __thiscall GlassesServer::Load(GlassesServer *this, MemoryFile *memFile)
+/*void GlassesServer::Load(GlassesServer *notthis, MemoryFile *memFile)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -16,7 +16,7 @@ GlassesServer::Load
 GlassesServer::ResetAll
 ==============
 */
-/*void __thiscall GlassesServer::ResetAll(GlassesServer *this)
+/*void GlassesServer::ResetAll(GlassesServer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -98,7 +98,7 @@ GlassServer *GlassSv_GetGlassByIndex(unsigned int index)
 GlassesServer::WriteSnapshotToClient
 ==============
 */
-/*void __thiscall GlassesServer::WriteSnapshotToClient(GlassesServer *this, msg_t *msg, int sinceTime)
+/*void GlassesServer::WriteSnapshotToClient(GlassesServer *notthis, msg_t *msg, int sinceTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -148,7 +148,7 @@ void GlassSv_Load(MemoryFile *memFile)
 GlassesServer::Update
 ==============
 */
-/*void __thiscall GlassesServer::Update(GlassesServer *this)
+/*void GlassesServer::Update(GlassesServer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -158,7 +158,7 @@ GlassesServer::Update
 GlassesServer::ShatterAll
 ==============
 */
-/*void __thiscall GlassesServer::ShatterAll(GlassesServer *this)
+/*void GlassesServer::ShatterAll(GlassesServer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -218,7 +218,7 @@ GlassesServer::ShatterAllCmd
 GlassesServer::Init
 ==============
 */
-/*void GlassesServer::Init(GlassesServer *this@<ecx>, const char *a2@<ebx>)
+/*void GlassesServer::Init(GlassesServer *notthis, const char *a2@<ebx>)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

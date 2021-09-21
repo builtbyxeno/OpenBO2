@@ -5,8 +5,8 @@
 //t6/code/src_noserver/dynentity/dynentity_client.cpp
 void DynEntCl_RegisterDvars();
 XModel *DynEntCl_GetCurrentXModel(const DynEntityDef *dynEntDef, const DynEntityClient *dynEntClient);
-;
-;
+float DynEntCl_UpdateBModelWorldBounds(const GfxPlacement *pose);
+void DynEntCl_LinkModel(unsigned int a1, unsigned __int16 dynEntId);
 void DynEntCl_LinkBrush(unsigned __int16 dynEntId);
 void DynEntCl_UnlinkEntity(unsigned __int16 dynEntId, DynEntityDrawType drawType);
 void DynEnt_DestroyPhysics(PhysWorld worldIndex, const DynEntityDef *dynEntDef, DynEntityClient *dynEntClient);
@@ -37,15 +37,15 @@ void SCR_DynEnt_GetDynEntityArray(int targetname);
 void MapHitLocationToRagdollBoneName(hitLocation_t hitLoc, unsigned int *boneName);
 void CheckDynEnts();
 void DynEntCl_Shutdown(LocalClientNum_t localClientNum);
-;
+void DynEnt_SetupConstraints(unsigned int a1, const DynEntityDef *dynEntDef);
 int DynEntCl_CreatePhysObj(const DynEntityDef *dynEntDef, DynEntityClient *dynEntClient, const GfxPlacement *pose);
 void DynEntCl_Launch(unsigned __int16 absId, const vec3_t *dir, const vec3_t *hitp);
 void DynEntCl_SetBurning(unsigned __int16 dynEntId, DynEntityDrawType drawType, bool burning);
 LocalClientNum_t DynEnt_UpdateBurning();
 void DynEntCl_FlameDamage(LocalClientNum_t localClientNum, unsigned __int16 dynEntId, DynEntityDrawType drawType, const vec3_t *hitPos, const vec3_t *hitVel, int damage);
 void DynEntCl_EntityImpactEvent(const trace_t *trace, LocalClientNum_t localClientNum, int sourceEntityNum, const vec3_t *start, const vec3_t *hitPos, bool isMelee);
-;
-;
+void DynEntCl_HitTrace(const vec3_t *end, trace_t *results);
+bool DynEntCl_DynEntImpactEvent(const vec3_t *end, vec3_t *hitPos);
 char DynEntCl_DynEntBulletImpactEvent(LocalClientNum_t localClientNum, int sourceEntityNum, const vec3_t *start, const vec3_t *end, const WeaponDef *weapDef);
 void DynEntCl_InitEntities(LocalClientNum_t localClientNum);
 void DynEntCl_DestroyEntityModel(unsigned __int16 id);
@@ -125,8 +125,8 @@ void DynEntPieces_SpawnPieces(LocalClientNum_t localClientNum, const XModelPiece
 
 //t6/code/src_noserver/dynentity/dynentity_server.cpp
 void DynEntSv_RegisterDvars();
-;
-;
+void DynEntSv_LinkModel(unsigned __int16 dynEntId);
+void DynEntSv_LinkBrush(unsigned __int16 dynEntId);
 void DynEntClSv_ShouldCullEntitiesForSplitscreen();
 void DynEntSv_InitEntities();
 void DynEntSv_PointTrace_r(DynEntityDrawType drawType, const pointtrace_t *clip, unsigned int sectorIndex, const vec4_t *p1, const vec4_t *p2, trace_t *results);

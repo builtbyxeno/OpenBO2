@@ -47,11 +47,9 @@ void G_ReduceAnglesError(vec3_t *angles, vec3_t *anglesError, const vec3_t *angl
 G_AnimScripted_Think_DeathPlant
 ==============
 */
-
+void G_AnimScripted_Think_DeathPlant(XAnimTree_s *tree, vec3_t *origin, vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -79,11 +77,9 @@ void G_Animscripted_Think(gentity_t *ent)
 G_Animscripted_DeathPlant
 ==============
 */
-
+void G_Animscripted_DeathPlant(gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

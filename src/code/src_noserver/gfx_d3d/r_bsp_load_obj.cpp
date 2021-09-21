@@ -206,10 +206,10 @@ void R_BuildHeroLightTree(unsigned int nodeIndex, unsigned int firstLight, unsig
 R_LoadHeroOnlyLights
 ==============
 */
-/*void R_LoadHeroOnlyLights(LumpType a1@<edx>, char *a2@<ecx>, const char *a3@<esi>, unsigned int bspVersion)
+void R_LoadHeroOnlyLights(LumpType a1, char *a2, const char *a3, unsigned int bspVersion)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -468,20 +468,20 @@ bool R_VectorForKey(const char *key, const char *defaultString, char *(*spawnVar
 R_LoadStaticModelData
 ==============
 */
-/*void R_LoadStaticModelData(LumpType a1@<edx>, char *a2@<ecx>, int bspVersion)
+void R_LoadStaticModelData(LumpType a1, char *a2, int bspVersion)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 R_LoadSkyGridVolumes
 ==============
 */
-/*void R_LoadSkyGridVolumes(LumpType a1@<edx>, char *a2@<ecx>, int bspVersion)
+void R_LoadSkyGridVolumes(LumpType a1, char *a2, int bspVersion)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -519,11 +519,9 @@ void R_SetStaticModelsLightmapData()
 R_LoadMiscModel
 ==============
 */
-
+void R_LoadMiscModel(int a1, char *(*spawnVars)[2], int spawnVarCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -691,21 +689,21 @@ int R_FinishLoadingAabbTrees_r(GfxAabbTree *tree, int totalTreesUsed)
 R_LoadAabbTrees
 ==============
 */
-/*unsigned int R_LoadAabbTrees@<eax>(LumpType a1@<edx>, char *a2@<ecx>, const char *a3@<edi>)
+unsigned int R_LoadAabbTrees(LumpType a1, char *a2, const char *a3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 R_LoadCells
 ==============
 */
-/*void R_LoadCells(LumpType a1@<edx>, char *a2@<ecx>, unsigned int bspVersion)
+void R_LoadCells(LumpType a1, char *a2, unsigned int bspVersion)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -755,10 +753,10 @@ mnode_t *R_SortNodes_r(mnode_load_t *node, mnode_t *out)
 R_LoadNodesAndLeafs
 ==============
 */
-/*void R_LoadNodesAndLeafs(LumpType a1@<edx>, char *a2@<ecx>, unsigned int bspVersion)
+void R_LoadNodesAndLeafs(LumpType a1, char *a2, unsigned int bspVersion)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -827,7 +825,7 @@ void R_InterpretSunLightParseParamsIntoLights(SunLightParseParams *sunParse, Gfx
 R_InitPrimaryLights
 ==============
 */
-/*void R_InitPrimaryLights(const vec3_t *a1@<edx>, const char *a2@<ebx>, GfxLight *primaryLights)
+/*void R_InitPrimaryLights(const vec3_t *a1, const char *a2@<ebx>, GfxLight *primaryLights)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -1018,9 +1016,9 @@ void R_PostLoadEntities()
 R_LoadWorldInternal
 ==============
 */
-/*GfxWorld *R_LoadWorldInternal@<eax>(const char *a1@<esi>, const char *name)
+GfxWorld *R_LoadWorldInternal(const char *a1, const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 

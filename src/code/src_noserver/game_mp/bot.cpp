@@ -195,11 +195,9 @@ void Bot_DrawString(LocalClientNum_t localClientNum, const ScreenPlacement *scrP
 Bot_DrawDebug
 ==============
 */
-
+void Bot_DrawDebug(const vec4_t *a1, LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

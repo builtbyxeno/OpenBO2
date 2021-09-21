@@ -26,7 +26,7 @@ void AnimTreeCompileError(scriptInstance_t inst, const char *msg)
 ScriptTokenizer::ParseIntoTokens
 ==============
 */
-/*void __thiscall ScriptTokenizer::ParseIntoTokens(ScriptTokenizer *this, const char *strString)
+/*void ScriptTokenizer::ParseIntoTokens(ScriptTokenizer *notthis, const char *strString)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -56,11 +56,9 @@ void Scr_EmitAnimationInternal(scriptInstance_t inst, unsigned __int8 *pos, unsi
 Scr_EmitAnimation
 ==============
 */
-
+void Scr_EmitAnimation(scriptInstance_t a1, unsigned int a2, scriptInstance_t inst, unsigned __int8 *pos, unsigned int animName, unsigned int sourcePos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -154,11 +152,10 @@ void Scr_ProcessNodeValues(scriptInstance_t inst, XAnim_s *anims, unsigned int n
 Scr_CreateAnimationTree
 ==============
 */
-
+int __cdecl Scr_CreateAnimationTree(scriptInstance_t inst, unsigned int parentNode, unsigned int rootData, unsigned int names, XAnim_s *anims, unsigned int childIndex, const char *parentName, unsigned int parentIndex, unsigned int filename, int treeIndex, unsigned __int16 flags, void *(__cdecl *Alloc)(int), unsigned int paramMap)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -207,11 +204,9 @@ unsigned int Scr_UsingTreeInternal(scriptInstance_t inst, const char *filename, 
 Scr_ClientUsingTree
 ==============
 */
-
+void __cdecl Scr_ClientUsingTree(scriptInstance_t inst, const char *filename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -219,11 +214,10 @@ Scr_ClientUsingTree
 Scr_CreateAllAnimTreeData
 ==============
 */
-
+int Scr_CreateAllAnimTreeData(scriptInstance_t inst, unsigned int rootData, unsigned int names, scr_animtree_t *animtree, unsigned int filenameId, unsigned int index, void *(__cdecl *Alloc)(int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -255,11 +249,9 @@ scr_animtree_t Scr_FindAnimTree(scriptInstance_t inst, const char *filename)
 Scr_FindAnim
 ==============
 */
-
+void __cdecl Scr_FindAnim(scriptInstance_t inst, const char *filename, const char *animName, scr_anim_s *anim, int user)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -277,7 +269,7 @@ void Scr_ShutdownAnimTrees(int user)
 ScriptTokenizer::PushNextToken
 ==============
 */
-/*void __thiscall ScriptTokenizer::PushNextToken(ScriptTokenizer *this)
+/*void ScriptTokenizer::PushNextToken(ScriptTokenizer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -287,11 +279,9 @@ ScriptTokenizer::PushNextToken
 Scr_UsingTree
 ==============
 */
-
+void __cdecl Scr_UsingTree(scriptInstance_t inst, const char *filename, unsigned int sourcePos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -299,7 +289,7 @@ Scr_UsingTree
 ScriptTokenizer::PopToken
 ==============
 */
-/*const char *__thiscall ScriptTokenizer::PopToken(ScriptTokenizer *this)
+/*const char *ScriptTokenizer::PopToken(ScriptTokenizer *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -310,7 +300,7 @@ ScriptTokenizer::PopToken
 ScriptTokenizer::PeekIsChar
 ==============
 */
-/*bool __thiscall ScriptTokenizer::PeekIsChar(ScriptTokenizer *this, char cTestChar)
+/*bool ScriptTokenizer::PeekIsChar(ScriptTokenizer *notthis, char cTestChar)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -377,11 +367,9 @@ bool AnimTreeParseInternal(scriptInstance_t inst, unsigned int parentNode, unsig
 Scr_AnimTreeParse
 ==============
 */
-
+void Scr_AnimTreeParse(scriptInstance_t inst, const char *pos, unsigned int parentNode, unsigned int names)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -400,10 +388,8 @@ bool Scr_LoadAnimTreeInternal(scriptInstance_t inst, const char *filename, unsig
 Scr_LoadAnimTreeAtIndex
 ==============
 */
-
+void __cdecl Scr_LoadAnimTreeAtIndex(scriptInstance_t inst, unsigned int index, void *(__cdecl *Alloc)(int), int user, bool modCheckSum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

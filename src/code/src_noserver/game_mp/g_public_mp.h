@@ -6,7 +6,7 @@
 EntHandle::isDefined
 ==============
 */
-/*BOOL __thiscall EntHandle::isDefined(EntHandle *this)
+/*BOOL EntHandle::isDefined(EntHandle *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -17,7 +17,7 @@ EntHandle::isDefined
 EntHandle::ent
 ==============
 */
-/*gentity_t *__thiscall EntHandle::ent(EntHandle *this)
+/*gentity_t *EntHandle::ent(EntHandle *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -28,7 +28,7 @@ EntHandle::ent
 EntHandle::entnum
 ==============
 */
-/*int __thiscall EntHandle::entnum(EntHandle *this)
+/*int EntHandle::entnum(EntHandle *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

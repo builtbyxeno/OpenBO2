@@ -36,7 +36,7 @@ void SentientInfo_Clear(sentient_info_t *pInfo)
 Actor_droptofloor
 ==============
 */
-int Actor_droptofloor(gentity_t* ent)
+int Actor_droptofloor(unsigned int a1, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -47,7 +47,7 @@ int Actor_droptofloor(gentity_t* ent)
 Actor_DropPointToFloor
 ==============
 */
-void Actor_DropPointToFloor(vec3_t* point)
+void Actor_DropPointToFloor(vec3_t *point)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -247,10 +247,10 @@ BOOL usingCodeGoal(actor_t *actor)
 Actor_DebugDrawNodesInVolume
 ==============
 */
-/*void Actor_DebugDrawNodesInVolume(actor_t *self@<ecx>, const char *a2@<edi>)
+void Actor_DebugDrawNodesInVolume(actor_t *self, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -610,7 +610,7 @@ void Actor_PathEndActions(actor_t *self)
 Actor_SimulateChildrenPhysics
 ==============
 */
-void Actor_SimulateChildrenPhysics(actor_t* self)
+void Actor_SimulateChildrenPhysics(actor_t *self)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -798,7 +798,7 @@ float Path_UpdateMomentum(actor_t *self, vec2_t *vWishDir, float fMoveDist)
 Path_UpdateMovementDelta
 ==============
 */
-void Path_UpdateMovementDelta(actor_t* self, float fMoveDist)
+void Path_UpdateMovementDelta(actor_t *self, float fMoveDist)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1054,10 +1054,10 @@ void Actor_Pain(gentity_t *self, gentity_t *pAttacker, int iDamage, const vec3_t
 Actor_EntInfo
 ==============
 */
-/*void Actor_EntInfo(const char *a1@<esi>, gentity_t *self, vec3_t *source)
+void Actor_EntInfo(const char *a1, gentity_t *self, vec3_t *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

@@ -26,10 +26,10 @@ void DebugPatchesAndBrushesEpilog()
 debug_brush_info_t::find_index_in_brush
 ==============
 */
-/*__int16 __thiscall debug_brush_info_t::find_index_in_brush(debug_brush_info_t *this, const cbrush_t *brush, const vec3_t *v)
+/*__int16 debug_brush_info_t::find_index_in_brush(debug_brush_info_t *notthis, const cbrush_t *brush, const vec3_t *v)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	__int16 __thiscall tmp;
+	__int16 tmp;
 	return tmp;
 }*/
 
@@ -38,7 +38,7 @@ debug_brush_info_t::find_index_in_brush
 debug_patch_info_t::find_index_in_clipmap
 ==============
 */
-/*unsigned int __thiscall debug_patch_info_t::find_index_in_clipmap(debug_patch_info_t *this, const CollisionAabbTree *tree, const vec3_t *v)
+/*unsigned int debug_patch_info_t::find_index_in_clipmap(debug_patch_info_t *notthis, const CollisionAabbTree *tree, const vec3_t *v)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -129,7 +129,7 @@ void render_collision_tree(const CollisionAabbTree *tree, const vec4_t *color)
 debug_patch_info_t::add_patch
 ==============
 */
-/*void __thiscall debug_patch_info_t::add_patch(debug_patch_info_t *this, const CollisionAabbTree *tree)
+/*void debug_patch_info_t::add_patch(debug_patch_info_t *notthis, const CollisionAabbTree *tree)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -239,11 +239,9 @@ void render_box(const phys_vec3 *mins, const phys_vec3 *maxs, const vec4_t *colo
 render_gjk_geom
 ==============
 */
-
+void render_gjk_geom(int a1, int a2, int geom, gjk_base_t *cg2w, const phys_mat44 *a5)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -251,12 +249,10 @@ render_gjk_geom
 init_winding
 ==============
 */
-
+/*void init_winding(float plane, const plane_lt *a2, phys_static_array<phys_vec3,512> *winding)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
-}
+}*/
 
 /*
 ==============
@@ -293,11 +289,9 @@ void Phys_DebugBox(const phys_mat44 *mat, const phys_vec3 *dims, const vec4_t *c
 Phys_RenderBase
 ==============
 */
-
+void Phys_RenderBase(int a1, clientDebugLineInfo_t *a2, const phys_mat44 *mat, const float scale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -335,11 +329,9 @@ GjkTraceGeom::Render
 render_debug_draw_gjk_trace_geom
 ==============
 */
-
+void render_debug_draw_gjk_trace_geom(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -367,11 +359,9 @@ calc_winding
 render_contact
 ==============
 */
-
+void render_contact(int a1, rigid_body_constraint_contact *rbc)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -379,7 +369,7 @@ render_contact
 debug_brush_info_t::add_brush
 ==============
 */
-/*void debug_brush_info_t::add_brush(debug_brush_info_t *this, int a2, const cbrush_t *brush, const phys_mat44 *mat)
+/*void debug_brush_info_t::add_brush(debug_brush_info_t *notthis, int a2, const cbrush_t *brush, const phys_mat44 *mat)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

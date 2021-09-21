@@ -69,10 +69,10 @@ int SND_AllocateEntries(const char *bankName, int entryCount)
 SND_GetRuntimeAssetBankFileName
 ==============
 */
-/*void SND_GetRuntimeAssetBankFileName(const char *a1@<edi>, bool stream, const char *zone, const char *language, int length, char *path)
+void SND_GetRuntimeAssetBankFileName(const char *a1, bool stream, const char *zone, const char *language, int length, char *path)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

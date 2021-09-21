@@ -199,11 +199,9 @@ void AssertCmdArgsConsistency(const CmdArgs *args)
 Cmd_TokenizeStringKernel
 ==============
 */
-
+void Cmd_TokenizeStringKernel(LocalClientNum_t localClientNum, ControllerIndex_t localControllerIndex, itemDef_s *item, const char *text_in, int max_tokens, bool evalExpressions, CmdArgs *args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -221,11 +219,9 @@ void Cmd_EndTokenizedStringKernel(CmdArgs *args)
 Cmd_TokenizeStringWithLimit
 ==============
 */
-
+void __cdecl Cmd_TokenizeStringWithLimit(const char *text_in)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -233,11 +229,9 @@ Cmd_TokenizeStringWithLimit
 Cmd_TokenizeString
 ==============
 */
-
+void Cmd_TokenizeString(char *a1, const char *text_in)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -245,11 +239,9 @@ Cmd_TokenizeString
 Cmd_TokenizeStringNoEval
 ==============
 */
-
+void __cdecl Cmd_TokenizeStringNoEval(const char *text_in)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -267,11 +259,9 @@ void Cmd_EndTokenizedString()
 SV_Cmd_TokenizeString
 ==============
 */
-
+void SV_Cmd_TokenizeString(ControllerIndex_t a1, LocalClientNum_t a2, const char *text_in)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -279,7 +269,7 @@ SV_Cmd_TokenizeString
 SV_Cmd_EndTokenizedString
 ==============
 */
-void __thiscall SV_Cmd_EndTokenizedString(CmdArgs *this)
+void SV_Cmd_EndTokenizedString(CmdArgs *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -391,11 +381,9 @@ void Cmd_List_f()
 Cmd_DObjDump
 ==============
 */
-
+void __cdecl Cmd_DObjDump()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -413,11 +401,9 @@ void Cmd_HandleMissingCommand(const char *msg, bool fromRemoteConsole)
 Cmd_ExecuteServerString
 ==============
 */
-
+void Cmd_ExecuteServerString(ControllerIndex_t a1, LocalClientNum_t a2, const char *text)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -435,11 +421,9 @@ void Cbuf_SV_Execute()
 Cmd_ExecuteSingleCommandInternal
 ==============
 */
-
+void Cmd_ExecuteSingleCommandInternal(char *a1, LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, itemDef_s *item, const char *text, bool fromRemoteConsole)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -477,11 +461,9 @@ void ExecuteRestOfCommand()
 Cmd_IfMP_f
 ==============
 */
-
+void __cdecl Cmd_IfMP_f()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -499,11 +481,9 @@ void Cbuf_ExecuteBufferInternal(LocalClientNum_t localClientNum, ControllerIndex
 Cbuf_ExecuteBuffer
 ==============
 */
-
+void Cbuf_ExecuteBuffer(ControllerIndex_t a1, LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, const char *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -511,11 +491,9 @@ Cbuf_ExecuteBuffer
 Cbuf_ExecuteBufferUI
 ==============
 */
-
+void __cdecl Cbuf_ExecuteBufferUI(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, itemDef_s *item, const char *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

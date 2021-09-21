@@ -6,7 +6,7 @@
 VehicleParameter::SetDefaultValues
 ==============
 */
-/*void __thiscall VehicleParameter::SetDefaultValues(VehicleParameter *this)
+/*void VehicleParameter::SetDefaultValues(VehicleParameter *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

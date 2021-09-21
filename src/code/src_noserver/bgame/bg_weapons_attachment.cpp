@@ -151,11 +151,10 @@ bool BG_IsAttachmentCompatible(unsigned __int64 bitMask, eAttachment attachment)
 BG_AreAttachmentsCompatible
 ==============
 */
-
+bool __cdecl BG_AreAttachmentsCompatible(eAttachment attachment1, eAttachment attachment2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -305,11 +304,9 @@ void BG_LoadAttachmentRow(int a1, const StringTable *a2, char *attachmentTable, 
 BG_LoadWeaponOptionRow
 ==============
 */
-
+void BG_LoadWeaponOptionRow(int a1, const StringTable *a2, char *attachmentTable, const StringTable *row, int optionNum, WeaponOptionTableEntry *entry, __int16 *count)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -327,10 +324,10 @@ void BG_LoadWeaponOptions(const StringTable *attachmentTable)
 BG_LoadWeaponAttachmentTable
 ==============
 */
-/*void BG_LoadWeaponAttachmentTable(char *a1@<edi>)
+void BG_LoadWeaponAttachmentTable(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

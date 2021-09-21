@@ -6,7 +6,7 @@
 SND_GetSpeakerConfigCount
 ==============
 */
-unsigned int __thiscall SND_GetSpeakerConfigCount(gjk_double_sphere_t *this)
+unsigned int SND_GetSpeakerConfigCount(gjk_double_sphere_t *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -188,10 +188,10 @@ void Snd_PanStereo(float angle, float boost, float *left, float *right)
 Snd_Pan
 ==============
 */
-/*void Snd_Pan(const char *a1@<edi>, unsigned int speakerCount, const float *angles, float toSound, float *levels)
+void Snd_Pan(const char *a1, unsigned int speakerCount, const float *angles, float toSound, float *levels)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

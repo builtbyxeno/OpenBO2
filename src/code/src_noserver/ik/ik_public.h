@@ -37,18 +37,18 @@ void IKImport_RecurseSetIKPartBits(const DObj *obj, int boneIndex, int *partBits
 IKBoneNames *IKImport_GetMinBoneExtents(IKState *ikState, int *boneCount);
 void IKImport_SetIKPartBits(const DObj *obj, int *partBits);
 char IKImport_CheckIKPartBits(IKState *ikState);
-;
+void IKImport_ApplyIKToSkeletonLocalBones(unsigned int a1, IKState *ikState);
 void IKImport_ApplyIKToSkeleton(IKState *ikState);
 IKState *IKImport_FetchDObjIKState(const unsigned __int8 *model);
 void IKImport_SetDObjIKState(const unsigned __int8 *model, const IKState *ikState);
 int IKImport_EntityNumToIndex(int entityNum);
 char IKImport_ApplyLeftHandIK(IKState *ikState);
 bool IKImport_ApplyRightHandIK(IKState *ikState);
-// void IKImport_DrawAxisOrigin(const vec3_t *a1@<edx>, vec4_t *mat44, float colorScale);
+void IKImport_DrawAxisOrigin(const vec3_t *a1, vec4_t *mat44, float colorScale);
 void IKImport_DrawLine(clientDebugLineInfo_t *a1, vec3_t *start, vec3_t *end, int colorType);
 void IKImport_DrawDebugSkeleton(int a1, IKState *ikState);
 int IKImport_GetFrameNum();
-;
+BOOL __cdecl IKImport_IsMainThread();
 LocalClientNum_t IKImport_GetLocalClientIndexForModel(unsigned __int8 *model);
 BOOL IKImport_IsServerModel(unsigned __int8 *model);
 BOOL IKImport_IsClient(IKState *ikState);
@@ -78,9 +78,9 @@ void IKImport_GetBoneMatrixArray(IKState *ikState);
 char IKImport_IsIKEntity(const unsigned __int8 *model);
 char IKImport_BypassTerrainMapping(IKState *ikState);
 bool IKImport_ApplyTerrainMapping(IKState *ikState);
-;
+void IKImport_GetEntityXform(int a1, IKState *ikState);
 void IKImport_UpdateCollisionCache(IKState *ikState);
-;
+char IKImport_TraceBox(int a1, IKState *ikState, vec3_t *startPos, vec3_t *endPos, float boxRadius, vec3_t *tracePos, vec3_t *outNormal, int hintIndexListItem, float *outTraceFraction, bool bIgnoreStartSolid);
 clientInfo_t *IKImport_GetClientInfo(IKState *ikState);
 Weapon IKImport_GetWeapon(IKState *ikState);
 const WeaponVariantDef *IKImport_GetWeaponVariantDef(IKState *ikState);
@@ -98,13 +98,13 @@ void IKImport_InitCollisionCache(IKState *ikState);
 //t6/code/src_noserver/ik/ik_layers.cpp
 void IK_Layer_ApplyFootIK(int a1, IKState *ikState, IKJointBones *jointBones, IKJointVars *jointVars, vec4_t *childMat, bool flipBones);
 void IK_Layer_ApplyHandIK(int a1, IKState *ikState, IKJointBones *jointBones, IKJointVars *jointVars, vec4_t *childMat, bool flipBones);
-;
-;
+void IK_Layer_LeftHandOnGun(int a1, IKState *ikState);
+void IK_Layer_LeftHandOnGunTuningDisplay(int a1, IKState *ikState);
 void IK_Layer_PlayerControllers(IKState *ikState);
-;
-;
-;
-;
+void IK_Layer_PlayerPitch(int a1, long double ikState, IKState *a3, bool preControllers);
+void IK_Layer_PreventHeadClip(int a1, IKState *ikState);
+void IK_Layer_TerrainMapping(int a1, IKState *ikState);
+void IK_ProcessLayers(int a1, IKState *ikState);
 
 //t6/code/src_noserver/ik/ik_math.cpp
 void ikMatrixIdentity44(vec4_t *out);
@@ -115,15 +115,15 @@ void IK_FlipHack(vec4_t *mat);
 void ikNormalizedMatrixAssert_func(vec4_t *mat);
 void ikQuatToAxis(const vec4_t *quat, vec3_t *axis);
 void ikMatrix44ToQuatTrans(vec4_t *mat, vec4_t *quat, vec3_t *trans);
-;
+void ikCalcBoneModelMatrix_r(int a1, IKState *ikState, int boneNum, float *inMatArray, vec4_t *out);
 void ikCalcBoneModelMatrix();
-;
-;
-;
-;
+void ikMap2DTo3D(int a1, float UpperLimbLength, float SinUpper, float CosUpper, float SinLower, float CosLower, const vec3_t *ModelBaseJoint, const vec3_t *ModelTargetDir, const vec3_t *ModelMidJointDir, float sinTwist, float cosTwist, vec4_t *UpperLocalToModel, vec4_t *LowerLocalToModel);
+void ikSolveLegJoint(int a1, IKState *ikState, IKJointBones *jointBones, IKJointVars *jointVars, vec3_t *footPos, vec4_t *outParentMat, vec4_t *outJointMat, bool flipHack);
+void ikSolveArmJoint(int a1, IKState *ikState, IKJointBones *jointBones, IKJointVars *jointVars, vec3_t *handPos, vec4_t *outParentMat, vec4_t *outJointMat, bool flipHack);
+void ikRotateBone(int a1, IKState *ikState, IKBoneNames boneName, vec3_t *rot, bool local);
 void ikMatrixLerp44(vec4_t *from, vec4_t *to, float lerp, vec4_t *res);
 
 //t6/code/src_noserver/ik/ik_process.cpp
-;
+void IK_GenerateIKXformMatrices(int a1, IKState *ikState);
 void IK_Process(int a1, IKState *ikState);
 

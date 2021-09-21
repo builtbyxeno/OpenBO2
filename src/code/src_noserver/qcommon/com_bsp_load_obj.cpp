@@ -28,11 +28,10 @@ const void *Com_ValidateBspLumpData(LumpType type, unsigned int offset, unsigned
 Com_GetBspLump
 ==============
 */
-
+const void *Com_GetBspLump(char *a1, LumpType type, unsigned int elemSize, unsigned int *count)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return NULL;
 }
 
 /*
@@ -83,11 +82,11 @@ void Com_UnloadBspLump(LumpType type)
 Com_BspHasLump
 ==============
 */
-/*BOOL Com_BspHasLump@<eax>(LumpType a1@<edx>, LumpType type)
+BOOL Com_BspHasLump(LumpType a1, LumpType type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -157,11 +156,11 @@ void Com_CleanupBsp()
 Com_EntityString
 ==============
 */
-/*const char *Com_EntityString@<eax>(LumpType a1@<edx>, char *a2@<ecx>, char *a3@<edi>, int *numEntityChars)
+const char *Com_EntityString(LumpType a1, char *a2, char *a3, int *numEntityChars)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============

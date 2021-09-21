@@ -6,10 +6,10 @@
 dwQoSMultiProbeListener::complete
 ==============
 */
-/*LocalTaskState __thiscall dwQoSMultiProbeListener::complete(dwQoSMultiProbeListener *this)
+/*LocalTaskState dwQoSMultiProbeListener::complete(dwQoSMultiProbeListener *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	LocalTaskState __thiscall tmp;
+	LocalTaskState tmp;
 	return tmp;
 }*/
 
@@ -28,7 +28,7 @@ void dwClearQoSProbes()
 dwQoSMultiProbeListener::onQoSProbeFail
 ==============
 */
-/*void __thiscall dwQoSMultiProbeListener::onQoSProbeFail(dwQoSMultiProbeListener *this, bdReference<bdCommonAddr> addr)
+/*void dwQoSMultiProbeListener::onQoSProbeFail(dwQoSMultiProbeListener *notthis, bdReference<bdCommonAddr> addr)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -38,7 +38,7 @@ dwQoSMultiProbeListener::onQoSProbeFail
 dwQoSMultiProbeListener::clean
 ==============
 */
-/*void __thiscall dwQoSMultiProbeListener::clean(dwQoSMultiProbeListener *this)
+/*void dwQoSMultiProbeListener::clean(dwQoSMultiProbeListener *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -48,7 +48,7 @@ dwQoSMultiProbeListener::clean
 dwQoSMultiProbeListener::dwQoSMultiProbeListener
 ==============
 */
-/*void __thiscall dwQoSMultiProbeListener::dwQoSMultiProbeListener(dwQoSMultiProbeListener *this)
+/*void dwQoSMultiProbeListener::dwQoSMultiProbeListener(dwQoSMultiProbeListener *notthis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -58,7 +58,7 @@ dwQoSMultiProbeListener::dwQoSMultiProbeListener
 dwQoSMultiProbeListener::addProbe
 ==============
 */
-/*void __thiscall dwQoSMultiProbeListener::addProbe(dwQoSMultiProbeListener *this, const bdQoSRemoteAddr addr)
+/*void dwQoSMultiProbeListener::addProbe(dwQoSMultiProbeListener *notthis, const bdQoSRemoteAddr addr)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -68,7 +68,7 @@ dwQoSMultiProbeListener::addProbe
 dwQoSMultiProbeListener::onQoSProbeSuccess
 ==============
 */
-/*void __thiscall dwQoSMultiProbeListener::onQoSProbeSuccess(dwQoSMultiProbeListener *this, const bdQoSProbeInfo *info)
+/*void dwQoSMultiProbeListener::onQoSProbeSuccess(dwQoSMultiProbeListener *notthis, const bdQoSProbeInfo *info)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
