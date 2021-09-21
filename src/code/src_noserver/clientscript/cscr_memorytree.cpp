@@ -16,7 +16,7 @@ void TRACK_scr_memorytree()
 MT_GetSubTreeSize
 ==============
 */
-void MT_GetSubTreeSize
+void MT_GetSubTreeSize(scriptInstance_t inst, int nodeNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -47,7 +47,7 @@ int Scr_GetStringUsage()
 MT_InitBits
 ==============
 */
-void MT_InitBits
+void MT_InitBits(scriptInstance_t inst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -57,7 +57,7 @@ void MT_InitBits
 MT_GetScore
 ==============
 */
-void MT_GetScore
+void MT_GetScore(scriptInstance_t inst, int newNode, int size)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -67,7 +67,7 @@ void MT_GetScore
 MT_AddMemoryNode
 ==============
 */
-void MT_AddMemoryNode
+void MT_AddMemoryNode(scriptInstance_t inst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -77,7 +77,7 @@ void MT_AddMemoryNode
 MT_RemoveMemoryNode
 ==============
 */
-void MT_RemoveMemoryNode
+void MT_RemoveMemoryNode(scriptInstance_t inst, int oldNode, int size)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -87,7 +87,7 @@ void MT_RemoveMemoryNode
 MT_RemoveHeadMemoryNode
 ==============
 */
-void MT_RemoveHeadMemoryNode
+void MT_RemoveHeadMemoryNode(scriptInstance_t inst, int size)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -107,9 +107,10 @@ void MT_Init(void)
 MT_GetSize
 ==============
 */
-void MT_GetSize
+int MT_GetSize(scriptInstance_t inst, int numBytes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
 }
 
 /*
@@ -127,7 +128,7 @@ void MT_AllocIndex(int,int)
 MT_FreeIndex
 ==============
 */
-void MT_FreeIndex(uint,int)
+void MT_FreeIndex(scriptInstance_t inst, unsigned int nodeNum, int numBytes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

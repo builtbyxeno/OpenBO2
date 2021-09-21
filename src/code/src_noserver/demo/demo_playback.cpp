@@ -1146,7 +1146,7 @@ void Demo_WriteClipCommands(LocalClientNum_t localClientNum, msg_t *msg, bool se
 Demo_WriteUncompressedClipSnapshot
 ==============
 */
-void Demo_WriteUncompressedClipSnapshot
+void Demo_WriteUncompressedClipSnapshot(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

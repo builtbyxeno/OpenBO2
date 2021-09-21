@@ -1096,10 +1096,10 @@ scriptInstance_t Scr_FirstArrayKey(scriptInstance_t inst, unsigned int parentId,
 Scr_NextArrayKey
 ==============
 */
-scriptInstance_t __cdecl Scr_NextArrayKey(scriptInstance_t inst, unsigned int parentId, VariableValue *value, VariableValue *valuea)
+scriptInstance_t Scr_NextArrayKey(scriptInstance_t inst, unsigned int parentId, VariableValue *value, VariableValue *valuea)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	scriptInstance_t __cdecl tmp;
+	scriptInstance_t tmp;
 	return tmp;
 }
 

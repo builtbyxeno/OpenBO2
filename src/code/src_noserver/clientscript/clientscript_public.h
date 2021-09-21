@@ -253,18 +253,18 @@ void Scr_GetGenericField(scriptInstance_t inst, unsigned __int8 *b, fieldtype_t 
 
 //t6/code/src_noserver/clientscript/cscr_memorytree.cpp
 void TRACK_scr_memorytree();
-void MT_GetSubTreeSize;
+void MT_GetSubTreeSize(scriptInstance_t inst, int nodeNum);
 void MT_DumpTree(void);
 int Scr_GetStringUsage();
-void MT_InitBits;
-void MT_GetScore;
-void MT_AddMemoryNode;
-void MT_RemoveMemoryNode;
-void MT_RemoveHeadMemoryNode;
+void MT_InitBits(scriptInstance_t inst);
+void MT_GetScore(scriptInstance_t inst, int newNode, int size);
+void MT_AddMemoryNode(scriptInstance_t inst);
+void MT_RemoveMemoryNode(scriptInstance_t inst, int oldNode, int size);
+void MT_RemoveHeadMemoryNode(scriptInstance_t inst, int size);
 void MT_Init(void);
-void MT_GetSize;
+int MT_GetSize(scriptInstance_t inst, int numBytes);
 void MT_AllocIndex(int,int);
-void MT_FreeIndex(uint,int);
+void MT_FreeIndex(scriptInstance_t inst, unsigned int nodeNum, int numBytes);
 void MT_Alloc(int,int);
 void MT_Free(void *,int);
 void MT_Realloc(int,int);

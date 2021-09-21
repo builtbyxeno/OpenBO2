@@ -64,14 +64,3 @@ char BG_AttachmentUniqueUpdateField(const char *attachmentName, const char *keyV
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
 }
-
-/*
-==============
-SetConfigString
-==============
-*/
-void SetConfigString(char **ppszConfigString, const char *pszKeyValue)
-{
-	UNIMPLEMENTED(__FUNCTION__);
-}
-

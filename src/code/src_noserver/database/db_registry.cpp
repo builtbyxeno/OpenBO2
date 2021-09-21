@@ -2021,7 +2021,7 @@ void DB_LoadXAssets(XZoneInfo *zoneInfo, unsigned int zoneCount, int sync)
 DB_Thread
 ==============
 */
-void __noreturn DB_Thread(unsigned int threadContext)
+void DB_Thread(unsigned int threadContext)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

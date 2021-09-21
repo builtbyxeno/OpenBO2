@@ -27,10 +27,9 @@ BOOL CreateDebugStringsIfNeeded()
 AddDebugStringInternal
 ==============
 */
-float *AddDebugStringInternal(float *result, float *a2, _DWORD *text, int duration, const char *a5, int a6)
+void AddDebugStringInternal(const float* xyz, const float* color, float scale, const char* text, int duration, clientDebugStringInfo_t* info)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
 }
 
 /*
@@ -59,10 +58,9 @@ BOOL CreateDebugSpheresIfNeeded()
 AddDebugSphereInternal
 ==============
 */
-int AddDebugSphereInternal(float *a1, _DWORD *a2, int center, const vec3_t *sideCount, int depthTest, int duration, int a7)
+void AddDebugSphereInternal(const float* center, const float radius, const float* color, int sideCount, int depthTest, int duration, clientDebugSphereInfo_t* info)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
 }
 
 /*

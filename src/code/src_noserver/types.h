@@ -259,6 +259,7 @@ union small_pool_struct;
 union large_pool_struct;
 class SessionData;
 class GlassShard;
+class jqBatch;
 
 template<size_t BIT_COUNT>
 class bitarray
@@ -408,6 +409,14 @@ enum scriptInstance_t
   SCRIPTINSTANCE_SERVER = 0x0,
   SCRIPTINSTANCE_CLIENT = 0x1,
   SCRIPT_INSTANCE_MAX = 0x2,
+};
+
+enum bdNATType
+{
+    BD_NAT_UNKNOWN = 0x0,
+    BD_NAT_OPEN = 0x1,
+    BD_NAT_MODERATE = 0x2,
+    BD_NAT_STRICT = 0x3,
 };
 
 enum meansOfDeath_t
@@ -19328,6 +19337,15 @@ struct HunkUser
   int type;
 };
 
+template <typename T>
+class bdArray
+{
+public:
+    T* m_data;
+    unsigned int m_capacity;
+    unsigned int m_size;
+};
+
 struct scrVarPub_t
 {
   const char *fieldBuffer;
@@ -23966,17 +23984,23 @@ struct RegisteredUser
 };
 
 typedef struct bdSecurityKey { int temp; } bdSecurityKey;
-typedef struct bdSecurityID { int temp; } bdSecurityID;
-
-struct /*__cppobj*/ XSESSION_INFO
+class bdSecurityID
 {
+public:
+    unsigned __int8 ab[8];
+};
+
+class XSESSION_INFO
+{
+public:
     bdSecurityID sessionID;
     XNADDR hostAddress;
     bdSecurityKey keyExchangeKey;
 };
 
-struct /*__cppobj*/ SessionDynamicData
+class SessionDynamicData
 {
+public:
   bool sessionHandle;
   XSESSION_INFO sessionInfo;
   bool keysGenerated;
@@ -25914,13 +25938,6 @@ struct GfxMarkContext
 
 class /*__cppobj*/ XAnimClientNotifyAdder
 {
-};
-
-class /*__cppobj*/ XAnimClientNotifyList
-{
-public:
-  unsigned __int8 m_clientNotifyMemory[1280];
-  int m_numNotifies;
 };
 
 struct voiceCommunication_t
@@ -49800,4 +49817,298 @@ public:
     int onGround;
     int hasGround;
     int validGroundNormal;
+};
+
+class __declspec(align(4)) SunFlareDynamic
+{
+public:
+    float flareIntensity;
+    float sunVisibilityAdjust;
+    float currentBlind;
+    float currentGlare;
+    int lastTime;
+    float lastVisibility;
+    float lastDot;
+    unsigned __int16 occlusionQueryHandle;
+};
+
+class laser_cache_t
+{
+public:
+    int valid;
+    int entnum;
+    int lastUsed;
+    trace_t trace;
+};
+
+class pointtrace_t
+{
+public:
+    TraceExtents extents;
+    const IgnoreEntParams* ignoreEntParams;
+    int contentmask;
+    int bLocational;
+    unsigned __int8* priorityMap;
+};
+
+class moveclip_t
+{
+public:
+    vec3_t mins;
+    vec3_t maxs;
+    vec3_t outerSize;
+    TraceExtents extents;
+    int passEntityNum;
+    int passOwnerNum;
+    int contentmask;
+    int(__cdecl* collide_entity_func)(int);
+};
+
+class XAnimClientNotify
+{
+public:
+    const char* name;
+    unsigned int notetrackName;
+    unsigned int notifyType;
+    unsigned int notifyName;
+    float timeFrac;
+};
+
+class XAnimClientNotifyList
+{
+public:
+    unsigned __int8 m_clientNotifyMemory[1280];
+    int m_numNotifies;
+};
+
+struct __declspec(align(4)) RefString
+{
+    volatile int data;
+    char str[1];
+};
+
+class _jqBatch {};
+
+class __declspec(align(8)) jqModule
+{
+    const char* Name;
+    jqWorkerType Type;
+    int(__cdecl* Code)(jqBatch*);
+    jqBatchGroup Group;
+    unsigned __int64 Ticks;
+    unsigned __int16 Calls;
+    unsigned __int16 Requeues;
+};
+
+class __declspec(align(4)) jqBatch
+{
+public:
+    void* p3x_info;
+    void* Input;
+    void* Output;
+    jqModule* Module;
+    jqBatchGroup* GroupID;
+    void* ConditionalAddress;
+    unsigned int ConditionalValue;
+    unsigned int ParamData[55];
+    _jqBatch _Batch;
+};
+
+struct __declspec(align(4)) ddlBufferHeader_t
+{
+    unsigned int checksum;
+    int version;
+    unsigned __int8 flags;
+    unsigned __int16 codeVersion;
+    unsigned __int16 magicMarker;
+    char reservedBuffer[31];
+};
+
+class __declspec(align(4)) bdCommonAddr : bdReferencable
+{
+public:
+    bdArray<bdAddr> m_localAddrs;
+    bdAddr m_publicAddr;
+    bdNATType m_natType;
+    unsigned int m_hash;
+    bool m_isLoopback;
+};
+
+class CommonAddrGroup
+{
+public:
+    bdSecurityID securityID;
+    bool active;
+    unsigned int useCount;
+};
+
+class CommonAddr
+{
+public:
+    int groupIndex;
+    unsigned int useCount;
+    bdReference<bdCommonAddr> addr;
+};
+
+class bdEndpoint
+{
+public:
+    bdReference<bdCommonAddr> m_ca;
+    bdSecurityID m_secID;
+};
+
+class bdTaskResultProcessor
+{
+};
+
+class bdRemoteTask : public bdReferencable
+{
+public:
+    bdStopwatch m_timer;
+    float m_timeout;
+    enum bdStatus {
+        BD_EMPTY = 0x0,
+        BD_PENDING = 0x1,
+        BD_DONE = 0x2,
+        BD_FAILED = 0x3,
+        BD_TIMED_OUT = 0x4,
+        BD_CANCELLED = 0x5,
+        BD_MAX_STATUS = 0x6,
+    } m_status;
+    bdReference<bdByteBuffer> m_byteResults;
+    bdTaskResult* m_taskResult;
+    bdTaskResult** m_taskResultList;
+    unsigned int m_numResults;
+    unsigned int m_maxNumResults;
+    unsigned int m_totalNumResults;
+    unsigned __int64 m_transactionID;
+    bdLobbyErrorCode m_errorCode;
+    bdTaskResultProcessor* m_taskResultProcessor;
+};
+
+class __declspec(align(8)) dwFileMetadata
+{
+public:
+    char* fileName;
+    bdFileInfo fileInfo;
+    bool isUserFile;
+};
+
+class dwTeamSetPublicProfileTask
+{
+public:
+    unsigned __int64 teamID;
+    PublicTeamProfile teamPublicProfile;
+};
+
+class bdLobbyConnectionListener
+{
+
+};
+
+template <typename T, typename TT, typename TTT>
+class bdHashMap
+{
+public:
+    struct Node {
+        TT m_data;
+        T m_key;
+        Node* m_next;
+    };
+    unsigned int m_size;
+    unsigned int m_capacity;
+    float m_loadFactor;
+    unsigned int m_threshold;
+    Node** m_map;
+    TTT m_hashClass;
+};
+
+class bdHashingClass 
+{
+};
+
+class bdLobbyConnection : bdReferencable
+{
+public:
+    bdReference<bdCommonAddr> m_addr;
+    unsigned int m_maxSendMessageSize;
+    unsigned int m_maxRecvMessageSize;
+    bdLobbyConnection::RecvState m_recvState;
+    unsigned __int8 m_msgSizeBuffer[4];
+    unsigned int m_recvCount;
+    unsigned __int8 m_recvEncryptType;
+    unsigned int m_messageSize;
+    bdReference<bdTaskByteBuffer> m_recvMessage;
+    bdReference<bdPendingBufferTransfer> m_recvTransfer;
+    bdQueue<bdPendingBufferTransfer> m_outgoingBuffers;
+    bdStreamSocket m_socket;
+    bdLobbyConnection::Status m_status;
+    bdLobbyConnectionListener* m_connectionListener;
+    bdCypher3Des m_cypher;
+    unsigned __int8 m_sessionKey[24];
+    unsigned int m_messageCount;
+    bdStopwatch m_keepAliveTimer;
+    bdStopwatch m_lastReceivedTimer;
+    bdStopwatch m_asyncConnectTimer;
+};
+
+
+class bdRemoteTaskManager
+{
+    __declspec(align(8)) bdLinkedList<bdReference<bdRemoteTask> > m_tasks;
+    bdHashMap<unsigned __int64, bdReference<bdRemoteTask>, bdHashingClass> m_asyncTasks;
+    bdHashMap<unsigned __int64, bdReference<bdByteBuffer>, bdHashingClass> m_asyncResults;
+    bdReference<bdLobbyConnection> m_lobbyConnection;
+    bool m_encryptedConnection;
+    unsigned __int64 m_connectionID;
+};
+
+class __declspec(align(8)) bdLobbyService : bdLobbyConnectionListener
+{
+    bdRemoteTaskManager* m_taskManager;
+    bdProfiles* m_profiles;
+    bdMessaging* m_messaging;
+    bdMatchMaking* m_matchMaking;
+    bdStats* m_statsManager;
+    bdFriends* m_friendsManager;
+    bdTeams* m_teamsManager;
+    bdStorage* m_storageManager;
+    bdContentUnlock* m_contentUnlockManager;
+    bdTitleUtilities* m_titleUtilitiesManager;
+    bdEventLog* m_eventLogManager;
+    bdKeyArchive* m_keyArchive;
+    bdCounter* m_counter;
+    bdGroup* m_group;
+    bdContentStreaming* m_contentStreamingManager;
+    bdPooledStorage* m_pooledStorageManager;
+    bdTags* m_tags;
+    bdVoteRank* m_voteRankManager;
+    bdTwitch* m_twitch;
+    bdYouTube* m_youTube;
+    bdTwitter* m_twitter;
+    bdFacebook* m_facebook;
+    bdLinkCode* m_linkCode;
+    bdAntiCheat* m_antiCheat;
+    bdDML* m_DML;
+    bdUCD* m_UCD;
+    bdUserGroups* m_userGroups;
+    bdRichPresenceService* m_richPresence;
+    bdMarketplace* m_marketplace;
+    bdCommerce* m_commerce;
+    bdSubscription* m_subscription;
+    bdFeatureBan* m_featureBan;
+    bdTencent* m_tencent;
+    bdLeague* m_league;
+    bdGetHostByName m_LSGLookup;
+    char* m_LSGAddress;
+    unsigned __int16 m_LSGPort;
+    bdAddr m_resolvedLSGAddress;
+    bool m_isResolved;
+    unsigned int m_titleID;
+    bdLobbyEventHandler* m_eventHandler;
+    bdReference<bdLobbyConnection> m_lobbyConnection;
+    bool m_lobbyConnectionEstablished;
+    bdAuthInfo m_authInfo;
+    bool m_encryptedConnection;
+    unsigned int m_errorCode;
 };
