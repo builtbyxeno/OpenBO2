@@ -134,11 +134,10 @@ bool Actor_Dog_ShouldAttack(const actor_t *self, const sentient_t *enemy)
 Actor_SetMeleeAttackSpot
 ==============
 */
-
+bool __fastcall Actor_SetMeleeAttackSpot(actor_t* self, vec3_t* attackPosition)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

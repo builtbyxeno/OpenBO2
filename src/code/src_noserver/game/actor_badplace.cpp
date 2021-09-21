@@ -48,7 +48,7 @@ char Path_CheckLineSegmentIntersectsAnyBadPlaceCylinder(const vec3_t *start, con
 Path_MakeBadPlaceEx
 ==============
 */
-void Path_MakeBadPlaceEx(unsigned int name, int duration, int teamflags, int type, badplace_parms_t *parms)
+void Path_MakeBadPlaceEx(unsigned int name, int duration, int teamflags, int type, badplace_parms_t* parms)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -99,11 +99,11 @@ char Actor_IsInAnyBadPlace(actor_t *self)
 Actor_BadPlace_UpdateFleeingActors
 ==============
 */
-/*actor_t *Actor_BadPlace_UpdateFleeingActors@<eax>(unsigned int a1@<ebp>)
+actor_t *Actor_BadPlace_UpdateFleeingActors(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -120,7 +120,7 @@ void Actor_BadPlace_GetMaximumFleeRadius()
 Actor_BadPlace_HasPotentialNodeDuplicates
 ==============
 */
-bool Actor_BadPlace_HasPotentialNodeDuplicates(
+bool Actor_BadPlace_HasPotentialNodeDuplicates(pathsort_t *potentialNodes, int potentialNodeCount, pathnode_t *checkNode)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -131,11 +131,11 @@ bool Actor_BadPlace_HasPotentialNodeDuplicates(
 Actor_BadPlace_IsPointInAnyBadPlace
 ==============
 */
-int Actor_BadPlace_IsPointInAnyBadPlace(vec3_t *point)
+/*int Actor_BadPlace_IsPointInAnyBadPlace@<eax>(const vec3_t *a1@<edx>, vec3_t *point)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============

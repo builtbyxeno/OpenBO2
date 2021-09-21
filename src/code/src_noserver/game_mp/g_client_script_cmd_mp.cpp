@@ -87,10 +87,10 @@ void WeaponComponentListToName(const WeaponComponentList *componentList, char *n
 PlayerCmd_calcWeaponOptions
 ==============
 */
-void PlayerCmd_calcWeaponOptions(scr_entref_t entref)
+/*void PlayerCmd_calcWeaponOptions(char *a1@<edi>, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -117,10 +117,10 @@ void PlayerCmd_setPlayerRenderOptions(scr_entref_t entref)
 SetBBLoadoutData
 ==============
 */
-void SetBBLoadoutData(bbLoadoutData *bbData, const CACRoot *cacRoot, loadoutClass_t customClass)
+/*void SetBBLoadoutData(loadoutSlot_t a1@<edx>, bbLoadoutData *bbData, const CACRoot *cacRoot, loadoutClass_t customClass)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -448,9 +448,11 @@ void PlayerCmd_getLockOnSpeed(scr_entref_t entref)
 PlayerCmd_giveStartAmmo
 ==============
 */
-void PlayerCmd_giveStartAmmo(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -918,10 +920,10 @@ void PlayerCmd_BotSetDefaultClass(scr_entref_t entref)
 PlayerCmd_BotClassAddItem
 ==============
 */
-void PlayerCmd_BotClassAddItem(scr_entref_t entref)
+/*void PlayerCmd_BotClassAddItem(char *a1@<edi>, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -1390,70 +1392,70 @@ void PlayerCmd_RemoteControlTurretOff(scr_entref_t entref)
 PlayerCmd_RecordKillstreak
 ==============
 */
-/*void PlayerCmd_RecordKillstreak(unsigned __int8 *a1@<edi>, scr_entref_t entref)
+void PlayerCmd_RecordKillstreak(unsigned __int8 *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 PlayerCmd_RecordKillstreakEnd
 ==============
 */
-void PlayerCmd_RecordKillstreakEnd(scr_entref_t entref)
+/*void PlayerCmd_RecordKillstreakEnd(char *a1@<edi>, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 PlayerCmd_RecordGameEvent
 ==============
 */
-void PlayerCmd_RecordGameEvent(scr_entref_t entref)
+/*void PlayerCmd_RecordGameEvent(char *a1@<edi>, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 PlayerCmd_RecordKillModifier
 ==============
 */
-void PlayerCmd_RecordKillModifier(scr_entref_t entref)
+/*void PlayerCmd_RecordKillModifier(char *a1@<edi>, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 PlayerCmd_RecordMedal
 ==============
 */
-void PlayerCmd_RecordMedal(scr_entref_t entref)
+/*void PlayerCmd_RecordMedal(char *a1@<edi>, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 PlayerCmd_RecordLoadoutPerksAndKillStreaks
 ==============
 */
-void PlayerCmd_RecordLoadoutPerksAndKillStreaks(scr_entref_t entref)
+/*void PlayerCmd_RecordLoadoutPerksAndKillStreaks(char *a1@<edi>, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 PlayerCmd_RecordMultiKill
 ==============
 */
-void PlayerCmd_RecordMultiKill(scr_entref_t entref)
+/*void PlayerCmd_RecordMultiKill(char *a1@<edi>, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -1490,10 +1492,10 @@ void PlayerCmd_RecordPlayerDeathZombies(scr_entref_t entref)
 PlayerCmd_RecordPlayerDownZombies
 ==============
 */
-/*void PlayerCmd_RecordPlayerDownZombies(unsigned __int8 *a1@<edi>, scr_entref_t entref)
+void PlayerCmd_RecordPlayerDownZombies(unsigned __int8 *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1560,9 +1562,11 @@ void SetClientDvar(scr_entref_t entref, dvar_cmd_t dvarCmd)
 PlayerCmd_SetClientAimLockonPitchStrength
 ==============
 */
-void PlayerCmd_SetClientAimLockonPitchStrength(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1570,9 +1574,11 @@ void PlayerCmd_SetClientAimLockonPitchStrength(scr_entref_t entref)
 PlayerCmd_SetClientAmmoCounterHide
 ==============
 */
-void PlayerCmd_SetClientAmmoCounterHide(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1580,9 +1586,11 @@ void PlayerCmd_SetClientAmmoCounterHide(scr_entref_t entref)
 PlayerCmd_SetClientCGObjectiveText
 ==============
 */
-void PlayerCmd_SetClientCGObjectiveText(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1590,9 +1598,11 @@ void PlayerCmd_SetClientCGObjectiveText(scr_entref_t entref)
 PlayerCmd_SetClientCompass
 ==============
 */
-void PlayerCmd_SetClientCompass(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1600,9 +1610,11 @@ void PlayerCmd_SetClientCompass(scr_entref_t entref)
 PlayerCmd_SetClientDrawTalk
 ==============
 */
-void PlayerCmd_SetClientDrawTalk(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1610,9 +1622,11 @@ void PlayerCmd_SetClientDrawTalk(scr_entref_t entref)
 PlayerCmd_SetClientFOV
 ==============
 */
-void PlayerCmd_SetClientFOV(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1620,9 +1634,11 @@ void PlayerCmd_SetClientFOV(scr_entref_t entref)
 PlayerCmd_SetClientHUDHardcore
 ==============
 */
-void PlayerCmd_SetClientHUDHardcore(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1630,9 +1646,11 @@ void PlayerCmd_SetClientHUDHardcore(scr_entref_t entref)
 PlayerCmd_SetClientPlayerSprintTime
 ==============
 */
-void PlayerCmd_SetClientPlayerSprintTime(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1640,9 +1658,11 @@ void PlayerCmd_SetClientPlayerSprintTime(scr_entref_t entref)
 PlayerCmd_SetClientMiniScoreboardHide
 ==============
 */
-void PlayerCmd_SetClientMiniScoreboardHide(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1650,9 +1670,11 @@ void PlayerCmd_SetClientMiniScoreboardHide(scr_entref_t entref)
 PlayerCmd_SetClientNumLives
 ==============
 */
-void PlayerCmd_SetClientNumLives(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1660,9 +1682,11 @@ void PlayerCmd_SetClientNumLives(scr_entref_t entref)
 PlayerCmd_SetClientPlayerPushAmount
 ==============
 */
-void PlayerCmd_SetClientPlayerPushAmount(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1670,9 +1694,11 @@ void PlayerCmd_SetClientPlayerPushAmount(scr_entref_t entref)
 PlayerCmd_SetClientScriptMainMenu
 ==============
 */
-void PlayerCmd_SetClientScriptMainMenu(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1680,9 +1706,11 @@ void PlayerCmd_SetClientScriptMainMenu(scr_entref_t entref)
 PlayerCmd_SetClientThirdPersonAngle
 ==============
 */
-void PlayerCmd_SetClientThirdPersonAngle(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -2681,7 +2709,7 @@ void (*Player_GetMethod(const char **pName, int *min_args, int *max_args))(scr_e
 PlayerCmd_giveWeapon
 ==============
 */
-void PlayerCmd_giveWeapon(scr_entref_t entref)
+void PlayerCmd_giveWeapon(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2701,7 +2729,7 @@ void PlayerCmd_updateWeaponOptions(scr_entref_t entref)
 PlayerCmd_giveWeaponNextAttachmentDEVONLY
 ==============
 */
-void PlayerCmd_giveWeaponNextAttachmentDEVONLY(scr_entref_t entref)
+void PlayerCmd_giveWeaponNextAttachmentDEVONLY(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2871,7 +2899,7 @@ void PlayerCmd_inventoryButtonPressed(scr_entref_t entref)
 PlayerCmd_finishPlayerDamage
 ==============
 */
-void PlayerCmd_finishPlayerDamage(scr_entref_t entref)
+void PlayerCmd_finishPlayerDamage(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2881,7 +2909,7 @@ void PlayerCmd_finishPlayerDamage(scr_entref_t entref)
 PlayerCmd_RevivePlayer
 ==============
 */
-void PlayerCmd_RevivePlayer(scr_entref_t entref)
+void PlayerCmd_RevivePlayer(int a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2891,7 +2919,7 @@ void PlayerCmd_RevivePlayer(scr_entref_t entref)
 PlayerCmd_Revive
 ==============
 */
-void PlayerCmd_Revive(scr_entref_t entref)
+void PlayerCmd_Revive(int a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

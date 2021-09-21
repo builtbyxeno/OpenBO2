@@ -6,7 +6,7 @@
 Session_StartHost_Platform
 ==============
 */
-int Session_StartHost_Platform(
+int Session_StartHost_Platform(SessionData *session, int sessionFlags, int numPrivateSlots, int numPublicSlots, ControllerIndex_t controllerIndex, TaskRecord *sessionCreateTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

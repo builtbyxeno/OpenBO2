@@ -88,7 +88,7 @@ char LiveMetPlayer_GetIndexByXUID(ControllerIndex_t controllerIndex, unsigned __
 LiveMetPlayer_GetRecentPlayerInfoByID
 ==============
 */
-char LiveMetPlayer_GetRecentPlayerInfoByID(
+char LiveMetPlayer_GetRecentPlayerInfoByID(ControllerIndex_t controllerIndex, unsigned __int64 id, XuidInfo *recentMetPlayerInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

@@ -27,10 +27,10 @@ void CM_StoreLeafs(leafList_s *ll, int nodenum)
 CM_BoxLeafnums_r
 ==============
 */
-/*void CM_BoxLeafnums_r(int a1@<edx>, leafList_s *a2@<ecx>, leafList_s *ll, int nodenum)
+void CM_BoxLeafnums_r(int a1, leafList_s *a2, leafList_s *ll, int nodenum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -59,7 +59,7 @@ int CM_PointContents(const vec3_t *p, unsigned int model)
 CM_TransformedPointContents
 ==============
 */
-int CM_TransformedPointContents(
+int CM_TransformedPointContents(const vec3_t *p, unsigned int model, const vec3_t *origin, const vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

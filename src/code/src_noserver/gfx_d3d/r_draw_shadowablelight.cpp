@@ -6,7 +6,7 @@
 R_SetLightProperties
 ==============
 */
-void R_SetLightProperties(
+void R_SetLightProperties(unsigned int a1, float source, GfxCmdBufSourceState *a3, const GfxLight *light, const GfxLightDef *def, LightHasShadowMap hasShadowMap, float spotShadowFade)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -16,8 +16,8 @@ void R_SetLightProperties(
 R_SetShadowableLight
 ==============
 */
-void R_SetShadowableLight(GfxCmdBufSourceState *source, unsigned int shadowableLightIndex)
+/*void R_SetShadowableLight(const char *a1@<edi>, GfxCmdBufSourceState *source, unsigned int shadowableLightIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 

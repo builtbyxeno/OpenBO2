@@ -38,7 +38,7 @@ void BG_AnimStateDef_ParseError(const char *filename, const char *msg)
 BG_AnimStateDef_ValidateAgainstPropertyNames
 ==============
 */
-void BG_AnimStateDef_ValidateAgainstPropertyNames(
+void BG_AnimStateDef_ValidateAgainstPropertyNames(char *token, const char *filename, const char *invalidType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -58,9 +58,11 @@ void BG_AnimStateDef_SetFlag(AnimState *state, int flag)
 BG_AnimStateDef_TokenizeNotify
 ==============
 */
-void BG_AnimStateDef_TokenizeNotify(AnimState *state, const char **data_p, char *token, const char *filename)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -68,7 +70,7 @@ void BG_AnimStateDef_TokenizeNotify(AnimState *state, const char **data_p, char 
 BG_AnimStateDef_Parse
 ==============
 */
-void BG_AnimStateDef_Parse(AnimStateDef *def)
+void BG_AnimStateDef_Parse(char *a1, AnimStateDef *def)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -88,10 +90,10 @@ void BG_AnimStateDef_Load_Internal(AnimStateDef *def, void *(*animStateDefAlloc)
 BG_AnimStateDef_Load
 ==============
 */
-/*void BG_AnimStateDef_Load(void *(*a1)(int)@<edx>, void *(*animStateDefAlloc)(int))
+void BG_AnimStateDef_Load(void *(*a1)(int), void *(*animStateDefAlloc)(int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -142,7 +144,7 @@ unsigned __int16 BG_AnimStateDef_GetNotify(const entityState_s *es)
 BG_AnimStateDef_SetNewAnimationState
 ==============
 */
-void BG_AnimStateDef_SetNewAnimationState(
+void BG_AnimStateDef_SetNewAnimationState(LocalClientNum_t localClientNum, actorLerpFrame_t *lf, int newAnimationState, const entityState_s *es)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -152,9 +154,11 @@ void BG_AnimStateDef_SetNewAnimationState(
 BG_AnimStateDef_Update
 ==============
 */
-void BG_AnimStateDef_Update(LocalClientNum_t localClientNum, const entityState_s *es, actorInfo_t *actorInfo)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -228,7 +232,7 @@ float BG_AnimStateDef_GetCurrentAnimTime(const entityState_s *es, XAnimTree_s *t
 BG_AnimStateDef_GetAnimIndex
 ==============
 */
-int BG_AnimStateDef_GetAnimIndex(
+int BG_AnimStateDef_GetAnimIndex(const entityState_s *es, int stateIndex, int subStateIndex, unsigned __int16 *animIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -261,7 +265,7 @@ int BG_AnimStateDef_GetAnimSubStateCount(const entityState_s *es, unsigned __int
 BG_AnimStateDef_GetAnimSubStateIndex
 ==============
 */
-int BG_AnimStateDef_GetAnimSubStateIndex(
+int BG_AnimStateDef_GetAnimSubStateIndex(const entityState_s *es, int stateIndex, unsigned __int16 subStateAlias, int subStateIndex, unsigned int *pHoldrand)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -272,7 +276,7 @@ int BG_AnimStateDef_GetAnimSubStateIndex(
 BG_AnimStateDef_GetCurrentStateInfo
 ==============
 */
-void BG_AnimStateDef_GetCurrentStateInfo(
+void BG_AnimStateDef_GetCurrentStateInfo(const entityState_s *es, unsigned __int16 *defName, unsigned __int16 *stateName, unsigned __int16 *subStateName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

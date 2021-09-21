@@ -6,7 +6,7 @@
 R_RegisterDvars
 ==============
 */
-void R_RegisterDvars()
+void R_RegisterDvars(const char *a1, dvarType_t a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

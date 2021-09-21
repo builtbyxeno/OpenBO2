@@ -48,7 +48,7 @@ void CScr_FreeEntityFields(centity_t *cent)
 CG_ParseEntityFields
 ==============
 */
-void CG_ParseEntityFields(
+void CG_ParseEntityFields(LocalClientNum_t localClientNum, centity_t *ent, SpawnVar *spawnVar, int ignoreModel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

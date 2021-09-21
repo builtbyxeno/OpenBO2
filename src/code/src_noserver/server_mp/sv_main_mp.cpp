@@ -38,11 +38,11 @@ int SV_IsFirstTokenEqual(const char *str1, const char *str2)
 SV_CanReplaceServerCommand
 ==============
 */
-/*int SV_CanReplaceServerCommand@<eax>(const char *a1@<edx>, client_t *client, const char *cmd)
+int SV_CanReplaceServerCommand(const char *a1, client_t *client, const char *cmd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -59,7 +59,7 @@ void SV_CullIgnorableServerCommands(client_t *client)
 SV_AddServerCommand
 ==============
 */
-void SV_AddServerCommand(
+void SV_AddServerCommand(const char *a1, client_t *a2, client_t *client, svscmd_type type, const char *cmd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -122,11 +122,11 @@ char SVC_Status(netadr_t from)
 SVC_StatusScoreBoard
 ==============
 */
-/*char SVC_StatusScoreBoard@<al>(const char *a1@<edi>, netadr_t from)
+char SVC_StatusScoreBoard(const char *a1, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -144,10 +144,10 @@ char SVC_ClientUIDs(netadr_t from)
 SV_ConnectionlessPacket
 ==============
 */
-void SV_ConnectionlessPacket(netadr_t from, msg_t *msg)
+/*void SV_ConnectionlessPacket(char *a1@<edi>, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

@@ -6,7 +6,7 @@
 Hunk_FixedInit
 ==============
 */
-HunkUser *Hunk_FixedInit(
+HunkUser *Hunk_FixedInit(void *buffer, int size, HU_ALLOCATION_SCHEME scheme, unsigned int flags, void *scheme_specific_data, const char *name, int type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

@@ -36,7 +36,7 @@ void ResetEntity_EventSequence(centity_t *cent)
 ResetEntity_Internal
 ==============
 */
-void ResetEntity_Internal(
+void ResetEntity_Internal(LocalClientNum_t localClientNum, centity_t *cent, int newEntity, int killcamEndingTransition)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

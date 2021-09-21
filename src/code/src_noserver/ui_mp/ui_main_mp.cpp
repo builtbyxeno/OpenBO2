@@ -132,7 +132,7 @@ const char *UI_GetOverlayMapNameFromIndex(int mapIndex)
 UI_DrawWagerTier
 ==============
 */
-void UI_DrawWagerTier(
+void UI_DrawWagerTier(const LocalClientNum_t localClientNum, rectDef_s *rect, Font_s *font, vec4_t *color, float textScale, int style, float text_x, float text_y, int textAlignMode)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -163,7 +163,7 @@ int CompareGeoPoint(const void *a, const void *b)
 UI_DrawPartyMemberDownloadProgress
 ==============
 */
-void UI_DrawPartyMemberDownloadProgress(
+void UI_DrawPartyMemberDownloadProgress(UIContextIndex_t contextIndex, const rectDef_s *rect, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -204,7 +204,7 @@ void UI_StartServer(LocalClientNum_t localClientNum)
 UI_Project_RunMenuScript
 ==============
 */
-void UI_Project_RunMenuScript(
+void UI_Project_RunMenuScript(LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, const char *name, const char **args, const char *actualScript)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -234,7 +234,7 @@ void UI_ShowErrorPopupIfNecessary(LocalClientNum_t localClientNum, uiInfo_s *uiI
 UI_SetupLobby
 ==============
 */
-void UI_SetupLobby(
+void UI_SetupLobby(LocalClientNum_t localClientNum, bool partyLobby, const char *menuName, const eGameModes currentLobbyMode, const dvar_t *playerCountDvar, const dvar_t *localPlayerCountDvar, bool clearDemoInformation)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -244,10 +244,11 @@ void UI_SetupLobby(
 UI_SetActiveMenu
 ==============
 */
-int UI_SetActiveMenu(LocalClientNum_t localClientNum, int menu)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -361,7 +362,7 @@ void UI_GetGameTypeOnMapName(char *outputString, const char *inputMapName, const
 UI_DrawGameTypeOnMapName
 ==============
 */
-void UI_DrawGameTypeOnMapName(
+void UI_DrawGameTypeOnMapName(const LocalClientNum_t localClientNum, rectDef_s *rect, Font_s *font, vec4_t *color, float textScale, int style)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -371,7 +372,7 @@ void UI_DrawGameTypeOnMapName(
 EditPlaylistPopulationTexture::EditPlaylistPopulationTexture
 ==============
 */
-/*void __thiscall EditPlaylistPopulationTexture::EditPlaylistPopulationTexture(
+/*void __thiscall EditPlaylistPopulationTexture::EditPlaylistPopulationTexture(EditPlaylistPopulationTexture *this, GfxImage *img)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -411,7 +412,7 @@ void UI_DrawPlaylistPopulation(UIContextIndex_t contextIndex, const rectDef_s *r
 UI_Project_OwnerDraw
 ==============
 */
-void UI_Project_OwnerDraw(
+void UI_Project_OwnerDraw(const vec4_t *a1, LocalClientNum_t localClientNum, itemDef_s *item, float x, float y, float w, float h, int horzAlign, int vertAlign, int ownerDraw, int ownerDrawFlags, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -421,7 +422,7 @@ void UI_Project_OwnerDraw(
 UI_Project_OwnerDrawText
 ==============
 */
-void UI_Project_OwnerDrawText(
+void UI_Project_OwnerDrawText(const LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, itemDef_s *item, float x, float y, float w, float h, int horzAlign, int vertAlign, float text_x, float text_y, int ownerDraw, int ownerDrawFlags, int align, Font_s *font, float scale, vec4_t *color, Material *material, int textStyle, rectDef_s parentRect, int textAlignMode)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

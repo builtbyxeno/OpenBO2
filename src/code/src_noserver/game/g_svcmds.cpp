@@ -27,10 +27,10 @@ void UpdateIPBans()
 AddIP
 ==============
 */
-/*void AddIP(ipFilter_s *a1@<edx>, char *str)
+void AddIP(ipFilter_s *a1, char *str)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

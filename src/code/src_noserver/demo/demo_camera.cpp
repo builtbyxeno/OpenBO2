@@ -288,7 +288,7 @@ int Demo_GetTimeForDollyCamMarker(int index)
 Demo_GetInterpolatedSplinePointAndAngles
 ==============
 */
-void Demo_GetInterpolatedSplinePointAndAngles(
+void Demo_GetInterpolatedSplinePointAndAngles(LocalClientNum_t localClientNum, int serverTime, vec3_t *resultOrigin, vec3_t *resultAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -338,9 +338,11 @@ void Demo_DrawDollyCamTrack()
 Demo_UpdateDollyCamera
 ==============
 */
-void Demo_UpdateDollyCamera(LocalClientNum_t localClientNum)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -378,10 +380,10 @@ void Demo_ClearGhostDollyCam(LocalClientNum_t localClientNum)
 Demo_DrawGhostDollyCam
 ==============
 */
-/*void Demo_DrawGhostDollyCam(int a1@<edx>, LocalClientNum_t localClientNum)
+void Demo_DrawGhostDollyCam(int a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

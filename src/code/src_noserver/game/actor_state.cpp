@@ -48,7 +48,7 @@ void Actor_ResumePopedState(actor_t *self, ai_state_t state)
 Actor_ThinkStateTransitions
 ==============
 */
-void Actor_ThinkStateTransitions(actor_t *self)
+void Actor_ThinkStateTransitions(actor_t *self, char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

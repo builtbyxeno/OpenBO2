@@ -98,11 +98,9 @@ ikCalcBoneModelMatrix_r
 ikCalcBoneModelMatrix
 ==============
 */
-
+void ikCalcBoneModelMatrix()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

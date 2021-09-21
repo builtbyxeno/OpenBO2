@@ -238,10 +238,10 @@ void CG_CalcCubemapViewValues(cg_t *cgameGlob)
 CG_CalcTurretViewValues
 ==============
 */
-void CG_CalcTurretViewValues(LocalClientNum_t localClientNum)
+/*void CG_CalcTurretViewValues(char *a1@<edi>, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -318,7 +318,7 @@ void CG_UpdateThirdPerson(LocalClientNum_t localClientNum, bool forExtraCam)
 CG_GetLocalClientViewParams
 ==============
 */
-const ClientViewParams *CG_GetLocalClientViewParams(
+const ClientViewParams *CG_GetLocalClientViewParams(LocalClientNum_t localClientNum, int activeClientIndex, int activeClientCountArrayIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -329,10 +329,11 @@ const ClientViewParams *CG_GetLocalClientViewParams(
 CG_GetLocalClientViewParams
 ==============
 */
-const ClientViewParams *CG_GetLocalClientViewParams(LocalClientNum_t localClientNum)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -340,10 +341,11 @@ const ClientViewParams *CG_GetLocalClientViewParams(LocalClientNum_t localClient
 CG_IsClientViewportLarge
 ==============
 */
-bool CG_IsClientViewportLarge(const LocalClientNum_t localClientNum)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -351,7 +353,7 @@ bool CG_IsClientViewportLarge(const LocalClientNum_t localClientNum)
 CG_SetView
 ==============
 */
-void CG_SetView(
+void CG_SetView(int a1, LocalClientNum_t a2, LocalClientNum_t localClientNum, int activeClientIndex, int activeClientCount, const ClientViewParams *clientViewParams)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -361,7 +363,7 @@ void CG_SetView(
 CG_ForceFullScreenView
 ==============
 */
-void CG_ForceFullScreenView(LocalClientNum_t a1, int a2)
+void CG_ForceFullScreenView(LocalClientNum_t a1, LocalClientNum_t a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -544,7 +546,7 @@ void CG_ValidateWeaponSelect(cg_t *cgameGlob)
 CG_IsInfraredWeaponOverlay
 ==============
 */
-bool CG_IsInfraredWeaponOverlay(LocalClientNum_t localClientNum)
+char CG_IsInfraredWeaponOverlay(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -577,11 +579,11 @@ bool CG_IsTvguided(LocalClientNum_t localClientNum, bool onlyADS)
 CG_ProcessButDontDrawActiveFrame
 ==============
 */
-int CG_ProcessButDontDrawActiveFrame(LocalClientNum_t localClientNum, int serverTime)
+/*int CG_ProcessButDontDrawActiveFrame@<eax>(char *a1@<edi>, LocalClientNum_t localClientNum, int serverTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
@@ -640,7 +642,7 @@ void CG_SetClientEntCollision(LocalClientNum_t localClientNum, bool enableCollis
 CG_DrawExtraCamFrame
 ==============
 */
-int CG_DrawExtraCamFrame(
+int CG_DrawExtraCamFrame(LocalClientNum_t localClientNum, int serverTime, DemoType demoType, CubemapShot cubemapShot, int cubemapSize, int renderScreen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -671,7 +673,7 @@ void CG_SaveScreen(LocalClientNum_t localClientNum)
 CG_SaveScreenSection
 ==============
 */
-void CG_SaveScreenSection(
+void CG_SaveScreenSection(float viewX, float viewY, float viewWidth, float viewHeight, LocalClientNum_t screenTimerId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -681,7 +683,7 @@ void CG_SaveScreenSection(
 CG_BlendSavedScreenShockBlurred
 ==============
 */
-void CG_BlendSavedScreenShockBlurred(
+void CG_BlendSavedScreenShockBlurred(int fadeMsec, float viewX, float viewY, float viewWidth, float viewHeight, LocalClientNum_t screenTimerId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -691,7 +693,7 @@ void CG_BlendSavedScreenShockBlurred(
 CG_BlendSavedScreenShockFlashed
 ==============
 */
-void CG_BlendSavedScreenShockFlashed(
+void CG_BlendSavedScreenShockFlashed(LocalClientNum_t localClientNum, float intensityWhiteout, float intensityScreengrab, float viewX, float viewY, float viewWidth, float viewHeight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -743,7 +745,7 @@ GetCeilingHeight
 CG_DrawActiveFrame
 ==============
 */
-int CG_DrawActiveFrame(
+int CG_DrawActiveFrame(LocalClientNum_t localClientNum, int serverTime, DemoType demoType, CubemapShot cubemapShot, int cubemapSize, int renderScreen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

@@ -37,7 +37,7 @@ void UI_DrawCustomEmblem(UIContextIndex_t contextIndex, const rectDef_s *rect, c
 UI_DrawEmblemSelector
 ==============
 */
-void UI_DrawEmblemSelector(
+void UI_DrawEmblemSelector(const LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, itemDef_s *item, const rectDef_s *rect, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -178,7 +178,7 @@ __int16 UI_EmblemGetFilterIconID(ControllerIndex_t controllerIndex, int state, i
 UI_EmblemUpload_SetMetada
 ==============
 */
-bool UI_EmblemUpload_SetMetada(
+bool UI_EmblemUpload_SetMetada(const ControllerIndex_t controllerIndex, unsigned __int8 *metaData, int metaDataSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -641,9 +641,11 @@ void UI_EmblemSetFromDefault_f()
 UI_EmblemUploadToSlot_f
 ==============
 */
-void UI_EmblemUploadToSlot_f()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

@@ -155,7 +155,7 @@ BOOL packetIsFromDelegate(netadr_t from)
 hostDelegateHandleSessionCreate
 ==============
 */
-void hostDelegateHandleSessionCreate(
+void hostDelegateHandleSessionCreate(netadr_t from, const ControllerIndex_t controllerIndex, msg_t *msg, unsigned __int8 flags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

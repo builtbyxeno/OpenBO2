@@ -6,7 +6,7 @@
 dwFileShareGetProgress
 ==============
 */
-void dwFileShareGetProgress(
+void dwFileShareGetProgress(ControllerIndex_t localControllerIndex, unsigned int *bytes, float *dataRate, fileShareLocation location)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -81,7 +81,7 @@ char dwReadFileSuccess(TaskRecord *task)
 dwReadFileInternal
 ==============
 */
-TaskRecord *dwReadFileInternal(
+TaskRecord *dwReadFileInternal(ControllerIndex_t localControllerIndex, dwFileTask *const fileTask, bool userFile, unsigned __int64 ownerUID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -92,32 +92,35 @@ TaskRecord *dwReadFileInternal(
 dwReadFile
 ==============
 */
-/*TaskRecord *dwReadFile@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 dwReadUserFile
 ==============
 */
-/*TaskRecord *dwReadUserFile@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 dwReadUserFileByUserID
 ==============
 */
-TaskRecord *dwReadUserFileByUserID(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -147,7 +150,7 @@ char dwWriteFileFailure(TaskRecord *task)
 dwWriteFile
 ==============
 */
-TaskRecord *dwWriteFile(
+TaskRecord *dwWriteFile(ControllerIndex_t localControllerIndex, const char *const filename, void *data, const unsigned int dataSize, bdFileInfo *fileInfo, unsigned __int64 ownerID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -169,7 +172,7 @@ TaskRecord *dwFileShareGetListing(ControllerIndex_t localControllerIndex, dwFile
 dwFileShareGetDescriptorsFromPooledStorage
 ==============
 */
-TaskRecord *dwFileShareGetDescriptorsFromPooledStorage(
+TaskRecord *dwFileShareGetDescriptorsFromPooledStorage(ControllerIndex_t localControllerIndex, dwFileShareDescriptorsTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -180,7 +183,7 @@ TaskRecord *dwFileShareGetDescriptorsFromPooledStorage(
 dwFileShareGetDescriptorsFromUserStorage
 ==============
 */
-TaskRecord *dwFileShareGetDescriptorsFromUserStorage(
+TaskRecord *dwFileShareGetDescriptorsFromUserStorage(ControllerIndex_t localControllerIndex, dwFileShareDescriptorsTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -191,18 +194,18 @@ TaskRecord *dwFileShareGetDescriptorsFromUserStorage(
 dwFileShareGetDescriptors
 ==============
 */
-/*TaskRecord *dwFileShareGetDescriptors@<eax>(
+TaskRecord *dwFileShareGetDescriptors(dwFileShareDescriptorsTask *a1, ControllerIndex_t localControllerIndex, dwFileShareDescriptorsTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 dwFileShareReadPooledStorageFile
 ==============
 */
-TaskRecord *dwFileShareReadPooledStorageFile(
+TaskRecord *dwFileShareReadPooledStorageFile(ControllerIndex_t controllerIndex, dwFileShareReadFileTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -213,7 +216,7 @@ TaskRecord *dwFileShareReadPooledStorageFile(
 dwFileShareReadUserStorageFile
 ==============
 */
-TaskRecord *dwFileShareReadUserStorageFile(
+TaskRecord *dwFileShareReadUserStorageFile(ControllerIndex_t controllerIndex, dwFileShareReadFileTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -224,7 +227,7 @@ TaskRecord *dwFileShareReadUserStorageFile(
 dwFileShareReadPublisherStorageFile
 ==============
 */
-TaskRecord *dwFileShareReadPublisherStorageFile(
+TaskRecord *dwFileShareReadPublisherStorageFile(ControllerIndex_t controllerIndex, dwFileShareReadFileTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -235,11 +238,11 @@ TaskRecord *dwFileShareReadPublisherStorageFile(
 dwFileShareReadFile
 ==============
 */
-/*TaskRecord *dwFileShareReadFile@<eax>(
+TaskRecord *dwFileShareReadFile(dwFileShareReadFileTask *a1, ControllerIndex_t a2, ControllerIndex_t controllerIndex, dwFileShareReadFileTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -268,7 +271,7 @@ TaskRecord *dwFileShareTransferFile(ControllerIndex_t controllerIndex, dwFileSha
 dwFileShareGetPooledSummary
 ==============
 */
-TaskRecord *dwFileShareGetPooledSummary(
+TaskRecord *dwFileShareGetPooledSummary(ControllerIndex_t controllerIndex, dwFileShareSummaryTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -279,7 +282,7 @@ TaskRecord *dwFileShareGetPooledSummary(
 dwFileShareGetUserSummary
 ==============
 */
-TaskRecord *dwFileShareGetUserSummary(
+TaskRecord *dwFileShareGetUserSummary(ControllerIndex_t controllerIndex, dwFileShareSummaryTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -290,18 +293,18 @@ TaskRecord *dwFileShareGetUserSummary(
 dwFileShareGetSummary
 ==============
 */
-/*TaskRecord *dwFileShareGetSummary@<eax>(
+TaskRecord *dwFileShareGetSummary(dwFileShareSummaryTask *a1, ControllerIndex_t a2, ControllerIndex_t controllerIndex, dwFileShareSummaryTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 dwFileShareSetPooledSummary
 ==============
 */
-TaskRecord *dwFileShareSetPooledSummary(
+TaskRecord *dwFileShareSetPooledSummary(ControllerIndex_t controllerIndex, dwFileShareSummaryTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -334,7 +337,7 @@ TaskRecord *dwFileShareSetSummary(ControllerIndex_t controllerIndex, dwFileShare
 dwFileShareWritePooledStorageFile
 ==============
 */
-TaskRecord *dwFileShareWritePooledStorageFile(
+TaskRecord *dwFileShareWritePooledStorageFile(ControllerIndex_t controllerIndex, dwFileShareWriteFileTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -345,7 +348,7 @@ TaskRecord *dwFileShareWritePooledStorageFile(
 dwFileShareWriteUserStorageFile
 ==============
 */
-TaskRecord *dwFileShareWriteUserStorageFile(
+TaskRecord *dwFileShareWriteUserStorageFile(ControllerIndex_t controllerIndex, dwFileShareWriteFileTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -356,18 +359,18 @@ TaskRecord *dwFileShareWriteUserStorageFile(
 dwFileShareWriteFile
 ==============
 */
-/*TaskRecord *dwFileShareWriteFile@<eax>(
+TaskRecord *dwFileShareWriteFile(dwFileShareWriteFileTask *a1, ControllerIndex_t a2, ControllerIndex_t controllerIndex, dwFileShareWriteFileTask *const fsTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 dwKeyArchiveRead
 ==============
 */
-TaskRecord *dwKeyArchiveRead(
+TaskRecord *dwKeyArchiveRead(const ControllerIndex_t localControllerIndex, dwKeyArchiveReadTask *const keyArchiveTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

@@ -6,7 +6,7 @@
 CL_GetMilestoneRowNum
 ==============
 */
-int CL_GetMilestoneRowNum(
+int CL_GetMilestoneRowNum(const StringTable **stringTable, int *tableNumber, const int comparisonColumn1, const char *value1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -70,21 +70,23 @@ challengeTableRow_t *FindFirstChallengeRowBSearch(int startEntry, int numEntries
 CL_FindFirstChallengeRow
 ==============
 */
-/*challengeTableRow_t *CL_FindFirstChallengeRow@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 CL_FindFirstWeaponChallengeRow
 ==============
 */
-challengeTableRow_t *CL_FindFirstWeaponChallengeRow(int challengeType, int statNameHash, int itemIndex)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -103,7 +105,7 @@ bool CL_IsChallengeLocked(challengeTableRow_t *challengeRow, int rank, int pLeve
 FindNextCompletedChallenge
 ==============
 */
-challengeTableRow_t *FindNextCompletedChallenge(
+challengeTableRow_t *FindNextCompletedChallenge(challengeTableRow_t *challengeRow, int nameHash, int oldValue, int currentValue, int rank, int pLevel, int itemIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -114,10 +116,11 @@ challengeTableRow_t *FindNextCompletedChallenge(
 CL_GetNextCompletedChallenge
 ==============
 */
-challengeTableRow_t *CL_GetNextCompletedChallenge(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -179,7 +182,7 @@ const char *CL_GetChallengeRowData(challengeTableRow_t *challengeRow, milestoneT
 CL_GetChallengeStatNameByName
 ==============
 */
-const char *CL_GetChallengeStatNameByName(
+const char *CL_GetChallengeStatNameByName(const char *statName, int itemIndex, hashName_t *hashNames, challengeHashLookup_t *challengeHashLookup)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -234,18 +237,18 @@ const char *CL_GetGameTypeChallengeStatNameByName(const char *statName, int game
 CL_GetChallengeStatName
 ==============
 */
-/*const char *CL_GetChallengeStatName@<eax>(
+const char *CL_GetChallengeStatName(milestoneTableColumns_t a1, challengeTableRow_t *a2, challengeTableRow_t *challengeRow, int itemIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 ParseChallengeExceptions
 ==============
 */
-void ParseChallengeExceptions(
+void ParseChallengeExceptions(milestoneTableColumns_t a1, challengeTableRow_t *a2, challengeTableRow_t *challengeRow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -255,11 +258,11 @@ void ParseChallengeExceptions(
 CompareChallengeEntries
 ==============
 */
-/*challengeTableRow_t *CompareChallengeEntries@<eax>(
+challengeTableRow_t *CompareChallengeEntries(milestoneTableColumns_t a1, const void *a, const void *b)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -277,7 +280,7 @@ const char *GetChallengeStatNameSuffix(challengeTableRow_t *challengeRow)
 CheckStatNames
 ==============
 */
-void CheckStatNames(
+void CheckStatNames(challengeTableRow_t *challengeRow, hashName_t *hashNames, int numHashNames, unsigned __int8 *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

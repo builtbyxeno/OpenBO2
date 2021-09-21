@@ -27,21 +27,21 @@ BOOL CreateDebugStringsIfNeeded()
 AddDebugStringInternal
 ==============
 */
-/*float *AddDebugStringInternal@<eax>(
+float *AddDebugStringInternal(float *result, float *a2, _DWORD *text, int duration, const char *a5, int a6)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 CL_AddDebugString
 ==============
 */
-void CL_AddDebugString(const vec3_t *xyz, const vec4_t *color, float scale, const char *text, int duration)
+/*void CL_AddDebugString(const char *a1@<edi>, int a2@<esi>, const vec3_t *xyz, const vec4_t *color, float scale, const char *text, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -59,21 +59,21 @@ BOOL CreateDebugSpheresIfNeeded()
 AddDebugSphereInternal
 ==============
 */
-/*int AddDebugSphereInternal@<eax>(
+int AddDebugSphereInternal(float *a1, _DWORD *a2, int center, const vec3_t *sideCount, int depthTest, int duration, int a7)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 CL_AddDebugSphere
 ==============
 */
-void CL_AddDebugSphere(
+/*void CL_AddDebugSphere(int a1@<esi>, const vec3_t *center, const float radius, const vec4_t *color, int sideCount, int depthTest, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -91,7 +91,7 @@ BOOL CreateDebugLinesIfNeeded()
 AddDebugLineInternal
 ==============
 */
-void AddDebugLineInternal(
+void AddDebugLineInternal(const vec3_t *start, const vec3_t *end, const vec4_t *color, int depthTest, int duration, clientDebugLineInfo_t *info)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -101,9 +101,11 @@ void AddDebugLineInternal(
 CL_AddDebugLine
 ==============
 */
-void CL_AddDebugLine(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -111,7 +113,7 @@ void CL_AddDebugLine(
 CL_AddDebugAxis
 ==============
 */
-void CL_AddDebugAxis(
+void CL_AddDebugAxis(clientDebugLineInfo_t *a1, clientDebugLineInfo_t *a2, clientDebugLineInfo_t *origin, const vec3_t *axis, const vec3_t *length, float doDepthTest, int duration, int a8)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -121,9 +123,11 @@ void CL_AddDebugAxis(
 CL_AddDebugStarWithText
 ==============
 */
-void CL_AddDebugStarWithText(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -131,7 +135,7 @@ void CL_AddDebugStarWithText(
 CL_AddDebugStar
 ==============
 */
-void CL_AddDebugStar(
+void CL_AddDebugStar(clientDebugLineInfo_t *a1, const vec3_t *point, const vec4_t *color, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -141,7 +145,7 @@ void CL_AddDebugStar(
 CL_AddDebugBox
 ==============
 */
-void CL_AddDebugBox(
+void CL_AddDebugBox(const vec3_t *origin, const vec3_t *mins, const vec3_t *maxs, float yaw, const vec4_t *color, int depthTest, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

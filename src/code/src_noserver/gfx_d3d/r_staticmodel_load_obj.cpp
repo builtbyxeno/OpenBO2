@@ -50,11 +50,11 @@ unsigned int R_FindProbeFromVolume(const GfxWorldDraw *worldDraw, const vec3_t *
 R_CalcReflectionProbeIndex
 ==============
 */
-/*unsigned int R_CalcReflectionProbeIndex@<eax>(
+unsigned int R_CalcReflectionProbeIndex(const vec3_t *a1, const GfxWorldDraw *a2, const vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -71,7 +71,7 @@ void R_AllocStaticModels(GfxAabbTree *tree)
 R_SortGfxAabbTreeChildren
 ==============
 */
-int R_SortGfxAabbTreeChildren(
+int R_SortGfxAabbTreeChildren(GfxWorld *world, vec3_t *mins, vec3_t *maxs, unsigned __int16 *staticModels, int staticModelCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -113,9 +113,11 @@ void R_AddStaticModelToAabbTree_r(GfxWorld *world, GfxAabbTree *tree, int smodel
 R_AddStaticModelToCell
 ==============
 */
-void R_AddStaticModelToCell(GfxWorld *world, GfxStaticModelInst *smodelInst, const int cellIndex)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -134,7 +136,7 @@ const char *GetNameFromStaticModelInst(const GfxStaticModelInst *smodelInst)
 R_FilterStaticModelIntoCells_r
 ==============
 */
-void R_FilterStaticModelIntoCells_r(
+void R_FilterStaticModelIntoCells_r(float world, const cplane_s *a2, float node, GfxWorld *a4, mnode_t *smodelInst, GfxStaticModelInst *mins, const vec3_t *maxs, const vec3_t *a8)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -155,10 +157,11 @@ int R_CellForPoint(const GfxWorld *world, const vec3_t *origin)
 R_CalcReflectionProbeIndex
 ==============
 */
-unsigned int R_CalcReflectionProbeIndex(const GfxWorld *world, const vec3_t *origin)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -166,7 +169,7 @@ unsigned int R_CalcReflectionProbeIndex(const GfxWorld *world, const vec3_t *ori
 R_SetStaticModelReflectionProbe
 ==============
 */
-void R_SetStaticModelReflectionProbe(
+void R_SetStaticModelReflectionProbe(const vec3_t *a1, const GfxWorld *world, const GfxStaticModelInst *smodelInst, GfxStaticModelDrawInst *smodelDrawInst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -176,7 +179,7 @@ void R_SetStaticModelReflectionProbe(
 R_CreateStaticModel
 ==============
 */
-void R_CreateStaticModel(
+void R_CreateStaticModel(XModel *model, const vec3_t *origin, const vec3_t *axis, float scale, GfxStaticModelDrawInst *smodelDrawInst, GfxStaticModelInst *smodelInst, unsigned int staticModelFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

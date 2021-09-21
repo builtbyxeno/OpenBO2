@@ -6,7 +6,7 @@
 UI_DrawHandlePic
 ==============
 */
-void UI_DrawHandlePic(
+void UI_DrawHandlePic(const ScreenPlacement *scrPlace, float x, float y, float w, float h, int horzAlign, int vertAlign, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -16,7 +16,7 @@ void UI_DrawHandlePic(
 UI_DrawHandlePicRotated
 ==============
 */
-void UI_DrawHandlePicRotated(
+void UI_DrawHandlePicRotated(const ScreenPlacement *scrPlace, float x, float y, float w, float h, int horzAlign, int vertAlign, const vec4_t *color, float angle, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -26,7 +26,7 @@ void UI_DrawHandlePicRotated(
 UI_DrawHandlePicFramed
 ==============
 */
-void UI_DrawHandlePicFramed(
+void UI_DrawHandlePicFramed(const ScreenPlacement *scrPlace, float x, float y, float w, float h, int horzAlign, int vertAlign, float frameSize, float frameTexSize, int frameSides, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -68,7 +68,7 @@ void UI_ForceFullLoadBar(bool force)
 UI_DrawLoadBar
 ==============
 */
-void UI_DrawLoadBar(
+void UI_DrawLoadBar(const ScreenPlacement *scrPlace, float x, float y, float w, float h, int horzAlign, int vertAlign, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -88,7 +88,7 @@ void UI_FillRectPhysical(float x, float y, float width, float height, const vec4
 UI_FillRect
 ==============
 */
-void UI_FillRect(
+void UI_FillRect(const ScreenPlacement *scrPlace, float x, float y, float width, float height, int horzAlign, int vertAlign, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -98,7 +98,7 @@ void UI_FillRect(
 UI_DrawSpinner
 ==============
 */
-void UI_DrawSpinner(
+void UI_DrawSpinner(const ScreenPlacement *scrPlace, float x, float y, float width, float height, int horzAlign, int vertAlign, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -108,7 +108,7 @@ void UI_DrawSpinner(
 UI_DrawSpinnerLoadbar
 ==============
 */
-void UI_DrawSpinnerLoadbar(
+void UI_DrawSpinnerLoadbar(const ScreenPlacement *scrPlace, float x, float y, float width, float height, int horzAlign, int vertAlign, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

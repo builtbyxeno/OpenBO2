@@ -48,10 +48,10 @@ bool CG_IsSprinting(LocalClientNum_t localClientNum)
 IN_KeyDown
 ==============
 */
-/*void IN_KeyDown(int *a1@<eax>, int a2@<ecx>, int a3@<xmm0>, unsigned int time)
+void IN_KeyDown(int *a1, int a2, int time, unsigned int a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -259,10 +259,10 @@ void IN_Attack_Up(LocalClientNum_t localClientNum, int key, unsigned int time)
 IN_Melee_Down
 ==============
 */
-/*void IN_Melee_Down(int a1@<eax>, int a2@<edx>, int a3@<xmm0>, unsigned int time)
+void IN_Melee_Down(int a1, int a2, int time, unsigned int a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -279,10 +279,10 @@ void IN_Melee_Up(LocalClientNum_t localClientNum, int key, unsigned int time)
 IN_Frag_Down
 ==============
 */
-/*void IN_Frag_Down(int a1@<eax>, int a2@<edx>, int a3@<xmm0>, unsigned int time)
+void IN_Frag_Down(int a1, int a2, int time, unsigned int a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -299,10 +299,10 @@ void IN_Frag_Up(LocalClientNum_t localClientNum, int key, unsigned int time)
 IN_Smoke_Down
 ==============
 */
-/*void IN_Smoke_Down(int a1@<eax>, int a2@<edx>, int a3@<xmm0>, unsigned int time)
+void IN_Smoke_Down(int a1, int a2, int time, unsigned int a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -319,19 +319,21 @@ void IN_Smoke_Up(LocalClientNum_t localClientNum, int key, unsigned int time)
 IN_Stance_Down
 ==============
 */
-void IN_Stance_Down(LocalClientNum_t localClientNum, int key, unsigned int time, float value)
+/*void IN_Stance_Down(unsigned int a1@<esi>, LocalClientNum_t localClientNum, int key, unsigned int time, float value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 IN_Stance_Up
 ==============
 */
-void IN_Stance_Up(LocalClientNum_t localClientNum, int key, unsigned int time)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -531,9 +533,11 @@ void CL_ClearKeys(LocalClientNum_t localClientNum)
 CL_ExecBinding
 ==============
 */
-void CL_ExecBinding(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -552,18 +556,18 @@ bool CL_SpectatorInput(LocalClientNum_t localClientNum, int button)
 CL_TranslateSpecialStateButton
 ==============
 */
-/*bool CL_TranslateSpecialStateButton@<al>(
+bool CL_TranslateSpecialStateButton(int a1, kbutton_t *a2, LocalClientNum_t localClientNum, int button)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 CL_UpdateAirburstMarkDistance
 ==============
 */
-void CL_UpdateAirburstMarkDistance(
+void CL_UpdateAirburstMarkDistance(LocalClientNum_t localClientNum, playerState_s *ps, usercmd_s *cmd, float forwardMove, float rightMove, float pitchMove, float yawMove, float moveScale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -614,10 +618,10 @@ int CL_MouseEvent(LocalClientNum_t localClientNum, int x, int y, int dx, int dy)
 CL_UpdateCmdButton
 ==============
 */
-void CL_UpdateCmdButton(
+/*void CL_UpdateCmdButton(LocalClientNum_t localClientNum, bitarray<64> *cmdButton_bits, int kbButton, int buttonBit, int numBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -655,10 +659,10 @@ CL_HandleSpectatorInput
 CL_HandleSpecialStateInput
 ==============
 */
-void CL_HandleSpecialStateInput(
+/*void CL_HandleSpecialStateInput(bitarray<64> *a1, LocalClientNum_t a2, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

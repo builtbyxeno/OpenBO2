@@ -60,21 +60,21 @@ bool R_LightImportanceGreaterEqual(const GfxLight *light0, const GfxLight *light
 R_MostImportantLights
 ==============
 */
-/*void R_MostImportantLights(const GfxLight *a1@<edx>, const GfxLight **lights, int lightCount, int keepCount)
+void R_MostImportantLights(const GfxLight *a1, const GfxLight **lights, int lightCount, int keepCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 R_GetPointLightPartitions
 ==============
 */
-/*int R_GetPointLightPartitions@<eax>(GfxLight *visibleLights)
+int R_GetPointLightPartitions(int a1, GfxLight *visibleLights)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -91,7 +91,7 @@ void R_ComputeSpotLightCrossDirs(const GfxLight *light, vec3_t *crossDirs)
 R_CalcSpotLightPlanes
 ==============
 */
-void R_CalcSpotLightPlanes(
+void R_CalcSpotLightPlanes(vec3_t *a1, const GfxLight *light, float dynamicSpotLightNearPlaneOffset, vec4_t *planes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

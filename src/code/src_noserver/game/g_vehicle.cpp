@@ -274,10 +274,10 @@ BOOL VEH_SlideMove(gentity_t *ent, int gravity, float frameTime, unsigned int *b
 VEH_StepSlideMove
 ==============
 */
-/*void VEH_StepSlideMove(int *a1@<edx>, float a2@<xmm0>, int gravity)
+void VEH_StepSlideMove(int *a1, float gravity, int a3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -304,7 +304,7 @@ void VEH_GroundMove(gentity_t *ent, float frameTime)
 VEH_AirMove
 ==============
 */
-void VEH_AirMove(gentity_t *ent, int gravity, float frameTime)
+void VEH_AirMove(gentity_t *ent, int gravity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -347,7 +347,7 @@ bool AttachedStickyMissile(gentity_t *vehicle, gentity_t *missile)
 PushAttachedStickyMissile
 ==============
 */
-void PushAttachedStickyMissile(
+void PushAttachedStickyMissile(gentity_t *vehicle, gentity_t *missile, vec3_t *deltaOrigin, vec3_t *deltaAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -367,20 +367,22 @@ void VEH_GetBoundingBoxFromCollmap(vec3_t *bbMins, gentity_t *vehicle, vec3_t *b
 VEH_ClampPointToBoundingBox
 ==============
 */
-/*bool VEH_ClampPointToBoundingBox@<al>(
+bool VEH_ClampPointToBoundingBox(gentity_t *a1, vec3_t *a2, gentity_t *vehicle, const vec3_t *point, vec3_t *out)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 VEH_PushEntity
 ==============
 */
-void VEH_PushEntity(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -513,7 +515,7 @@ bool VEH_IsHovering(vehicle_t *veh)
 VEH_UpdateAngleAndAngularVel
 ==============
 */
-void VEH_UpdateAngleAndAngularVel(
+void VEH_UpdateAngleAndAngularVel(int index, float desiredAngle, float accel, float decel, float overShoot, vehicle_physic_t *phys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -564,7 +566,7 @@ void VEH_UpdateVelocityWithRotation(gentity_t *ent)
 VEH_UpdateMoveOrientation
 ==============
 */
-void VEH_UpdateMoveOrientation(
+void VEH_UpdateMoveOrientation(vec3_t *a1, vehicle_t *a2, float desiredYaw, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -574,7 +576,7 @@ void VEH_UpdateMoveOrientation(
 VEH_CheckHorizontalVelocityToGoal
 ==============
 */
-void VEH_CheckHorizontalVelocityToGoal(
+void VEH_CheckHorizontalVelocityToGoal(vehicle_t *veh, const vec2_t *vecToGoal, float accelMax, vec3_t *accelVec)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -605,7 +607,7 @@ float VEH_UpdateMove_CheckStop(vehicle_t *veh, float distToGoal)
 VEH_GetNewSpeedAndAccel
 ==============
 */
-void VEH_GetNewSpeedAndAccel(
+void VEH_GetNewSpeedAndAccel(vehicle_t *veh, float dt, int hovering, float speedScale, float *newSpeed, float *accelMax)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1089,11 +1091,11 @@ void VEH_GetBoneOrigin(gentity_t *vehEnt, int boneIndex, vec3_t *result)
 VEH_CanPlayerPlaceVehicle
 ==============
 */
-/*int VEH_CanPlayerPlaceVehicle@<eax>(
+int VEH_CanPlayerPlaceVehicle(int a1, const gentity_t *player, const float boundingRadius, const float boundingHeight, const float startForward, const float startUp, const float sweepDistance, const float plancementMinNormal, vec3_t *outOrigin, vec3_t *outAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -1133,21 +1135,21 @@ int VEH_GetDefFromName(const char *name)
 VEH_ValidatePosition
 ==============
 */
-/*char VEH_ValidatePosition@<al>(gentity_t *ent, const vec3_t *origin)
+char VEH_ValidatePosition(unsigned int a1, gentity_t *ent, const vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 VEH_SetPosition
 ==============
 */
-void VEH_SetPosition(gentity_t *ent, const vec3_t *origin, const vec3_t *vel, const vec3_t *angles)
+/*void VEH_SetPosition(gentity_t *a1@<edx>, unsigned int a2@<ecx>, gentity_t *ent, const vec3_t *origin, const vec3_t *vel, const vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -1195,7 +1197,7 @@ gentity_t *VEH_FireGunnerWeapon(gentity_t *ent, int gunnerIndex, gentity_t *atta
 ShouldCoolDown
 ==============
 */
-bool ShouldCoolDown(
+bool ShouldCoolDown(vehicle_t *veh, gentity_t *player, const WeaponDef *weapDef, int gunnerIndex, int checkButton)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1206,7 +1208,7 @@ bool ShouldCoolDown(
 ShouldHeatUp
 ==============
 */
-bool ShouldHeatUp(
+bool ShouldHeatUp(vehicle_t *veh, gentity_t *player, const WeaponDef *weapDef, int gunnerIndex, int checkButton, bool burstFirePending)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1259,7 +1261,7 @@ void VEH_UpdatePathPosition(gentity_t *ent, vehicle_pathpos_t *vpp, vec3_t *orig
 VEH_CheckPathEnd
 ==============
 */
-void VEH_CheckPathEnd(gentity_t *ent)
+void VEH_CheckPathEnd(int a1, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1290,10 +1292,11 @@ void VEH_UpdateMoveToGoal(gentity_t *ent, const vec3_t *goalPos)
 VEH_UpdateMoveToGoalAircraft
 ==============
 */
-vec3_t *VEH_UpdateMoveToGoalAircraft(gentity_t *ent, const vec3_t *goalPos)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1301,9 +1304,11 @@ vec3_t *VEH_UpdateMoveToGoalAircraft(gentity_t *ent, const vec3_t *goalPos)
 VEH_UpdateMoveToGoalBoat
 ==============
 */
-void VEH_UpdateMoveToGoalBoat(gentity_t *ent, const vec3_t *goalPos)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1351,7 +1356,7 @@ void VEH_Update(gentity_t *ent)
 VEH_GetSeatExitPositionAndAngles
 ==============
 */
-void VEH_GetSeatExitPositionAndAngles(
+void VEH_GetSeatExitPositionAndAngles(gentity_t *vehicle, gentity_t *player, vec3_t *exitOrigin, vec3_t *exitViewAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1361,7 +1366,7 @@ void VEH_GetSeatExitPositionAndAngles(
 VEH_UnseatPlayer
 ==============
 */
-void VEH_UnseatPlayer(
+void VEH_UnseatPlayer(gentity_t *vehicle, gentity_t *player, bool remoteControlled, const char *error_msg, vec3_t *exitOrigin, vec3_t *exitViewAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1371,7 +1376,7 @@ void VEH_UnseatPlayer(
 VEH_PlayerExit
 ==============
 */
-void VEH_PlayerExit(
+void VEH_PlayerExit(gentity_t *vehicle, gentity_t *player, int unlinkReasonFlag, bool remoteControlled, const char *error_msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1422,9 +1427,11 @@ int VEH_NextAvailableSeat(gentity_t *player)
 VEH_SwitchClientToNextSeat
 ==============
 */
-void VEH_SwitchClientToNextSeat(gentity_t *ent, gentity_t *player)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1495,7 +1502,7 @@ bool VEH_IsRemoteControl(gentity_t *vehEnt)
 VEH_Teleport
 ==============
 */
-void VEH_Teleport(gentity_t *pSelf, vec3_t *origin, vec3_t *angles, vec3_t *vel)
+void VEH_Teleport(unsigned int a1, gentity_t *pSelf, vec3_t *origin, vec3_t *angles, vec3_t *vel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1505,10 +1512,10 @@ void VEH_Teleport(gentity_t *pSelf, vec3_t *origin, vec3_t *angles, vec3_t *vel)
 VEH_UpdateDebug
 ==============
 */
-void VEH_UpdateDebug(gentity_t *pSelf)
+/*void VEH_UpdateDebug(char *a1@<edi>, gentity_t *pSelf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -1525,7 +1532,7 @@ void Scr_Vehicle_Init(gentity_t *pSelf)
 VEH_AvoidUpdate
 ==============
 */
-void VEH_AvoidUpdate(
+void VEH_AvoidUpdate(const gentity_t *pSelf, const vehicle_t *veh, NitrousVehicle *nitrousVeh, const float radius, const vec3_t *pos, const vec3_t *vel, float *goalSpeed, vec3_t *goal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1535,11 +1542,9 @@ void VEH_AvoidUpdate(
 VEH_UpdateNitrousPosition
 ==============
 */
-
+void VEH_UpdateNitrousPosition(unsigned int a1, char *a2, gentity_t *pSelf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -1567,7 +1572,7 @@ void Launch_Vehicle(gentity_t *ent, int damage, const vec3_t *point, const vec3_
 Scr_Vehicle_Pain
 ==============
 */
-void Scr_Vehicle_Pain(
+void Scr_Vehicle_Pain(gentity_t *pSelf, gentity_t *pAttacker, int damage, const vec3_t *point, const int mod, const vec3_t *dir, const hitLocation_t hitLoc, const Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1577,7 +1582,7 @@ void Scr_Vehicle_Pain(
 Scr_Vehicle_Die
 ==============
 */
-void Scr_Vehicle_Die(
+void Scr_Vehicle_Die(gentity_t *pSelf, gentity_t *pInflictor, gentity_t *pAttacker, const int damage, const int mod, const Weapon weapon, const vec3_t *dir, const hitLocation_t hitLoc, int timeOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

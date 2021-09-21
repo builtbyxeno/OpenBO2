@@ -173,7 +173,7 @@ char FS_PureServerSetLoadedIwds(const char *iwdSums, const char *iwdNames)
 FS_ServerSetReferencedFiles
 ==============
 */
-int FS_ServerSetReferencedFiles(
+int FS_ServerSetReferencedFiles(const char *fileSums, const char *fileNames, int maxFiles, int *fs_sums, const char **fs_names)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -184,9 +184,11 @@ int FS_ServerSetReferencedFiles(
 FS_ServerSetReferencedIwds
 ==============
 */
-void FS_ServerSetReferencedIwds(const char *iwdSums, const char *iwdNames)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -194,9 +196,11 @@ void FS_ServerSetReferencedIwds(const char *iwdSums, const char *iwdNames)
 FS_ServerSetReferencedFFs
 ==============
 */
-void FS_ServerSetReferencedFFs(const char *FFSums, const char *FFNames)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

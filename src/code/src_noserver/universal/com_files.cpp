@@ -146,7 +146,7 @@ void FS_ReplaceSeparators(char *path)
 FS_BuildOSPathForThread
 ==============
 */
-void FS_BuildOSPathForThread(
+void FS_BuildOSPathForThread(const char *base, const char *game, const char *qpath, char *ospath, FsThread thread)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -156,9 +156,11 @@ void FS_BuildOSPathForThread(
 FS_BuildOSPath
 ==============
 */
-void FS_BuildOSPath(const char *base, const char *game, const char *qpath)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -218,10 +220,11 @@ int FS_GetHandleAndOpenFile(const char *filename, const char *ospath, FsThread t
 FS_FOpenFileWriteToDirForThread
 ==============
 */
-int FS_FOpenFileWriteToDirForThread(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -229,10 +232,11 @@ int FS_FOpenFileWriteToDirForThread(
 FS_FOpenFileWriteToDir
 ==============
 */
-int FS_FOpenFileWriteToDir(const char *a1, const char *a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -240,10 +244,11 @@ int FS_FOpenFileWriteToDir(const char *a1, const char *a2)
 FS_FOpenFileWrite
 ==============
 */
-int FS_FOpenFileWrite(const char *a1, const char *a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -251,18 +256,19 @@ int FS_FOpenFileWrite(const char *a1, const char *a2)
 FS_FOpenFileWriteCurrentThread
 ==============
 */
-/*int FS_FOpenFileWriteCurrentThread@<eax>(FsThread a1@<edi>)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FS_FOpenTextFileWrite
 ==============
 */
-int FS_FOpenTextFileWrite(const char *filename)
+int FS_FOpenTextFileWrite(qfile_gus filename, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -273,7 +279,7 @@ int FS_FOpenTextFileWrite(const char *filename)
 FS_FOpenFileAppend
 ==============
 */
-int FS_FOpenFileAppend(const char *filename)
+int FS_FOpenFileAppend(qfile_gus filename, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -328,7 +334,7 @@ char FS_FilesAreLoadedGlobally(const char *filename)
 FS_Delete
 ==============
 */
-BOOL FS_Delete(const char *filename)
+BOOL FS_Delete(char *a1, const char *filename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -403,33 +409,34 @@ void FS_ResetFiles()
 FS_WriteFile
 ==============
 */
-/*int FS_WriteFile@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FS_GetFileOsPath
 ==============
 */
-/*int FS_GetFileOsPath@<eax>(char *a1@<edx>, const char *a2@<ecx>, const char *filename, char *ospath)
+int FS_GetFileOsPath(char *a1, const char *a2, const char *filename, char *ospath)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 FS_OpenFileOverwrite
 ==============
 */
-/*int FS_OpenFileOverwrite@<eax>(char *a1@<edx>, const char *a2@<ecx>, const char *qpath)
+int FS_OpenFileOverwrite(char *a1, const char *a2, char *qpath, const char *a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -458,7 +465,7 @@ int FS_AddFileToList(HunkUser *user, const char *name, const char **list, int nf
 FS_ListFilteredFiles
 ==============
 */
-const char **FS_ListFilteredFiles(
+const char **FS_ListFilteredFiles(searchpath_s *searchPath, const char *path, const char *extension, const char *filter, FsListBehavior_e behavior, int *numfiles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -480,7 +487,7 @@ bool FS_CheckLocation(const char *path, int lookInFlags)
 FS_GetFileList
 ==============
 */
-int FS_GetFileList(
+int FS_GetFileList(const char *path, const char *extension, FsListBehavior_e behavior, char *listbuf, int bufsize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -642,9 +649,11 @@ void FS_AddDevGameDirs(const char *path, bool allow_devraw)
 FS_Startup
 ==============
 */
-void FS_Startup(const char *gameName, const char *allow_devraw)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -682,10 +691,10 @@ void FS_ShutDownIwdPureCheckReferences()
 FS_InitFilesystem
 ==============
 */
-/*void FS_InitFilesystem(const char *a1@<edx>, const char *allow_devraw)
+void FS_InitFilesystem(const char *a1, const char *allow_devraw)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -744,7 +753,7 @@ void FS_DisablePureCheck(bool disable)
 FS_FOpenFileReadForThread
 ==============
 */
-int FS_FOpenFileReadForThread(
+int FS_FOpenFileReadForThread(const char *filename, int *file, FsThread thread, char *outfullpath, int outfullpathsize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -755,10 +764,11 @@ int FS_FOpenFileReadForThread(
 FS_FOpenFileReadCurrentThread
 ==============
 */
-int FS_FOpenFileReadCurrentThread(const char *filename, int *file)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -798,9 +808,9 @@ BOOL FS_TouchFile(const char *name)
 FS_FOpenFileByMode
 ==============
 */
-/*int FS_FOpenFileByMode@<eax>(
+int FS_FOpenFileByMode(const char *a1, const char *a2, FsThread qpath, const char *f, int *mode, fsMode_t a6)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 

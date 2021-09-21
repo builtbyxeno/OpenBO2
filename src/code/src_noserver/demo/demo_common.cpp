@@ -450,10 +450,10 @@ void Demo_RebuildHighlightReelTimeline_f()
 Demo_SwitchControls_f
 ==============
 */
-void Demo_SwitchControls_f()
+/*void Demo_SwitchControls_f(const char *a1@<esi>)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

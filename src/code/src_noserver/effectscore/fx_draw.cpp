@@ -16,7 +16,7 @@ void FX_PrepareGenericLookupTables()
 FX_SetupVisualState
 ==============
 */
-void FX_SetupVisualState(
+void FX_SetupVisualState(const FxElemDef *elemDef, int randomSeed, float normTimeUpdateEnd, FxElemPreVisualState *preVisState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -26,7 +26,7 @@ void FX_SetupVisualState(
 FX_EvaluateSize
 ==============
 */
-void FX_EvaluateSize(
+void FX_EvaluateSize(const FxElemPreVisualState *preVisState, int elemDefFlags, float *outSize0, float *outSize1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -57,7 +57,7 @@ void FX_ApplyLightingFrac(const FxEffect *effect, FxColor4b *outColor)
 FX_EvaluateRotation
 ==============
 */
-double FX_EvaluateRotation(
+double FX_EvaluateRotation(const FxElemDef *elemDef, const FxElemPreVisualState *preVisState, float msecLifeSpan)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -78,7 +78,7 @@ void FX_PrepareAtlasLookupTables()
 FX_GetSpriteTexCoords
 ==============
 */
-void FX_GetSpriteTexCoords(
+void FX_GetSpriteTexCoords(const FxElemAtlas *atlas, int elemRandomSeed, int elemSequence, float elemMsecElapsed, float elemMsecLifeSpan, float *s0, float *ds, float *t0, float *dt)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -100,7 +100,7 @@ FX_GenSpriteVerts_Internal
 FX_GenTrail_IndsForSegment
 ==============
 */
-void FX_GenTrail_IndsForSegment(
+void FX_GenTrail_IndsForSegment(FxDrawState *draw, unsigned __int16 reservedBaseVertex, r_double_index_t *outIndices)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -153,9 +153,11 @@ void FX_DrawElem_BillboardSprite(const FxDrawState *draw, FxElemRenderState *ele
 FX_DrawElem_OrientedSprite_NoCull
 ==============
 */
-void FX_DrawElem_OrientedSprite_NoCull(const FxDrawState *draw, FxElemRenderState *elemState)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -173,7 +175,7 @@ void FX_DrawElem_OrientedSprite(const FxDrawState *draw, FxElemRenderState *elem
 FX_CullCylinder
 ==============
 */
-bool FX_CullCylinder(
+bool FX_CullCylinder(const FxCamera *camera, unsigned int frustumPlaneCount, const vec3_t *posWorld0, const vec3_t *posWorld1, float radius)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -184,7 +186,7 @@ bool FX_CullCylinder(
 FX_CullElementForDraw_Tail
 ==============
 */
-bool FX_CullElementForDraw_Tail(
+bool FX_CullElementForDraw_Tail(const FxDrawState *draw, const FxElemRenderState *elemState, const vec3_t *velDirWorld)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -195,7 +197,7 @@ bool FX_CullElementForDraw_Tail(
 FX_DrawElem_CalculateVelDirWorld
 ==============
 */
-void FX_DrawElem_CalculateVelDirWorld(
+void FX_DrawElem_CalculateVelDirWorld(const FxDrawState *draw, const FxElemRenderState *elemState, vec3_t *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -246,7 +248,7 @@ void FX_DrawElem_Tail(const FxDrawState *draw, FxElemRenderState *elemState)
 FX_CullElement_Line
 ==============
 */
-bool FX_CullElement_Line(
+bool FX_CullElement_Line(const FxDrawState *draw, const FxElemRenderState *elemState, const vec3_t *velDirWorld)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -329,7 +331,7 @@ float FX_EvaluateDistanceFade(const FxDrawState *draw, const vec3_t *elemPosWorl
 FX_DrawElem_Cloud_Main
 ==============
 */
-void FX_DrawElem_Cloud_Main(
+void FX_DrawElem_Cloud_Main(const FxDrawState *draw, const FxElemRenderState *elemState, const vec3_t *velDirWorld, float scale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -371,10 +373,10 @@ bool FX_CullElement_Cloud(const FxDrawState *draw, const FxElemRenderState *elem
 FX_DrawElem_Cloud
 ==============
 */
-/*void FX_DrawElem_Cloud(vec3_t *a1@<edi>, const FxDrawState *draw, FxElemRenderState *elemState)
+void FX_DrawElem_Cloud(vec3_t *a1, const FxDrawState *draw, FxElemRenderState *elemState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -402,7 +404,7 @@ bool FX_CullElementForDraw_Light(const FxDrawState *draw, const FxElemRenderStat
 FX_DrawElem_Light
 ==============
 */
-void FX_DrawElem_Light(
+void FX_DrawElem_Light(const FxElemRenderState *a1, const FxDrawState *a2, const FxDrawState *draw, FxElemRenderState *elemState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -443,7 +445,7 @@ float FX_EvaluateVisAlpha(const FxElemPreVisualState *preVisState)
 FX_InterpolateColor4b
 ==============
 */
-__m128 *FX_InterpolateColor4b(
+__m128 *FX_InterpolateColor4b(const FxElemVisStateSample *refState, __m128 vlerp, __m128 vlerpInv, const float *sampleLerp, const float *sampleLerpInv)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -454,7 +456,7 @@ __m128 *FX_InterpolateColor4b(
 FX_EvaluateBaseColor
 ==============
 */
-void FX_EvaluateBaseColor(
+void FX_EvaluateBaseColor(const float *a1, int a2, const FxElemPreVisualState *preVisState, FxColor4b *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -464,7 +466,7 @@ void FX_EvaluateBaseColor(
 FX_DrawTrail_SubmitGfxDrawSurfs
 ==============
 */
-void FX_DrawTrail_SubmitGfxDrawSurfs(
+void FX_DrawTrail_SubmitGfxDrawSurfs(FxSystem *system, FxEffect *effect, const FxTrail *trail, int effectRandomSeed, int drawRegion, int exactSegmentCount, unsigned __int16 reservedBaseVertex, r_double_index_t *reservedIndices)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -474,7 +476,7 @@ void FX_DrawTrail_SubmitGfxDrawSurfs(
 FX_OcclusionQuery_UpdateOverTime
 ==============
 */
-double FX_OcclusionQuery_UpdateOverTime(
+double FX_OcclusionQuery_UpdateOverTime(float fCurrent, float fGoal, int iFadeInTime, int iFadeOutTime, int frametime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -517,7 +519,7 @@ int EffectCountInfoSort(const void *elem1, const void *elem2)
 FX_FindAllTrailEffects
 ==============
 */
-int FX_FindAllTrailEffects(
+int FX_FindAllTrailEffects(FxSystem *system, int firstActiveEffect, int firstNewEffect, unsigned __int16 *handlesArray, int arrayCapacity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -528,7 +530,7 @@ int FX_FindAllTrailEffects(
 FX_AllocAllTrailResource
 ==============
 */
-int FX_AllocAllTrailResource(
+int FX_AllocAllTrailResource(int activeTrailEffectCount, const FxDrawTrailResourceRequired *resReqArrayRemote, FxDrawTrailResource *resArrayRemote)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -539,7 +541,7 @@ int FX_AllocAllTrailResource(
 FX_TrailGeoWorkers_Start
 ==============
 */
-void FX_TrailGeoWorkers_Start(
+void FX_TrailGeoWorkers_Start(FxSystem *remoteSystem, int drawTime, unsigned int cameraType, int numTrailEffectsResourceAllocOk, const FxDrawTrailResourceRequired *resReqArrayRemote, const FxDrawTrailResource *resArrayRemote, const unsigned __int16 *resReqTrailEffectsRemote)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -559,7 +561,7 @@ void FX_LaunchElemSetupWorkers(FxGenerateVertsCmd *generateVertsCmd)
 FX_LaunchSpriteGeoWorkers
 ==============
 */
-void FX_LaunchSpriteGeoWorkers(
+void FX_LaunchSpriteGeoWorkers(FxSystem *remoteSystem, int drawTime, unsigned int cameraType, FxSmpDrawBuffer *smpBuffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -569,7 +571,7 @@ void FX_LaunchSpriteGeoWorkers(
 FX_AllocSpriteDrawData
 ==============
 */
-void FX_AllocSpriteDrawData(
+void FX_AllocSpriteDrawData(FxSystem *system, FxSystem *remoteSystem, unsigned int cameraType, FxSmpDrawBuffer *smpBuffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -641,7 +643,7 @@ FX_DrawTrail
 FX_DrawTrail_CalcRequiredResources
 ==============
 */
-char FX_DrawTrail_CalcRequiredResources(
+char FX_DrawTrail_CalcRequiredResources(FxSystem *system, FxEffect *effect, const FxTrail *trail, int msecDraw, FxDrawTrailResourceRequired *req, FxTrailDrawState *trailDrawState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -652,7 +654,7 @@ char FX_DrawTrail_CalcRequiredResources(
 FX_DrawTrailsForEffect
 ==============
 */
-void FX_DrawTrailsForEffect(
+void FX_DrawTrailsForEffect(FxSystem *system, const FxEffect *effect, int drawTime, const FxDrawTrailResourceRequired *resReq, const FxDrawTrailResource *res, unsigned int cameraType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -672,7 +674,7 @@ void FX_DrawSpotLightEffect(FxSystem *system, FxEffect *effectEA, int drawTime)
 FX_DrawNonSpriteEffect
 ==============
 */
-void FX_DrawNonSpriteEffect(
+void FX_DrawNonSpriteEffect(FxSystem *localSystem, FxEffect *remoteEffect, FxEffect *localEffect, unsigned int elemClass, int drawTime, unsigned int cameraType, bool isInfraredDraw)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -682,9 +684,11 @@ void FX_DrawNonSpriteEffect(
 FX_DrawNonSpriteElems
 ==============
 */
-void FX_DrawNonSpriteElems(FxSystem *system, unsigned int cameraType, bool isInfraredDraw)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -692,9 +696,11 @@ void FX_DrawNonSpriteElems(FxSystem *system, unsigned int cameraType, bool isInf
 FX_DrawSpotLight
 ==============
 */
-void FX_DrawSpotLight(FxSystem *system)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -737,7 +743,7 @@ FX_CloudElemDrawSetup
 FX_SpriteElemMakeQuads
 ==============
 */
-void FX_SpriteElemMakeQuads(
+void FX_SpriteElemMakeQuads(FxEffect *effect, const EffectElementDraw *elemDraw, const FxElemBits *drawBits, FxSystem *system, int drawTime, int cameraType, FxElemRenderState *elemRenderStates)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -747,7 +753,7 @@ void FX_SpriteElemMakeQuads(
 FX_SpriteElemMakeGfxDrawSurfs
 ==============
 */
-void FX_SpriteElemMakeGfxDrawSurfs(
+void FX_SpriteElemMakeGfxDrawSurfs(FxSystem *system, FxEffect *effect, const EffectElementDraw *elemDraw, const FxElemBits *drawBits, unsigned int drawSurfRegion)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -757,7 +763,7 @@ void FX_SpriteElemMakeGfxDrawSurfs(
 FX_CloudElemMakeParticleClouds
 ==============
 */
-void FX_CloudElemMakeParticleClouds(
+void FX_CloudElemMakeParticleClouds(FxEffect *effect, const EffectElementDraw *elemDraw, const FxElemBits *drawBits, FxSystem *system, int drawTime, unsigned int cameraType, FxElemRenderState *elemRenderStates)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -767,7 +773,7 @@ void FX_CloudElemMakeParticleClouds(
 FX_CloudElemMakeGfxDrawSurfs
 ==============
 */
-void FX_CloudElemMakeGfxDrawSurfs(
+void FX_CloudElemMakeGfxDrawSurfs(FxEffect *effect, const EffectElementDraw *elemDraw, const FxElemBits *drawBits, FxSystem *system)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -777,9 +783,11 @@ void FX_CloudElemMakeGfxDrawSurfs(
 FX_SMPDraw_MakeSpriteGeo
 ==============
 */
-void FX_SMPDraw_MakeSpriteGeo(FxDrawSpriteGeoCmd *cmd)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -787,9 +795,11 @@ void FX_SMPDraw_MakeSpriteGeo(FxDrawSpriteGeoCmd *cmd)
 FX_SMPDraw_MakeTrailGeo
 ==============
 */
-void FX_SMPDraw_MakeTrailGeo(FxDrawTrailGeoCmd *cmd)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -807,11 +817,10 @@ void FX_ElemSetupWorker(FxElemSetupCmd *cmd)
 FX_CalculateTrailRequiredResources
 ==============
 */
-
+int FX_CalculateTrailRequiredResources(int a1, FxSystem *system, int drawTime, const unsigned __int16 *const handlesArray, int numTrailEffects, FxDrawTrailResourceRequired *resReqArrayRemote, unsigned __int16 *resReqTrailEffectsRemote, FxTrailDrawState *trailDrawStateArray, int trailDrawStateArrayCapacity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -819,7 +828,7 @@ FX_CalculateTrailRequiredResources
 FX_AllocTrailDrawData
 ==============
 */
-void FX_AllocTrailDrawData(
+void FX_AllocTrailDrawData(FxSystem *system, FxSystem *remoteSystem, int drawTime, FxSmpDrawBuffer *smpBuffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -829,9 +838,11 @@ void FX_AllocTrailDrawData(
 FX_GenerateSpriteDrawSurfs
 ==============
 */
-void FX_GenerateSpriteDrawSurfs(FxSystem *system, unsigned int cameraType, FxSmpDrawBuffer *smpBuffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -871,9 +882,11 @@ int fx_add_surfsCallback(jqBatch *batch)
 FX_DrawSpriteElems
 ==============
 */
-void FX_DrawSpriteElems(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

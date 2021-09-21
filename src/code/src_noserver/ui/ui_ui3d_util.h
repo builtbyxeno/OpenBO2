@@ -6,7 +6,7 @@
 ScopedScrPlaceViewStack::ScopedScrPlaceViewStack
 ==============
 */
-/*void __thiscall ScopedScrPlaceViewStack::ScopedScrPlaceViewStack(
+/*void __thiscall ScopedScrPlaceViewStack::ScopedScrPlaceViewStack(ScopedScrPlaceViewStack *this, ScreenPlacementStack *stack, const ScreenPlacement *newPlacement)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

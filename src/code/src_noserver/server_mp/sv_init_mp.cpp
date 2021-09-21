@@ -258,8 +258,8 @@ void SV_SaveSystemInfo()
 SV_SpawnServer
 ==============
 */
-void SV_SpawnServer(ControllerIndex_t controllerIndex, const char *server, int mapIsPreloaded, int savegame)
+/*void SV_SpawnServer(char *a1@<edi>, ControllerIndex_t controllerIndex, const char *server, int mapIsPreloaded, int savegame)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 

@@ -111,7 +111,7 @@ void SV_GetServerinfo(char *buffer, int bufferSize)
 SV_LocateGameData
 ==============
 */
-void SV_LocateGameData(
+void SV_LocateGameData(gentity_t *gEnts, int numGEntities, int sizeofGEntity_t, playerState_s *clients, int sizeofGameClient, actor_t *gameActors, int sizeofGameActors)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -79,7 +79,7 @@ void Path_AddTrimmedAmount(path_t *pPath, const vec3_t *vStartPos)
 Path_SubtractTrimmedAmount
 ==============
 */
-void Path_SubtractTrimmedAmount(
+void Path_SubtractTrimmedAmount(const vec3_t *vStartPos, float pPath, path_t *pPatha, const vec3_t *vStartPosa)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -153,7 +153,7 @@ int Path_CheckFromAndToNodes(PathFindInput *pathFindInput, PathBlockPlanes *bloc
 CustomSearchInfo_FindPath::CustomSearchInfo_FindPath
 ==============
 */
-/*void __thiscall CustomSearchInfo_FindPath::CustomSearchInfo_FindPath(
+/*void __thiscall CustomSearchInfo_FindPath::CustomSearchInfo_FindPath(CustomSearchInfo_FindPath *this, int randomPercent, int useChokePoints)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -215,7 +215,7 @@ void Path_BeginTrim(path_t *pPath, path_trim_t *pTrim)
 Path_TrimToSeePoint
 ==============
 */
-int Path_TrimToSeePoint(
+int Path_TrimToSeePoint(path_t *pPath, path_trim_t *pTrim, actor_t *pActor, float fMaxDistSqrd, int iIgnoreEntityNum, const vec3_t *vPoint)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -480,7 +480,7 @@ int Path_GetForwardStartPos(path_t *pPath, const vec2_t *vStartPos, vec2_t *vFor
 Path_DebugDraw
 ==============
 */
-void Path_DebugDraw(
+void Path_DebugDraw(path_t *pPath, const vec3_t *vStartPos, clientDebugLineInfo_t *bDrawLookahead, int entId, int a5)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -513,7 +513,7 @@ ai_stance_e Path_AllowedStancesForPath(path_t *pPath)
 Path_CheckNodeCountForDodge
 ==============
 */
-void Path_CheckNodeCountForDodge(path_t *pPath, int numNeeded, pathpoint_t **pt, int *startIndex)
+void Path_CheckNodeCountForDodge(path_t* pPath, int numNeeded, pathpoint_t** pt, int* startIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -555,7 +555,7 @@ double Path_GetStepHeightForRadius(const float radius)
 Path_TrimToBadPlaceLink
 ==============
 */
-void Path_TrimToBadPlaceLink(path_t *pPath, team_t eTeam)
+void Path_TrimToBadPlaceLink(path_t *pPath, team_t eTeam, char *a3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -586,7 +586,7 @@ void Path_Restore(path_t *path)
 Path_FindPath
 ==============
 */
-int Path_FindPath(PathFindInput *pathFindInput)
+int Path_FindPath(PathFindInput *pathFindInput, char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -597,11 +597,10 @@ int Path_FindPath(PathFindInput *pathFindInput)
 Path_PredictionTrace
 ==============
 */
-
+BOOL Path_PredictionTrace(const vec3_t* vStartPos, const vec3_t* vEndPos, unsigned int entityIgnore, int mask, int vTraceEndPos, vec3_t* stepheight, float allowStartSolid, int radius, float height, float flying, int usingAvoidance)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -609,11 +608,11 @@ Path_PredictionTrace
 Path_PredictionTraceCheckForEntities
 ==============
 */
-int Path_PredictionTraceCheckForEntities(
+/*int Path_PredictionTraceCheckForEntities@<eax>(const vec3_t *vStartPos@<ecx>, const vec3_t *vEndPos@<edx>, int a3@<edi>, const int *entities, const int entityCount, int entityIgnore, int mask, vec3_t *vTraceEndPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
@@ -631,7 +630,7 @@ int Path_LookaheadPredictionTrace(path_t *pPath, const vec3_t *vStartPos, const 
 Path_UpdateLookaheadAmount
 ==============
 */
-void Path_UpdateLookaheadAmount(
+void Path_UpdateLookaheadAmount(path_t *pPath, const vec3_t *vStartPos, const vec3_t *vLookaheadPos, int bReduceLookaheadAmount, float dist, int lookaheadNextNode, float maxLookaheadAmountIfReduce, int bAllowRestore)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -641,7 +640,7 @@ void Path_UpdateLookaheadAmount(
 Path_CalcLookahead_Completed
 ==============
 */
-void Path_CalcLookahead_Completed(
+void Path_CalcLookahead_Completed(path_t *pPath, const vec3_t *vStartPos, int bReduceLookaheadAmount, float totalArea, int bAllowRestore)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -651,7 +650,7 @@ void Path_CalcLookahead_Completed(
 Path_CalcLookahead
 ==============
 */
-void Path_CalcLookahead(
+void Path_CalcLookahead(path_t *pPath, char *a2, int bReduceLookaheadAmount, int bAllowRestore, int bAllowRestorea)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -661,7 +660,7 @@ void Path_CalcLookahead(
 Path_UpdateLookahead
 ==============
 */
-void Path_UpdateLookahead(
+void Path_UpdateLookahead(path_t *pPath, const vec3_t *vStartPos, int bReduceLookaheadAmount, int bTrimAmount, int bAllowBacktrack, int bAllowRestore)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -681,7 +680,7 @@ void Path_TransferLookahead(path_t *pPath, const vec3_t *vStartPos)
 Path_GeneratePath
 ==============
 */
-BOOL Path_GeneratePath(
+BOOL Path_GeneratePath(path_t *pPath, const vec3_t *vStartPos, const vec3_t *vGoalPos, pathnode_t *pNodeFrom, pathnode_t *pNodeTo, int bIncludeGoalPos, PathFindInput *pathFindInput)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -702,7 +701,7 @@ void Path_UpdateLookahead_NonCodeMove(path_t *pPath, const vec3_t *vPrevPos, con
 Path_AttemptDodge
 ==============
 */
-char Path_AttemptDodge(
+char Path_AttemptDodge(path_t *pPath, const vec3_t *vOrg, const vec3_t *vDodgeStart, const vec3_t *vDodgeEnd, int startIndex, const int *entities, const int entityCount, int entityIgnore, int mask, int bCheckLookahead)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -746,7 +745,7 @@ int Path_FindPathNotCrossPlanes(PathFindInput *pathFindInput, PathBlockPlanes *b
 Path_FindPathInCylinderWithLOS
 ==============
 */
-int Path_FindPathInCylinderWithLOS(
+int Path_FindPathInCylinderWithLOS(PathFindInput *pathFindInput, const actor_goal_s *goal, float fWithinDistSqrd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -768,7 +767,7 @@ pathnode_t *Path_FindFacingNode(pathnode_t *node, sentient_t *pOther, sentient_i
 Path_FindPathGetCloseAsPossible
 ==============
 */
-int Path_FindPathGetCloseAsPossible(PathFindInput *pathFindInput)
+int Path_FindPathGetCloseAsPossible(PathFindInput *pathFindInput, char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -779,7 +778,7 @@ int Path_FindPathGetCloseAsPossible(PathFindInput *pathFindInput)
 Bot_FindPath
 ==============
 */
-int Bot_FindPath(PathFindInput *pathFindInput)
+int Bot_FindPath(PathFindInput *pathFindInput, char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

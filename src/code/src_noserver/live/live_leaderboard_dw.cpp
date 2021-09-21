@@ -6,7 +6,7 @@
 LiveLeaderboard_SetupNestedTask
 ==============
 */
-TaskRecord *LiveLeaderboard_SetupNestedTask(
+TaskRecord *LiveLeaderboard_SetupNestedTask(const TaskDefinition *taskdef, ControllerIndex_t localControllerIndex, TaskRecord *nestedTask, void *payload)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -17,10 +17,10 @@ TaskRecord *LiveLeaderboard_SetupNestedTask(
 LiveLeaderboard_RowDebugPrint
 ==============
 */
-void LiveLeaderboard_RowDebugPrint(
+/*void LiveLeaderboard_RowDebugPrint(const ControllerIndex_t localControllerIndex, const unsigned __int64 userID, const LeaderboardDef *lbDef, int trackType, LeaderboardRow<10> *lbRow, bool isWriting)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -71,7 +71,7 @@ int LiveLeaderboard_GetGhostLBReadBeginTime()
 LiveLeaderboard_CalculatePlayerLbRowValue
 ==============
 */
-int LiveLeaderboard_CalculatePlayerLbRowValue(
+int LiveLeaderboard_CalculatePlayerLbRowValue(const ControllerIndex_t localControllerIndex, const LeaderboardDef *lbDef, int colIdx)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -82,11 +82,11 @@ int LiveLeaderboard_CalculatePlayerLbRowValue(
 LiveLeaderboard_UploadPlayerDataExecuteTask
 ==============
 */
-char LiveLeaderboard_UploadPlayerDataExecuteTask(
+/*char LiveLeaderboard_UploadPlayerDataExecuteTask(const ControllerIndex_t localControllerIndex, const TaskDefinition *taskDef, LeaderboardRow<10> *lbRows, const int uploadRows)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
@@ -188,10 +188,11 @@ char LiveLeaderboard_GetStatsByXuidsFailure(TaskRecord *task)
 LiveLeaderboard_GetByRank
 ==============
 */
-char LiveLeaderboard_GetByRank(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -221,7 +222,7 @@ char LiveLeaderboard_GetByPlayerFailure(TaskRecord *task)
 LiveLeaderboards_GetResetLeaderboards
 ==============
 */
-bool LiveLeaderboards_GetResetLeaderboards(
+bool LiveLeaderboards_GetResetLeaderboards(const char *resetFile, const char **leaderboards, int *leaderboardCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -288,21 +289,22 @@ LiveLeaderboard_ColumnIDToValue
 LiveLeaderboard_MakeRow
 ==============
 */
-int LiveLeaderboard_MakeRow(
+/*int LiveLeaderboard_MakeRow(const ControllerIndex_t localControllerIndex, const LeaderboardDef *lbDef, LeaderboardRow<10> *const row, LbAggType aggType, unsigned __int64 userID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
 LiveLeaderboard_RankUpdate
 ==============
 */
-bool LiveLeaderboard_RankUpdate(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -310,22 +312,22 @@ bool LiveLeaderboard_RankUpdate(
 LiveLeaderboard_CombineUpdate
 ==============
 */
-bool LiveLeaderboard_CombineUpdate(
+/*bool LiveLeaderboard_CombineUpdate(const ControllerIndex_t localControllerIndex, const unsigned __int64 userID, const LeaderboardDef *lbDef, LeaderboardRow<10> *lbRow, const int trackType, int *uploadRows)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
 LiveLeaderboard_UploadPlayerDataExecuteBlockingTask
 ==============
 */
-char LiveLeaderboard_UploadPlayerDataExecuteBlockingTask(
+/*char LiveLeaderboard_UploadPlayerDataExecuteBlockingTask(const ControllerIndex_t localControllerIndex, LeaderboardRow<10> *lbRows, const int uploadRows)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
@@ -398,7 +400,7 @@ char LiveLeaderboard_GetByPlayerSuccess(TaskRecord *task)
 LiveLeaderboards_ResetLeaderboardsClearRows
 ==============
 */
-char LiveLeaderboards_ResetLeaderboardsClearRows(
+char LiveLeaderboards_ResetLeaderboardsClearRows(const ControllerIndex_t controllerIndex, const char **leaderboards, int leaderboardCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -409,10 +411,10 @@ char LiveLeaderboards_ResetLeaderboardsClearRows(
 LiveLeaderboards_ResetLeaderboards
 ==============
 */
-/*void LiveLeaderboards_ResetLeaderboards(const char **a1@<edx>, const ControllerIndex_t controllerIndex)
+void LiveLeaderboards_ResetLeaderboards(const char **a1, char *a2, const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

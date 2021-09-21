@@ -87,7 +87,7 @@ void RB_ResetCoronas()
 RB_DrawWaypoint
 ==============
 */
-void RB_DrawWaypoint(
+void RB_DrawWaypoint(const GfxViewInfo *viewInfo, Material *material, GfxColor color, vec3_t *origin, float radius, bool screenSize, bool alignBottom, bool forceNear)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

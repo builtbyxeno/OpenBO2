@@ -428,7 +428,7 @@ void Live_StartQoSProbe(ControllerIndex_t localControllerIndex, int numXenons, X
 Live_SendJoinInfo
 ==============
 */
-void Live_SendJoinInfo(
+void Live_SendJoinInfo(ControllerIndex_t controllerIndex, unsigned __int64 recepient, JoinSessionMessage joinRequestMessage)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -438,7 +438,7 @@ void Live_SendJoinInfo(
 Live_JoinMessageAction
 ==============
 */
-void Live_JoinMessageAction(
+void Live_JoinMessageAction(ControllerIndex_t localControllerIndex, JoinSessionMessage message, unsigned __int64 from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

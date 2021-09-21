@@ -318,10 +318,10 @@ vehicle_custom_path_t *VP_GetCustomPath(int index)
 VP_DrawCustomPath
 ==============
 */
-void VP_DrawCustomPath(vehicle_custom_path_t *customPath)
+/*void VP_DrawCustomPath(const vec3_t *a1@<edx>, vehicle_custom_path_t *customPath)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -379,10 +379,10 @@ void VP_Advance(vehicle_pathpos_t *vpp, float dt, int use_spline_speed, int driv
 VP_DrawPath
 ==============
 */
-/*void VP_DrawPath(vec3_t *p_origin@<edi>, vehicle_pathpos_t *vpp)
+void VP_DrawPath(vec3_t *p_origin, vehicle_pathpos_t *vpp)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -419,10 +419,10 @@ void G_FreeVehiclePathsScriptInfo()
 G_SetupSplinePaths
 ==============
 */
-/*void G_SetupSplinePaths(float speed@<xmm0>, bool scriptConnect)
+void G_SetupSplinePaths(float speed, bool scriptConnect)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -439,10 +439,10 @@ void G_ConnectVehiclePaths()
 G_SetupVehiclePaths
 ==============
 */
-/*void G_SetupVehiclePaths(float a1@<xmm0>, bool scriptConnect)
+void G_SetupVehiclePaths(float scriptConnect, bool a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -613,10 +613,10 @@ void GScr_GetTimeFromVehicleNodeToNode()
 GScr_ReconnectVehicleNodes
 ==============
 */
-/*void GScr_ReconnectVehicleNodes(float a1@<xmm0>)
+void GScr_ReconnectVehicleNodes(float a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -643,7 +643,7 @@ void G_SpawnHeliHeightLock(SpawnVar *spawnVar)
 VP_FindAIPath
 ==============
 */
-int VP_FindAIPath(
+int VP_FindAIPath(const vec3_t *start, const vec3_t *end, vehicle_pathpos_t *vpp, gentity_t *ent, int heightOffset, float radius, float height)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -686,20 +686,20 @@ void VP_DrawRaceTrack(__int16 nodeIdx)
 G_DrawVehiclePaths
 ==============
 */
-/*void G_DrawVehiclePaths(vec3_t *a1@<edi>)
+void G_DrawVehiclePaths(vec3_t *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 G_ProcessVehicleNodeCommand
 ==============
 */
-/*void G_ProcessVehicleNodeCommand(float a1@<xmm0>, const RadiantCommand *command, SpawnVar *spawnVar)
+void G_ProcessVehicleNodeCommand(float command, const RadiantCommand *a2, SpawnVar *spawnVar)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

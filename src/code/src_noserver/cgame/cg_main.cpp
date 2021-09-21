@@ -165,7 +165,7 @@ BOOL CG_IsCreateFX()
 CScriptMover_UpdateMove
 ==============
 */
-int CScriptMover_UpdateMove(
+int CScriptMover_UpdateMove(trajectory_t *pTr, vec3_t *vCurrPos, const float fSpeed, const float fMidTime, const float fDecelTime, const vec3_t *vPos1, const vec3_t *vPos2, const vec3_t *vPos3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -197,7 +197,7 @@ int CScr_LoadScriptAndLabel(const char *filename, const char *label)
 CG_AddFootstepEvent
 ==============
 */
-void CG_AddFootstepEvent(
+void CG_AddFootstepEvent(LocalClientNum_t localClientNum, centity_t *cent, unsigned __int16 notetrack, unsigned __int16 bone)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -207,7 +207,7 @@ void CG_AddFootstepEvent(
 CG_AddPlayerFootstepEvent
 ==============
 */
-void CG_AddPlayerFootstepEvent(
+void CG_AddPlayerFootstepEvent(LocalClientNum_t localClientNum, centity_t *cent, bool playerView, int movementType, int surface, bool quiet, bool footprint)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -227,7 +227,7 @@ void CG_ProcessFootstepEvents(LocalClientNum_t localClientNum, cg_t *cgameGlob)
 CG_IsSonarAttachment
 ==============
 */
-bool CG_IsSonarAttachment(LocalClientNum_t localClientNum)
+char CG_IsSonarAttachment(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

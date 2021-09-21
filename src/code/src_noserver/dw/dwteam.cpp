@@ -17,7 +17,7 @@ TaskRecord *dwTeamClanLeave(const ControllerIndex_t localControllerIndex, dwTeam
 dwTeamClanCreate
 ==============
 */
-TaskRecord *dwTeamClanCreate(
+TaskRecord *dwTeamClanCreate(const ControllerIndex_t localControllerIndex, dwTeamClanCreateTask *const teamTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -28,7 +28,7 @@ TaskRecord *dwTeamClanCreate(
 dwTeamSetPublicProfile
 ==============
 */
-TaskRecord *dwTeamSetPublicProfile(
+TaskRecord *dwTeamSetPublicProfile(const ControllerIndex_t localControllerIndex, dwTeamSetPublicProfileTask *const teamTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -39,7 +39,7 @@ TaskRecord *dwTeamSetPublicProfile(
 dwTeamSetPrivateProfile
 ==============
 */
-TaskRecord *dwTeamSetPrivateProfile(
+TaskRecord *dwTeamSetPrivateProfile(const ControllerIndex_t localControllerIndex, dwTeamSetPrivateProfileTask *const teamTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

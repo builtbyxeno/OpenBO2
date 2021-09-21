@@ -39,7 +39,7 @@ char *BG_Actor_GetAnimStateCategoryName(int animStateIndex)
 BG_Actor_FastForwardAnimState
 ==============
 */
-void BG_Actor_FastForwardAnimState(
+void BG_Actor_FastForwardAnimState(LocalClientNum_t localClientNum, const entityState_s *es, actorInfo_t *actorInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -80,7 +80,7 @@ bool BG_Actor_ApplyNewAnimState(XAnimTree_s *pAnimTree, actorLerpFrame_t *lf, in
 BG_Actor_UpdateAnimationState
 ==============
 */
-void BG_Actor_UpdateAnimationState(
+void BG_Actor_UpdateAnimationState(LocalClientNum_t localClientNum, const entityState_s *es, actorInfo_t *actorInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -26,7 +26,7 @@ void R_SetBlackProbe(unsigned __int8 *to, unsigned int size)
 R_GenerateReflectionImageFromRawData
 ==============
 */
-GfxImage *R_GenerateReflectionImageFromRawData(
+GfxImage *R_GenerateReflectionImageFromRawData(const unsigned __int8 *rawPixels, const int probeIndex, int probeHighMipSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -37,7 +37,7 @@ GfxImage *R_GenerateReflectionImageFromRawData(
 R_GenerateDummyReflectionImages
 ==============
 */
-void R_GenerateDummyReflectionImages(
+void R_GenerateDummyReflectionImages(GfxReflectionProbe *probes, const DiskGfxDummyReflectionProbe *probeRawData, const int probeCount, const int probeBaseIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -47,7 +47,7 @@ void R_GenerateDummyReflectionImages(
 R_GenerateReflectionImages
 ==============
 */
-void R_GenerateReflectionImages(
+void R_GenerateReflectionImages(GfxReflectionProbe *probes, const DiskGfxReflectionProbe *probeRawData, const int probeCount, const int probeBaseIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

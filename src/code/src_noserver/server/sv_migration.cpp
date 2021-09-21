@@ -81,9 +81,11 @@ bool SendToClient(const ClientNum_t clientNum, const unsigned __int8 *data, int 
 SendStartMessage
 ==============
 */
-void SendStartMessage(const ClientNum_t clientNum)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -132,7 +134,7 @@ void SendMigrateTo(const ClientNum_t clientNum)
 SendHeader
 ==============
 */
-void SendHeader()
+void SendHeader(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

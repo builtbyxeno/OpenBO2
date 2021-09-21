@@ -47,7 +47,7 @@ void Actor_SetMoveMode(actor_t *self, unsigned __int8 moveMode)
 Actor_SetAnimScript
 ==============
 */
-void Actor_SetAnimScript(
+void Actor_SetAnimScript(actor_t *self, scr_animscript_t *pAnimScriptFunc, unsigned __int8 moveMode, ai_animmode_t animMode, scriptAnimAIFunctionTypes_t animScript)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -168,7 +168,7 @@ void Actor_AnimScripted(actor_t *self)
 Actor_AnimSetCompleteGoalWeight
 ==============
 */
-void Actor_AnimSetCompleteGoalWeight(
+void Actor_AnimSetCompleteGoalWeight(XAnimTree_s *tree, unsigned int animIndex, float goalWeight, float goalTime, float rate, unsigned int notifyName, unsigned int notifyType, int bRestart)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

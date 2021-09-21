@@ -6,7 +6,7 @@
 DDL_Lookup_FindInStruct
 ==============
 */
-ddlMemberDef_t *DDL_Lookup_FindInStruct(
+ddlMemberDef_t *DDL_Lookup_FindInStruct(ddlStructDef_t *structDef, const ddlDef_t *ddl, int parentOffset, int searchOffset, int *arrayIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -27,7 +27,7 @@ void DDL_Lookup_ClearState(ddlState_t *searchState)
 DDL_Lookup_FindMemberDefByLName
 ==============
 */
-ddlMemberDef_t *DDL_Lookup_FindMemberDefByLName(
+ddlMemberDef_t *DDL_Lookup_FindMemberDefByLName(ddlStructDef_t *structDef, int hashStartIndex, const char *memberNameLowercase)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -49,7 +49,7 @@ ddlMemberDef_t *DDL_Lookup_FindMemberDef(const char *memberName, ddlStructDef_t 
 DDL_Lookup_MoveToIndex
 ==============
 */
-ddlMemberDef_t *DDL_Lookup_MoveToIndex(
+ddlMemberDef_t *DDL_Lookup_MoveToIndex(const ddlState_t *searchState, int arrayIndex, ddlState_t *resultState, int checkValidIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

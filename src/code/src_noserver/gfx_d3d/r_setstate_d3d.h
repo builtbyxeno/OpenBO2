@@ -6,7 +6,7 @@
 R_HW_SetVertexShaderConstant
 ==============
 */
-void R_HW_SetVertexShaderConstant(
+void R_HW_SetVertexShaderConstant(GfxCmdBufState *state, unsigned int buffer, unsigned int offset, const float *data, unsigned int size)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -16,7 +16,7 @@ void R_HW_SetVertexShaderConstant(
 R_HW_SetPixelShaderConstant
 ==============
 */
-void R_HW_SetPixelShaderConstant(
+void R_HW_SetPixelShaderConstant(GfxCmdBufState *state, unsigned int buffer, unsigned int offset, const float *data, unsigned int size)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

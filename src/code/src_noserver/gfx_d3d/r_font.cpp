@@ -104,7 +104,7 @@ double R_NormalizedTextScale(Font_s *font, float scale)
 GetButtonProperties
 ==============
 */
-void GetButtonProperties(
+void GetButtonProperties(LocalClientNum_t localClientNum, const char *text, Font_s *font, int *buttonCharLength, int *buttonMaterialWidth)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -136,7 +136,7 @@ int R_TextHeight(Font_s *font)
 R_TextLineWrapPosition
 ==============
 */
-const char *R_TextLineWrapPosition(
+const char *R_TextLineWrapPosition(const char *text, int bufferSize, int pixelsAvailable, Font_s *font, float scale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

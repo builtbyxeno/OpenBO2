@@ -6,7 +6,7 @@
 LiveStorage_StreamBuff_Init
 ==============
 */
-bool LiveStorage_StreamBuff_Init(
+bool LiveStorage_StreamBuff_Init(streamBuffer_t *streamBuff, unsigned __int8 *buffer, int bufferSize, void *userData, int userDataSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

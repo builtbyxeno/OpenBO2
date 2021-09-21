@@ -47,8 +47,8 @@ void CG_AddMovingTracer(const cg_t *cgameGlob, localEntity_s *le)
 CG_AddLocalEntityTracerBeams
 ==============
 */
-/*void CG_AddLocalEntityTracerBeams(localEntity_s *next@<edx>, const LocalClientNum_t localClientNum)
+void CG_AddLocalEntityTracerBeams(localEntity_s *next, const LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 

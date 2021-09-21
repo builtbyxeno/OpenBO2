@@ -58,10 +58,10 @@ void G_RemoveActorCorpses(int allowedCorpseCount)
 G_UpdateActorCorpses
 ==============
 */
-/*void G_UpdateActorCorpses(int a1@<esi>)
+void G_UpdateActorCorpses(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -78,11 +78,10 @@ void ActorCorpse_Free(gentity_t *ent)
 Actor_SetBodyPlantAngle
 ==============
 */
-
+float Actor_SetBodyPlantAngle(const int iEntNum, const vec3_t* vOrigin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -90,7 +89,7 @@ Actor_SetBodyPlantAngle
 Actor_GetBodyPlantAngles
 ==============
 */
-void Actor_GetBodyPlantAngles(
+void Actor_GetBodyPlantAngles(int iEntNum, int iClipMask, const vec3_t *vOrigin, const float fYaw, float *pfPitch, float *pfRoll, float *pfHeight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

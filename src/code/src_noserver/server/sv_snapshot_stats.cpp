@@ -27,7 +27,7 @@ void SV_StatSign_Init()
 SV_CalcStatsHash
 ==============
 */
-void SV_CalcStatsHash(
+void SV_CalcStatsHash(unsigned int rankxp, unsigned int plevel, unsigned __int64 xuid, unsigned __int8 (*hash)[24], unsigned int *hashSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -70,7 +70,7 @@ char SV_StatSign_SetCheckSumForClient(client_t *client)
 actionOnBadStats
 ==============
 */
-void actionOnBadStats(
+void actionOnBadStats(client_t *client, const unsigned __int64 clientXUID, const dvar_t *dvar, const char *bbstring)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

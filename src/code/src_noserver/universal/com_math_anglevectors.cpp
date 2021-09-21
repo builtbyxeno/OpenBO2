@@ -66,8 +66,8 @@ void vectosignedpitch(vec3_t const &)
 AxisToSignedAngles
 ==============
 */
-/*void AxisToSignedAngles(long double a1@<esi:edi>, const vec3_t *axis, vec3_t *angles)
+void AxisToSignedAngles(long double axis, const vec3_t *a2, vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 

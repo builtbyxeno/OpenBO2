@@ -36,11 +36,10 @@ void SentientInfo_Clear(sentient_info_t *pInfo)
 Actor_droptofloor
 ==============
 */
-
+int Actor_droptofloor(gentity_t* ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -48,11 +47,9 @@ Actor_droptofloor
 Actor_DropPointToFloor
 ==============
 */
-
+void Actor_DropPointToFloor(vec3_t* point)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -218,7 +215,7 @@ bool Actor_InScriptedState(const actor_t *self)
 Actor_Die
 ==============
 */
-void Actor_Die(
+void Actor_Die(gentity_t *self, gentity_t *pInflictor, gentity_t *pAttacker, int iDamage, int iMod, Weapon iWeapon, const vec3_t *vDir, const hitLocation_t hitLoc, int timeOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -250,10 +247,10 @@ BOOL usingCodeGoal(actor_t *actor)
 Actor_DebugDrawNodesInVolume
 ==============
 */
-void Actor_DebugDrawNodesInVolume(actor_t *self)
+/*void Actor_DebugDrawNodesInVolume(actor_t *self@<ecx>, const char *a2@<edi>)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -518,7 +515,7 @@ bool Actor_EnemyInPathFightDist(actor_t *self, sentient_t *enemy)
 Actor_IsKnownEnemyInRegion
 ==============
 */
-gentity_t *Actor_IsKnownEnemyInRegion(
+gentity_t *Actor_IsKnownEnemyInRegion(const actor_t *self, const gentity_t *volume, const vec3_t *position, float radius)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -571,7 +568,7 @@ void Actor_ClearPath(actor_t *self)
 Actor_GetAnimDeltas
 ==============
 */
-void Actor_GetAnimDeltas(actor_t *self, vec2_t *rotation, vec3_t *translation)
+void Actor_GetAnimDeltas(actor_t *self, vec2_t *rotation, char *translation, vec3_t *a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -613,11 +610,9 @@ void Actor_PathEndActions(actor_t *self)
 Actor_SimulateChildrenPhysics
 ==============
 */
-
+void Actor_SimulateChildrenPhysics(actor_t* self)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -803,11 +798,9 @@ float Path_UpdateMomentum(actor_t *self, vec2_t *vWishDir, float fMoveDist)
 Path_UpdateMovementDelta
 ==============
 */
-
+void Path_UpdateMovementDelta(actor_t* self, float fMoveDist)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -866,7 +859,7 @@ void Actor_SetGoalHeight(actor_goal_s *goal, float height)
 Actor_IsInsideArc
 ==============
 */
-bool Actor_IsInsideArc(
+bool Actor_IsInsideArc(actor_t *self, const vec3_t *origin, float radius, float angle0, float angle1, float halfHeight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -968,7 +961,7 @@ void Actor_CheckClearNodeClaimCloseEnt(actor_t *selfa)
 Actor_KeepClaimedNode
 ==============
 */
-char Actor_KeepClaimedNode(actor_t *self)
+char Actor_KeepClaimedNode(actor_t *self, const vec3_t *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1051,7 +1044,7 @@ void Actor_UpdatePathNodes(actor_t *self)
 Actor_Pain
 ==============
 */
-void Actor_Pain(
+void Actor_Pain(gentity_t *self, gentity_t *pAttacker, int iDamage, const vec3_t *vPoint, const int iMod, const vec3_t *vDir, const hitLocation_t hitLoc, const Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1061,10 +1054,10 @@ void Actor_Pain(
 Actor_EntInfo
 ==============
 */
-void Actor_EntInfo(gentity_t *self, vec3_t *source)
+/*void Actor_EntInfo(const char *a1@<esi>, gentity_t *self, vec3_t *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -1082,7 +1075,7 @@ int Actor_MoveAwayNoWorse(actor_t *self)
 Actor_PhysicsCheckMoveAwayNoWorse
 ==============
 */
-int Actor_PhysicsCheckMoveAwayNoWorse(
+int Actor_PhysicsCheckMoveAwayNoWorse(actor_t *self, gentity_t *other, int flags, float distanceSqrd, float lengthSqrd, float lengthSqrda)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1104,7 +1097,7 @@ int Actor_PhysicsMoveAway(actor_t *self)
 Actor_IsAtScriptGoal
 ==============
 */
-bool Actor_IsAtScriptGoal(actor_t *self)
+bool Actor_IsAtScriptGoal(actor_t *self, const vec3_t *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1191,7 +1184,7 @@ bool Actor_IsFixedNodeUseable(actor_t *self)
 Actor_FindPath
 ==============
 */
-bool Actor_FindPath(
+bool Actor_FindPath(actor_t *self, vec3_t *vGoalPos, pathnode_t *pGoalNode, int bAllowNegotiationLinks, int ignoreSuppression)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1234,7 +1227,7 @@ bool Actor_FindPathToSentient(actor_t *self, sentient_t *pGoalEnt, int bSuppress
 Actor_FindPathInGoalWithLOS
 ==============
 */
-void Actor_FindPathInGoalWithLOS(
+void Actor_FindPathInGoalWithLOS(actor_t *self, const vec3_t *vGoalPos, float fWithinDistSqrd, bool ignoreSuppression)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1325,7 +1318,7 @@ void Actor_Think(gentity_t *self)
 Actor_PhysicsAndDodge
 ==============
 */
-int Actor_PhysicsAndDodge(actor_t *self)
+int Actor_PhysicsAndDodge(actor_t *self, char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1346,7 +1339,7 @@ void Actor_DoMove(actor_t *self)
 Actor_IsAtGoal
 ==============
 */
-bool Actor_IsAtGoal(actor_t *self)
+bool Actor_IsAtGoal(actor_t *self, const vec3_t *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1378,7 +1371,7 @@ void Actor_FindPathToGoalDirect(actor_t *self)
 Actor_FindPathToClaimNode
 ==============
 */
-bool Actor_FindPathToClaimNode(
+bool Actor_FindPathToClaimNode(actor_t *self, pathnode_t *node, int allowNegotiationLinks, int ignoreSuppression)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1442,7 +1435,7 @@ bool Actor_TryPathToNode(actor_t *self, pathnode_t *node)
 Actor_FindPathToGoal
 ==============
 */
-void Actor_FindPathToGoal(actor_t *self)
+void Actor_FindPathToGoal(actor_t *self, char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1462,7 +1455,7 @@ void Actor_FixedLinkPhysicsFallback(actor_t *self, vec3_t *targetOrigin)
 Actor_UpdateOriginAndAngles
 ==============
 */
-void Actor_UpdateOriginAndAngles(actor_t *self)
+void Actor_UpdateOriginAndAngles(actor_t *self, char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

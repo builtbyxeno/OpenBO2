@@ -76,10 +76,10 @@ void Scr_Settings(scriptInstance_t inst, int developer, int developer_script, in
 Scr_Shutdown
 ==============
 */
-/*void Scr_Shutdown(ChildVariableValue *a1@<edx>, scriptInstance_t a2@<ecx>, scriptInstance_t inst)
+void Scr_Shutdown(ChildVariableValue *a1, scriptInstance_t a2, scriptInstance_t inst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -179,7 +179,7 @@ unsigned __int8 *Scr_GetReturnPos(scriptInstance_t inst, unsigned int *localId)
 VM_CancelNotifyInternal
 ==============
 */
-void VM_CancelNotifyInternal(
+void VM_CancelNotifyInternal(scriptInstance_t inst, unsigned int notifyListOwnerId, unsigned int startLocalId, unsigned int notifyListId, unsigned int notifyNameListId, unsigned int stringValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -189,9 +189,11 @@ void VM_CancelNotifyInternal(
 VM_CancelNotify
 ==============
 */
-void VM_CancelNotify(scriptInstance_t inst, unsigned int notifyListOwnerId, unsigned int startLocalId)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -199,7 +201,7 @@ void VM_CancelNotify(scriptInstance_t inst, unsigned int notifyListOwnerId, unsi
 VM_ArchiveStack
 ==============
 */
-VariableStackBuffer *VM_ArchiveStack(
+VariableStackBuffer *VM_ArchiveStack(scriptInstance_t inst, VariableValue *top, VariableValue *startTop, unsigned __int8 *pos, unsigned int localVarCount, unsigned int *localId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -231,7 +233,7 @@ void VM_UnarchiveStack(scriptInstance_t inst, unsigned int startLocalId, const V
 VM_TerminateStack
 ==============
 */
-void VM_TerminateStack(
+void VM_TerminateStack(scriptInstance_t inst, unsigned int endLocalId, unsigned int startLocalId, VariableStackBuffer *stackValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -241,7 +243,7 @@ void VM_TerminateStack(
 Scr_GetStackThreadPos
 ==============
 */
-unsigned __int8 *Scr_GetStackThreadPos(
+unsigned __int8 *Scr_GetStackThreadPos(scriptInstance_t inst, unsigned int endLocalId, VariableStackBuffer *stackValue, bool killThread)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -252,7 +254,7 @@ unsigned __int8 *Scr_GetStackThreadPos(
 Scr_SetStackThreadPos
 ==============
 */
-void Scr_SetStackThreadPos(
+void Scr_SetStackThreadPos(scriptInstance_t inst, unsigned int endLocalId, VariableStackBuffer *stackValue, unsigned __int8 *codePos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -262,7 +264,7 @@ void Scr_SetStackThreadPos(
 VM_TrimStack
 ==============
 */
-void VM_TrimStack(
+void VM_TrimStack(scriptInstance_t inst, unsigned int startLocalId, VariableStackBuffer *stackValue, bool fromEndon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -313,7 +315,7 @@ void Scr_TerminateWaitThread(scriptInstance_t inst, unsigned int localId, unsign
 Scr_GetWaitThreadStackId
 ==============
 */
-unsigned int Scr_GetWaitThreadStackId(
+unsigned int Scr_GetWaitThreadStackId(scriptInstance_t inst, unsigned int localId, unsigned int startLocalId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -344,7 +346,7 @@ void Scr_TerminateWaittillThread(scriptInstance_t inst, unsigned int localId, un
 Scr_GetWaittillThreadStackId
 ==============
 */
-unsigned int Scr_GetWaittillThreadStackId(
+unsigned int Scr_GetWaittillThreadStackId(scriptInstance_t inst, unsigned int localId, unsigned int startLocalId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -355,9 +357,11 @@ unsigned int Scr_GetWaittillThreadStackId(
 Scr_TerminateThread
 ==============
 */
-void Scr_TerminateThread(scriptInstance_t inst, unsigned int localId)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -365,10 +369,11 @@ void Scr_TerminateThread(scriptInstance_t inst, unsigned int localId)
 Scr_GetThreadPos
 ==============
 */
-unsigned __int8 *Scr_GetThreadPos(scriptInstance_t inst, unsigned int localId)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -376,9 +381,11 @@ unsigned __int8 *Scr_GetThreadPos(scriptInstance_t inst, unsigned int localId)
 Scr_SetThreadPos
 ==============
 */
-void Scr_SetThreadPos(scriptInstance_t inst, unsigned int localId, unsigned __int8 *codePos)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -386,7 +393,7 @@ void Scr_SetThreadPos(scriptInstance_t inst, unsigned int localId, unsigned __in
 VM_Notify
 ==============
 */
-void VM_Notify(
+void VM_Notify(scriptInstance_t inst, unsigned int notifyListOwnerId, unsigned int stringValue, VariableValue *top)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -396,7 +403,7 @@ void VM_Notify(
 Scr_NotifyId
 ==============
 */
-void Scr_NotifyId(
+void Scr_NotifyId(scriptInstance_t inst, LocalClientNum_t clientNum, unsigned int id, unsigned int stringValue, unsigned int paramcount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -416,7 +423,7 @@ void Scr_NotifyNum(int entnum, unsigned int classnum, unsigned int stringValue, 
 CScr_NotifyNum
 ==============
 */
-void CScr_NotifyNum(
+void CScr_NotifyNum(LocalClientNum_t clientNum, int entnum, unsigned int classnum, unsigned int stringValue, unsigned int paramcount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -476,9 +483,11 @@ void Scr_CancelNotifyList(scriptInstance_t inst, unsigned int notifyListOwnerId)
 VM_TerminateTime
 ==============
 */
-void VM_TerminateTime(scriptInstance_t inst, unsigned int timeId)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -749,7 +758,7 @@ void Scr_ObjectError(scriptInstance_t inst, const char *error)
 SetEntityFieldValue
 ==============
 */
-char SetEntityFieldValue(
+char SetEntityFieldValue(scriptInstance_t inst, unsigned int classnum, int entnum, unsigned __int16 clientNum, int offset, VariableValue *value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -760,7 +769,7 @@ char SetEntityFieldValue(
 GetEntityFieldValue
 ==============
 */
-VariableValue GetEntityFieldValue(
+VariableValue GetEntityFieldValue(scriptInstance_t inst, unsigned int classnum, int entnum, unsigned __int16 clientNum, int offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	VariableValue tmp;
@@ -782,7 +791,7 @@ void Scr_SetStructField(scriptInstance_t inst, unsigned int structId, unsigned i
 Scr_SetDynamicEntityField
 ==============
 */
-void Scr_SetDynamicEntityField(
+void Scr_SetDynamicEntityField(scriptInstance_t inst, int entnum, unsigned int classnum, unsigned int index, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -934,7 +943,7 @@ unsigned int VM_Execute(scriptInstance_t inst)
 Scr_GetNextCodepos
 ==============
 */
-unsigned __int8 *Scr_GetNextCodepos(
+unsigned __int8 *Scr_GetNextCodepos(scriptInstance_t inst, int mode, unsigned __int8 opcode, unsigned __int8 *pos, VariableValue *top, unsigned int *localId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -955,7 +964,7 @@ void VM_Resume(scriptInstance_t inst, unsigned int timeId)
 VM_Execute_0
 ==============
 */
-unsigned int VM_Execute_0(
+unsigned int VM_Execute_0(scriptInstance_t inst, unsigned int localId, unsigned __int8 *pos, unsigned int paramcount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -978,7 +987,7 @@ __int16 Scr_ExecThread(scriptInstance_t inst, int handle, unsigned int paramcoun
 Scr_ExecEntThreadNum
 ==============
 */
-__int16 Scr_ExecEntThreadNum(
+__int16 Scr_ExecEntThreadNum(scriptInstance_t inst, int entnum, unsigned int classnum, int handle, unsigned int paramcount, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	__int16 tmp;
@@ -1020,10 +1029,10 @@ void VM_SetTime(scriptInstance_t inst)
 Scr_ShutdownSystem
 ==============
 */
-void Scr_ShutdownSystem(scriptInstance_t inst, unsigned __int8 sys, bool bComplete)
+/*void Scr_ShutdownSystem(const char *a1@<edi>, scriptInstance_t inst, unsigned __int8 sys, bool bComplete)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

@@ -6,7 +6,7 @@
 R_AddEntitySurfacesInFrustum
 ==============
 */
-void R_AddEntitySurfacesInFrustum(
+void R_AddEntitySurfacesInFrustum(GfxSceneEntity *sceneEnt, const DpvsPlane *planes, int planeCount, unsigned __int8 *entVisData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

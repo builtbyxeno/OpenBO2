@@ -81,7 +81,7 @@ MatchMakingInfo::sizeOf
 MatchMakingInfo::doUpdate
 ==============
 */
-/*bool __thiscall MatchMakingInfo::doUpdate(
+/*bool __thiscall MatchMakingInfo::doUpdate(MatchMakingInfo *this, const int msec, const unsigned int updateIntervalMsec, const unsigned int forceUpdateIntervalMsec)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

@@ -141,7 +141,7 @@ IKState *IK_CreateIKForEntity(int entityNum, unsigned __int8 *model)
 IK_GetJointVars
 ==============
 */
-void IK_GetJointVars(IKState *ikState)
+void IK_GetJointVars(int a1, IKState *ikState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -36,7 +36,7 @@ void ClientCleanName(const char *in, char *out, int outSize)
 ClientUserinfoChanged
 ==============
 */
-void ClientUserinfoChanged(ClientNum_t clientNum)
+void ClientUserinfoChanged(char *name, ClientNum_t clientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -98,7 +98,7 @@ void G_GetViewOriginMissingTag(const playerState_s *ps, vec3_t *origin, const ch
 G_Player3rdPersonVehicle_GetDampedSpringDistance
 ==============
 */
-float G_Player3rdPersonVehicle_GetDampedSpringDistance(
+float G_Player3rdPersonVehicle_GetDampedSpringDistance(const gentity_t *vehicle, const VehicleDef *info, float camDefaultDist)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -119,7 +119,7 @@ void G_GetPlayerVehicleViewOrigin_Internal(const playerState_s *ps, vec3_t *orig
 G_Player3rdPersonVehicle_GetViewAngles
 ==============
 */
-void G_Player3rdPersonVehicle_GetViewAngles(
+void G_Player3rdPersonVehicle_GetViewAngles(const playerState_s *ps, const gentity_t *vehicle, const VehicleDef *info, vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -129,7 +129,7 @@ void G_Player3rdPersonVehicle_GetViewAngles(
 G_Player3rdPersonVehicle_GetLookAtPosition
 ==============
 */
-void G_Player3rdPersonVehicle_GetLookAtPosition(
+void G_Player3rdPersonVehicle_GetLookAtPosition(const gentity_t *vehicle, const VehicleDef *info, vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -139,11 +139,11 @@ void G_Player3rdPersonVehicle_GetLookAtPosition(
 ClientConnect
 ==============
 */
-const char *ClientConnect(ClientNum_t clientNum, unsigned __int16 scriptPersId)
+/*const char *ClientConnect@<eax>(char *a1@<edi>, ClientNum_t clientNum, unsigned __int16 scriptPersId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}
+}*/
 
 /*
 ==============

@@ -16,7 +16,7 @@ void SV_MatchEnd()
 SVC_Info
 ==============
 */
-void SVC_Info(
+void SVC_Info(netadr_t from, const char *challengeResponse, const char *hostName, const char *mapName, const char *gameType, int privateClientCount, int clientCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

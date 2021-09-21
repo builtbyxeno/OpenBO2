@@ -17,7 +17,7 @@ unsigned int R_ModelLightingIndexFromHandle(unsigned __int16 handle)
 R_SetModelLightingConsts
 ==============
 */
-void R_SetModelLightingConsts(
+void R_SetModelLightingConsts(unsigned __int16 handle, vec4_t *coordsAndVis, vec4_t *sh0, vec4_t *sh1, vec4_t *sh2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -27,7 +27,7 @@ void R_SetModelLightingConsts(
 R_SetStaticModelLightingConsts
 ==============
 */
-void R_SetStaticModelLightingConsts(
+void R_SetStaticModelLightingConsts(unsigned __int16 handle, unsigned __int8 visibility, const GfxLightingSHQuantized *encodedLightingSH, vec4_t *coordsAndVis, vec4_t *sh0, vec4_t *sh1, vec4_t *sh2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -37,11 +37,11 @@ void R_SetStaticModelLightingConsts(
 R_AllocModelLightingPixel
 ==============
 */
-/*unsigned int R_AllocModelLightingPixel@<eax>(
+unsigned int R_AllocModelLightingPixel(float lightGlobEA, GfxModelLightGlob *a2, GfxModelLightGlob *lightGlob)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -58,7 +58,7 @@ void R_ToggleModelLightingFrame()
 R_SetStaticModelLightingForSource
 ==============
 */
-void R_SetStaticModelLightingForSource(
+void R_SetStaticModelLightingForSource(const GfxStaticModelDrawInst *smodelDrawInst, GfxCmdBufSourceState *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -139,7 +139,7 @@ char R_AllocStaticModelLighting(const GfxStaticModelDrawInst *smodelDrawInst, un
 R_CalcModelLighting
 ==============
 */
-void R_CalcModelLighting(
+void R_CalcModelLighting(unsigned int entryIndex, const vec3_t *lightingOrigin, GfxModelLightExtrapolation extrapolateBehavior, bool useHeroLighting, unsigned __int8 *primaryLightIndex1, unsigned __int8 *primaryLightIndex2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -169,9 +169,9 @@ void R_SetAllStaticModelLighting()
 R_AllocModelLighting
 ==============
 */
-/*unsigned int R_AllocModelLighting@<eax>(
+unsigned int R_AllocModelLighting(float z, const vec3_t *lightingOrigin, float lightingOriginToleranceSq, unsigned __int8 *useHeroLighting, unsigned __int16 *cachedLightingHandle, GfxLightingInfo *lightingInfoOut)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 

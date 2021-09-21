@@ -16,7 +16,7 @@ void Actor_InitLookAt(actor_t *self)
 Actor_SetLookAtAnimNodes
 ==============
 */
-void Actor_SetLookAtAnimNodes(
+void Actor_SetLookAtAnimNodes(actor_t *self, unsigned __int16 animStraight, unsigned __int16 animLeft, unsigned __int16 animRight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

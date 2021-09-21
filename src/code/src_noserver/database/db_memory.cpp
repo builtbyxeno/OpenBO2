@@ -16,7 +16,7 @@ void DB_InitFFOTDMem()
 DB_FFOTDMemAlloc
 ==============
 */
-unsigned __int8 *DB_FFOTDMemAlloc(
+unsigned __int8 *DB_FFOTDMemAlloc(unsigned int size, unsigned int location, unsigned int allocType, const char *filename, int flags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -27,7 +27,7 @@ unsigned __int8 *DB_FFOTDMemAlloc(
 DB_MemAlloc
 ==============
 */
-unsigned __int8 *DB_MemAlloc(
+unsigned __int8 *DB_MemAlloc(unsigned int size, unsigned int location, unsigned int allocType, const char *filename, int flags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -80,7 +80,7 @@ void DB_UpdateUsage(XBlock *blocks, int flags, bool add)
 DB_AllocXBlocks
 ==============
 */
-void DB_AllocXBlocks(
+void DB_AllocXBlocks(unsigned int *blockSize, const char *filename, XBlock *blocks, unsigned int allocType, int flags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

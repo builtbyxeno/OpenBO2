@@ -17,7 +17,7 @@ bool Actor_SightTrace(actor_t *self, const vec3_t *start, const vec3_t *end, int
 Actor_CanSeePointFrom
 ==============
 */
-bool Actor_CanSeePointFrom(
+bool Actor_CanSeePointFrom(actor_t *self, const vec3_t *vStart, const vec3_t *vEnd, float fMaxDistSqrd, int ignoreEntityNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -91,7 +91,7 @@ void Actor_UpdateLastEnemySightPos(actor_t *self)
 Actor_GetLastKnownEnemyPosWithDuration
 ==============
 */
-void Actor_GetLastKnownEnemyPosWithDuration(
+void Actor_GetLastKnownEnemyPosWithDuration(actor_t *self, const gentity_t *enemy, int cheatDuration, vec3_t *lastKnownPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -183,7 +183,7 @@ int Actor_GetMuzzleInfo(actor_t *self, vec3_t *vOrigin, vec3_t *vForward)
 Actor_CanSeePointExInternal
 ==============
 */
-bool Actor_CanSeePointExInternal(
+bool Actor_CanSeePointExInternal(actor_t *self, const vec3_t *vPoint, float fovDot, float fMaxDistSqrd, int ignoreEntityNum, vec3_t *vViewPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -194,7 +194,7 @@ bool Actor_CanSeePointExInternal(
 Actor_CanSeePointEx
 ==============
 */
-bool Actor_CanSeePointEx(
+bool Actor_CanSeePointEx(actor_t *self, const vec3_t *vPoint, float fovDot, float fMaxDistSqrd, int ignoreEntityNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -216,11 +216,10 @@ char Actor_CanSeeEntityEx(actor_t *self, const gentity_t *ent, float fovDot, flo
 Actor_CanShootFrom
 ==============
 */
-
+BOOL Actor_CanShootFrom(actor_t* self, const vec3_t* vTarget, const vec3_t* vFrom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

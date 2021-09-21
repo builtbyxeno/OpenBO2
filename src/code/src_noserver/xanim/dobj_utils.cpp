@@ -377,7 +377,7 @@ void DObjSetControlTagAngles(const DObj *obj, int *partBits, unsigned int boneIn
 DObjSetLocalTag
 ==============
 */
-void DObjSetLocalTag(
+void DObjSetLocalTag(const DObj *obj, int *partBits, unsigned int boneIndex, const vec3_t *trans, const vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

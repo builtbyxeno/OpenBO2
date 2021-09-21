@@ -39,7 +39,7 @@ unsigned int R_AllocSceneModel()
 R_AllocTextureOverride
 ==============
 */
-char R_AllocTextureOverride(
+char R_AllocTextureOverride(unsigned int dobjModelMask, const Material *mat, const GfxImage *img1, const GfxImage *img2, int *prevOverride)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -50,7 +50,7 @@ char R_AllocTextureOverride(
 R_AllocTextureOverride
 ==============
 */
-char R_AllocTextureOverride(
+char R_AllocTextureOverride(unsigned int dobjModelMask, const GfxImage *img1, const GfxImage *img2, int *prevOverride)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -61,7 +61,7 @@ char R_AllocTextureOverride(
 R_AllocTextureOverride
 ==============
 */
-char R_AllocTextureOverride(
+char R_AllocTextureOverride(unsigned int dobjModelMask, const Material *mat1, const Material *mat2, int *prevOverride)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -72,7 +72,7 @@ char R_AllocTextureOverride(
 R_AllocTextureOverride
 ==============
 */
-char R_AllocTextureOverride(
+char R_AllocTextureOverride(unsigned int dobjModelMask, const Material *mat, unsigned __int16 shaderCodeConst, float x, float y, float z, float w, int *prevOverride)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -83,7 +83,7 @@ char R_AllocTextureOverride(
 R_AllocTextureOverride
 ==============
 */
-char R_AllocTextureOverride(
+char R_AllocTextureOverride(unsigned int dobjModelMask, unsigned __int16 shaderCodeConst, float x, float y, float z, float w, int *prevOverride)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -126,7 +126,7 @@ GfxBrushModel *R_GetBrushModel(unsigned int modelIndex)
 R_AddBrushModelToSceneFromAngles
 ==============
 */
-void R_AddBrushModelToSceneFromAngles(
+void R_AddBrushModelToSceneFromAngles(const GfxBrushModel *bmodel, const vec3_t *origin, const vec3_t *angles, unsigned int entnum, const ShaderConstantSet *constants)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -136,7 +136,7 @@ void R_AddBrushModelToSceneFromAngles(
 R_AddGlassBrushToScene
 ==============
 */
-void R_AddGlassBrushToScene(
+void R_AddGlassBrushToScene(const GfxBrushModel *bmodel, const vec3_t *origin, const vec3_t *angles, Material *altStreamingMaterial)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -146,7 +146,7 @@ void R_AddGlassBrushToScene(
 R_AddDObjToScene
 ==============
 */
-void R_AddDObjToScene(
+void R_AddDObjToScene(const DObj *obj, const cpose_t *pose, unsigned int entnum, unsigned int renderFxFlags, const vec3_t *lightingOrigin, const float *materialTime, const float *burnFraction, int altXModel, int textureOverrideIndex, const ShaderConstantSet *dobjConstantSet, float lightingOriginToleranceSq, float scale, bool isMarkableViewmodel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -188,7 +188,7 @@ void R_PrepareXModelRigidCullInfo(XModelRigidCullInfoContext *cullInfoContext)
 R_CloneAndSetupXModelDrawSurf
 ==============
 */
-void R_CloneAndSetupXModelDrawSurf(
+void R_CloneAndSetupXModelDrawSurf(GfxDrawSurf *outDrawSurf, int skinnedCachedOffset, Material *material, surfaceType_t surfType, unsigned int surfId, unsigned int reflectionProbeIndex, unsigned int customIndex, unsigned int primaryLightIndex, unsigned int shaderConstantSetIndex, unsigned int visLightsMask, XModelRigidCullInfoContext *cullInfoContext, const GfxViewParms *viewParms, ViewParmsType viewParmsType, unsigned int depthHack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -198,7 +198,7 @@ void R_CloneAndSetupXModelDrawSurf(
 R_AddOmniLightToScene
 ==============
 */
-void R_AddOmniLightToScene(
+void R_AddOmniLightToScene(int a1, const vec3_t *org, float radius, float r, float g, float b, float a)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -208,7 +208,7 @@ void R_AddOmniLightToScene(
 R_AddSpotLightToScene
 ==============
 */
-void R_AddSpotLightToScene(
+void R_AddSpotLightToScene(float org, const vec3_t *a2, const vec3_t *axis, float radius, float fovInnerFraction, float startRadius, float endRadius, float r, float g, float b, float a, GfxLightDef *lightDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -218,7 +218,7 @@ void R_AddSpotLightToScene(
 R_AddFlashLightToScene
 ==============
 */
-void R_AddFlashLightToScene(
+void R_AddFlashLightToScene(float org, const vec3_t *a2, const vec3_t *dir, const vec3_t *diry, const vec3_t *dirz, float flicker)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -258,7 +258,7 @@ void R_SetAllowShadowMaps(const bool allowShadowMaps)
 R_AddBModelSurfacesCamera
 ==============
 */
-void R_AddBModelSurfacesCamera(
+void R_AddBModelSurfacesCamera(BModelDrawInfo *bmodelInfo, const GfxBrushModel *bmodel, GfxDrawSurf **drawSurfs, GfxDrawSurf **lastDrawSurfs, unsigned int reflectionProbeIndex, unsigned int visLightsMask, bool isVisibleForSunShadow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -268,7 +268,7 @@ void R_AddBModelSurfacesCamera(
 R_AddBModelSurfaces
 ==============
 */
-GfxDrawSurf *R_AddBModelSurfaces(
+GfxDrawSurf *R_AddBModelSurfaces(BModelDrawInfo *bmodelInfo, const GfxBrushModel *bmodel, unsigned __int8 techType, unsigned int primaryLightIndex, GfxDrawSurf *drawSurf, GfxDrawSurf *lastDrawSurf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -311,9 +311,11 @@ Material *R_MaterialOverride(unsigned int modelIndex, int textureOverrideIdx, Ma
 R_AddXModelSurfacesCamera
 ==============
 */
-void R_AddXModelSurfacesCamera(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -321,7 +323,7 @@ void R_AddXModelSurfacesCamera(
 R_AddXModelSurfaces
 ==============
 */
-GfxDrawSurf *R_AddXModelSurfaces(
+GfxDrawSurf *R_AddXModelSurfaces(XModelDrawInfo *modelInfo, const XModel *model, unsigned __int8 techType, GfxDrawSurf *drawSurf, GfxDrawSurf *lastDrawSurf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -332,7 +334,7 @@ GfxDrawSurf *R_AddXModelSurfaces(
 R_AddDObjSurfaces
 ==============
 */
-GfxDrawSurf *R_AddDObjSurfaces(
+GfxDrawSurf *R_AddDObjSurfaces(GfxSceneEntity *sceneEnt, unsigned __int8 techType, GfxDrawSurf *drawSurf, GfxDrawSurf *lastDrawSurf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -343,7 +345,7 @@ GfxDrawSurf *R_AddDObjSurfaces(
 R_SetSceneComposition
 ==============
 */
-void R_SetSceneComposition(
+void R_SetSceneComposition(GfxViewInfo *viewInfo, const GfxSceneParms *sceneParms, const GfxExtraCamParms *extraCamParms)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -426,10 +428,10 @@ void R_SetExposure
 R_InitModifierVolumes
 ==============
 */
-/*void R_InitModifierVolumes(float *a1@<edx>, vec3_t *a2@<ecx>, refdef_t *refdef)
+void R_InitModifierVolumes(float *a1, vec3_t *a2, refdef_t *refdef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -588,7 +590,7 @@ void R_SetFullSceneViewMesh(int viewInfoIndex, GfxViewInfo *viewInfo)
 R_AddDrawLitCall
 ==============
 */
-void R_AddDrawLitCall(
+void R_AddDrawLitCall(GfxViewInfo *viewInfo, unsigned int drawListType, unsigned __int8 cmdBufType, unsigned int cmdBufPartitionCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -598,7 +600,7 @@ void R_AddDrawLitCall(
 R_AddDrawLitBspCall
 ==============
 */
-void R_AddDrawLitBspCall(
+void R_AddDrawLitBspCall(GfxViewInfo *viewInfo, unsigned int drawListType, unsigned __int8 cmdBufType, unsigned int cmdBufPartitionCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -608,7 +610,7 @@ void R_AddDrawLitBspCall(
 R_AddDrawLitStaticModelCall
 ==============
 */
-void R_AddDrawLitStaticModelCall(
+void R_AddDrawLitStaticModelCall(GfxViewInfo *viewInfo, unsigned int drawListType, unsigned __int8 cmdBufType, unsigned int cmdBufPartitionCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -678,7 +680,7 @@ void R_SetSkyColorMatrix(GfxCmdBufInput *input)
 R_SetHDRControlConstants
 ==============
 */
-void R_SetHDRControlConstants(
+void R_SetHDRControlConstants(float input, GfxCmdBufInput *a2, const GfxViewInfo *viewInfo, refdef_t *refdef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -700,7 +702,7 @@ R_SetDLightsConstants
 R_SplitDrawSurfacesPrimarySortKeyScanRev
 ==============
 */
-void R_SplitDrawSurfacesPrimarySortKeyScanRev(
+void R_SplitDrawSurfacesPrimarySortKeyScanRev(GfxDrawSurfListInfo *srcList, GfxDrawSurfListInfo *destList, int sortkeyID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -710,7 +712,7 @@ void R_SplitDrawSurfacesPrimarySortKeyScanRev(
 DrawLightDebug
 ==============
 */
-void DrawLightDebug(
+void DrawLightDebug(const GfxViewInfo *viewInfo, const GfxLight *L, const vec4_t *debugColor, bool forShadow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -740,10 +742,10 @@ void R_DrawFogParams(const refdef_t *refdef)
 R_SetSkyDynamicIntensity
 ==============
 */
-/*void R_SetSkyDynamicIntensity(float a1@<edi>, const vec3_t *viewForward, GfxCmdBufInput *input)
+void R_SetSkyDynamicIntensity(float viewForward, const vec3_t *a2, GfxCmdBufInput *input)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -772,7 +774,7 @@ int R_WaitForFXNonSpriteWorkerCmds()
 R_SetupDrawSurfListInfos
 ==============
 */
-void R_SetupDrawSurfListInfos(
+void R_SetupDrawSurfListInfos(const int *infolist, int count, GfxViewInfo *viewInfo, const GfxViewParms *viewParmsDraw)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -782,7 +784,7 @@ void R_SetupDrawSurfListInfos(
 R_SplitAndMergeDrawLists
 ==============
 */
-void R_SplitAndMergeDrawLists(
+void R_SplitAndMergeDrawLists(GfxViewInfo *viewInfo, unsigned int srcDrawList, unsigned int sortkey, unsigned int dstDrawList, GfxBackEndData *backendData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -792,7 +794,7 @@ void R_SplitAndMergeDrawLists(
 R_MergeAndEmitDrawSurfListsIntoList
 ==============
 */
-void R_MergeAndEmitDrawSurfListsIntoList(
+void R_MergeAndEmitDrawSurfListsIntoList(GfxDrawSurfListInfo *info, int start, int count, GfxBackEndData *backendData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -802,9 +804,11 @@ void R_MergeAndEmitDrawSurfListsIntoList(
 R_FinishDecalAndEmissiveDrawSurfs
 ==============
 */
-void R_FinishDecalAndEmissiveDrawSurfs(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -925,7 +929,7 @@ void R_SetupSunShadowGlobals()
 R_GenerateSortedDrawSurfs
 ==============
 */
-void R_GenerateSortedDrawSurfs(
+void R_GenerateSortedDrawSurfs(const GfxSceneParms *sceneParms, const GfxViewParms *viewParmsDpvs, const GfxViewParms *viewParmsDraw, int frameTime, const refdef_t *refdef, const GfxExtraCamParms *extraCamParms)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -997,7 +1001,7 @@ void R_ExtraCam_SetSceneParms(const refdef_t *refdef, GfxSceneParms *sceneParms)
 R_LerpDir
 ==============
 */
-void R_LerpDir(
+void R_LerpDir(const vec3_t *dirBegin, const vec3_t *dirEnd, const int beginLerpTime, const int endLerpTime, const int currTime, vec3_t *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1060,7 +1064,7 @@ GfxViewParms *R_SetupRenderSceneViewParms(const refdef_t *refdef)
 R_RenderScene
 ==============
 */
-void R_RenderScene(
+void R_RenderScene(const GfxExtraCamParms *a1, const refdef_t *refdef, int frameTime, const GfxViewParms *viewParmsDraw, const GfxViewParms *viewParmsDpvs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1100,10 +1104,10 @@ void R_UnlinkEntity(LocalClientNum_t localClientNum, unsigned int entnum)
 R_LinkDynEnt
 ==============
 */
-void R_LinkDynEnt(unsigned int dynEntId, DynEntityDrawType drawType, vec3_t *mins, vec3_t *maxs)
+/*void R_LinkDynEnt(DynEntityDrawType a1@<edx>, unsigned int a2@<ecx>, unsigned int dynEntId, DynEntityDrawType drawType, vec3_t *mins, vec3_t *maxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -1151,7 +1155,7 @@ GfxViewParms *R_PvsLock_GetViewParms()
 ShowLodInfo
 ==============
 */
-void ShowLodInfo(
+void ShowLodInfo(const vec3_t *origin, int lod, int numLods, float curDist, float lodDist, bool lodDistAutoGenerated)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1171,9 +1175,11 @@ void R_PerMap_Init()
 R_AddDObjSurfacesCamera
 ==============
 */
-void R_AddDObjSurfacesCamera(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1181,7 +1187,7 @@ void R_AddDObjSurfacesCamera(
 R_SetupVisibilityEarly
 ==============
 */
-void R_SetupVisibilityEarly(
+void R_SetupVisibilityEarly(const GfxViewParms *viewParmsDpvs, unsigned int renderCullFlags, int recalculateShadows)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1202,7 +1208,7 @@ int r_add_draw_callsCallback(jqBatch *batch)
 R_RenderExtraCam
 ==============
 */
-void R_RenderExtraCam(
+void R_RenderExtraCam(const GfxExtraCamParms *a1, const refdef_t *refdef, int frameTime, const GfxExtraCamParms *extraCamParms)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

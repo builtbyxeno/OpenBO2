@@ -67,7 +67,7 @@ void Heli_InitFirstThink(gentity_t *pSelf)
 Helicopter_Pain
 ==============
 */
-void Helicopter_Pain(
+void Helicopter_Pain(gentity_t *pSelf, gentity_t *pAttacker, int damage, const vec3_t *point, const int mod, const vec3_t *dir)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -77,7 +77,7 @@ void Helicopter_Pain(
 Helicopter_Die
 ==============
 */
-void Helicopter_Die(
+void Helicopter_Die(gentity_t *pSelf, gentity_t *pInflictor, gentity_t *pAttacker, const int damage, const int mod, const Weapon weapon, const vec3_t *dir)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

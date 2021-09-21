@@ -3,7 +3,7 @@
 #include "types.h"
 
 //t6/code/src_noserver/riotshield/riotshield.cpp
-void Riotshield_RegisterDvars(int a1, dvarType_t a2);
+void Riotshield_RegisterDvars(dvarType_t a1, dvarType_t a2);
 void BG_SetRiotshieldModel(playerState_s *ps, bool redShader);
 ;
 

@@ -60,11 +60,9 @@ char R_CullPointAndRadius(const vec3_t *pt, float radius, const DpvsPlane *clipP
 R_ConvertColorToBytes
 ==============
 */
-
+void R_ConvertColorToBytes()
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*

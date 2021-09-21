@@ -72,7 +72,7 @@ PhysGeomList *CG_VEH_GetCollmap(LocalClientNum_t localClientNum, const int entNu
 G_GetVehicleProximityCache
 ==============
 */
-/*colgeom_visitor_inlined_t<300> *G_GetVehicleProximityCache(
+/*colgeom_visitor_inlined_t<300> *G_GetVehicleProximityCache(LocalClientNum_t localClientNum, const playerState_s *ps)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -83,7 +83,7 @@ G_GetVehicleProximityCache
 CG_GetVehicleProximityCache
 ==============
 */
-/*colgeom_visitor_inlined_t<300> *CG_GetVehicleProximityCache(
+/*colgeom_visitor_inlined_t<300> *CG_GetVehicleProximityCache(LocalClientNum_t localClientNum, const playerState_s *ps)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -192,7 +192,7 @@ BG_VehicleGroundPlant
 BG_PlayerStateToVehicleState
 ==============
 */
-void BG_PlayerStateToVehicleState(
+void BG_PlayerStateToVehicleState(LocalClientNum_t localClientNum, const playerState_s *ps, entityState_s *s, int snap, unsigned __int8 handler)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -248,7 +248,7 @@ BG_VehicleStepSlideMove
 BG_VehicleGroundMove
 ==============
 */
-void BG_VehicleGroundMove(
+void BG_VehicleGroundMove(pmove_t *pm, VehicleState *vehicleState, const GroundTrace *groundTrace, int gravity, float dt)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -36,7 +36,7 @@ gjk_query_output::query_epilog
 gjk_physics_collision_visitor::query_create_epilog_1
 ==============
 */
-/*void __thiscall gjk_physics_collision_visitor::query_create_epilog_1(
+/*void __thiscall gjk_physics_collision_visitor::query_create_epilog_1(gjk_physics_collision_visitor *this, gjk_base_t *gjk_geom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -46,7 +46,7 @@ gjk_physics_collision_visitor::query_create_epilog_1
 gjk_query_output::set_local_query_info
 ==============
 */
-/*void __thiscall gjk_query_output::set_local_query_info(
+/*void __thiscall gjk_query_output::set_local_query_info(gjk_query_output *this, const gjk_query_input *input, gjk_entity_info_t *ent_info)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -139,18 +139,18 @@ void fill_results_no_hit(trace_t *results)
 is_walkable
 ==============
 */
-/*bool is_walkable@<al>(const gjk_trace_output_t *gto)
+bool is_walkable(float gto, const gjk_trace_output_t *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 gjk_query_output::allocate
 ==============
 */
-/*char *__thiscall gjk_query_output::allocate(
+/*char *__thiscall gjk_query_output::allocate(gjk_query_output *this, const int size, const int alignment, const bool no_error)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -161,7 +161,7 @@ gjk_query_output::allocate
 gjk_query_output::get_local_query_aabb
 ==============
 */
-/*void __thiscall gjk_query_output::get_local_query_aabb(
+/*void __thiscall gjk_query_output::get_local_query_aabb(gjk_query_output *this, vec3_t *local_query_aabb_min, vec3_t *local_query_aabb_max)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -171,7 +171,7 @@ gjk_query_output::get_local_query_aabb
 gjk_query_output::query_create_prolog_1
 ==============
 */
-/*bool __thiscall gjk_query_output::query_create_prolog_1(
+/*bool __thiscall gjk_query_output::query_create_prolog_1(gjk_query_output *this, const vec3_t *local_aabb_min, const vec3_t *local_aabb_max, const void *geom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -182,7 +182,7 @@ gjk_query_output::query_create_prolog_1
 gjk_query_output::create_geom_info
 ==============
 */
-/*gjk_geom_info_t *__thiscall gjk_query_output::create_geom_info(
+/*gjk_geom_info_t *__thiscall gjk_query_output::create_geom_info(gjk_query_output *this, gjk_base_t *cg, gjk_entity_info_t *ent_info, const vec3_t *aabb_min, const vec3_t *aabb_max)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -193,7 +193,7 @@ gjk_query_output::create_geom_info
 setup_gjk_capsule
 ==============
 */
-void setup_gjk_capsule(
+void setup_gjk_capsule(const vec3_t *mins, const vec3_t *maxs, const float radius_adjust, gjk_double_sphere_t *gjk_capsule)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -203,7 +203,7 @@ void setup_gjk_capsule(
 setup_gjk_cylinder
 ==============
 */
-void setup_gjk_cylinder(
+void setup_gjk_cylinder(const vec3_t *mins, const vec3_t *maxs, const float radius_adjust, gjk_cylinder_t *gjk_cylinder)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -213,7 +213,7 @@ void setup_gjk_cylinder(
 gjk_aabb_t::is_walkable
 ==============
 */
-/*bool gjk_aabb_t::is_walkable@<al>(
+/*bool gjk_aabb_t::is_walkable(gjk_aabb_t *this, int a2, const phys_vec3 *hit_point, const phys_vec3 *up)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -359,7 +359,7 @@ void gjk_query_prims(const gjk_query_input *input, gjk_query_output *output)
 gjk_query_terrain
 ==============
 */
-void gjk_query_terrain(const gjk_query_input *input, gjk_query_output *output)
+void gjk_query_terrain(int a1, const gjk_query_input *input, gjk_query_output *output)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -409,10 +409,10 @@ void gjk_query_dents(const gjk_query_input *input, gjk_query_output *output)
 gjk_query
 ==============
 */
-void gjk_query(const gjk_query_input *input, gjk_query_output *output)
+/*void gjk_query(const gjk_query_input *a1@<edx>, colgeom_visitor_inlined_t<300> *a2@<ecx>, const gjk_query_input *input, gjk_query_output *output)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -431,7 +431,7 @@ gjk_query_output::cached_query_resize
 gjk_query_output::cached_query_prolog
 ==============
 */
-/*void __thiscall gjk_query_output::cached_query_prolog(
+/*void __thiscall gjk_query_output::cached_query_prolog(gjk_query_output *this, const bool is_server_thread, colgeom_visitor_inlined_t<300> *proximity_data, const int proximity_mask, const phys_vec3 *start_origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -451,7 +451,7 @@ gjk_query_output::cached_query_epilog
 gjk_query_cached
 ==============
 */
-void gjk_query_cached(const gjk_query_input *input, gjk_query_output *output)
+void gjk_query_cached(int a1, const gjk_query_input *input, gjk_query_output *output)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -6,7 +6,7 @@
 PartyUI_HandleEliteClanTag
 ==============
 */
-void PartyUI_HandleEliteClanTag(
+void PartyUI_HandleEliteClanTag(bool clanAbbrev_IsEliteValidated, char *inAbbrev, char *inName, char *playerName, char *outName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

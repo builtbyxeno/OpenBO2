@@ -27,9 +27,9 @@ void Actor_Death_Cleanup(actor_t *self)
 Actor_Death_Think
 ==============
 */
-/*int Actor_Death_Think@<eax>(actor_t *self@<ecx>, int a2@<ebp>)
+int Actor_Death_Think(actor_t *self, int a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 

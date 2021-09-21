@@ -82,9 +82,11 @@ ddlDef_t *DDL_LoadAsset(const char *fileName)
 DDL_ResetAndAssociateBuffer
 ==============
 */
-void DDL_ResetAndAssociateBuffer(unsigned __int8 *buffer, int bufferSize, ddlDef_t *ddl)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -92,7 +94,7 @@ void DDL_ResetAndAssociateBuffer(unsigned __int8 *buffer, int bufferSize, ddlDef
 DDL_BitwiseCopy
 ==============
 */
-int DDL_BitwiseCopy(
+int DDL_BitwiseCopy(ddlState_t *fromState, ddlState_t *toState, unsigned __int8 *inBuffer, unsigned __int8 *outBuffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -136,7 +138,7 @@ int DDL_Buffer_Check(int offset, int size)
 DDL_AreStateValuesSame
 ==============
 */
-int DDL_AreStateValuesSame(
+int DDL_AreStateValuesSame(ddlState_t *stateA, unsigned __int8 *bufferA, ddlState_t *stateB, unsigned __int8 *bufferB)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -212,7 +214,7 @@ int DDL_IterateFirst(const ddlState_t *searchState, ddlState_t *resultState)
 DDL_WriteUIntValueIfChanged
 ==============
 */
-ddlIntValueChanged_e DDL_WriteUIntValueIfChanged(
+ddlIntValueChanged_e DDL_WriteUIntValueIfChanged(unsigned __int8 *buffer, int offset, int size, unsigned int valueToInsert)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	ddlIntValueChanged_e tmp;
@@ -235,10 +237,11 @@ int DDL_SetRawBytes(unsigned __int8 *buffer, int offset, int size, const char *v
 DDL_WriteUIntValueInternal
 ==============
 */
-int DDL_WriteUIntValueInternal(ddlState_t *state, int absoluteOffset, unsigned int valueToInsert)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -246,7 +249,7 @@ int DDL_WriteUIntValueInternal(ddlState_t *state, int absoluteOffset, unsigned i
 DDL_WriteIntValueInternal
 ==============
 */
-int DDL_WriteIntValueInternal(
+int DDL_WriteIntValueInternal(ddlState_t *state, int absoluteOffset, int valueToInsert, unsigned __int8 *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -257,10 +260,11 @@ int DDL_WriteIntValueInternal(
 DDL_WriteInt64ValueInternal
 ==============
 */
-int DDL_WriteInt64ValueInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -279,7 +283,7 @@ int DDL_WriteFloatValueInternal(ddlState_t *state, int absoluteOffset, float val
 DDL_WriteFixedPointValueInternal
 ==============
 */
-int DDL_WriteFixedPointValueInternal(
+int DDL_WriteFixedPointValueInternal(ddlState_t *state, int absoluteOffset, float value, unsigned __int8 *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -290,7 +294,7 @@ int DDL_WriteFixedPointValueInternal(
 DDL_WriteStringValueInternal
 ==============
 */
-int DDL_WriteStringValueInternal(
+int DDL_WriteStringValueInternal(ddlState_t *state, int absoluteOffset, const char *value, unsigned __int8 *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -301,10 +305,11 @@ int DDL_WriteStringValueInternal(
 DDL_WriteValueInternal
 ==============
 */
-int DDL_WriteValueInternal(ddlState_t *state, int absoluteOffset, ddlValue_t value, unsigned __int8 *buffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -323,10 +328,11 @@ int DDL_GetState(const ddlDef_t *ddl, ddlState_t *searchState, int numArgs, char
 DDL_SetInt
 ==============
 */
-int DDL_SetInt(ddlState_t *searchState, int value, unsigned __int8 *buffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -345,10 +351,11 @@ int DDL_SetUInt(ddlState_t *searchState, unsigned int value, unsigned __int8 *bu
 DDL_SetInt64
 ==============
 */
-int DDL_SetInt64(ddlState_t *searchState, unsigned __int64 value, unsigned __int8 *buffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -356,10 +363,11 @@ int DDL_SetInt64(ddlState_t *searchState, unsigned __int64 value, unsigned __int
 DDL_SetFloat
 ==============
 */
-int DDL_SetFloat(ddlState_t *searchState, float value, unsigned __int8 *buffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -378,10 +386,11 @@ int DDL_SetFloat(ddlDef_t *ddl, float value, unsigned __int8 *buffer, int numArg
 DDL_SetFixedPoint
 ==============
 */
-int DDL_SetFixedPoint(ddlState_t *searchState, float value, unsigned __int8 *buffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -411,10 +420,11 @@ int DDL_SetString(ddlState_t *searchState, const char *value, unsigned __int8 *b
 DDL_SetValue
 ==============
 */
-int DDL_SetValue(ddlState_t *searchState, ddlValue_t value, unsigned __int8 *buffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -422,10 +432,11 @@ int DDL_SetValue(ddlState_t *searchState, ddlValue_t value, unsigned __int8 *buf
 DDL_SetValue
 ==============
 */
-int DDL_SetValue(ddlState_t *searchState, const char *value, unsigned __int8 *buffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -455,10 +466,11 @@ unsigned int DDL_ReadUIntValueInternal(ddlState_t *state, int absoluteOffset, un
 DDL_GetUInt
 ==============
 */
-unsigned int DDL_GetUInt(ddlState_t *searchState, unsigned __int8 *buffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -466,10 +478,11 @@ unsigned int DDL_GetUInt(ddlState_t *searchState, unsigned __int8 *buffer)
 DDL_ReadIntValueInternal
 ==============
 */
-int DDL_ReadIntValueInternal(ddlState_t *state, int absoluteOffset, unsigned __int8 *buffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -477,10 +490,11 @@ int DDL_ReadIntValueInternal(ddlState_t *state, int absoluteOffset, unsigned __i
 DDL_GetInt
 ==============
 */
-int DDL_GetInt(ddlState_t *searchState, unsigned __int8 *buffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -521,22 +535,23 @@ float DDL_ReadFloatValueInternal(ddlState_t *state, int absoluteOffset, unsigned
 DDL_GetFloat
 ==============
 */
-/*float DDL_GetFloat@<st0>(ddlState_t *a1@<xmm0>, ddlState_t *searchState, unsigned __int8 *buffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 DDL_GetFloat
 ==============
 */
-/*double DDL_GetFloat@<st0>(ddlState_t *a1@<xmm0>, ddlDef_t *ddl, unsigned __int8 *buffer, int numArgs, ...)
+double DDL_GetFloat(ddlState_t *ddl, ddlDef_t *buffer, unsigned __int8 *numArgs, int args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -554,22 +569,23 @@ float DDL_ReadFixedPointValueInternal(ddlState_t *state, int absoluteOffset, uns
 DDL_GetFixedPoint
 ==============
 */
-/*float DDL_GetFixedPoint@<st0>(ddlState_t *a1@<xmm0>, ddlState_t *searchState, unsigned __int8 *buffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 DDL_GetFixedPoint
 ==============
 */
-/*double DDL_GetFixedPoint@<st0>(
+double DDL_GetFixedPoint(ddlState_t *ddl, ddlDef_t *buffer, unsigned __int8 *numArgs, int args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -598,7 +614,7 @@ bool DDL_GetBool(ddlDef_t *ddl, unsigned __int8 *buffer, int numArgs, ...)
 DDL_LoadStringValueInternal
 ==============
 */
-char DDL_LoadStringValueInternal(
+char DDL_LoadStringValueInternal(ddlState_t *state, int absoluteOffset, unsigned __int8 *buffer, char *outBuffer, int outBufferLength)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -642,10 +658,11 @@ char DDL_LoadString(ddlState_t *searchState, unsigned __int8 *buffer, char *outB
 DDL_ReadValueInternal
 ==============
 */
-int DDL_ReadValueInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -653,10 +670,11 @@ int DDL_ReadValueInternal(
 DDL_GetValue
 ==============
 */
-int DDL_GetValue(ddlState_t *searchState, ddlValue_t *result, unsigned __int8 *buffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -740,7 +758,7 @@ unsigned int DDL_GetHeaderVersion(unsigned __int8 *buffer)
 DDL_FixBufferVersion
 ==============
 */
-int DDL_FixBufferVersion(
+int DDL_FixBufferVersion(unsigned __int8 *buffer, ddlDef_t *ddlTo, const char *ddlName, unsigned __int8 *backupBuffer, int bufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -751,10 +769,11 @@ int DDL_FixBufferVersion(
 DDL_ValidateHeader
 ==============
 */
-int DDL_ValidateHeader(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -762,10 +781,11 @@ int DDL_ValidateHeader(
 DDL_AssociateBufferNonDestructive
 ==============
 */
-int DDL_AssociateBufferNonDestructive(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -773,10 +793,11 @@ int DDL_AssociateBufferNonDestructive(
 DDL_AssociateBuffer
 ==============
 */
-int DDL_AssociateBuffer(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*

@@ -6,7 +6,7 @@
 PMem_InitPhysicalMemory
 ==============
 */
-void PMem_InitPhysicalMemory(
+void PMem_InitPhysicalMemory(PhysicalMemory *pmem, const char *name, void *memory, unsigned int memorySize, bool giveToStreamer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -16,10 +16,12 @@ void PMem_InitPhysicalMemory(
 PMem_Init
 ==============
 */
-/*void PMem_Init(bool a1@<dil>)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -36,9 +38,11 @@ void PMem_BeginAllocInPrim(PhysicalMemoryPrim *prim, const char *name, EMemTrack
 PMem_BeginAlloc
 ==============
 */
-void PMem_BeginAlloc(const char *name, unsigned int allocType, EMemTrack memTrack)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -87,7 +91,7 @@ int PMem_GetOverAllocatedSize()
 _PMem_AllocNamed
 ==============
 */
-unsigned __int8 *_PMem_AllocNamed(
+unsigned __int8 *_PMem_AllocNamed(unsigned int size, unsigned int alignment, unsigned int type, unsigned int allocType, const char *name, EMemTrack memTrack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -98,7 +102,7 @@ unsigned __int8 *_PMem_AllocNamed(
 _PMem_Alloc
 ==============
 */
-unsigned __int8 *_PMem_Alloc(
+unsigned __int8 *_PMem_Alloc(unsigned int size, unsigned int alignment, unsigned int type, unsigned int allocType, EMemTrack memTrack, const char *file, int lineNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

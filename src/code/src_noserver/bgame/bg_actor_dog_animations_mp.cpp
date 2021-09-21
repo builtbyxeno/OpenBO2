@@ -237,7 +237,7 @@ void BG_Dog_Stop_Idle(LocalClientNum_t localClientNum, const entityState_s *es, 
 BG_Dog_Stop_AttackIdle
 ==============
 */
-void BG_Dog_Stop_AttackIdle(
+void BG_Dog_Stop_AttackIdle(LocalClientNum_t localClientNum, const entityState_s *es, ActorAnimStates prevState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -247,7 +247,7 @@ void BG_Dog_Stop_AttackIdle(
 BG_Dog_Stop_AttackIdle_Bark
 ==============
 */
-void BG_Dog_Stop_AttackIdle_Bark(
+void BG_Dog_Stop_AttackIdle_Bark(LocalClientNum_t localClientNum, const entityState_s *es, ActorAnimStates prevState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -257,7 +257,7 @@ void BG_Dog_Stop_AttackIdle_Bark(
 BG_Dog_Stop_AttackIdle_Growl
 ==============
 */
-void BG_Dog_Stop_AttackIdle_Growl(
+void BG_Dog_Stop_AttackIdle_Growl(LocalClientNum_t localClientNum, const entityState_s *es, ActorAnimStates prevState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -397,7 +397,7 @@ void BG_Dog_Death_Right(LocalClientNum_t localClientNum, const entityState_s *es
 BG_Dog_Death_Fast_Forward_Front
 ==============
 */
-void BG_Dog_Death_Fast_Forward_Front(
+void BG_Dog_Death_Fast_Forward_Front(LocalClientNum_t localClientNum, const entityState_s *es, actorInfo_t *actorInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -407,7 +407,7 @@ void BG_Dog_Death_Fast_Forward_Front(
 BG_Dog_Death_Fast_Forward_Back
 ==============
 */
-void BG_Dog_Death_Fast_Forward_Back(
+void BG_Dog_Death_Fast_Forward_Back(LocalClientNum_t localClientNum, const entityState_s *es, actorInfo_t *actorInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -417,7 +417,7 @@ void BG_Dog_Death_Fast_Forward_Back(
 BG_Dog_Death_Fast_Forward_Left
 ==============
 */
-void BG_Dog_Death_Fast_Forward_Left(
+void BG_Dog_Death_Fast_Forward_Left(LocalClientNum_t localClientNum, const entityState_s *es, actorInfo_t *actorInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -427,7 +427,7 @@ void BG_Dog_Death_Fast_Forward_Left(
 BG_Dog_Death_Fast_Forward_Right
 ==============
 */
-void BG_Dog_Death_Fast_Forward_Right(
+void BG_Dog_Death_Fast_Forward_Right(LocalClientNum_t localClientNum, const entityState_s *es, actorInfo_t *actorInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -527,7 +527,7 @@ void BG_Dog_Combat_Attack_Miss_Right(LocalClientNum_t localClientNum, const enti
 BG_Dog_Clear_Traverse_Anims
 ==============
 */
-void BG_Dog_Clear_Traverse_Anims(
+void BG_Dog_Clear_Traverse_Anims(LocalClientNum_t localClientNum, const entityState_s *es, ActorAnimStates prevState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -617,7 +617,7 @@ void BG_Dog_Move_Run(LocalClientNum_t localClientNum, const entityState_s *es, A
 BG_Dog_Move_Walk
 ==============
 */
-void BG_Dog_Move_Walk(LocalClientNum_t localClientNum, const entityState_s *es, ActorAnimStates prevState)
+void BG_Dog_Move_Walk(LocalClientNum_t localClientNum, const entityState_s* es, ActorAnimStates prevState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

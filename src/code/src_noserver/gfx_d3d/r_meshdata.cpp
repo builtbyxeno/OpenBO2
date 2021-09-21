@@ -59,7 +59,7 @@ void R_ResetMesh(GfxMeshData *mesh)
 R_SetQuadMeshData
 ==============
 */
-void R_SetQuadMeshData(
+void R_SetQuadMeshData(GfxMeshData *mesh, float x, float y, float w, float h, float s0, float t0, float s1, float t1, unsigned int color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -69,7 +69,7 @@ void R_SetQuadMeshData(
 R_SetQuadMesh
 ==============
 */
-void R_SetQuadMesh(
+void R_SetQuadMesh(GfxQuadMeshData *quadMesh, float x, float y, float w, float h, float s0, float t0, float s1, float t1, unsigned int color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

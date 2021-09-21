@@ -97,7 +97,7 @@ void Scr_GetValue(scriptInstance_t inst, unsigned int index, VariableValue *valu
 Scr_EvalFieldVariableInternal
 ==============
 */
-void Scr_EvalFieldVariableInternal(
+void Scr_EvalFieldVariableInternal(scriptInstance_t inst, unsigned int objectId, unsigned int fieldName, VariableValue *value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -149,10 +149,11 @@ char Scr_CompileMethod(scriptInstance_t inst, sval_u *expr, sval_u *func_name, s
 Scr_CompileCallExpression
 ==============
 */
-char Scr_CompileCallExpression(scriptInstance_t inst, sval_u *expr)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -210,7 +211,7 @@ void Scr_EvalCallExpression(scriptInstance_t inst, sval_u expr, unsigned int loc
 Scr_EvalBoolOrExpression
 ==============
 */
-void Scr_EvalBoolOrExpression(
+void Scr_EvalBoolOrExpression(scriptInstance_t inst, sval_u expr1, sval_u expr2, unsigned int localId, VariableValue *value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -220,7 +221,7 @@ void Scr_EvalBoolOrExpression(
 Scr_EvalBoolAndExpression
 ==============
 */
-void Scr_EvalBoolAndExpression(
+void Scr_EvalBoolAndExpression(scriptInstance_t inst, sval_u expr1, sval_u expr2, unsigned int localId, VariableValue *value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -230,7 +231,7 @@ void Scr_EvalBoolAndExpression(
 Scr_EvalVector
 ==============
 */
-void Scr_EvalVector(
+void Scr_EvalVector(scriptInstance_t inst, sval_u expr1, sval_u expr2, sval_u expr3, unsigned int localId, VariableValue *value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -250,7 +251,7 @@ void Scr_FreeDebugExprValue(scriptInstance_t inst, sval_u val)
 Scr_EvalPrimitiveExpressionFieldObject
 ==============
 */
-unsigned int Scr_EvalPrimitiveExpressionFieldObject(
+unsigned int Scr_EvalPrimitiveExpressionFieldObject(scriptInstance_t inst, sval_u expr, unsigned int localId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -271,7 +272,7 @@ void Scr_CompilePrimitiveExpressionFieldObject(scriptInstance_t inst, sval_u *ex
 Scr_EvalVariableExpression
 ==============
 */
-void Scr_EvalVariableExpression(
+void Scr_EvalVariableExpression(unsigned int a1, scriptInstance_t inst, sval_u expr, unsigned int localId, VariableValue *value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -281,17 +282,17 @@ void Scr_EvalVariableExpression(
 Scr_CompileVariableExpression
 ==============
 */
-/*void Scr_CompileVariableExpression(sval_u *a1@<edx>, scriptInstance_t inst, sval_u *expr)
+void Scr_CompileVariableExpression(sval_u *a1, scriptInstance_t inst, sval_u *expr)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 Scr_EvalPrimitiveExpression
 ==============
 */
-void Scr_EvalPrimitiveExpression(
+void Scr_EvalPrimitiveExpression(VariableValue *a1, scriptInstance_t inst, sval_u expr, unsigned int localId, VariableValue *value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -311,9 +312,11 @@ void Scr_CompilePrimitiveExpression(scriptInstance_t inst, sval_u *expr)
 Scr_EvalExpression
 ==============
 */
-void Scr_EvalExpression(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -351,7 +354,7 @@ void Scr_CompileText(scriptInstance_t inst, const char *text, ScriptExpression_t
 Scr_EvalScriptExpression
 ==============
 */
-char Scr_EvalScriptExpression(
+char Scr_EvalScriptExpression(scriptInstance_t inst, ScriptExpression_t *expr, unsigned int localId, VariableValue *value, bool freezeScope, bool freezeObjects)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

@@ -70,7 +70,7 @@ const DiskTriangleSoup *R_UpdateDiskSurfaces_Version14(const DiskTriangleSoup *o
 R_UpdateDiskSurfaces_Version12
 ==============
 */
-const DiskTriangleSoup *R_UpdateDiskSurfaces_Version12(
+const DiskTriangleSoup *R_UpdateDiskSurfaces_Version12(const DiskTriangleSoup_Version12 *oldSurfs, int surfCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -81,7 +81,7 @@ const DiskTriangleSoup *R_UpdateDiskSurfaces_Version12(
 R_UpdateDiskSurfaces_Version8
 ==============
 */
-const DiskTriangleSoup *R_UpdateDiskSurfaces_Version8(
+const DiskTriangleSoup *R_UpdateDiskSurfaces_Version8(const DiskTriangleSoup_Version8 *oldSurfs, int surfCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -92,7 +92,7 @@ const DiskTriangleSoup *R_UpdateDiskSurfaces_Version8(
 R_LoadTriangleSurfaces
 ==============
 */
-void R_LoadTriangleSurfaces(
+void R_LoadTriangleSurfaces(unsigned int bspVersion, const DiskTriangleSoup **diskSurfaces, unsigned int *surfCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -113,7 +113,7 @@ int R_DetermineLightmapCoupling(GfxBspLoad *load, long double (*coupling)[30], L
 R_BuildLightmapMergability
 ==============
 */
-int R_BuildLightmapMergability(
+int R_BuildLightmapMergability(GfxBspLoad *load, r_lightmapGroup_t *groupInfo, int *reorder, LumpType lumpType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -144,7 +144,7 @@ void R_AssertLightGridValid(const GfxLightGrid *lightGrid)
 R_LoadLightGridHeader
 ==============
 */
-void R_LoadLightGridHeader()
+void R_LoadLightGridHeader(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -164,7 +164,7 @@ void R_LoadLightGridColors(unsigned int bspVersion)
 R_LoadLightGridEntries
 ==============
 */
-GfxLightGridEntry *R_LoadLightGridEntries()
+GfxLightGridEntry *R_LoadLightGridEntries(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -175,7 +175,7 @@ GfxLightGridEntry *R_LoadLightGridEntries()
 R_LoadReflectionProbes
 ==============
 */
-void R_LoadReflectionProbes()
+void R_LoadReflectionProbes(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -196,7 +196,7 @@ int R_HeroLightSorter(const void *a, const void *b)
 R_BuildHeroLightTree
 ==============
 */
-void R_BuildHeroLightTree(
+void R_BuildHeroLightTree(unsigned int nodeIndex, unsigned int firstLight, unsigned int lightCount, vec3_t *mins, vec3_t *maxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -206,17 +206,17 @@ void R_BuildHeroLightTree(
 R_LoadHeroOnlyLights
 ==============
 */
-void R_LoadHeroOnlyLights(unsigned int bspVersion)
+/*void R_LoadHeroOnlyLights(LumpType a1@<edx>, char *a2@<ecx>, const char *a3@<esi>, unsigned int bspVersion)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 R_LoadCoronas
 ==============
 */
-GfxLightCorona *R_LoadCoronas()
+GfxLightCorona *R_LoadCoronas(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -227,7 +227,7 @@ GfxLightCorona *R_LoadCoronas()
 R_LoadOccluders
 ==============
 */
-unsigned __int8 *R_LoadOccluders()
+unsigned __int8 *R_LoadOccluders(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -238,7 +238,7 @@ unsigned __int8 *R_LoadOccluders()
 R_LoadShadowMapVolumes
 ==============
 */
-unsigned __int8 *R_LoadShadowMapVolumes()
+unsigned __int8 *R_LoadShadowMapVolumes(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -249,7 +249,7 @@ unsigned __int8 *R_LoadShadowMapVolumes()
 R_LoadExposureVolumes
 ==============
 */
-unsigned __int8 *R_LoadExposureVolumes()
+unsigned __int8 *R_LoadExposureVolumes(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -260,7 +260,7 @@ unsigned __int8 *R_LoadExposureVolumes()
 R_LoadWorldFogVolumes
 ==============
 */
-void R_LoadWorldFogVolumes()
+void R_LoadWorldFogVolumes(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -270,7 +270,7 @@ void R_LoadWorldFogVolumes()
 R_LoadWorldFogModifierVolumes
 ==============
 */
-void R_LoadWorldFogModifierVolumes()
+void R_LoadWorldFogModifierVolumes(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -280,7 +280,7 @@ void R_LoadWorldFogModifierVolumes()
 R_LoadLutVolumes
 ==============
 */
-void R_LoadLutVolumes()
+void R_LoadLutVolumes(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -300,7 +300,7 @@ void R_CalculateSurfaceBounds(GfxSurface *surface, const DiskGfxVertex *vertsDis
 R_MergeSurfaceLightMapCoords
 ==============
 */
-void R_MergeSurfaceLightMapCoords(
+void R_MergeSurfaceLightMapCoords(const Material *material, GfxSurface *surface, const DiskGfxVertex *vertsDisk, const r_lightmapMerge_t *merge, GfxWorldVertex *vertsMem, int vertCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -395,7 +395,7 @@ void R_PackWorldVertex0(const GfxSurface *surface, unsigned __int8 *out, const G
 R_PackWorldVertex1
 ==============
 */
-void R_PackWorldVertex1(
+void R_PackWorldVertex1(const GfxSurface *surface, unsigned __int8 *out, const GfxWorldVertex *worldVert, const unsigned __int8 *vertLayerData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -415,7 +415,7 @@ void R_ValidateSurfaceLightmapUsage(const GfxSurface *surface)
 R_CalculateTriangleGroupTexCoordExtents
 ==============
 */
-void R_CalculateTriangleGroupTexCoordExtents(
+void R_CalculateTriangleGroupTexCoordExtents(GfxSurface *surface, GfxWorldVertex *vertsMem, unsigned __int8 *layerVertsMem, unsigned int vertLayerDataStride, unsigned int extraTexCoordCount, unsigned __int8 *triUsed, unsigned __int8 *vertUsed, int startTriIndex, vec3_t *mins, vec3_t *maxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -425,7 +425,7 @@ void R_CalculateTriangleGroupTexCoordExtents(
 R_LoadSubmodels
 ==============
 */
-void R_LoadSubmodels()
+void R_LoadSubmodels(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -457,7 +457,7 @@ int R_IntForKey(const char *key, int defaultValue, char *(*spawnVars)[2], int sp
 R_VectorForKey
 ==============
 */
-bool R_VectorForKey(
+bool R_VectorForKey(const char *key, const char *defaultString, char *(*spawnVars)[2], int spawnVarCount, vec3_t *v)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -468,27 +468,27 @@ bool R_VectorForKey(
 R_LoadStaticModelData
 ==============
 */
-void R_LoadStaticModelData(int bspVersion)
+/*void R_LoadStaticModelData(LumpType a1@<edx>, char *a2@<ecx>, int bspVersion)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 R_LoadSkyGridVolumes
 ==============
 */
-void R_LoadSkyGridVolumes(int bspVersion)
+/*void R_LoadSkyGridVolumes(LumpType a1@<edx>, char *a2@<ecx>, int bspVersion)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 R_PrefixStaticModelName
 ==============
 */
-void R_PrefixStaticModelName(
+void R_PrefixStaticModelName(char *prefixedName, unsigned int prefixedNameSize, const char *name, unsigned int smid)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -519,10 +519,12 @@ void R_SetStaticModelsLightmapData()
 R_LoadMiscModel
 ==============
 */
-/*void R_LoadMiscModel(int a1@<edx>, char *(*spawnVars)[2], int spawnVarCount)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -571,7 +573,7 @@ unsigned int R_GetStaticModelSortIndex(const XModel *model)
 R_StaticModelCompare
 ==============
 */
-bool R_StaticModelCompare(
+bool R_StaticModelCompare(const GfxStaticModelCombinedInst *smodelInst0, const GfxStaticModelCombinedInst *smodelInst1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -624,7 +626,7 @@ void R_FixupGfxAabbTrees(GfxCell *cell)
 R_SortStaticModelsOnAxis_NegX
 ==============
 */
-BOOL R_SortStaticModelsOnAxis_NegX(
+BOOL R_SortStaticModelsOnAxis_NegX(const GfxStaticModelCombinedInst *smodelCombinedInst0, const GfxStaticModelCombinedInst *smodelCombinedInst1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -635,7 +637,7 @@ BOOL R_SortStaticModelsOnAxis_NegX(
 R_SortStaticModelsOnAxis_PosY
 ==============
 */
-BOOL R_SortStaticModelsOnAxis_PosY(
+BOOL R_SortStaticModelsOnAxis_PosY(const GfxStaticModelCombinedInst *smodelCombinedInst0, const GfxStaticModelCombinedInst *smodelCombinedInst1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -646,7 +648,7 @@ BOOL R_SortStaticModelsOnAxis_PosY(
 R_SortStaticModelsOnAxis_NegY
 ==============
 */
-BOOL R_SortStaticModelsOnAxis_NegY(
+BOOL R_SortStaticModelsOnAxis_NegY(const GfxStaticModelCombinedInst *smodelCombinedInst0, const GfxStaticModelCombinedInst *smodelCombinedInst1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -657,7 +659,7 @@ BOOL R_SortStaticModelsOnAxis_NegY(
 R_CompareStaticModelSortModels
 ==============
 */
-bool R_CompareStaticModelSortModels(
+bool R_CompareStaticModelSortModels(const GfxStaticModelSortModel *sortModel0, const GfxStaticModelSortModel *sortModel1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -668,7 +670,7 @@ bool R_CompareStaticModelSortModels(
 R_LoadEntities
 ==============
 */
-void R_LoadEntities()
+void R_LoadEntities(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -689,28 +691,28 @@ int R_FinishLoadingAabbTrees_r(GfxAabbTree *tree, int totalTreesUsed)
 R_LoadAabbTrees
 ==============
 */
-unsigned int R_LoadAabbTrees()
+/*unsigned int R_LoadAabbTrees@<eax>(LumpType a1@<edx>, char *a2@<ecx>, const char *a3@<edi>)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
 R_LoadCells
 ==============
 */
-void R_LoadCells(unsigned int bspVersion)
+/*void R_LoadCells(LumpType a1@<edx>, char *a2@<ecx>, unsigned int bspVersion)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 R_LoadPortals
 ==============
 */
-GfxPortal *R_LoadPortals()
+GfxPortal *R_LoadPortals(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -753,10 +755,10 @@ mnode_t *R_SortNodes_r(mnode_load_t *node, mnode_t *out)
 R_LoadNodesAndLeafs
 ==============
 */
-void R_LoadNodesAndLeafs(unsigned int bspVersion)
+/*void R_LoadNodesAndLeafs(LumpType a1@<edx>, char *a2@<ecx>, unsigned int bspVersion)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -825,17 +827,17 @@ void R_InterpretSunLightParseParamsIntoLights(SunLightParseParams *sunParse, Gfx
 R_InitPrimaryLights
 ==============
 */
-void R_InitPrimaryLights(GfxLight *primaryLights)
+/*void R_InitPrimaryLights(const vec3_t *a1@<edx>, const char *a2@<ebx>, GfxLight *primaryLights)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 R_ForEachPrimaryLightAffectingSurface
 ==============
 */
-void R_ForEachPrimaryLightAffectingSurface(
+void R_ForEachPrimaryLightAffectingSurface(GfxWorld *world, const GfxSurface *surface, unsigned int sortedSurfIndex, void (*Callback)(GfxWorld *, unsigned int, unsigned int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -886,7 +888,7 @@ void R_GetSurfaceVertexNormal(const GfxSurface *surface, int vertIndex, vec3_t *
 R_RecenterSurfaceTexCoords
 ==============
 */
-void R_RecenterSurfaceTexCoords(
+void R_RecenterSurfaceTexCoords(GfxSurface *surface, GfxWorldVertex *vertsMem, unsigned __int8 *vertLayerDataMem)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -896,17 +898,17 @@ void R_RecenterSurfaceTexCoords(
 R_LoadSurfaces
 ==============
 */
-/*void R_LoadSurfaces(const DiskTriangleSoup **a1@<edx>, unsigned int a2@<ecx>, GfxBspLoad *load)
+void R_LoadSurfaces(const DiskTriangleSoup **a1, unsigned int a2, char *load, GfxBspLoad *a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 R_LoadSunSettings
 ==============
 */
-void R_LoadSunSettings()
+void R_LoadSunSettings(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -926,7 +928,7 @@ void R_ForEachShadowCastingSurfaceOnEachLight(void (*Callback)(GfxWorld *, unsig
 R_AddShadowSurfaceToPrimaryLight
 ==============
 */
-void R_AddShadowSurfaceToPrimaryLight(
+void R_AddShadowSurfaceToPrimaryLight(GfxWorld *world, unsigned int primaryLightIndex, unsigned int sortedSurfIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -966,7 +968,7 @@ void R_SpatialSortAllSurfaces(int surfaceCount)
 R_SortSurfaces
 ==============
 */
-void R_SortSurfaces()
+void R_SortSurfaces(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -976,7 +978,7 @@ void R_SortSurfaces()
 R_SpatialSortStaticModelSubArray_r
 ==============
 */
-void R_SpatialSortStaticModelSubArray_r(
+void R_SpatialSortStaticModelSubArray_r(GfxStaticModelCombinedInst *smodelCombinedInsts, unsigned int begin, unsigned int end, unsigned int predIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1016,9 +1018,9 @@ void R_PostLoadEntities()
 R_LoadWorldInternal
 ==============
 */
-GfxWorld *R_LoadWorldInternal(const char *name)
+/*GfxWorld *R_LoadWorldInternal@<eax>(const char *a1@<esi>, const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}
+}*/
 

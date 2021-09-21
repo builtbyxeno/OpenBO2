@@ -123,7 +123,7 @@ void G_EntityCentroid(const gentity_t *ent, vec3_t *centroid)
 G_GetEntityBoundsPoint
 ==============
 */
-void G_GetEntityBoundsPoint(
+void G_GetEntityBoundsPoint(const gentity_t *ent, float ratioFromCenterX, float ratioFromCenterY, float ratioFromCenterZ, vec3_t *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -364,10 +364,11 @@ gentity_t *G_SpawnStaticEntity(int start, int range, const char *entity_type)
 G_SpawnTurret
 ==============
 */
-gentity_t *G_SpawnTurret(int a1, int a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -375,10 +376,11 @@ gentity_t *G_SpawnTurret(int a1, int a2)
 G_SpawnActor
 ==============
 */
-gentity_t *G_SpawnActor(int a1, int a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -730,10 +732,11 @@ void G_TraceBulletPathForVehTurret(gentity_t *ent, DObjTrace_s *trace, int gunne
 G_SpawnVehicle
 ==============
 */
-gentity_t *G_SpawnVehicle(int a1, int a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -794,11 +797,12 @@ gentity_t *G_PlaySoundAlias(gentity_t *ent, unsigned int alias, unsigned int not
 G_PlaySoundAliasWithNotify
 ==============
 */
-/*gentity_t *G_PlaySoundAliasWithNotify@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============

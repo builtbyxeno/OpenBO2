@@ -38,11 +38,11 @@ bool ReadRumbleGraph(RumbleGraph *graph, const char *rumbleFileName)
 LoadRumbleGraph
 ==============
 */
-/*char LoadRumbleGraph@<al>(
+char LoadRumbleGraph(const char *a1, RumbleGraph *a2, RumbleGraph *rumbleGraphArray, RumbleInfo *info, const char *highRumbleFileName, const char *lowRumbleFileName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -90,7 +90,7 @@ void RemoveInactiveRumbles(LocalClientNum_t localClientNum, ActiveRumble *active
 CalcActiveRumbles
 ==============
 */
-void CalcActiveRumbles(
+void CalcActiveRumbles(LocalClientNum_t localClientNum, ActiveRumble *activeRumbleArray, const vec3_t *rumbleReceiverPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -111,7 +111,7 @@ int GetRumbleInfoIndexFromName(LocalClientNum_t localClientNum, const char *rumb
 DuplicateRumbleExists
 ==============
 */
-bool DuplicateRumbleExists(
+bool DuplicateRumbleExists(const cg_t *cgameGlob, ActiveRumble *arArray, const RumbleInfo *info, bool loop, RumbleSourceType type, int entityNum, const vec3_t *pos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -133,9 +133,11 @@ ActiveRumble *NextAvailableRumble(const cg_t *cgameGlob, ActiveRumble *arArray)
 PlayRumbleInternal
 ==============
 */
-void PlayRumbleInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -273,7 +275,7 @@ void InitDevguiRumbleGraphInteral(const char *rumbleName, RumbleGraph *rumbleGra
 CG_InitDevguiRumbleGraph
 ==============
 */
-void CG_InitDevguiRumbleGraph(LocalClientNum_t localClientNum)
+void CG_InitDevguiRumbleGraph(dvarType_t a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -283,8 +285,10 @@ void CG_InitDevguiRumbleGraph(LocalClientNum_t localClientNum)
 CG_UpdateRumble
 ==============
 */
-void CG_UpdateRumble(LocalClientNum_t localClientNum)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 

@@ -6,7 +6,7 @@
 CL_CanWeConnectToClient
 ==============
 */
-int CL_CanWeConnectToClient(
+int CL_CanWeConnectToClient(SessionData *session, const ClientNum_t ourClientNum, const ClientNum_t theirClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -28,7 +28,7 @@ char CL_CanClientTalkToAllClientsInList(SessionData *session, const int sender, 
 Session_GetConnectivityBitsForAddr
 ==============
 */
-int Session_GetConnectivityBitsForAddr(
+int Session_GetConnectivityBitsForAddr(SessionData *session, const netadr_t from, const ClientNum_t clientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -39,10 +39,11 @@ int Session_GetConnectivityBitsForAddr(
 Session_GetConnectivityBitsForClientAddress
 ==============
 */
-int Session_GetConnectivityBitsForClientAddress(SessionData *session, const ClientNum_t clientNum)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -71,9 +72,11 @@ void CL_UpdateConnectivityBits(LocalClientNum_t localClientNum, SessionData *ses
 CL_WeNowCantHearSomeone
 ==============
 */
-void CL_WeNowCantHearSomeone(LocalClientNum_t localClientNum, SessionData *session, ClientNum_t remoteClient)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -81,7 +84,7 @@ void CL_WeNowCantHearSomeone(LocalClientNum_t localClientNum, SessionData *sessi
 CL_SendPeerConnectivityTest
 ==============
 */
-void CL_SendPeerConnectivityTest(
+void CL_SendPeerConnectivityTest(const LocalClientNum_t localClientNum, SessionData *session, const ClientNum_t clientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -125,7 +128,7 @@ ClientNum_t CL_FindGoodRouteForClientNum(SessionData *session, int *routeList, c
 CL_BuildRouteList
 ==============
 */
-void CL_BuildRouteList(
+void CL_BuildRouteList(SessionData *session, LocalClientNum_t localClientNum, ClientNum_t ourClientNum, int *routeList)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -135,9 +138,11 @@ void CL_BuildRouteList(
 CL_VoiceConnectionTestPacket
 ==============
 */
-void CL_VoiceConnectionTestPacket(LocalClientNum_t localClientNum, msg_t *msg)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -232,7 +237,7 @@ int Com_ClientVoiceEvent()
 CL_RebuildConnectionToClient
 ==============
 */
-char CL_RebuildConnectionToClient(
+char CL_RebuildConnectionToClient(SessionData *session, LocalClientNum_t localClientNum, ClientNum_t ourClientNum, ClientNum_t destClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -243,7 +248,7 @@ char CL_RebuildConnectionToClient(
 CL_SendPeerData_Real
 ==============
 */
-char CL_SendPeerData_Real(
+char CL_SendPeerData_Real(SessionData *session, const LocalClientNum_t localClientNum, const netsrc_t sock, const ClientNum_t clientNum, msg_t *msg, PeerDataPacketType dataType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -254,7 +259,7 @@ char CL_SendPeerData_Real(
 CL_SendPeerData
 ==============
 */
-char CL_SendPeerData(
+char CL_SendPeerData(SessionData *session, const LocalClientNum_t localClientNum, const netsrc_t sock, const ClientNum_t clientNum, msg_t *msg, PeerDataPacketType dataType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -285,7 +290,7 @@ void CL_VoicePacket(LocalClientNum_t localClientNum, msg_t *msg)
 CL_SendRelayPacket
 ==============
 */
-char CL_SendRelayPacket(
+char CL_SendRelayPacket(SessionData *session, ControllerIndex_t localControllerIndex, ClientNum_t relayClientNum, ClientNum_t destinationClientNum, const char *message)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -296,7 +301,7 @@ char CL_SendRelayPacket(
 CL_WritePeerToPeerOOBString
 ==============
 */
-char CL_WritePeerToPeerOOBString(
+char CL_WritePeerToPeerOOBString(SessionData *session, ControllerIndex_t localControllerIndex, ClientNum_t clientNum, netsrc_t remoteLocalNetID, const char *message)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

@@ -37,7 +37,7 @@ void Scr_LoadLevel()
 GScr_LoadScriptAndLabel
 ==============
 */
-int GScr_LoadScriptAndLabel(
+int GScr_LoadScriptAndLabel(scriptInstance_t inst, const char *filename, const char *label, int bEnforceExists)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -78,9 +78,11 @@ void GScr_LoadSingleAnimScript(scriptInstance_t inst, scr_animscript_t *pAnim, c
 GScr_LoadDogAnimScripts
 ==============
 */
-void GScr_LoadDogAnimScripts(scriptInstance_t inst)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -88,9 +90,11 @@ void GScr_LoadDogAnimScripts(scriptInstance_t inst)
 GScr_LoadZombieAnimScripts
 ==============
 */
-void GScr_LoadZombieAnimScripts(scriptInstance_t inst)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -98,9 +102,11 @@ void GScr_LoadZombieAnimScripts(scriptInstance_t inst)
 GScr_LoadZombieDogAnimScripts
 ==============
 */
-void GScr_LoadZombieDogAnimScripts(scriptInstance_t inst)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -223,7 +229,7 @@ void Scr_ValidateLocalizedStringRef(int parmIndex, const char *token, int tokenL
 Scr_ConstructMessageString
 ==============
 */
-void Scr_ConstructMessageString(
+void Scr_ConstructMessageString(int firstParmIndex, int lastParmIndex, const char *errorContext, char *string, unsigned int stringLimit)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2783,10 +2789,10 @@ void GScr_GlassRadiusDamage()
 GScr_Detonate
 ==============
 */
-/*void GScr_Detonate(float a1@<edi>, scr_entref_t entref)
+void GScr_Detonate(float entref, scr_entref_t entref_4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -3054,7 +3060,7 @@ void Scr_PlayLoopedFX()
 Scr_SpawnFX
 ==============
 */
-void Scr_SpawnFX()
+void Scr_SpawnFX(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3175,7 +3181,7 @@ void Scr_PhysicsJetThrust()
 Scr_SetFog
 ==============
 */
-void Scr_SetFog(
+void Scr_SetFog(const char *cmd, float start, float density, float heightDensity, float baseHeight, float r, float g, float b, float time, float colorScale, float sunColR, float sunColG, float sunColB, float sunDirX, float sunDirY, float sunDirZ, float sunStartAng, float sunEndAng, float maxFogOpacity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3195,7 +3201,7 @@ void Scr_SetExponentialFog()
 Scr_SetVolumetricFog
 ==============
 */
-void Scr_SetVolumetricFog()
+void Scr_SetVolumetricFog(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3417,7 +3423,7 @@ void GScr_StopShellShock(scr_entref_t entref)
 GScr_UpdateTagInternal
 ==============
 */
-int GScr_UpdateTagInternal(
+int GScr_UpdateTagInternal(gentity_t *ent, unsigned int tagName, cached_tag_mat_t *cachedTag, int showScriptError)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -3448,9 +3454,11 @@ void GScr_GetWeaponMuzzlePoint(scr_entref_t entref)
 GScr_GetTagOrigin
 ==============
 */
-void GScr_GetTagOrigin(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -4849,10 +4857,10 @@ void GScr_SetSpawnClientFlag(scr_entref_t entref)
 GScr_PredictGrenade
 ==============
 */
-void GScr_PredictGrenade(scr_entref_t entref)
+/*void GScr_PredictGrenade(char *a1@<edi>, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -5865,7 +5873,7 @@ void GScr_GetZBarrierAttackSlotHorzOffset(scr_entref_t entref)
 DumpAnimCommand
 ==============
 */
-void DumpAnimCommand(
+void DumpAnimCommand(const char *funcName, XAnimTree_s *tree, unsigned int anim, int root, float weight, float time, float rate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -6069,7 +6077,7 @@ void Scr_PlayerDisconnect(gentity_t *self)
 Scr_PlayerDamage
 ==============
 */
-void Scr_PlayerDamage(
+void Scr_PlayerDamage(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int damage, int dflags, int meansOfDeath, Weapon iWeapon, const vec3_t *vPoint, const vec3_t *vDir, const hitLocation_t hitLoc, int timeOffset, unsigned __int16 boneIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -6079,7 +6087,7 @@ void Scr_PlayerDamage(
 Scr_PlayerKilled
 ==============
 */
-void Scr_PlayerKilled(
+void Scr_PlayerKilled(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int damage, int meansOfDeath, Weapon iWeapon, const vec3_t *vDir, const hitLocation_t hitLoc, int psTimeOffset, int deathAnimDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -6089,7 +6097,7 @@ void Scr_PlayerKilled(
 Scr_PlayerMelee
 ==============
 */
-void Scr_PlayerMelee(
+void Scr_PlayerMelee(gentity_t *attacker, gentity_t *victim, int damage, const Weapon weapon, vec3_t *hitOrigin, vec3_t *hitDir, unsigned __int16 boneIndex, bool shieldHit)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -6099,7 +6107,7 @@ void Scr_PlayerMelee(
 Scr_ActorDamage
 ==============
 */
-void Scr_ActorDamage(
+void Scr_ActorDamage(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int damage, int dflags, int meansOfDeath, Weapon iWeapon, const vec3_t *vPoint, const vec3_t *vDir, const hitLocation_t hitLoc, int timeOffset, unsigned __int16 boneIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -6109,7 +6117,7 @@ void Scr_ActorDamage(
 Scr_ActorKilled
 ==============
 */
-void Scr_ActorKilled(
+void Scr_ActorKilled(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int damage, int meansOfDeath, Weapon iWeapon, const vec3_t *vDir, const hitLocation_t hitLoc, int psTimeOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -6119,7 +6127,7 @@ void Scr_ActorKilled(
 Scr_VehicleRadiusDamage
 ==============
 */
-void Scr_VehicleRadiusDamage(
+void Scr_VehicleRadiusDamage(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int damage, float fInnerDamage, float fOuterDamage, int dflags, int meansOfDeath, Weapon iWeapon, const vec3_t *vPoint, const float fRadius, const float coneAngleCos, const vec3_t *coneDirection, int timeOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -6129,7 +6137,7 @@ void Scr_VehicleRadiusDamage(
 Scr_VehicleDamage
 ==============
 */
-void Scr_VehicleDamage(
+void Scr_VehicleDamage(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int damage, int dflags, int meansOfDeath, Weapon iWeapon, const vec3_t *vPoint, const vec3_t *vDir, const hitLocation_t hitLoc, int timeOffset, int damageFromUnderneath, unsigned int modelIndex, unsigned int partName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -6139,7 +6147,7 @@ void Scr_VehicleDamage(
 Scr_PlayerLastStand
 ==============
 */
-void Scr_PlayerLastStand(
+void Scr_PlayerLastStand(gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int damage, int meansOfDeath, Weapon iWeapon, const vec3_t *vDir, const hitLocation_t hitLoc, int psTimeOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

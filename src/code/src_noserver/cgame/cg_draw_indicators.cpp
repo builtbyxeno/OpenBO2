@@ -16,10 +16,10 @@ void CG_GrenadeIndicator_GetPlayerPosition(const cg_t *cgameGlob, vec3_t *player
 CG_DrawFriendlyIndicators
 ==============
 */
-/*void CG_DrawFriendlyIndicators(int a1@<edi>, int a2@<esi>, LocalClientNum_t localClientNum)
+void CG_DrawFriendlyIndicators(int a1, int a2, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -57,7 +57,7 @@ void CG_DrawDamageDirectionIndicators(LocalClientNum_t localClientNum)
 CG_DrawWarningPointer
 ==============
 */
-void CG_DrawWarningPointer(
+void CG_DrawWarningPointer(LocalClientNum_t localClientNum, float centerX, float centerY, const vec3_t *grenadeOffset, const vec4_t *color, const float radiusOffset, const float scaleFactor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -67,7 +67,7 @@ void CG_DrawWarningPointer(
 CG_DrawWarningIcon
 ==============
 */
-void CG_DrawWarningIcon(
+void CG_DrawWarningIcon(LocalClientNum_t localClientNum, float centerX, float centerY, const vec3_t *grenadeOffset, const vec4_t *color, Material *material, const float radiusOffset, const float scaleFactor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -87,11 +87,11 @@ void CG_ClearHudGrenades()
 CG_AddHudGrenade_PositionCheck
 ==============
 */
-/*double CG_AddHudGrenade_PositionCheck@<st0>(
+double CG_AddHudGrenade_PositionCheck(vec3_t *a1, const cg_t *a2, const cg_t *cgameGlob, const centity_t *grenadeEnt, const WeaponDef *weapDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -108,8 +108,8 @@ void CG_AddHudGrenade(const cg_t *cgameGlob, const centity_t *grenadeEnt)
 CG_DrawGrenadeIndicators
 ==============
 */
-/*void CG_DrawGrenadeIndicators(float a1@<edi>, LocalClientNum_t localClientNum)
+void CG_DrawGrenadeIndicators(float localClientNum, LocalClientNum_t a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 

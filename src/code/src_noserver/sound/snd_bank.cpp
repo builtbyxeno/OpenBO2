@@ -17,7 +17,7 @@ int SND_CompareAssetLoads(const void *a, const void *b)
 SND_AddAssetToLoad
 ==============
 */
-void SND_AddAssetToLoad(
+void SND_AddAssetToLoad(int bankFileId, unsigned int assetId, unsigned int fileOffset, unsigned int size, void *destination, unsigned int memoryOffset, SndBank *bank)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -69,10 +69,10 @@ int SND_AllocateEntries(const char *bankName, int entryCount)
 SND_GetRuntimeAssetBankFileName
 ==============
 */
-void SND_GetRuntimeAssetBankFileName(
+/*void SND_GetRuntimeAssetBankFileName(const char *a1@<edi>, bool stream, const char *zone, const char *language, int length, char *path)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -329,7 +329,7 @@ void SND_PatchValue(unsigned int table, char *asset, unsigned int fieldIndex, un
 SND_PatchDuckValue
 ==============
 */
-void SND_PatchDuckValue(
+void SND_PatchDuckValue(unsigned int table, SndDuck *duck, unsigned int fieldIndex, unsigned int groupId, unsigned int value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

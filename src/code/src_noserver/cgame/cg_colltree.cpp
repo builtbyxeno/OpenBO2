@@ -36,7 +36,7 @@ void CG_AddEntityToCollSector(LocalClientNum_t localClientNum, int entIndex, uns
 CG_AllocEntityCollSector
 ==============
 */
-unsigned __int16 CG_AllocEntityCollSector(
+unsigned __int16 CG_AllocEntityCollSector(LocalClientNum_t localClientNum, const vec2_t *mins, const vec2_t *maxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -47,7 +47,7 @@ unsigned __int16 CG_AllocEntityCollSector(
 CG_SortEntityCollSector
 ==============
 */
-void CG_SortEntityCollSector(
+void CG_SortEntityCollSector(LocalClientNum_t localClientNum, unsigned __int16 sectorIndex, const vec2_t *mins, const vec2_t *maxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -67,7 +67,7 @@ void CG_UnlinkEntityColl(LocalClientNum_t localClientNum, int entIndex)
 CG_LinkEntityColl
 ==============
 */
-void CG_LinkEntityColl(
+void CG_LinkEntityColl(LocalClientNum_t localClientNum, int entIndex, const vec3_t *absMins, const vec3_t *absMaxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

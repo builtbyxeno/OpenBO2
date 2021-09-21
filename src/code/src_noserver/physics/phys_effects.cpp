@@ -16,7 +16,7 @@ void Phys_InitSoundAliases()
 Phys_EffectsInit
 ==============
 */
-void Phys_EffectsInit(int a1, dvarType_t a2)
+void Phys_EffectsInit(dvarType_t a1, dvarType_t a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -57,10 +57,10 @@ void CG_TouchItem(const LocalClientNum_t localClientNum, centity_t *cent)
 CG_TouchItemPrediction
 ==============
 */
-/*void CG_TouchItemPrediction(centity_t *a1@<edx>, LocalClientNum_t a2@<ecx>, LocalClientNum_t localClientNum)
+void CG_TouchItemPrediction(centity_t *a1, LocalClientNum_t a2, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -78,7 +78,7 @@ bool CG_ShouldInterpolatePlayerStateViewClamp(LocalClientNum_t localClientNum, c
 CG_InterpolatePlayerStateViewAngles
 ==============
 */
-void CG_InterpolatePlayerStateViewAngles(
+void CG_InterpolatePlayerStateViewAngles(const snapshot_s *a1, LocalClientNum_t a2, LocalClientNum_t localClientNum, playerState_s *out)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

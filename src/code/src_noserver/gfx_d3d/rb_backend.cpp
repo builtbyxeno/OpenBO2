@@ -66,7 +66,7 @@ void RB_DrawSW4Quads(const Material *material, int ParticleCount)
 RB_DrawStretchPic
 ==============
 */
-void RB_DrawStretchPic(
+void RB_DrawStretchPic(const Material *material, float x, float y, float w, float h, float s0, float t0, float s1, float t1, unsigned int color, GfxPrimStatsTarget statsTarget)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -76,7 +76,7 @@ void RB_DrawStretchPic(
 RB_DrawStretchPicW
 ==============
 */
-void RB_DrawStretchPicW(
+void RB_DrawStretchPicW(const Material *material, float x, float y, float w0, float w, float h, float s0, float t0, float s1, float t1, unsigned int color, GfxPrimStatsTarget statsTarget)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -86,7 +86,7 @@ void RB_DrawStretchPicW(
 RB_DrawStretchPicZ
 ==============
 */
-void RB_DrawStretchPicZ(
+void RB_DrawStretchPicZ(const Material *material, float x, float y, float z, float w, float h, float s0, float t0, float s1, float t1, unsigned int color, GfxPrimStatsTarget statsTarget)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -96,7 +96,7 @@ void RB_DrawStretchPicZ(
 RB_DrawStretchPicFlipST
 ==============
 */
-void RB_DrawStretchPicFlipST(
+void RB_DrawStretchPicFlipST(const Material *material, float x, float y, float w, float h, float s0, float t0, float s1, float t1, unsigned int color, GfxPrimStatsTarget statsTarget)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -106,7 +106,7 @@ void RB_DrawStretchPicFlipST(
 RB_DrawStretchPicRotate
 ==============
 */
-void RB_DrawStretchPicRotate(
+void RB_DrawStretchPicRotate(const Material *material, float x, float y, float w, float width, float height, float s0, float t0, float s1, float t1, float sinAngle, float cosAngle, unsigned int color, GfxPrimStatsTarget statsTarget)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -116,7 +116,7 @@ void RB_DrawStretchPicRotate(
 RB_DrawFullScreenColoredQuad
 ==============
 */
-void RB_DrawFullScreenColoredQuad(
+void RB_DrawFullScreenColoredQuad(const Material *material, float s0, float t0, float s1, float t1, unsigned int color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -206,10 +206,12 @@ void RB_StretchPicCmd(GfxRenderCommandExecState *execState)
 RB_StretchPicCmdFlipST
 ==============
 */
-/*void RB_StretchPicCmdFlipST(unsigned int a1@<edx>, GfxRenderCommandExecState *execState)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -256,7 +258,7 @@ void RB_DrawQuadList2DCmd(GfxRenderCommandExecState *execState)
 RB_SetUIStencilState
 ==============
 */
-void RB_SetUIStencilState(
+void RB_SetUIStencilState(unsigned __int8 stencilWrite, unsigned __int8 stencilValue, unsigned int *stateBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -266,7 +268,7 @@ void RB_SetUIStencilState(
 RB_DrawUIQuadsInternal
 ==============
 */
-void RB_DrawUIQuadsInternal(
+void RB_DrawUIQuadsInternal(unsigned __int8 stencilWrite, unsigned __int8 stencilValue, bool isUI3D, int quadCount, const vec3_t *xyz, const vec2_t *st, const GfxColor *color, unsigned __int8 noclip)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -276,7 +278,7 @@ void RB_DrawUIQuadsInternal(
 RB_DrawEmblemLayer
 ==============
 */
-void RB_DrawEmblemLayer(GfxRenderCommandExecState *execState)
+void RB_DrawEmblemLayer(char *a1, GfxRenderCommandExecState *execState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -286,7 +288,7 @@ void RB_DrawEmblemLayer(GfxRenderCommandExecState *execState)
 RB_StretchCompositeCmd
 ==============
 */
-void RB_StretchCompositeCmd(GfxRenderCommandExecState *execState)
+void RB_StretchCompositeCmd(char *a1, GfxRenderCommandExecState *execState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -316,9 +318,11 @@ void TessQuad(unsigned __int16 v0, unsigned __int16 v1, unsigned __int16 v2, uns
 RB_DrawFramedCmd
 ==============
 */
-void RB_DrawFramedCmd(GfxRenderCommandExecState *execState)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -336,7 +340,7 @@ void RB_ConstantSetCmd(GfxRenderCommandExecState *execState)
 R_RenderDrawSurfStaticModelListMaterial
 ==============
 */
-unsigned int R_RenderDrawSurfStaticModelListMaterial(
+unsigned int R_RenderDrawSurfStaticModelListMaterial(GfxCmdBufContext context, const GfxDrawSurfListInfo *info, unsigned int firstDrawSurfIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -347,7 +351,7 @@ unsigned int R_RenderDrawSurfStaticModelListMaterial(
 R_RenderDrawSurfBspListMaterial
 ==============
 */
-unsigned int R_RenderDrawSurfBspListMaterial(
+unsigned int R_RenderDrawSurfBspListMaterial(GfxCmdBufContext context, const GfxDrawSurfListInfo *info, unsigned int firstDrawSurfIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -419,10 +423,10 @@ void RB_ClearScreenCmd(GfxRenderCommandExecState *execState)
 RB_SetGammaRamp
 ==============
 */
-/*void RB_SetGammaRamp(int a1@<ebx>, int a2@<edi>, int a3@<esi>)
+void RB_SetGammaRamp(int a1, int a2, int a3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -499,7 +503,7 @@ void RB_DrawLinesCmd(GfxRenderCommandExecState *execState)
 RB_DrawTriangles_Internal
 ==============
 */
-void RB_DrawTriangles_Internal(
+void RB_DrawTriangles_Internal(const Material *material, unsigned __int8 techType, __int16 indexCount, const unsigned __int16 *indices, __int16 vertexCount, const vec4_t *xyzw, const vec3_t *normal, const GfxColor *color, const vec2_t *st)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -509,7 +513,7 @@ void RB_DrawTriangles_Internal(
 RB_DrawUIQuadsCmd
 ==============
 */
-void RB_DrawUIQuadsCmd(GfxRenderCommandExecState *execState)
+void RB_DrawUIQuadsCmd(char *a1, GfxRenderCommandExecState *execState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -519,7 +523,7 @@ void RB_DrawUIQuadsCmd(GfxRenderCommandExecState *execState)
 RB_DrawUIQuadsReplaceImageCmd
 ==============
 */
-void RB_DrawUIQuadsReplaceImageCmd(GfxRenderCommandExecState *execState)
+void RB_DrawUIQuadsReplaceImageCmd(char *a1, GfxRenderCommandExecState *execState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -539,9 +543,11 @@ void RB_DrawUITrianglesCmd(GfxRenderCommandExecState *execState)
 RB_DrawTrianglesCmd
 ==============
 */
-void RB_DrawTrianglesCmd(GfxRenderCommandExecState *execState)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -629,7 +635,7 @@ void RB_LookupColor(unsigned __int8 c, unsigned __int8 *color)
 RB_DrawHudIcon
 ==============
 */
-float RB_DrawHudIcon(
+float RB_DrawHudIcon(const char *text, float x, float y, float sinAngle, float cosAngle, Font_s *font, float xScale, float yScale, unsigned int color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -640,7 +646,7 @@ float RB_DrawHudIcon(
 RB_DrawButton
 ==============
 */
-float RB_DrawButton(
+float RB_DrawButton(const char *text, float x, float y, float sinAngle, float cosAngle, Font_s *font, float xScale, float yScale, unsigned int color, int *buttonNameLen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -651,10 +657,11 @@ float RB_DrawButton(
 RB_DrawChar
 ==============
 */
-int RB_DrawChar(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -662,9 +669,11 @@ int RB_DrawChar(
 RB_DrawCursor
 ==============
 */
-void RB_DrawCursor(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -682,7 +691,7 @@ void GlowColor(GfxColor *result, GfxColor baseColor, GfxColor forcedGlowColor, i
 SetupFadeinFXVars
 ==============
 */
-bool SetupFadeinFXVars(
+bool SetupFadeinFXVars(const char *text, int maxLength, int renderFlags, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, bool *resultDrawRandChar, int *resultRandSeed, bool *resultDecaying, int *resultdecayTimeElapsed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -693,7 +702,7 @@ bool SetupFadeinFXVars(
 SetupCOD7DecodeFXVars
 ==============
 */
-bool SetupCOD7DecodeFXVars(
+bool SetupCOD7DecodeFXVars(const char *text, int maxLength, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, int *randSeed, int *resultRandomCharsLength, int *resultMaxLength, bool *resultDecaying, int *resultDecayTimeElapsed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -704,7 +713,7 @@ bool SetupCOD7DecodeFXVars(
 SetupTypewriterFXVars
 ==============
 */
-char SetupTypewriterFXVars(
+char SetupTypewriterFXVars(const char *text, int maxLength, int renderFlags, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, bool *resultDrawRandChar, int *resultRandSeed, int *resultMaxLength, bool *resultDecaying)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -715,7 +724,7 @@ char SetupTypewriterFXVars(
 SetupPopInFXVars
 ==============
 */
-char SetupPopInFXVars(
+char SetupPopInFXVars(const char *text, int maxLength, int renderFlags, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, float *sizeIncrease, int *resultRandSeed, int *resultMaxLength, bool *resultDecaying)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -726,7 +735,7 @@ char SetupPopInFXVars(
 SetupPulseFXVars
 ==============
 */
-bool SetupPulseFXVars(
+bool SetupPulseFXVars(const char *text, int maxLength, int renderFlags, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, bool *resultDrawRandChar, int *resultRandSeed, int *resultMaxLength, bool *resultDecaying, int *resultdecayTimeElapsed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -737,7 +746,7 @@ bool SetupPulseFXVars(
 GetShiftColor
 ==============
 */
-void GetShiftColor(
+void GetShiftColor(GfxColor targetColor, int fxBirthTime, int fxDecayStart, int fxDecayDuration, GfxColor startColor, GfxColor *shiftColor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -747,7 +756,7 @@ void GetShiftColor(
 SetupRedactTextFXVars
 ==============
 */
-bool SetupRedactTextFXVars(
+bool SetupRedactTextFXVars(const char *text, int maxLength, int renderFlags, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, bool *resultDrawRandChar, int *resultRandSeed, int *resultMaxLength, bool *resultDecaying, int *resultdecayTimeElapsed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -758,7 +767,7 @@ bool SetupRedactTextFXVars(
 SetupRedactFXVars
 ==============
 */
-void SetupRedactFXVars(
+void SetupRedactFXVars(int *randSeed, int fxBirthTime, int maxLength, int fxRedactDecayStartTime, int fxRedactDecayDuration, int mode, vec4_t *src_rect, vec4_t *max_rect, vec4_t *out_rect, float *u, Material **mat)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -768,7 +777,7 @@ void SetupRedactFXVars(
 GetDecayingStringAlphaInfo
 ==============
 */
-void GetDecayingStringAlphaInfo(
+void GetDecayingStringAlphaInfo(int decayTimeElapsed, int fxDecayDuration, unsigned __int8 alpha, unsigned __int8 *resultAlpha)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -778,7 +787,7 @@ void GetDecayingStringAlphaInfo(
 GetDecayingLetterInfo
 ==============
 */
-void GetDecayingLetterInfo(
+void GetDecayingLetterInfo(unsigned int letter, Font_s *font, int *randSeed, int decayTimeElapsed, int fxBirthTime, int fxDecayDuration, unsigned __int8 alpha, bool *resultSkipDrawing, unsigned __int8 *resultAlpha, unsigned int *resultLetter, bool *resultDrawExtraFxChar)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -788,9 +797,11 @@ void GetDecayingLetterInfo(
 DrawTextFxExtraCharacter
 ==============
 */
-void DrawTextFxExtraCharacter(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -810,9 +821,11 @@ DrawText2D
 DrawTeleType
 ==============
 */
-void DrawTeleType(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -820,7 +833,7 @@ void DrawTeleType(
 RB_DrawText
 ==============
 */
-void RB_DrawText(
+void RB_DrawText(int *a1, int *a2, bool *text, const char *font, Font_s *x, float y, float color, const GfxColor a8)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -830,7 +843,7 @@ void RB_DrawText(
 RB_DrawCharInSpace
 ==============
 */
-void RB_DrawCharInSpace(
+void RB_DrawCharInSpace(const Material *material, const vec3_t *xyz, const vec3_t *dx, const vec3_t *dy, const Glyph *glyph, unsigned int color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -840,7 +853,7 @@ void RB_DrawCharInSpace(
 RB_DrawTextInSpace
 ==============
 */
-void RB_DrawTextInSpace(
+void RB_DrawTextInSpace(unsigned int a1, const char *text, Font_s *font, const vec3_t *org, const vec3_t *xPixelStep, const vec3_t *yPixelStep, unsigned int color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -850,10 +863,10 @@ void RB_DrawTextInSpace(
 RB_DrawText2DCmd
 ==============
 */
-void RB_DrawText2DCmd(GfxRenderCommandExecState *execState)
+/*void RB_DrawText2DCmd(const Material *a1@<edi>, GfxRenderCommandExecState *execState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -962,10 +975,10 @@ void RB_SaveScreen_BlendFlashed(const GfxBlendSaveScreenFlashedParam *p)
 RB_SaveScreen
 ==============
 */
-/*void RB_SaveScreen(int a1@<esi>, const GfxSaveScreenParam *p)
+void RB_SaveScreen(int a1, const GfxSaveScreenParam *p)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

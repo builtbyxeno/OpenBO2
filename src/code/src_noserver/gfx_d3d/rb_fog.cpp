@@ -6,8 +6,8 @@
 R_SetFrameFog
 ==============
 */
-/*void R_SetFrameFog(float a1@<esi>, GfxCmdBufInput *input, const vec4_t *viewOrigin)
+void R_SetFrameFog(float input, GfxCmdBufInput *a2, const vec4_t *viewOrigin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 

@@ -122,7 +122,7 @@ VEH_CheckForPredictedCrash
 VEH_UpdateClientChopper
 ==============
 */
-void VEH_UpdateClientChopper(gentity_t *ent)
+void VEH_UpdateClientChopper(char *a1, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -132,8 +132,8 @@ void VEH_UpdateClientChopper(gentity_t *ent)
 VEH_UpdateClientPlane
 ==============
 */
-void VEH_UpdateClientPlane(gentity_t *ent)
+/*void VEH_UpdateClientPlane(char *a1@<edi>, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 

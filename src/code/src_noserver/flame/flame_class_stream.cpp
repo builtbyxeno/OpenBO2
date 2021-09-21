@@ -57,7 +57,7 @@ void Flame_Class_Stream_Age(bool is_server)
 Flame_Class_Stream_Fire_Chunks
 ==============
 */
-void Flame_Class_Stream_Fire_Chunks(
+void Flame_Class_Stream_Fire_Chunks(flameSource_t *source, flameWeaponConfig_t *weaponConfig, int inTime, flameRender_s *flameRend, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -67,7 +67,7 @@ void Flame_Class_Stream_Fire_Chunks(
 Flame_Class_Stream_Render_Item
 ==============
 */
-void Flame_Class_Stream_Render_Item(
+void Flame_Class_Stream_Render_Item(LocalClientNum_t localClientNum, const flameStream_s *stream, Material *material, Material *material2, vec3_t *verts, bool isFire)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

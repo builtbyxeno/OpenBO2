@@ -116,7 +116,7 @@ void CG_ParseClientSystemStateChange(LocalClientNum_t localClientNum, int sysInd
 CG_ParseAirsupport
 ==============
 */
-void CG_ParseAirsupport(
+void CG_ParseAirsupport(LocalClientNum_t localClientNum, float x, float y, float z, int yaw, char *type, char *teamFaction, char *team, int owner, char *exitType, int serverTime, int height)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

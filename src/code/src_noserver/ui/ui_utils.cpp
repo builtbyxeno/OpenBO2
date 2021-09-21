@@ -420,7 +420,7 @@ BOOL ListBox_HasValidCursorPos(UIContextIndex_t contextIndex, itemDef_s *item)
 Item_SetScreenCoords
 ==============
 */
-void Item_SetScreenCoords(
+void Item_SetScreenCoords(UIContextIndex_t contextIndex, itemDef_s *item, float x, float y, int horzAlign, int vertAlign)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -430,8 +430,10 @@ void Item_SetScreenCoords(
 Menu_UpdatePosition
 ==============
 */
-void Menu_UpdatePosition(UIContextIndex_t contextIndex, menuDef_t *menu)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 

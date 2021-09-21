@@ -46,7 +46,7 @@ void RB_CompositeSceneGroup()
 RB_EndSceneRendering
 ==============
 */
-void RB_EndSceneRendering(
+void RB_EndSceneRendering(GfxCmdBufContext context, const GfxCmdBufInput *input, const GfxViewInfo *viewInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -96,7 +96,7 @@ void R_DrawFullbrightDecalCallback(const void *__formal, GfxCmdBufContext contex
 R_DrawFullbrightEmissiveCallback
 ==============
 */
-void R_DrawFullbrightEmissiveCallback(
+void R_DrawFullbrightEmissiveCallback(const void *__formal, GfxCmdBufContext context, const GfxViewInfo *viewInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -106,7 +106,7 @@ void R_DrawFullbrightEmissiveCallback(
 R_DrawFullbrightOrDebugShader
 ==============
 */
-void R_DrawFullbrightOrDebugShader(
+void R_DrawFullbrightOrDebugShader(void (*callback)(const void *, GfxCmdBufContext, const GfxViewInfo *), const GfxViewInfo *viewInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -157,7 +157,7 @@ void R_DrawDebugShaderLitCallback(const void *__formal, GfxCmdBufContext context
 R_DrawDebugShaderDecalCallback
 ==============
 */
-void R_DrawDebugShaderDecalCallback(
+void R_DrawDebugShaderDecalCallback(const void *__formal, GfxCmdBufContext context, const GfxViewInfo *viewInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -167,7 +167,7 @@ void R_DrawDebugShaderDecalCallback(
 R_DrawDebugShaderEmissiveCallback
 ==============
 */
-void R_DrawDebugShaderEmissiveCallback(
+void R_DrawDebugShaderEmissiveCallback(const void *__formal, GfxCmdBufContext context, const GfxViewInfo *viewInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -218,7 +218,7 @@ void R_DrawEmissiveOpaqueCallback(const void *__formal, GfxCmdBufContext context
 R_DrawEmissiveOpaque
 ==============
 */
-void R_DrawEmissiveOpaque(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf)
+void R_DrawEmissiveOpaque(int a1, const GfxViewInfo *a2, GfxCmdBuf *a3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -278,7 +278,7 @@ void R_DrawPostBlur(const GfxViewInfo *viewInfo, unsigned __int8 renderTarget)
 R_DrawSuperflare
 ==============
 */
-void R_DrawSuperflare(
+void R_DrawSuperflare(const GfxViewInfo *viewInfo, unsigned __int8 renderTarget, SuperflareDrawlistModes superflareDrawlistModes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -318,7 +318,7 @@ void RB_SonarRenderToTexture(const GfxBackEndData *data, const GfxViewInfo *view
 RB_DrawLitCommandBuffer
 ==============
 */
-unsigned int RB_DrawLitCommandBuffer(
+unsigned int RB_DrawLitCommandBuffer(const GfxBackEndData *data, const GfxViewInfo *viewInfo, unsigned __int8 cmdBufType, unsigned int cmdBufCount, void (*drawFunction)(const GfxViewInfo *, GfxCmdBuf *, LitPhaseID), LitPhaseID phase, const char *label, unsigned int drawList, GPUTimerId timer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -329,7 +329,7 @@ unsigned int RB_DrawLitCommandBuffer(
 RB_DrawMiscCommandBuffer
 ==============
 */
-void RB_DrawMiscCommandBuffer(
+void RB_DrawMiscCommandBuffer(const GfxBackEndData *data, const GfxViewInfo *viewInfo, unsigned __int8 cmdBufType, void (*drawFunction)(const GfxViewInfo *, GfxCmdBuf *), const char *label, unsigned int drawList, GPUTimerId timer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -450,7 +450,7 @@ void RB_Draw3DInternal()
 R_DrawPostBlur
 ==============
 */
-void R_DrawPostBlur(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf, unsigned __int8 renderTarget)
+void R_DrawPostBlur(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf, GfxCmdBufSourceState renderTarget)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -36,7 +36,7 @@ void CG_AddAllPlayerSpriteDrawSurfs(LocalClientNum_t localClientNum)
 CG_Player_ApplyVehicleAnimOffsets
 ==============
 */
-char CG_Player_ApplyVehicleAnimOffsets(
+char CG_Player_ApplyVehicleAnimOffsets(LocalClientNum_t localClientNum, const entityState_s *es, centity_t *cent, clientInfo_t *ci)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -77,7 +77,7 @@ void CG_GetPlayerVelocity(LocalClientNum_t localClientNum, centity_t *cent, vec3
 CG_DropWeaponClip
 ==============
 */
-void CG_DropWeaponClip(
+void CG_DropWeaponClip(LocalClientNum_t localClientNum, clientInfo_t *ci, centity_t *cent, const Weapon weapon, DObj *obj)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -107,7 +107,7 @@ void CG_UpdatePlayerDObj(LocalClientNum_t localClientNum, centity_t *cent)
 CG_ResetPlayerEntity
 ==============
 */
-void CG_ResetPlayerEntity(
+void CG_ResetPlayerEntity(LocalClientNum_t localClientNum, cg_t *cgameGlob, centity_t *cent, int resetAnimation)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -204,7 +204,7 @@ int CG_GetPlayerClipAmmoCount(const LocalClientNum_t localClientNum)
 CG_ShouldSendPeerVoiceData
 ==============
 */
-char CG_ShouldSendPeerVoiceData(
+char CG_ShouldSendPeerVoiceData(SessionData *session, const LocalClientNum_t localClientNum, const ClientNum_t player)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -237,10 +237,10 @@ void CG_UpdateWeaponVisibilityInternal(LocalClientNum_t localClientNum, centity_
 CG_UpdateWeaponVisibilityImmediate
 ==============
 */
-/*void CG_UpdateWeaponVisibilityImmediate(centity_t *a1@<edx>, LocalClientNum_t localClientNum)
+void CG_UpdateWeaponVisibilityImmediate(centity_t *a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -291,7 +291,7 @@ CG_PlayerTurretPositionAndBlend
 CG_PlayerInfrared
 ==============
 */
-int CG_PlayerInfrared(
+int CG_PlayerInfrared(LocalClientNum_t localClientNum, centity_t *cent, clientInfo_t *ci, DObj *obj, bool corpse, int *textureOverrideIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

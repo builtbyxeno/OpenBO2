@@ -36,7 +36,7 @@ void VehAnim_GetAnimDelta(XAnimTree_s *tree, int animIndex, vec4_t *rot, vec3_t 
 VehAnim_UpdatePosRot
 ==============
 */
-void VehAnim_UpdatePosRot(
+void VehAnim_UpdatePosRot(LocalClientNum_t localClientNum, const entityState_s *es, clientInfo_t *ci, int handler, vec3_t *origin, vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

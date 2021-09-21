@@ -60,7 +60,7 @@ WeaponDobjInfo::GetWeapon
 WeaponDobjInfo::Add
 ==============
 */
-/*void __thiscall WeaponDobjInfo::Add(
+/*void __thiscall WeaponDobjInfo::Add(WeaponDobjInfo *this, const WeaponAttachmentUnique *attachment, unsigned int dobjModelMask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

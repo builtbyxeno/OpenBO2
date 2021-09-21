@@ -6,7 +6,7 @@
 CScr_SpawnFXInternal
 ==============
 */
-centity_t *CScr_SpawnFXInternal(
+centity_t *CScr_SpawnFXInternal(LocalClientNum_t localClientNum, int fxId, vec3_t *angles, vec3_t *pos, int time)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -878,7 +878,7 @@ void CScr_SetupClientFieldCodeCallbacks()
 ClientFieldAnimSpeedCallback
 ==============
 */
-void ClientFieldAnimSpeedCallback(
+void ClientFieldAnimSpeedCallback(LocalClientNum_t localClientNum, unsigned int entNum, float oldVal, float newVal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -928,7 +928,7 @@ void CScr_ResetZombieBoxWeapons()
 CScr_AddZombieBoxWeapon
 ==============
 */
-const WeaponVariantDef *CScr_AddZombieBoxWeapon()
+WeaponVariantDef *CScr_AddZombieBoxWeapon()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -1431,7 +1431,7 @@ void CScr_ZBarrierGetNumPieces(scr_entref_t entref)
 CScr_GetMethodProjectSpecific
 ==============
 */
-void (*CScr_GetMethodProjectSpecific(
+void (*CScr_GetMethodProjectSpecific(const char **pName, int *type, int *min_args, int *max_args))(scr_entref_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

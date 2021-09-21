@@ -16,10 +16,10 @@ void BG_Wind_RegisterDvars()
 DisplayWindDebug
 ==============
 */
-/*void DisplayWindDebug(clientDebugLineInfo_t *a1@<edi>)
+void DisplayWindDebug(clientDebugLineInfo_t *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

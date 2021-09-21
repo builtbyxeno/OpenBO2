@@ -16,7 +16,7 @@ void R_EndDelayedCmdBuf(GfxDelayedCmdBuf *delayedCmdBuf)
 R_AllocDrawSurf
 ==============
 */
-int R_AllocDrawSurf(
+int R_AllocDrawSurf(GfxDelayedCmdBuf *delayedCmdBuf, GfxDrawSurf drawSurf, GfxDrawSurfList *drawSurfList, unsigned int size)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

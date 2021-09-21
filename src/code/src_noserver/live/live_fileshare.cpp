@@ -28,7 +28,7 @@ int LiveFileShare_GetIndexFromGameType(const char *gameType, const char *zmMapSt
 LiveFileshare_AddTag
 ==============
 */
-void LiveFileshare_AddTag(
+void LiveFileshare_AddTag(unsigned __int64 priTag, unsigned __int64 secTag, int *numTags, bdTag *tags, const int maxNumTags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -103,7 +103,7 @@ char LiveFileshare_GetViewStatsFailure(TaskRecord *task)
 LiveFileshare_GetStats
 ==============
 */
-void LiveFileshare_GetStats(
+void LiveFileshare_GetStats(const ControllerIndex_t controllerIndex, fileshareStatType_e statType, int offset, unsigned int *lbIDs, int numLBs, const TaskDefinition *taskDef, fileshareState_e nextState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -203,7 +203,7 @@ void LiveFileshare_DeleteFile(const ControllerIndex_t controllerIndex, unsigned 
 LiveFileshare_GetSummary
 ==============
 */
-void LiveFileshare_GetSummary(
+void LiveFileshare_GetSummary(const ControllerIndex_t controllerIndex, unsigned __int64 fileID, int size, fileShareLocation location, int (*dataValidationCallback)(const ControllerIndex_t, unsigned __int64, unsigned __int8 *, int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -397,7 +397,7 @@ void LiveFileshare_Copy_DownloadDescriptorSuccess(const ControllerIndex_t contro
 LiveFileshare_CopyFile
 ==============
 */
-void LiveFileshare_CopyFile(
+void LiveFileshare_CopyFile(const ControllerIndex_t controllerIndex, unsigned __int64 fileID, bool isPooled, int slot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

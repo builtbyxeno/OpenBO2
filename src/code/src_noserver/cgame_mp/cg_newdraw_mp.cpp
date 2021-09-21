@@ -103,7 +103,7 @@ bool CG_CheckPlayerForLowClip(const cg_t *cgameGlob)
 CG_DrawPlayerAmmoBackdrop
 ==============
 */
-void CG_DrawPlayerAmmoBackdrop(
+void CG_DrawPlayerAmmoBackdrop(LocalClientNum_t localClientNum, const rectDef_s *rect, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -113,7 +113,7 @@ void CG_DrawPlayerAmmoBackdrop(
 CG_DrawPlayerAmmoValue
 ==============
 */
-void CG_DrawPlayerAmmoValue(
+void CG_DrawPlayerAmmoValue(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float scale, vec4_t *color, Material *material, int textStyle, int type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -123,7 +123,7 @@ void CG_DrawPlayerAmmoValue(
 CG_DrawPlayerHeatValue
 ==============
 */
-void CG_DrawPlayerHeatValue(
+void CG_DrawPlayerHeatValue(LocalClientNum_t localClientNum, const rectDef_s *rect, vec4_t *color, bool drawVehicleTurretVersion)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -143,7 +143,7 @@ void CG_DrawPlayerFuelAmmoValue(LocalClientNum_t localClientNum, const rectDef_s
 CG_DrawPlayerReloadValue
 ==============
 */
-void CG_DrawPlayerReloadValue(
+void CG_DrawPlayerReloadValue(LocalClientNum_t localClientNum, const rectDef_s *rect, vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -153,7 +153,7 @@ void CG_DrawPlayerReloadValue(
 CG_DrawPlayerReloadedValue
 ==============
 */
-void CG_DrawPlayerReloadedValue(
+void CG_DrawPlayerReloadedValue(LocalClientNum_t localClientNum, const rectDef_s *rect, vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -163,7 +163,7 @@ void CG_DrawPlayerReloadedValue(
 CG_DrawPlayerWeaponName
 ==============
 */
-void CG_DrawPlayerWeaponName(
+void CG_DrawPlayerWeaponName(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float scale, vec4_t *color, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -173,7 +173,7 @@ void CG_DrawPlayerWeaponName(
 CG_DrawPlayerWeaponNameBack
 ==============
 */
-void CG_DrawPlayerWeaponNameBack(
+void CG_DrawPlayerWeaponNameBack(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float scale, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -203,7 +203,7 @@ void CalcSplitScreenStanceOffset(float *x, float *y)
 CG_DrawStanceHintPrints
 ==============
 */
-void CG_DrawStanceHintPrints(
+void CG_DrawStanceHintPrints(LocalClientNum_t localClientNum, const rectDef_s *rect, float x, const vec4_t *color, float fadeAlpha, Font_s *font, float scale, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -213,7 +213,7 @@ void CG_DrawStanceHintPrints(
 CG_DrawPlayerStance
 ==============
 */
-void CG_DrawPlayerStance(
+void CG_DrawPlayerStance(LocalClientNum_t localClientNum, const rectDef_s *rect, const vec4_t *color, Font_s *font, float scale, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -223,7 +223,7 @@ void CG_DrawPlayerStance(
 CG_DrawPlayerSprintBack
 ==============
 */
-void CG_DrawPlayerSprintBack(
+void CG_DrawPlayerSprintBack(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -233,7 +233,7 @@ void CG_DrawPlayerSprintBack(
 CG_DrawPlayerSprintMeter
 ==============
 */
-void CG_DrawPlayerSprintMeter(
+void CG_DrawPlayerSprintMeter(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -254,7 +254,7 @@ double CG_CalcPlayerHealth(const playerState_s *ps)
 CG_DrawPlayerBarHealth
 ==============
 */
-void CG_DrawPlayerBarHealth(
+void CG_DrawPlayerBarHealth(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -264,7 +264,7 @@ void CG_DrawPlayerBarHealth(
 CG_DrawPlayerBarHealthBack
 ==============
 */
-void CG_DrawPlayerBarHealthBack(
+void CG_DrawPlayerBarHealthBack(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -305,18 +305,19 @@ void CG_ResetLowHealthOverlay(cg_t *cgameGlob)
 CG_DrawPlayerLowHealthOverlay
 ==============
 */
-/*double CG_DrawPlayerLowHealthOverlay@<st0>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 CG_DrawPlayerDirectionalHitIndicator
 ==============
 */
-void CG_DrawPlayerDirectionalHitIndicator(
+void CG_DrawPlayerDirectionalHitIndicator(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -347,7 +348,7 @@ int CG_ServerMaterialName(LocalClientNum_t localClientNum, int index, char *mate
 CG_ObjectiveIcon
 ==============
 */
-Material *CG_ObjectiveIcon(
+Material *CG_ObjectiveIcon(LocalClientNum_t localClientNum, const objective_t *objective, int type, ObjectIconType compassMapType, int isClientObjective)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -368,7 +369,7 @@ void CG_UpdateCursorHints(cg_t *cgameGlob)
 CG_GetWeaponUseString
 ==============
 */
-const char *CG_GetWeaponUseString(
+const char *CG_GetWeaponUseString(LocalClientNum_t localClientNum, const char **secondaryString, char *fullWeaponName, unsigned int maxStringLen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -390,7 +391,7 @@ const char *CG_GetUseString(LocalClientNum_t localClientNum)
 CG_DrawCursorhint
 ==============
 */
-void CG_DrawCursorhint(
+void CG_DrawCursorhint(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, vec4_t *color, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -400,7 +401,7 @@ void CG_DrawCursorhint(
 CG_DrawHoldBreathHint
 ==============
 */
-void CG_DrawHoldBreathHint(
+void CG_DrawHoldBreathHint(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -410,7 +411,7 @@ void CG_DrawHoldBreathHint(
 CG_DrawHoldBreathZoomHint
 ==============
 */
-void CG_DrawHoldBreathZoomHint(
+void CG_DrawHoldBreathZoomHint(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -420,7 +421,7 @@ void CG_DrawHoldBreathZoomHint(
 CG_DrawAirburstMarkHint
 ==============
 */
-void CG_DrawAirburstMarkHint(
+void CG_DrawAirburstMarkHint(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -430,7 +431,7 @@ void CG_DrawAirburstMarkHint(
 CG_DrawRCBombHints
 ==============
 */
-void CG_DrawRCBombHints(
+void CG_DrawRCBombHints(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, int textStyle, int hintType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -440,7 +441,7 @@ void CG_DrawRCBombHints(
 CG_DrawGuidedMissileBoostHint
 ==============
 */
-void CG_DrawGuidedMissileBoostHint(
+void CG_DrawGuidedMissileBoostHint(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -450,7 +451,7 @@ void CG_DrawGuidedMissileBoostHint(
 CG_DrawGuidedMissileDetonateHint
 ==============
 */
-void CG_DrawGuidedMissileDetonateHint(
+void CG_DrawGuidedMissileDetonateHint(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -460,7 +461,7 @@ void CG_DrawGuidedMissileDetonateHint(
 CG_DrawRemoteMissileSteerHint
 ==============
 */
-void CG_DrawRemoteMissileSteerHint(
+void CG_DrawRemoteMissileSteerHint(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -470,7 +471,7 @@ void CG_DrawRemoteMissileSteerHint(
 CG_DrawRemoteMissileBoostHint
 ==============
 */
-void CG_DrawRemoteMissileBoostHint(
+void CG_DrawRemoteMissileBoostHint(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -502,7 +503,7 @@ float CG_GetDistanceGuidedMissileAndOwner(LocalClientNum_t localClientNum)
 CG_DrawGuidedMissileInfo
 ==============
 */
-void CG_DrawGuidedMissileInfo(
+void CG_DrawGuidedMissileInfo(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, int textStyle, eGuidedMissileInfo infoType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -512,7 +513,7 @@ void CG_DrawGuidedMissileInfo(
 CG_DrawTurretPlaceHint
 ==============
 */
-void CG_DrawTurretPlaceHint(
+void CG_DrawTurretPlaceHint(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, const vec4_t *color, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -522,7 +523,7 @@ void CG_DrawTurretPlaceHint(
 CG_DrawMantleHint
 ==============
 */
-void CG_DrawMantleHint(
+void CG_DrawMantleHint(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, const vec4_t *color, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -543,7 +544,7 @@ char *CG_ScriptMainMenu(LocalClientNum_t localClientNum)
 CG_DrawInvalidCmdHint
 ==============
 */
-void CG_DrawInvalidCmdHint(
+void CG_DrawInvalidCmdHint(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, vec4_t *color, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -553,7 +554,7 @@ void CG_DrawInvalidCmdHint(
 CG_DrawTalkerNum
 ==============
 */
-void CG_DrawTalkerNum(
+void CG_DrawTalkerNum(LocalClientNum_t localClientNum, const int num, rectDef_s *rect, Font_s *font, vec4_t *color, float textScale, int style)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -573,7 +574,7 @@ void get_tank_hud_health_tint_color(float health_fraction, vec4_t *rgba, float b
 draw_tank_turret_component
 ==============
 */
-void draw_tank_turret_component(
+void draw_tank_turret_component(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, const vec4_t *color, e_tank_hud_component component)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -583,7 +584,7 @@ void draw_tank_turret_component(
 CG_DrawWarMomentumProgress
 ==============
 */
-void CG_DrawWarMomentumProgress(
+void CG_DrawWarMomentumProgress(LocalClientNum_t localClientNum, const rectDef_s *rect, vec4_t *color, Material *material, int ownerDraw)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -593,7 +594,7 @@ void CG_DrawWarMomentumProgress(
 CG_DrawWarMomentumMultiplier
 ==============
 */
-void CG_DrawWarMomentumMultiplier(
+void CG_DrawWarMomentumMultiplier(LocalClientNum_t localClientNum, const rectDef_s *rect, vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -603,7 +604,7 @@ void CG_DrawWarMomentumMultiplier(
 CG_DrawWarMomentumMultiplierDetail
 ==============
 */
-void CG_DrawWarMomentumMultiplierDetail(
+void CG_DrawWarMomentumMultiplierDetail(LocalClientNum_t localClientNum, const rectDef_s *rect, vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -613,7 +614,7 @@ void CG_DrawWarMomentumMultiplierDetail(
 CG_DrawWarMomentumMultiplierBlitzkrieg
 ==============
 */
-void CG_DrawWarMomentumMultiplierBlitzkrieg(
+void CG_DrawWarMomentumMultiplierBlitzkrieg(LocalClientNum_t localClientNum, const rectDef_s *rect, vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -623,7 +624,7 @@ void CG_DrawWarMomentumMultiplierBlitzkrieg(
 CG_DrawWarText
 ==============
 */
-void CG_DrawWarText(
+void CG_DrawWarText(const cg_t *cgameGlob, rectDef_s *rect, Font_s *font, float fontscale, vec4_t *color, int textStyle, float text_x, float text_y)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -633,7 +634,7 @@ void CG_DrawWarText(
 CG_DrawWristWatch
 ==============
 */
-void CG_DrawWristWatch(
+void CG_DrawWristWatch(LocalClientNum_t localClientNum, const rectDef_s *parentRect, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -643,7 +644,7 @@ void CG_DrawWristWatch(
 DrawAirburstDistance
 ==============
 */
-void DrawAirburstDistance(
+void DrawAirburstDistance(unsigned int distance, LocalClientNum_t localClientNum, const rectDef_s *rect, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -653,7 +654,7 @@ void DrawAirburstDistance(
 CG_DrawAirburstCurrentDistance
 ==============
 */
-void CG_DrawAirburstCurrentDistance(
+void CG_DrawAirburstCurrentDistance(LocalClientNum_t localClientNum, const rectDef_s *rect, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -663,7 +664,7 @@ void CG_DrawAirburstCurrentDistance(
 CG_DrawAirburstMarkDistance
 ==============
 */
-void CG_DrawAirburstMarkDistance(
+void CG_DrawAirburstMarkDistance(LocalClientNum_t localClientNum, const rectDef_s *rect, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -673,7 +674,7 @@ void CG_DrawAirburstMarkDistance(
 CG_DrawAirburstMarkTimer
 ==============
 */
-void CG_DrawAirburstMarkTimer(
+void CG_DrawAirburstMarkTimer(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -683,7 +684,7 @@ void CG_DrawAirburstMarkTimer(
 CG_DrawDemoControls
 ==============
 */
-void CG_DrawDemoControls(
+void CG_DrawDemoControls(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -726,7 +727,7 @@ bool ShouldDrawPlayerLineOfSightTargetHighlights(LocalClientNum_t localClientNum
 CG_DrawTarget
 ==============
 */
-void CG_DrawTarget(
+void CG_DrawTarget(LocalClientNum_t localClientNum, const vec2_t *screenPos, float targetSize, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -736,7 +737,7 @@ void CG_DrawTarget(
 CG_DrawPlayerTargetHighlights
 ==============
 */
-void CG_DrawPlayerTargetHighlights(
+void CG_DrawPlayerTargetHighlights(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -746,7 +747,7 @@ void CG_DrawPlayerTargetHighlights(
 CG_DrawPlayerTargetHighlightsLineOfSight
 ==============
 */
-void CG_DrawPlayerTargetHighlightsLineOfSight(
+void CG_DrawPlayerTargetHighlightsLineOfSight(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -756,7 +757,7 @@ void CG_DrawPlayerTargetHighlightsLineOfSight(
 CG_DrawPlayerTargetHighlightsFriendly
 ==============
 */
-void CG_DrawPlayerTargetHighlightsFriendly(
+void CG_DrawPlayerTargetHighlightsFriendly(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -766,7 +767,7 @@ void CG_DrawPlayerTargetHighlightsFriendly(
 CG_DrawTargetHighlightsForEntity
 ==============
 */
-void CG_DrawTargetHighlightsForEntity(
+void CG_DrawTargetHighlightsForEntity(LocalClientNum_t localClientNum, cg_t *cgameGlob, centity_t *cent, const rectDef_s *rect, Material *material, vec4_t *color, TargetHighlightParam *params)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -776,7 +777,7 @@ void CG_DrawTargetHighlightsForEntity(
 CG_DrawVehicleTargetHighlights
 ==============
 */
-void CG_DrawVehicleTargetHighlights(
+void CG_DrawVehicleTargetHighlights(TargetHighlightParam *a1, LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -786,7 +787,7 @@ void CG_DrawVehicleTargetHighlights(
 CG_DrawTurretTargetHighlights
 ==============
 */
-void CG_DrawTurretTargetHighlights(
+void CG_DrawTurretTargetHighlights(TargetHighlightParam *a1, LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -796,7 +797,7 @@ void CG_DrawTurretTargetHighlights(
 CG_DrawDogTargetHighlights
 ==============
 */
-void CG_DrawDogTargetHighlights(
+void CG_DrawDogTargetHighlights(TargetHighlightParam *a1, LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -806,7 +807,7 @@ void CG_DrawDogTargetHighlights(
 CG_DrawTargetHighlights
 ==============
 */
-void CG_DrawTargetHighlights(
+void CG_DrawTargetHighlights(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -816,7 +817,7 @@ void CG_DrawTargetHighlights(
 CG_DrawTargetHighlightsFriendly
 ==============
 */
-void CG_DrawTargetHighlightsFriendly(
+void CG_DrawTargetHighlightsFriendly(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -826,7 +827,7 @@ void CG_DrawTargetHighlightsFriendly(
 CG_DrawGuidedMissileFuel
 ==============
 */
-void CG_DrawGuidedMissileFuel(
+void CG_DrawGuidedMissileFuel(LocalClientNum_t localClientNum, const rectDef_s *rect, Material *material, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -846,7 +847,7 @@ void CG_DrawChargeShotBulletCounter(LocalClientNum_t localClientNum, rectDef_s *
 CG_OwnerDraw
 ==============
 */
-void CG_OwnerDraw(
+void CG_OwnerDraw(double localClientNum, LocalClientNum_t a2, rectDef_s parentRect, float x, float y, float w, float h, int horzAlign, int vertAlign, int ownerDraw, int ownerDrawFlags, vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -856,8 +857,10 @@ void CG_OwnerDraw(
 CG_OwnerDrawText
 ==============
 */
-void CG_OwnerDrawText(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 

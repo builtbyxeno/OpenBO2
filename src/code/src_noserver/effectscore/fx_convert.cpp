@@ -6,7 +6,7 @@
 FX_InterpolateSamples
 ==============
 */
-void FX_InterpolateSamples(
+void FX_InterpolateSamples(int dimensions, float time0, const float *samples0, float time1, const float *samples1, float timeEval, float *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -59,7 +59,7 @@ void FX_GetVisualSampleRouting(const FxEditorElemDef *edElem, FxSampleChannel *r
 FX_DecideVisualSampleCount
 ==============
 */
-int FX_DecideVisualSampleCount(
+int FX_DecideVisualSampleCount(const FxEditorElemDef *edElem, const FxSampleChannel *routing, int intervalLimit)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -70,9 +70,11 @@ int FX_DecideVisualSampleCount(
 FX_SampleVelocityInFrame
 ==============
 */
-void FX_SampleVelocityInFrame(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -80,9 +82,11 @@ void FX_SampleVelocityInFrame(
 FX_SampleVisualStateScalar
 ==============
 */
-void FX_SampleVisualStateScalar(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -141,7 +145,7 @@ void FX_BoundFloatRange(FxFloatRange *range, float lower, float upper)
 FX_ConvertTrail_CompileVertices
 ==============
 */
-void FX_ConvertTrail_CompileVertices(
+void FX_ConvertTrail_CompileVertices(const FxEditorElemDef *edElemDef, FxTrailDef *outTrailDef, unsigned __int8 **mempool)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -151,9 +155,11 @@ void FX_ConvertTrail_CompileVertices(
 FX_ConvertTrail
 ==============
 */
-void FX_ConvertTrail(FxTrailDef **outTrailDef, const FxEditorElemDef *edElemDef, unsigned __int8 **mempool)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -161,7 +167,7 @@ void FX_ConvertTrail(FxTrailDef **outTrailDef, const FxEditorElemDef *edElemDef,
 FX_ConvertSpotLight
 ==============
 */
-void FX_ConvertSpotLight(
+void FX_ConvertSpotLight(FxSpotLightDef **outSpotLightDef, const FxEditorElemDef *edElemDef, unsigned __int8 **mempool)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -182,11 +188,11 @@ int FX_FindEmission(const FxEffectDef *emission, const FxEditorEffectDef *editor
 FX_CopyEmittedElemDefs
 ==============
 */
-/*int FX_CopyEmittedElemDefs@<eax>(
+int FX_CopyEmittedElemDefs(const FxEditorEffectDef *a1, FxElemDef *elemDefArray, const FxEditorEffectDef *editorEffect, unsigned __int8 **memPool)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -215,9 +221,11 @@ bool FX_ValidateVisuals(const FxEditorEffectDef *editorEffect, const FxEditorEle
 FX_ConvertElemDef
 ==============
 */
-void FX_ConvertElemDef(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -225,10 +233,11 @@ void FX_ConvertElemDef(
 FX_ConvertElemDefsOfType
 ==============
 */
-int FX_ConvertElemDefsOfType(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -236,9 +245,9 @@ int FX_ConvertElemDefsOfType(
 FX_Convert
 ==============
 */
-const FxEffectDef *FX_Convert(const FxEditorEffectDef *editorEffect, void *(*Alloc)(int))
+/*const FxEffectDef *FX_Convert@<eax>(char *a1@<edi>, const FxEditorEffectDef *editorEffect, void *(*Alloc)(int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}
+}*/
 

@@ -414,7 +414,7 @@ void MatrixInverseOrthogonal43(const vec3_t *in, vec3_t *out)
 MatrixInverse44
 ==============
 */
-void MatrixInverse44(const vec4_t *mat, vec4_t *dst)
+void MatrixInverse44(int a1, const vec4_t *mat, vec4_t *dst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -494,10 +494,10 @@ void UnitQuatToForward(const vec4_t *quat, vec3_t *forward)
 QuatSlerp
 ==============
 */
-/*void QuatSlerp(float a1@<edi>, const vec4_t *from, const vec4_t *to, float frac, vec4_t *result)
+void QuatSlerp(float theta, const vec4_t *from, const vec4_t *to, float frac, vec4_t *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -763,7 +763,7 @@ int IntersectPlanes(const float **planein, vec3_t *xyz)
 ProjectedWindingContainsCoplanarPoint
 ==============
 */
-int ProjectedWindingContainsCoplanarPoint(
+int ProjectedWindingContainsCoplanarPoint(const vec3_t *verts, int vertCount, int x, int y, const vec3_t *point)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -817,7 +817,7 @@ BoxOnPlaneSide
 IsPosInsideArc
 ==============
 */
-int IsPosInsideArc(
+int IsPosInsideArc(const vec3_t *pos, float posRadius, const vec3_t *arcOrigin, float arcRadius, float arcAngle0, float arcAngle1, float arcHalfHeight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -944,7 +944,7 @@ void QuatLerp(const vec4_t *qa, const vec4_t *qb, float frac, vec4_t *out)
 CullBoxFromCone
 ==============
 */
-bool CullBoxFromCone(
+bool CullBoxFromCone(const vec3_t *coneOrg, const vec3_t *coneDir, float cosHalfFov, const vec3_t *boxCenter, const vec3_t *boxHalfSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -955,7 +955,7 @@ bool CullBoxFromCone(
 CullBoxFromSphere
 ==============
 */
-bool CullBoxFromSphere(
+bool CullBoxFromSphere(const vec3_t *sphereOrg, float radius, const vec3_t *boxCenter, const vec3_t *boxHalfSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -966,7 +966,7 @@ bool CullBoxFromSphere(
 CullBoxFromConicSectionOfSphere
 ==============
 */
-char CullBoxFromConicSectionOfSphere(
+char CullBoxFromConicSectionOfSphere(const vec3_t *coneOrg, const vec3_t *coneDir, float cosHalfFov, float radius, const vec3_t *boxCenter, const vec3_t *boxHalfSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -977,7 +977,7 @@ char CullBoxFromConicSectionOfSphere(
 CullSphereFromCone
 ==============
 */
-bool CullSphereFromCone(
+bool CullSphereFromCone(const vec3_t *coneOrg, const vec3_t *coneDir, float cosHalfFov, const vec3_t *sphereCenter, float radius)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -988,21 +988,23 @@ bool CullSphereFromCone(
 colorTempToXYZ
 ==============
 */
-/*int colorTempToXYZ@<eax>(int result@<eax>, float a2@<xmm0>)
+int colorTempToXYZ(int result, float a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 colorTempMatrix
 ==============
 */
-/*void colorTempMatrix(__m128 a1@<xmm6>, vec4_t *finalMatrix, float colorTemp)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============

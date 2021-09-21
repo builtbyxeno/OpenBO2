@@ -6,7 +6,7 @@
 R_SetVertexShaderConstantFromLiteral
 ==============
 */
-void R_SetVertexShaderConstantFromLiteral(
+void R_SetVertexShaderConstantFromLiteral(GfxCmdBufState *state, unsigned int buffer, unsigned int offset, unsigned int size, const float *literal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -16,7 +16,7 @@ void R_SetVertexShaderConstantFromLiteral(
 R_SetPixelShaderConstantFromLiteral
 ==============
 */
-void R_SetPixelShaderConstantFromLiteral(
+void R_SetPixelShaderConstantFromLiteral(GfxCmdBufState *state, unsigned int buffer, unsigned int offset, unsigned int size, const float *literal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -37,7 +37,7 @@ const float *R_GetCodeConstant(const GfxCmdBufContext *context, unsigned int con
 R_SetVertexShaderConstantFromCode
 ==============
 */
-void R_SetVertexShaderConstantFromCode(
+void R_SetVertexShaderConstantFromCode(const GfxCmdBufContext *context, const MaterialShaderArgument *routingData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -47,7 +47,7 @@ void R_SetVertexShaderConstantFromCode(
 R_IsPixelShaderConstantUpToDate
 ==============
 */
-int R_IsPixelShaderConstantUpToDate(
+int R_IsPixelShaderConstantUpToDate(const GfxCmdBufContext *context, const MaterialShaderArgument *routingData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -58,7 +58,7 @@ int R_IsPixelShaderConstantUpToDate(
 R_SetPixelShaderConstantFromCode
 ==============
 */
-void R_SetPixelShaderConstantFromCode(
+void R_SetPixelShaderConstantFromCode(unsigned int a1, const GfxCmdBufContext *context, const MaterialShaderArgument *routingData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -68,7 +68,7 @@ void R_SetPixelShaderConstantFromCode(
 R_SetPassShaderPrimArguments
 ==============
 */
-void R_SetPassShaderPrimArguments(
+void R_SetPassShaderPrimArguments(const GfxCmdBufContext *context, unsigned int argCount, const MaterialShaderArgument *arg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -78,7 +78,7 @@ void R_SetPassShaderPrimArguments(
 R_SetPassShaderObjectArguments
 ==============
 */
-void R_SetPassShaderObjectArguments(
+void R_SetPassShaderObjectArguments(const GfxCmdBufContext *context, unsigned int argCount, const MaterialShaderArgument *arg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -98,9 +98,11 @@ void R_SetupPassPerPrimArgs(GfxCmdBufContext context)
 R_SetupPassPerObjectArgs
 ==============
 */
-void R_SetupPassPerObjectArgs(GfxCmdBufContext context)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -108,7 +110,7 @@ void R_SetupPassPerObjectArgs(GfxCmdBufContext context)
 R_SetPassPixelShaderStableArguments
 ==============
 */
-void R_SetPassPixelShaderStableArguments(
+void R_SetPassPixelShaderStableArguments(const GfxCmdBufContext *context, unsigned int argCount, const MaterialShaderArgument *arg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -118,7 +120,7 @@ void R_SetPassPixelShaderStableArguments(
 R_SetPassVertexShaderStableArguments
 ==============
 */
-void R_SetPassVertexShaderStableArguments(
+void R_SetPassVertexShaderStableArguments(const GfxCmdBufContext *context, unsigned int argCount, const MaterialShaderArgument *arg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -128,9 +130,11 @@ void R_SetPassVertexShaderStableArguments(
 R_SetupPassCriticalPixelShaderArgs
 ==============
 */
-void R_SetupPassCriticalPixelShaderArgs(GfxCmdBufContext context)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -148,7 +152,7 @@ void R_SetupPassVertexShaderArgs(GfxCmdBufContext context)
 R_SetPixelSamplerFromMaterial
 ==============
 */
-const MaterialTextureDef *R_SetPixelSamplerFromMaterial(
+const MaterialTextureDef *R_SetPixelSamplerFromMaterial(const GfxCmdBufContext *context, const MaterialShaderArgument *arg, const MaterialTextureDef *texDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -159,9 +163,11 @@ const MaterialTextureDef *R_SetPixelSamplerFromMaterial(
 R_SetPassShaderStableArguments
 ==============
 */
-void R_SetPassShaderStableArguments(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

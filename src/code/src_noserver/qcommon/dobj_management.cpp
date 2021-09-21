@@ -130,7 +130,7 @@ DObj *Com_GetClientDObj(int handle, LocalClientNum_t localClientNum)
 Com_ClientDObjCreate
 ==============
 */
-DObj *Com_ClientDObjCreate(
+DObj *Com_ClientDObjCreate(DObjModel_s *dobjModels, unsigned __int16 numModels, XAnimTree_s *tree, int handle, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

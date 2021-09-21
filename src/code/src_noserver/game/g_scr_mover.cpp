@@ -17,17 +17,19 @@ int ScriptMover_UpdateMove(trajectory_t *pTr, vec3_t *vCurrPos, const mover_posi
 Reached_ScriptMover
 ==============
 */
-/*void Reached_ScriptMover(vec3_t *a1@<edx>, trajectory_t *a2@<ecx>, gentity_t *pEnt)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 ScriptMover_SetupMove
 ==============
 */
-void ScriptMover_SetupMove(
+void ScriptMover_SetupMove(trajectory_t *pTr, const vec3_t *vPos, const float fTotalTime, const float fAccelTime, const float fDecelTime, vec3_t *vCurrPos, mover_positions_t *positionControl)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -37,7 +39,7 @@ void ScriptMover_SetupMove(
 ScriptMover_SetupPhysicsLaunch
 ==============
 */
-void ScriptMover_SetupPhysicsLaunch(
+void ScriptMover_SetupPhysicsLaunch(trajectory_t *pTr, trajectory_t *paTr, const vec3_t *contact_point, const vec3_t *initial_force)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -47,7 +49,7 @@ void ScriptMover_SetupPhysicsLaunch(
 ScriptMover_SetupMoveSpeed
 ==============
 */
-void ScriptMover_SetupMoveSpeed(
+void ScriptMover_SetupMoveSpeed(trajectory_t *pTr, const vec3_t *vSpeed, const float fTotalTime, const float fAccelTime, const float fDecelTime, vec3_t *vCurrPos, mover_positions_t *positionControl)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -57,7 +59,7 @@ void ScriptMover_SetupMoveSpeed(
 ScriptMover_Move
 ==============
 */
-void ScriptMover_Move(
+void ScriptMover_Move(gentity_t *pEnt, const vec3_t *vPos, const float fTotalTime, const float fAccelTime, const float fDecelTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -127,7 +129,7 @@ void ScriptEntCmdGetCommandTimes(float *pfTotalTime, float *pfAccelTime, float *
 ScriptEntCmd_MoveTo
 ==============
 */
-void ScriptEntCmd_MoveTo(scr_entref_t entref)
+void ScriptEntCmd_MoveTo(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -207,7 +209,7 @@ void ScriptEntCmd_MoveZ(scr_entref_t entref)
 ScriptEntCmd_RotateTo
 ==============
 */
-void ScriptEntCmd_RotateTo(scr_entref_t entref)
+void ScriptEntCmd_RotateTo(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -307,7 +309,7 @@ void ScriptEntCmd_Vibrate(scr_entref_t entref)
 ScriptEntCmd_RotateVelocity
 ==============
 */
-void ScriptEntCmd_RotateVelocity(scr_entref_t entref)
+void ScriptEntCmd_RotateVelocity(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -36,7 +36,7 @@ void GlassSv_Shutdown()
 GlassSv_AreaGlasses
 ==============
 */
-unsigned int GlassSv_AreaGlasses(
+unsigned int GlassSv_AreaGlasses(const vec3_t *mins, const vec3_t *maxs, const Glass **glasses, unsigned int maxGlasses)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -77,7 +77,7 @@ void GlassSv_Damage(unsigned int glassId, int damage, int mod, const vec3_t *pos
 GlassSv_RadiusDamage
 ==============
 */
-void GlassSv_RadiusDamage(
+void GlassSv_RadiusDamage(const vec3_t *origin, float radius, float coneAngleCos, vec3_t *coneDirection, float innerDamage, float outerDamage, int mod)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -218,7 +218,7 @@ GlassesServer::ShatterAllCmd
 GlassesServer::Init
 ==============
 */
-/*void __thiscall GlassesServer::Init(GlassesServer *this)
+/*void GlassesServer::Init(GlassesServer *this@<ecx>, const char *a2@<ebx>)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

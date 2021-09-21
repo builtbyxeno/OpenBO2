@@ -126,10 +126,11 @@ bool FX_ParseCurve(const char **parse, int dimCount, float minValue, float maxVa
 FX_ParseGraphRange
 ==============
 */
-bool FX_ParseGraphRange(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -500,132 +501,144 @@ char FX_ParseAtlasEntryCount(const char **parse, FxEditorElemDef *edElemDef)
 FX_ParseVelGraph0X
 ==============
 */
-/*bool FX_ParseVelGraph0X@<al>(int a1@<edx>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseVelGraph0Y
 ==============
 */
-/*bool FX_ParseVelGraph0Y@<al>(int a1@<edx>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseVelGraph0Z
 ==============
 */
-/*bool FX_ParseVelGraph0Z@<al>(int a1@<edx>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseVelGraph1X
 ==============
 */
-/*bool FX_ParseVelGraph1X@<al>(int a1@<edx>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseVelGraph1Y
 ==============
 */
-/*bool FX_ParseVelGraph1Y@<al>(int a1@<edx>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseVelGraph1Z
 ==============
 */
-/*bool FX_ParseVelGraph1Z@<al>(int a1@<edx>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseRotGraph
 ==============
 */
-/*bool FX_ParseRotGraph@<al>(int a1@<edx>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseSizeGraph0
 ==============
 */
-/*bool FX_ParseSizeGraph0@<al>(int a1@<edx>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseSizeGraph1
 ==============
 */
-/*bool FX_ParseSizeGraph1@<al>(int a1@<edx>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseScaleGraph
 ==============
 */
-/*bool FX_ParseScaleGraph@<al>(int a1@<edx>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseColorGraph
 ==============
 */
-/*bool FX_ParseColorGraph@<al>(int a1@<edx>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseAlphaGraph
 ==============
 */
-/*bool FX_ParseAlphaGraph@<al>(int a1@<edx>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -819,11 +832,11 @@ char FX_ParseLight(const char **parse, FxEditorElemDef *edElemDef)
 FX_ParseElemSpawnSound
 ==============
 */
-/*bool FX_ParseElemSpawnSound@<al>(FxEditorElemDef *a1@<edx>, const char **parse, FxEditorElemDef *edElemDef)
+bool FX_ParseElemSpawnSound(FxEditorElemDef *a1, const char **parse, FxEditorElemDef *edElemDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -962,10 +975,11 @@ bool FX_ParseEditorEffectField(const char **parse, FxEditorEffectDef *edEffectDe
 FX_ParseEditorElem
 ==============
 */
-char FX_ParseEditorElem(int version, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -984,7 +998,7 @@ bool FX_ParseEditorEffect(const char **parse, FxEditorEffectDef *edEffectDef)
 FX_LoadEditorEffectFromBuffer
 ==============
 */
-bool FX_LoadEditorEffectFromBuffer(
+bool FX_LoadEditorEffectFromBuffer(const char *buffer, const char *parseSessionName, FxEditorEffectDef *edEffectDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1061,121 +1075,132 @@ bool FX_RegisterAsset_DecalMaterials(const char *name, FxElemMarkVisuals *visual
 FX_ParseBillboardSprite
 ==============
 */
-/*bool FX_ParseBillboardSprite@<al>(unsigned __int8 a1@<dl>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseOrientedSprite
 ==============
 */
-/*bool FX_ParseOrientedSprite@<al>(unsigned __int8 a1@<dl>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseRotatedSprite
 ==============
 */
-/*bool FX_ParseRotatedSprite@<al>(unsigned __int8 a1@<dl>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseCloud
 ==============
 */
-/*bool FX_ParseCloud@<al>(unsigned __int8 a1@<dl>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseTail
 ==============
 */
-/*bool FX_ParseTail@<al>(unsigned __int8 a1@<dl>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseLine
 ==============
 */
-/*bool FX_ParseLine@<al>(unsigned __int8 a1@<dl>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseTrail
 ==============
 */
-/*bool FX_ParseTrail@<al>(unsigned __int8 a1@<dl>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseDecal
 ==============
 */
-/*bool FX_ParseDecal@<al>(unsigned __int8 a1@<dl>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseModel
 ==============
 */
-/*bool FX_ParseModel@<al>(unsigned __int8 a1@<dl>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseSpotLight
 ==============
 */
-/*bool FX_ParseSpotLight@<al>(unsigned __int8 a1@<dl>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_ParseSound
 ==============
 */
-/*bool FX_ParseSound@<al>(unsigned __int8 a1@<dl>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -1204,11 +1229,11 @@ const FxEffectDef *FX_Load(const char *name)
 FX_Register_LoadObj
 ==============
 */
-/*const FxEffectDef *FX_Register_LoadObj@<eax>(bool *a1@<edx>, const char *a2@<ecx>, const char *name)
+const FxEffectDef *FX_Register_LoadObj(bool *a1, const char *a2, const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -1291,11 +1316,12 @@ char FX_ParseAttachment(const char **parse, FxEditorElemDef *edElemDef)
 FX_ParseRunner
 ==============
 */
-/*bool FX_ParseRunner@<al>(unsigned __int8 a1@<dl>, const char **parse, FxEditorElemDef *edElemDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============

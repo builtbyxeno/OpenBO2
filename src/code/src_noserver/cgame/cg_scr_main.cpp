@@ -17,7 +17,7 @@ unsigned __int16 CScr_GetMeansOfDeathConstString(int mod)
 CScr_Notify
 ==============
 */
-void CScr_Notify(
+void CScr_Notify(LocalClientNum_t localClientNum, centity_t *ent, unsigned __int16 stringValue, unsigned int paramcount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -830,7 +830,7 @@ void CG_TurnOnMixerExploder(_mixerLight_t *pMixer)
 CG_SetMixerLightIntensity
 ==============
 */
-void CG_SetMixerLightIntensity(
+void CG_SetMixerLightIntensity(_mixerLight_t *pMixer, _lightParams_t *pChannel, float intensity, bool bDominant)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -850,7 +850,7 @@ void CG_DeleteLightModels(_lightModel_t *lightModel)
 CG_CreateLightModelsAndFX
 ==============
 */
-void CG_CreateLightModelsAndFX(
+void CG_CreateLightModelsAndFX(_mixerLight_t *pMixer, _lightModel_t *pLightModel, __int16 modelIndex, const FxEffectDef *fxDef, unsigned int tag)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1581,7 +1581,7 @@ void CScr_GetIsBigDog(centity_t *cent, const cent_field_s *pField)
 CScr_PlayerJumpEvent
 ==============
 */
-void CScr_PlayerJumpEvent(
+void CScr_PlayerJumpEvent(LocalClientNum_t localClientNum, centity_t *cent, bool isPlayerView, int surfaceType, bool quiet, bool isLouder)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1591,7 +1591,7 @@ void CScr_PlayerJumpEvent(
 CScr_PlayerLandEvent
 ==============
 */
-void CScr_PlayerLandEvent(
+void CScr_PlayerLandEvent(LocalClientNum_t localClientNum, centity_t *cent, bool isPlayerView, int surfaceType, bool quiet, bool damagePlayer, bool isLouder)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1981,7 +1981,7 @@ void CScr_SetFxAngles(int givenAxisCount, vec3_t *axis, vec3_t *angles)
 CScr_PlayFXInternal
 ==============
 */
-unsigned int CScr_PlayFXInternal(
+unsigned int CScr_PlayFXInternal(LocalClientNum_t localClientNum, int fxId, vec3_t *angles, vec3_t *pos, int time, float primaryLightFraction, int lightingOriginOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -2052,9 +2052,11 @@ void CScr_GetGenericEnt(LocalClientNum_t localClientNum, int offset, const char 
 CScr_GetEnt
 ==============
 */
-void CScr_GetEnt()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -2457,10 +2459,10 @@ void CScr_SetRippleWave()
 CScr_Project2DTo3D
 ==============
 */
-/*void CScr_Project2DTo3D(unsigned int a1@<ebp>)
+void CScr_Project2DTo3D(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -2975,10 +2977,10 @@ void CScr_GetLightFovOuter(scr_entref_t entref)
 CScr_SetLightFovRange
 ==============
 */
-/*void CScr_SetLightFovRange(float a1@<edi>, scr_entref_t entref)
+void CScr_SetLightFovRange(float entref, scr_entref_t entref_4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -3065,7 +3067,7 @@ void CScrCmdGetCommandTimes(float *pfTotalTime, float *pfAccelTime, float *pfDec
 CScriptMover_SetupMove
 ==============
 */
-void CScriptMover_SetupMove(
+void CScriptMover_SetupMove(cg_t *cgameGlob, trajectory_t *pTr, const vec3_t *vPos, const float fTotalTime, const float fAccelTime, const float fDecelTime, vec3_t *vCurrPos, float *pfSpeed, float *pfMidTime, float *pfDecelTime, vec3_t *vPos1, vec3_t *vPos2, vec3_t *vPos3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3075,7 +3077,7 @@ void CScriptMover_SetupMove(
 CScriptMover_SetupMoveSpeed
 ==============
 */
-void CScriptMover_SetupMoveSpeed(
+void CScriptMover_SetupMoveSpeed(cg_t *cgameGlob, trajectory_t *pTr, const vec3_t *vSpeed, const float fTotalTime, const float fAccelTime, const float fDecelTime, vec3_t *vCurrPos, float *pfSpeed, float *pfMidTime, float *pfDecelTime, vec3_t *vPos1, vec3_t *vPos2, vec3_t *vPos3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3085,7 +3087,7 @@ void CScriptMover_SetupMoveSpeed(
 CScriptMover_MoveGravity
 ==============
 */
-void CScriptMover_MoveGravity(
+void CScriptMover_MoveGravity(cg_t *cgameGlob, trajectory_t *pTr, const vec3_t *velocity, const float fTotalTime, vec3_t *vCurrPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3205,9 +3207,11 @@ void CScrCmd_RotateTo(scr_entref_t entref)
 CScrCmd_RotateVelocity
 ==============
 */
-void CScrCmd_RotateVelocity(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -4249,7 +4253,7 @@ void CScr_SetAmbientTrigger(scr_entref_t entref)
 CScr_SoundSetAmbientState
 ==============
 */
-void CScr_SoundSetAmbientState(
+void CScr_SoundSetAmbientState(const char *roomName, const char *packageName, centity_t *roomColliderCent, centity_t *packageColliderCent, bool defaultRoom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4414,7 +4418,7 @@ void CScr_SetupClientZBarrierIndices()
 CScr_UpdateTagInternal
 ==============
 */
-int CScr_UpdateTagInternal(
+int CScr_UpdateTagInternal(centity_t *ent, unsigned int tagName, cached_tag_mat_t *cachedTag, int showScriptError)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -4519,11 +4523,12 @@ void CScr_GetObjectField(unsigned int classnum, int entnum, LocalClientNum_t cli
 CScr_SetObjectField
 ==============
 */
-/*int CScr_SetObjectField@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -4604,7 +4609,7 @@ unsigned int CScr_StopLoopSound()
 firecaster_light_behavior
 ==============
 */
-void firecaster_light_behavior(
+void firecaster_light_behavior(_mixerLight_t *pMixer, _lightParams_t *pParams, const cg_t *cgameGlob, bool bDominant)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4614,7 +4619,7 @@ void firecaster_light_behavior(
 fire_flicker_internal
 ==============
 */
-void fire_flicker_internal(
+void fire_flicker_internal(_mixerLight_t *pMixer, _lightParams_t *pParams, const cg_t *cgameGlob, bool bDominant)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4624,7 +4629,7 @@ void fire_flicker_internal(
 fire_flicker_light_behavior
 ==============
 */
-void fire_flicker_light_behavior(
+void fire_flicker_light_behavior(_mixerLight_t *pMixer, _lightParams_t *pParams, const cg_t *cgameGlob, bool bDominant)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4634,7 +4639,7 @@ void fire_flicker_light_behavior(
 flickerthenstop_light_behavior
 ==============
 */
-void flickerthenstop_light_behavior(
+void flickerthenstop_light_behavior(_mixerLight_t *pMixer, _lightParams_t *pParams, const cg_t *cgameGlob, bool bDominant)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4644,7 +4649,7 @@ void flickerthenstop_light_behavior(
 explode_then_flicker_light_behavior
 ==============
 */
-void explode_then_flicker_light_behavior(
+void explode_then_flicker_light_behavior(_mixerLight_t *pMixer, _lightParams_t *pParams, const cg_t *cgameGlob, bool bDominant)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4654,7 +4659,7 @@ void explode_then_flicker_light_behavior(
 electrical_flicker_light_behavior
 ==============
 */
-void electrical_flicker_light_behavior(
+void electrical_flicker_light_behavior(_mixerLight_t *pMixer, _lightParams_t *pParams, const cg_t *cgameGlob, bool bDominant)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4664,7 +4669,7 @@ void electrical_flicker_light_behavior(
 generic_strobe_light_behavior
 ==============
 */
-void generic_strobe_light_behavior(
+void generic_strobe_light_behavior(_mixerLight_t *pMixer, _lightParams_t *pParams, const cg_t *cgameGlob, bool bDominant)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4674,7 +4679,7 @@ void generic_strobe_light_behavior(
 generic_double_strobe_light_behavior
 ==============
 */
-void generic_double_strobe_light_behavior(
+void generic_double_strobe_light_behavior(_mixerLight_t *pMixer, _lightParams_t *pParams, const cg_t *cgameGlob, bool bDominant)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4684,7 +4689,7 @@ void generic_double_strobe_light_behavior(
 light_off_light_behavior
 ==============
 */
-void light_off_light_behavior(
+void light_off_light_behavior(_mixerLight_t *pMixer, _lightParams_t *pParams, const cg_t *cgameGlob, bool bDominant)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4694,7 +4699,7 @@ void light_off_light_behavior(
 generic_pulsing_light_behavior
 ==============
 */
-void generic_pulsing_light_behavior(
+void generic_pulsing_light_behavior(_mixerLight_t *pMixer, _lightParams_t *pParams, const cg_t *cgameGlob, bool bDominant)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4704,7 +4709,7 @@ void generic_pulsing_light_behavior(
 television_light_behavior
 ==============
 */
-void television_light_behavior(
+void television_light_behavior(_mixerLight_t *pMixer, _lightParams_t *pParams, const cg_t *cgameGlob, bool bDominant)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4714,7 +4719,7 @@ void television_light_behavior(
 generic_flickering_light_behavior
 ==============
 */
-void generic_flickering_light_behavior(
+void generic_flickering_light_behavior(_mixerLight_t *pMixer, _lightParams_t *pParams, const cg_t *cgameGlob, bool bDominant)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4724,9 +4729,11 @@ void generic_flickering_light_behavior(
 CG_HandleSpinnerLights
 ==============
 */
-void CG_HandleSpinnerLights(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -4734,10 +4741,10 @@ void CG_HandleSpinnerLights(
 CG_RunMixerLights
 ==============
 */
-/*void CG_RunMixerLights(float a1@<edi>)
+void CG_RunMixerLights(float a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -4796,7 +4803,7 @@ void CScrCmd_ForceDelete(scr_entref_t entref)
 CScrCmd_GetVelocity
 ==============
 */
-void CScrCmd_GetVelocity(scr_entref_t entref)
+void CScrCmd_GetVelocity(unsigned int a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -46,31 +46,31 @@ void G_ParsePathnodeField(const char *key, const char *value, pathnode_t *node)
 G_ParsePathnodeFields
 ==============
 */
-/*void G_ParsePathnodeFields(SpawnVar *a1@<edx>, SpawnVar *spawnVar, pathnode_t *node, nodeType type)
+void G_ParsePathnodeFields(SpawnVar *a1, SpawnVar *spawnVar, pathnode_t *node, nodeType type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 SP_spawn_node
 ==============
 */
-void SP_spawn_node(SpawnVar *spawnVar, nodeType type)
+/*void SP_spawn_node(const char *a1@<esi>, SpawnVar *spawnVar, nodeType type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 SP_spawn_node_dynamic
 ==============
 */
-pathnode_t *SP_spawn_node_dynamic(SpawnVar *spawnVar, nodeType type)
+/*pathnode_t *SP_spawn_node_dynamic@<eax>(const char *a1@<esi>, SpawnVar *spawnVar, nodeType type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}
+}*/
 
 /*
 ==============
@@ -162,7 +162,7 @@ pathnode_tree_t *Path_BuildNodeBsp_r(unsigned __int16 *nodes, int numNodes)
 Path_DisconnectChokeLinks
 ==============
 */
-void Path_DisconnectChokeLinks(
+void Path_DisconnectChokeLinks(unsigned int nodeAIndex, unsigned int nodeBIndex, unsigned int nodeALink, unsigned __int16 *newLinkCounts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -172,7 +172,7 @@ void Path_DisconnectChokeLinks(
 Path_DisconnectNodeForChokePoint
 ==============
 */
-bool Path_DisconnectNodeForChokePoint(
+bool Path_DisconnectNodeForChokePoint(unsigned int nodeAIndex, unsigned int chokeIndex, unsigned __int16 *newLinkCounts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -183,7 +183,7 @@ bool Path_DisconnectNodeForChokePoint(
 Path_DisconnectNodesOnOppositeSideOfChokeNode
 ==============
 */
-pathlink_s *Path_DisconnectNodesOnOppositeSideOfChokeNode(
+pathlink_s *Path_DisconnectNodesOnOppositeSideOfChokeNode(pathlink_s *pSourceLinks, unsigned int *totalLinkCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -216,7 +216,7 @@ bool Path_TwoWayLink(unsigned __int16 from, unsigned __int16 to)
 Path_FindLinkToNode_r
 ==============
 */
-char Path_FindLinkToNode_r(
+char Path_FindLinkToNode_r(const pathnode_t *searchNode, unsigned __int16 searchIndex, unsigned __int16 fromIndex, unsigned __int16 goalIndex, int *currentDepth, const int maxDepth)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -249,7 +249,7 @@ void Path_DisconnectLink(pathnode_t *nodeA, pathnode_t *nodeB, bool removeRedund
 Path_OptimizeGraph
 ==============
 */
-pathlink_s *Path_OptimizeGraph(
+pathlink_s *Path_OptimizeGraph(char *a1, pathlink_s *pSourceLinks, unsigned int *totalLinkCount, bool removeRedundantLinks)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -292,11 +292,11 @@ void Path_MarkSafeShuffleLinks()
 isDeflectionOK
 ==============
 */
-/*bool isDeflectionOK@<al>(float *a1@<edx>, float *a2@<ecx>, float a3@<xmm0>, const vec2_t *movedir)
+bool isDeflectionOK(float *a1, float *a2, float movedir, const vec2_t *a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -432,7 +432,7 @@ pathlink_s *G_GetNextAvailableTempLinks()
 Path_MakePathDataPermanent
 ==============
 */
-void Path_MakePathDataPermanent(
+void Path_MakePathDataPermanent(pathlink_s *pSourceLinks, unsigned int totalLinkCount, unsigned __int8 *pVis, int visBytes, unsigned __int8 *pSmooth, int smoothBytes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -497,10 +497,11 @@ bool Path_AttemptLink1(pathnode_t *pNodeFrom, pathnode_t *pNodeTo, pathlink_s *p
 Path_AttemptLink
 ==============
 */
-bool Path_AttemptLink(pathnode_t *pNodeFrom, pathnode_t *pNodeTo, pathlink_s *pLinks, int iMaxLinks)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*

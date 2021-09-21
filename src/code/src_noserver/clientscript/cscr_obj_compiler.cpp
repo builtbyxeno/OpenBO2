@@ -36,7 +36,7 @@ void Scr_ClientStubFunctionUseError()
 GetFunction
 ==============
 */
-void (*GetFunction(
+void (*GetFunction(scriptInstance_t inst, const char **pName, int *type, int *min_args, int *max_args))()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -47,7 +47,7 @@ void (*GetFunction(
 GetMethod
 ==============
 */
-void (*GetMethod(
+void (*GetMethod(scriptInstance_t inst, const char **pName, int *type, int *min_args, int *max_args))(scr_entref_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -90,7 +90,7 @@ XModelPiece *Scr_GetGSCObj(scriptInstance_t inst, const char *name, bool appendE
 Scr_ResolveScriptFunction
 ==============
 */
-char Scr_ResolveScriptFunction(
+char Scr_ResolveScriptFunction(scriptInstance_t inst, GSC_OBJ *prime_obj, GSC_IMPORT_ITEM *import, unsigned __int8 op, bool is_pushfunc)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -121,7 +121,7 @@ void LoadScriptGDB(scriptInstance_t inst, objFileInfo_t *fileInfo)
 GscBuiltinProfileData
 ==============
 */
-_gscBuiltinProfileInfo_t *GscBuiltinProfileData(
+_gscBuiltinProfileInfo_t *GscBuiltinProfileData(scriptInstance_t inst, const char *name, void (*func)())
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -132,7 +132,7 @@ _gscBuiltinProfileInfo_t *GscBuiltinProfileData(
 GscBuiltinProfileData
 ==============
 */
-_gscBuiltinProfileInfo_t *GscBuiltinProfileData(
+_gscBuiltinProfileInfo_t *GscBuiltinProfileData(scriptInstance_t inst, const char *name, void (*method)(scr_entref_t))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -165,7 +165,7 @@ unsigned int SL_GetCanonicalString(const char *string, bool is_static)
 Scr_GetFunctionHandle
 ==============
 */
-unsigned __int8 *Scr_GetFunctionHandle(
+unsigned __int8 *Scr_GetFunctionHandle(scriptInstance_t inst, const char *filename, const char *name, unsigned int *checksum, bool errorIfMissing)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -176,7 +176,7 @@ unsigned __int8 *Scr_GetFunctionHandle(
 Scr_GetFunctionHandle
 ==============
 */
-unsigned __int8 *Scr_GetFunctionHandle(
+unsigned __int8 *Scr_GetFunctionHandle(scriptInstance_t inst, unsigned __int8 *addr, int *func_index, unsigned int *checksum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -187,7 +187,7 @@ unsigned __int8 *Scr_GetFunctionHandle(
 Scr_GetFunctionHandle
 ==============
 */
-unsigned __int8 *Scr_GetFunctionHandle(
+unsigned __int8 *Scr_GetFunctionHandle(scriptInstance_t inst, unsigned __int8 *addr, const char **filename, const char **funcname, unsigned int *checksum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -295,7 +295,7 @@ unsigned __int8 *Scr_GetPosForFileAndLineNum(scriptInstance_t inst, const char *
 Scr_GetFileAndLineNum
 ==============
 */
-void Scr_GetFileAndLineNum(
+void Scr_GetFileAndLineNum(scriptInstance_t inst, unsigned __int8 *pos, const char **filename, int *lineNum, const char **sourceLine)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -405,7 +405,7 @@ void Scr_ScriptProfileUpdateTotalTime(scriptInstance_t inst, unsigned __int64 ti
 _AdjustThreadInstructionPointers
 ==============
 */
-void _AdjustThreadInstructionPointers(
+void _AdjustThreadInstructionPointers(scriptInstance_t inst, objFileInfo_t *objFileInfo, debugFileInfo_t *oldDebugInfo, unsigned __int8 **oldWaitOffsets, unsigned __int8 **waitOffsets, int waitCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -446,7 +446,7 @@ void Scr_ResetObjCompile(scriptInstance_t inst)
 ReportObjLinkError
 ==============
 */
-void ReportObjLinkError(
+void ReportObjLinkError(scriptInstance_t inst, GSC_OBJ *prime_obj, objFileInfo_t *fileInfo, GSC_IMPORT_ITEM *import, char *errorString, int errorStringLength)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

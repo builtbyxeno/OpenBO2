@@ -59,7 +59,7 @@ void R_FlagXModelAsSkinned(GfxSceneEntity *sceneEnt, unsigned int surfaceCount)
 R_SkinSceneDObj
 ==============
 */
-void R_SkinSceneDObj(
+void R_SkinSceneDObj(GfxSceneEntity *sceneEnt, GfxSceneEntity *localSceneEnt, const DObj *obj, DObjAnimMat *boneMatrix, int waitForCullState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

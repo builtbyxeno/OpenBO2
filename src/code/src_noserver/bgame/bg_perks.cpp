@@ -38,7 +38,7 @@ const char *BG_GetPerkNameForIndex(unsigned int perkIndex)
 Perks_RegisterDvars
 ==============
 */
-void Perks_RegisterDvars(int a1, dvarType_t a2)
+void Perks_RegisterDvars(dvarType_t a1, dvarType_t a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -68,7 +68,7 @@ void SV_SetupIgnoreEntParams(IgnoreEntParams *ignoreEntParams, int baseEntity)
 SV_SightTraceCapsule
 ==============
 */
-BOOL SV_SightTraceCapsule(
+BOOL SV_SightTraceCapsule(int *hitNum, const vec3_t *start, const vec3_t *mins, const vec3_t *maxs, const vec3_t *end, col_context_t *context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -137,7 +137,7 @@ SV_TracePoint
 SV_TraceCapsule
 ==============
 */
-void SV_TraceCapsule(
+void SV_TraceCapsule(int a1, trace_t *results, const vec3_t *start, const vec3_t *mins, const vec3_t *maxs, const vec3_t *end, col_context_t *context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -147,7 +147,7 @@ void SV_TraceCapsule(
 G_TraceCapsule
 ==============
 */
-void G_TraceCapsule(
+void G_TraceCapsule(trace_t *results, const vec3_t *start, const vec3_t *mins, const vec3_t *maxs, const vec3_t *end, int passEntityNum, int contentmask, col_context_t *context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -157,7 +157,7 @@ void G_TraceCapsule(
 G_LocationalTrace
 ==============
 */
-void G_LocationalTrace(
+void G_LocationalTrace(trace_t *results, const vec3_t *start, const vec3_t *end, int passEntityNum, int contentmask, unsigned __int8 *priorityMap, int (*collide_entity_func)(int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -167,7 +167,7 @@ void G_LocationalTrace(
 G_LocationalTraceAllowChildren
 ==============
 */
-void G_LocationalTraceAllowChildren(
+void G_LocationalTraceAllowChildren(trace_t *results, const vec3_t *start, const vec3_t *end, int passEntityNum, int contentmask, unsigned __int8 *priorityMap)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

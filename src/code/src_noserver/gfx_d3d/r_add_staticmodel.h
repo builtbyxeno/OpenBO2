@@ -16,7 +16,7 @@ void R_InitStaticModelDrawSurf(GfxSModelDrawSurfData *surfData, const GfxViewPar
 R_AddDelayedStaticModelDrawSurf
 ==============
 */
-void R_AddDelayedStaticModelDrawSurf(
+void R_AddDelayedStaticModelDrawSurf(GfxDelayedCmdBuf *delayedCmdBuf, XSurface *xsurf, unsigned __int16 *list, unsigned int count, unsigned int prepassType, unsigned __int8 stateFlags, unsigned int allocSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -46,7 +46,7 @@ void SetAnimCheck(scriptInstance_t inst, int bAnimCheck)
 Scr_EmitAnimationInternal
 ==============
 */
-void Scr_EmitAnimationInternal(
+void Scr_EmitAnimationInternal(scriptInstance_t inst, unsigned __int8 *pos, unsigned int animName, unsigned int names, unsigned int sourcePos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -56,9 +56,11 @@ void Scr_EmitAnimationInternal(
 Scr_EmitAnimation
 ==============
 */
-void Scr_EmitAnimation(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -99,7 +101,7 @@ int Scr_GetAnimTreeValueCount(scriptInstance_t inst, unsigned int rootData)
 ConnectScriptToAnim
 ==============
 */
-void ConnectScriptToAnim(
+void ConnectScriptToAnim(scriptInstance_t inst, unsigned int names, int index, unsigned int filename, unsigned int name, int treeIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -142,7 +144,7 @@ XAnim_s *Scr_GetAnims(scriptInstance_t inst, unsigned int index)
 Scr_ProcessNodeValues
 ==============
 */
-void Scr_ProcessNodeValues(
+void Scr_ProcessNodeValues(scriptInstance_t inst, XAnim_s *anims, unsigned int name, unsigned int rootNode, unsigned int animIndex, unsigned int arrayNode, void *(*Alloc)(int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -152,10 +154,11 @@ void Scr_ProcessNodeValues(
 Scr_CreateAnimationTree
 ==============
 */
-int Scr_CreateAnimationTree(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -193,7 +196,7 @@ void Scr_PrecacheAnimationTree(scriptInstance_t inst, unsigned int parentNode)
 Scr_UsingTreeInternal
 ==============
 */
-unsigned int Scr_UsingTreeInternal(
+unsigned int Scr_UsingTreeInternal(scriptInstance_t inst, const char *filename, unsigned int *index, int user)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -204,9 +207,11 @@ unsigned int Scr_UsingTreeInternal(
 Scr_ClientUsingTree
 ==============
 */
-void Scr_ClientUsingTree(scriptInstance_t inst, const char *filename)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -214,10 +219,11 @@ void Scr_ClientUsingTree(scriptInstance_t inst, const char *filename)
 Scr_CreateAllAnimTreeData
 ==============
 */
-int Scr_CreateAllAnimTreeData(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -225,7 +231,7 @@ int Scr_CreateAllAnimTreeData(
 CScr_RetrieveAnimTree
 ==============
 */
-scr_animtree_t CScr_RetrieveAnimTree(
+scr_animtree_t CScr_RetrieveAnimTree(const char *strAnimTreeName, unsigned int names, unsigned int filename, int iOurTreeIx)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	scr_animtree_t tmp;
@@ -249,9 +255,11 @@ scr_animtree_t Scr_FindAnimTree(scriptInstance_t inst, const char *filename)
 Scr_FindAnim
 ==============
 */
-void Scr_FindAnim(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -279,9 +287,11 @@ ScriptTokenizer::PushNextToken
 Scr_UsingTree
 ==============
 */
-void Scr_UsingTree(scriptInstance_t inst, const char *filename, unsigned int sourcePos)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -345,18 +355,18 @@ unsigned int ParseValueFromValueList(ScriptTokenizer *tokenizer, scriptInstance_
 ParseNode
 ==============
 */
-/*char ParseNode@<al>(
+char ParseNode(int *a1, ScriptTokenizer *tokenizer, scriptInstance_t inst, unsigned int parentNode, unsigned int rootData, unsigned int names, bool bLoop, bool bComplete)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 AnimTreeParseInternal
 ==============
 */
-bool AnimTreeParseInternal(
+bool AnimTreeParseInternal(scriptInstance_t inst, unsigned int parentNode, unsigned int names, bool bIncludeParent, bool bLoop, bool bComplete)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -367,9 +377,11 @@ bool AnimTreeParseInternal(
 Scr_AnimTreeParse
 ==============
 */
-void Scr_AnimTreeParse(scriptInstance_t inst, const char *pos, unsigned int parentNode, unsigned int names)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -377,7 +389,7 @@ void Scr_AnimTreeParse(scriptInstance_t inst, const char *pos, unsigned int pare
 Scr_LoadAnimTreeInternal
 ==============
 */
-bool Scr_LoadAnimTreeInternal(
+bool Scr_LoadAnimTreeInternal(scriptInstance_t inst, const char *filename, unsigned int parentNode, unsigned int names)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -388,8 +400,10 @@ bool Scr_LoadAnimTreeInternal(
 Scr_LoadAnimTreeAtIndex
 ==============
 */
-void Scr_LoadAnimTreeAtIndex(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 

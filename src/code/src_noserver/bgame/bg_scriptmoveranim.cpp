@@ -47,7 +47,7 @@ void BG_ScriptMoverAnim_ClearServerEntity(gentity_t *ent)
 BG_ScriptMoverAnim_SetupServerEntity
 ==============
 */
-void BG_ScriptMoverAnim_SetupServerEntity(
+void BG_ScriptMoverAnim_SetupServerEntity(gentity_t *ent, XAnimTree_s *tree, scr_anim_s anim, unsigned int flags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

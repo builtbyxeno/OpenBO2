@@ -6,7 +6,7 @@
 SV_EmitPacketClients
 ==============
 */
-void SV_EmitPacketClients(
+void SV_EmitPacketClients(SnapshotInfo_s *snapInfo, const int from_num_clients, const int from_first_client, const int to_num_clients, const int to_first_client, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -16,7 +16,7 @@ void SV_EmitPacketClients(
 SV_EmitPacketActors
 ==============
 */
-void SV_EmitPacketActors(
+void SV_EmitPacketActors(SnapshotInfo_s *snapInfo, const int from_num_actors, const int from_first_actor, const int to_num_actors, const int to_first_actor, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

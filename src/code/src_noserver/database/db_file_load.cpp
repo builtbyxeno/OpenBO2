@@ -234,7 +234,7 @@ int DB_DecompressIOStreamWorkerCallback(jqBatch *batch)
 DB_LoadXFile
 ==============
 */
-BOOL DB_LoadXFile(
+BOOL DB_LoadXFile(const char *path, int f, const char *filename, XBlock *blocks, void (*interrupt)(), unsigned __int8 *buf, int allocType, int flags, int requiredVersion, unsigned int desiredReadBytes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

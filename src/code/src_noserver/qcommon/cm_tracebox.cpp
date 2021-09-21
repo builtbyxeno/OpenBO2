@@ -27,7 +27,7 @@ int intersect_extents_aabb(const TraceExtents *extents, const vec3_t *mins, cons
 intersect_extents_aabb
 ==============
 */
-int intersect_extents_aabb(
+int intersect_extents_aabb(const TraceExtents *extents, const vec3_t *mins, const vec3_t *maxs, float *enterFrac, float *leaveFrac)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

@@ -38,7 +38,7 @@ void Demo_InitializeHighlightReelSystem()
 Demo_GetHighlightReelInformationDefine
 ==============
 */
-demoHighlightReelInformationDefine *Demo_GetHighlightReelInformationDefine(
+demoHighlightReelInformationDefine *Demo_GetHighlightReelInformationDefine(demoHighlightReelInformationType type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -49,7 +49,7 @@ demoHighlightReelInformationDefine *Demo_GetHighlightReelInformationDefine(
 Demo_GetHighlightReelInformationDefineFromBookmarkType
 ==============
 */
-demoHighlightReelInformationDefine *Demo_GetHighlightReelInformationDefineFromBookmarkType(
+demoHighlightReelInformationDefine *Demo_GetHighlightReelInformationDefineFromBookmarkType(demoBookmarkType bookmarkType, __int16 eType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -104,7 +104,7 @@ int Demo_CompareHighlightReelTimelineEventsByMultipleParameters(const void *even
 Demo_HighlightReelFinalizePlayerDeathInformation
 ==============
 */
-void Demo_HighlightReelFinalizePlayerDeathInformation(
+void Demo_HighlightReelFinalizePlayerDeathInformation(demoHighlightReelInformationDefine *infoDefine, demoHighlightReelPreparingInformation *information, demoDefaultBookmark *bookmark, ClientNum_t clientNum, demoHighlightReelPlayerPriority playerPriority)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -114,7 +114,7 @@ void Demo_HighlightReelFinalizePlayerDeathInformation(
 Demo_HighlightReelPrepareFirstPersonInformation
 ==============
 */
-void Demo_HighlightReelPrepareFirstPersonInformation(
+void Demo_HighlightReelPrepareFirstPersonInformation(int a1, demoDefaultBookmark *a2, demoHighlightReelInformationDefine *infoDefine, demoHighlightReelPreparingInformation *information, int bookmarkIndex, demoDefaultBookmark *bookmark, ClientNum_t clientNum, demoHighlightReelPlayerPriority playerPriority, demoDefaultBookmark *previousDeathBookmark)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -124,7 +124,7 @@ void Demo_HighlightReelPrepareFirstPersonInformation(
 Demo_HighlightReelPrepareSingleEventInformation
 ==============
 */
-void Demo_HighlightReelPrepareSingleEventInformation(
+void Demo_HighlightReelPrepareSingleEventInformation(demoHighlightReelInformationDefine *infoDefine, demoHighlightReelPreparingInformation *information, int bookmarkIndex, demoDefaultBookmark *bookmark, ClientNum_t clientNum, demoHighlightReelPlayerPriority playerPriority)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -145,7 +145,7 @@ int Demo_FinishPendingHighlightReelTimelineUpdates()
 Demo_HighlightReelShouldFilterPlayer
 ==============
 */
-bool Demo_HighlightReelShouldFilterPlayer(
+bool Demo_HighlightReelShouldFilterPlayer(ControllerIndex_t controllerIndex, int playerIndex, int demoUserPlayerIndex, bool isFFAGame)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -156,7 +156,7 @@ bool Demo_HighlightReelShouldFilterPlayer(
 Demo_HighlightReelShouldFilterByStyle_MP
 ==============
 */
-bool Demo_HighlightReelShouldFilterByStyle_MP(
+bool Demo_HighlightReelShouldFilterByStyle_MP(demoBookmarkType type, __int16 eType, bool overrideEntityCamera)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -167,7 +167,7 @@ bool Demo_HighlightReelShouldFilterByStyle_MP(
 Demo_SetupHighlightReelKillcam
 ==============
 */
-void Demo_SetupHighlightReelKillcam(
+void Demo_SetupHighlightReelKillcam(LocalClientNum_t localClientNum, int currentProcessingHighlightReelTimelineIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -177,7 +177,7 @@ void Demo_SetupHighlightReelKillcam(
 Demo_UpdateHighlightReelKillcamEntityValidity
 ==============
 */
-void Demo_UpdateHighlightReelKillcamEntityValidity(
+void Demo_UpdateHighlightReelKillcamEntityValidity(LocalClientNum_t localClientNum, int currentProcessingHighlightReelTimelineIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -197,7 +197,7 @@ void Demo_ResetHighlightReelKillcam(LocalClientNum_t localClientNum)
 Demo_UpdateHighlightReelTimeScale
 ==============
 */
-void Demo_UpdateHighlightReelTimeScale(
+void Demo_UpdateHighlightReelTimeScale(LocalClientNum_t localClientNum, int currentProcessingHighlightReelTimelineIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -259,7 +259,7 @@ void Demo_ProcessAndFinalizeHighlightReelMoments(int numberOfSegmentsToRetain)
 Demo_SetupHighlightReelTimeline
 ==============
 */
-void Demo_SetupHighlightReelTimeline(LocalClientNum_t localClientNum)
+void Demo_SetupHighlightReelTimeline(int a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

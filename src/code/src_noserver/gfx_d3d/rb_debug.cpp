@@ -16,7 +16,7 @@ void TRACK_rb_debug()
 RB_AddDebugLine
 ==============
 */
-int RB_AddDebugLine(
+int RB_AddDebugLine(const vec3_t *start, const vec3_t *end, const vec4_t *color, bool depthTest, int vertCount, int vertLimit, GfxPointVertex *verts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -119,10 +119,10 @@ void RB_DrawDebugStrings(trDebugString_t *strings, int stringCount)
 RB_AddPlumeStrings
 ==============
 */
-/*void RB_AddPlumeStrings(float a1@<edi>, const GfxViewParms *viewParms)
+void RB_AddPlumeStrings(float viewParms, const GfxViewParms *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -139,9 +139,11 @@ void RB_SetDebugBrushesAndPatchesCallback(void (*callback)())
 RB_DrawDebug
 ==============
 */
-void RB_DrawDebug(const GfxViewParms *viewParms)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -169,7 +171,7 @@ void RB_BeginCollisionPolygons(bool faceDepthTest, bool faceBlend)
 RB_DrawCollisionPolygon
 ==============
 */
-void RB_DrawCollisionPolygon(
+void RB_DrawCollisionPolygon(int vertCount, const vec3_t *verts, const vec4_t *faceColor, bool faceDepthTest, int debug_partition)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

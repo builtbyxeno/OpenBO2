@@ -6,7 +6,7 @@
 Com_LoadInfoString_LoadObj
 ==============
 */
-const char *Com_LoadInfoString_LoadObj(
+const char *Com_LoadInfoString_LoadObj(const char *fileName, const char *fileDesc, const char *ident, char *loadBuffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

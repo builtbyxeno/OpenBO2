@@ -117,7 +117,7 @@ void CL_SetupClientsForIngame()
 CL_DrawFramedPicPhysical
 ==============
 */
-void CL_DrawFramedPicPhysical(
+void CL_DrawFramedPicPhysical(float x, float y, float w, float h, float thicknessW, float thicknessH, float thicknessTex, int sides, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -432,7 +432,7 @@ void CL_DrawSpinnerPhysical(float x, float y, float w, float h, const vec4_t *co
 CL_DrawSpinner
 ==============
 */
-void CL_DrawSpinner(
+void CL_DrawSpinner(const ScreenPlacement *scrPlace, float x, float y, float w, float h, int horzAlign, int vertAlign, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -452,7 +452,7 @@ void CL_DrawSpinnerLoadbarPhysical(float x, float y, float w, float h, const vec
 CL_DrawSpinnerLoadbar
 ==============
 */
-void CL_DrawSpinnerLoadbar(
+void CL_DrawSpinnerLoadbar(const ScreenPlacement *scrPlace, float x, float y, float w, float h, int horzAlign, int vertAlign, const vec4_t *color, float percentDone)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -472,7 +472,7 @@ void CL_ShutdownHunkUsers()
 CL_SendBlackboxSession
 ==============
 */
-void CL_SendBlackboxSession(
+void CL_SendBlackboxSession(ControllerIndex_t controllerIndex, bool isserver, const char *mapname, const char *gametype)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -585,18 +585,18 @@ bool CL_DispatchConnectionlessPacket(LocalClientNum_t localClientNum, netadr_t f
 CL_ConnectionlessPacket
 ==============
 */
-/*char CL_ConnectionlessPacket@<al>(int a1@<edi>, LocalClientNum_t localClientNum, netadr_t from, msg_t *msg)
+bool CL_ConnectionlessPacket(int a1, LocalClientNum_t localClientNum, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 CL_PacketEvent
 ==============
 */
-char CL_PacketEvent(
+bool CL_PacketEvent(LocalClientNum_t localClientNum, netadr_t from, msg_t *msg, int time, bool connectionlesss_packets_only)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1039,7 +1039,7 @@ void CL_SetWaitingOnServerToLoadMap(LocalClientNum_t localClientNum, bool waitin
 CL_DrawTextPhysical
 ==============
 */
-void CL_DrawTextPhysical(
+void CL_DrawTextPhysical(const char *text, int maxChars, Font_s *font, float x, float y, float w, float xScale, float yScale, const vec4_t *color, int style, float padding)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1049,7 +1049,7 @@ void CL_DrawTextPhysical(
 CL_DrawTextPhysicalWithEffects
 ==============
 */
-void CL_DrawTextPhysicalWithEffects(
+void CL_DrawTextPhysicalWithEffects(const char *text, int maxChars, Font_s *font, float x, float y, float w, float xScale, float yScale, const vec4_t *color, int style, const vec4_t *glowColor, Material *fxMaterial, Material *fxMaterialGlow, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1059,7 +1059,7 @@ void CL_DrawTextPhysicalWithEffects(
 CL_DrawText
 ==============
 */
-void CL_DrawText(
+void CL_DrawText(const ScreenPlacement *scrPlace, const char *text, int maxChars, Font_s *font, float x, float y, int horzAlign, int vertAlign, float xScale, float yScale, const vec4_t *color, int style)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1069,7 +1069,7 @@ void CL_DrawText(
 CL_DrawTextRotate
 ==============
 */
-void CL_DrawTextRotate(
+void CL_DrawTextRotate(const ScreenPlacement *scrPlace, const char *text, int maxChars, Font_s *font, float x, float y, float rotation, int horzAlign, int vertAlign, float xScale, float yScale, const vec4_t *color, int style)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1079,7 +1079,7 @@ void CL_DrawTextRotate(
 CL_DrawTextPhysicalWithCursor
 ==============
 */
-void CL_DrawTextPhysicalWithCursor(
+void CL_DrawTextPhysicalWithCursor(const char *text, int maxChars, Font_s *font, float x, float y, float xScale, float yScale, const vec4_t *color, int style, int cursorPos, char cursor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1089,7 +1089,7 @@ void CL_DrawTextPhysicalWithCursor(
 CL_DrawTextWithCursor
 ==============
 */
-void CL_DrawTextWithCursor(
+void CL_DrawTextWithCursor(const ScreenPlacement *scrPlace, const char *text, int maxChars, Font_s *font, float x, float y, int horzAlign, int vertAlign, float xScale, float yScale, const vec4_t *color, int style, int cursorPos, char cursor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1099,7 +1099,7 @@ void CL_DrawTextWithCursor(
 CL_DrawTextWithEffects
 ==============
 */
-void CL_DrawTextWithEffects(
+void CL_DrawTextWithEffects(const ScreenPlacement *scrPlace, const char *text, int maxChars, Font_s *font, float x, float y, float rotation, int horzAlign, int vertAlign, float xScale, float yScale, const vec4_t *color, int style, const vec4_t *glowColor, Material *fxMaterial, Material *fxMaterialGlow, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1109,7 +1109,7 @@ void CL_DrawTextWithEffects(
 CL_DrawTextWithCOD7TypeWriterEffects
 ==============
 */
-void CL_DrawTextWithCOD7TypeWriterEffects(
+void CL_DrawTextWithCOD7TypeWriterEffects(const ScreenPlacement *scrPlace, const char *text, int maxChars, Font_s *font, float x, float y, float rotation, int horzAlign, int vertAlign, float xScale, float yScale, const vec4_t *color, int style, const vec4_t *glowColor, Material *fxMaterial, Material *fxMaterialGlow, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1119,7 +1119,7 @@ void CL_DrawTextWithCOD7TypeWriterEffects(
 CL_DrawTextPhysicalWithCOD7TypeWriterEffects
 ==============
 */
-void CL_DrawTextPhysicalWithCOD7TypeWriterEffects(
+void CL_DrawTextPhysicalWithCOD7TypeWriterEffects(const char *text, int maxChars, Font_s *font, float x, float y, float xScale, float yScale, const vec4_t *color, int style, const vec4_t *glowColor, Material *fxMaterial, Material *fxMaterialGlow, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1129,7 +1129,7 @@ void CL_DrawTextPhysicalWithCOD7TypeWriterEffects(
 CL_DrawTextWithRedactEffects
 ==============
 */
-void CL_DrawTextWithRedactEffects(
+void CL_DrawTextWithRedactEffects(const ScreenPlacement *scrPlace, const char *text, int maxChars, Font_s *font, float x, float y, int horzAlign, int vertAlign, float xScale, float yScale, const vec4_t *color, int style, const vec4_t *glowColor, Material *fxMaterial, Material *fxMaterialGlow, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, int fxRedactDecayStartTime, int fxRedactDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1139,7 +1139,7 @@ void CL_DrawTextWithRedactEffects(
 CL_DrawTextPhysicalWithCOD7DecodeEffects
 ==============
 */
-void CL_DrawTextPhysicalWithCOD7DecodeEffects(
+void CL_DrawTextPhysicalWithCOD7DecodeEffects(const char *text, int maxChars, Font_s *font, float x, float y, float xScale, float yScale, const vec4_t *color, int style, const vec4_t *glowColor, Material *fxMaterial, Material *fxMaterialGlow, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1149,7 +1149,7 @@ void CL_DrawTextPhysicalWithCOD7DecodeEffects(
 CL_DrawTextPhysicalWithRedactEffects
 ==============
 */
-void CL_DrawTextPhysicalWithRedactEffects(
+void CL_DrawTextPhysicalWithRedactEffects(const char *text, int maxChars, Font_s *font, float x, float y, float xScale, float yScale, const vec4_t *color, int style, const vec4_t *glowColor, Material *fxMaterial, Material *fxMaterialGlow, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, int fxRedactDecayStartTime, int fxRedactDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1159,7 +1159,7 @@ void CL_DrawTextPhysicalWithRedactEffects(
 CL_DrawTextWithPopInEffects
 ==============
 */
-void CL_DrawTextWithPopInEffects(
+void CL_DrawTextWithPopInEffects(const ScreenPlacement *scrPlace, const char *text, int maxChars, Font_s *font, float x, float y, float rotation, int horzAlign, int vertAlign, float xScale, float yScale, const vec4_t *color, int style, const vec4_t *glowColor, Material *fxMaterial, Material *fxMaterialGlow, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1213,7 +1213,7 @@ vec3_t *CL_GetMapCenter()
 CL_ConnectFromParty
 ==============
 */
-void CL_ConnectFromParty(
+void CL_ConnectFromParty(ControllerIndex_t controllerIndex, XSESSION_INFO *hostInfo, netadr_t addr, int numPublicSlots, int numPrivateSlots, const char *mapname)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

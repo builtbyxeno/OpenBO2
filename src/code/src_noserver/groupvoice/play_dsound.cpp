@@ -6,7 +6,7 @@
 CreateBasicBuffer
 ==============
 */
-HRESULT CreateBasicBuffer(
+HRESULT CreateBasicBuffer(IDirectSound8 *lpDirectSound, IDirectSoundBuffer **ppDsb, int sampleRate, int channels, int bufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	HRESULT tmp;
@@ -48,11 +48,12 @@ void DSound_SetVolume(dsound_sample_t *sample, int level)
 DSound_NewSample
 ==============
 */
-/*dsound_sample_t *DSound_NewSample@<eax>(int a1@<edi>)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============

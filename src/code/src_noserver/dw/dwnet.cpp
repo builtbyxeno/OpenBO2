@@ -61,7 +61,7 @@ int dwCheckConnections()
 dwNetadrToAddrHandle
 ==============
 */
-/*bdReference<bdAddrHandle> *dwNetadrToAddrHandle(
+/*bdReference<bdAddrHandle> *dwNetadrToAddrHandle(bdReference<bdAddrHandle> *result, const netadr_t *const netadr)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -72,7 +72,7 @@ dwNetadrToAddrHandle
 dwNetadrToCommonAddr
 ==============
 */
-char dwNetadrToCommonAddr(
+char dwNetadrToCommonAddr(char *a1, netadr_t netadr, unsigned __int8 *commonAddrBuf, const unsigned int commonAddrBufSize, bdSecurityID *const id)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -83,7 +83,7 @@ char dwNetadrToCommonAddr(
 dwCommonAddrToString
 ==============
 */
-unsigned int dwCommonAddrToString(
+unsigned int dwCommonAddrToString(const unsigned __int8 *commonAddrBuf, const unsigned int commonAddrBufSize, char *buf, const unsigned int length)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -214,7 +214,7 @@ int dwRecvFrom(netadr_t *const from, void *const data, const unsigned int size)
 dwCommonAddrToNetadr
 ==============
 */
-char dwCommonAddrToNetadr(
+char dwCommonAddrToNetadr(netadr_t *const netadr, const unsigned __int8 *const commonAddrBuf, const bdSecurityID *secID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

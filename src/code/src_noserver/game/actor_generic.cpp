@@ -24,16 +24,6 @@ int Actor_Generic_Resume(actor_t *self, ai_state_t ePrevState)
 
 /*
 ==============
-Actor_Generic_Pain
-==============
-*/
-void __thiscall Actor_Generic_Pain(
-{
-	UNIMPLEMENTED(__FUNCTION__);
-}
-
-/*
-==============
 Actor_Generic_Touch
 ==============
 */

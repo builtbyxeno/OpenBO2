@@ -50,7 +50,7 @@ bool PartyMigrate_DoWeHaveNecessaryMapPacks(PartyData_s *party, ControllerIndex_
 PartyMigrate_CanWeHost
 ==============
 */
-bool PartyMigrate_CanWeHost(
+bool PartyMigrate_CanWeHost(PartyData_s *party, ControllerIndex_t localControllerIndex, bool requireTalkToAllClients, bool requireToFinishedStreaming)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -92,7 +92,7 @@ void PartyMigrate_RestartServer(PartyData_s *party, const int oldHost)
 Party_FindNextMemberAtAddrInternal
 ==============
 */
-ClientNum_t Party_FindNextMemberAtAddrInternal(
+ClientNum_t Party_FindNextMemberAtAddrInternal(PartyData_s *party, const netadr_t playerAddr, const ClientNum_t startingSlot, const ClientNum_t remoteClientIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	ClientNum_t tmp;
@@ -155,7 +155,7 @@ void Party_SetMigrateActive(PartyData_s *party, bool state)
 parseBandwidthTestPacketSyn
 ==============
 */
-int parseBandwidthTestPacketSyn(
+int parseBandwidthTestPacketSyn(ControllerIndex_t localControllerIndex, const netadr_t from, msg_t *msg, int seq)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -197,7 +197,7 @@ float getStdDevForPeer(peerResults_t *peerResults)
 handleTestPacketAck
 ==============
 */
-void handleTestPacketAck(__int64 localControllerIndex, __int64 from_8, int from_16, msg_t *msga, msg_t *msg)
+void handleTestPacketAck(ControllerIndex_t localControllerIndex, __int64 from_8, int from_16, msg_t *msga, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -207,7 +207,7 @@ void handleTestPacketAck(__int64 localControllerIndex, __int64 from_8, int from_
 PartyMigrate_HandleTestPacket
 ==============
 */
-void PartyMigrate_HandleTestPacket(ControllerIndex_t localControllerIndex, const netadr_t from, msg_t *msg)
+void PartyMigrate_HandleTestPacket(ControllerIndex_t localControllerIndex, const netadr_t from, msg_t* msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -238,7 +238,7 @@ void recalculateNominees(PartyData_s *party)
 PartyMigrate_HostRead
 ==============
 */
-void PartyMigrate_HostRead(
+void PartyMigrate_HostRead(PartyData_s *party, ControllerIndex_t localControllerIndex, msg_t *msg, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -349,7 +349,7 @@ void PartyMigrate_HandleHostAnnounce(PartyData_s *party, ControllerIndex_t local
 PartyMigrate_HandlePacket
 ==============
 */
-char PartyMigrate_HandlePacket(
+char PartyMigrate_HandlePacket(PartyData_s *party, const char *c, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -392,7 +392,7 @@ void PartyMigrate_MatchStarted()
 PartyMigrate_HandleSessionInfoMsg
 ==============
 */
-void PartyMigrate_HandleSessionInfoMsg(
+void PartyMigrate_HandleSessionInfoMsg(char *a1, PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -412,10 +412,10 @@ void PartyMigrate_To(PartyData_s *party, const ClientNum_t newHost)
 PartyMigrate_HandleToMsg
 ==============
 */
-void PartyMigrate_HandleToMsg(PartyData_s *party, ControllerIndex_t localControllerIndex)
+/*void PartyMigrate_HandleToMsg(LocalClientNum_t a1@<ebx>, PartyData_s *party, ControllerIndex_t localControllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

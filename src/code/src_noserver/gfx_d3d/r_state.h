@@ -26,7 +26,7 @@ void R_SetCodeConstant(GfxCmdBufSourceState *source, unsigned int constant, floa
 R_UpdateCodeConstant
 ==============
 */
-int R_UpdateCodeConstant(
+int R_UpdateCodeConstant(GfxCmdBufSourceState *source, unsigned int constant, float x, float y, float z, float w)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -78,7 +78,7 @@ void R_SetState(GfxCmdBufState *state, const GfxStateBits *stateBits, unsigned _
 R_SetStreamSource
 ==============
 */
-void R_SetStreamSource(
+void R_SetStreamSource(GfxCmdBufPrimState *primState, ID3D11Buffer *vb, unsigned int vertexOffset, unsigned int vertexStride)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -98,7 +98,7 @@ void R_HW_SetRenderTarget(GfxCmdBufState *state, unsigned __int8 newTargetId)
 R_SetTripleStreamSource
 ==============
 */
-void R_SetTripleStreamSource(
+void R_SetTripleStreamSource(GfxCmdBufPrimState *primState, ID3D11Buffer *vb0, unsigned int vertexOffset0, unsigned int vertexStride0, ID3D11Buffer *vb1, unsigned int vertexOffset1, unsigned int vertexStride1, ID3D11Buffer *vb2, unsigned int vertexOffset2, unsigned int vertexStride2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -108,7 +108,7 @@ void R_SetTripleStreamSource(
 R_SetDoubleStreamSource
 ==============
 */
-void R_SetDoubleStreamSource(
+void R_SetDoubleStreamSource(GfxCmdBufPrimState *primState, ID3D11Buffer *vb0, unsigned int vertexOffset0, unsigned int vertexStride0, ID3D11Buffer *vb1, unsigned int vertexOffset1, unsigned int vertexStride1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -118,7 +118,7 @@ void R_SetDoubleStreamSource(
 R_UpdateShadowLookupMatrix
 ==============
 */
-void R_UpdateShadowLookupMatrix(
+void R_UpdateShadowLookupMatrix(GfxCmdBufSourceState *source, unsigned int shadowableLightIndex, const GfxMatrix *lookupMatrix)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -438,7 +438,7 @@ void Cmd_AI_SetValue(actor_t *pSelf, int argc, unsigned __int8 *pBase, const act
 Cmd_AI_Dispatch
 ==============
 */
-void Cmd_AI_Dispatch(int argc, actor_t *pSelf, const actor_fields_s *fields, const actor_fields_s *pField)
+void Cmd_AI_Dispatch(int argc, actor_t* pSelf, const actor_fields_s* fields, const actor_fields_s* pField)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -448,7 +448,7 @@ void Cmd_AI_Dispatch(int argc, actor_t *pSelf, const actor_fields_s *fields, con
 Cmd_AI_EntityNumber
 ==============
 */
-void Cmd_AI_EntityNumber(
+void Cmd_AI_EntityNumber(int argc, const actor_fields_s* fields, const actor_fields_s* pField, const char* szNum, int bInvertSelection)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -458,7 +458,7 @@ void Cmd_AI_EntityNumber(
 Cmd_AI_Team
 ==============
 */
-void Cmd_AI_Team(
+void Cmd_AI_Team(int argc, const actor_fields_s *fields, const actor_fields_s *pField, int iTeamFlags, int bInvertSelection)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -468,7 +468,7 @@ void Cmd_AI_Team(
 Cmd_AI_Name
 ==============
 */
-void Cmd_AI_Name(
+void Cmd_AI_Name(int argc, const actor_fields_s *fields, const actor_fields_s *pField, const char *szName, int bInvertSelection)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -478,7 +478,7 @@ void Cmd_AI_Name(
 Cmd_AI_f
 ==============
 */
-void Cmd_AI_f()
+void Cmd_AI_f(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -498,10 +498,10 @@ void GScr_AddFieldsForActor()
 Scr_SetActorField
 ==============
 */
-void Scr_SetActorField(actor_t *actor, int offset)
+/*void Scr_SetActorField(const char *a1@<esi>, actor_t *actor, int offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

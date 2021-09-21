@@ -86,7 +86,7 @@ void Actor_UpdateBodyAngle(actor_t *self)
 Actor_CheckGunBlockedByWallWhileMoving
 ==============
 */
-bool Actor_CheckGunBlockedByWallWhileMoving(
+bool Actor_CheckGunBlockedByWallWhileMoving(actor_t *self, const vec3_t *predictedMovePos, const vec2_t *dir)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -97,7 +97,7 @@ bool Actor_CheckGunBlockedByWallWhileMoving(
 Actor_FaceVectorSnapToMovementQuadrant
 ==============
 */
-void Actor_FaceVectorSnapToMovementQuadrant(
+void Actor_FaceVectorSnapToMovementQuadrant(actor_t *self, ai_orient_t *pOrient, const vec3_t *lookAtPos, bool enemyVisible)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -199,7 +199,7 @@ void Actor_FaceEnemyOrMotionSidestep(actor_t *self, ai_orient_t *pOrient)
 Actor_DecideOrientation
 ==============
 */
-void Actor_DecideOrientation(actor_t *self)
+void Actor_DecideOrientation(actor_t *self, char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -17,7 +17,7 @@ unsigned int Com_GetBspLumpCountForVersion(const int version)
 Com_ValidateBspLumpData
 ==============
 */
-const void *Com_ValidateBspLumpData(
+const void *Com_ValidateBspLumpData(LumpType type, unsigned int offset, unsigned int length, unsigned int elemSize, unsigned int *count)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -28,10 +28,11 @@ const void *Com_ValidateBspLumpData(
 Com_GetBspLump
 ==============
 */
-const void *Com_GetBspLump(LumpType type, unsigned int elemSize, unsigned int *count)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -39,7 +40,7 @@ const void *Com_GetBspLump(LumpType type, unsigned int elemSize, unsigned int *c
 Com_ReadLumpOutOfBspAtOffset
 ==============
 */
-const void *Com_ReadLumpOutOfBspAtOffset(
+const void *Com_ReadLumpOutOfBspAtOffset(int h, LumpType type, unsigned int offset, unsigned int length, unsigned int elemSize, unsigned int *count)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -82,11 +83,11 @@ void Com_UnloadBspLump(LumpType type)
 Com_BspHasLump
 ==============
 */
-BOOL Com_BspHasLump(LumpType type)
+/*BOOL Com_BspHasLump@<eax>(LumpType a1@<edx>, LumpType type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
@@ -156,11 +157,11 @@ void Com_CleanupBsp()
 Com_EntityString
 ==============
 */
-const char *Com_EntityString(int *numEntityChars)
+/*const char *Com_EntityString@<eax>(LumpType a1@<edx>, char *a2@<ecx>, char *a3@<edi>, int *numEntityChars)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}
+}*/
 
 /*
 ==============
@@ -188,7 +189,7 @@ const char *Com_GetHunkStringCopy(const char *string)
 Com_GetLightDefName
 ==============
 */
-const char *Com_GetLightDefName(
+const char *Com_GetLightDefName(const char *defName, const ComPrimaryLight *primaryLights, unsigned int primaryLightCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -219,7 +220,7 @@ void Com_ShutdownWorld()
 Com_LoadPrimaryLights
 ==============
 */
-void Com_LoadPrimaryLights()
+void Com_LoadPrimaryLights(char *a1, LumpType a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

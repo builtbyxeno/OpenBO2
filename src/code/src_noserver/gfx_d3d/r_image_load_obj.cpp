@@ -28,7 +28,7 @@ int Image_GetPicmipUsed(const GfxImage *image)
 Image_SetupFromFile
 ==============
 */
-void Image_SetupFromFile(
+void Image_SetupFromFile(GfxImage *image, const GfxImageFileHeader *fileHeader, DXGI_FORMAT imageFormat, void *initData, unsigned int allocFlags, unsigned int *outStreamedSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -59,7 +59,7 @@ void Image_FreeTempMemory(unsigned __int8 *mem, int bytes)
 Image_LoadBitmap
 ==============
 */
-void Image_LoadBitmap(
+void Image_LoadBitmap(GfxImage *image, const GfxImageFileHeader *fileHeader, unsigned __int8 *data, DXGI_FORMAT format, int bytesPerPixel, int allocFlags, unsigned int *outStreamedSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -69,7 +69,7 @@ void Image_LoadBitmap(
 Image_LoadDxtc
 ==============
 */
-void Image_LoadDxtc(
+void Image_LoadDxtc(GfxImage *image, const GfxImageFileHeader *fileHeader, const unsigned __int8 *data, DXGI_FORMAT format, int bytesPerBlock, unsigned int allocFlags, unsigned int *outStreamedSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -79,9 +79,11 @@ void Image_LoadDxtc(
 Image_LoadFromData
 ==============
 */
-void Image_LoadFromData(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -100,10 +102,11 @@ char Image_LoadFromFileInternal(const GfxImageFileHeader *a1, unsigned int a2, G
 Image_LoadFromFile
 ==============
 */
-char Image_LoadFromFile(GfxImage *image)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -121,7 +124,7 @@ void Image_Generate2D(GfxImage *image, unsigned __int8 *pixels, int width, int h
 Image_GenerateCube
 ==============
 */
-void Image_GenerateCube(
+void Image_GenerateCube(GfxImage *image, const unsigned __int8 *(*pixels)[15], int edgeLen, DXGI_FORMAT imageFormat, const unsigned int mipCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -212,9 +215,10 @@ GfxImage *Image_LoadBuiltin(const char *name, unsigned __int8 semantic, int imag
 Image_Load
 ==============
 */
-GfxImage *Image_Load(const char *name, int semantic, int imageTrack)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 

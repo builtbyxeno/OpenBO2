@@ -143,7 +143,7 @@ void GetPartyMissingMapPack(const LocalClientNum_t localClientNum, itemDef_s *it
 GetPartyMissingMapPackError
 ==============
 */
-void GetPartyMissingMapPackError(
+void GetPartyMissingMapPackError(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -344,7 +344,7 @@ void EmblemSelectedBackground(const LocalClientNum_t localClientNum, itemDef_s *
 GetTotalPlayersOnlineString
 ==============
 */
-void GetTotalPlayersOnlineString(
+void GetTotalPlayersOnlineString(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -424,7 +424,7 @@ void IsDemoMovieCamera(const LocalClientNum_t localClientNum, itemDef_s *item, O
 IsDisplayingPartyScoreboard
 ==============
 */
-void IsDisplayingPartyScoreboard(
+void IsDisplayingPartyScoreboard(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -534,7 +534,7 @@ void IsDemoDollyCamera(const LocalClientNum_t localClientNum, itemDef_s *item, O
 GetHighlightedCameraMarker
 ==============
 */
-void GetHighlightedCameraMarker(
+void GetHighlightedCameraMarker(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -544,7 +544,7 @@ void GetHighlightedCameraMarker(
 IsRepositioningCameraMarker
 ==============
 */
-void IsRepositioningCameraMarker(
+void IsRepositioningCameraMarker(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -574,7 +574,7 @@ void IsDemoHighlightReelMode(const LocalClientNum_t localClientNum, itemDef_s *i
 IsCurrentOrPreviousMapEntryAvailable
 ==============
 */
-void IsCurrentOrPreviousMapEntryAvailable(
+void IsCurrentOrPreviousMapEntryAvailable(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -805,7 +805,7 @@ void GetControllerType(const LocalClientNum_t localClientNum, itemDef_s *item, O
 IsStableStatsBufferInitialized
 ==============
 */
-void IsStableStatsBufferInitialized(
+void IsStableStatsBufferInitialized(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -815,7 +815,7 @@ void IsStableStatsBufferInitialized(
 GetIndexIntoMatchScoreboard
 ==============
 */
-void GetIndexIntoMatchScoreboard(
+void GetIndexIntoMatchScoreboard(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -865,7 +865,7 @@ void GetMaxControllerCount(const LocalClientNum_t localClientNum, itemDef_s *ite
 GetFileshareRecentGamesCount
 ==============
 */
-void GetFileshareRecentGamesCount(
+void GetFileshareRecentGamesCount(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -916,7 +916,7 @@ bool IsClassBonusMatch(const char *tableData, const char *playerData)
 ClassBonusStatQuery
 ==============
 */
-const char *ClassBonusStatQuery(
+const char *ClassBonusStatQuery(ControllerIndex_t controllerIndex, const char *statName, const char *className)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -927,7 +927,7 @@ const char *ClassBonusStatQuery(
 FindClassBonusMatches
 ==============
 */
-int FindClassBonusMatches(
+int FindClassBonusMatches(LocalClientNum_t localClientNum, const StringTable *table, int *rowMatches, const int numRows, const char *statName, const char *className, const int column, const int ignoreRow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1059,7 +1059,7 @@ void SessionMode_IsOnlineGame(const LocalClientNum_t localClientNum, itemDef_s *
 SessionMode_IsSystemlinkGame
 ==============
 */
-void SessionMode_IsSystemlinkGame(
+void SessionMode_IsSystemlinkGame(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1069,7 +1069,7 @@ void SessionMode_IsSystemlinkGame(
 SessionMode_IsPublicOnlineGame
 ==============
 */
-void SessionMode_IsPublicOnlineGame(
+void SessionMode_IsPublicOnlineGame(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1089,7 +1089,7 @@ void SessionMode_IsZombiesGame(const LocalClientNum_t localClientNum, itemDef_s 
 SessionMode_IsPrivateOnlineGame
 ==============
 */
-void SessionMode_IsPrivateOnlineGame(
+void SessionMode_IsPrivateOnlineGame(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1262,7 +1262,7 @@ void GetProfileStringValue(const LocalClientNum_t localClientNum, itemDef_s *ite
 GetProfileArrayStringValue
 ==============
 */
-void GetProfileArrayStringValue(
+void GetProfileArrayStringValue(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1393,7 +1393,7 @@ void GetPlayerField(const LocalClientNum_t localClientNum, itemDef_s *item, Oper
 GetFieldForTeam
 ==============
 */
-void GetFieldForTeam(
+void GetFieldForTeam(const LocalClientNum_t localClientNum, team_t team, Operand *fieldName, Operand *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1403,7 +1403,7 @@ void GetFieldForTeam(
 GetOtherTeamField
 ==============
 */
-void GetOtherTeamField(
+void GetOtherTeamField(Operand *a1, const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1413,7 +1413,7 @@ void GetOtherTeamField(
 GetTeamField
 ==============
 */
-void GetTeamField(
+void GetTeamField(Operand *a1, const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1503,7 +1503,7 @@ void InKillcam(const LocalClientNum_t localClientNum, itemDef_s *item, OperandSt
 IsSelectingLocationalKillstreak
 ==============
 */
-void IsSelectingLocationalKillstreak(
+void IsSelectingLocationalKillstreak(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1713,7 +1713,7 @@ void AloneInPrivateParty(const LocalClientNum_t localClientNum, itemDef_s *item,
 AloneInPrivatePartyIgnoreSplitscreen
 ==============
 */
-void AloneInPrivatePartyIgnoreSplitscreen(
+void AloneInPrivatePartyIgnoreSplitscreen(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1733,7 +1733,7 @@ void AloneInLobby(const LocalClientNum_t localClientNum, itemDef_s *item, Operan
 AloneInLobbyIgnoreSplitscreen
 ==============
 */
-void AloneInLobbyIgnoreSplitscreen(
+void AloneInLobbyIgnoreSplitscreen(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1993,7 +1993,7 @@ void GetAttachmentDesc(const LocalClientNum_t localClientNum, itemDef_s *item, O
 IsAttachmentAllowedOnItemIndex
 ==============
 */
-void IsAttachmentAllowedOnItemIndex(
+void IsAttachmentAllowedOnItemIndex(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2103,7 +2103,7 @@ void GetUploadTimeRemaining(const LocalClientNum_t localClientNum, itemDef_s *it
 HostMigrationWaitingForPlayers
 ==============
 */
-void HostMigrationWaitingForPlayers(
+void HostMigrationWaitingForPlayers(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2123,7 +2123,7 @@ void GetWeaponOptionUnlockLvl(const LocalClientNum_t localClientNum, itemDef_s *
 GetWeaponOptionUnlockPLevel
 ==============
 */
-void GetWeaponOptionUnlockPLevel(
+void GetWeaponOptionUnlockPLevel(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2233,7 +2233,7 @@ void GetItemCount(const LocalClientNum_t localClientNum, itemDef_s *item, Operan
 IsItemAttachmentRecentlyUnlocked
 ==============
 */
-void IsItemAttachmentRecentlyUnlocked(
+void IsItemAttachmentRecentlyUnlocked(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2243,7 +2243,7 @@ void IsItemAttachmentRecentlyUnlocked(
 HasRecentItemAttachmentsUnlocked
 ==============
 */
-void HasRecentItemAttachmentsUnlocked(
+void HasRecentItemAttachmentsUnlocked(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2283,7 +2283,7 @@ void GetItemGroupByIndex(const LocalClientNum_t localClientNum, itemDef_s *item,
 GetUnlockIndexFromGroupName
 ==============
 */
-void GetUnlockIndexFromGroupName(
+void GetUnlockIndexFromGroupName(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2493,7 +2493,7 @@ void BitwiseNot(const LocalClientNum_t localClientNum, Operand *source, Operand 
 BitShiftLeft
 ==============
 */
-void BitShiftLeft(
+void BitShiftLeft(const LocalClientNum_t localClientNum, Operand *source, Operand *bitsSource, Operand *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2503,7 +2503,7 @@ void BitShiftLeft(
 BitShiftRight
 ==============
 */
-void BitShiftRight(
+void BitShiftRight(const LocalClientNum_t localClientNum, Operand *source, Operand *bitsSource, Operand *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2643,7 +2643,7 @@ void GetScore(const LocalClientNum_t localClientNum, itemDef_s *item, OperandSta
 GetGameMessageWindowActive
 ==============
 */
-void GetGameMessageWindowActive(
+void GetGameMessageWindowActive(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2783,7 +2783,7 @@ void EmblemBackgroundIsLocked(const LocalClientNum_t localClientNum, itemDef_s *
 EmblemBackgroundIsClassified
 ==============
 */
-void EmblemBackgroundIsClassified(
+void EmblemBackgroundIsClassified(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2793,7 +2793,7 @@ void EmblemBackgroundIsClassified(
 EmblemBackgroundIsPurchased
 ==============
 */
-void EmblemBackgroundIsPurchased(
+void EmblemBackgroundIsPurchased(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2813,7 +2813,7 @@ void EmblemBackgroundMaterial(const LocalClientNum_t localClientNum, itemDef_s *
 EmblemPlayerBackgroundMaterial
 ==============
 */
-void EmblemPlayerBackgroundMaterial(
+void EmblemPlayerBackgroundMaterial(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2833,7 +2833,7 @@ void EmblemBackgroundName(const LocalClientNum_t localClientNum, itemDef_s *item
 EmblemBackgroundUnlockDesc
 ==============
 */
-void EmblemBackgroundUnlockDesc(
+void EmblemBackgroundUnlockDesc(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2963,7 +2963,7 @@ void GetDemoSaveScreenName(const LocalClientNum_t localClientNum, itemDef_s *ite
 GetDemoSaveScreenDescription
 ==============
 */
-void GetDemoSaveScreenDescription(
+void GetDemoSaveScreenDescription(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2973,7 +2973,7 @@ void GetDemoSaveScreenDescription(
 GetTheaterFilmNotSelectedMessage
 ==============
 */
-void GetTheaterFilmNotSelectedMessage(
+void GetTheaterFilmNotSelectedMessage(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2983,7 +2983,7 @@ void GetTheaterFilmNotSelectedMessage(
 GetDollyCamMarkerInformationForTime
 ==============
 */
-void GetDollyCamMarkerInformationForTime(
+void GetDollyCamMarkerInformationForTime(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3003,7 +3003,7 @@ void GetDemoFreeCamModeName(const LocalClientNum_t localClientNum, itemDef_s *it
 DoAllPlayersHaveMapForDemo
 ==============
 */
-void DoAllPlayersHaveMapForDemo(
+void DoAllPlayersHaveMapForDemo(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3073,7 +3073,7 @@ void ItemIsDualWield(const LocalClientNum_t localClientNum, itemDef_s *item, Ope
 GetNumItemAttachmentsWithAttachPoint
 ==============
 */
-void GetNumItemAttachmentsWithAttachPoint(
+void GetNumItemAttachmentsWithAttachPoint(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3223,7 +3223,7 @@ void IsTaskInProgress(const LocalClientNum_t localClientNum, itemDef_s *item, Op
 GetIndexForNthActiveContract
 ==============
 */
-void GetIndexForNthActiveContract(
+void GetIndexForNthActiveContract(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3343,7 +3343,7 @@ void AnySignedInToLive(const LocalClientNum_t localClientNum, itemDef_s *item, O
 AnySignedInToLiveAndStatsFetched
 ==============
 */
-void AnySignedInToLiveAndStatsFetched(
+void AnySignedInToLiveAndStatsFetched(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3383,7 +3383,7 @@ void IsTimeSynced(const LocalClientNum_t localClientNum, itemDef_s *item, Operan
 IsAnyControllerMPRestricted
 ==============
 */
-void IsAnyControllerMPRestricted(
+void IsAnyControllerMPRestricted(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3433,7 +3433,7 @@ void GetUIRect(const LocalClientNum_t localClientNum, itemDef_s *item, OperandSt
 GetDStat
 ==============
 */
-void GetDStat(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
+void GetDStat(char *a1, const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3523,7 +3523,7 @@ void GetFloatAsFormattedString(const LocalClientNum_t localClientNum, itemDef_s 
 GetWagerWinningsFromMatchScoreboard
 ==============
 */
-void GetWagerWinningsFromMatchScoreboard(
+void GetWagerWinningsFromMatchScoreboard(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3543,7 +3543,7 @@ void GetScoreboardColumnHeader(const LocalClientNum_t localClientNum, itemDef_s 
 GetWagerPlaceForMatchScoreboard
 ==============
 */
-void GetWagerPlaceForMatchScoreboard(
+void GetWagerPlaceForMatchScoreboard(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3553,7 +3553,7 @@ void GetWagerPlaceForMatchScoreboard(
 lbGetStat
 ==============
 */
-void lbGetStat(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
+void lbGetStat()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3563,7 +3563,7 @@ void lbGetStat(const LocalClientNum_t localClientNum, itemDef_s *item, OperandSt
 lbGetDeltaStat
 ==============
 */
-void lbGetDeltaStat(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
+void lbGetDeltaStat(char *a1, const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3593,7 +3593,7 @@ void lbGetScoreboardStat(const LocalClientNum_t localClientNum, itemDef_s *item,
 GetUnlockedWeaponItemIndex
 ==============
 */
-void GetUnlockedWeaponItemIndex(
+void GetUnlockedWeaponItemIndex(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3603,7 +3603,7 @@ void GetUnlockedWeaponItemIndex(
 GetUnlockedFeatureItemIndex
 ==============
 */
-void GetUnlockedFeatureItemIndex(
+void GetUnlockedFeatureItemIndex(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3613,7 +3613,7 @@ void GetUnlockedFeatureItemIndex(
 GetCacFactionNameWithButtons
 ==============
 */
-void GetCacFactionNameWithButtons(
+void GetCacFactionNameWithButtons(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3683,7 +3683,7 @@ void IsCompositeValid(const LocalClientNum_t localClientNum, itemDef_s *item, Op
 TableLookupGetColumnValueForRow
 ==============
 */
-void TableLookupGetColumnValueForRow(
+void TableLookupGetColumnValueForRow(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3713,7 +3713,7 @@ void StatsTableLookup(const LocalClientNum_t localClientNum, itemDef_s *item, Op
 GetClassBonus
 ==============
 */
-void GetClassBonus(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
+void GetClassBonus(char *a1, const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3913,7 +3913,7 @@ void RPN_OP_BITWISENOT(const LocalClientNum_t localClientNum, itemDef_s *item, O
 RPN_OP_BITSHIFTLEFT
 ==============
 */
-void RPN_OP_BITSHIFTLEFT(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
+void RPN_OP_BITSHIFTLEFT(char *a1, const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -3923,7 +3923,7 @@ void RPN_OP_BITSHIFTLEFT(const LocalClientNum_t localClientNum, itemDef_s *item,
 RPN_OP_BITSHIFTRIGHT
 ==============
 */
-void RPN_OP_BITSHIFTRIGHT(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
+void RPN_OP_BITSHIFTRIGHT(char *a1, const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -4173,7 +4173,7 @@ void GameMode_IsMode(const LocalClientNum_t localClientNum, itemDef_s *item, Ope
 EvaluateExpression
 ==============
 */
-bool EvaluateExpression(
+bool EvaluateExpression(const LocalClientNum_t localClientNum, itemDef_s *item, ExpressionStatement *statement, Operand *results, int resultCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -4184,51 +4184,54 @@ bool EvaluateExpression(
 GetExpressionResultString
 ==============
 */
-/*const GfxViewParms *GetExpressionResultString@<eax>(
+const GfxViewParms *GetExpressionResultString(itemDef_s *a1, const LocalClientNum_t localClientNum, itemDef_s *item, ExpressionStatement *statement)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 IsExpressionTrue
 ==============
 */
-/*bool IsExpressionTrue@<al>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 GetExpressionInt64
 ==============
 */
-/*__int64 GetExpressionInt64@<edx:eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 GetExpressionFloat
 ==============
 */
-/*double GetExpressionFloat@<st0>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 GetExpressionResultStringCompile
 ==============
 */
-const GfxViewParms *GetExpressionResultStringCompile(
+const GfxViewParms *GetExpressionResultStringCompile(const LocalClientNum_t localClientNum, itemDef_s *item, const char **text, void *compileBuffer, int compileBufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

@@ -165,7 +165,7 @@ XModelTraceLineAnimated
 XModelTraceLineAnimatedPartBits
 ==============
 */
-void XModelTraceLineAnimatedPartBits(
+void XModelTraceLineAnimatedPartBits(const DObj *obj, unsigned int modelIndex, int baseBoneIndex, int contentmask, int *partBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -175,7 +175,7 @@ void XModelTraceLineAnimatedPartBits(
 XSurfaceVisitTrianglesInAabb_ConvertAabb
 ==============
 */
-void XSurfaceVisitTrianglesInAabb_ConvertAabb(
+void XSurfaceVisitTrianglesInAabb_ConvertAabb(const XSurfaceCollisionTree *tree, const vec3_t *aabbMins, const vec3_t *aabbMaxs, int *mins, int *maxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -241,7 +241,7 @@ char XSurfaceVisitTrianglesInAabb_ProcessNode(XSurfaceGetTriCandidatesLocals *lo
 XSurfaceVisitTrianglesInAabb
 ==============
 */
-char XSurfaceVisitTrianglesInAabb(
+char XSurfaceVisitTrianglesInAabb(const XSurface *surface, unsigned int vertListIndex, const vec3_t *aabbMins, const vec3_t *aabbMaxs, bool (*visitorFunc)(void *, const unsigned __int8 **, const unsigned __int8 **), void *visitorContext)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

@@ -60,7 +60,7 @@ void LiveTwitch_ClearAccount(const ControllerIndex_t localControllerIndex)
 LiveTwitch_RegisterAccount
 ==============
 */
-TaskRecord *LiveTwitch_RegisterAccount(
+TaskRecord *LiveTwitch_RegisterAccount(ControllerIndex_t localControllerIndex, const char *accountName, const char *authToken)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -82,7 +82,7 @@ char LiveTwitch_RegisterAccountSuccess(TaskRecord *task)
 LiveTwitch_PrintError
 ==============
 */
-void LiveTwitch_PrintError(
+void LiveTwitch_PrintError(ControllerIndex_t controllerIndex, const char *eventString, bdLobbyErrorCode error)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -134,11 +134,12 @@ void LiveTwitch_UnRegister_f()
 LiveTwitch_RegisterAccountFailure
 ==============
 */
-/*char LiveTwitch_RegisterAccountFailure@<al>(bdLobbyErrorCode a1@<edi>, TaskRecord *task)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============

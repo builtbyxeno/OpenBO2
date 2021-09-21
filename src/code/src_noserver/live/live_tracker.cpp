@@ -39,10 +39,11 @@ int LiveTracker_GetColumnByName(const char *name)
 LiveTracker_WriteByID
 ==============
 */
-int LiveTracker_WriteByID(trackerColumn_e col, unsigned __int64 ent, int val)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -72,7 +73,7 @@ BOOL LiveTracker_WriteForAllLocalUsers(trackerColumn_e col, int val)
 LiveTracker_WriteForUserAndHost
 ==============
 */
-BOOL LiveTracker_WriteForUserAndHost(
+BOOL LiveTracker_WriteForUserAndHost(const ControllerIndex_t controllerIndex, trackerColumn_e userCol, trackerColumn_e hostCol, int val)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

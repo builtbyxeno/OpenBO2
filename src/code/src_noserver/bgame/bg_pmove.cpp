@@ -130,7 +130,7 @@ void PM_UpdateScriptedAnim(pmove_t *pm, pml_t *pml)
 PM_GetEntityOrigin
 ==============
 */
-int PM_GetEntityOrigin(
+int PM_GetEntityOrigin(const unsigned __int8 handler, LocalClientNum_t localClientNum, int entIndex, vec3_t *outPosition)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -141,7 +141,7 @@ int PM_GetEntityOrigin(
 PM_GetEntityVelocity
 ==============
 */
-BOOL PM_GetEntityVelocity(
+BOOL PM_GetEntityVelocity(const unsigned __int8 handler, LocalClientNum_t localClientNum, int entIndex, vec3_t *outVelocity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -332,9 +332,11 @@ float PM_ViewHeightTableLerp(int iFrac, viewLerpWaypoint_s *pTable, int lowVal, 
 PM_ViewHeightAdjust
 ==============
 */
-void PM_ViewHeightAdjust(pmove_t *pm, pml_t *pml)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -439,7 +441,7 @@ void PM_Footsteps_NotMoving(pmove_t *pm, pml_t *pml, int stance)
 PM_GetMoveAnim
 ==============
 */
-scriptAnimMoveTypes_t PM_GetMoveAnim(
+scriptAnimMoveTypes_t PM_GetMoveAnim(playerState_s *ps, pml_t *pml, PmStanceFrontBack stance, int walking, int sprinting)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	scriptAnimMoveTypes_t tmp;
@@ -482,9 +484,11 @@ int BG_CalcBob(pmove_t *pm, pml_t *pml, int old, float bobmove)
 PM_ApplyMovementAnimations
 ==============
 */
-void PM_ApplyMovementAnimations(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -492,9 +496,11 @@ void PM_ApplyMovementAnimations(
 PM_ApplyLegAnimations
 ==============
 */
-void PM_ApplyLegAnimations(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -545,7 +551,7 @@ int BG_CheckProneTurned(playerState_s *ps, float newProneYaw, unsigned __int8 ha
 PM_UpdateViewLockedEnt
 ==============
 */
-void PM_UpdateViewLockedEnt(
+void PM_UpdateViewLockedEnt(LocalClientNum_t localClientNum, playerState_s *ps, usercmd_s *cmd, unsigned __int8 handler)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -585,7 +591,7 @@ void PM_UpdateViewAngles_LadderClamp(playerState_s *ps)
 PM_UpdateViewAngles_ProneYawClamp
 ==============
 */
-void PM_UpdateViewAngles_ProneYawClamp(
+void PM_UpdateViewAngles_ProneYawClamp(playerState_s *ps, float delta, int proneBlocked, float oldViewYaw, float newViewYaw)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -605,9 +611,11 @@ void PM_UpdateViewAngles_PronePitchClamp(playerState_s *ps)
 PM_UpdateViewAngles_Prone
 ==============
 */
-void PM_UpdateViewAngles_Prone(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -626,10 +634,10 @@ BOOL PM_ViewRangeLimited(const playerState_s *ps)
 PM_UpdatePronePitch
 ==============
 */
-/*void PM_UpdatePronePitch(unsigned int ebp0@<ebp>, pmove_t *pm, pml_t *pml)
+void PM_UpdatePronePitch(unsigned int ebp0, pmove_t *pm, pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -688,10 +696,10 @@ bool PM_MeleeChargeIsValid(pmove_t *pm, pml_t *pml)
 PM_MeleeChargeStart
 ==============
 */
-/*void PM_MeleeChargeStart(pml_t *a1@<edx>, pmove_t *a2@<ecx>, pmove_t *pm, pml_t *pml)
+void PM_MeleeChargeStart(pml_t *a1, pmove_t *a2, pmove_t *pm, pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -823,7 +831,7 @@ double BG_random(unsigned int *pHoldrand)
 PM_trace
 ==============
 */
-void PM_trace(
+void PM_trace(pmove_t *pm, trace_t *results, const vec3_t *start, const vec3_t *mins, const vec3_t *maxs, const vec3_t *end, int passEntityNum, int contentMask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -854,11 +862,11 @@ void PM_EndSprint(playerState_s *ps, pmove_t *pm, const pml_t *pml)
 PM_SprintStartInterferingButtons
 ==============
 */
-char PM_SprintStartInterferingButtons(
+/*char PM_SprintStartInterferingButtons(const playerState_s *ps, const int forwardSpeed, bitarray<64> *button_bits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
@@ -939,10 +947,10 @@ float PM_GetMaxSpeed(pmove_t *pm, int walking, int sprinting)
 PM_Footsteps
 ==============
 */
-/*void PM_Footsteps(int a1@<esi>, pmove_t *pm, pml_t *pml)
+void PM_Footsteps(float ps, pmove_t *pm, pml_t *pml)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -961,9 +969,11 @@ PM_UpdateLean
 PM_UpdateViewAngles
 ==============
 */
-void PM_UpdateViewAngles(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1011,7 +1021,7 @@ void BG_srand(unsigned int *pHoldrand)
 PM_playerTrace
 ==============
 */
-void PM_playerTrace(
+void PM_playerTrace(int a1, pmove_t *pm, trace_t *results, const vec3_t *start, const vec3_t *mins, const vec3_t *maxs, const vec3_t *end, int passEntityNum, int contentMask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1044,10 +1054,11 @@ bool PM_CanCrouch(playerState_s *ps, pmove_t *pm)
 PM_CanStand
 ==============
 */
-bool PM_CanStand(playerState_s *ps, pmove_t *pm)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1164,9 +1175,11 @@ void PM_WalkMove(pmove_t *pm, pml_t *pml)
 PM_LadderMove
 ==============
 */
-void PM_LadderMove(pmove_t *pm, pml_t *pml)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1174,10 +1187,10 @@ void PM_LadderMove(pmove_t *pm, pml_t *pml)
 PmoveSingle
 ==============
 */
-void PmoveSingle(pmove_t *pm)
+/*void PmoveSingle(const char *a1@<edi>, float a2@<esi>, pmove_t *pm)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

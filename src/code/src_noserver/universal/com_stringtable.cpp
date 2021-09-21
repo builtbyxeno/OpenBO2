@@ -17,7 +17,7 @@ int StringTable_FirstHashIndex(const StringTable *table, int hash)
 StringTable_LookupNearestRowNumForValue
 ==============
 */
-int StringTable_LookupNearestRowNumForValue(
+int StringTable_LookupNearestRowNumForValue(const StringTable *table, const int comparisonColumn, const char *value, const int row)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -39,7 +39,7 @@ int StringTable_LookupRowNumForValue(const StringTable *table, const int compari
 StringTable_LookupRowNumForValue
 ==============
 */
-int StringTable_LookupRowNumForValue(
+int StringTable_LookupRowNumForValue(const StringTable *table, const int comparisonColumn1, const char *value1, const int comparisonColumn2, const char *value2, const int comparisonColumn3, const char *value3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -61,7 +61,7 @@ const GfxViewParms *StringTable_GetColumnValueForRow(const StringTable *table, c
 StringTable_Lookup
 ==============
 */
-const GfxViewParms *StringTable_Lookup(
+const GfxViewParms *StringTable_Lookup(const StringTable *table, const int comparisonColumn, const char *value, const int valueColumn)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -72,7 +72,7 @@ const GfxViewParms *StringTable_Lookup(
 StringTable_Lookup
 ==============
 */
-const GfxViewParms *StringTable_Lookup(
+const GfxViewParms *StringTable_Lookup(const StringTable *table, const int comparisonColumn1, const char *value1, const int comparisonColumn2, const char *value2, const int valueColumn)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -83,7 +83,7 @@ const GfxViewParms *StringTable_Lookup(
 StringTable_Lookup
 ==============
 */
-const GfxViewParms *StringTable_Lookup(
+const GfxViewParms *StringTable_Lookup(const StringTable *table, const int comparisonColumn1, const char *value1, const int comparisonColumn2, const char *value2, const int comparisonColumn3, const char *value3, const int valueColumn)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -94,7 +94,7 @@ const GfxViewParms *StringTable_Lookup(
 StringTable_Find
 ==============
 */
-int StringTable_Find(
+int StringTable_Find(const StringTable *table, int *results, int maxResults, const int comparisonColumn1, const char *value1, const int comparisonColumn2, const char *value2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

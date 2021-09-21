@@ -28,7 +28,7 @@ unsigned int UniqueHandleAlloc(const FxSystem *system)
 UniqueHandleAssignEffect
 ==============
 */
-void UniqueHandleAssignEffect(
+void UniqueHandleAssignEffect(unsigned int handle, const FxSystem *system, FxEffect *effect, FxEffect *remoteEffect)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

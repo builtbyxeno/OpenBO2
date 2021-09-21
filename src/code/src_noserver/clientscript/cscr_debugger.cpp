@@ -27,7 +27,7 @@ scrDebuggerGlob_t *Scr_FindBreakpointInfo(scriptInstance_t inst, const unsigned 
 Scr_AddBreakpoint
 ==============
 */
-breakpointData_t *Scr_AddBreakpoint(
+breakpointData_t *Scr_AddBreakpoint(scriptInstance_t inst, int type, unsigned __int8 *codePos, unsigned int localId, objFileInfo_t *fileInfo, int lineNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -78,19 +78,21 @@ void Scr_EnableAllBreakpoint(scriptInstance_t inst)
 Scr_RemoveAllBreakpoint
 ==============
 */
-/*void Scr_RemoveAllBreakpoint(unsigned __int8 *a1@<edx>, scriptInstance_t a2@<ecx>, scriptInstance_t inst)
+void Scr_RemoveAllBreakpoint(unsigned __int8 *a1, scriptInstance_t a2, scriptInstance_t inst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 Scr_Step
 ==============
 */
-void Scr_Step(scriptInstance_t inst, int step_mode)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -161,9 +163,11 @@ int SortEntCompare(const void *e1, const void *e2)
 Scr_Msg_SetBreakpoint
 ==============
 */
-void Scr_Msg_SetBreakpoint()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -291,10 +295,10 @@ void Scr_InitDebugger(scriptInstance_t inst)
 Scr_ShutdownDebugger
 ==============
 */
-/*void Scr_ShutdownDebugger(unsigned __int8 *a1@<edx>, scriptInstance_t a2@<ecx>, scriptInstance_t inst)
+void Scr_ShutdownDebugger(unsigned __int8 *a1, scriptInstance_t a2, scriptInstance_t inst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -363,7 +367,7 @@ unsigned __int8 *Scr_CheckForceJump(scriptInstance_t inst, unsigned __int8 *pos)
 Scr_EvaluateWatchChild
 ==============
 */
-void Scr_EvaluateWatchChild(
+void Scr_EvaluateWatchChild(scriptInstance_t inst, unsigned int nodeId, unsigned int parentId, int parentType, int uniqueId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -443,7 +447,7 @@ void Scr_UpdateDebugger(scriptInstance_t inst)
 Scr_HitBreakpoint
 ==============
 */
-unsigned __int8 Scr_HitBreakpoint(
+unsigned __int8 Scr_HitBreakpoint(scriptInstance_t inst, unsigned __int8 type, VariableValue *top, unsigned int localId, unsigned int localVarCount, unsigned __int8 *pos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -454,7 +458,7 @@ unsigned __int8 Scr_HitBreakpoint(
 Scr_TestDataBreakpoints
 ==============
 */
-void Scr_TestDataBreakpoints(
+void Scr_TestDataBreakpoints(scriptInstance_t inst, VariableValue *top, unsigned int localId, unsigned int localVarCount, unsigned __int8 *pos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -464,7 +468,7 @@ void Scr_TestDataBreakpoints(
 Scr_TestNotifyBreakpoints
 ==============
 */
-void Scr_TestNotifyBreakpoints(
+void Scr_TestNotifyBreakpoints(scriptInstance_t inst, unsigned int stringId, VariableValue *top, unsigned int localId, unsigned int localVarCount, unsigned __int8 *pos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

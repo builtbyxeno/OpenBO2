@@ -87,7 +87,7 @@ void Demo_SetLeagueTags(ControllerIndex_t controllerIndex, int *numTags)
 Demo_SetTags
 ==============
 */
-void Demo_SetTags(
+void Demo_SetTags(ControllerIndex_t controllerIndex, int *numTags, bdTag *tags, demoDefaultMetaInfo *info, fileshareCategory_e category, void *optionalParam1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -194,7 +194,7 @@ int Demo_GetEstimatedTimeToFinishStreaming(LocalClientNum_t localClientNum)
 Demo_SetMetaData
 ==============
 */
-bool Demo_SetMetaData(
+bool Demo_SetMetaData(ControllerIndex_t controllerIndex, unsigned __int8 *metaData, int metaDataSize, demoDefaultMetaInfo *info, int duration, bool isPooled)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -215,9 +215,11 @@ void Demo_WriteSummary_SuccessCallback(ControllerIndex_t controllerIndex, unsign
 Demo_StreamingSuccessCallback
 ==============
 */
-void Demo_StreamingSuccessCallback(ControllerIndex_t controllerIndex, unsigned __int64 fileID)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -431,7 +433,7 @@ bool Demo_IsDemoDownloading()
 Demo_DownloadFileCallback
 ==============
 */
-void Demo_DownloadFileCallback(
+void Demo_DownloadFileCallback(void *data, unsigned int dataSize, unsigned int bytesDownloaded, unsigned int fileSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -503,7 +505,7 @@ void Demo_DownloadFileFailure()
 Demo_DownloadFile
 ==============
 */
-void Demo_DownloadFile(
+void Demo_DownloadFile(ControllerIndex_t controllerIndex, char *filmName, unsigned __int64 fileId, int fileSize, bool isUserFile, const char *demoMode)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

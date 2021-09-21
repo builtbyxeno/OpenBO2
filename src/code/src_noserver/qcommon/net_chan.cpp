@@ -128,7 +128,7 @@ void Netchan_Init(int port)
 Netchan_Setup
 ==============
 */
-void Netchan_Setup(
+void Netchan_Setup(netsrc_t sock, netchan_t *chan, netadr_t adr, int qport, char *outgoingBuffer, int outgoingBufferSize, char *incomingBuffer, int incomingBufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -498,22 +498,23 @@ unsigned __int16 Sys_ChecksumCopy(unsigned __int8 *dest, const unsigned __int8 *
 Sys_VerifyPacketChecksum
 ==============
 */
-/*int Sys_VerifyPacketChecksum@<eax>(int a1@<edx>, const unsigned __int8 *payload, int paylen)
+int Sys_VerifyPacketChecksum(int a1, const unsigned __int8 *payload, int paylen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 Sys_CheckSumPacketCopy
 ==============
 */
-/*unsigned int Sys_CheckSumPacketCopy@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============

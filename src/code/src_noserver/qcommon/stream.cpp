@@ -49,7 +49,7 @@ void Stream_AddToQueue(streamInfo *newStreamInfo)
 Stream_RemoveFromQueue
 ==============
 */
-void Stream_RemoveFromQueue(
+void Stream_RemoveFromQueue(streamInfo *stream, stream_status reason, callbackInfo *callbacks, int *numCallbacks)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -80,7 +80,7 @@ void Stream_CloseFile(int handle)
 Stream_AddRequest
 ==============
 */
-bool Stream_AddRequest(
+bool Stream_AddRequest(int handle, unsigned int offs, unsigned int bufferSize, void *buf, int msUntilRequired, stream_priority priority, void (*callback)(int, stream_status, unsigned int, void *), void *user, int *outId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -91,7 +91,7 @@ bool Stream_AddRequest(
 Stream_AddCallbackOnlyRequest
 ==============
 */
-char Stream_AddCallbackOnlyRequest(
+char Stream_AddCallbackOnlyRequest(int estMsNeeded, int msUntilRequired, stream_priority priority, void (*callback)(int, void *, int), void *user, int *outId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -145,7 +145,7 @@ streamInfo *Stream_GetNextStreamToLoad()
 Stream_Thread
 ==============
 */
-void __noreturn Stream_Thread(unsigned int threadContext)
+void __noreturn Stream_Thread(char *id, unsigned int threadContext)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

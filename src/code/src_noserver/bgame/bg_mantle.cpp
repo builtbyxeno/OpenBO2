@@ -100,7 +100,7 @@ void Mantle_Start(pmove_t *pm, playerState_s *ps, MantleResults *mresults)
 Hatch_FindHatchSurface
 ==============
 */
-bool Hatch_FindHatchSurface(
+bool Hatch_FindHatchSurface(pmove_t *pm, pml_t *pml, trace_t *trace, vec3_t *mantleDir, vec3_t *mantleEnd, const float distance)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -286,10 +286,11 @@ Mantle_CheckLedge
 Hatch_CheckHatch
 ==============
 */
-char Hatch_CheckHatch(pmove_t *pm, pml_t *pml)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*

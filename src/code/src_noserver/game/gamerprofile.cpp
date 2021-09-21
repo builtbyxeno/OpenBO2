@@ -17,7 +17,7 @@ int GamerProfile_GetSettingByName(const char *settingName)
 GamerProfile_LookupKey
 ==============
 */
-bool GamerProfile_LookupKey(
+bool GamerProfile_LookupKey(profile_setting setting, ControllerIndex_t controllerIndex, ddlState_t *outState, unsigned __int8 **outBuffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -49,44 +49,44 @@ bool GamerProfile_IsValidProfileVariable(const char *settingName)
 GamerProfile_GetInt
 ==============
 */
-/*unsigned int GamerProfile_GetInt@<eax>(ControllerIndex_t a1@<edx>, profile_setting setting)
+unsigned int GamerProfile_GetInt(ControllerIndex_t a1, profile_setting setting)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 GamerProfile_GetBool
 ==============
 */
-/*BOOL GamerProfile_GetBool@<eax>(ControllerIndex_t a1@<edx>, profile_setting setting)
+BOOL GamerProfile_GetBool(ControllerIndex_t a1, profile_setting setting)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 GamerProfile_GetFloat
 ==============
 */
-/*double GamerProfile_GetFloat@<st0>(ControllerIndex_t a1@<edx>, profile_setting setting)
+double GamerProfile_GetFloat(ControllerIndex_t a1, profile_setting setting)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 GamerProfile_GetString
 ==============
 */
-/*const GfxViewParms *GamerProfile_GetString@<eax>(ControllerIndex_t a1@<edx>, profile_setting setting)
+const GfxViewParms *GamerProfile_GetString(ControllerIndex_t a1, char *a2, profile_setting setting)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -126,7 +126,7 @@ const GfxViewParms *GamerProfile_GetString(const char *settingName)
 GamerProfile_GetArrayString
 ==============
 */
-const GfxViewParms *GamerProfile_GetArrayString(
+const GfxViewParms *GamerProfile_GetArrayString(const char *settingName, ControllerIndex_t controllerIndex, int index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -201,7 +201,7 @@ void GamerProfile_UpdateStickConfig(ControllerIndex_t controllerIndex, int gpadS
 GamerProfile_ExecuteFloatCallback
 ==============
 */
-void GamerProfile_ExecuteFloatCallback(
+void GamerProfile_ExecuteFloatCallback(profile_setting setting, ControllerIndex_t controllerIndex, float newValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -211,7 +211,7 @@ void GamerProfile_ExecuteFloatCallback(
 GamerProfile_SetFloat_Internal
 ==============
 */
-bool GamerProfile_SetFloat_Internal(
+bool GamerProfile_SetFloat_Internal(ControllerIndex_t controllerIndex, ddlState_t *profileItemState, float newValue, unsigned __int8 *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -222,7 +222,7 @@ bool GamerProfile_SetFloat_Internal(
 GamerProfile_SetString_Internal
 ==============
 */
-bool GamerProfile_SetString_Internal(
+bool GamerProfile_SetString_Internal(ControllerIndex_t controllerIndex, ddlState_t *profileItemState, const char *newValue, unsigned __int8 *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -233,7 +233,7 @@ bool GamerProfile_SetString_Internal(
 GamerProfile_SetString
 ==============
 */
-void GamerProfile_SetString(
+void GamerProfile_SetString(ControllerIndex_t a1, char *a2, profile_setting setting, ControllerIndex_t controllerIndex, const char *newValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -243,17 +243,17 @@ void GamerProfile_SetString(
 GamerProfile_CopyProfileEntry
 ==============
 */
-/*void GamerProfile_CopyProfileEntry(ControllerIndex_t a1@<edx>, profile_setting setting)
+void GamerProfile_CopyProfileEntry(ControllerIndex_t a1, char *a2, profile_setting setting)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 GamerProfile_GetVariableAsString
 ==============
 */
-char *GamerProfile_GetVariableAsString(const char *settingName, ControllerIndex_t controllerIndex)
+char *GamerProfile_GetVariableAsString(char *a1, const char *settingName, ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -347,20 +347,21 @@ void GamerProfile_SetupInitialClasses(const ControllerIndex_t controllerIndex)
 GamerProfile_ExecControllerBindings
 ==============
 */
-/*void GamerProfile_ExecControllerBindings(ControllerIndex_t a1@<edx>, ControllerIndex_t controllerIndex)
+void GamerProfile_ExecControllerBindings(ControllerIndex_t a1, ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 GamerProfile_AreBothBuffersInitialized
 ==============
 */
-bool GamerProfile_AreBothBuffersInitialized(const ControllerIndex_t controllerIndex)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -422,7 +423,7 @@ unsigned __int8 *GamerProfile_GetExeSettingsBuffer(const ControllerIndex_t contr
 GamerProfile_ExecuteIntCallback
 ==============
 */
-void GamerProfile_ExecuteIntCallback(
+void GamerProfile_ExecuteIntCallback(profile_setting setting, ControllerIndex_t controllerIndex, int newValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -432,10 +433,11 @@ void GamerProfile_ExecuteIntCallback(
 GamerProfile_SetInt_Internal
 ==============
 */
-bool GamerProfile_SetInt_Internal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -443,7 +445,7 @@ bool GamerProfile_SetInt_Internal(
 GamerProfile_SetInt
 ==============
 */
-void GamerProfile_SetInt(
+void GamerProfile_SetInt(ControllerIndex_t a1, profile_setting setting, ControllerIndex_t controllerIndex, int newValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -453,7 +455,7 @@ void GamerProfile_SetInt(
 GamerProfile_SetBool
 ==============
 */
-void GamerProfile_SetBool(profile_setting setting, ControllerIndex_t controllerIndex, bool newValue)
+void GamerProfile_SetBool(profile_setting setting, ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -463,7 +465,7 @@ void GamerProfile_SetBool(profile_setting setting, ControllerIndex_t controllerI
 GamerProfile_SetVariableFromString_Internal
 ==============
 */
-bool GamerProfile_SetVariableFromString_Internal(
+bool GamerProfile_SetVariableFromString_Internal(const char *settingName, ControllerIndex_t controllerIndex, int index, const char *settingValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -474,31 +476,35 @@ bool GamerProfile_SetVariableFromString_Internal(
 GamerProfile_SetVariableFromString
 ==============
 */
-/*bool GamerProfile_SetVariableFromString@<al>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 GamerProfile_SetArrayVariableFromString
 ==============
 */
-/*bool GamerProfile_SetArrayVariableFromString@<al>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 GamerProfile_ResetCommonVarsToDefault
 ==============
 */
-void GamerProfile_ResetCommonVarsToDefault(ControllerIndex_t controllerIndex)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -506,9 +512,11 @@ void GamerProfile_ResetCommonVarsToDefault(ControllerIndex_t controllerIndex)
 GamerProfile_ResetExeVarsToDefault
 ==============
 */
-void GamerProfile_ResetExeVarsToDefault(ControllerIndex_t controllerIndex)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -516,9 +524,11 @@ void GamerProfile_ResetExeVarsToDefault(ControllerIndex_t controllerIndex)
 GamerProfile_SaveChanges
 ==============
 */
-void GamerProfile_SaveChanges(ControllerIndex_t controllerIndex)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -536,10 +546,10 @@ void GamerProfile_SaveChangesCmd()
 GamerProfile_RunCallbacks
 ==============
 */
-/*void GamerProfile_RunCallbacks(int a1@<edi>, ControllerIndex_t controllerIndex)
+void GamerProfile_RunCallbacks(int a1, ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -556,19 +566,21 @@ void GamerProfile_ResetProfile(ControllerIndex_t controllerIndex)
 GamerProfile_InitProfileWithoutSignin
 ==============
 */
-/*void GamerProfile_InitProfileWithoutSignin(int a1@<edi>, ControllerIndex_t controllerIndex)
+void GamerProfile_InitProfileWithoutSignin(int a1, ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 GamerProfile_Set_f
 ==============
 */
-void GamerProfile_Set_f()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -576,9 +588,11 @@ void GamerProfile_Set_f()
 GamerProfile_Reset_f
 ==============
 */
-void GamerProfile_Reset_f()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

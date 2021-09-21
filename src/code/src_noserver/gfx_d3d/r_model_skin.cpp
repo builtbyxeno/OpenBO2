@@ -6,7 +6,7 @@
 R_Tension
 ==============
 */
-void R_Tension(
+void R_Tension(float *tensionData, const unsigned int vertCount, GfxPackedVertex *vertsOut, unsigned __int16 *triIndices, const unsigned int triCount, float *tensionBuffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -58,7 +58,7 @@ void R_SkinXSurfaceWeight(const GfxPackedVertex *inVerts, const XSurfaceVertexIn
 R_SkinXModelCmd
 ==============
 */
-void R_SkinXModelCmd(void *data)
+void R_SkinXModelCmd(int a1, void *data)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

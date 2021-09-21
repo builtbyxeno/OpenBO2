@@ -16,7 +16,7 @@ void R_DrawSpotShadowMapCallback(const void *userData, GfxCmdBufContext context)
 R_DrawSpotShadowMap
 ==============
 */
-void R_DrawSpotShadowMap(
+void R_DrawSpotShadowMap(int a1, const GfxViewInfo *viewInfo, unsigned int spotShadowIndex, GfxCmdBuf *cmdBuf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

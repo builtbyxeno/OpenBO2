@@ -58,7 +58,7 @@ bitarray<58>::bitarray<58>
 bitarray<64>::areAllBitsEqual
 ==============
 */
-/*char __thiscall bitarray<64>::areAllBitsEqual(
+/*char __thiscall bitarray<64>::areAllBitsEqual(bitarray<64> *this, const bitarray<64> *otherBitSet, const bitarray<64> *ignoreMaskBitSet)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

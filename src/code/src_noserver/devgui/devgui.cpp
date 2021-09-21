@@ -186,7 +186,7 @@ int DevGui_MaxChildMenuWidth(LocalClientNum_t localClientNum, const DevMenuItem 
 DevGui_DrawMenuVertically
 ==============
 */
-void DevGui_DrawMenuVertically(
+void DevGui_DrawMenuVertically(LocalClientNum_t localClientNum, const DevMenuItem *menu, unsigned __int16 activeChild, int *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -196,7 +196,7 @@ void DevGui_DrawMenuVertically(
 DevGui_DrawMenuHorizontally
 ==============
 */
-void DevGui_DrawMenuHorizontally(
+void DevGui_DrawMenuHorizontally(LocalClientNum_t localClientNum, const DevMenuItem *menu, unsigned __int16 activeChild, int *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -206,9 +206,11 @@ void DevGui_DrawMenuHorizontally(
 DevGui_DrawMenu
 ==============
 */
-void DevGui_DrawMenu(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -247,7 +249,7 @@ void DevGui_DrawSliderTitle(int x, int y, const DevMenuItem *menu)
 DevGui_DrawSingleSlider
 ==============
 */
-void DevGui_DrawSingleSlider(
+void DevGui_DrawSingleSlider(int x, int y, int rowWidth, int rowHeight, float fraction, const unsigned __int8 *knobColor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

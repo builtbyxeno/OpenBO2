@@ -91,7 +91,7 @@ bool Sys_FileExists(const char *path)
 Sys_ListFilteredFiles
 ==============
 */
-void Sys_ListFilteredFiles(
+void Sys_ListFilteredFiles(HunkUser *user, const char *basedir, const char *subdirs, const char *filter, char **list, int *numfiles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -101,7 +101,7 @@ void Sys_ListFilteredFiles(
 Sys_ListFiles
 ==============
 */
-char **Sys_ListFiles(
+char **Sys_ListFiles(const char *directory, const char *extension, const char *filter, int *numfiles, int wantsubs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

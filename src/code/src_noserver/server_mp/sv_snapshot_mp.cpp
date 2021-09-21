@@ -17,10 +17,11 @@ const entityState_s *SV_GetNextEnt(const int entCount, const int firstEntIndex, 
 SV_EntLinkedToEnt
 ==============
 */
-bool SV_EntLinkedToEnt(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -28,10 +29,11 @@ bool SV_EntLinkedToEnt(
 SV_ShouldEntityGoToClient
 ==============
 */
-bool SV_ShouldEntityGoToClient(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -49,7 +51,7 @@ void SV_EmitPacketEntities_Debug(SnapshotInfo_s *snapInfo, int *quickBits, msg_t
 SV_EmitPacketEntities
 ==============
 */
-void SV_EmitPacketEntities(
+void SV_EmitPacketEntities(SnapshotInfo_s *snapInfo, const int viewClientNum, const int oldFrameViewClientNum, const int oldEntCount, const int firstOldEntityIndex, const int oldFrameTimeDelta, const int newEntCount, const int firstNewEntityIndex, const int newFrameTimeDelta, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -69,10 +71,10 @@ void SV_WritePerformanceData(const ClientNum_t clientNum, msg_t *msg)
 SV_WriteSnapshotToClient
 ==============
 */
-void SV_WriteSnapshotToClient(
+/*void SV_WriteSnapshotToClient(char *a1@<edi>, client_t *client, msg_t *msg, const bool sendEntities, const bool writeClientsAndOtherData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

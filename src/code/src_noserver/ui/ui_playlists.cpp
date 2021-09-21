@@ -116,7 +116,7 @@ char Playlist_ParseRequiredDLC(const char **pData, const char *name, const char 
 Playlist_SetPlaylistEntry
 ==============
 */
-void Playlist_SetPlaylistEntry(
+void Playlist_SetPlaylistEntry(const int playlistNum, const char *mapName, const char *gameType, const char *startLoc, int weight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -267,7 +267,7 @@ int Playlist_CalcTotalWeights(const int playlistId, const int lastSelection, con
 Playlist_FindEntryByWeight
 ==============
 */
-int Playlist_FindEntryByWeight(
+int Playlist_FindEntryByWeight(const int playlistId, const int selectedWeight, const int lastSelection, const int lastToLastSelection)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -486,21 +486,23 @@ const char *Playlist_GetPlaylistName(const ControllerIndex_t controllerIndex, co
 Playlist_ChooseEntry
 ==============
 */
-/*int Playlist_ChooseEntry@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 Playlist_ChooseEntry
 ==============
 */
-int Playlist_ChooseEntry(int a1, const PartyData_s *a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -508,7 +510,7 @@ int Playlist_ChooseEntry(int a1, const PartyData_s *a2)
 Playlist_MigrateHost
 ==============
 */
-void Playlist_MigrateHost(
+void Playlist_MigrateHost(const ControllerIndex_t localControllerIndex, unsigned __int8 *lastEntries, int numEntries)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -529,7 +531,7 @@ const GfxViewParms *Playlist_GetMapName(const ControllerIndex_t localControllerI
 Playlist_GetScriptGameTypeName
 ==============
 */
-const GfxViewParms *Playlist_GetScriptGameTypeName(
+const GfxViewParms *Playlist_GetScriptGameTypeName(const ControllerIndex_t localControllerIndex, const int entryNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

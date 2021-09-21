@@ -161,7 +161,7 @@ void CG_UpdateScriptedKillCamDof(float distance, GfxDepthOfField *dof)
 CG_UpdateScriptedKillCam
 ==============
 */
-void CG_UpdateScriptedKillCam(
+void CG_UpdateScriptedKillCam(vec3_t *a1, LocalClientNum_t a2, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -181,7 +181,7 @@ void CG_UpdateDestructibleKillCamDof(float distance, GfxDepthOfField *dof)
 CG_UpdateDestructibleKillCam
 ==============
 */
-void CG_UpdateDestructibleKillCam(
+void CG_UpdateDestructibleKillCam(vec3_t *a1, LocalClientNum_t a2, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -234,10 +234,10 @@ void CG_CacheKillCamEntityPose(const LocalClientNum_t localClientNum)
 CG_CacheKillCamLookAtEntityOrigin
 ==============
 */
-void CG_CacheKillCamLookAtEntityOrigin(const LocalClientNum_t localClientNum)
+/*void CG_CacheKillCamLookAtEntityOrigin(char *a1@<edi>, const LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -311,17 +311,17 @@ CG_UpdateExplosiveKillCam
 CG_UpdateTurretKillCam
 ==============
 */
-/*void CG_UpdateTurretKillCam(vec3_t *a1@<edx>, LocalClientNum_t a2@<ecx>, LocalClientNum_t localClientNum)
+void CG_UpdateTurretKillCam(vec3_t *a1, LocalClientNum_t a2, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 CG_UpdateKillCamEntity
 ==============
 */
-void CG_UpdateKillCamEntity(
+void CG_UpdateKillCamEntity(vec3_t *a1, LocalClientNum_t a2, vec3_t *killCamEntityType, KillCamEntityType localClientNum, LocalClientNum_t a5)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

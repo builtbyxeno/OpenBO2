@@ -6,11 +6,11 @@
 SNDL_Play
 ==============
 */
-int SNDL_Play(
+/*int SNDL_Play@<eax>(const char *a1@<edi>, unsigned int aliasHash, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, const vec3_t *notify, SndPlayback *playback, bool startPaused, float setScriptValues, float scriptPitch, float scriptPitchRate, float scriptAttenuation)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
@@ -57,7 +57,7 @@ void SNDL_DisconnectListener(LocalClientNum_t localClientNum)
 SNDL_SetListener
 ==============
 */
-void SNDL_SetListener(
+void SNDL_SetListener(LocalClientNum_t localClientNum, ClientNum_t clientNum, team_t team, const vec3_t *origin, const vec3_t *inAxis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -97,7 +97,7 @@ void SNDL_FadeIn()
 SNDL_SetEnvironmentEffects
 ==============
 */
-void SNDL_SetEnvironmentEffects(
+void SNDL_SetEnvironmentEffects(int priority, unsigned int roomstring, float drylevel, float wetlevel, int fademsec)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -270,10 +270,10 @@ int SNDL_GetPlaybackTime(int playbackId)
 SNDL_GameReset
 ==============
 */
-void SNDL_GameReset()
+/*void SNDL_GameReset(float a1@<edi>)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -312,10 +312,10 @@ void SNDL_SetEntContext(SndEntHandle handle, unsigned int type, unsigned int val
 SNDL_UpdateLoopingSounds
 ==============
 */
-/*void SNDL_UpdateLoopingSounds(SndListener *a1@<edi>)
+void SNDL_UpdateLoopingSounds(SndListener *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -362,7 +362,7 @@ void SNDL_SetFrontendMusic(unsigned int musicAlias)
 SNDL_SetLoopState
 ==============
 */
-void SNDL_SetLoopState(
+void SNDL_SetLoopState(SndEntHandle sndEnt, unsigned int alias, float attenuation, float attenuationRate, float pitch, float pitchRate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -372,17 +372,17 @@ void SNDL_SetLoopState(
 SNDL_PlayLoops
 ==============
 */
-void SNDL_PlayLoops(int count, const SndEntLoop *loops)
+/*void SNDL_PlayLoops(const char *a1@<edi>, int count, const SndEntLoop *loops)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 SNDL_SetGameState
 ==============
 */
-void SNDL_SetGameState(
+void SNDL_SetGameState(bool isMature, bool isPaused, float timescale, unsigned int cg_time, unsigned int seed, float voiceScale, float musicScale, float sfxScale, float masterScale, float cinematicScale, int masterPatch, bool hearingImpaired)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

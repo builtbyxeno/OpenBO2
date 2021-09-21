@@ -16,7 +16,7 @@ void R_DrawSonarCallback(const void *__formal, GfxCmdBufContext context, const G
 R_DrawSonar
 ==============
 */
-void R_DrawSonar(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf)
+void R_DrawSonar(int a1, const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -36,7 +36,7 @@ void R_DrawLitQuasiOpaqueCallback(const void *__formal, GfxCmdBufContext context
 R_DrawLitQuasiOpaque
 ==============
 */
-void R_DrawLitQuasiOpaque(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf)
+void R_DrawLitQuasiOpaque(int a1, const GfxViewInfo *a2, GfxCmdBuf *a3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -96,7 +96,7 @@ void RB_SetSonarCodeImages(GfxCmdBufSourceState *source)
 R_AdjustDrawsurfListToCmdBufPartition
 ==============
 */
-void R_AdjustDrawsurfListToCmdBufPartition(
+void R_AdjustDrawsurfListToCmdBufPartition(GfxDrawSurfListInfo *info, unsigned int partitionIndex, unsigned int partitionCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -106,7 +106,7 @@ void R_AdjustDrawsurfListToCmdBufPartition(
 R_DrawLit
 ==============
 */
-void R_DrawLit(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf, LitPhaseID phase)
+void R_DrawLit(int a1, const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf, LitPhaseID phase)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -116,7 +116,7 @@ void R_DrawLit(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf, LitPhaseID phase)
 R_DrawLitBsp
 ==============
 */
-void R_DrawLitBsp(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf, LitPhaseID phase)
+void R_DrawLitBsp(int a1, const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf, LitPhaseID phase)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -126,7 +126,7 @@ void R_DrawLitBsp(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf, LitPhaseID pha
 R_DrawLitStaticModel
 ==============
 */
-void R_DrawLitStaticModel(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf, LitPhaseID phase)
+void R_DrawLitStaticModel(int a1, const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf, LitPhaseID phase)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -146,7 +146,7 @@ void R_DrawViewModelTransCallback(const void *userData, GfxCmdBufContext context
 R_DrawViewModelTrans
 ==============
 */
-void R_DrawViewModelTrans(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf)
+void R_DrawViewModelTrans(int a1, const GfxViewInfo *a2, GfxCmdBuf *a3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -166,11 +166,9 @@ void R_PostBlurCallback(const void *userData, GfxCmdBufContext context, const Gf
 R_DrawLitCmd
 ==============
 */
-
+void R_DrawLitCmd(int a1, char *a2, int a3, DrawLitWorkerCmd *cmd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -178,11 +176,9 @@ R_DrawLitCmd
 R_DrawLitBspCmd
 ==============
 */
-
+void R_DrawLitBspCmd(int a1, char *a2, int a3, DrawLitWorkerCmd *cmd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -190,10 +186,8 @@ R_DrawLitBspCmd
 R_DrawLitStaticModelCmd
 ==============
 */
-
+void R_DrawLitStaticModelCmd(int a1, char *a2, int a3, DrawLitWorkerCmd *cmd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 

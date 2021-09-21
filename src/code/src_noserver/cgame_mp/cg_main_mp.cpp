@@ -150,7 +150,7 @@ void CG_RegisterGraphics(LocalClientNum_t localClientNum)
 CG_PlayBattleChatter
 ==============
 */
-void CG_PlayBattleChatter(
+void CG_PlayBattleChatter(LocalClientNum_t localClientNum, int entitynum, const vec3_t *origin, int firstSoundAlias, int secondSoundAlias)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -211,7 +211,7 @@ XModel *CG_GetXModel(const char *modelName)
 CG_CreateDObj
 ==============
 */
-void CG_CreateDObj(
+void CG_CreateDObj(DObjModel_s *dobjModels, unsigned __int16 numModels, XAnimTree_s *tree, int handle, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -474,7 +474,7 @@ int CG_GetVehicleTypeString(ClientNum_t clientNum, int entityNum, VehicleDef **v
 CachedTag_UpdateTagInternal
 ==============
 */
-int CachedTag_UpdateTagInternal(
+int CachedTag_UpdateTagInternal(const centity_t *ent, cached_client_tag_t *cachedTag, unsigned int tagName, int updateInterval, bool forceUpdate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -496,21 +496,23 @@ int CachedTag_NoCache_GetTagPos(const centity_t *ent, unsigned int tagName, vec3
 CachedTag_GetCachedTagPos
 ==============
 */
-/*int CachedTag_GetCachedTagPos@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 CachedTag_GetTagPos
 ==============
 */
-int CachedTag_GetTagPos(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -663,7 +665,7 @@ void CG_CompareClientFieldHashToGameState(unsigned int hash)
 CG_ProcessClientFieldsForEntity
 ==============
 */
-void CG_ProcessClientFieldsForEntity(
+void CG_ProcessClientFieldsForEntity(centity_t *pCent, LocalClientNum_t localClientNum, bool bNewEnt, bool bWasDemoJump, playerState_s *prevPs, playerState_s *ps)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -787,7 +789,7 @@ void CG_LoadAnimTreeInstances(LocalClientNum_t localClientNum)
 CG_LoadAnimTrees
 ==============
 */
-void CG_LoadAnimTrees(
+void CG_LoadAnimTrees(LocalClientNum_t localClientNum, cg_t *cgameGlob, const char *mapname, bool loading_scripts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -797,7 +799,7 @@ void CG_LoadAnimTrees(
 CG_Init
 ==============
 */
-void CG_Init(
+void CG_Init(char *a1, LocalClientNum_t localClientNum, int serverMessageNum, int serverCommandSequence, ClientNum_t clientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

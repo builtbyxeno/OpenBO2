@@ -28,7 +28,7 @@ const GfxViewParms *CG_GetNameForScoreboardColumn(LocalClientNum_t localClientNu
 CG_GetColumnValue
 ==============
 */
-int CG_GetColumnValue(
+int CG_GetColumnValue(LocalClientNum_t localClientNum, const score_s *score, scoreboardColumnType_t columnType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -134,22 +134,24 @@ int CG_GetMatchScoreboardIndexForTeamByScore(LocalClientNum_t localClientNum, in
 CG_GetMatchScoreboardIndexForTeam
 ==============
 */
-/*int CG_GetMatchScoreboardIndexForTeam@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 CG_GetMatchscoreboardTeam
 ==============
 */
-/*int CG_GetMatchscoreboardTeam@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -189,7 +191,7 @@ int CG_GetWagerPlaceForMatchScoreboard(LocalClientNum_t localClientNum, int matc
 CG_GetWagerWinningsForMatchScoreboard
 ==============
 */
-int CG_GetWagerWinningsForMatchScoreboard(
+int CG_GetWagerWinningsForMatchScoreboard(LocalClientNum_t localClientNum, int index, team_t team)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -233,7 +235,7 @@ const score_s *UI_GetScoreAtRank(LocalClientNum_t localClientNum, int rank)
 CG_GetGametypeDescription
 ==============
 */
-const char *CG_GetGametypeDescription(LocalClientNum_t localClientNum)
+char *CG_GetGametypeDescription(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -402,7 +404,7 @@ int CG_GetPlaceWithTiesForScore(const LocalClientNum_t localClientNum, int score
 CG_GetMatchScoreboardValueByXuid
 ==============
 */
-int CG_GetMatchScoreboardValueByXuid(
+int CG_GetMatchScoreboardValueByXuid(LocalClientNum_t localClientNum, unsigned __int64 xuid, const char *sbColumn)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -435,7 +437,7 @@ int CG_GetDeaths(LocalClientNum_t localClientNum, const score_s *score)
 CG_GetColumnValueString
 ==============
 */
-const char *CG_GetColumnValueString(
+const char *CG_GetColumnValueString(LocalClientNum_t localClientNum, const score_s *score, scoreboardColumnType_t columnType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -446,10 +448,11 @@ const char *CG_GetColumnValueString(
 CG_GetMatchScoreboardInfo
 ==============
 */
-const char *CG_GetMatchScoreboardInfo(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*

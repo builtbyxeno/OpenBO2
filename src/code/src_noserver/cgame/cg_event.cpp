@@ -66,7 +66,7 @@ void CG_SetWetness(LocalClientNum_t localClientNum, int entNum, float wetness, i
 CG_ExplosionEvent
 ==============
 */
-void CG_ExplosionEvent(
+void CG_ExplosionEvent(LocalClientNum_t localClientNum, centity_t *eventEnt, const vec3_t *origin, const float damageInner, const float damageOuter, float radius, int mod, const char *weaponName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -76,7 +76,7 @@ void CG_ExplosionEvent(
 CG_ProjectileExplosionEvent
 ==============
 */
-void CG_ProjectileExplosionEvent(
+void CG_ProjectileExplosionEvent(LocalClientNum_t localClientNum, centity_t *cent, Weapon weapon, const vec3_t *position, int mod)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -86,7 +86,7 @@ void CG_ProjectileExplosionEvent(
 CG_GetBoneIndex
 ==============
 */
-const DObj *CG_GetBoneIndex(
+const DObj *CG_GetBoneIndex(LocalClientNum_t localClientNum, const int dobjHandle, unsigned int boneName, unsigned __int8 *boneIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -97,7 +97,7 @@ const DObj *CG_GetBoneIndex(
 CG_PlayBoltedEffect
 ==============
 */
-unsigned int CG_PlayBoltedEffect(
+unsigned int CG_PlayBoltedEffect(LocalClientNum_t localClientNum, const FxEffectDef *fxDef, int dobjHandle, unsigned int boneName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -108,7 +108,7 @@ unsigned int CG_PlayBoltedEffect(
 CG_PlayBoltedEffectRelative
 ==============
 */
-unsigned int CG_PlayBoltedEffectRelative(
+unsigned int CG_PlayBoltedEffectRelative(LocalClientNum_t localClientNum, const FxEffectDef *fxDef, int dobjHandle, unsigned int boneName, const vec3_t *offset, const vec3_t *offsetaxis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -159,7 +159,7 @@ void CG_SetInvalidStanceHint(cg_t *cgameGlob, invalid_cmd_hint_t type)
 CG_StopWeaponSound
 ==============
 */
-void CG_StopWeaponSound(
+void CG_StopWeaponSound(const LocalClientNum_t localClientNum, bool isPlayerView, const WeaponDef *weaponDef, const int entitynum, weaponstate_t weaponstate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -180,7 +180,7 @@ bool CG_IsSoundEventLouder(LocalClientNum_t localClientNum, centity_t *cent)
 CG_DoJumpEvent
 ==============
 */
-void CG_DoJumpEvent(
+void CG_DoJumpEvent(LocalClientNum_t localClientNum, centity_t *cent, bool isPlayerView, int surfaceType, bool quiet)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -190,7 +190,7 @@ void CG_DoJumpEvent(
 CG_DoLandEvent
 ==============
 */
-void CG_DoLandEvent(
+void CG_DoLandEvent(LocalClientNum_t localClientNum, centity_t *cent, bool isPlayerView, int surfaceType, bool quiet, bool damagePlayer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -210,9 +210,11 @@ void CG_GibEvent(LocalClientNum_t localClientNum, centity_t *cent, unsigned int 
 CG_GrabWeapon
 ==============
 */
-void CG_GrabWeapon(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -253,10 +255,10 @@ CG_EntityEvent
 CG_CheckEvents
 ==============
 */
-void CG_CheckEvents(LocalClientNum_t localClientNum, centity_t *cent)
+/*void CG_CheckEvents(char *a1@<edi>, LocalClientNum_t localClientNum, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

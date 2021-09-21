@@ -46,9 +46,11 @@ void Fire_Lead(gentity_t *ent, gentity_t *activator, int bUseAccuracy)
 turret_shoot_internal
 ==============
 */
-void turret_shoot_internal(gentity_t *self, gentity_t *other)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -66,7 +68,7 @@ void turret_UpdateSound(gentity_t *self)
 turret_CalculateConvergenceAngularVelocity
 ==============
 */
-void turret_CalculateConvergenceAngularVelocity(
+void turret_CalculateConvergenceAngularVelocity(const gentity_t *self, const vec2_t *desiredAngles, vec2_t *angularVelocity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -106,7 +108,7 @@ void Turret_ScanForEnemies(gentity_t *self)
 turret_UpdateTargetAngles
 ==============
 */
-int turret_UpdateTargetAngles(gentity_t *self, const vec2_t *desiredAngles, int bManned)
+int turret_UpdateTargetAngles(gentity_t *a1, char *a2, gentity_t *self, const vec2_t *desiredAngles, int bManned)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -168,10 +170,10 @@ void turret_SetScanningPitch(gentity_t *self, float pitch)
 turret_shoot
 ==============
 */
-/*void turret_shoot(gentity_t *a1@<edx>, gentity_t *self)
+void turret_shoot(gentity_t *a1, gentity_t *self)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -199,18 +201,18 @@ void Turret_PredictPosition(const gentity_t *ent, const playerState_s *ps, vec3_
 turret_CanTargetSentient
 ==============
 */
-/*int turret_CanTargetSentient@<eax>(
+int turret_CanTargetSentient(const playerState_s *a1, vec3_t *a2, vec3_t *self, const gentity_t *sentient, const sentient_t *targetPosition, vec3_t *muzzlePosition, vec3_t *localAngles, vec2_t *a8)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 turret_aimat_vector_internal
 ==============
 */
-void turret_aimat_vector_internal(
+void turret_aimat_vector_internal(gentity_t *self, const vec3_t *origin, int bShoot, const vec2_t *desiredAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -241,7 +243,7 @@ void turret_SetTargetEnt(gentity_t *self, gentity_t *ent)
 turret_aimat_Sentient_Internal
 ==============
 */
-int turret_aimat_Sentient_Internal(
+int turret_aimat_Sentient_Internal(gentity_t *self, sentient_t *enemy, int bShoot, int missTime, vec2_t *desiredAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -318,7 +320,7 @@ gentity_t *turret_findBestGroundKillstreakTarget(gentity_t *self)
 turret_findBestTarget
 ==============
 */
-sentient_t *turret_findBestTarget(gentity_t *self)
+sentient_t *turret_findBestTarget(char *a1, gentity_t *self)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -381,10 +383,10 @@ void turret_UpdateOverheating(gentity_t *self, gentity_t *owner)
 turret_think
 ==============
 */
-void turret_think(gentity_t *self)
+/*void turret_think(char *a1@<edi>, gentity_t *self)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -412,11 +414,11 @@ int turret_behind(gentity_t *self, gentity_t *other)
 G_IsTurretUsable
 ==============
 */
-/*BOOL G_IsTurretUsable@<eax>(gentity_t *a1@<edx>, gentity_t *a2@<ecx>, gentity_t *self, gentity_t *owner)
+BOOL G_IsTurretUsable(gentity_t *a1, gentity_t *a2, gentity_t *self, gentity_t *owner)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============

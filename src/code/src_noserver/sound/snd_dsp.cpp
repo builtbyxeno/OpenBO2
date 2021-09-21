@@ -106,7 +106,7 @@ void SND_DspSub(unsigned int count, const float *a, float *c)
 SND_DspBiquadInPlace
 ==============
 */
-void SND_DspBiquadInPlace(
+void SND_DspBiquadInPlace(const SndDspBiQuadCoef *coef, SndDspBiquadState *state0, unsigned int count, float *i0)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

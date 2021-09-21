@@ -273,7 +273,7 @@ void G_SpectatorsSendServerCommand(ClientNum_t clientNum, svscmd_type type, cons
 G_SayTo
 ==============
 */
-void G_SayTo(
+void G_SayTo(gentity_t *ent, gentity_t *other, int mode, int color, const char *teamString, const char *cleanname, const char *message)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

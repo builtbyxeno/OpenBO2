@@ -670,7 +670,7 @@ double MSG_ReadOriginZFloat(msg_t *msg, float oldValue)
 MSG_ReadRangedFloat
 ==============
 */
-double MSG_ReadRangedFloat(
+double MSG_ReadRangedFloat(msg_t *msg, const float oldValue, const float begin, const float end, const int precision, const bool oftenZeroOrOne)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -767,7 +767,7 @@ void MSG_CopyFieldOver(const NetField *stateFields, const void *from, void *to, 
 MSG_ReadDeltaFields
 ==============
 */
-void MSG_ReadDeltaFields(
+void MSG_ReadDeltaFields(msg_t *msg, const int time, const void *from, void *to, int numFields, const NetField *stateFields, const int skippedFieldBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -777,7 +777,7 @@ void MSG_ReadDeltaFields(
 MSG_ReadDeltaStruct
 ==============
 */
-int MSG_ReadDeltaStruct(
+int MSG_ReadDeltaStruct(msg_t *msg, const int time, const void *from, void *to, unsigned int number, int numFields, int indexBits, const NetField *stateFields, const int skippedFieldBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -800,7 +800,7 @@ MSG_ReadDeltaMatchState
 MSG_ReadDeltaClient
 ==============
 */
-int MSG_ReadDeltaClient(
+int MSG_ReadDeltaClient(msg_t *msg, const int time, const clientState_s *remoteFrom, clientState_s *remoteTo, int number)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -811,7 +811,7 @@ int MSG_ReadDeltaClient(
 MSG_ReadDeltaActor
 ==============
 */
-int MSG_ReadDeltaActor(
+int MSG_ReadDeltaActor(msg_t *msg, const int time, const actorState_s *remoteFrom, actorState_s *remoteTo, int number)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -822,7 +822,7 @@ int MSG_ReadDeltaActor(
 MSG_ReadDeltaEntity
 ==============
 */
-int MSG_ReadDeltaEntity(
+int MSG_ReadDeltaEntity(msg_t *msg, const int time, const entityState_s *from, entityState_s *to, int number, const ClientNum_t clientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

@@ -16,7 +16,7 @@ void SND_ChecksumToString(const unsigned __int8 *checksum, char *string)
 SND_AssetBankValidateHeader
 ==============
 */
-char SND_AssetBankValidateHeader(
+char SND_AssetBankValidateHeader(const char *filename, const SndAssetBankHeader *header, __int64 size, const unsigned __int8 *checksum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -27,7 +27,7 @@ char SND_AssetBankValidateHeader(
 SND_AssetBankValidateEntry
 ==============
 */
-char SND_AssetBankValidateEntry(
+char SND_AssetBankValidateEntry(const char *name, const SndAssetBankHeader *header, const SndAssetBankEntry *entry)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -49,7 +49,7 @@ int SND_EntryCompare(const void *va, const void *vb)
 SND_AssetBankFindEntry
 ==============
 */
-char SND_AssetBankFindEntry(
+char SND_AssetBankFindEntry(unsigned int id, SndAssetBankEntry *entries, unsigned int entryCount, SndAssetBankEntry **entry)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

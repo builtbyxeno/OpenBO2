@@ -27,7 +27,7 @@ gentity_t *GScr_GetVehicle(scr_entref_t entref)
 VEH_GetSeatFiringOriginAngles
 ==============
 */
-int VEH_GetSeatFiringOriginAngles(
+int VEH_GetSeatFiringOriginAngles(gentity_t *const vehEnt, const int seatIndex, vec3_t *origin, vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -48,11 +48,11 @@ void VEH_ResetWheels(gentity_t *ent, vehicle_physic_t *phys)
 GScr_Vehicle_DamageScale
 ==============
 */
-/*long double GScr_Vehicle_DamageScale@<st0>(
+long double GScr_Vehicle_DamageScale(unsigned int a1, unsigned int a2, gentity_t *pSelf, gentity_t *pAttacker, gentity_t *pInflictor, const vec3_t *point, int mod, Weapon weapon, int *damageFromUnderneath)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -621,7 +621,7 @@ void VEH_GenerateCurveForPlane(gentity_t *ent, vec3_t *goals, int numGoals, cons
 CMD_VEH_SetPlaneGoalPos
 ==============
 */
-void CMD_VEH_SetPlaneGoalPos(scr_entref_t entref)
+void CMD_VEH_SetPlaneGoalPos(char *entnum, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1261,7 +1261,7 @@ void CMD_VEH_MakeSentient(scr_entref_t entref)
 CMD_VEH_SetGoalPos
 ==============
 */
-void CMD_VEH_SetGoalPos(scr_entref_t entref)
+void CMD_VEH_SetGoalPos(int a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

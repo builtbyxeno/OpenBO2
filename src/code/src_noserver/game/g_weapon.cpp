@@ -140,7 +140,7 @@ bool G_GetVehiclePositionsAtTime(int gametime, vec3_t *pos, vec3_t *angles, bool
 G_AntiLag_RewindVehiclePos
 ==============
 */
-void G_AntiLag_RewindVehiclePos(int gameTime, antilagVehicleStore_t *antilagStore)
+void G_AntiLag_RewindVehiclePos(char *a1, int gameTime, antilagVehicleStore_t *antilagStore)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -170,7 +170,7 @@ void G_ArchiveVehicleAntilagFrame()
 Weapon_Throw_Grenade
 ==============
 */
-gentity_t *Weapon_Throw_Grenade(
+gentity_t *Weapon_Throw_Grenade(gentity_t *ent, Weapon grenType, unsigned __int8 grenModel, weaponParms *wp, bool pumpScripts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -181,7 +181,7 @@ gentity_t *Weapon_Throw_Grenade(
 Weapon_GrenadeLauncher_Fire
 ==============
 */
-gentity_t *Weapon_GrenadeLauncher_Fire(
+gentity_t *Weapon_GrenadeLauncher_Fire(gentity_t *ent, Weapon grenType, unsigned __int8 grenModel, weaponParms *wp, bool pumpScripts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -192,7 +192,7 @@ gentity_t *Weapon_GrenadeLauncher_Fire(
 Weapon_RocketLauncher_Fire
 ==============
 */
-gentity_t *Weapon_RocketLauncher_Fire(
+gentity_t *Weapon_RocketLauncher_Fire(gentity_t *ent, Weapon weapon, float spread, weaponParms *wp, const vec3_t *gunVel, gentity_t *target, const vec3_t *targetOffset, bool pumpScripts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -203,7 +203,7 @@ gentity_t *Weapon_RocketLauncher_Fire(
 Weapon_BombDrop_Fire
 ==============
 */
-gentity_t *Weapon_BombDrop_Fire(
+gentity_t *Weapon_BombDrop_Fire(gentity_t *ent, Weapon weapon, float spread, weaponParms *wp, const vec3_t *gunVel, gentity_t *target, const vec3_t *targetOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -442,7 +442,7 @@ char G_GetShieldTagMatrix(const gentity_t *ent, vec3_t *resultMatrix)
 G_AddShieldSplashDamageEvent
 ==============
 */
-void G_AddShieldSplashDamageEvent(
+void G_AddShieldSplashDamageEvent(gentity_t *ent, float originalDamageRawPoints, float originalDamageScale, float shieldProtection)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -464,7 +464,7 @@ Melee_Trace
 Weapon_Melee_NotifyClient
 ==============
 */
-void Weapon_Melee_NotifyClient(
+void Weapon_Melee_NotifyClient(gentity_t *attacker, gentity_t *victim, int eventType, const Weapon weapon, vec3_t *hitOrigin, vec3_t *hitDir, unsigned __int16 boneIndex, bool shieldHit)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -517,7 +517,7 @@ void FireWeaponMelee(gentity_t *ent, int gametime)
 G_GivePlayerWeapon
 ==============
 */
-int G_GivePlayerWeapon(
+int G_GivePlayerWeapon(playerState_s *pPS, Weapon weapon, unsigned __int8 altModelIndex, renderOptions_s weaponOptions)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

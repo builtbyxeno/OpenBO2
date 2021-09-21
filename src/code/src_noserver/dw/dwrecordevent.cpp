@@ -6,7 +6,7 @@
 dwRecordEventMixed
 ==============
 */
-bdRemoteTask *dwRecordEventMixed(
+bdRemoteTask *dwRecordEventMixed(ControllerIndex_t controllerIndex, RecordEventType type, bool isBinary, unsigned __int8 *buff, int buffSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -17,7 +17,7 @@ bdRemoteTask *dwRecordEventMixed(
 dwRecordEvent
 ==============
 */
-bdRemoteTask *dwRecordEvent(
+bdRemoteTask *dwRecordEvent(ControllerIndex_t controllerIndex, RecordEventType type, const void *buff, int buffSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

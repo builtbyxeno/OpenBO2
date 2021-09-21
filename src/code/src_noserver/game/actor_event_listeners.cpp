@@ -48,7 +48,7 @@ gentity_t *Actor_EventListener_GetEntity(int index)
 Actor_EventListener_NotifyToListener
 ==============
 */
-void Actor_EventListener_NotifyToListener(
+void Actor_EventListener_NotifyToListener(gentity_t *listener, gentity_t *originator, ai_event_t event, const vec3_t *position)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

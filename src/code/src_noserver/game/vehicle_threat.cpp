@@ -37,7 +37,7 @@ void DebugThreatStringAll(const vehicle_t *self, sentient_t *enemy, int threat)
 DebugThreatStringSimple
 ==============
 */
-void DebugThreatStringSimple(
+void DebugThreatStringSimple(const vehicle_t *self, gentity_t *enemy, const char *string, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -47,7 +47,7 @@ void DebugThreatStringSimple(
 DebugThreatNodes
 ==============
 */
-void DebugThreatNodes(
+void DebugThreatNodes(const vehicle_t *self, sentient_t *enemy, pathnode_t *selfNode, pathnode_t *enemyNode, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -57,11 +57,11 @@ void DebugThreatNodes(
 Vehicle_ThreatFromScariness
 ==============
 */
-/*int Vehicle_ThreatFromScariness@<eax>(float a1@<xmm0>)
+int Vehicle_ThreatFromScariness(float a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -101,7 +101,7 @@ int Vehicle_ThreatFromVisibilityAndAwareness(int isVisible, int isFullyAware, in
 Vehicle_ThreatBonusForCurrentEnemy
 ==============
 */
-int Vehicle_ThreatBonusForCurrentEnemy(
+int Vehicle_ThreatBonusForCurrentEnemy(int isCurrentEnemy, int isFullyAware, int friendlyTimingOut, int isPlayer, int isDamaged)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -122,7 +122,7 @@ void Vehicle_IncrementThreatTime(vehicle_t *self)
 Vehicle_InitPotentialTarget
 ==============
 */
-void Vehicle_InitPotentialTarget(
+void Vehicle_InitPotentialTarget(PotentialTargetData *potentialTarget, gentity_t *entity, float dist, const vec3_t *dirToEnemy)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -216,7 +216,7 @@ void GetVehicleLookAtPosition(const gentity_t *ent, const vec3_t *viewPos, vec3_
 PointInFovAndRange
 ==============
 */
-int PointInFovAndRange(
+int PointInFovAndRange(vehicle_t *self, const vec3_t *vEyePos, const vec3_t *vPoint, float fovDot, float fMaxDistSqrd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -238,10 +238,11 @@ bool Vehicle_SightTrace(vehicle_t *self, const vec3_t *start, const vec3_t *end,
 Vehicle_CanSeePointExInternal
 ==============
 */
-bool Vehicle_CanSeePointExInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -249,7 +250,7 @@ bool Vehicle_CanSeePointExInternal(
 Vehicle_CanSeePointEx
 ==============
 */
-bool Vehicle_CanSeePointEx(
+bool Vehicle_CanSeePointEx(vehicle_t *self, const vec3_t *vPoint, float fovDot, float fMaxDistSqrd, int ignoreEntityNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -270,7 +271,7 @@ void Vehicle_UpdateVisCache(vehicle_t *self, const gentity_t *ent, sentient_info
 Vehicle_CanSeeEntityEx
 ==============
 */
-char Vehicle_CanSeeEntityEx(vehicle_t *self, const gentity_t *ent, float fovDot, float fMaxDistSqrd)
+char Vehicle_CanSeeEntityEx(char *a1, vehicle_t *self, const gentity_t *ent, float fovDot, float fMaxDistSqrd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -281,11 +282,11 @@ char Vehicle_CanSeeEntityEx(vehicle_t *self, const gentity_t *ent, float fovDot,
 Vehicle_CanSeeEntity
 ==============
 */
-char Vehicle_CanSeeEntity(vehicle_t *self, const gentity_t *ent)
+/*char Vehicle_CanSeeEntity@<al>(vehicle_t *a1@<edx>, char *a2@<ecx>, vehicle_t *self, const gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============

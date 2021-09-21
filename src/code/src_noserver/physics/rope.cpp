@@ -88,7 +88,7 @@ void Rope_AddParticle(int rope_index, const vec3_t *pos)
 Rope_Init
 ==============
 */
-void Rope_Init(
+void Rope_Init(int rope_index, int npars, const vec3_t *p0, const vec3_t *p1, float rope_len, float rope_width, float scale, float force_scale, int static_rope)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -98,7 +98,7 @@ void Rope_Init(
 Rope_AddAnchor
 ==============
 */
-void Rope_AddAnchor(
+void Rope_AddAnchor(int rope_index, int particle_index, const vec3_t *p, int entity_index, int bone_name_hash, rope_constraint_e type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -118,7 +118,7 @@ void Rope_AddDynEntAnchor(int rope_index, int particle_index, const vec3_t *p, i
 Rope_AddEntAnchor
 ==============
 */
-void Rope_AddEntAnchor(
+void Rope_AddEntAnchor(int rope_index, int particle_index, const vec3_t *p, int entity_index, int bone_name_hash)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -168,10 +168,10 @@ void Rope_ApplyConstraint(int rope_index, int constraint_index)
 Rope_ApplyConstraints
 ==============
 */
-/*void Rope_ApplyConstraints(int a1@<edx>, int rope_index, bool forward)
+void Rope_ApplyConstraints(int a1, int rope_index, bool forward)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -228,9 +228,11 @@ void Rope_Draw(int rope_index, LocalClientNum_t localClientNum)
 Rope_Create
 ==============
 */
-void Rope_Create(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -248,7 +250,7 @@ void Rope_Render(LocalClientNum_t localClientNum)
 Rope_ExplosionEvent
 ==============
 */
-void Rope_ExplosionEvent(
+void Rope_ExplosionEvent(const vec3_t *origin, float innerRadius, float outerRadius, int innerDamage, int outerDamage)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -300,17 +302,17 @@ Rope_CollideWorld
 Rope_UpdateInternal
 ==============
 */
-void Rope_UpdateInternal(const RopeUpdateCmdData *cmd)
+/*void Rope_UpdateInternal(const char *a1@<edi>, const RopeUpdateCmdData *cmd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 Rope_Update
 ==============
 */
-void Rope_Update(LocalClientNum_t localClientNum, int curtime)
+void Rope_Update(unsigned int a1, LocalClientNum_t localClientNum, int curtime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -320,8 +322,8 @@ void Rope_Update(LocalClientNum_t localClientNum, int curtime)
 Rope_Settle
 ==============
 */
-void Rope_Settle(int rope_index)
+/*void Rope_Settle(const char *a1@<esi>, int rope_index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 

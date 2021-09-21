@@ -59,7 +59,7 @@ void RMsg_Init()
 RMsg_AddMessageAtMsgSlot
 ==============
 */
-void RMsg_AddMessageAtMsgSlot(
+void RMsg_AddMessageAtMsgSlot(const int clientSlot, const int msgSlot, netsrc_t from, netadr_t *to, const unsigned __int8 *msg, const int length)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -79,10 +79,11 @@ void RMsg_ShiftMessagesBackInBuffer(reliableClient *client, int bytesShifted)
 RMsg_AddMessageForClient
 ==============
 */
-char RMsg_AddMessageForClient(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*

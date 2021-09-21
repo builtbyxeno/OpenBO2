@@ -16,17 +16,17 @@ void R_UpdateFrameRate()
 R_WarnOncePerFrame
 ==============
 */
-/*void R_WarnOncePerFrame(float a1@<xmm0>, GfxWarningType warnType, ...)
+void R_WarnOncePerFrame(float warnType, GfxWarningType ap)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 R_WarnInitDvars
 ==============
 */
-void R_WarnInitDvars(int a1, dvarType_t a2)
+void R_WarnInitDvars(dvarType_t a1, dvarType_t a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

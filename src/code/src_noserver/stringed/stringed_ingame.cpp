@@ -28,7 +28,7 @@ CStringEdPackage::Filename_WithoutPath
 CStringEdPackage::CheckLineForKeyword
 ==============
 */
-/*int __thiscall CStringEdPackage::CheckLineForKeyword(
+/*int __thiscall CStringEdPackage::CheckLineForKeyword(CStringEdPackage *this, const char *psKeyword, const char **psLine)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -92,7 +92,7 @@ CStringEdPackage::SetupNewFileParse
 CStringEdPackage::SetString
 ==============
 */
-/*void __thiscall CStringEdPackage::SetString(
+/*void __thiscall CStringEdPackage::SetString(CStringEdPackage *this, const char *psLocalReference, const char *psNewString, int bSentenceIsEnglish)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -113,7 +113,7 @@ SE_GetString_LoadObj
 CStringEdPackage::ConvertCRLiterals_Read
 ==============
 */
-/*std::string *__thiscall CStringEdPackage::ConvertCRLiterals_Read(
+/*std::string *__thiscall CStringEdPackage::ConvertCRLiterals_Read(CStringEdPackage *this, std::string *result, std::string string)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

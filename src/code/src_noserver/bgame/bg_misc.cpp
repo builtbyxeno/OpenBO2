@@ -6,7 +6,7 @@
 BG_RegisterDvars
 ==============
 */
-void BG_RegisterDvars(int a1, dvarType_t a2)
+void BG_RegisterDvars(dvarType_t a1, dvarType_t a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -138,7 +138,7 @@ bool BG_PlayerCanPickUpWeaponType(const WeaponDef *weapDef, const playerState_s 
 WeaponEntCanBeGrabbed
 ==============
 */
-bool WeaponEntCanBeGrabbed(
+bool WeaponEntCanBeGrabbed(const entityState_s *weaponEntState, const playerState_s *ps, int touched, Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -149,10 +149,11 @@ bool WeaponEntCanBeGrabbed(
 BG_CanItemBeGrabbed
 ==============
 */
-BOOL BG_CanItemBeGrabbed(const entityState_s *ent, const playerState_s *ps, int touched)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -171,20 +172,20 @@ BOOL BG_PlayerHasRoomForEntAllAmmoTypes(const entityState_s *ent, const playerSt
 BG_EvaluateTrajectoryInternal
 ==============
 */
-/*void BG_EvaluateTrajectoryInternal(float a1@<ebx>, const trajectory_t *tr, int atTime, vec3_t *result)
+void BG_EvaluateTrajectoryInternal(float tr, const trajectory_t *a2, int atTime, vec3_t *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 BG_EvaluateTrajectoryDelta
 ==============
 */
-/*void BG_EvaluateTrajectoryDelta(float a1@<edi>, const trajectory_t *tr, int atTime, vec3_t *result)
+void BG_EvaluateTrajectoryDelta(float deltaTime, const trajectory_t *tr, int atTime, vec3_t *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -202,10 +203,11 @@ bool BG_ValidateOrigin(const vec3_t *pos, unsigned int xyBits, unsigned int zBit
 BG_ValidateOrigin
 ==============
 */
-bool BG_ValidateOrigin(int a1, unsigned int a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -254,7 +256,7 @@ void BG_GetPlayerViewDirection(const playerState_s *ps, vec3_t *forward, vec3_t 
 BG_GetPlayerGunDirection
 ==============
 */
-void BG_GetPlayerGunDirection(
+void BG_GetPlayerGunDirection(const playerState_s *ps, const float gunPitch, const float gunYaw, vec3_t *forward, vec3_t *right, vec3_t *up)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -514,7 +516,7 @@ void BG_AddSentinelEventToEntityState(entityState_s *es, const int eventTime)
 BG_PlayerToEntityProcessEvents_Internal
 ==============
 */
-void BG_PlayerToEntityProcessEvents_Internal(
+void BG_PlayerToEntityProcessEvents_Internal(entityState_s *s, unsigned __int8 handler, __int16 *eventSequence, __int16 *oldEventSequence, int *events, unsigned int *eventParms, const unsigned int eventTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -544,9 +546,11 @@ void BG_PlayerToEntitySetMisc(playerState_s *ps, entityState_s *s)
 BG_PlayerStateToEntityState
 ==============
 */
-void BG_PlayerStateToEntityState(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

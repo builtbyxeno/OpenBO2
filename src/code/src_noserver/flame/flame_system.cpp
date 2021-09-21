@@ -6,11 +6,11 @@
 FlameAlloc
 ==============
 */
-unsigned __int8 *FlameAlloc(unsigned int size, const char *name)
+/*unsigned __int8 *FlameAlloc@<eax>(const char *a1@<edx>, char *a2@<ecx>, unsigned int size, const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}
+}*/
 
 /*
 ==============
@@ -214,7 +214,7 @@ flameSource_t *SV_Flame_Source_Alloc(int entityNum)
 Flame_Render_Sprite
 ==============
 */
-void Flame_Render_Sprite(
+void Flame_Render_Sprite(cg_t *clientGlobals, Material *material, flameGeneric_s *flameGeneric, float alpha, float frame, unsigned __int8 col)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -224,7 +224,7 @@ void Flame_Render_Sprite(
 Flame_Render_Sprites
 ==============
 */
-void Flame_Render_Sprites(
+void Flame_Render_Sprites(int a1, cg_t *clientGlobals, Material *material, flameGeneric_s **flameGenericList, int numItems, unsigned __int8 col)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -267,7 +267,7 @@ int Flame_GetTrueFlameSourceEntityNum(int EntNum)
 SV_Flame_Update_Source_Internal
 ==============
 */
-void SV_Flame_Update_Source_Internal(
+void SV_Flame_Update_Source_Internal(flameSource_t *source, int entityNum, flameWeaponConfig_t *weaponConfig, int time)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -443,7 +443,7 @@ CG_Flame_Update_Source
 Flame_Enable_And_Allocate
 ==============
 */
-void Flame_Enable_And_Allocate(
+void Flame_Enable_And_Allocate(void *buffer, unsigned int bufsize, int max_flame_sources, int max_flame_chunks, int max_flame_drips, int max_flame_fire, int max_flame_smoke, int max_flame_streams)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -46,7 +46,7 @@ void R_Cinematic_CancelQueuedMovie(CinematicInfo *info)
 R_Cinematic_GetPathFromFilename
 ==============
 */
-bool R_Cinematic_GetPathFromFilename(
+bool R_Cinematic_GetPathFromFilename(CinematicInfo *info, const char *filename, const char *ext, unsigned int playbackFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -67,7 +67,7 @@ void R_Cinematic_StartSound(CinematicInfo *info, bool startPaused)
 R_Cinematic_OpenMovie_Now
 ==============
 */
-void *R_Cinematic_OpenMovie_Now(
+void *R_Cinematic_OpenMovie_Now(CinematicInfo *cinematicInfo, const char *filename, unsigned int playbackFlags, bool isNextBink)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -78,9 +78,11 @@ void *R_Cinematic_OpenMovie_Now(
 StreamThread_OpenMovie
 ==============
 */
-void StreamThread_OpenMovie(int msAllotted, void *user)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -128,7 +130,7 @@ void StreamThread_GetMoviePath(int msAllotted, void *user, int id)
 R_Cinematic_StartPlayback_Internal
 ==============
 */
-void R_Cinematic_StartPlayback_Internal(
+void R_Cinematic_StartPlayback_Internal(const char *name, unsigned int playbackFlags, float volume, CIN_CALLBACK_INFO *callbackInfo, int id)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -149,7 +151,7 @@ int R_Cinematic_GetPlayingId()
 R_Cinematic_StartPlayback
 ==============
 */
-int R_Cinematic_StartPlayback(
+int R_Cinematic_StartPlayback(const char *name, unsigned int playbackFlags, float volume, CIN_CALLBACK_INFO *callbackInfo, int reservedId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -192,7 +194,7 @@ char R_Cinematic_UpdateSoundTime()
 R_Cinematic_UpdateFrame
 ==============
 */
-void R_Cinematic_UpdateFrame(bool force_wait)
+void R_Cinematic_UpdateFrame(int a1, bool force_wait)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -17,7 +17,7 @@ double CG_GetPicWidth(Material *mat)
 CG_DrawRotatedPicPhysicalW
 ==============
 */
-void CG_DrawRotatedPicPhysicalW(
+void CG_DrawRotatedPicPhysicalW(const ScreenPlacement *scrPlace, float x, float y, float w, float width, float height, float angle, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -27,7 +27,7 @@ void CG_DrawRotatedPicPhysicalW(
 CG_DrawRotatedPicPhysical
 ==============
 */
-void CG_DrawRotatedPicPhysical(
+void CG_DrawRotatedPicPhysical(const ScreenPlacement *scrPlace, float x, float y, float width, float height, float angle, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -37,7 +37,7 @@ void CG_DrawRotatedPicPhysical(
 CG_DrawRotatedPicW
 ==============
 */
-void CG_DrawRotatedPicW(
+void CG_DrawRotatedPicW(const ScreenPlacement *scrPlace, float x, float y, float w, float width, float height, int horzAlign, int vertAlign, float angle, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -47,7 +47,7 @@ void CG_DrawRotatedPicW(
 CG_DrawRotatedPic
 ==============
 */
-void CG_DrawRotatedPic(
+void CG_DrawRotatedPic(const ScreenPlacement *scrPlace, float x, float y, float width, float height, int horzAlign, int vertAlign, float angle, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -57,7 +57,7 @@ void CG_DrawRotatedPic(
 CG_DrawRotatedQuadPic
 ==============
 */
-void CG_DrawRotatedQuadPic(
+void CG_DrawRotatedQuadPic(const ScreenPlacement *scrPlace, float x, float y, const vec2_t *verts, float angle, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -67,7 +67,7 @@ void CG_DrawRotatedQuadPic(
 CG_DrawStringExt
 ==============
 */
-void CG_DrawStringExt(
+void CG_DrawStringExt(const ScreenPlacement *scrPlace, float x, float y, const char *string, const vec4_t *setColor, int forceColor, int shadow, float charHeight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -77,7 +77,7 @@ void CG_DrawStringExt(
 CG_DrawDevString
 ==============
 */
-int CG_DrawDevString(
+int CG_DrawDevString(LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, float x, float y, float xScale, float yScale, const char *s, const vec4_t *color, int align, Font_s *font)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -88,7 +88,7 @@ int CG_DrawDevString(
 CG_DrawSmallDevStringColor
 ==============
 */
-int CG_DrawSmallDevStringColor(
+int CG_DrawSmallDevStringColor(LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, float x, float y, const char *s, const vec4_t *color, int align)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -151,7 +151,7 @@ void CG_RelativeTeamColor(ClientNum_t clientNum, vec4_t *color, LocalClientNum_t
 CG_DrawBigDevString
 ==============
 */
-int CG_DrawBigDevString(
+int CG_DrawBigDevString(LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, float x, float y, const char *s, float alpha, int align)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

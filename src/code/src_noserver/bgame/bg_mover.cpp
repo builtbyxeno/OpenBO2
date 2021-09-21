@@ -47,7 +47,7 @@ mover_info_t::get_position
 sv_rewind_context_t::~sv_rewind_context_t
 ==============
 */
-/*void sv_rewind_context_t::~sv_rewind_context_t(sv_rewind_context_t *this@<ecx>, int a2@<ebp>)
+/*void sv_rewind_context_t::~sv_rewind_context_t(sv_rewind_context_t *this, int a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -57,7 +57,7 @@ sv_rewind_context_t::~sv_rewind_context_t
 actors_rewind_context_t::restore
 ==============
 */
-/*void actors_rewind_context_t::restore(actors_rewind_context_t *this@<ecx>, int a2@<ebp>)
+/*void actors_rewind_context_t::restore(actors_rewind_context_t *this, int a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -110,7 +110,7 @@ mover_info_t *sv_get_mover_info(gentity_t *ent)
 mover_info_t::apply_rotation
 ==============
 */
-/*void mover_info_t::apply_rotation(mover_info_t *this@<ecx>, int a2@<ebp>, vec3_t *v)
+/*void mover_info_t::apply_rotation(mover_info_t *this, int a2, vec3_t *v)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -120,7 +120,7 @@ mover_info_t::apply_rotation
 mover_info_t::apply_rotation_translation
 ==============
 */
-/*void mover_info_t::apply_rotation_translation(mover_info_t *this@<ecx>, int a2@<ebp>, vec3_t *v)
+/*void mover_info_t::apply_rotation_translation(mover_info_t *this, int a2, vec3_t *v)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -254,7 +254,7 @@ void mover_info_apply_rotation_translation(const int gentnum, vec3_t *v)
 sv_rewind_context_t::sv_rewind_context_t
 ==============
 */
-/*void __thiscall sv_rewind_context_t::sv_rewind_context_t(
+/*void __thiscall sv_rewind_context_t::sv_rewind_context_t(sv_rewind_context_t *this, int mover_num, int from_time, int to_time, vec3_t *origin, vec3_t *angles, gentity_t *ent_to_link)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -264,7 +264,7 @@ sv_rewind_context_t::sv_rewind_context_t
 actors_rewind_context_t::rewind
 ==============
 */
-/*void __thiscall actors_rewind_context_t::rewind(
+/*void __thiscall actors_rewind_context_t::rewind(actors_rewind_context_t *this, int from_time, int to_time, int _mover_num)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

@@ -537,7 +537,7 @@ char League_FetchLeagueHistoryFailure()
 ParseMetaData
 ==============
 */
-bool ParseMetaData(
+bool ParseMetaData(unsigned __int8 *metaData, int metaDataLength, int *divisionID, int *nameID, bool *isSolo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -559,11 +559,12 @@ char League_FetchSubdivisionFailure(TaskRecord *task)
 League_RefetchSubdivisionSuccess
 ==============
 */
-/*char League_RefetchSubdivisionSuccess@<al>(bool *a1@<edi>, TaskRecord *task)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -591,7 +592,7 @@ void League_ClearTeamTasks(const ControllerIndex_t controllerIndex)
 League_GetCurrentTeamID
 ==============
 */
-char League_GetCurrentTeamID(
+char League_GetCurrentTeamID(const ControllerIndex_t controllerIndex, unsigned __int64 *teamID, int *memberCount, unsigned __int64 *subdivisionID, int *divisionID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -645,7 +646,7 @@ char League_FetchLbDataFailure(TaskRecord *task)
 League_FindTeamAndLeagueInFetchedData
 ==============
 */
-char League_FindTeamAndLeagueInFetchedData(
+char League_FindTeamAndLeagueInFetchedData(const ControllerIndex_t controllerIndex, unsigned __int64 teamID, int leagueID, unsigned __int64 *subdivisionID, bool *inPlacement)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -667,7 +668,7 @@ char League_FetchAllInfoForTeamInLeagueFailure()
 League_RecordEvent
 ==============
 */
-void League_RecordEvent(
+void League_RecordEvent(const ControllerIndex_t controllerIndex, const char *eventName, unsigned __int64 uniqueID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -771,7 +772,7 @@ void League_CalculateMatchResult(int count, LeagueTeam *teams)
 League_GetTeamID
 ==============
 */
-char League_GetTeamID(
+char League_GetTeamID(const ControllerIndex_t controllerIndex, const unsigned __int64 *members, int memberCount, unsigned __int64 *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -803,7 +804,7 @@ char League_GetStatsSuccess(TaskRecord *task)
 League_FetchTeamsListInternal
 ==============
 */
-bool League_FetchTeamsListInternal(
+bool League_FetchTeamsListInternal(const ControllerIndex_t controllerIndex, int offset, int numResultsToFetch)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -814,10 +815,11 @@ bool League_FetchTeamsListInternal(
 LeagueFetchSoloTeamIDSuccess
 ==============
 */
-char LeagueFetchSoloTeamIDSuccess(TaskRecord *task)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -836,10 +838,11 @@ bool League_FetchSoloTeamID(const ControllerIndex_t controllerIndex)
 League_FetchTeamsList
 ==============
 */
-bool League_FetchTeamsList(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -890,7 +893,7 @@ void League_FetchLeagueHistorySubdivisionInfos(const ControllerIndex_t controlle
 League_FetchLeagueHistoryInternal
 ==============
 */
-char League_FetchLeagueHistoryInternal(
+char League_FetchLeagueHistoryInternal(const ControllerIndex_t controllerIndex, unsigned __int64 teamID, __int16 currLeagueIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -912,11 +915,12 @@ char League_FetchLeagueHistorySuccess(TaskRecord *task)
 League_FetchSubdivisionSuccess
 ==============
 */
-/*char League_FetchSubdivisionSuccess@<al>(bool *a1@<edi>, TaskRecord *task)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -945,7 +949,7 @@ char League_UploadStatsFailure(TaskRecord *task)
 League_SetCurrentTeamID
 ==============
 */
-void League_SetCurrentTeamID(
+void League_SetCurrentTeamID(const ControllerIndex_t controllerIndex, int leagueID, unsigned __int64 teamID, int memberCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -955,11 +959,11 @@ void League_SetCurrentTeamID(
 League_ApplyOutcome
 ==============
 */
-/*char League_ApplyOutcome@<al>(
+char League_ApplyOutcome(bdLeagueStatsInfo *a1, StatsLookup *a2, const ControllerIndex_t controllerIndex, LeagueOutcome outcome, int leagueHash)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -977,7 +981,7 @@ char League_FetchLbDataSuccess(TaskRecord *task)
 League_FetchLbDataByPivot
 ==============
 */
-char League_FetchLbDataByPivot(
+char League_FetchLbDataByPivot(const ControllerIndex_t controllerIndex, unsigned __int64 teamID, unsigned __int64 subdivisionID, int numResults)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -988,7 +992,7 @@ char League_FetchLbDataByPivot(
 League_FetchLbDataByRank
 ==============
 */
-char League_FetchLbDataByRank(
+char League_FetchLbDataByRank(const ControllerIndex_t controllerIndex, unsigned __int64 subdivisionID, int numResults, int offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -999,7 +1003,7 @@ char League_FetchLbDataByRank(
 League_SetCurrentTeamEmblem
 ==============
 */
-bool League_SetCurrentTeamEmblem(
+bool League_SetCurrentTeamEmblem(const ControllerIndex_t controllerIndex, CompositeEmblemLayer *layers, int layerCount, unsigned __int64 teamID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1041,7 +1045,7 @@ char League_FetchTeamsListSuccess(TaskRecord *task)
 League_FetchLbData
 ==============
 */
-char League_FetchLbData(
+char League_FetchLbData(const ControllerIndex_t controllerIndex, unsigned __int64 teamID, unsigned __int64 subdivisionID, int numResults, int offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

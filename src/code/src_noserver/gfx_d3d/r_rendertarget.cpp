@@ -16,7 +16,7 @@ void AssertUninitializedRenderTarget(const GfxRenderTarget *renderTarget)
 R_AssignImageToRenderTargetDepthStencil
 ==============
 */
-void R_AssignImageToRenderTargetDepthStencil(
+void R_AssignImageToRenderTargetDepthStencil(GfxRenderTarget *renderTarget, GfxImage *image, DXGI_FORMAT format)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -36,9 +36,11 @@ void R_AssignImageToRenderTargetColor(GfxRenderTarget *renderTarget, GfxImage *i
 R_InitRenderTargetImage
 ==============
 */
-void R_InitRenderTargetImage(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -46,7 +48,7 @@ void R_InitRenderTargetImage(
 R_InitSizedRenderTargetImage
 ==============
 */
-void R_InitSizedRenderTargetImage(
+void R_InitSizedRenderTargetImage(int imageProgType, int fullscreenWidth, int fullscreenHeight, int picmip, DXGI_FORMAT format, RenderTargetUsage usage, GfxRenderTarget *renderTarget, unsigned int allocFlags, bool depthBindAsShaderResource)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -56,9 +58,11 @@ void R_InitSizedRenderTargetImage(
 R_InitShadowmapRenderTarget
 ==============
 */
-void R_InitShadowmapRenderTarget(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -77,9 +81,11 @@ const char *R_RenderTargetName(unsigned __int8 renderTargetId)
 R_InitExtraCamRenderTargets
 ==============
 */
-void R_InitExtraCamRenderTargets(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -97,9 +103,11 @@ void R_ShutdownExtraCamRenderTargets()
 R_InitUI3DRenderTarget
 ==============
 */
-void R_InitUI3DRenderTarget(int width, int height, int location, bool allocatePingPongBuffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -117,9 +125,11 @@ void R_ShutdownUI3DRenderTarget(bool freePingPongBuffer)
 R_ResizeSunShadowmapRenderTarget_PC
 ==============
 */
-void R_ResizeSunShadowmapRenderTarget_PC()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -127,8 +137,10 @@ void R_ResizeSunShadowmapRenderTarget_PC()
 R_ResizeSpotShadowmapRenderTarget_PC
 ==============
 */
-void R_ResizeSpotShadowmapRenderTarget_PC()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 

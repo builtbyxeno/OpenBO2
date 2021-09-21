@@ -49,7 +49,7 @@ char LiveTwitter_RegisterAccountSuccess(TaskRecord *task)
 LiveTwitter_PrintError
 ==============
 */
-void LiveTwitter_PrintError(
+void LiveTwitter_PrintError(ControllerIndex_t controllerIndex, const char *eventString, bdLobbyErrorCode error)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -125,22 +125,24 @@ char LiveTwitter_SearchFailure(TaskRecord *task)
 LiveTwitter_RegisterAccountFailure
 ==============
 */
-/*char LiveTwitter_RegisterAccountFailure@<al>(bdLobbyErrorCode a1@<edi>, TaskRecord *task)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 LiveTwitter_PostFailure
 ==============
 */
-/*char LiveTwitter_PostFailure@<al>(bdLobbyErrorCode a1@<edi>, TaskRecord *task)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============

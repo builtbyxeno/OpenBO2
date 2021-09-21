@@ -111,9 +111,11 @@ void PartyProber_ClearHosts(PartyProber *prober)
 PartyProber_Clear
 ==============
 */
-void PartyProber_Clear(PartyProber *prober)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -121,9 +123,11 @@ void PartyProber_Clear(PartyProber *prober)
 PartyProber_StartInvite
 ==============
 */
-void PartyProber_StartInvite(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -131,9 +135,11 @@ void PartyProber_StartInvite(
 PartyProber_StartNewlobby
 ==============
 */
-void PartyProber_StartNewlobby(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -152,7 +158,7 @@ int PartyProber_FindByXNAddr(PartyProber *prober, const XNADDR *key)
 PartyProber_AddHost
 ==============
 */
-void PartyProber_AddHost(
+void PartyProber_AddHost(const XNADDR *a1, PartyProber *prober, const XSESSION_INFO *info, const int publicSlots, const int occupiedPublicSlots, const float skill, const int geo1, const int geo2, const int geo3, const int geo4, int mapPacks)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -162,7 +168,7 @@ void PartyProber_AddHost(
 PartyProber_StoreQoSResult
 ==============
 */
-char PartyProber_StoreQoSResult(
+char PartyProber_StoreQoSResult(PartyProber *prober, const XNADDR *addr, int ping, int uploadBandwidth, const qosPayload_t *qosPayload)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -184,10 +190,11 @@ bool PartyProber_Connect(XSESSION_INFO *info, bool dedicated, netadr_t *addr)
 PartyProber_HandlePartyAccept
 ==============
 */
-bool PartyProber_HandlePartyAccept(PartyProber *prober, int partyId, netadr_t from, msg_t *msg)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -195,10 +202,11 @@ bool PartyProber_HandlePartyAccept(PartyProber *prober, int partyId, netadr_t fr
 PartyProber_HandlePartyJoinFailed
 ==============
 */
-bool PartyProber_HandlePartyJoinFailed(PartyProber *prober, int partyId, netadr_t from, msg_t *msg)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -206,10 +214,11 @@ bool PartyProber_HandlePartyJoinFailed(PartyProber *prober, int partyId, netadr_
 PartyProber_HandleEchoReply
 ==============
 */
-bool PartyProber_HandleEchoReply(PartyProber *prober, int partyId, netadr_t from, msg_t *msg)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -239,10 +248,11 @@ char PartyProber_HandleMasterReply(PartyProber *prober, int partyId, netadr_t fr
 PartyProber_HandlePacket
 ==============
 */
-char PartyProber_HandlePacket(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -294,8 +304,8 @@ void PartyProber_StartQoS(PartyProber *prober)
 PartyProber_QoSComplete
 ==============
 */
-/*void PartyProber_QoSComplete(ProberState a1@<edx>, PartyProber *a2@<ecx>, PartyProber *prober)
+void PartyProber_QoSComplete(ProberState a1, PartyProber *a2, PartyProber *prober)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 

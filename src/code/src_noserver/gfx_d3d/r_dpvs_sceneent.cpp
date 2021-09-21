@@ -6,7 +6,7 @@
 R_AddCellSceneEntSurfacesInFrustum
 ==============
 */
-void R_AddCellSceneEntSurfacesInFrustum(
+void R_AddCellSceneEntSurfacesInFrustum(unsigned int localClientNum, unsigned int cellIndex, const DpvsPlane *planes, int planeCount, int frustumPlaneCount, unsigned int viewIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

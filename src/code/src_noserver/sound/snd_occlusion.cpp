@@ -48,11 +48,10 @@ SND_TrimEnd
 SND_Trace
 ==============
 */
-
+double SND_Trace(unsigned int a1, char *debug, int *trimCache, int *cache, float delta, const vec3_t *listener, const vec3_t *playback, vec3_t *toRight, int *totalTraces)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -83,7 +82,7 @@ double SND_LosOcclusionTrace(bool fancy, int *cache, const vec3_t *listener, con
 SND_LosOcclusionDoTraces
 ==============
 */
-void SND_LosOcclusionDoTraces(
+void SND_LosOcclusionDoTraces(int a1, unsigned int traceCount, SndOcclusionTrace *traces, unsigned int traceSequence, int *totalTraces, int *voiceTraces)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

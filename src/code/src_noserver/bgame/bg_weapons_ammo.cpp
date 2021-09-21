@@ -50,7 +50,7 @@ void BG_SetupWeaponDefAmmoIndexes(const Weapon weapon, WeaponDef *weapDef, Weapo
 BG_SetupWeaponAttachmentsAmmoIndexes
 ==============
 */
-void BG_SetupWeaponAttachmentsAmmoIndexes(
+void BG_SetupWeaponAttachmentsAmmoIndexes(const Weapon weapon, WeaponDef *weapDef, WeaponVariantDef *weapVarDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -80,7 +80,7 @@ void BG_SetupWeaponDefClipIndexes(const Weapon weapon, WeaponDef *weapDef, Weapo
 BG_SetupWeaponAttachmentsClipIndexes
 ==============
 */
-void BG_SetupWeaponAttachmentsClipIndexes(
+void BG_SetupWeaponAttachmentsClipIndexes(const Weapon weapon, WeaponDef *weapDef, WeaponVariantDef *weapVarDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

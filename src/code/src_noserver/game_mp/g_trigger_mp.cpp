@@ -77,10 +77,10 @@ void SP_trigger_radius(gentity_t *ent, SpawnVar *spawnVar)
 SP_trigger_radius_use
 ==============
 */
-/*void SP_trigger_radius_use(float a1@<esi>, gentity_t *ent, SpawnVar *spawnVar)
+void SP_trigger_radius_use(float ent, gentity_t *a2, SpawnVar *spawnVar)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -198,7 +198,7 @@ void Use_trigger_damage(gentity_t *pEnt)
 Pain_trigger_damage
 ==============
 */
-void Pain_trigger_damage(
+void Pain_trigger_damage(gentity_t *pSelf, gentity_t *pAttacker, int iDamage, const vec3_t *vPoint, const int iMod)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -208,7 +208,7 @@ void Pain_trigger_damage(
 Flame_trigger_damage
 ==============
 */
-void Flame_trigger_damage(
+void Flame_trigger_damage(gentity_t *pSelf, gentity_t *pAttacker, int iDamage, const vec3_t *vPoint, const int iMod, const vec3_t *vDir)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -238,7 +238,7 @@ void SP_trigger_damage(gentity_t *pSelf, SpawnVar *spawnVar)
 G_CheckHitTriggerDamage
 ==============
 */
-void G_CheckHitTriggerDamage(
+void G_CheckHitTriggerDamage(gentity_t *pActivator, const vec3_t *vStart, const vec3_t *vEnd, int iDamage, int iMOD)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

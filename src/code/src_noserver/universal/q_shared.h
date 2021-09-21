@@ -49,7 +49,7 @@ BOOL Com_OnSameTeam(team_t team1, team_t team2)
 renderOptions_s::GetStowedRenderOptions
 ==============
 */
-/*renderOptions_s __thiscall renderOptions_s::GetStowedRenderOptions(
+/*renderOptions_s __thiscall renderOptions_s::GetStowedRenderOptions(renderOptions_s *this, unsigned int camo, char camoa)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	renderOptions_s __thiscall tmp;

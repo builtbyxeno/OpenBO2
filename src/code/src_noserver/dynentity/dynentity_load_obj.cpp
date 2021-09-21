@@ -50,7 +50,7 @@ bool DynEnt_CreateConstraint(PhysConstraint *constraint, DynEntityConstraintCrea
 DynEnt_GetEntityConstraintParams
 ==============
 */
-void DynEnt_GetEntityConstraintParams(
+void DynEnt_GetEntityConstraintParams(DynEntityConstraintCreateParams *constraintParams, PhysConstraint *constraints, int dynEntConstraintCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -137,7 +137,7 @@ XModelPieces *DynEnt_XModelPiecesPrecache(const char *name)
 FindConstraints
 ==============
 */
-bool FindConstraints(
+bool FindConstraints(const char *targetname, const vec3_t *origin, const vec3_t *angles, AttachPointType attach_type, DynEntityConstraintCreateParams *constraintParams, int numConstraints, int *outConstraints)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -279,7 +279,7 @@ int DynEnt_GetClientAbsId(unsigned __int16 dynEntId, DynEntityDrawType drawType)
 DynEnt_Create
 ==============
 */
-bool DynEnt_Create(
+bool DynEnt_Create(DynEntityDef *dynEntDef, const DynEntityCreateParams *params, DynEntityConstraintCreateParams *constraintParams, int numConstraints)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -290,7 +290,7 @@ bool DynEnt_Create(
 DynEnt_LoadEntities
 ==============
 */
-void DynEnt_LoadEntities()
+void DynEnt_LoadEntities(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

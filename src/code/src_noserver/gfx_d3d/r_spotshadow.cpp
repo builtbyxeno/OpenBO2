@@ -18,7 +18,7 @@ R_SetViewParmsForLight
 R_GetSpotShadowLookupMatrix
 ==============
 */
-void R_GetSpotShadowLookupMatrix(
+void R_GetSpotShadowLookupMatrix(const GfxViewParms *shadowViewParms, int usingGridTiling, int usingFullShadowBuffer, unsigned int spotShadowIndex, unsigned int tileCount, GfxMatrix *lookupMatrix)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -28,7 +28,7 @@ void R_GetSpotShadowLookupMatrix(
 R_AddSpotShadowModelEntities
 ==============
 */
-void R_AddSpotShadowModelEntities(
+void R_AddSpotShadowModelEntities(LocalClientNum_t localClientNum, unsigned int primaryLightIndex, const GfxLight *light)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -38,10 +38,10 @@ void R_AddSpotShadowModelEntities(
 R_EmitSpotShadowMapSurfs
 ==============
 */
-void R_EmitSpotShadowMapSurfs(GfxViewInfo *viewInfo)
+/*void R_EmitSpotShadowMapSurfs(const char *a1@<edi>, GfxViewInfo *viewInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -58,9 +58,10 @@ void R_GenerateAllSortedSpotShadowDrawSurfs(GfxViewInfo *viewInfo, int viewIndex
 R_AddSpotShadowsForLight
 ==============
 */
-char R_AddSpotShadowsForLight(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 

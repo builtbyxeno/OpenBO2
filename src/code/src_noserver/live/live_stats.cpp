@@ -39,7 +39,7 @@ int LiveStats_CanPerformStatOperation(ControllerIndex_t controllerIndex)
 LiveStats_GetStat
 ==============
 */
-int LiveStats_GetStat(
+int LiveStats_GetStat(const ControllerIndex_t controllerIndex, ddlState_t *searchState, statsLocation location, ddlValue_t *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -50,7 +50,7 @@ int LiveStats_GetStat(
 LiveStats_GetUIntStat
 ==============
 */
-int LiveStats_GetUIntStat(
+int LiveStats_GetUIntStat(const ControllerIndex_t controllerIndex, ddlState_t *searchState, statsLocation location)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -61,7 +61,7 @@ int LiveStats_GetUIntStat(
 LiveStats_GetInt64Stat
 ==============
 */
-ddlValue_t LiveStats_GetInt64Stat(
+ddlValue_t LiveStats_GetInt64Stat(const ControllerIndex_t controllerIndex, ddlState_t *searchState, statsLocation location)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	ddlValue_t tmp;
@@ -73,7 +73,7 @@ ddlValue_t LiveStats_GetInt64Stat(
 LiveStats_GetStringStat
 ==============
 */
-const GfxViewParms *LiveStats_GetStringStat(
+const GfxViewParms *LiveStats_GetStringStat(const ControllerIndex_t controllerIndex, ddlState_t *searchState, statsLocation location)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -106,7 +106,7 @@ unsigned int LiveStats_ChecksumGamerStats(unsigned __int8 *buffer, const int len
 LiveStats_SetDInt64StatFromBuffer
 ==============
 */
-void LiveStats_SetDInt64StatFromBuffer(
+void LiveStats_SetDInt64StatFromBuffer(unsigned __int8 *buffer, ddlState_t *searchState, const unsigned __int64 value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -116,9 +116,11 @@ void LiveStats_SetDInt64StatFromBuffer(
 LiveStats_SetDInt64Stat
 ==============
 */
-void LiveStats_SetDInt64Stat(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -137,7 +139,7 @@ bool LiveStats_IsStableStatsBufferInitialized(const ControllerIndex_t controller
 LiveStats_SetItemStat
 ==============
 */
-void LiveStats_SetItemStat(
+void LiveStats_SetItemStat(ddlState_t *searchStateStats, const char *statMember, unsigned __int8 *buffer, unsigned int value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -147,7 +149,7 @@ void LiveStats_SetItemStat(
 LiveStats_GetItemStat
 ==============
 */
-unsigned int LiveStats_GetItemStat(
+unsigned int LiveStats_GetItemStat(ddlState_t *searchStateStats, const char *statMember, unsigned __int8 *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -169,7 +171,7 @@ const char *LiveStats_GameHistory_GetModeName()
 LiveStats_GameHistory_GetMatchStatUInt
 ==============
 */
-unsigned int LiveStats_GameHistory_GetMatchStatUInt(
+unsigned int LiveStats_GameHistory_GetMatchStatUInt(ddlState_t *searchState, unsigned __int8 *liveStatsBuffer, matchHistoryKeyIndex_t key)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -180,7 +182,7 @@ unsigned int LiveStats_GameHistory_GetMatchStatUInt(
 LiveStats_GameHistory_SetMatchStatUInt
 ==============
 */
-bool LiveStats_GameHistory_SetMatchStatUInt(
+bool LiveStats_GameHistory_SetMatchStatUInt(ddlState_t *searchState, unsigned __int8 *liveStatsBuffer, matchHistoryKeyIndex_t key, unsigned int value, ddlState_t *searchState2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -191,7 +193,7 @@ bool LiveStats_GameHistory_SetMatchStatUInt(
 LiveStats_GameHistory_SetMatchStatFloat
 ==============
 */
-bool LiveStats_GameHistory_SetMatchStatFloat(
+bool LiveStats_GameHistory_SetMatchStatFloat(ddlState_t *searchState, unsigned __int8 *liveStatsBuffer, matchHistoryKeyIndex_t key, float value, ddlState_t *searchState2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -202,7 +204,7 @@ bool LiveStats_GameHistory_SetMatchStatFloat(
 LiveStats_GameHistory_InitializeHitLocationsArray
 ==============
 */
-void LiveStats_GameHistory_InitializeHitLocationsArray(
+void LiveStats_GameHistory_InitializeHitLocationsArray(ClientNum_t clientNum, ddlState_t *recentHitLocSearchState, unsigned __int8 *liveStatsBuffer, const char *arrayName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -255,7 +257,7 @@ int LiveStats_GetRecentlyUnlockedItemIndex(ControllerIndex_t controllerIndex, un
 LiveStats_CompressStats
 ==============
 */
-unsigned int LiveStats_CompressStats(
+unsigned int LiveStats_CompressStats(const ControllerIndex_t controllerIndex, unsigned __int8 *compressedBuffer, int compressedBufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -352,7 +354,7 @@ bool LiveStats_CheckValidDelta(statsDelta_t *delta, int currentDelta)
 LiveStats_CheckForModUnlocks
 ==============
 */
-void LiveStats_CheckForModUnlocks(
+void LiveStats_CheckForModUnlocks(const ControllerIndex_t controllerIndex, int itemNumber, unsigned __int8 *liveStatsBuffer, unsigned __int8 *oldStatsBuffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -362,7 +364,7 @@ void LiveStats_CheckForModUnlocks(
 LiveStats_CheckForTokenUnlocks
 ==============
 */
-void LiveStats_CheckForTokenUnlocks(
+void LiveStats_CheckForTokenUnlocks(const ControllerIndex_t controllerIndex, int startingRank, int endingRank)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -372,7 +374,7 @@ void LiveStats_CheckForTokenUnlocks(
 LiveStats_HasRecentItemAttachmentsUnlocked
 ==============
 */
-bool LiveStats_HasRecentItemAttachmentsUnlocked(
+bool LiveStats_HasRecentItemAttachmentsUnlocked(const ControllerIndex_t controllerIndex, unsigned int itemIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -383,7 +385,7 @@ bool LiveStats_HasRecentItemAttachmentsUnlocked(
 LiveStats_IsItemAttachmentRecentlyUnlocked
 ==============
 */
-bool LiveStats_IsItemAttachmentRecentlyUnlocked(
+bool LiveStats_IsItemAttachmentRecentlyUnlocked(const ControllerIndex_t controllerIndex, unsigned int itemIndex, eAttachment attachment)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -518,7 +520,7 @@ ddlDef_t *LiveStats_GetClassSetsDDL()
 LiveStats_GetCACRoot
 ==============
 */
-const CACRoot *LiveStats_GetCACRoot(
+const CACRoot *LiveStats_GetCACRoot(const CACRoot *result, const ControllerIndex_t controllerIndex, statsLocation playerStatsLocation)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -761,7 +763,7 @@ int LiveStats_MoveToPlayerStatPath(ddlState_t *resultState, const char *statName
 LiveStats_MoveToCurrentGameTypeStatPath
 ==============
 */
-int LiveStats_MoveToCurrentGameTypeStatPath(
+int LiveStats_MoveToCurrentGameTypeStatPath(ddlState_t *resultState, const char *statName, const char *statType, bool isGroup)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -772,7 +774,7 @@ int LiveStats_MoveToCurrentGameTypeStatPath(
 LiveStats_MoveToWeaponStatPathZombie
 ==============
 */
-int LiveStats_MoveToWeaponStatPathZombie(
+int LiveStats_MoveToWeaponStatPathZombie(ddlState_t *resultState, int weaponStatIndex, const char *statName, const char *statType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -783,7 +785,7 @@ int LiveStats_MoveToWeaponStatPathZombie(
 LiveStats_MoveToWeaponStatPath
 ==============
 */
-int LiveStats_MoveToWeaponStatPath(
+int LiveStats_MoveToWeaponStatPath(ddlState_t *resultState, int weaponStatIndex, const char *statName, const char *statType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -805,7 +807,7 @@ int LiveStats_MoveToWeaponXPPath(ddlState_t *resultState, int weaponStatIndex)
 LiveStats_MoveToAttachmentStatPathZombie
 ==============
 */
-int LiveStats_MoveToAttachmentStatPathZombie(
+int LiveStats_MoveToAttachmentStatPathZombie(ddlState_t *resultState, int attachmentIndex, const char *statName, const char *statType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -816,7 +818,7 @@ int LiveStats_MoveToAttachmentStatPathZombie(
 LiveStats_MoveToAttachmentStatPath
 ==============
 */
-int LiveStats_MoveToAttachmentStatPath(
+int LiveStats_MoveToAttachmentStatPath(ddlState_t *resultState, int attachmentIndex, const char *statName, const char *statType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -827,7 +829,7 @@ int LiveStats_MoveToAttachmentStatPath(
 LiveStats_MoveToGroupStatPathZombie
 ==============
 */
-int LiveStats_MoveToGroupStatPathZombie(
+int LiveStats_MoveToGroupStatPathZombie(ddlState_t *resultState, int groupIndex, const char *statName, const char *statType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -838,7 +840,7 @@ int LiveStats_MoveToGroupStatPathZombie(
 LiveStats_MoveToGroupStatPath
 ==============
 */
-int LiveStats_MoveToGroupStatPath(
+int LiveStats_MoveToGroupStatPath(ddlState_t *resultState, int groupIndex, const char *statName, const char *statType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -921,7 +923,7 @@ void LiveStats_SetMOTDViewedCmd()
 LiveStats_SetVotingDemonwareFlags
 ==============
 */
-void LiveStats_SetVotingDemonwareFlags(
+void LiveStats_SetVotingDemonwareFlags(const ControllerIndex_t controllerIndex, demonwareFlags_e flags, int value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -941,7 +943,7 @@ void LiveStats_IncrementVotingMenuViewedCount(const ControllerIndex_t controller
 LiveStats_SetDemonwareFlagsWithUTCTime
 ==============
 */
-void LiveStats_SetDemonwareFlagsWithUTCTime(
+void LiveStats_SetDemonwareFlagsWithUTCTime(ControllerIndex_t controllerIndex, int demonwareFlagsStartIndex, int demonwareFlagsEndIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -951,9 +953,11 @@ void LiveStats_SetDemonwareFlagsWithUTCTime(
 LiveStats_SetVotingMenuViewedCmd
 ==============
 */
-void LiveStats_SetVotingMenuViewedCmd()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -981,9 +985,11 @@ void LiveStats_SetVoteOptOutCmd()
 LiveStats_SetDSPPromotionOptOutCmd
 ==============
 */
-void LiveStats_SetDSPPromotionOptOutCmd()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1001,9 +1007,11 @@ void LiveStats_SetDSPPromotionViewedCmd()
 LiveStats_SetGhostUpsellOptOutCmd
 ==============
 */
-void LiveStats_SetGhostUpsellOptOutCmd()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1182,7 +1190,7 @@ int LiveStats_GetIntPlayerStat(const ControllerIndex_t controllerIndex, const ch
 LiveStats_GetIntPlayerStatByMap
 ==============
 */
-int LiveStats_GetIntPlayerStatByMap(
+int LiveStats_GetIntPlayerStatByMap(const ControllerIndex_t controllerIndex, const char *map, const char *statName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1204,7 +1212,7 @@ int LiveStats_GetIntPlayerStatByKey(const ControllerIndex_t controllerIndex, pla
 LiveStats_SetIntPlayerStatInternal
 ==============
 */
-bool LiveStats_SetIntPlayerStatInternal(
+bool LiveStats_SetIntPlayerStatInternal(const ControllerIndex_t controllerIndex, int pathDepth, const char **path, unsigned __int8 *buffer, unsigned int statValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1237,7 +1245,7 @@ int LiveStats_GetIntPlayerStatMatchDeltaFromPath(const ControllerIndex_t control
 LiveStats_SetIntPlayerStat
 ==============
 */
-bool LiveStats_SetIntPlayerStat(
+bool LiveStats_SetIntPlayerStat(const ControllerIndex_t controllerIndex, const char *statName, unsigned int statValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1248,7 +1256,7 @@ bool LiveStats_SetIntPlayerStat(
 LiveStats_SetIntPlayerStatByMap
 ==============
 */
-bool LiveStats_SetIntPlayerStatByMap(
+bool LiveStats_SetIntPlayerStatByMap(const ControllerIndex_t controllerIndex, const char *map, const char *statName, unsigned int statValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1281,7 +1289,7 @@ int LiveStats_GetStatsVersion(const ControllerIndex_t localControllerIndex)
 LiveStats_RestoreStatsFromStable
 ==============
 */
-void LiveStats_RestoreStatsFromStable(
+void LiveStats_RestoreStatsFromStable(const ControllerIndex_t controllerIndex, statsLocation initialStats, statsLocation currentStats)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1301,7 +1309,7 @@ void LiveStats_SecurityErrorDetected(const ControllerIndex_t controllerIndex)
 LiveStats_SetStatByKey
 ==============
 */
-void LiveStats_SetStatByKey(
+void LiveStats_SetStatByKey(unsigned int a1, const ControllerIndex_t controllerIndex, playerStatsKeyIndex_t keyIndex, const int value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1311,10 +1319,10 @@ void LiveStats_SetStatByKey(
 LiveStats_StatSetByNameCmd
 ==============
 */
-/*void LiveStats_StatSetByNameCmd(unsigned int a1@<edi>)
+void LiveStats_StatSetByNameCmd(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1363,7 +1371,7 @@ unsigned int LiveStats_GetPlayerStat(const char *statsList, const char *statName
 LiveStats_GetLastGameWeaponStat
 ==============
 */
-int LiveStats_GetLastGameWeaponStat(
+int LiveStats_GetLastGameWeaponStat(unsigned __int8 *liveStatsBuffer, unsigned __int8 *oldStatsBuffer, const char *weaponStatType, int itemNumber)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1374,9 +1382,11 @@ int LiveStats_GetLastGameWeaponStat(
 LiveStats_UpdateBestWeaponIndexAAR
 ==============
 */
-void LiveStats_UpdateBestWeaponIndexAAR(unsigned __int8 *liveStatsBuffer, unsigned __int8 *oldStatsBuffer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1384,7 +1394,7 @@ void LiveStats_UpdateBestWeaponIndexAAR(unsigned __int8 *liveStatsBuffer, unsign
 LiveStats_SetPlayerStat
 ==============
 */
-void LiveStats_SetPlayerStat(
+void LiveStats_SetPlayerStat(const char *statsList, const char *statName, unsigned __int8 *buffer, unsigned int statValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1416,7 +1426,7 @@ bool LiveStats_UpdatetBestMatchKdRatio(unsigned __int8 *liveStatsBuffer, unsigne
 LiveStats_GameHistory_GetCompletionInfo
 ==============
 */
-void LiveStats_GameHistory_GetCompletionInfo(
+void LiveStats_GameHistory_GetCompletionInfo(const ControllerIndex_t localControllerIndex, const char *gamemode, const char *hostedType, unsigned int *started, unsigned int *completed, unsigned int *quit, unsigned int *timeout, unsigned int *dashboard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1426,7 +1436,7 @@ void LiveStats_GameHistory_GetCompletionInfo(
 LiveStats_GameHistory_IncCompletionStat
 ==============
 */
-bool LiveStats_GameHistory_IncCompletionStat(
+bool LiveStats_GameHistory_IncCompletionStat(const ControllerIndex_t localControllerIndex, const char *gamemode, const char *hostedOrPlayed, const char *statName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1437,7 +1447,7 @@ bool LiveStats_GameHistory_IncCompletionStat(
 LiveStats_GameHistory_AddMatchHistory
 ==============
 */
-void LiveStats_GameHistory_AddMatchHistory(
+void LiveStats_GameHistory_AddMatchHistory(const ControllerIndex_t localControllerIndex, const char *statName, bool hosted)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1467,9 +1477,11 @@ void LiveStats_GameHistory_AddMatchTimeout(const ControllerIndex_t localControll
 LiveStats_GameHistory_InitializeMatchHistory
 ==============
 */
-void LiveStats_GameHistory_InitializeMatchHistory(ClientNum_t clientNum, unsigned int gameTypeIndex)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1477,7 +1489,7 @@ void LiveStats_GameHistory_InitializeMatchHistory(ClientNum_t clientNum, unsigne
 LiveStats_GameHistory_InitializeHitLocations
 ==============
 */
-void LiveStats_GameHistory_InitializeHitLocations(ClientNum_t clientNum)
+void LiveStats_GameHistory_InitializeHitLocations(char *a1, ClientNum_t clientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1497,7 +1509,7 @@ void LiveStats_GameHistory_StartMatch(ClientNum_t clientNum, unsigned int gameTy
 LiveStats_GameHistory_MoveToCurrentHistory
 ==============
 */
-bool LiveStats_GameHistory_MoveToCurrentHistory(
+bool LiveStats_GameHistory_MoveToCurrentHistory(unsigned __int8 *liveStatsBuffer, ddlState_t *matchHistorySearchState, unsigned int *matchHistoryIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1508,7 +1520,7 @@ bool LiveStats_GameHistory_MoveToCurrentHistory(
 LiveStats_GameHistory_MoveToHistory
 ==============
 */
-bool LiveStats_GameHistory_MoveToHistory(
+bool LiveStats_GameHistory_MoveToHistory(unsigned __int8 *liveStatsBuffer, const char *gamemode, ddlState_t *matchHistorySearchState, unsigned int matchHistoryIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1519,9 +1531,11 @@ bool LiveStats_GameHistory_MoveToHistory(
 LiveStats_GameHistory_FinishMatch
 ==============
 */
-void LiveStats_GameHistory_FinishMatch(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1529,9 +1543,11 @@ void LiveStats_GameHistory_FinishMatch(
 LiveStats_GameHistory_FinishMatch
 ==============
 */
-void LiveStats_GameHistory_FinishMatch(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1539,7 +1555,7 @@ void LiveStats_GameHistory_FinishMatch(
 LiveStats_Probation_GiveProbation
 ==============
 */
-char LiveStats_Probation_GiveProbation(
+char LiveStats_Probation_GiveProbation(const ControllerIndex_t controllerIndex, eGameModes gamemode, float time)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1550,7 +1566,7 @@ char LiveStats_Probation_GiveProbation(
 LiveStats_Probation_MoveToMatchHistory
 ==============
 */
-bool LiveStats_Probation_MoveToMatchHistory(
+bool LiveStats_Probation_MoveToMatchHistory(const ControllerIndex_t controllerIndex, const char *gameModeString, ddlState_t *matchHistorySearchState, unsigned int *firstIndex, unsigned int *totalCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1581,7 +1597,7 @@ void LiveStats_Probation_ValidateProbationVersion(const ControllerIndex_t contro
 LiveStats_Probation_CheckInProbation
 ==============
 */
-bool LiveStats_Probation_CheckInProbation(
+bool LiveStats_Probation_CheckInProbation(const ControllerIndex_t controllerIndex, eGameModes gamemode, bool report)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1603,7 +1619,7 @@ bool LiveStats_Probation_ShouldCheckProbation(const ControllerIndex_t controller
 LiveStats_Probation_GetProbationPoints
 ==============
 */
-float LiveStats_Probation_GetProbationPoints(
+float LiveStats_Probation_GetProbationPoints(const ControllerIndex_t controllerIndex, eGameModes gamemode, ddlState_t *matchHistorySearchState, unsigned int *probationMatchCount, unsigned int (*probationMatchs)[32])
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1626,7 +1642,7 @@ LiveStats_Probation_CheckGettingProbation
 LiveStats_Probation_ForgiveProbation
 ==============
 */
-void LiveStats_Probation_ForgiveProbation(
+void LiveStats_Probation_ForgiveProbation(const ControllerIndex_t controllerIndex, eGameModes gamemode, ddlState_t *matchHistorySearchState, unsigned int *probationMatchCount, unsigned int (*probationMatchs)[32])
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1658,7 +1674,7 @@ LiveStats_Probation_CheckForProbation
 LiveStats_Theater_IncrementStat
 ==============
 */
-void LiveStats_Theater_IncrementStat(
+void LiveStats_Theater_IncrementStat(const ControllerIndex_t controllerIndex, playerStatsKeyIndex_t statKeyIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1698,20 +1714,20 @@ void LiveStats_GameHistory_GiveProbation(const ControllerIndex_t controllerIndex
 LiveStats_GameHistory_FinishMatch
 ==============
 */
-/*void LiveStats_GameHistory_FinishMatch(ddlState_t *a1@<edi>, const ControllerIndex_t controllerIndex)
+void LiveStats_GameHistory_FinishMatch(ddlState_t *a1, const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 LiveStats_GameHistory_TimeoutMatch
 ==============
 */
-/*void LiveStats_GameHistory_TimeoutMatch(ddlState_t *a1@<edi>, const ControllerIndex_t controllerIndex)
+void LiveStats_GameHistory_TimeoutMatch(ddlState_t *a1, const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1832,7 +1848,7 @@ void LiveStats_CheckVsOriginalValues(const ControllerIndex_t controllerIndex)
 LiveStats_AreStatsDeltasValid
 ==============
 */
-statsValidation_t LiveStats_AreStatsDeltasValid(
+statsValidation_t LiveStats_AreStatsDeltasValid(const ControllerIndex_t controllerIndex, statsLocation initialStats, statsLocation currentStats)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	statsValidation_t tmp;
@@ -1854,7 +1870,7 @@ void LiveStats_CheckScoreInfoTable()
 LiveStats_ResetAttachmentChallenges
 ==============
 */
-void LiveStats_ResetAttachmentChallenges(
+void LiveStats_ResetAttachmentChallenges(const ControllerIndex_t controllerIndex, const char *statName, const char *statType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1864,7 +1880,7 @@ void LiveStats_ResetAttachmentChallenges(
 LiveStats_ResetGroupChallenges
 ==============
 */
-void LiveStats_ResetGroupChallenges(
+void LiveStats_ResetGroupChallenges(const ControllerIndex_t controllerIndex, const char *statName, const char *statType, challengeTableRow_t *challengeRow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1874,7 +1890,7 @@ void LiveStats_ResetGroupChallenges(
 LiveStats_ResetGlobalChallenges
 ==============
 */
-void LiveStats_ResetGlobalChallenges(
+void LiveStats_ResetGlobalChallenges(const ControllerIndex_t controllerIndex, const char *statName, const char *statType, challengeTableRow_t *challengeRow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1884,7 +1900,7 @@ void LiveStats_ResetGlobalChallenges(
 LiveStats_ResetWeaponChallenges
 ==============
 */
-void LiveStats_ResetWeaponChallenges(
+void LiveStats_ResetWeaponChallenges(const ControllerIndex_t controllerIndex, const char *statName, const char *statType, challengeTableRow_t *challengeRow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2013,7 +2029,7 @@ int LiveStats_GetZombieTimePlayedTotal(const ControllerIndex_t controllerIndex)
 LiveStats_GetIntPlayerStatByLocationGameType
 ==============
 */
-int LiveStats_GetIntPlayerStatByLocationGameType(
+int LiveStats_GetIntPlayerStatByLocationGameType(const ControllerIndex_t controllerIndex, const char *startLocation, const char *gameType, const char *statName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -2034,11 +2050,11 @@ void LiveStats_TrackSpending(const ControllerIndex_t controllerIndex, int curren
 LiveStats_SpendCurrency
 ==============
 */
-/*char LiveStats_SpendCurrency@<al>(
+char LiveStats_SpendCurrency(int a1, ControllerIndex_t a2, const ControllerIndex_t controllerIndex, int currencyAmount, pointsSpent_t reasonType, int reasonIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -2056,7 +2072,7 @@ bool LiveStats_DoXUIDsMatch(const ControllerIndex_t controllerIndex)
 LiveStats_InitStatsBuffer
 ==============
 */
-void LiveStats_InitStatsBuffer(
+void LiveStats_InitStatsBuffer(unsigned int a1, statsLocation a2, const ControllerIndex_t controllerIndex, statsResetReason_t reason)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2066,7 +2082,7 @@ void LiveStats_InitStatsBuffer(
 LiveStats_ResetStats
 ==============
 */
-void LiveStats_ResetStats(
+void LiveStats_ResetStats(unsigned int a1, const ControllerIndex_t controllerIndex, bool versionChanged, statsResetReason_t reason)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2137,7 +2153,7 @@ void LiveStats_PrestigeRespecCmd()
 LiveStats_MoveToGameTypeStatPath
 ==============
 */
-char *LiveStats_MoveToGameTypeStatPath(
+char *LiveStats_MoveToGameTypeStatPath(ddlState_t *resultState, const char *statName, const char *statType, int gameTypeIndex, bool isGroup)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -2148,29 +2164,31 @@ char *LiveStats_MoveToGameTypeStatPath(
 LiveStats_SetRankXP
 ==============
 */
-/*void LiveStats_SetRankXP(unsigned int a1@<esi>, ControllerIndex_t controllerIndex, unsigned int rankXP)
+void LiveStats_SetRankXP(unsigned int a1, ControllerIndex_t controllerIndex, unsigned int rankXP)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 LiveStats_SetRankXPCmd
 ==============
 */
-/*void LiveStats_SetRankXPCmd(unsigned int a1@<esi>)
+void LiveStats_SetRankXPCmd(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 LiveStats_SetZombieRank
 ==============
 */
-void LiveStats_SetZombieRank(ControllerIndex_t controllerIndex, unsigned int rank, unsigned int daysPlayed)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -2188,7 +2206,7 @@ void LiveStats_SetZombieRankCmd()
 LiveStats_SetStatChangedInternal
 ==============
 */
-void LiveStats_SetStatChangedInternal(
+void LiveStats_SetStatChangedInternal(const ControllerIndex_t controllerIndex, unsigned __int8 *statsMsg, int msgLen, int isMoreComing)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2208,7 +2226,7 @@ void LiveStats_SetStatChanged(const ControllerIndex_t controllerIndex, const cha
 LiveStats_SetStatChangedNoCache
 ==============
 */
-void LiveStats_SetStatChangedNoCache(
+void LiveStats_SetStatChangedNoCache(const ControllerIndex_t controllerIndex, const char *hexMsg, int isMoreComing)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2218,10 +2236,10 @@ void LiveStats_SetStatChangedNoCache(
 LiveStats_PreGame
 ==============
 */
-/*void LiveStats_PreGame(unsigned int a1@<edi>, const ControllerIndex_t controllerIndex)
+void LiveStats_PreGame(unsigned int a1, const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -2248,7 +2266,7 @@ void LiveStats_CopyFromSponsor(const ControllerIndex_t controllerIndex)
 LiveStats_ResetGametypeChallenges
 ==============
 */
-void LiveStats_ResetGametypeChallenges(
+void LiveStats_ResetGametypeChallenges(const ControllerIndex_t controllerIndex, const char *statName, const char *statType, challengeTableRow_t *challengeRow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2331,7 +2349,7 @@ void LiveStats_ValidateStats(const ControllerIndex_t controllerIndex)
 LiveStats_PrestigeResetChallenges
 ==============
 */
-void LiveStats_PrestigeResetChallenges(const ControllerIndex_t controllerIndex)
+void LiveStats_PrestigeResetChallenges(char *a1, const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2341,7 +2359,7 @@ void LiveStats_PrestigeResetChallenges(const ControllerIndex_t controllerIndex)
 LiveStats_GetCurrentChallengeIndex
 ==============
 */
-int LiveStats_GetCurrentChallengeIndex(
+int LiveStats_GetCurrentChallengeIndex(const ControllerIndex_t controllerIndex, int inputChallengeIndex, int itemIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -2383,10 +2401,10 @@ char LiveStats_CompareStatsVsStableBuffer(const ControllerIndex_t controllerInde
 LiveStats_PrestigeStatsResetCmd
 ==============
 */
-/*void LiveStats_PrestigeStatsResetCmd(unsigned int a1@<edi>)
+void LiveStats_PrestigeStatsResetCmd(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

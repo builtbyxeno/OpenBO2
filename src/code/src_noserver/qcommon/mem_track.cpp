@@ -26,7 +26,7 @@ void track_static_alloc_internal_simple(void *ptr, int size, const char *name, i
 GetTempMemInfo
 ==============
 */
-TempMemInfo *GetTempMemInfo(
+TempMemInfo *GetTempMemInfo(int permanent, const char *name, int type, int usageType, TempMemInfo *tempMemInfoArray, int *tempMemInfoCount, bool add_if_missing)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

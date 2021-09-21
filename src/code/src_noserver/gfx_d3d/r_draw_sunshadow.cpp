@@ -16,7 +16,7 @@ void R_DrawSunShadowMapCallback(const void *userData, GfxCmdBufContext context)
 R_DrawSunShadowMap
 ==============
 */
-void R_DrawSunShadowMap(
+void R_DrawSunShadowMap(int a1, const GfxViewInfo *viewInfo, unsigned int partitionIndex, GfxCmdBuf *cmdBuf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

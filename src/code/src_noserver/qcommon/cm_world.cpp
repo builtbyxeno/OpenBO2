@@ -119,7 +119,7 @@ int CM_AreaEntities(const vec3_t *mins, const vec3_t *maxs, int *entityList, int
 CM_PointTraceStaticModels_r
 ==============
 */
-void CM_PointTraceStaticModels_r(
+void CM_PointTraceStaticModels_r(locTraceWork_t *tw, unsigned __int16 nodeIndex, const vec4_t *p1_, const vec4_t *p2, trace_t *trace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -129,7 +129,7 @@ void CM_PointTraceStaticModels_r(
 CM_PointTraceStaticModelsComplete_r
 ==============
 */
-int CM_PointTraceStaticModelsComplete_r(
+int CM_PointTraceStaticModelsComplete_r(const staticmodeltrace_t *clip, unsigned __int16 nodeIndex, const vec3_t *p1_, const vec3_t *p2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -140,7 +140,7 @@ int CM_PointTraceStaticModelsComplete_r(
 CM_ClipMoveToEntities_r
 ==============
 */
-void CM_ClipMoveToEntities_r(
+void CM_ClipMoveToEntities_r(const moveclip_t *clip, unsigned __int16 nodeIndex, const vec4_t *p1, const vec4_t *p2, trace_t *trace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -160,7 +160,7 @@ void CM_ClipMoveToEntities(moveclip_t *clip, trace_t *trace)
 CM_ClipSightTraceToEntities_r
 ==============
 */
-int CM_ClipSightTraceToEntities_r(
+int CM_ClipSightTraceToEntities_r(const sightclip_t *clip, unsigned __int16 nodeIndex, const vec3_t *p1, const vec3_t *p2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -182,7 +182,7 @@ int CM_ClipSightTraceToEntities(sightclip_t *clip)
 CM_PointTraceToEntities_r
 ==============
 */
-void CM_PointTraceToEntities_r(
+void CM_PointTraceToEntities_r(pointtrace_t *clip, unsigned __int16 nodeIndex, const vec4_t *p1, const vec4_t *p2, trace_t *trace, col_context_t *context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -202,7 +202,7 @@ void CM_PointTraceToEntities(pointtrace_t *clip, trace_t *trace, col_context_t *
 CM_PointSightTraceToEntities_r
 ==============
 */
-int CM_PointSightTraceToEntities_r(
+int CM_PointSightTraceToEntities_r(const sightpointtrace_t *clip, unsigned __int16 nodeIndex, const vec3_t *p1, const vec3_t *p2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -246,7 +246,7 @@ CM_PointTraceStaticModelsComplete
 CM_PointTraceStaticModels
 ==============
 */
-void CM_PointTraceStaticModels(
+void CM_PointTraceStaticModels(unsigned int a1, trace_t *results, const vec3_t *start, const vec3_t *end, int contentmask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

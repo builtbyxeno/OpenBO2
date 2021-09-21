@@ -36,10 +36,12 @@ void Load_MaterialVertexShader(bool atStreamStart)
 Load_MaterialPixelShader
 ==============
 */
-/*void Load_MaterialPixelShader(int a1@<edi>, bool atStreamStart)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============

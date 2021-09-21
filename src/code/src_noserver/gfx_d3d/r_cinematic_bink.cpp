@@ -123,9 +123,11 @@ BinkMoviePlayer::R_Cinematic_BlackRendererImages
 BinkMoviePlayer::InitMemory
 ==============
 */
-/*void BinkMoviePlayer::InitMemory(
+/*
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }*/
 
 /*
@@ -153,7 +155,7 @@ BinkMoviePlayer::R_Cinematic_ReleaseImages
 BinkMoviePlayer::MakeBinkTexturePC
 ==============
 */
-/*int BinkMoviePlayer::MakeBinkTexturePC(
+/*int BinkMoviePlayer::MakeBinkTexturePC(unsigned int width, unsigned int height, int sysMem, DXGI_FORMAT format, unsigned int pixel_size, ID3D11Texture2D **out_texture, void **out_ptr, unsigned int *out_pitch, unsigned int *out_size)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -164,7 +166,7 @@ BinkMoviePlayer::MakeBinkTexturePC
 BinkMoviePlayer::R_Cinematic_MakeBinkDrawTextures
 ==============
 */
-/*HRESULT BinkMoviePlayer::R_Cinematic_MakeBinkDrawTextures@<eax>(
+/*HRESULT BinkMoviePlayer::R_Cinematic_MakeBinkDrawTextures(unsigned int a1, unsigned int *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	HRESULT tmp;
@@ -176,10 +178,10 @@ BinkMoviePlayer::R_Cinematic_MakeBinkDrawTextures
 BinkMoviePlayer::R_Cinematic_InitBinkTextures
 ==============
 */
-/*HRESULT BinkMoviePlayer::R_Cinematic_InitBinkTextures@<eax>(unsigned int *a1@<edi>)
+/*
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	HRESULT tmp;
+	 tmp;
 	return tmp;
 }*/
 
@@ -314,7 +316,7 @@ BinkMoviePlayer::AdvanceFrame
 BinkMoviePlayer::R_Cinematic_Lock_textures
 ==============
 */
-/*void BinkMoviePlayer::R_Cinematic_Lock_textures(
+/*void BinkMoviePlayer::R_Cinematic_Lock_textures(D3D11_MAPPED_SUBRESOURCE *p_m, int a2, int a3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -324,10 +326,9 @@ BinkMoviePlayer::R_Cinematic_Lock_textures
 BinkMoviePlayer::R_Cinematic_BinkLaunchAsyncDecode
 ==============
 */
-/*const char *BinkMoviePlayer::R_Cinematic_BinkLaunchAsyncDecode@<eax>(
+/*void BinkMoviePlayer::R_Cinematic_BinkLaunchAsyncDecode
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
 }*/
 
 /*
@@ -335,7 +336,7 @@ BinkMoviePlayer::R_Cinematic_BinkLaunchAsyncDecode
 BinkMoviePlayer::DoFrameSync
 ==============
 */
-/*void BinkMoviePlayer::DoFrameSync(D3D11_MAPPED_SUBRESOURCE *a1@<ebx>, int a2@<edi>, int a3@<esi>)
+/*void BinkMoviePlayer::DoFrameSync
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -345,7 +346,7 @@ BinkMoviePlayer::DoFrameSync
 BinkMoviePlayer::UpdateMoviesAndImages
 ==============
 */
-/*void BinkMoviePlayer::UpdateMoviesAndImages(
+/*void BinkMoviePlayer::UpdateMoviesAndImages(D3D11_MAPPED_SUBRESOURCE *a1, int a2, bool forceWait)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -429,10 +430,11 @@ BinkMoviePlayer::GetLastError
 BinkMoviePlayer::OpenFromFastfile
 ==============
 */
-/*BINK *BinkMoviePlayer::OpenFromFastfile(const char *assetname, unsigned int playbackFlags)
+/*
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }*/
 
 /*
@@ -440,7 +442,7 @@ BinkMoviePlayer::OpenFromFastfile
 BinkMoviePlayer::OpenPath
 ==============
 */
-/*BINK *BinkMoviePlayer::OpenPath(const char *filepath, unsigned int playbackFlags)
+/*BINK *BinkMoviePlayer::OpenPath(char *a1, const char *filepath, unsigned int playbackFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -472,9 +474,9 @@ MoviePlayerFunctions *R_Cinematic_GetBinkFunctions()
 launch_async_bink_drawCallback
 ==============
 */
-/*int launch_async_bink_drawCallback@<eax>(D3D11_MAPPED_SUBRESOURCE *a1@<ebx>, jqBatch *batch)
+int launch_async_bink_drawCallback(D3D11_MAPPED_SUBRESOURCE *a1, jqBatch *batch)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 

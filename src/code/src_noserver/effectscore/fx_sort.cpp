@@ -27,7 +27,7 @@ void FX_SortEffects(FxSystem *system)
 FX_GetInsertSortElem
 ==============
 */
-void FX_GetInsertSortElem(
+void FX_GetInsertSortElem(const FxSystem *system, const FxEffect *effect, const FxEffectDef *effectDef, const FxElem *elem, FxInsertSortElem *sortElem)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -37,7 +37,7 @@ void FX_GetInsertSortElem(
 FX_ExistingElemSortsBeforeNewElem
 ==============
 */
-bool FX_ExistingElemSortsBeforeNewElem(
+bool FX_ExistingElemSortsBeforeNewElem(const FxSystem *system, const FxEffect *effect, const FxEffectDef *effectDef, const FxElem *remoteElem, const FxInsertSortElem *sortElemNew)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

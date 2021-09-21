@@ -280,10 +280,11 @@ DvarValue *Dvar_StringToValue(const dvarType_t type, const DvarLimits domain, co
 Dvar_DisplayableValue
 ==============
 */
-const char *Dvar_DisplayableValue(const dvar_t *dvar)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -291,10 +292,11 @@ const char *Dvar_DisplayableValue(const dvar_t *dvar)
 Dvar_DisplayableResetValue
 ==============
 */
-const char *Dvar_DisplayableResetValue(const dvar_t *dvar)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -302,10 +304,11 @@ const char *Dvar_DisplayableResetValue(const dvar_t *dvar)
 Dvar_DisplayableLatchedValue
 ==============
 */
-const char *Dvar_DisplayableLatchedValue(const dvar_t *dvar)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -313,7 +316,7 @@ const char *Dvar_DisplayableLatchedValue(const dvar_t *dvar)
 Dvar_ClampValueToDomain
 ==============
 */
-DvarValue *Dvar_ClampValueToDomain(
+DvarValue *Dvar_ClampValueToDomain(dvarType_t type, DvarValue value, const DvarValue resetValue, const DvarLimits domain)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -357,21 +360,22 @@ Dvar_DomainToString_Internal
 Dvar_DomainToString_GetLines
 ==============
 */
-/*const char *Dvar_DomainToString_GetLines@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 Dvar_PrintDomain
 ==============
 */
-/*void Dvar_PrintDomain(char *a1@<edx>, dvarType_t type, DvarLimits domain)
+void Dvar_PrintDomain(char *a1, dvarType_t type, DvarLimits domain)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -399,10 +403,11 @@ void Dvar_SetLatchedValue(dvar_t *dvar, DvarValue value)
 Dvar_HasLatchedValue
 ==============
 */
-BOOL Dvar_HasLatchedValue(const dvar_t *dvar)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -559,10 +564,11 @@ const GfxViewParms *Dvar_GetString(const dvar_t *dvar)
 Dvar_GetVariantString
 ==============
 */
-const char *__thiscall Dvar_GetVariantString(void *this)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -570,10 +576,11 @@ const char *__thiscall Dvar_GetVariantString(void *this)
 Dvar_GetVariantString
 ==============
 */
-const char *Dvar_GetVariantString(const dvar_t *dvar)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -581,7 +588,7 @@ const char *Dvar_GetVariantString(const dvar_t *dvar)
 Dvar_GetUnpackedColor
 ==============
 */
-void Dvar_GetUnpackedColor(
+void Dvar_GetUnpackedColor(unsigned __int8 *a1, const char *a2, const dvar_t *dvar, vec4_t *expandedColor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -601,11 +608,11 @@ void Dvar_GetColor(const dvar_t *dvar, unsigned __int8 *color)
 Dvar_GetColorRed
 ==============
 */
-/*double Dvar_GetColorRed@<st0>(unsigned __int8 *a1@<edx>, const dvar_t *dvar)
+double Dvar_GetColorRed(unsigned __int8 *a1, const dvar_t *dvar)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -623,11 +630,11 @@ double __thiscall Dvar_GetColorRed(void *this)
 Dvar_GetColorGreen
 ==============
 */
-/*double Dvar_GetColorGreen@<st0>(unsigned __int8 *a1@<edx>, const dvar_t *dvar)
+double Dvar_GetColorGreen(unsigned __int8 *a1, const dvar_t *dvar)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -645,11 +652,11 @@ double __thiscall Dvar_GetColorGreen(void *this)
 Dvar_GetColorBlue
 ==============
 */
-/*double Dvar_GetColorBlue@<st0>(unsigned __int8 *a1@<edx>, const dvar_t *dvar)
+double Dvar_GetColorBlue(unsigned __int8 *a1, const dvar_t *dvar)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -667,11 +674,11 @@ double __thiscall Dvar_GetColorBlue(void *this)
 Dvar_GetColorAlpha
 ==============
 */
-/*double Dvar_GetColorAlpha@<st0>(unsigned __int8 *a1@<edx>, const dvar_t *dvar)
+double Dvar_GetColorAlpha(unsigned __int8 *a1, const dvar_t *dvar)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -1001,9 +1008,11 @@ void Dvar_UpdateResetValue(dvar_t *dvar, DvarValue value)
 Dvar_ChangeResetValue
 ==============
 */
-void Dvar_ChangeResetValue(const dvar_t *dvar, DvarValue value)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1033,9 +1042,11 @@ Dvar_MakeExplicitType
 Dvar_ReinterpretDvar
 ==============
 */
-void Dvar_ReinterpretDvar(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1043,7 +1054,7 @@ void Dvar_ReinterpretDvar(
 Dvar_RegisterNew
 ==============
 */
-const dvar_t *Dvar_RegisterNew(
+const dvar_t *Dvar_RegisterNew(const char *dvarName, dvarType_t type, unsigned int flags, DvarValue value, DvarLimits domain, const char *description)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -1064,10 +1075,11 @@ void Dvar_AddFlags(const dvar_t *dvar, int flags)
 Com_SaveDvarsToBuffer
 ==============
 */
-int Com_SaveDvarsToBuffer(const char **dvarnames, unsigned int numDvars, char *buffer, unsigned int bufsize)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1106,10 +1118,11 @@ bool Dvar_CanSetConfigDvar(const dvar_t *dvar)
 Dvar_CanChangeValue
 ==============
 */
-bool Dvar_CanChangeValue(const dvar_t *dvar, DvarValue value, DvarSetSource source)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1117,9 +1130,11 @@ bool Dvar_CanChangeValue(const dvar_t *dvar, DvarValue value, DvarSetSource sour
 Dvar_SetVariant
 ==============
 */
-void Dvar_SetVariant(dvar_t *dvar, DvarValue value, DvarSetSource source)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1127,9 +1142,11 @@ void Dvar_SetVariant(dvar_t *dvar, DvarValue value, DvarSetSource source)
 Dvar_UpdateEnumDomain
 ==============
 */
-void Dvar_UpdateEnumDomain(const dvar_t *dvar, const char **stringTable)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1215,10 +1232,11 @@ Dvar_RegisterVariant
 _Dvar_RegisterBool
 ==============
 */
-const dvar_t *_Dvar_RegisterBool(const char *dvarName, bool value, unsigned int flags, const char *description)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1298,11 +1316,12 @@ _Dvar_RegisterVec4
 _Dvar_RegisterString
 ==============
 */
-/*const dvar_t *_Dvar_RegisterString@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -1321,10 +1340,11 @@ _Dvar_RegisterEnum
 _Dvar_RegisterColor
 ==============
 */
-const dvar_t *_Dvar_RegisterColor(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1516,21 +1536,24 @@ void Dvar_SetVec4FromVec4(const dvar_t *dvar, vec4_t *vecin)
 Dvar_SetString
 ==============
 */
-/*void Dvar_SetString(const char *a1@<edx>, const dvar_t *a2@<ecx>, const dvar_t *dvar, const char *value)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 Dvar_SetOrRegisterString
 ==============
 */
-/*const dvar_t *Dvar_SetOrRegisterString@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -1547,12 +1570,10 @@ void Dvar_SetColor(const dvar_t *dvar, float r, float g, float b, float a)
 Dvar_SetFromStringFromSource
 ==============
 */
-
+/*void Dvar_SetFromStringFromSource(const char *a1@<edi>, const dvar_t *dvar, const char *string, DvarSetSource source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
-}
+}*/
 
 /*
 ==============
@@ -1569,31 +1590,33 @@ void Dvar_SetFromString(const dvar_t *dvar, const char *string)
 Dvar_SetFromStringByNameFromSource
 ==============
 */
-/*dvar_t *Dvar_SetFromStringByNameFromSource@<eax>(
+dvar_t *Dvar_SetFromStringByNameFromSource(dvarType_t a1, const char *a2, const char *dvarName, const char *string, DvarSetSource source, unsigned int flags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 Dvar_SetFromStringByName
 ==============
 */
-/*void Dvar_SetFromStringByName(dvarType_t a1@<edx>, const char *dvarName, const char *string)
+void Dvar_SetFromStringByName(dvarType_t a1, const char *dvarName, const char *string)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 Dvar_SetCommand
 ==============
 */
-/*void Dvar_SetCommand(dvarType_t a1@<edx>, const char *dvarName, const char *string)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -1674,7 +1697,7 @@ void Dvar_ResetDvars(unsigned int filter, DvarSetSource setSource)
 Com_LoadDvarsFromBufferOptional
 ==============
 */
-int Com_LoadDvarsFromBufferOptional(
+int Com_LoadDvarsFromBufferOptional(const char **dvarnames, bool *isOptional, unsigned int numDvars, const char *buffer, const char *filename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1715,9 +1738,11 @@ void Dvar_SetFloatIfChanged(const dvar_t *dvar, float value)
 Dvar_SetStringIfChanged
 ==============
 */
-void Dvar_SetStringIfChanged(const dvar_t *dvar, const char *newString)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1735,7 +1760,7 @@ void Dvar_DoModifiedCallbacks()
 Com_LoadDvarsFromBuffer
 ==============
 */
-int Com_LoadDvarsFromBuffer(
+int Com_LoadDvarsFromBuffer(const char **dvarnames, unsigned int numDvars, const char *buffer, const char *filename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1776,7 +1801,7 @@ void Dvar_ForEachName(void (*callback)(const char *))
 Dvar_ForEachName
 ==============
 */
-void Dvar_ForEachName(
+void Dvar_ForEachName(LocalClientNum_t localClientNum, void (*callback)(LocalClientNum_t, const char *))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

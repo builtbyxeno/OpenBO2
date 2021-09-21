@@ -28,11 +28,11 @@ int DSOUNDRecord_DestroySample(dsound_sample_t *pRecSample)
 DSOUNDRecord_Stop
 ==============
 */
-/*int DSOUNDRecord_Stop@<eax>(int a1@<edi>, int a2@<esi>, dsound_sample_t *pRecSample)
+int DSOUNDRecord_Stop(int a1, int a2, dsound_sample_t *pRecSample)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============

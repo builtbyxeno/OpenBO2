@@ -39,7 +39,7 @@ int FX_ComparePriorityDebugEntries(const void *e0, const void *e1)
 FX_DrawPriorityDebug
 ==============
 */
-void FX_DrawPriorityDebug(
+void FX_DrawPriorityDebug(LocalClientNum_t clientIndex, void (*drawFunc)(const char *, vec2_t *), vec2_t *profilePos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -60,7 +60,7 @@ int FX_CompareOccQueryDebugEntries(const void *e0, const void *e1)
 FX_DrawOccQueryDebug
 ==============
 */
-void FX_DrawOccQueryDebug(
+void FX_DrawOccQueryDebug(LocalClientNum_t clientIndex, void (*drawFunc)(const char *, vec2_t *), vec2_t *profilePos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -81,7 +81,7 @@ const char *typeAsString(unsigned __int8 type)
 FX_DrawMarkProfile_MarkPrint
 ==============
 */
-void FX_DrawMarkProfile_MarkPrint(
+void FX_DrawMarkProfile_MarkPrint(FxMarksSystem *marksSystem, unsigned __int16 head, const char *name, int index, void (*drawFunc)(const char *, vec2_t *), vec2_t *profilePos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -91,9 +91,11 @@ void FX_DrawMarkProfile_MarkPrint(
 FX_DrawMarkProfile
 ==============
 */
-void FX_DrawMarkProfile(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -121,7 +123,7 @@ void FX_ProfileSingleEffect(FxSystem *system, const FxEffect *effect, FxProfileE
 FX_DrawProfile
 ==============
 */
-void FX_DrawProfile(
+void FX_DrawProfile(LocalClientNum_t clientIndex, void (*drawFunc)(const char *, vec2_t *), vec2_t *profilePos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

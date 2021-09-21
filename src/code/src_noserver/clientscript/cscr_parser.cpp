@@ -16,7 +16,7 @@ void TRACK_scr_parser()
 Scr_GetLineNumInternal
 ==============
 */
-int Scr_GetLineNumInternal(
+int Scr_GetLineNumInternal(const char *buf, unsigned int sourcePos, const char **startLine, int *col, SourceBufferInfo *binfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -38,18 +38,18 @@ char *Scr_ReadFile_FastFile(scriptInstance_t inst, const char *filename, const c
 Scr_ReadFile_LoadObj
 ==============
 */
-/*char *Scr_ReadFile_LoadObj@<eax>(
+char *Scr_ReadFile_LoadObj(const char *a1, FsThread a2, scriptInstance_t inst, const char *filename, const char *extFilename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 Scr_ReadFile
 ==============
 */
-char *Scr_ReadFile(
+char *Scr_ReadFile(scriptInstance_t inst, const char *filename, const char *extFilename, const unsigned __int8 *codePos, bool archive)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -60,10 +60,11 @@ char *Scr_ReadFile(
 Scr_AddSourceBuffer
 ==============
 */
-char *Scr_AddSourceBuffer(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -81,10 +82,11 @@ void Scr_CopyFormattedLine(char *line, const char *rawLine)
 Scr_GetLineInfo
 ==============
 */
-int Scr_GetLineInfo(const char *buf, unsigned int sourcePos, int *col, char *line, SourceBufferInfo *binfo)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -92,7 +94,7 @@ int Scr_GetLineInfo(const char *buf, unsigned int sourcePos, int *col, char *lin
 Scr_PrintSourcePos
 ==============
 */
-void Scr_PrintSourcePos(
+void Scr_PrintSourcePos(scriptInstance_t inst, int channel, const char *filename, const char *buf, unsigned int sourcePos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -155,7 +157,7 @@ bool Scr_PrevCodePosFileNameMatches(scriptInstance_t inst, unsigned __int8 *code
 Scr_PrintPrevCodePosSpreadSheet
 ==============
 */
-void Scr_PrintPrevCodePosSpreadSheet(
+void Scr_PrintPrevCodePosSpreadSheet(scriptInstance_t inst, int channel, unsigned __int8 *codePos, bool summary)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -165,7 +167,7 @@ void Scr_PrintPrevCodePosSpreadSheet(
 Scr_GetCodePos
 ==============
 */
-void Scr_GetCodePos(
+void Scr_GetCodePos(scriptInstance_t inst, unsigned __int8 *codePos, unsigned int index, char *outBuf, int outBufLen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -185,7 +187,7 @@ void CompileError2(scriptInstance_t inst, unsigned __int8 *codePos, const char *
 RuntimeError
 ==============
 */
-void RuntimeError(
+void RuntimeError(scriptInstance_t inst, unsigned __int8 *codePos, unsigned int index, const char *msg, const char *dialogMessage)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

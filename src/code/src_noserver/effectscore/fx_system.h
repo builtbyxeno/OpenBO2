@@ -17,7 +17,7 @@ FxEffect *FX_EffectFromHandle(FxSystem *system, unsigned __int16 handle)
 FX_PoolFromHandle_Generic<FxElem,FxElemContainer,2048>
 ==============
 */
-/*FxElem *FX_PoolFromHandle_Generic<FxElem,FxElemContainer,2048>(
+/*FxElem *FX_PoolFromHandle_Generic<FxElem,FxElemContainer,2048>(FxPool<FxElem,FxElemContainer> *poolArray, unsigned __int16 handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

@@ -28,7 +28,7 @@ FontIconAlias *R_GetFontAliasEntry(char *fontIconAlias)
 R_GetFontIconEntryInfo
 ==============
 */
-void R_GetFontIconEntryInfo(
+void R_GetFontIconEntryInfo(LocalClientNum_t localClientNum, char *fontIconName, int size, Material **iconShader, float *iconWidth, float *iconHeight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

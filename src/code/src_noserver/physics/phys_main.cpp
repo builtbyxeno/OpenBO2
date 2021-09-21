@@ -76,7 +76,7 @@ void Phys_ObjRemoveCollFlags(int physObjId, int collFlags)
 Phys_RenderBulletMeshInfo
 ==============
 */
-void Phys_RenderBulletMeshInfo(
+void Phys_RenderBulletMeshInfo(vec3_t *pos, int entnum, const XModel *model, const char *type, int numTriangles, float avgArea)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -137,7 +137,7 @@ void Phys_RenderHeliMesh(int a1, cmodel_t **a2)
 colgeom_debug_renderer_t::update
 ==============
 */
-/*void __thiscall colgeom_debug_renderer_t::update(
+/*void __thiscall colgeom_debug_renderer_t::update(colgeom_debug_renderer_t *this, const vec3_t *_mn, const vec3_t *_mx, int mask, const vec3_t *expand_vec)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -223,11 +223,11 @@ void Phys_SetHingeParams(int id, float motorSpeed, float damp)
 Phys_CreateHinge
 ==============
 */
-/*rigid_body_constraint_ragdoll *Phys_CreateHinge@<eax>(
+rigid_body_constraint_ragdoll *Phys_CreateHinge(int a1, int obj1, int obj2, const vec3_t *anchor, const vec3_t *axis, float motorSpeed, float damp, float lowStop, float highStop)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -275,7 +275,7 @@ void Phys_ObjSetOrientation(int id, const vec3_t *newPosition, const vec4_t *new
 Phys_ObjSetAngularVelocity
 ==============
 */
-void Phys_ObjSetAngularVelocity(int id, const vec3_t *angularVel)
+void Phys_ObjSetAngularVelocity(int a1, int id, const vec3_t *angularVel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -285,7 +285,7 @@ void Phys_ObjSetAngularVelocity(int id, const vec3_t *angularVel)
 Phys_ObjSetVelocity
 ==============
 */
-void Phys_ObjSetVelocity(int id, const vec3_t *velocity)
+void Phys_ObjSetVelocity(int a1, int id, const vec3_t *velocity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -295,7 +295,7 @@ void Phys_ObjSetVelocity(int id, const vec3_t *velocity)
 Phys_ObjSetAngularVelocityRaw
 ==============
 */
-void Phys_ObjSetAngularVelocityRaw(int id, const vec3_t *angularVel)
+void Phys_ObjSetAngularVelocityRaw(int a1, int id, const vec3_t *angularVel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -335,17 +335,17 @@ void Phys_ObjSetGravity(int id, const vec3_t *gravity)
 Phys_AddCacheImpulses
 ==============
 */
-/*void Phys_AddCacheImpulses(int a1@<ebp>)
+void Phys_AddCacheImpulses(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 Phys_ObjAddForce
 ==============
 */
-void Phys_ObjAddForce(
+void Phys_ObjAddForce(float id, int a2, const vec3_t *worldPos, const vec3_t *impulse, const bool relative)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -355,7 +355,7 @@ void Phys_ObjAddForce(
 Phys_ObjAddTorque
 ==============
 */
-void Phys_ObjAddTorque(int id, const vec3_t *torque)
+void Phys_ObjAddTorque(float id, int a2, const vec3_t *torque)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -449,7 +449,7 @@ void Phys_ObjGetInterpolatedState(int id, vec3_t *outPos, vec4_t *outQuat)
 Phys_SetUserBody
 ==============
 */
-void Phys_SetUserBody(int id, vec3_t *position)
+void Phys_SetUserBody(float id, int a2, vec3_t *position)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -459,22 +459,22 @@ void Phys_SetUserBody(int id, vec3_t *position)
 Phys_ObjIsAsleep
 ==============
 */
-/*BOOL Phys_ObjIsAsleep@<eax>(clientDebugLineInfo_t *a1@<edi>, int id)
+BOOL Phys_ObjIsAsleep(clientDebugLineInfo_t *a1, int id)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 Phys_ObjIsAsleepSingle
 ==============
 */
-/*BOOL Phys_ObjIsAsleepSingle@<eax>(clientDebugLineInfo_t *a1@<edi>, int id)
+BOOL Phys_ObjIsAsleepSingle(clientDebugLineInfo_t *a1, int id)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -491,18 +491,18 @@ void Phys_SetAngularMotorParams(int id, const vec3_t *motorSpeeds, const vec3_t 
 Phys_CreateSwivel
 ==============
 */
-/*rigid_body_constraint_ragdoll *Phys_CreateSwivel@<eax>(
+rigid_body_constraint_ragdoll *Phys_CreateSwivel(int a1, int obj1, int obj2, const vec3_t *anchor, int numAxes, const vec3_t *axes, const vec3_t *motorSpeeds, const vec3_t *motorFMaxs, const vec3_t *lowStops, const vec3_t *highStops)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 Phys_ObjAddCustomForce
 ==============
 */
-void Phys_ObjAddCustomForce(
+void Phys_ObjAddCustomForce(unsigned int a1, int physObjId, const vec3_t *hitPos, const vec3_t *hitDir, const int mod, PhysPreset *physPreset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -589,11 +589,11 @@ chull_t *get_collmap_chull(PhysGeomList *geomList, unsigned int key)
 get_brushmodel_chull
 ==============
 */
-/*chull_t *get_brushmodel_chull@<eax>(cmodel_t **a1@<edx>, int brushmodel, unsigned int key)
+chull_t *get_brushmodel_chull(cmodel_t **m_avl_key, int brushmodel, unsigned int key)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -622,7 +622,7 @@ chull_t *get_partition_chull(const CollisionAabbTree *tree)
 Phys_FindAndRenderEntityBrushes
 ==============
 */
-void Phys_FindAndRenderEntityBrushes(const vec3_t *pos, int contentmask)
+void Phys_FindAndRenderEntityBrushes(int a1, const vec3_t *pos, int contentmask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -652,7 +652,7 @@ colgeom_debug_renderer_t::visit
 Phys_RenderWorldCollMesh
 ==============
 */
-void Phys_RenderWorldCollMesh(
+void Phys_RenderWorldCollMesh(unsigned int a1, const vec3_t *pos, bool bRenderStaticCollision, bool bRenderBrushes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -662,17 +662,17 @@ void Phys_RenderWorldCollMesh(
 debug_loop
 ==============
 */
-/*void debug_loop(int a1@<ebp>)
+void debug_loop(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 UpdateRigidBody
 ==============
 */
-void UpdateRigidBody(float delta_t)
+void UpdateRigidBody(unsigned int a1, float delta_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -722,29 +722,29 @@ void Phys_DestroyUserData(PhysObjUserData *userData)
 Phys_CreateUserBody
 ==============
 */
-/*PhysObjUserData *Phys_CreateUserBody@<eax>(
+PhysObjUserData *Phys_CreateUserBody(int a1, vec3_t *position, const int id, PhysicsGeomType geomType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 Phys_CreateBodyFromState
 ==============
 */
-/*rigid_body **Phys_CreateBodyFromState@<eax>(
+rigid_body **Phys_CreateBodyFromState(unsigned int a1, const BodyState *state, gjk_geom_list_t *gjk_geom_list)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 Phys_ObjCreateAxis
 ==============
 */
-int Phys_ObjCreateAxis(
+int Phys_ObjCreateAxis(const vec3_t *position, const vec3_t *axis, const vec3_t *velocity, const PhysPreset *physPreset, gjk_geom_list_t *gjk_geom_list, int id, const bool do_collision_test, int owner, PhysicsOwnerType owner_type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -755,7 +755,7 @@ int Phys_ObjCreateAxis(
 Phys_ObjCreate
 ==============
 */
-int Phys_ObjCreate(
+int Phys_ObjCreate(const vec3_t *position, const vec4_t *quat, const vec3_t *velocity, const PhysPreset *physPreset, gjk_geom_list_t *gjk_geom_list, const vec3_t *do_collision_test, int id, int owner, PhysicsOwnerType owner_type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

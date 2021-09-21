@@ -155,7 +155,7 @@ char AssertNotify(int type, AssertOccurance occurance)
 Assert_BuildAssertMessageWithStack
 ==============
 */
-int Assert_BuildAssertMessageWithStack(
+int Assert_BuildAssertMessageWithStack(const char *expr, const char *extra, const char *filename, int line, int type, int messageLen, char *message)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -166,11 +166,9 @@ int Assert_BuildAssertMessageWithStack(
 IsDebuggerConnected
 ==============
 */
-
+BOOL IsDebuggerConnected()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return IsDebuggerPresent();
 }
 
 /*

@@ -32,7 +32,7 @@ void SV_SetGameEndTime(int gameEndTime);
 bool SV_SetBrushModel(gentity_t *ent);
 BOOL SV_inSnapshot(const vec3_t *origin, int iEntityNum);
 void SV_GetServerinfo(char *buffer, int bufferSize);
-void SV_LocateGameData(;
+void SV_LocateGameData(gentity_t *gEnts, int numGEntities, int sizeofGEntity_t, playerState_s *clients, int sizeofGameClient, actor_t *gameActors, int sizeofGameActors);
 void SV_GetUsercmd(ClientNum_t clientNum, usercmd_s *cmd);
 void *SV_AllocXModelPrecache(int size);
 void *SV_AllocXModelPrecacheColl(int size);
@@ -74,7 +74,7 @@ void SV_ShutdownGameProgs();
 
 //t6/code/src_noserver/server/sv_main.cpp
 void SV_MatchEnd();
-void SVC_Info(;
+void SVC_Info(netadr_t from, const char *challengeResponse, const char *hostName, const char *mapName, const char *gameType, int privateClientCount, int clientCount);
 void SVC_Info(netadr_t from);
 char SVC_Info(netadr_t from);
 
@@ -89,12 +89,12 @@ void SV_MigrationInit();
 netadr_t *ClientRemoteAddr(const ClientNum_t clientNum);
 bool IsClientConnected(const ClientNum_t clientNum);
 bool SendToClient(const ClientNum_t clientNum, const unsigned __int8 *data, int len);
-void SendStartMessage(const ClientNum_t clientNum);
+;
 void CreateBlock(const int blockNum, Block *block);
 bool SendBlock(const ClientNum_t clientNum, Block *block);
 void SendSave();
 void SendMigrateTo(const ClientNum_t clientNum);
-void SendHeader();
+void SendHeader(char *a1);
 void PickNewHost();
 int SV_GetMigrationCount();
 void SV_MigrationStart(const char *reason);
@@ -113,8 +113,8 @@ char SV_MigrationPacket(const char *cmd, netadr_t from, msg_t *msg);
 void SV_MigrationEnd();
 
 //t6/code/src_noserver/server/sv_snapshot.cpp
-void SV_EmitPacketClients(;
-void SV_EmitPacketActors(;
+void SV_EmitPacketClients(SnapshotInfo_s *snapInfo, const int from_num_clients, const int from_first_client, const int to_num_clients, const int to_first_client, msg_t *msg);
+void SV_EmitPacketActors(SnapshotInfo_s *snapInfo, const int from_num_actors, const int from_first_actor, const int to_num_actors, const int to_first_actor, msg_t *msg);
 void SV_UpdateServerCommandsToClient(client_t *client, msg_t *msg);
 void SV_UpdateServerCommandsToClient_PreventOverflow(client_t *client, msg_t *msg, int iMsgSize);
 void SV_PrintServerCommandsForClient(client_t *client);
@@ -131,11 +131,11 @@ void SV_GetServerStaticHeader();
 //t6/code/src_noserver/server/sv_snapshot_stats.cpp
 int SV_AddModifiedStatsWithinOffset(ClientNum_t clientNum, int startOffset, int *endOffset, msg_t *msg);
 void SV_StatSign_Init();
-void SV_CalcStatsHash(;
+void SV_CalcStatsHash(unsigned int rankxp, unsigned int plevel, unsigned __int64 xuid, unsigned __int8 (*hash)[24], unsigned int *hashSize);
 unsigned __int8 (*getCachedStatsHashForClient(client_t *client))[24];
 signedStatsHash_t *getCachedSignedStatsHashForClient(client_t *client);
 char SV_StatSign_SetCheckSumForClient(client_t *client);
-void actionOnBadStats(;
+void actionOnBadStats(client_t *client, const unsigned __int64 clientXUID, const dvar_t *dvar, const char *bbstring);
 void SV_SignedStats_Breadcrumb(client_t *client);
 ;
 void SV_AddModifiedStats(ClientNum_t clientNum);
@@ -147,14 +147,14 @@ void SV_TraceCapsuleToEntity(const moveclip_t *clip, svEntity_s *check, trace_t 
 void SV_TracePointToEntity(const pointtrace_t *clip, svEntity_s *check, trace_t *trace);
 int SV_SightTraceCapsuleToEntity(const sightclip_t *clip, int entnum);
 void SV_SetupIgnoreEntParams(IgnoreEntParams *ignoreEntParams, int baseEntity);
-BOOL SV_SightTraceCapsule(;
+BOOL SV_SightTraceCapsule(int *hitNum, const vec3_t *start, const vec3_t *mins, const vec3_t *maxs, const vec3_t *end, col_context_t *context);
 BOOL SV_SightTracePoint(int *hitNum, const vec3_t *start, const vec3_t *end, col_context_t *context);
 int SV_PointContents(const vec3_t *p, int passEntityNum, int contentmask);
 ;
 ;
 ;
-void SV_TraceCapsule(;
-void G_TraceCapsule(;
-void G_LocationalTrace(;
-void G_LocationalTraceAllowChildren(;
+void SV_TraceCapsule(int a1, trace_t *results, const vec3_t *start, const vec3_t *mins, const vec3_t *maxs, const vec3_t *end, col_context_t *context);
+void G_TraceCapsule(trace_t *results, const vec3_t *start, const vec3_t *mins, const vec3_t *maxs, const vec3_t *end, int passEntityNum, int contentmask, col_context_t *context);
+void G_LocationalTrace(trace_t *results, const vec3_t *start, const vec3_t *end, int passEntityNum, int contentmask, unsigned __int8 *priorityMap, int (*collide_entity_func)(int));
+void G_LocationalTraceAllowChildren(trace_t *results, const vec3_t *start, const vec3_t *end, int passEntityNum, int contentmask, unsigned __int8 *priorityMap);
 

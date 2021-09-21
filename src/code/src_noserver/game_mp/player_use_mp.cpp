@@ -113,7 +113,7 @@ void Player_SetTurretDropHint(gentity_t *ent)
 Player_UpdateLookAtEntityTrace
 ==============
 */
-gentity_t *Player_UpdateLookAtEntityTrace(
+gentity_t *Player_UpdateLookAtEntityTrace(trace_t *trace, vec3_t *start, vec3_t *end, int entNum, int contentMask, unsigned __int8 *priorityMap, vec3_t *forward)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -144,10 +144,10 @@ void Player_UpdateActivate(gentity_t *ent)
 Player_UpdateLookAtEntity
 ==============
 */
-/*void Player_UpdateLookAtEntity(vec3_t *a2@<edi>, gentity_t *ent)
+void Player_UpdateLookAtEntity(unsigned int a1, vec3_t *a2, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

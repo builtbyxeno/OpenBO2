@@ -108,7 +108,7 @@ void Avoidance_DebugRender()
 CalcStaticORCAs
 ==============
 */
-void CalcStaticORCAs(Avoid *curr, float invT, OrcaPlane *orcas, int *orcaCount)
+void CalcStaticORCAs(int a1, Avoid *curr, float invT, OrcaPlane *orcas, int *orcaCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -118,17 +118,17 @@ void CalcStaticORCAs(Avoid *curr, float invT, OrcaPlane *orcas, int *orcaCount)
 AvoidUpdateOne
 ==============
 */
-/*void AvoidUpdateOne(float a1@<edi>, Avoid *curr, Avoid **inRange, int inRangeCount)
+void AvoidUpdateOne(float curr, Avoid *a2, Avoid **inRange, int inRangeCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 Avoid_UpdateGoal
 ==============
 */
-void Avoid_UpdateGoal(
+void Avoid_UpdateGoal(int index, const float dt, const vec3_t *position, const vec3_t *vel, vec3_t *goalPos, float *speed, int team)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

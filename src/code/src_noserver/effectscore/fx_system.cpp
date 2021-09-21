@@ -90,7 +90,7 @@ void FX_RunGarbageCollection_FreeSpotLight(const FxSystem *system, unsigned __in
 FX_RingBufferAllocate
 ==============
 */
-char FX_RingBufferAllocate(
+char FX_RingBufferAllocate(volatile int *firstFree, const volatile int *firstActive, int bufferCapacity, int *outAllocIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -132,7 +132,7 @@ void FX_SetEffectRandomSeed(FxEffect *effect, const FxEffectDef *remoteDef)
 FX_SpawnEffect_AllocSpotLightEffect
 ==============
 */
-bool FX_SpawnEffect_AllocSpotLightEffect(
+bool FX_SpawnEffect_AllocSpotLightEffect(const FxSystem *system, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -194,7 +194,7 @@ void FX_AddRefToOwnerEffect(const FxSystem *system, unsigned int owner, FxEffect
 FX_InitEffectGroundEntity
 ==============
 */
-void FX_InitEffectGroundEntity(
+void FX_InitEffectGroundEntity(const FxSystem *system, FxEffect *effect, const vec3_t *origin, const vec3_t *axis, int groundEntityNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -278,7 +278,7 @@ void FX_RandomlyRotateAxis(const vec3_t *axisIn, int randomSeed, vec3_t *axisOut
 FX_SpawnRunner
 ==============
 */
-void FX_SpawnRunner(
+void FX_SpawnRunner(const FxSystem *system, FxEffect *effect, const FxElemDef *elemDef, const FxSpatialFrame *effectFrameWhenPlayed, int randomSeed, int msecWhenPlayed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -288,7 +288,7 @@ void FX_SpawnRunner(
 FX_GetOriginForElem
 ==============
 */
-void FX_GetOriginForElem(
+void FX_GetOriginForElem(FxEffect *effect, const FxElemDef *elemDef, const FxSpatialFrame *effectFrameWhenPlayed, int randomSeed, vec3_t *outOrigin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -298,7 +298,7 @@ void FX_GetOriginForElem(
 FX_SpawnSound
 ==============
 */
-void FX_SpawnSound(
+void FX_SpawnSound(const FxSystem *system, FxEffect *effect, const FxElemDef *elemDef, const FxSpatialFrame *effectFrameWhenPlayed, int randomSeed, int msecWhenPlayed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -455,7 +455,7 @@ void FX_SpawnEffect_AllocTrails(const FxSystem *system, FxEffect *effect, FxEffe
 FX_SpawnEffect
 ==============
 */
-unsigned int FX_SpawnEffect(
+unsigned int FX_SpawnEffect(float system, const FxSystem *a2, const FxEffectDef *remoteDef, int msecBegin, const vec3_t *origin, const vec3_t *axis, int dobjHandle, int boneIndex, int runnerSortOrder, unsigned int owner, unsigned int markEntnum, const orientation_t *boneOffset, bool markViewmodel, unsigned int preAllocatedUniqueHandle, int groundEntityNum, float primaryLightFraction, int lightingOriginOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -476,18 +476,18 @@ void FX_WaitForFxSpawnWorkers(LocalClientNum_t localClientNum)
 FX_SpawnOrientedEffect
 ==============
 */
-unsigned int FX_SpawnOrientedEffect(
+/*unsigned int FX_SpawnOrientedEffect@<eax>(char *a1@<edi>, LocalClientNum_t localClientNum, const FxEffectDef *def, int msecBegin, const vec3_t *origin, const vec3_t *axis, unsigned int markEntnum, unsigned int markViewmodel, int groundEntity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
 FX_PlayOrientedEffectWithMarkEntity
 ==============
 */
-unsigned int FX_PlayOrientedEffectWithMarkEntity(
+unsigned int FX_PlayOrientedEffectWithMarkEntity(LocalClientNum_t localClientNum, const FxEffectDef *def, int startMsec, const vec3_t *origin, const vec3_t *axis, unsigned int markEntnum, int groundEntity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -498,7 +498,7 @@ unsigned int FX_PlayOrientedEffectWithMarkEntity(
 FX_PlayOrientedEffectWithMarkViewmodel
 ==============
 */
-unsigned int FX_PlayOrientedEffectWithMarkViewmodel(
+unsigned int FX_PlayOrientedEffectWithMarkViewmodel(LocalClientNum_t localClientNum, const FxEffectDef *def, int startMsec, const vec3_t *origin, const vec3_t *axis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -509,7 +509,7 @@ unsigned int FX_PlayOrientedEffectWithMarkViewmodel(
 FX_PlayOrientedEffect
 ==============
 */
-unsigned int FX_PlayOrientedEffect(
+unsigned int FX_PlayOrientedEffect(LocalClientNum_t localClientNum, const FxEffectDef *def, int startMsec, const vec3_t *origin, const vec3_t *axis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -520,7 +520,7 @@ unsigned int FX_PlayOrientedEffect(
 FX_PlayOrientedEffectWithLightingParams
 ==============
 */
-unsigned int FX_PlayOrientedEffectWithLightingParams(
+unsigned int FX_PlayOrientedEffectWithLightingParams(LocalClientNum_t localClientNum, const FxEffectDef *def, int startMsec, const vec3_t *origin, const vec3_t *axis, float primaryLightFraction)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -542,7 +542,7 @@ bool FX_NeedsBoltUpdate(const FxEffectDef *def)
 FX_SpawnBoltedEffect
 ==============
 */
-unsigned int FX_SpawnBoltedEffect(
+unsigned int FX_SpawnBoltedEffect(LocalClientNum_t localClientNum, const FxEffectDef *def, int msecBegin, int dobjHandle, int boneIndex, const vec3_t *origin, const vec3_t *axis, int groundEntity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -553,7 +553,7 @@ unsigned int FX_SpawnBoltedEffect(
 FX_SpawnBoltedEffect
 ==============
 */
-unsigned int FX_SpawnBoltedEffect(
+unsigned int FX_SpawnBoltedEffect(LocalClientNum_t localClientNum, const FxEffectDef *def, int msecBegin, int dobjHandle, int boneIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -564,7 +564,7 @@ unsigned int FX_SpawnBoltedEffect(
 FX_SpawnBoltedEffectBoltRelative
 ==============
 */
-unsigned int FX_SpawnBoltedEffectBoltRelative(
+unsigned int FX_SpawnBoltedEffectBoltRelative(LocalClientNum_t localClientNum, const FxEffectDef *def, int msecBegin, int dobjHandle, int boneIndex, const vec3_t *origin, const vec3_t *axis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -575,7 +575,7 @@ unsigned int FX_SpawnBoltedEffectBoltRelative(
 FX_PlayBoltedEffect_DynEnt
 ==============
 */
-unsigned int FX_PlayBoltedEffect_DynEnt(
+unsigned int FX_PlayBoltedEffect_DynEnt(LocalClientNum_t localClientNum, const FxEffectDef *def, int startMsec, int absDynEntId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -586,7 +586,7 @@ unsigned int FX_PlayBoltedEffect_DynEnt(
 FX_PlayBoltedEffect
 ==============
 */
-unsigned int FX_PlayBoltedEffect(
+unsigned int FX_PlayBoltedEffect(LocalClientNum_t localClientNum, const FxEffectDef *def, int startMsec, int dobjHandle, int boneIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -597,7 +597,7 @@ unsigned int FX_PlayBoltedEffect(
 FX_PlayBoltedEffect
 ==============
 */
-unsigned int FX_PlayBoltedEffect(
+unsigned int FX_PlayBoltedEffect(LocalClientNum_t localClientNum, const FxEffectDef *def, int startMsec, int dobjHandle, int boneIndex, const vec3_t *origin, const vec3_t *axis, int groundEntity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -608,7 +608,7 @@ unsigned int FX_PlayBoltedEffect(
 FX_PlayBoltedEffectBoltRelative
 ==============
 */
-unsigned int FX_PlayBoltedEffectBoltRelative(
+unsigned int FX_PlayBoltedEffectBoltRelative(LocalClientNum_t localClientNum, const FxEffectDef *def, int startMsec, int dobjHandle, int boneIndex, const vec3_t *origin, const vec3_t *axis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -619,7 +619,7 @@ unsigned int FX_PlayBoltedEffectBoltRelative(
 FX_GetTrailHandleList_Last
 ==============
 */
-void FX_GetTrailHandleList_Last(
+void FX_GetTrailHandleList_Last(FxSystem *system, FxEffect *effect, unsigned __int16 *outHandleList, int *outTrailCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -650,7 +650,7 @@ bool FX_SpawnModelPhysics(int randomSeed, FxElem *elem)
 FX_SpawnTrailElem_NoCull
 ==============
 */
-void FX_SpawnTrailElem_NoCull(
+void FX_SpawnTrailElem_NoCull(const FxSystem *system, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef, FxTrail *trail, const FxElemDef *trailElemDef, const FxSpatialFrame *effectFrameWhenPlayed, int msecWhenPlayed, float distanceWhenPlayed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -660,7 +660,7 @@ void FX_SpawnTrailElem_NoCull(
 FX_SpawnTrailElem_Cull
 ==============
 */
-void FX_SpawnTrailElem_Cull(
+void FX_SpawnTrailElem_Cull(const FxSystem *system, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef, FxTrail *trail, const FxElemDef *trailElemDef, const FxSpatialFrame *effectFrameWhenPlayed, int msecWhenPlayed, float distanceWhenPlayed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -680,7 +680,7 @@ void FX_SpawnSpotLightElem(const FxSystem *system, FxElem *elem)
 FX_FreeTrailElem
 ==============
 */
-void FX_FreeTrailElem(
+void FX_FreeTrailElem(const FxSystem *system, unsigned __int16 trailElemHandle, FxEffect *effect, FxEffect *remoteEffect, FxTrail *trail)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -720,7 +720,7 @@ void FX_StopEffect(const FxSystem *system, FxEffect *effect)
 FX_RemoveAllEffectElems
 ==============
 */
-void FX_RemoveAllEffectElems(
+void FX_RemoveAllEffectElems(const FxSystem *system, FxEffect *effect, FxEffect *localEffect, const FxEffectDef *effectDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -730,7 +730,7 @@ void FX_RemoveAllEffectElems(
 FX_KillEffect
 ==============
 */
-void FX_KillEffect(
+void FX_KillEffect(const FxSystem *system, FxEffect *effect, FxEffect *localEffect, const FxEffectDef *effectDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -790,7 +790,7 @@ void FX_ThroughWithEffect(const FxSystem *system, FxEffect *effect, bool forceki
 FX_FreeElem
 ==============
 */
-void FX_FreeElem(
+void FX_FreeElem(const FxSystem *system, unsigned __int16 elemHandle, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef, unsigned int elemClass)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -810,9 +810,11 @@ void FX_ThroughWithEffect(LocalClientNum_t localClientNum, unsigned int hEffect,
 FX_SpawnElem
 ==============
 */
-void FX_SpawnElem(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

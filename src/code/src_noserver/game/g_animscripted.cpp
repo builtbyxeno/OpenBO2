@@ -6,7 +6,7 @@
 CalcDeltaOriginAndAngles
 ==============
 */
-void CalcDeltaOriginAndAngles(
+void CalcDeltaOriginAndAngles(DObj *obj, unsigned int anim, const vec3_t *matrix, vec3_t *origin, vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -16,7 +16,7 @@ void CalcDeltaOriginAndAngles(
 G_AnimScripted_ClearAnimWeights
 ==============
 */
-void G_AnimScripted_ClearAnimWeights(
+void G_AnimScripted_ClearAnimWeights(gentity_t *ent, DObj *obj, XAnimTree_s *pAnimTree, unsigned int root, actor_t *pActor, float blendTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -26,7 +26,7 @@ void G_AnimScripted_ClearAnimWeights(
 G_ReduceOriginError
 ==============
 */
-char G_ReduceOriginError(
+char G_ReduceOriginError(vec3_t *origin, vec3_t *originError, const vec3_t *originErrorReduction, const int lerpTime, const int startTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -91,7 +91,7 @@ G_Animscripted_DeathPlant
 G_Animscripted
 ==============
 */
-void G_Animscripted(
+void G_Animscripted(gentity_t *ent, const vec3_t *origin, const vec3_t *angles, unsigned int anim, unsigned int root, unsigned int notifyName, unsigned __int8 animMode, const float animRate, bool skipRestart, float goalTime, float lerpTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

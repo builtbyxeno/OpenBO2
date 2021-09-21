@@ -90,11 +90,11 @@ bool Actor_TeamMoveCheckDontDodgeSentient(actor_t *self, sentient_t *other)
 Actor_TeamMoveShouldTryDodgeSentient
 ==============
 */
-/*char Actor_TeamMoveShouldTryDodgeSentient@<al>(
+char Actor_TeamMoveShouldTryDodgeSentient(sentient_t *a1, actor_t *a2, team_move_context_t *context, team_move_other_context_t *context_other)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -135,7 +135,7 @@ ai_teammove_t Actor_TeamMoveNoDodge(team_move_context_t *context, ai_teammove_t 
 Actor_TeamMoveInitializeContext
 ==============
 */
-void Actor_TeamMoveInitializeContext(
+void Actor_TeamMoveInitializeContext(actor_t *self, bool bUseInterval, bool bAllowGoalPileUp, team_move_context_t *context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -188,7 +188,7 @@ BOOL Actor_WaitBeforeMoveStart(actor_t *self, team_move_context_t *context, vec2
 Actor_GetTeamMoveStatus
 ==============
 */
-ai_teammove_t Actor_GetTeamMoveStatus(
+ai_teammove_t Actor_GetTeamMoveStatus(char *a1, actor_t *bAllowGoalPileUp, bool wasMoving, team_move_context_t *bAllowGoalPileUpa, bool wasMovinga)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	ai_teammove_t tmp;
@@ -200,7 +200,7 @@ ai_teammove_t Actor_GetTeamMoveStatus(
 Actor_MoveAlongPathWithTeam
 ==============
 */
-void Actor_MoveAlongPathWithTeam(
+void Actor_MoveAlongPathWithTeam(actor_t *self, AI_MOVE_MODE moveMode, actor_t *bUseInterval, team_move_context_t *bAllowGoalPileUp)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -49,11 +49,11 @@ int Expression_ParseOperatorToken(const char *token)
 Expression_HashOperand
 ==============
 */
-/*expressionEntry *Expression_HashOperand@<eax>(int a1@<edx>, ExpressionAllocState *a2@<ecx>, const char *str)
+expressionEntry *Expression_HashOperand(int a1, ExpressionAllocState *a2, const char *str)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -71,7 +71,7 @@ expressionRpn *MakeRPN(expressionEntry *entry, int *length)
 Expression_Parse
 ==============
 */
-char Expression_Parse(
+char Expression_Parse(const char **text, ExpressionStatement *statement, void *compileBuffer, int compileBufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

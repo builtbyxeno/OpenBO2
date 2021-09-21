@@ -16,7 +16,7 @@ void R_InitDrawSurfListInfo(GfxDrawSurfListInfo *info)
 R_EmitDrawSurfList
 ==============
 */
-void R_EmitDrawSurfList(
+void R_EmitDrawSurfList(float drawSurfs, const GfxDrawSurf *a2, unsigned int drawSurfCount, GfxBackEndData *data)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -26,7 +26,7 @@ void R_EmitDrawSurfList(
 R_GetKeyCount
 ==============
 */
-unsigned int R_GetKeyCount(
+unsigned int R_GetKeyCount(const GfxDrawSurf *drawSurfs, unsigned int drawSurfCount, unsigned int primarySortKey)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -37,7 +37,7 @@ unsigned int R_GetKeyCount(
 R_MergeAndEmitDrawSurfLists
 ==============
 */
-void R_MergeAndEmitDrawSurfLists(
+void R_MergeAndEmitDrawSurfLists(float firstStage, unsigned int a2, unsigned int stageCount, GfxBackEndData *data)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

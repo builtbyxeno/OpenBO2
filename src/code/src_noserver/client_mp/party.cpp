@@ -114,7 +114,7 @@ int Live_GetDLC0HackContentFlag()
 Party_MemberMissingMapPacks
 ==============
 */
-int Party_MemberMissingMapPacks(
+int Party_MemberMissingMapPacks(const PartyData_s *party, const int member, const int neededPacks, int *mapPackIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -360,7 +360,7 @@ int Party_HowManyReadiesNeeded(PartyData_s *party)
 Party_GetPlayerInfoFromMutePlayerList
 ==============
 */
-s_mutePlayerInfo *Party_GetPlayerInfoFromMutePlayerList(
+s_mutePlayerInfo *Party_GetPlayerInfoFromMutePlayerList(unsigned __int64 playerXuid, s_mutePlayerInfo **previousPlayer, s_mutePlayerInfo **previousToPreviousPlayer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -751,7 +751,7 @@ void Party_SetQoSProgress(PartyData_s *party, float percent, int successfulProbe
 PartyClient_SwitchToLobby
 ==============
 */
-void PartyClient_SwitchToLobby(
+void PartyClient_SwitchToLobby(ControllerIndex_t localControllerIndex, int menu, bool resetDvars, bool runRules, char *primaryCFG, char *secondaryCFG)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -761,9 +761,11 @@ void PartyClient_SwitchToLobby(
 PartyClient_SwitchLobbiesIfNeeded
 ==============
 */
-void PartyClient_SwitchLobbiesIfNeeded(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -824,7 +826,7 @@ BOOL Party_ShouldUseLobbyMerging(PartyData_s *party)
 PartyClient_SendPartyStateAck
 ==============
 */
-bool PartyClient_SendPartyStateAck(
+bool PartyClient_SendPartyStateAck(PartyData_s *party, LocalClientNum_t localClientNum, ControllerIndex_t localControllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -835,7 +837,7 @@ bool PartyClient_SendPartyStateAck(
 PartyClient_PreParsePartyState
 ==============
 */
-void PartyClient_PreParsePartyState(
+void PartyClient_PreParsePartyState(PartyData_s *party, ControllerIndex_t localControllerIndex, msg_t *msg, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -964,7 +966,7 @@ void PartyClient_GenerateHeartBeatAckMessage(PartyData_s *party, msg_t *msg)
 PartyClient_HandleReconnect
 ==============
 */
-void PartyClient_HandleReconnect(
+void PartyClient_HandleReconnect(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1004,7 +1006,7 @@ void Party_SendFinishedLoadingDemoMsg(PartyData_s *party)
 PartyClient_HandleStopDemoMsg
 ==============
 */
-void PartyClient_HandleStopDemoMsg(
+void PartyClient_HandleStopDemoMsg(PartyData_s *party, const ControllerIndex_t localControllerIndex, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1014,7 +1016,7 @@ void PartyClient_HandleStopDemoMsg(
 PartyClient_HandleDemoHeartbeatMsg
 ==============
 */
-void PartyClient_HandleDemoHeartbeatMsg(
+void PartyClient_HandleDemoHeartbeatMsg(PartyData_s *party, const ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1034,7 +1036,7 @@ void Party_HandleLeagueStatsRequest(PartyData_s *party, const ControllerIndex_t 
 Party_HandleLeagueOutcomes
 ==============
 */
-void Party_HandleLeagueOutcomes(
+void Party_HandleLeagueOutcomes(PartyData_s *party, const ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1054,7 +1056,7 @@ void PartyClient_HandleChallengeAck(PartyData_s *party, ControllerIndex_t localC
 Party_HandlePacket
 ==============
 */
-BOOL Party_HandlePacket(
+BOOL Party_HandlePacket(PartyData_s *party, const char *c, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1151,7 +1153,7 @@ BOOL Party_IsPostGameLobby(PartyData_s *party)
 Party_GetAffinityBits
 ==============
 */
-void Party_GetAffinityBits(
+void Party_GetAffinityBits(PartyData_s *party, const ControllerIndex_t localControllerIndex, unsigned int *affinityBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1161,7 +1163,7 @@ void Party_GetAffinityBits(
 Party_UpdateLocalClient
 ==============
 */
-void Party_UpdateLocalClient(
+void Party_UpdateLocalClient(PartyData_s *party, const ControllerIndex_t localControllerIndex, int memberIndex, PartyMember *member)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1364,7 +1366,7 @@ int Live_CurrentDesiredLobbyMapPackFlags(const int playlistId)
 Party_PartyMembersMissingMapPack
 ==============
 */
-char Party_PartyMembersMissingMapPack(
+char Party_PartyMembersMissingMapPack(PartyData_s *party, int neededPacks, int *playerSlot, int *mapPackIndex, bool requireAtleastTwoPeople)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1477,7 +1479,7 @@ void PartyClient_RequestLocalJoin(PartyData_s *party, int partyId, ControllerInd
 PartyClient_JoinLocalClientsToParty_Internal
 ==============
 */
-void PartyClient_JoinLocalClientsToParty_Internal(
+void PartyClient_JoinLocalClientsToParty_Internal(PartyData_s *party, netadr_t partyHost, unsigned int challenge)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1498,9 +1500,11 @@ bool Party_IsChangeTeamAllowed(PartyData_s *party, team_t team, bool isSplitscre
 Party_UpdateTeamSwitch
 ==============
 */
-void Party_UpdateTeamSwitch(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1508,7 +1512,7 @@ void Party_UpdateTeamSwitch(
 Party_MemberProfileChanged
 ==============
 */
-void Party_MemberProfileChanged(
+void Party_MemberProfileChanged(PartyData_s *party, const ControllerIndex_t localControllerIndex, ClientNum_t memberIdx)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1601,7 +1605,7 @@ void PartyClient_CleanUpInviteSessions(PartyData_s *party)
 PartyClient_DisconnectFromHost
 ==============
 */
-void PartyClient_DisconnectFromHost(
+void PartyClient_DisconnectFromHost(PartyData_s *party, ControllerIndex_t localControllerIndex, const char *reason, bool keepPartyTogether, bool createParty)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1621,17 +1625,19 @@ void Party_StopParty(PartyData_s *party, bool keepPartyTogether, bool deleteSess
 Party_StopParty
 ==============
 */
-/*void Party_StopParty(bool a1@<dl>, PartyData_s *a2@<ecx>, PartyData_s *party, bool keepPartyTogether)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 Party_JoinAttemptFailed
 ==============
 */
-void Party_JoinAttemptFailed(
+void Party_JoinAttemptFailed(PartyData_s *party, const ControllerIndex_t localControllerIndex, const char *errorMsg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1674,7 +1680,7 @@ void PartyClient_ParseMemberList(PartyData_s *party, ControllerIndex_t localCont
 PartyClient_SetUpPartyForHost
 ==============
 */
-void PartyClient_SetUpPartyForHost(
+void PartyClient_SetUpPartyForHost(PartyData_s *party, const ControllerIndex_t localControllerIndex, PartyHostDetails *hostInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1684,9 +1690,11 @@ void PartyClient_SetUpPartyForHost(
 PartyClient_HandleBadLeague
 ==============
 */
-void PartyClient_HandleBadLeague(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1704,9 +1712,11 @@ void PartyClient_HandleKicked(PartyData_s *party, const ControllerIndex_t localC
 PartyClient_PartyAwakeMsg
 ==============
 */
-void PartyClient_PartyAwakeMsg(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1714,7 +1724,7 @@ void PartyClient_PartyAwakeMsg(
 PartyClient_LeaderLeftMsg
 ==============
 */
-void PartyClient_LeaderLeftMsg(
+void PartyClient_LeaderLeftMsg(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1744,9 +1754,11 @@ void Party_Init()
 Party_Sleep
 ==============
 */
-void Party_Sleep(PartyData_s *party)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1794,7 +1806,7 @@ void Party_ChoosePreviousPlaylist()
 PartyClient_HostTimedOut
 ==============
 */
-void PartyClient_HostTimedOut(
+void PartyClient_HostTimedOut(PartyData_s *party, ControllerIndex_t localControllerIndex, const char *reason)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1804,9 +1816,11 @@ void PartyClient_HostTimedOut(
 PartyClient_HostTimedOutMidGame
 ==============
 */
-void PartyClient_HostTimedOutMidGame(PartyData_s *party, ControllerIndex_t localControllerIndex)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1814,7 +1828,7 @@ void PartyClient_HostTimedOutMidGame(PartyData_s *party, ControllerIndex_t local
 PartyClient_DoneParsingPartyState
 ==============
 */
-void PartyClient_DoneParsingPartyState(
+void PartyClient_DoneParsingPartyState(PartyData_s *party, ControllerIndex_t localControllerIndex, msg_t *msg, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1844,7 +1858,7 @@ void PartyClient_AllLocalClientsSendHeartbeatAck(PartyData_s *party, ControllerI
 PartyClient_HandleHeartbeat
 ==============
 */
-void PartyClient_HandleHeartbeat(
+void PartyClient_HandleHeartbeat(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1854,7 +1868,7 @@ void PartyClient_HandleHeartbeat(
 PartyClient_HandleNewLobby
 ==============
 */
-void PartyClient_HandleNewLobby(
+void PartyClient_HandleNewLobby(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1864,9 +1878,11 @@ void PartyClient_HandleNewLobby(
 PartyClient_HandleEndParty
 ==============
 */
-void PartyClient_HandleEndParty(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1874,9 +1890,11 @@ void PartyClient_HandleEndParty(
 PartyClient_HandleEndPartyKeepPartyTogether
 ==============
 */
-void PartyClient_HandleEndPartyKeepPartyTogether(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1884,10 +1902,11 @@ void PartyClient_HandleEndPartyKeepPartyTogether(
 PartyClient_ParsePartyStateMsg
 ==============
 */
-bool PartyClient_ParsePartyStateMsg(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1895,9 +1914,11 @@ bool PartyClient_ParsePartyStateMsg(
 PartyClient_HandlePartyStateMsg
 ==============
 */
-void PartyClient_HandlePartyStateMsg(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1915,7 +1936,7 @@ void PartyClient_HandleGoMsg(PartyData_s *party, const ControllerIndex_t localCo
 PartyClient_HandlePlayDemoMsg
 ==============
 */
-void PartyClient_HandlePlayDemoMsg(
+void PartyClient_HandlePlayDemoMsg(PartyData_s *party, const ControllerIndex_t localControllerIndex, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

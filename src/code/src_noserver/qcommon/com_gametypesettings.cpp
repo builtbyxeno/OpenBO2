@@ -211,7 +211,7 @@ void Com_GametypeSettings_UploadFailure(const ControllerIndex_t controllerIndex)
 Com_GametypeSetting_SetMetada
 ==============
 */
-bool Com_GametypeSetting_SetMetada(
+bool Com_GametypeSetting_SetMetada(const ControllerIndex_t controllerIndex, unsigned __int8 *metaData, int metaDataSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -282,10 +282,10 @@ void Com_GametypeSettings_SetDescription(const char *description)
 Com_GametypeSettings_SetGametype
 ==============
 */
-void Com_GametypeSettings_SetGametype(const char *gametype, bool loadDefaultSettings)
+/*void Com_GametypeSettings_SetGametype(const char *a1@<edx>, const dvar_t *a2@<ecx>, char *a3@<edi>, const char *gametype, bool loadDefaultSettings)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -322,7 +322,7 @@ void Com_GametypeSettings_RestrictAttachment_f()
 Com_GametypeSetting_DownloadSuccess
 ==============
 */
-void Com_GametypeSetting_DownloadSuccess(
+void Com_GametypeSetting_DownloadSuccess(const ControllerIndex_t controllerIndex, dwFileShareReadFileTask *task)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -332,7 +332,7 @@ void Com_GametypeSetting_DownloadSuccess(
 Com_GametypeSetting_Download
 ==============
 */
-void Com_GametypeSetting_Download(
+void Com_GametypeSetting_Download(const ControllerIndex_t controllerIndex, unsigned __int64 fileID, const char *gameType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -342,9 +342,11 @@ void Com_GametypeSetting_Download(
 Com_GametypeSettings_Download_f
 ==============
 */
-void Com_GametypeSettings_Download_f()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

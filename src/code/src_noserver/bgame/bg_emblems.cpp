@@ -367,7 +367,7 @@ void BG_EmblemsSetDefaultForLevel(int minlevel, int maxlevel, CompositeEmblemLay
 BG_EmblemsGenerateDefault
 ==============
 */
-void BG_EmblemsGenerateDefault(
+void BG_EmblemsGenerateDefault(ControllerIndex_t controllerIndex, int level, CompositeEmblemLayer *layers, int layerCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -432,7 +432,7 @@ bool BG_EmblemsIsBackgroundClassified(ControllerIndex_t controllerIndex, __int16
 BG_EmblemsGetResults
 ==============
 */
-ResultCache *BG_EmblemsGetResults(
+ResultCache *BG_EmblemsGetResults(ControllerIndex_t controllerIndex, unsigned __int16 include, unsigned __int16 exclude)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -443,7 +443,7 @@ ResultCache *BG_EmblemsGetResults(
 BG_EmblemsGetIconCount
 ==============
 */
-int BG_EmblemsGetIconCount(
+int BG_EmblemsGetIconCount(ControllerIndex_t controllerIndex, unsigned __int16 include, unsigned __int16 exclude)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -454,7 +454,7 @@ int BG_EmblemsGetIconCount(
 BG_EmblemsGetIconID
 ==============
 */
-__int16 BG_EmblemsGetIconID(
+__int16 BG_EmblemsGetIconID(ControllerIndex_t controllerIndex, int index, unsigned __int16 include, unsigned __int16 exclude)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	__int16 tmp;

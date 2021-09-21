@@ -6,7 +6,7 @@
 InterpolateAnglesSmooth
 ==============
 */
-void InterpolateAnglesSmooth(
+void InterpolateAnglesSmooth(vec3_t *curAngles, const vec3_t *initialAngles, const vec3_t *targetAngles, float t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -77,7 +77,7 @@ void CG_UpdateSoundFutz(LocalClientNum_t localClientNum, CameraMode newMode)
 CG_UpdateCameraTransition
 ==============
 */
-void CG_UpdateCameraTransition(
+void CG_UpdateCameraTransition(LocalClientNum_t localClientNum, CameraMode oldMode, CameraMode newMode, bool useTagCamera)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -98,9 +98,11 @@ int CG_RemapVehicleButton(LocalClientNum_t localClientNum, int *twokeys, int but
 CG_UpdateVehicleBindings
 ==============
 */
-void CG_UpdateVehicleBindings(LocalClientNum_t localClientNum)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -163,7 +165,7 @@ char ShouldDoCameraTransition(cg_t *cgameGlob, CameraMode prevMode, CameraMode n
 ShouldDoThirdPersonVehicle
 ==============
 */
-char ShouldDoThirdPersonVehicle(
+char ShouldDoThirdPersonVehicle(LocalClientNum_t localClientNum, const cg_t *cgameGlob, const playerState_s *ps)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -219,7 +221,7 @@ bool CG_ShouldDefaultViewFov(LocalClientNum_t localClientNum)
 CG_GetWeaponViewFov
 ==============
 */
-float CG_GetWeaponViewFov(
+float CG_GetWeaponViewFov(LocalClientNum_t localClientNum, const playerState_s *ps, Weapon weapon, float viewFov, bool forWeapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -252,9 +254,11 @@ float CG_GetViewFov(LocalClientNum_t localClientNum, const playerState_s *forWea
 CG_CalcFovInternal
 ==============
 */
-void CG_CalcFovInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -262,9 +266,11 @@ void CG_CalcFovInternal(
 CG_CalcFov
 ==============
 */
-void CG_CalcFov(LocalClientNum_t localClientNum, float fov_x)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -272,7 +278,7 @@ void CG_CalcFov(LocalClientNum_t localClientNum, float fov_x)
 CG_CalculateGunnerOffset_Sway
 ==============
 */
-void CG_CalculateGunnerOffset_Sway(
+void CG_CalculateGunnerOffset_Sway(const vec3_t *playerViewAngles, Weapon weapon, vec3_t *swayViewAngles, vec3_t *swayOffset, vec3_t *swayAngles, float ssSwayScale, int frametime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -355,17 +361,17 @@ void CG_CalcScriptedExtraCamViewValues(LocalClientNum_t localClientNum)
 CG_CalcMissileAngleValues
 ==============
 */
-/*void CG_CalcMissileAngleValues(float a1@<esi>, LocalClientNum_t localClientNum)
+void CG_CalcMissileAngleValues(float localClientNum, LocalClientNum_t a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 CG_Player3rdPersonVehicle_GetPitchOffsetRelativeToADirection
 ==============
 */
-long double CG_Player3rdPersonVehicle_GetPitchOffsetRelativeToADirection(
+long double CG_Player3rdPersonVehicle_GetPitchOffsetRelativeToADirection(const vec3_t *angles, vec3_t *direction)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -376,7 +382,7 @@ long double CG_Player3rdPersonVehicle_GetPitchOffsetRelativeToADirection(
 CG_Player3rdPersonVehicle_GetViewAngles
 ==============
 */
-bool CG_Player3rdPersonVehicle_GetViewAngles(
+bool CG_Player3rdPersonVehicle_GetViewAngles(const cg_t *cgameGlob, const playerState_s *ps, const centity_t *vehicle, const VehicleDef *info, const vec3_t *lookAtPos, vec3_t *angles, bool setPlayerAngles, bool lerpViewBackToForward)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -387,7 +393,7 @@ bool CG_Player3rdPersonVehicle_GetViewAngles(
 CG_Player3rdPersonVehicle_GetLookAtPosition
 ==============
 */
-void CG_Player3rdPersonVehicle_GetLookAtPosition(
+void CG_Player3rdPersonVehicle_GetLookAtPosition(const centity_t *vehicle, const VehicleDef *info, vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -397,7 +403,7 @@ void CG_Player3rdPersonVehicle_GetLookAtPosition(
 CG_Player3rdPersonVehicle_GetDampedSpringDistance
 ==============
 */
-float CG_Player3rdPersonVehicle_GetDampedSpringDistance(
+float CG_Player3rdPersonVehicle_GetDampedSpringDistance(cg_t *cgameGlob, const centity_t *vehicle, const VehicleDef *info, float camDefaultDist)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -470,10 +476,10 @@ void CG_ExtraCamDebug_SaveView(LocalClientNum_t localClientNum)
 CG_CalcFov_ExtraCam
 ==============
 */
-/*void CG_CalcFov_ExtraCam(float a1@<xmm0>, LocalClientNum_t localClientNum)
+void CG_CalcFov_ExtraCam(float localClientNum, LocalClientNum_t a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -543,7 +549,7 @@ BOOL CG_IsUsingMultiExtraCam(LocalClientNum_t localClientNum)
 ExtraCamClientStateRestore::ExtraCamClientStateRestore
 ==============
 */
-/*void __thiscall ExtraCamClientStateRestore::ExtraCamClientStateRestore(
+/*void __thiscall ExtraCamClientStateRestore::ExtraCamClientStateRestore(ExtraCamClientStateRestore *this, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -616,10 +622,10 @@ bool CG_ShouldVehicleCamAutoRecenter(LocalClientNum_t localClientNum, const Vehi
 CG_CalcVehicleViewValues
 ==============
 */
-void CG_CalcVehicleViewValues(LocalClientNum_t localClientNum)
+/*void CG_CalcVehicleViewValues(char *a1@<edi>, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

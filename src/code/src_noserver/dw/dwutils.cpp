@@ -182,7 +182,7 @@ bdTeams *dwGetTeams(ControllerIndex_t controllerIndex)
 dwGetAuthService
 ==============
 */
-bdAuthService *dwGetAuthService(
+bdAuthService *dwGetAuthService(const bdInetAddr authAddr, unsigned __int16 authPort, const unsigned int titleID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

@@ -47,7 +47,7 @@ int BG_WeaponComponentListCountAttachments(const WeaponComponentList *componentL
 BG_WeaponComponentListRemove
 ==============
 */
-void BG_WeaponComponentListRemove(
+void BG_WeaponComponentListRemove(const WeaponComponentList *componentListIn, WeaponComponentList *componentListOut, bool lookingForAttachments)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -57,7 +57,7 @@ void BG_WeaponComponentListRemove(
 BG_WeaponComponentListRemoveAllAttachments
 ==============
 */
-void BG_WeaponComponentListRemoveAllAttachments(
+void BG_WeaponComponentListRemoveAllAttachments(const WeaponComponentList *componentListIn, WeaponComponentList *componentListOut)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -67,7 +67,7 @@ void BG_WeaponComponentListRemoveAllAttachments(
 BG_WeaponComponentListNthAttachment
 ==============
 */
-void BG_WeaponComponentListNthAttachment(
+void BG_WeaponComponentListNthAttachment(const WeaponComponentList *componentListIn, int nth, WeaponComponentList *componentListOut)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -238,7 +238,7 @@ BOOL BG_IsAttachmentUniqueOverridingAnimation(WeaponAttachmentUnique *attachment
 BG_GetAttachmentOverrideChildIndex
 ==============
 */
-int BG_GetAttachmentOverrideChildIndex(
+int BG_GetAttachmentOverrideChildIndex(const Weapon weapon, const WeaponVariantDef *weapVariantDef, int attachmentIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -249,7 +249,7 @@ int BG_GetAttachmentOverrideChildIndex(
 BG_GetAttachmentAnimationOverride_Internal
 ==============
 */
-const char *BG_GetAttachmentAnimationOverride_Internal(
+const char *BG_GetAttachmentAnimationOverride_Internal(const Weapon weapon, const WeaponVariantDef *weapVariantDef, int animType, int attachmentIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -260,10 +260,11 @@ const char *BG_GetAttachmentAnimationOverride_Internal(
 BG_GetAttachmentAnimationFirstRaiseOverride
 ==============
 */
-const char *BG_GetAttachmentAnimationFirstRaiseOverride(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -401,7 +402,7 @@ void BG_GetADSDofStartEnd(const Weapon weapon, float *start, float *end)
 BG_GetOverriddenSound
 ==============
 */
-unsigned int BG_GetOverriddenSound(
+unsigned int BG_GetOverriddenSound(const Weapon weapon, const WeaponVariantDef *weapVariantDef, eAttachmentOverrideSounds soundOverride, const char *defaultSound)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -412,10 +413,11 @@ unsigned int BG_GetOverriddenSound(
 BG_FireSound
 ==============
 */
-unsigned int BG_FireSound(const Weapon weapon)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -423,10 +425,11 @@ unsigned int BG_FireSound(const Weapon weapon)
 BG_FireSoundPlayer
 ==============
 */
-unsigned int BG_FireSoundPlayer(const Weapon weapon)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -434,10 +437,11 @@ unsigned int BG_FireSoundPlayer(const Weapon weapon)
 BG_FireFinalKillcamSound
 ==============
 */
-unsigned int BG_FireFinalKillcamSound(const Weapon weapon)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -445,10 +449,11 @@ unsigned int BG_FireFinalKillcamSound(const Weapon weapon)
 BG_FireFinalKillcamSoundPlayer
 ==============
 */
-unsigned int BG_FireFinalKillcamSoundPlayer(const Weapon weapon)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -456,10 +461,11 @@ unsigned int BG_FireFinalKillcamSoundPlayer(const Weapon weapon)
 BG_FireSoundStart
 ==============
 */
-unsigned int BG_FireSoundStart(const Weapon weapon, bool isPlayer)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -467,7 +473,7 @@ unsigned int BG_FireSoundStart(const Weapon weapon, bool isPlayer)
 BG_GetOverriddenEffect
 ==============
 */
-const FxEffectDef *BG_GetOverriddenEffect(
+const FxEffectDef *BG_GetOverriddenEffect(const Weapon weapon, const WeaponVariantDef *weapVariantDef, eAttachmentOverrideEffects effectOverride, const FxEffectDef *defaultEffect)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -478,10 +484,11 @@ const FxEffectDef *BG_GetOverriddenEffect(
 BG_ViewFlashEffect
 ==============
 */
-const FxEffectDef *BG_ViewFlashEffect(const Weapon weapon)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -489,10 +496,11 @@ const FxEffectDef *BG_ViewFlashEffect(const Weapon weapon)
 BG_WorldFlashEffect
 ==============
 */
-const FxEffectDef *BG_WorldFlashEffect(const Weapon weapon)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -542,7 +550,7 @@ double BG_GetADSZoomOutFrac(const Weapon weapon)
 BG_GetSwaySettings
 ==============
 */
-void BG_GetSwaySettings(
+void BG_GetSwaySettings(const Weapon weapon, float *maxAngle, float *lerpSpeed, float *pitchScale, float *yawScale, float *horizScale, float *vertScale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -552,7 +560,7 @@ void BG_GetSwaySettings(
 BG_GetADSSwaySettings
 ==============
 */
-void BG_GetADSSwaySettings(
+void BG_GetADSSwaySettings(const Weapon weapon, float *maxAngle, float *lerpSpeed, float *pitchScale, float *yawScale, float *horizScale, float *vertScale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1097,10 +1105,11 @@ bool BG_ShotLimitReached(const Weapon weapon, int weaponShotCount)
 BG_GetAttachmentAnimationOverride
 ==============
 */
-const char *BG_GetAttachmentAnimationOverride(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*

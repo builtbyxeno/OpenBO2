@@ -38,7 +38,7 @@ bool XModelLoadConfigFile(const char *name, const unsigned __int8 **pos, XModelC
 XModelLoadCollData
 ==============
 */
-void XModelLoadCollData(
+void XModelLoadCollData(const unsigned __int8 **pos, XModel *model, void *(*AllocColl)(int), const char *name, unsigned int materialType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -144,7 +144,7 @@ void XModelCalcBasePose(XModelPartsLoad *modelParts)
 XModelPartsLoadFile
 ==============
 */
-XModelPartsLoad *XModelPartsLoadFile(
+XModelPartsLoad *XModelPartsLoadFile(XModel *model, const char *name, void *(*Alloc)(int), __int64 *xmodelModifiedTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -155,10 +155,11 @@ XModelPartsLoad *XModelPartsLoadFile(
 XModelPartsPrecache
 ==============
 */
-XModelPartsLoad *XModelPartsPrecache(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -166,7 +167,7 @@ XModelPartsLoad *XModelPartsPrecache(
 XModelLoadFile
 ==============
 */
-XModel *XModelLoadFile(
+XModel *XModelLoadFile(const char *name, void *(*Alloc)(int), void *(*AllocColl)(int), __int64 *xmodelModifiedTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

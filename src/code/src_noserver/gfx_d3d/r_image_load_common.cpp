@@ -6,7 +6,7 @@
 Image_GetCardMemoryAmountForMipLevel
 ==============
 */
-unsigned int Image_GetCardMemoryAmountForMipLevel(
+unsigned int Image_GetCardMemoryAmountForMipLevel(DXGI_FORMAT format, unsigned int mipWidth, unsigned int mipHeight, unsigned int mipDepth)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -17,7 +17,7 @@ unsigned int Image_GetCardMemoryAmountForMipLevel(
 Image_GetCardMemoryAmount
 ==============
 */
-unsigned int Image_GetCardMemoryAmount(
+unsigned int Image_GetCardMemoryAmount(unsigned int imageFlags, DXGI_FORMAT format, unsigned int width, unsigned int height, unsigned int depth)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -39,7 +39,7 @@ int Image_SourceBytesPerSlice_PC(DXGI_FORMAT format, int width, int height)
 Image_Upload2D_CopyDataBlock_PC
 ==============
 */
-void Image_Upload2D_CopyDataBlock_PC(
+void Image_Upload2D_CopyDataBlock_PC(int width, int height, const unsigned __int8 *src, DXGI_FORMAT format, int dstPitch, unsigned __int8 *dst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -49,7 +49,7 @@ void Image_Upload2D_CopyDataBlock_PC(
 Image_Upload2D_CopyData_PC
 ==============
 */
-void Image_Upload2D_CopyData_PC(
+void Image_Upload2D_CopyData_PC(const GfxImage *image, DXGI_FORMAT format, D3D11_TEXTURECUBE_FACE face, unsigned int mipLevel, const unsigned __int8 *src)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -59,7 +59,7 @@ void Image_Upload2D_CopyData_PC(
 Image_Upload3D_CopyData_PC
 ==============
 */
-void Image_Upload3D_CopyData_PC(
+void Image_Upload3D_CopyData_PC(const GfxImage *image, DXGI_FORMAT format, unsigned int mipLevel, const unsigned __int8 *src)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -69,9 +69,11 @@ void Image_Upload3D_CopyData_PC(
 Image_UploadData
 ==============
 */
-void Image_UploadData(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -79,7 +81,7 @@ void Image_UploadData(
 Image_CountMipmaps
 ==============
 */
-unsigned int Image_CountMipmaps(
+unsigned int Image_CountMipmaps(unsigned int imageFlags, unsigned int width, unsigned int height, unsigned int depth)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -121,7 +123,7 @@ void Image_TrackTexture(GfxImage *image, int imageFlags, DXGI_FORMAT format, int
 Image_Setup
 ==============
 */
-void Image_Setup(
+void Image_Setup(GfxImage *image, int width, int height, int depth, int imageFlags, DXGI_FORMAT imageFormat, void *initData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -131,7 +133,7 @@ void Image_Setup(
 Image_SetupAndLoad
 ==============
 */
-void Image_SetupAndLoad(
+void Image_SetupAndLoad(GfxImage *image, int width, int height, int depth, int imageFlags, DXGI_FORMAT imageFormat)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

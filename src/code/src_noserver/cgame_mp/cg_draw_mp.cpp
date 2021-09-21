@@ -56,7 +56,7 @@ void CG_ClearCenterPrint(LocalClientNum_t localClientNum)
 CG_DrawCenterString
 ==============
 */
-void CG_DrawCenterString(
+void CG_DrawCenterString(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float fontscale, vec4_t *color, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -218,7 +218,7 @@ void CG_ClearElectrified(LocalClientNum_t localClientNum)
 CG_Blur
 ==============
 */
-void CG_Blur(
+void CG_Blur(LocalClientNum_t localClientNum, int time, float endBlur, BlurTime timeType, BlurPriority priority)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -446,7 +446,7 @@ void CG_AddWaterScreenDrops(LocalClientNum_t localClientNum)
 CG_WorldRippleWave
 ==============
 */
-void CG_WorldRippleWave(
+void CG_WorldRippleWave(LocalClientNum_t localClientNum, float xpos, float ypos, float width, float speed, float amp, float fiS, float fiE, float foS, float foE)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -476,11 +476,11 @@ void CG_GenerateSceneVerts(LocalClientNum_t localClientNum)
 CG_CheckPlayerStanceChange
 ==============
 */
-int CG_CheckPlayerStanceChange(
+/*int CG_CheckPlayerStanceChange(LocalClientNum_t localClientNum, bitarray<64> *newButton_bits, bitarray<64> *changedButton_bits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
@@ -509,7 +509,7 @@ CG_CheckPlayerFireNonTurret
 CG_DrawActive
 ==============
 */
-void CG_DrawActive(
+void CG_DrawActive(LocalClientNum_t localClientNum, const GfxViewParms *viewParmsDraw, const GfxViewParms *viewParmsDpvs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

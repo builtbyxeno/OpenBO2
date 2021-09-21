@@ -6,7 +6,7 @@
 SND_InitDvar
 ==============
 */
-void SND_InitDvar(int a1, dvarType_t a2)
+void SND_InitDvar(void)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

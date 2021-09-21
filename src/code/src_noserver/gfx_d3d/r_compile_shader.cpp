@@ -37,7 +37,7 @@ char Material_FindCachedShaderText(const char *filename, const char **data, unsi
 Material_FileIncludeFileAndLineNumber
 ==============
 */
-void Material_FileIncludeFileAndLineNumber(
+void Material_FileIncludeFileAndLineNumber(GfxAssembledShaderText *prog, const char *errorMessage, const char **fileName, unsigned int *lineNumber)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -91,7 +91,7 @@ bool Material_GenerateShaderString_r(GfxAssembledShaderText *prog, const char *s
 Material_GenerateShaderString
 ==============
 */
-unsigned int Material_GenerateShaderString(
+unsigned int Material_GenerateShaderString(GfxAssembledShaderText *prog, const char *shaderName, const char *shaderType, char *shaderString, int sizeofShaderString)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -102,7 +102,7 @@ unsigned int Material_GenerateShaderString(
 Material_CompileShader
 ==============
 */
-ID3D10Blob *Material_CompileShader(
+ID3D10Blob *Material_CompileShader(const char *shaderName, const char *shaderType, const char *entryPoint, const char *target, ShaderStats *stats, unsigned int *shaderChecksum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

@@ -110,7 +110,7 @@ sval_u node4(scriptInstance_t inst, unsigned __int8 type, sval_u val1, sval_u va
 node5
 ==============
 */
-sval_u node5(
+sval_u node5(scriptInstance_t inst, unsigned __int8 type, sval_u val1, sval_u val2, sval_u val3, sval_u val4, sval_u val5)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	sval_u tmp;
@@ -122,7 +122,7 @@ sval_u node5(
 node6
 ==============
 */
-sval_u node6(
+sval_u node6(scriptInstance_t inst, unsigned __int8 type, sval_u val1, sval_u val2, sval_u val3, sval_u val4, sval_u val5, sval_u val6)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	sval_u tmp;
@@ -134,7 +134,7 @@ sval_u node6(
 node7
 ==============
 */
-sval_u node7(
+sval_u node7(scriptInstance_t inst, unsigned __int8 type, sval_u val1, sval_u val2, sval_u val3, sval_u val4, sval_u val5, sval_u val6, sval_u val7)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	sval_u tmp;
@@ -146,7 +146,7 @@ sval_u node7(
 node8
 ==============
 */
-sval_u node8(
+sval_u node8(scriptInstance_t inst, unsigned __int8 type, sval_u val1, sval_u val2, sval_u val3, sval_u val4, sval_u val5, sval_u val6, sval_u val7, sval_u val8)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	sval_u tmp;
@@ -252,7 +252,7 @@ sval_u debugger_node3(scriptInstance_t inst, unsigned __int8 type, sval_u val1, 
 debugger_node4
 ==============
 */
-sval_u debugger_node4(
+sval_u debugger_node4(scriptInstance_t inst, unsigned __int8 type, sval_u val1, sval_u val2, sval_u val3, sval_u val4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	sval_u tmp;
@@ -276,7 +276,7 @@ sval_u debugger_prepend_node(scriptInstance_t inst, sval_u val1, sval_u val2)
 debugger_buffer
 ==============
 */
-sval_u debugger_buffer(
+sval_u debugger_buffer(scriptInstance_t inst, unsigned __int8 type, const unsigned __int8 *buf, int size, int alignment)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	sval_u tmp;

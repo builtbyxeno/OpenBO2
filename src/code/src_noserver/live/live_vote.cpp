@@ -29,10 +29,11 @@ int LiveVote_History_GetEntryLinear(int startIndex, unsigned __int64 entityID, d
 LiveVote_History_GetEntry
 ==============
 */
-int LiveVote_History_GetEntry(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -61,9 +62,11 @@ void LiveVote_History_Sort()
 LiveVote_History_RecordVote
 ==============
 */
-void LiveVote_History_RecordVote(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -71,11 +74,12 @@ void LiveVote_History_RecordVote(
 LiveVote_History_GetVoteForEntity
 ==============
 */
-/*int LiveVote_History_GetVoteForEntity@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -92,7 +96,7 @@ void LiveVote_RecentlyLiked_Build(const ControllerIndex_t localControllerIndex)
 LiveVote_RecentlyLiked_Remove
 ==============
 */
-void LiveVote_RecentlyLiked_Remove(
+void LiveVote_RecentlyLiked_Remove(const ControllerIndex_t localControllerIndex, unsigned __int64 entity, dwVoteCategory_e category)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -102,9 +106,11 @@ void LiveVote_RecentlyLiked_Remove(
 LiveVote_RecentlyLiked_Add
 ==============
 */
-void LiveVote_RecentlyLiked_Add(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -112,10 +118,11 @@ void LiveVote_RecentlyLiked_Add(
 LiveVote_Task_SubmitVoteSuccess
 ==============
 */
-char LiveVote_Task_SubmitVoteSuccess(TaskRecord *task)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -134,7 +141,7 @@ char LiveVote_Task_SubmitVoteFailure(TaskRecord *task)
 LiveVote_Task_SubmitVote
 ==============
 */
-TaskRecord *LiveVote_Task_SubmitVote(
+TaskRecord *LiveVote_Task_SubmitVote(const ControllerIndex_t localControllerIndex, unsigned __int64 entity, dwVoteCategory_e category, dwVote_e vote)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -156,9 +163,11 @@ char LiveVote_Task_DownloadHistoryFailure(TaskRecord *task)
 LiveVote_SubmitCmd
 ==============
 */
-void LiveVote_SubmitCmd(dwVote_e vote)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

@@ -89,7 +89,7 @@ void CG_DrawOverheadNames(LocalClientNum_t localClientNum, const centity_t *cent
 CG_CanSeeFriendlyHeadInView
 ==============
 */
-bool CG_CanSeeFriendlyHeadInView(
+bool CG_CanSeeFriendlyHeadInView(LocalClientNum_t localClientNum, const centity_t *cent, const vec3_t *start, const vec3_t *end)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -174,7 +174,7 @@ void CG_DrawNames(LocalClientNum_t localClientNum)
 CG_IsValidCrosshairEntity
 ==============
 */
-bool CG_IsValidCrosshairEntity(
+bool CG_IsValidCrosshairEntity(LocalClientNum_t localClientNum, const cg_t *cgameGlob, const centity_t *cent, int entNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -196,10 +196,10 @@ bool ShouldDrawCrosshairNames(LocalClientNum_t localClientNum)
 CG_DrawCrosshairNames
 ==============
 */
-/*void CG_DrawCrosshairNames(LocalClientNum_t a1@<ecx>, int a2@<ebx>, LocalClientNum_t localClientNum)
+void CG_DrawCrosshairNames(LocalClientNum_t a1, int a2, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -273,11 +273,11 @@ CG_CanSeeFriendlyHeadTrace
 CG_CanSeeFriendlyHead
 ==============
 */
-/*char CG_CanSeeFriendlyHead@<al>(vec3_t *a1@<edi>, LocalClientNum_t localClientNum, const centity_t *cent)
+bool CG_CanSeeFriendlyHead(vec3_t *a1, LocalClientNum_t localClientNum, const centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -294,9 +294,11 @@ void CG_DrawActorName(LocalClientNum_t localClientNum, const centity_t *cent, bo
 CG_DrawFriendlyName
 ==============
 */
-void CG_DrawFriendlyName(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

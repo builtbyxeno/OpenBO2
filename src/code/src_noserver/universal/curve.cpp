@@ -6,7 +6,7 @@
 GetPositionOnCubic
 ==============
 */
-void GetPositionOnCubic(
+void GetPositionOnCubic(int a1, vec3_t *startPos, vec3_t *startVel, vec3_t *endPos, vec3_t *endVel, float time, vec3_t *output)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

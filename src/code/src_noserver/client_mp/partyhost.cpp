@@ -56,7 +56,7 @@ void PartyHost_ClearMembers(PartyData_s *party)
 PartyHost_SetLeagueDataState
 ==============
 */
-void PartyHost_SetLeagueDataState(
+void PartyHost_SetLeagueDataState(PartyData_s *party, int memberIndex, LeagueDataState state, const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -132,7 +132,7 @@ int PartyHost_CountAnonymousPlayers(PartyData_s *party)
 PartyHost_CanFormTeams
 ==============
 */
-char PartyHost_CanFormTeams(
+char PartyHost_CanFormTeams(SubpartyInfo *parties, const int partyCount, const int teamCount, unsigned __int8 *assignments)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -143,7 +143,7 @@ char PartyHost_CanFormTeams(
 AssignmentFitness
 ==============
 */
-bool AssignmentFitness(
+bool AssignmentFitness(Assignment *ass, const SubpartyInfo *parties, const int partyCount, const int numTeams, const int teamMax, const int teamMin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -473,7 +473,7 @@ void PartyHost_AddVoiceConnectivityToAllLocalPlayers(PartyData_s *party, ClientN
 PartyHost_SendGo
 ==============
 */
-void PartyHost_SendGo(
+void PartyHost_SendGo(PartyData_s *party, ControllerIndex_t localControllerIndex, int partyMemberSlot, const char *mapname, const char *gametype)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -483,7 +483,7 @@ void PartyHost_SendGo(
 PartyHost_SendPlayDemo
 ==============
 */
-void PartyHost_SendPlayDemo(
+void PartyHost_SendPlayDemo(PartyData_s *party, ControllerIndex_t localControllerIndex, int partyMemberSlot, const char *demoname)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -514,7 +514,7 @@ bool PartyHost_TeamsAreReady(PartyData_s *party, int memberCount)
 PartyHost_MakeTeams
 ==============
 */
-char PartyHost_MakeTeams(PartyData_s *party)
+char PartyHost_MakeTeams(char *a1, PartyData_s *party)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -645,7 +645,7 @@ void PartyHost_TellClientToRejoin(PartyData_s *party, netadr_t from)
 Party_GenerateNewLobbyMessage
 ==============
 */
-void Party_GenerateNewLobbyMessage(
+void Party_GenerateNewLobbyMessage(msg_t *newMsg, PartyData_s *party, XSESSION_INFO *sessionInfo, const int publicSlots, const int privateSlots, unsigned int challenge, const int isDedicated)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -655,7 +655,7 @@ void Party_GenerateNewLobbyMessage(
 Party_SendNewLobbyToAddr
 ==============
 */
-void Party_SendNewLobbyToAddr(
+void Party_SendNewLobbyToAddr(PartyData_s *party, XSESSION_INFO *sessionInfo, const int publicSlots, const int privateSlots, const int controllerIndex, unsigned int challenge, netadr_t addr, const int isDedicated)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -769,7 +769,7 @@ char PartyHost_SendPartyAwakeMsgToParty(PartyData_s *party, ControllerIndex_t lo
 PartyHost_HandleProfileMsg
 ==============
 */
-void PartyHost_HandleProfileMsg(
+void PartyHost_HandleProfileMsg(PartyData_s *party, const ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -779,7 +779,7 @@ void PartyHost_HandleProfileMsg(
 PartyHost_HandleProfilesAckMsg
 ==============
 */
-void PartyHost_HandleProfilesAckMsg(
+void PartyHost_HandleProfilesAckMsg(PartyData_s *party, const ControllerIndex_t localControllerIndex, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -800,9 +800,11 @@ int PartyHost_HashLeagueValues(int visiblePoints, int hiddenPoints, float skill,
 PartyHost_HandleLeagueOutcomesAck
 ==============
 */
-void PartyHost_HandleLeagueOutcomesAck(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -810,7 +812,7 @@ void PartyHost_HandleLeagueOutcomesAck(
 PartyHost_HandleLeagueEmblemUpdate
 ==============
 */
-void PartyHost_HandleLeagueEmblemUpdate(
+void PartyHost_HandleLeagueEmblemUpdate(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -861,7 +863,7 @@ int PartyHost_CanHandlePacket(PartyData_s *party, const char *c)
 PartyHost_HandlePacket
 ==============
 */
-int PartyHost_HandlePacket(
+int PartyHost_HandlePacket(PartyData_s *party, const char *c, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -975,10 +977,10 @@ void PartyHost_StoreMapVoteStats(const ControllerIndex_t localControllerIndex, c
 PartyHost_UpdateLocalClient
 ==============
 */
-void PartyHost_UpdateLocalClient(PartyData_s *party, const ControllerIndex_t localControllerIndex)
+/*void PartyHost_UpdateLocalClient(ClientNum_t a1@<edi>, PartyData_s *party, const ControllerIndex_t localControllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -1016,7 +1018,7 @@ void PartyHost_ClearConnectivityBitForClient(PartyData_s *party, const ClientNum
 PartyHost_AddLocalPlayer
 ==============
 */
-int PartyHost_AddLocalPlayer(
+int PartyHost_AddLocalPlayer(PartyData_s *party, const ControllerIndex_t localControllerIndex, const ClientNum_t slot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1027,7 +1029,7 @@ int PartyHost_AddLocalPlayer(
 PartyHost_RemovePlayer
 ==============
 */
-void PartyHost_RemovePlayer(
+void PartyHost_RemovePlayer(PartyData_s *party, const ClientNum_t memberIndex, bool tellThem, const char *reason)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1067,7 +1069,7 @@ void PartyHost_SetRoundScores(PartyData_s *party, const int memberIndex, const i
 PartyHost_SwapPlayer
 ==============
 */
-void PartyHost_SwapPlayer(
+void PartyHost_SwapPlayer(PartyData_s *party, const ClientNum_t oldMemberIndex, const ClientNum_t newMemberIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1117,7 +1119,7 @@ void PartyHost_SendPartyStates(PartyData_s *party)
 PartyHost_AddLocalClientsToNewLobby
 ==============
 */
-void PartyHost_AddLocalClientsToNewLobby(
+void PartyHost_AddLocalClientsToNewLobby(PartyData_s *partyToNotify, PartyData_s *party, const ControllerIndex_t ignoreControllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1177,7 +1179,7 @@ void PartyHost_DropPlayersToMatchSlots(PartyData_s *party, const int publicSlots
 PartyHost_StartParty
 ==============
 */
-void PartyHost_StartParty(
+void PartyHost_StartParty(PartyData_s *party, ControllerIndex_t localControllerIndex, int flags, int numPrivateSlots, int numPublicSlots, bool silentFail)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1187,7 +1189,7 @@ void PartyHost_StartParty(
 PartyHost_HandleClientPartyStateAck
 ==============
 */
-void PartyHost_HandleClientPartyStateAck(
+void PartyHost_HandleClientPartyStateAck(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1197,7 +1199,7 @@ void PartyHost_HandleClientPartyStateAck(
 PartyHost_HandleClientDisconnect
 ==============
 */
-void PartyHost_HandleClientDisconnect(
+void PartyHost_HandleClientDisconnect(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1207,7 +1209,7 @@ void PartyHost_HandleClientDisconnect(
 PartyHost_HandleClientLeaderDisconnect
 ==============
 */
-void PartyHost_HandleClientLeaderDisconnect(
+void PartyHost_HandleClientLeaderDisconnect(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1217,7 +1219,7 @@ void PartyHost_HandleClientLeaderDisconnect(
 PartyHost_HandleProposedGamestate
 ==============
 */
-void PartyHost_HandleProposedGamestate(
+void PartyHost_HandleProposedGamestate(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1247,7 +1249,7 @@ void PartyHost_StartLeagueMatch(PartyData_s *party, ControllerIndex_t controller
 PartyHost_EnterStartReadyState
 ==============
 */
-void PartyHost_EnterStartReadyState(
+void PartyHost_EnterStartReadyState(PartyData_s *party, const ControllerIndex_t localControllerIndex, const LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1268,7 +1270,7 @@ bool PartyHost_ClientsAreReady(PartyData_s *party)
 PartyHost_AddAnonymousMemberAtSlot
 ==============
 */
-void PartyHost_AddAnonymousMemberAtSlot(
+void PartyHost_AddAnonymousMemberAtSlot(PartyData_s *party, const ClientNum_t slot, netadr_t *addr, unsigned int challenge)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1278,10 +1280,11 @@ void PartyHost_AddAnonymousMemberAtSlot(
 PartyHost_AddAnonymousMember
 ==============
 */
-bool PartyHost_AddAnonymousMember(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1289,7 +1292,7 @@ bool PartyHost_AddAnonymousMember(
 PartyHost_AnonymousAddRequest
 ==============
 */
-bool PartyHost_AnonymousAddRequest(
+bool PartyHost_AnonymousAddRequest(PartyData_s *party, netadr_t from, unsigned __int64 lanChalRespKey, int ping, int newSubPartyCount, SubpartyInfo *newSubParties, JoinPartyResponse *response)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1311,7 +1314,7 @@ bool PartyHost_PlayerJustConnected(PartyData_s *party, const ClientNum_t slot)
 PartyHost_AddPlayerAtSlot
 ==============
 */
-int PartyHost_AddPlayerAtSlot(
+int PartyHost_AddPlayerAtSlot(PartyData_s *party, const ClientNum_t slot, const netadr_t addr, PartyMember *newMember)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1333,7 +1336,7 @@ int PartyHost_AddPlayer(PartyData_s *party, const netadr_t addr, PartyMember *ne
 PartyHost_ClaimAnonymousSpot
 ==============
 */
-PartyMemberAddResult PartyHost_ClaimAnonymousSpot(
+PartyMemberAddResult PartyHost_ClaimAnonymousSpot(PartyData_s *party, const netadr_t addr, PartyMember *newMember, unsigned int challenge)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	PartyMemberAddResult tmp;
@@ -1345,7 +1348,7 @@ PartyMemberAddResult PartyHost_ClaimAnonymousSpot(
 PartyHost_RemoveAllPartyMembersAtSlotAddress
 ==============
 */
-void PartyHost_RemoveAllPartyMembersAtSlotAddress(
+void PartyHost_RemoveAllPartyMembersAtSlotAddress(PartyData_s *party, const ClientNum_t memberIndex, const bool tellThem, const char *reason)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1365,9 +1368,11 @@ void PartyHost_MarkPacketReceivedForClients(PartyData_s *party, const netadr_t f
 PartyHost_HandleFinishedLoadingDemoMsg
 ==============
 */
-void PartyHost_HandleFinishedLoadingDemoMsg(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1425,7 +1430,7 @@ void Party_AddTestClients_f()
 PartyHost_SwitchLobby
 ==============
 */
-char PartyHost_SwitchLobby(PartyData_s *party)
+char PartyHost_SwitchLobby(char *a1, PartyData_s *party)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1436,7 +1441,7 @@ char PartyHost_SwitchLobby(PartyData_s *party)
 PartyHost_StartPartyComplete
 ==============
 */
-void PartyHost_StartPartyComplete(ControllerIndex_t localControllerIndex, SessionData *session)
+void PartyHost_StartPartyComplete(char *a1, ControllerIndex_t localControllerIndex, SessionData *session)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1467,9 +1472,11 @@ void PartyHost_AutoStart(PartyData_s *party, ControllerIndex_t localControllerIn
 PartyHost_HandleHeartbeatAck
 ==============
 */
-void PartyHost_HandleHeartbeatAck(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1477,10 +1484,11 @@ void PartyHost_HandleHeartbeatAck(
 PartyHost_AttemptJoinParty
 ==============
 */
-bool PartyHost_AttemptJoinParty(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1488,7 +1496,7 @@ bool PartyHost_AttemptJoinParty(
 PartyHost_HandleJoinPartyRequest
 ==============
 */
-void PartyHost_HandleJoinPartyRequest(
+void PartyHost_HandleJoinPartyRequest(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1498,7 +1506,7 @@ void PartyHost_HandleJoinPartyRequest(
 PartyHost_HandleLocalJoin
 ==============
 */
-void PartyHost_HandleLocalJoin(
+void PartyHost_HandleLocalJoin(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1528,7 +1536,7 @@ void Party_TestTeamCreation_f()
 PartyHost_HandleMemberMsg
 ==============
 */
-void PartyHost_HandleMemberMsg(
+void PartyHost_HandleMemberMsg(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1548,7 +1556,7 @@ void PartyHost_HandleProposedKick(PartyData_s *party, ControllerIndex_t localCon
 PartyHost_HandleLeagueStats
 ==============
 */
-void PartyHost_HandleLeagueStats(
+void PartyHost_HandleLeagueStats(PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1578,7 +1586,7 @@ void PartyHost_UpdateWagerCheckFundsState(const ControllerIndex_t localControlle
 PartyHost_Frame
 ==============
 */
-void PartyHost_Frame(
+void PartyHost_Frame(PartyData_s *party, const ControllerIndex_t localControllerIndex, const LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1588,7 +1596,7 @@ void PartyHost_Frame(
 PartyHost_HandleClientHandshake
 ==============
 */
-void PartyHost_HandleClientHandshake(
+void PartyHost_HandleClientHandshake(int a1, PartyData_s *party, ControllerIndex_t localControllerIndex, netadr_t from, msg_t *msg)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

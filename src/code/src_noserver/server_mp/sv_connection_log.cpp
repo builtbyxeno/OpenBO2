@@ -27,7 +27,7 @@ ClientRecord *SV_ConnectionLog_NewClient(int clientNum)
 SV_ConnectionLog_NewSample
 ==============
 */
-int SV_ConnectionLog_NewSample(
+int SV_ConnectionLog_NewSample(int clientNum, unsigned __int64 xuid, int avgPing, int minPing, int maxPing, int unackCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

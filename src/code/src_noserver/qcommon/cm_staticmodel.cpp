@@ -39,7 +39,7 @@ XModel *CM_XModelPrecache(const char *name)
 CM_TraceStaticModel
 ==============
 */
-void CM_TraceStaticModel(
+void CM_TraceStaticModel(cStaticModel_s *sm, trace_t *results, const vec3_t *start, const vec3_t *end, int contentmask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

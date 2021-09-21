@@ -98,10 +98,10 @@ void UpdateMatches(bool searchCmds, int *matchLenAfterCmds, int *matchLenAfterDv
 CompleteCommand
 ==============
 */
-/*void CompleteCommand(int *a1@<ebx>, LocalClientNum_t localClientNum)
+void CompleteCommand(int *a1, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -237,7 +237,7 @@ Bind_t Key_GetBinding(LocalClientNum_t localClientNum, int keynum, BindIndex_t i
 Key_GetCommandAssignmentInternal
 ==============
 */
-int Key_GetCommandAssignmentInternal(
+int Key_GetCommandAssignmentInternal(LocalClientNum_t localClientNum, Bind_t binding, int *twokeys, BindIndex_t bindNum, int gamePadOnly)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -259,7 +259,7 @@ int Key_GetSafeFreeKey(LocalClientNum_t localClientNum, BindIndex_t bindNum)
 Key_GetMouseKeyboardCommandAssignment
 ==============
 */
-int Key_GetMouseKeyboardCommandAssignment(
+int Key_GetMouseKeyboardCommandAssignment(LocalClientNum_t localClientNum, Bind_t binding, int *twokeys, BindIndex_t bindNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -270,9 +270,11 @@ int Key_GetMouseKeyboardCommandAssignment(
 Key_BindMustHaveCommands
 ==============
 */
-void Key_BindMustHaveCommands(LocalClientNum_t localClientNum)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -290,10 +292,11 @@ void Key_UpdateMustHaveBindings_f()
 Key_GetCommandAssignment
 ==============
 */
-int Key_GetCommandAssignment(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -436,7 +439,7 @@ const char *Key_GetCmdForBinding(Bind_t binding)
 Field_DrawTextOverride
 ==============
 */
-void Field_DrawTextOverride(
+void Field_DrawTextOverride(LocalClientNum_t localClientNum, const field_t *edit, int x, int y, int horzAlign, int vertAlign, const char *str, int drawLen, int cursorPos, bool FullUnsafe)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -446,7 +449,7 @@ void Field_DrawTextOverride(
 Field_Draw
 ==============
 */
-void Field_Draw(
+void Field_Draw(LocalClientNum_t localClientNum, field_t *edit, int x, int y, int horzAlign, int vertAlign, bool fullUnSafe)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -456,7 +459,7 @@ void Field_Draw(
 Field_KeyDownEvent
 ==============
 */
-bool Field_KeyDownEvent(
+bool Field_KeyDownEvent(LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, field_t *edit, int key)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -478,9 +481,11 @@ char Field_CharEvent(LocalClientNum_t localClientNum, const ScreenPlacement *scr
 Console_Key
 ==============
 */
-void Console_Key(LocalClientNum_t localClientNum, int key)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -509,7 +514,7 @@ const char *Key_GetBindingCheat(LocalClientNum_t localClientNum, int keynum)
 Key_GetCheatAssignmentInternal
 ==============
 */
-int Key_GetCheatAssignmentInternal(
+int Key_GetCheatAssignmentInternal(LocalClientNum_t localClientNum, const char *command, int *twokeys, int gamePadOnly)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -601,10 +606,11 @@ void CL_CharEvent(LocalClientNum_t localClientNum, int key)
 CL_GetKeyBindingInternal
 ==============
 */
-int CL_GetKeyBindingInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -612,7 +618,7 @@ int CL_GetKeyBindingInternal(
 CL_GetKeyBinding
 ==============
 */
-int CL_GetKeyBinding(
+int CL_GetKeyBinding(LocalClientNum_t localClientNum, const char *command, char (*keyNames)[128], BindIndex_t bindNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -623,7 +629,7 @@ int CL_GetKeyBinding(
 CL_GetGamePadBinding
 ==============
 */
-int CL_GetGamePadBinding(
+int CL_GetGamePadBinding(LocalClientNum_t localClientNum, const char *command, char (*keyNames)[128], BindIndex_t bindNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

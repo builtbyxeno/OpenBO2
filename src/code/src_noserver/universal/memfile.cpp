@@ -6,7 +6,7 @@
 MemFile_CommonInit
 ==============
 */
-void MemFile_CommonInit(
+void MemFile_CommonInit(MemoryFile *memFile, int size, void *buffer, bool errorOnOverflow, bool compress_enabled)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -27,10 +27,10 @@ const unsigned __int8 *MemFile_GetSegmentAddess(MemoryFile *memFile, int index)
 MemFile_MoveToSegment
 ==============
 */
-/*void MemFile_MoveToSegment(int a1@<edx>, MemoryFile *a2@<ecx>, MemoryFile *memFile, int index)
+void MemFile_MoveToSegment(int a1, MemoryFile *a2, MemoryFile *memFile, int index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

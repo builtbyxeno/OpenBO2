@@ -27,10 +27,10 @@ unsigned int Outdoor_UpdateTransforms()
 R_RegisterOutdoorImage
 ==============
 */
-/*void R_RegisterOutdoorImage(const vec3_t *a1@<edx>, GfxWorld *world, const vec3_t *outdoorMin)
+void R_RegisterOutdoorImage(const vec3_t *a1, GfxWorld *world, const vec3_t *outdoorMin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

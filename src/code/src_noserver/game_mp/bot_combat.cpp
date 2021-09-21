@@ -81,7 +81,7 @@ Bot_ProjectileArcTrace
 Bot_ProjectilePredict
 ==============
 */
-bool Bot_ProjectilePredict(
+bool Bot_ProjectilePredict(const vec3_t *vDir, const vec3_t *vOrigin, const vec3_t *vTarget, const float time, Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -92,7 +92,7 @@ bool Bot_ProjectilePredict(
 Bot_ProjectileTrajectory
 ==============
 */
-bool Bot_ProjectileTrajectory(
+bool Bot_ProjectileTrajectory(const vec3_t *vOrigin, vec3_t *vDir, const vec3_t *vTarget, const vec3_t *vGravity, float speed, float time0, float time1, Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -148,9 +148,9 @@ bool Bot_TossGrenade(bot_t *bot, usercmd_s *cmd)
 Bot_GetThreats
 ==============
 */
-/*int Bot_GetThreats@<eax>(int a1@<ebx>, const bot_t *bot, float fov, bot_threat_t *threatList, int maxCount)
+int Bot_GetThreats(int a1, const bot_t *bot, float fov, bot_threat_t *threatList, int maxCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 

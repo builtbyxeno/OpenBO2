@@ -108,7 +108,7 @@ dynamic_ent_aa::auto_activate
 gjk_physics_collision_visitor::allocate
 ==============
 */
-/*void *__thiscall gjk_physics_collision_visitor::allocate(
+/*void *__thiscall gjk_physics_collision_visitor::allocate(gjk_physics_collision_visitor *this, const int size, const int alignment, const bool no_error)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -119,7 +119,7 @@ gjk_physics_collision_visitor::allocate
 gjk_physics_collision_visitor::get_local_query_aabb
 ==============
 */
-/*void __thiscall gjk_physics_collision_visitor::get_local_query_aabb(
+/*void __thiscall gjk_physics_collision_visitor::get_local_query_aabb(gjk_physics_collision_visitor *this, vec3_t *local_query_aabb_min, vec3_t *local_query_aabb_max)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -129,7 +129,7 @@ gjk_physics_collision_visitor::get_local_query_aabb
 gjk_physics_collision_visitor::query_create_prolog_1
 ==============
 */
-/*bool gjk_physics_collision_visitor::query_create_prolog_1@<al>(
+/*bool gjk_physics_collision_visitor::query_create_prolog_1(gjk_physics_collision_visitor *this, float local_aabb_min, const vec3_t *a3, const vec3_t *local_aabb_max, const void *geom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -162,7 +162,7 @@ phys_auto_activate_callback *create_ent_aac(gjk_physics_collision_visitor *colli
 gjk_physics_collision_visitor::query_create_epilog
 ==============
 */
-/*void __thiscall gjk_physics_collision_visitor::query_create_epilog(
+/*void __thiscall gjk_physics_collision_visitor::query_create_epilog(gjk_physics_collision_visitor *this, gjk_base_t *gjk_geom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -204,17 +204,17 @@ void generic_avl_map_destroy_all_recurse(generic_avl_map_node_t *gamn, void (*de
 generic_avl_map_destroy_all
 ==============
 */
-void generic_avl_map_destroy_all(
+/*void generic_avl_map_destroy_all(phys_inplace_avl_tree<unsigned int,generic_avl_map_node_t,generic_avl_map_node_t> *gam, void (*destroy_func)(void *))
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 gjk_physics_collision_visitor::query_create_prolog
 ==============
 */
-/*char __thiscall gjk_physics_collision_visitor::query_create_prolog(
+/*char __thiscall gjk_physics_collision_visitor::query_create_prolog(gjk_physics_collision_visitor *this, const void *geom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -225,17 +225,17 @@ gjk_physics_collision_visitor::query_create_prolog
 create_entity_bpi
 ==============
 */
-/*void create_entity_bpi(LONG a1@<ebp>, gjk_physics_collision_visitor *collision_visitor, const int mask)
+void create_entity_bpi(LONG a1, gjk_physics_collision_visitor *collision_visitor, const int mask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 standard_query::query
 ==============
 */
-/*void standard_query::query(
+/*void standard_query::query(standard_query *this, int a2, const broad_phase_environment_query_input *bpeqi, broad_phase_environement_query_results *bpeqr)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -245,31 +245,31 @@ standard_query::query
 wheel_collision_worker
 ==============
 */
-/*int wheel_collision_worker@<eax>(int a1@<ebp>)
+int wheel_collision_worker(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 generic_avl_map_add
 ==============
 */
-generic_avl_map_node_t *generic_avl_map_add(
+/*generic_avl_map_node_t *generic_avl_map_add(phys_inplace_avl_tree<unsigned int,generic_avl_map_node_t,generic_avl_map_node_t> *gam, void *data, const unsigned int avl_key)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}
+}*/
 
 /*
 ==============
 generic_avl_map_destroy
 ==============
 */
-void *generic_avl_map_destroy(
+/*void *generic_avl_map_destroy(phys_inplace_avl_tree<unsigned int,generic_avl_map_node_t,generic_avl_map_node_t> *gam, const unsigned int avl_key)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}
+}*/
 

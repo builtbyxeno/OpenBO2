@@ -603,7 +603,7 @@ void Info_SetValueForKey_Big(char *s, const char *key, const char *value)
 KeyValueToField
 ==============
 */
-int KeyValueToField(
+int KeyValueToField(unsigned __int8 *pStruct, const cspField_t *pField, const char *pszKeyValue, const int iMaxFieldTypes, int (*parseSpecialFieldType)(unsigned __int8 *, const char *, const int, const int), void (*parseStrcpy)(unsigned __int8 *, const char *))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -614,18 +614,19 @@ int KeyValueToField(
 ParseConfigStringToStruct
 ==============
 */
-/*BOOL ParseConfigStringToStruct@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 ParseConfigStringToStructMerged
 ==============
 */
-BOOL ParseConfigStringToStructMerged(
+BOOL ParseConfigStringToStructMerged(unsigned __int8 *pStruct, const cspField_t *pFieldList, const int iNumFields, const char *mergedName, const char **pszBuffer, const char **sourceName, char *pszMergedBuffer, const int iMaxFieldTypes, int (*parseSpecialFieldType)(unsigned __int8 *, const char *, const int, const int), void (*parseStrCpy)(unsigned __int8 *, const char *), int (*parseMergeSpecialCase)(const char *, char **, char *, int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -658,7 +659,7 @@ long double UnGetLeanFraction(const float fFrac)
 AddLeanToPosition
 ==============
 */
-void AddLeanToPosition(
+void AddLeanToPosition(vec3_t *position, const float fViewYaw, const float fLeanFrac, const float fViewRoll, const float fLeanDist)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

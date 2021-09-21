@@ -245,7 +245,7 @@ void Actor_Exposed_Reaction(actor_t *self)
 Actor_Exposed_Think
 ==============
 */
-actor_think_result_t Actor_Exposed_Think(actor_t *self)
+actor_think_result_t Actor_Exposed_Think(actor_t *self, char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	actor_think_result_t tmp;

@@ -17,7 +17,7 @@ double R_GetBaseLodDist(const vec3_t *origin)
 R_GetAdjustedLodDistExtracam
 ==============
 */
-double R_GetAdjustedLodDistExtracam(
+double R_GetAdjustedLodDistExtracam(float *pDist, XModelLodRampType lodRampType, const vec3_t *origin, float scale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

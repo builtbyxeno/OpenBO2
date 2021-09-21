@@ -36,7 +36,7 @@ void LiveAntiCheat_GenerateCRC32Checksum(const unsigned __int8 *data, int length
 LiveAntiCheat_GenerateCRC32ChecksumSplit
 ==============
 */
-unsigned int LiveAntiCheat_GenerateCRC32ChecksumSplit(
+unsigned int LiveAntiCheat_GenerateCRC32ChecksumSplit(const unsigned __int8 *data, int length, unsigned __int64 key)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -47,7 +47,7 @@ unsigned int LiveAntiCheat_GenerateCRC32ChecksumSplit(
 LiveAntiCheat_StartHash
 ==============
 */
-HashInfo *LiveAntiCheat_StartHash(
+HashInfo *LiveAntiCheat_StartHash(challengeTest_t type, unsigned int start, unsigned int length, unsigned int blockSize, unsigned __int64 key)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -183,54 +183,55 @@ LiveAntiCheat_OnChallengesReceived
 LiveAntiCheat_AnswerChecksumRequest
 ==============
 */
-bool LiveAntiCheat_AnswerChecksumRequest(
+/*bool LiveAntiCheat_AnswerChecksumRequest(const ControllerIndex_t controllerIndex, const bdArray<bdAntiCheatChallengeParam> *params, __int64 *checksum, challengeTest_t checksumType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
 LiveAntiCheat_AnswerDvarRequest
 ==============
 */
-bool LiveAntiCheat_AnswerDvarRequest(
+/*bool LiveAntiCheat_AnswerDvarRequest(const ControllerIndex_t controllerIndex, const bdArray<bdAntiCheatChallengeParam> *params, __int64 *response)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
 LiveAntiCheat_AnswerDvarFloatRequest
 ==============
 */
-bool LiveAntiCheat_AnswerDvarFloatRequest(
+/*bool LiveAntiCheat_AnswerDvarFloatRequest(const ControllerIndex_t controllerIndex, const bdArray<bdAntiCheatChallengeParam> *params, __int64 *response)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
 LiveAntiCheat_AnswerExpressionRequest
 ==============
 */
-bool LiveAntiCheat_AnswerExpressionRequest(
+/*bool LiveAntiCheat_AnswerExpressionRequest(const ControllerIndex_t controllerIndex, const bdArray<bdAntiCheatChallengeParam> *params, __int64 *response)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
 LiveAntiCheat_GetChallengeResponse
 ==============
 */
-bool LiveAntiCheat_GetChallengeResponse(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*

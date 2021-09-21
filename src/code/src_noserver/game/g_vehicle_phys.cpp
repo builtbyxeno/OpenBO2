@@ -49,7 +49,7 @@ BOOL G_IsVehicleBoat(const VehicleDef *info)
 VEH_UpdateTiltForAcceleration
 ==============
 */
-void VEH_UpdateTiltForAcceleration(
+void VEH_UpdateTiltForAcceleration(vehicle_physic_t *phys, const VehicleDef *info, const vec3_t *vel, const vec3_t *prevVel, float maxAcceleration, float dragScale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -59,7 +59,7 @@ void VEH_UpdateTiltForAcceleration(
 VEH_UpdatePathFollow
 ==============
 */
-void VEH_UpdatePathFollow(
+void VEH_UpdatePathFollow(vehicle_physic_t *phys, const VehicleDef *info, vec3_t *origin, vec3_t *angles, int autoTilt, float overrideAccel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

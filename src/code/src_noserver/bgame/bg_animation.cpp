@@ -153,7 +153,7 @@ void BG_SetAnimConditionFlags(int condIndex, unsigned int result)
 BG_ParseConditionBits
 ==============
 */
-void BG_ParseConditionBits(
+void BG_ParseConditionBits(const char **text_pp, animStringItem_t *stringTable, int condIndex, unsigned int *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -239,7 +239,7 @@ animScriptItem_t *BG_FirstValidItem(int client, animScript_t *script)
 BG_AnimScriptEventGetCommand
 ==============
 */
-animScriptCommand_t *BG_AnimScriptEventGetCommand(
+animScriptCommand_t *BG_AnimScriptEventGetCommand(playerState_s *ps, scriptAnimEventTypes_t event, unsigned int *holdrand)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -360,7 +360,7 @@ BOOL BG_IsSliding(const clientInfo_t *ci)
 BG_SetNewAnimation
 ==============
 */
-void BG_SetNewAnimation(
+void BG_SetNewAnimation(LocalClientNum_t localClientNum, clientInfo_t *ci, lerpFrame_t *lf, int newAnimation, const entityState_s *es)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -370,7 +370,7 @@ void BG_SetNewAnimation(
 BG_RunLerpFrameRate
 ==============
 */
-void BG_RunLerpFrameRate(
+void BG_RunLerpFrameRate(LocalClientNum_t localClientNum, clientInfo_t *ci, lerpFrame_t *lf, int newAnimation, const entityState_s *es, vec3_t origin, vec3_t angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -390,7 +390,7 @@ void BG_PlayerAnimation_VerifyAnim(XAnimTree_s *pAnimTree, lerpFrame_t *lf)
 BG_SwingAngles
 ==============
 */
-void BG_SwingAngles(
+void BG_SwingAngles(float destination, float swingTolerance, float clampTolerance, float speed, float *angle, int *swinging)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -410,7 +410,7 @@ void BG_PlayerAngles(LocalClientNum_t localClientNum, const entityState_s *es, c
 BG_Player_DoControllersInternal
 ==============
 */
-void BG_Player_DoControllersInternal(
+void BG_Player_DoControllersInternal(const entityState_s *es, const clientInfo_t *ci, controller_info_t *info)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -430,7 +430,7 @@ void BG_Player_DoControllersSetup(const entityState_s *es, clientInfo_t *ci, int
 BG_PlayerAnimation
 ==============
 */
-void BG_PlayerAnimation(
+void __fastcall BG_PlayerAnimation(LocalClientNum_t localClientNum, const entityState_s* es, clientInfo_t* ci, vec3_t origin, vec3_t angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -440,7 +440,7 @@ void BG_PlayerAnimation(
 BG_UpdatePlayerDObj
 ==============
 */
-void BG_UpdatePlayerDObj(
+void BG_UpdatePlayerDObj(LocalClientNum_t localClientNum, DObj *pDObj, entityState_s *es, clientInfo_t *ci, int attachIgnoreCollision)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -534,7 +534,7 @@ double BG_GetCAnimSpeed(int handle)
 BG_AnimParseAnimScript
 ==============
 */
-void BG_AnimParseAnimScript(
+void BG_AnimParseAnimScript(animScriptData_t *scriptData, loadAnim_t *pLoadAnims, unsigned int *piNumAnims, const char *levelName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -555,7 +555,7 @@ const char *BG_GetCurrentMoveStatus(playerState_s *ps)
 BG_PlayAnim
 ==============
 */
-int BG_PlayAnim(
+int BG_PlayAnim(playerState_s *ps, int animNum, animBodyPart_t bodyPart, int forceDuration, int setTimer, int isContinue, int force)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -566,7 +566,7 @@ int BG_PlayAnim(
 BG_ExecuteCommand
 ==============
 */
-int BG_ExecuteCommand(
+int BG_ExecuteCommand(playerState_s *ps, animScriptCommand_t *scriptCommand, int setTimer, int isContinue, int force)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -588,7 +588,7 @@ int BG_AnimScriptAnimation(pmove_t *pm, aistateEnum_t state, scriptAnimMoveTypes
 BG_AnimScriptEvent
 ==============
 */
-int BG_AnimScriptEvent(
+int BG_AnimScriptEvent(pmove_t *pm, scriptAnimEventTypes_t event, int isContinue, int force, unsigned int *holdrand)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -609,7 +609,7 @@ void BG_SetConditionValue(ClientNum_t client, int condition, unsigned __int64 va
 BG_AddWorldModelWeaponAttachments
 ==============
 */
-unsigned __int16 BG_AddWorldModelWeaponAttachments(
+unsigned __int16 BG_AddWorldModelWeaponAttachments(Weapon weapon, DObjModel_s *dobjModels, int numModels, unsigned __int16 boneIndex, WeaponDobjInfo *weaponDobjInfo, unsigned __int16 parentModel, bool hideClip)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -620,7 +620,7 @@ unsigned __int16 BG_AddWorldModelWeaponAttachments(
 BG_AttachWeaponStowedModel
 ==============
 */
-unsigned __int16 BG_AttachWeaponStowedModel(
+unsigned __int16 BG_AttachWeaponStowedModel(DObjModel_s *dobjModels, int numModels, entityState_s *es, WeaponDobjInfo *weaponDobjInfo, Weapon stowedWeapon, unsigned __int16 *stowedWeaponIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -641,7 +641,7 @@ void BG_LoadAnim(const char *levelName, bool canModifyChecksum)
 BG_FinalizePlayerAnims
 ==============
 */
-void BG_FinalizePlayerAnims(const char *levelName)
+void BG_FinalizePlayerAnims(__int64 levelName, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -651,7 +651,7 @@ void BG_FinalizePlayerAnims(const char *levelName)
 BG_PostLoadAnim
 ==============
 */
-void BG_PostLoadAnim(const char *levelName)
+void BG_PostLoadAnim()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

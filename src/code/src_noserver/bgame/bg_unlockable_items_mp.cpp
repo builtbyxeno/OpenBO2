@@ -72,7 +72,7 @@ bool BG_UnlockablesIsPrimaryOrSecondary(itemInfo_t *itemInfo)
 BG_UnlockablesParseDefaultClassesForItem
 ==============
 */
-void BG_UnlockablesParseDefaultClassesForItem(
+void BG_UnlockablesParseDefaultClassesForItem(itemInfo_t *itemInfo, const char *defaultClassList, defaultClassInfo_t *defaultClassInfoArray)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -137,22 +137,24 @@ bool BG_HasSpecialtyCollection(int collectionIndex, unsigned int *perks)
 BG_UnlockablesGetItemGroupFromName
 ==============
 */
-/*int BG_UnlockablesGetItemGroupFromName@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 BG_UnlockablesGetClassIndexFromName
 ==============
 */
-/*int BG_UnlockablesGetClassIndexFromName@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -356,7 +358,7 @@ int BG_UnlockablesIsItemAttachmentValid(int itemIndex, eAttachment attachment)
 BG_UnlockablesGetItemAttachmentIndexForAttachmentPoint
 ==============
 */
-int BG_UnlockablesGetItemAttachmentIndexForAttachmentPoint(
+int BG_UnlockablesGetItemAttachmentIndexForAttachmentPoint(int itemIndex, eAttachment attachment, eAttachmentPoint point)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -521,7 +523,7 @@ int BG_UnlockablesGetNumItemAttachmentsAtPoint(int itemIndex, eAttachmentPoint p
 BG_UnlockablesGetItemAttachmentAtPointByIndex
 ==============
 */
-eAttachment BG_UnlockablesGetItemAttachmentAtPointByIndex(
+eAttachment BG_UnlockablesGetItemAttachmentAtPointByIndex(int itemIndex, eAttachmentPoint point, int attachmentIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	eAttachment tmp;
@@ -555,11 +557,12 @@ int __thiscall BG_UnlockablesGetItemGroupEnum(void *this)
 BG_UnlockablesGetLoadoutSlotFromString
 ==============
 */
-/*int BG_UnlockablesGetLoadoutSlotFromString@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -698,7 +701,7 @@ bool BG_UnlockablesIsItemValidNotNull(int itemIndex)
 BG_UnlockablesSetItemPurchased
 ==============
 */
-bool BG_UnlockablesSetItemPurchased(
+bool BG_UnlockablesSetItemPurchased(const ControllerIndex_t controllerIndex, int itemIndex, bool isPurchased)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -817,9 +820,11 @@ void BG_UnlockablesSetGunXp(const ControllerIndex_t controllerIndex, const int i
 BG_UnlockablesSetGunXPCmd
 ==============
 */
-void BG_UnlockablesSetGunXPCmd()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -827,9 +832,11 @@ void BG_UnlockablesSetGunXPCmd()
 BG_UnlockablesSetAllGunXPToMaxCmd
 ==============
 */
-void BG_UnlockablesSetAllGunXPToMaxCmd()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -837,7 +844,7 @@ void BG_UnlockablesSetAllGunXPToMaxCmd()
 BG_UnlockablesIsItemAttachmentLockedFromBuffer
 ==============
 */
-bool BG_UnlockablesIsItemAttachmentLockedFromBuffer(
+bool BG_UnlockablesIsItemAttachmentLockedFromBuffer(unsigned __int8 *statsBuffer, int itemIndex, int attachmentNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -848,7 +855,7 @@ bool BG_UnlockablesIsItemAttachmentLockedFromBuffer(
 BG_UnlockablesIsItemAttachmentLocked
 ==============
 */
-bool BG_UnlockablesIsItemAttachmentLocked(
+bool BG_UnlockablesIsItemAttachmentLocked(const ControllerIndex_t controllerIndex, int itemIndex, int attachmentNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -859,7 +866,7 @@ bool BG_UnlockablesIsItemAttachmentLocked(
 BG_SetBonusCardInUse
 ==============
 */
-int BG_SetBonusCardInUse(
+int BG_SetBonusCardInUse(bonusCards_t bonusCard, loadoutClass_t loadoutClass, unsigned __int8 *bonusCardList, unsigned int bufferSize, int inUse)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -870,7 +877,7 @@ int BG_SetBonusCardInUse(
 BG_GetBonusCardInUse
 ==============
 */
-BOOL BG_GetBonusCardInUse(
+BOOL BG_GetBonusCardInUse(bonusCards_t bonusCard, loadoutClass_t loadoutClass, const unsigned __int8 *bonusCardList, unsigned int bufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -881,7 +888,7 @@ BOOL BG_GetBonusCardInUse(
 BG_AnyBonusCardInUse
 ==============
 */
-BOOL BG_AnyBonusCardInUse(
+BOOL BG_AnyBonusCardInUse(loadoutClass_t loadoutClass, const unsigned __int8 *bonusCardList, unsigned int bufferSize, unsigned __int8 ignoreMask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -892,7 +899,7 @@ BOOL BG_AnyBonusCardInUse(
 BG_UnlockablesGetStatPathForChallenge
 ==============
 */
-int BG_UnlockablesGetStatPathForChallenge(
+int BG_UnlockablesGetStatPathForChallenge(ddlState_t *resultState, challengeTableRow_t *challengeRow, int itemIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -914,7 +921,7 @@ bool ChallengeLockedByXPGroup(const ControllerIndex_t controllerIndex, challenge
 BG_UnlockablesItemOptionLockedByChallenge
 ==============
 */
-bool BG_UnlockablesItemOptionLockedByChallenge(
+bool BG_UnlockablesItemOptionLockedByChallenge(const ControllerIndex_t controllerIndex, int itemIndex, int optionIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -947,7 +954,7 @@ bool BG_UnlockablesEmblemIsElite(int emblemIndex)
 BG_UnlockablesEquipClassSpecialPropertiesToSlot
 ==============
 */
-void BG_UnlockablesEquipClassSpecialPropertiesToSlot(
+void BG_UnlockablesEquipClassSpecialPropertiesToSlot(const CACRoot *cacRoot, loadoutClass_t customClass, int itemIndex, const char *loadoutName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -957,7 +964,7 @@ void BG_UnlockablesEquipClassSpecialPropertiesToSlot(
 BG_UnlockablesGetWeaponOptionRef
 ==============
 */
-const char *BG_UnlockablesGetWeaponOptionRef(
+const char *BG_UnlockablesGetWeaponOptionRef(const CACRoot *cacRoot, loadoutClass_t customClass, eWeaponOptionGroup optionGroup, loadoutSlot_t weaponGroupSlot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -968,7 +975,7 @@ const char *BG_UnlockablesGetWeaponOptionRef(
 BG_UnlockablesGetLocalEquippedItemInSlot
 ==============
 */
-int BG_UnlockablesGetLocalEquippedItemInSlot(
+int BG_UnlockablesGetLocalEquippedItemInSlot(char *a1, const ControllerIndex_t controllerIndex, loadoutClass_t customClass, const char *slotName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1001,7 +1008,7 @@ int BG_UnlockablesGetDefaultWeaponItem()
 BG_UnlockablesEquipDefaultClass
 ==============
 */
-void BG_UnlockablesEquipDefaultClass(
+void BG_UnlockablesEquipDefaultClass(const CACRoot *cacRoot, loadoutClass_t customClass, loadoutClass_t defaultClass, bool resetKillstreaks)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1031,7 +1038,7 @@ void BG_UnlockablesEquipDefaultLeagueClassCmd()
 BG_UnlockablesEquipDefaultClassCmdInternal
 ==============
 */
-void BG_UnlockablesEquipDefaultClassCmdInternal(
+void BG_UnlockablesEquipDefaultClassCmdInternal(const bool isOnlineClass, const bool resetKillstreaks, const bool useLocalCACRoot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1071,7 +1078,7 @@ void BG_UnlockablesUIEquipDefaultClassCmd()
 BG_UnlockablesZeroClassSet
 ==============
 */
-void BG_UnlockablesZeroClassSet(
+void BG_UnlockablesZeroClassSet(const ControllerIndex_t controllerIndex, const ddlState_t *classSetsState, int classSetIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1081,9 +1088,11 @@ void BG_UnlockablesZeroClassSet(
 BG_UnlockablesZeroClassSetCmdInternal
 ==============
 */
-void BG_UnlockablesZeroClassSetCmdInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1121,7 +1130,7 @@ void BG_UnlockablesZeroLeagueMatchClassSetCmd()
 BG_UnlockablesCopyToClassSet
 ==============
 */
-void BG_UnlockablesCopyToClassSet(
+void BG_UnlockablesCopyToClassSet(const ControllerIndex_t controllerIndex, const CACRoot *cacRoot, const ddlState_t *classSetsState, int classSetIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1131,7 +1140,7 @@ void BG_UnlockablesCopyToClassSet(
 BG_UnlockablesCopyToClassSetCmdInternal
 ==============
 */
-void BG_UnlockablesCopyToClassSetCmdInternal(
+void BG_UnlockablesCopyToClassSetCmdInternal(const ControllerIndex_t controllerIndex, const CACRoot *cacRoot, const ddlState_t *classSetsState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1171,7 +1180,7 @@ void BG_UnlockablesCopyToLeagueMatchClassSetCmd()
 BG_UnlockablesSetClassSetNameFromLocStringCmdInternal
 ==============
 */
-void BG_UnlockablesSetClassSetNameFromLocStringCmdInternal(
+void BG_UnlockablesSetClassSetNameFromLocStringCmdInternal(const ControllerIndex_t controllerIndex, const ddlState_t *classSetState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1222,11 +1231,12 @@ bool BG_UnlockablesGetClassSetsDDLState(ddlState_t *ddlState, int specificGameMo
 BG_UnlockablesGetDefaultClassSlotIndexFromName
 ==============
 */
-/*int BG_UnlockablesGetDefaultClassSlotIndexFromName@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -1275,7 +1285,7 @@ void BG_UnlockablesBuildItemListForGroupForWeaponTableCmd()
 BG_UnlockablesCopyClassSection
 ==============
 */
-void BG_UnlockablesCopyClassSection(
+void BG_UnlockablesCopyClassSection(const CACRoot *cacRoot, const char *path, unsigned int classToCopy, unsigned int classToReplace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1285,9 +1295,11 @@ void BG_UnlockablesCopyClassSection(
 BG_UnlockablesCopyClassCmd
 ==============
 */
-void BG_UnlockablesCopyClassCmd()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1305,9 +1317,11 @@ void BG_UnlockablesSetClanTagCmd()
 BG_UnlockablesClearWeaponInfo
 ==============
 */
-void BG_UnlockablesClearWeaponInfo(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1315,7 +1329,7 @@ void BG_UnlockablesClearWeaponInfo(
 BG_UnlockablesGetBonusCardSet
 ==============
 */
-int BG_UnlockablesGetBonusCardSet(const ControllerIndex_t controllerIndex, const loadoutClass_t customClass)
+int BG_UnlockablesGetBonusCardSet(char *a1, const ControllerIndex_t controllerIndex, const loadoutClass_t customClass)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1326,7 +1340,7 @@ int BG_UnlockablesGetBonusCardSet(const ControllerIndex_t controllerIndex, const
 BG_UnlockablesGetItemEquipCount
 ==============
 */
-int BG_UnlockablesGetItemEquipCount(
+int BG_UnlockablesGetItemEquipCount(const CACRoot *cacRoot, const loadoutClass_t customClass, const int slot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1337,22 +1351,23 @@ int BG_UnlockablesGetItemEquipCount(
 BG_UnlockablesGetAllocationCost
 ==============
 */
-/*int BG_UnlockablesGetAllocationCost@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 BG_UnlockablesGetUsedAllocation
 ==============
 */
-/*int BG_UnlockablesGetUsedAllocation@<eax>(
+int BG_UnlockablesGetUsedAllocation(loadoutSlot_t a1, const CACRoot *cacRoot, const loadoutClass_t customClass)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -1400,7 +1415,7 @@ void BG_PerformPushItem_ToCACMPShared(int numItemsInSlot, int itemNum, void *par
 validateCACStatus_s::ValidateClass_NoDuplicateCards
 ==============
 */
-/*char validateCACStatus_s::ValidateClass_NoDuplicateCards(
+/*char validateCACStatus_s::ValidateClass_NoDuplicateCards(validateCACStatus_s *this, loadoutSlot_t a2, bonusCards_t bonusCard, int slotIndex, int startRangeInclusive, int stopRangeInclusive)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1411,7 +1426,7 @@ validateCACStatus_s::ValidateClass_NoDuplicateCards
 validateCACStatus_s::ValidateClass_NoDuplicates
 ==============
 */
-/*char validateCACStatus_s::ValidateClass_NoDuplicates(
+/*char validateCACStatus_s::ValidateClass_NoDuplicates(validateCACStatus_s *this, loadoutSlot_t a2, int curr_ItemIndex, int curr_SlotIndex, int startRangeInclusive, int stopRangeInclusive)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1422,7 +1437,7 @@ validateCACStatus_s::ValidateClass_NoDuplicates
 validateCACStatus_s::ValidateClass_HasBonusCard
 ==============
 */
-/*char validateCACStatus_s::ValidateClass_HasBonusCard(
+/*char validateCACStatus_s::ValidateClass_HasBonusCard(validateCACStatus_s *this, loadoutSlot_t a2, bonusCards_t bonusCard)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1433,7 +1448,7 @@ validateCACStatus_s::ValidateClass_HasBonusCard
 validateCACStatus_s::verifyUnusedAttachmentSlotsCheck
 ==============
 */
-/*char __thiscall validateCACStatus_s::verifyUnusedAttachmentSlotsCheck(
+/*char __thiscall validateCACStatus_s::verifyUnusedAttachmentSlotsCheck(validateCACStatus_s *this, loadoutSlot_t startIndex, loadoutSlot_t endIndex, int maxAllowedAttachments)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1454,7 +1469,7 @@ validateCACStatus_s::Print
 validateCACStatus_s::Initialize
 ==============
 */
-/*void __thiscall validateCACStatus_s::Initialize(
+/*void __thiscall validateCACStatus_s::Initialize(validateCACStatus_s *this, ControllerIndex_t localControllerIndex_Input, const CACRoot cacRoot_Input, loadoutClass_t customClass_Input)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -1475,10 +1490,10 @@ const char *BG_UnlockablesGetColStringForItemIndex(int itemIndex, statsTableColu
 BG_UnlockablesGetCountSlot
 ==============
 */
-loadoutSlot_t BG_UnlockablesGetCountSlot(itemInfo_t *itemInfo)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	loadoutSlot_t tmp;
+	 tmp;
 	return tmp;
 }
 
@@ -1487,7 +1502,7 @@ loadoutSlot_t BG_UnlockablesGetCountSlot(itemInfo_t *itemInfo)
 BG_UnlockablesHandleDefaultGrenadeStatus
 ==============
 */
-void BG_UnlockablesHandleDefaultGrenadeStatus(
+void BG_UnlockablesHandleDefaultGrenadeStatus(int grenadeCount, int loadoutSlot, loadoutClass_t defaultClass)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1606,11 +1621,11 @@ bool BG_UnlockablesIsItemDualWieldLocked(const ControllerIndex_t controllerIndex
 BG_UnlockablesIsItemTrackedByMap
 ==============
 */
-/*char BG_UnlockablesIsItemTrackedByMap@<al>(
+char BG_UnlockablesIsItemTrackedByMap(statsTableColumns_t a1, int a2, int itemIndex, int mapIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -1628,10 +1643,11 @@ bool BG_UnlockablesIsItemNew(const ControllerIndex_t controllerIndex, int itemIn
 BG_UnlockablesIsItemGroupNew
 ==============
 */
-char BG_UnlockablesIsItemGroupNew(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1661,7 +1677,7 @@ bool BG_UnlockablesIsItemDualWieldPurchased(const ControllerIndex_t controllerIn
 BG_UnlockablesSetBonusCardBits
 ==============
 */
-void BG_UnlockablesSetBonusCardBits(
+void BG_UnlockablesSetBonusCardBits(char *a1, unsigned __int8 *statsBuffer, unsigned __int8 *bonusCardList, unsigned int bufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1671,7 +1687,7 @@ void BG_UnlockablesSetBonusCardBits(
 BG_UnlockablesEmblemOrBackingLockedByChallenge
 ==============
 */
-bool BG_UnlockablesEmblemOrBackingLockedByChallenge(
+bool BG_UnlockablesEmblemOrBackingLockedByChallenge(ControllerIndex_t controllerIndex, emblemChallengeLookup_t *challengeLookup, bool otherPlayer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1715,11 +1731,11 @@ int BG_UnlockablesGetItemIndexFromName(const char *itemName)
 BG_UnlockablesGetItemIndexFromRefHash
 ==============
 */
-/*int BG_UnlockablesGetItemIndexFromRefHash@<eax>(
+int BG_UnlockablesGetItemIndexFromRefHash(statsTableColumns_t a1, int a2, int itemNameHash)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -1799,7 +1815,7 @@ void BG_UnlockablesEquipClassCmd()
 BG_UnlockablesEquipDefaultItemToSlotCmd
 ==============
 */
-void BG_UnlockablesEquipDefaultItemToSlotCmd()
+void BG_UnlockablesEquipDefaultItemToSlotCmd(char *EntryInList)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1809,11 +1825,11 @@ void BG_UnlockablesEquipDefaultItemToSlotCmd()
 BG_UnlockablesGetDefaultClassSlotFromName
 ==============
 */
-/*const char *BG_UnlockablesGetDefaultClassSlotFromName@<eax>(
+const char *BG_UnlockablesGetDefaultClassSlotFromName(const char **a1, const char *className, const char *slotName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -1851,10 +1867,11 @@ int BG_UnlockablesGetNumPurchasedItemsInCurrentList(const ControllerIndex_t cont
 BG_UnlockablesBuildItemListForSlotName
 ==============
 */
-int BG_UnlockablesBuildItemListForSlotName(const ControllerIndex_t controllerIndex, const char *slotName)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1872,10 +1889,11 @@ void BG_UnlockablesBuildItemListForSlotNameCmd()
 BG_UnlockablesBuildItemListForGroupName
 ==============
 */
-int BG_UnlockablesBuildItemListForGroupName(const ControllerIndex_t controllerIndex, const char *groupName)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1893,10 +1911,11 @@ void BG_UnlockablesBuildItemListForGroupNameCmd()
 BG_UnlockablesBuildItemListForSlotNameAndGroup
 ==============
 */
-int BG_UnlockablesBuildItemListForSlotNameAndGroup(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1904,9 +1923,11 @@ int BG_UnlockablesBuildItemListForSlotNameAndGroup(
 BG_UnlockablesBuildItemListForSlotNameAndGroupCmd
 ==============
 */
-void BG_UnlockablesBuildItemListForSlotNameAndGroupCmd()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1925,7 +1946,7 @@ int BG_UnlockablesGetItemIndexInSlot(int itemNum)
 BG_UnlockablesBonusCardEquipAction
 ==============
 */
-bool BG_UnlockablesBonusCardEquipAction(
+bool BG_UnlockablesBonusCardEquipAction(const ControllerIndex_t controllerIndex, const loadoutClass_t customClass, const char *cardName, bool equip)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1977,9 +1998,11 @@ void BG_UnlockablesUnequipBonusCardCmd()
 BG_UnlockablesPushItemsByGroupName
 ==============
 */
-void BG_UnlockablesPushItemsByGroupName(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1987,7 +2010,7 @@ void BG_UnlockablesPushItemsByGroupName(
 validateCACStatus_s::ValidateClass_ByGroupSearch
 ==============
 */
-/*char validateCACStatus_s::ValidateClass_ByGroupSearch(
+/*char validateCACStatus_s::ValidateClass_ByGroupSearch(CACMPSHARED_WeaponData *groupArray, int groupArraySize, int curr_ItemIndex, int *foundIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1998,7 +2021,7 @@ validateCACStatus_s::ValidateClass_ByGroupSearch
 validateCACStatus_s::ValidateClass_GetNumItemAttachments
 ==============
 */
-/*int __thiscall validateCACStatus_s::ValidateClass_GetNumItemAttachments(
+/*int __thiscall validateCACStatus_s::ValidateClass_GetNumItemAttachments(validateCACStatus_s *this, loadoutSlot_t loadoutSlotType, int itemIndex, int foundIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -2009,7 +2032,7 @@ validateCACStatus_s::ValidateClass_GetNumItemAttachments
 validateCACStatus_s::ValidateClass_BonusCard_PrerequisitesAndRules
 ==============
 */
-/*bool __thiscall validateCACStatus_s::ValidateClass_BonusCard_PrerequisitesAndRules(
+/*bool __thiscall validateCACStatus_s::ValidateClass_BonusCard_PrerequisitesAndRules(validateCACStatus_s *this, int itemIndex, loadoutSlot_t slotIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -2030,7 +2053,7 @@ validateCACStatus_s::ValidateClass_BonusCards
 validateCACStatus_s::ValidateClass_AdditionalGrenadeCheck
 ==============
 */
-/*bool __thiscall validateCACStatus_s::ValidateClass_AdditionalGrenadeCheck(
+/*bool __thiscall validateCACStatus_s::ValidateClass_AdditionalGrenadeCheck(validateCACStatus_s *this, int itemIndex, int slotIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -2071,7 +2094,7 @@ validateCACStatus_s::ValidateClass_KillStreaks
 validateCACStatus_s::ValidateClass_BaseWeapon
 ==============
 */
-/*void validateCACStatus_s::ValidateClass_BaseWeapon(
+/*void validateCACStatus_s::ValidateClass_BaseWeapon(validateCACStatus_s *this, loadoutSlot_t a2, loadoutSlot_t curr_LoadoutSlot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -2081,7 +2104,7 @@ validateCACStatus_s::ValidateClass_BaseWeapon
 validateCACStatus_s::ValidateClass_Attachments_CheckMaxAllowed
 ==============
 */
-/*bool validateCACStatus_s::ValidateClass_Attachments_CheckMaxAllowed(
+/*bool validateCACStatus_s::ValidateClass_Attachments_CheckMaxAllowed(validateCACStatus_s *this, loadoutSlot_t a2, loadoutSlot_t baseWeaponSlot, loadoutSlot_t startIndex, loadoutSlot_t endIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -2092,7 +2115,7 @@ validateCACStatus_s::ValidateClass_Attachments_CheckMaxAllowed
 validateCACStatus_s::ValidateClass_VerifyNoAttachments
 ==============
 */
-/*void validateCACStatus_s::ValidateClass_VerifyNoAttachments(
+/*void validateCACStatus_s::ValidateClass_VerifyNoAttachments(validateCACStatus_s *this, loadoutSlot_t a2, loadoutSlot_t startIndex, loadoutSlot_t endIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -2102,7 +2125,7 @@ validateCACStatus_s::ValidateClass_VerifyNoAttachments
 validateCACStatus_s::Verify
 ==============
 */
-/*char validateCACStatus_s::Verify(
+/*char validateCACStatus_s::Verify(validateCACStatus_s *this, loadoutSlot_t a2, bool logErrors, eventAccumulator *errorAccumulator, bool fixErrors)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -2113,7 +2136,7 @@ validateCACStatus_s::Verify
 BG_UnlockablesCheckItemsInClass
 ==============
 */
-bool BG_UnlockablesCheckItemsInClass(
+bool BG_UnlockablesCheckItemsInClass(const CACRoot *cacRoot, const loadoutClass_t customClass, unsigned __int8 *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -2124,7 +2147,7 @@ bool BG_UnlockablesCheckItemsInClass(
 BG_Unlockable_CheckLoadOutVsRank
 ==============
 */
-char BG_Unlockable_CheckLoadOutVsRank(unsigned __int8 *buffer)
+bool BG_Unlockable_CheckLoadOutVsRank(unsigned __int8 *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -2165,22 +2188,22 @@ void BG_UnlockablesParseSpecialtyInfo(itemInfo_t *itemInfo)
 BG_GetSpecialtyCollectionImageName
 ==============
 */
-/*const char *BG_GetSpecialtyCollectionImageName@<eax>(statsTableColumns_t a1@<edx>, int collectionIndex)
+const char *BG_GetSpecialtyCollectionImageName(statsTableColumns_t a1, int collectionIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 BG_GetSpecialtyCollectionName
 ==============
 */
-/*const char *BG_GetSpecialtyCollectionName@<eax>(statsTableColumns_t a1@<edx>, int collectionIndex)
+const char *BG_GetSpecialtyCollectionName(statsTableColumns_t a1, int collectionIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -2208,7 +2231,7 @@ bool BG_UnlockablesIsItemInUnlockedByCAC(int itemIndex)
 BG_UnlockablesBuildItemInfo
 ==============
 */
-bool BG_UnlockablesBuildItemInfo(
+bool BG_UnlockablesBuildItemInfo(__int16 itemIndex, itemInfo_t *itemInfo, defaultClassInfo_t *defaultClassInfoArray)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -2294,7 +2317,7 @@ void BG_UnlockablesPurchaseItemCmd()
 BG_UnlockablesSetUnlockedAttachmentBits
 ==============
 */
-void BG_UnlockablesSetUnlockedAttachmentBits(
+void BG_UnlockablesSetUnlockedAttachmentBits(unsigned __int8 *statsBuffer, int *itemList, unsigned int bufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2304,29 +2327,29 @@ void BG_UnlockablesSetUnlockedAttachmentBits(
 BG_UnlockablesGetAttachmentRef
 ==============
 */
-/*const char *BG_UnlockablesGetAttachmentRef@<eax>(
+const char *BG_UnlockablesGetAttachmentRef(loadoutSlot_t a1, const CACRoot *cacRoot, loadoutClass_t customClass, loadoutSlot_t weaponSlot, loadoutSlot_t attachmentSlot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 BG_UnlockablesGetItemReferenceInLoadoutSlot
 ==============
 */
-/*const char *BG_UnlockablesGetItemReferenceInLoadoutSlot@<eax>(
+const char *BG_UnlockablesGetItemReferenceInLoadoutSlot(loadoutSlot_t a1, const CACRoot *cacRoot, loadoutClass_t customClass, loadoutSlot_t loadoutSlot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 validateCACStatus_s::ValidateClass_WeaponOption
 ==============
 */
-/*void validateCACStatus_s::ValidateClass_WeaponOption(
+/*void validateCACStatus_s::ValidateClass_WeaponOption(validateCACStatus_s *this, loadoutSlot_t a2, int weaponIndex, int slotIndex, loadoutSlot_t loadoutSlot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -2336,7 +2359,7 @@ validateCACStatus_s::ValidateClass_WeaponOption
 validateCACStatus_s::ValidateClass_NoConflictingAttachments
 ==============
 */
-/*char __thiscall validateCACStatus_s::ValidateClass_NoConflictingAttachments(
+/*char __thiscall validateCACStatus_s::ValidateClass_NoConflictingAttachments(validateCACStatus_s *this, int baseWeapon_itemIndex, int curr_AttachmentIndex, eAttachment curr_Attachment, int curr_SlotIndex, int startRangeInclusive, int stopRangeInclusive)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -2347,7 +2370,7 @@ validateCACStatus_s::ValidateClass_NoConflictingAttachments
 validateCACStatus_s::ValidateClass_Attachments
 ==============
 */
-/*void validateCACStatus_s::ValidateClass_Attachments(
+/*void validateCACStatus_s::ValidateClass_Attachments(validateCACStatus_s *this, loadoutSlot_t a2, loadoutSlot_t baseWeaponSlot, loadoutSlot_t startIndex, loadoutSlot_t endIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -2357,7 +2380,7 @@ validateCACStatus_s::ValidateClass_Attachments
 validateCACStatus_s::Validate
 ==============
 */
-/*bool validateCACStatus_s::Validate(
+/*bool validateCACStatus_s::Validate(validateCACStatus_s *this, loadoutSlot_t a2, ControllerIndex_t controllerIndex, bool logErrors, eventAccumulator *errorAccumulator, BOOL fixErrors)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

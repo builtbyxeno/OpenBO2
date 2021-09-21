@@ -78,7 +78,7 @@ dwQoSMultiProbeListener::onQoSProbeSuccess
 dwStartQoSProbes
 ==============
 */
-void dwStartQoSProbes(
+void dwStartQoSProbes(dwQoSMultiProbeListener *listener, const unsigned int numProbes, XSESSION_INFO *xenonsInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -17,7 +17,7 @@ int CG_GetEntityBModelContents(const centity_t *cent)
 CG_GetEntityDobjBounds
 ==============
 */
-void CG_GetEntityDobjBounds(
+void CG_GetEntityDobjBounds(const centity_t *cent, const DObj *dobj, vec3_t *mins, vec3_t *maxs, vec3_t *absMins, vec3_t *absMaxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -103,7 +103,7 @@ void CG_AreaEntities_r(unsigned __int16 sectorIndex, CEntityAreaParms *areaParms
 CG_AreaEntities
 ==============
 */
-int CG_AreaEntities(
+int CG_AreaEntities(const vec3_t *mins, const vec3_t *maxs, int *entityList, const int maxEntities, const int contentMask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -136,7 +136,7 @@ int CG_GetEntityBoneInfo(int entID, int boneIndex, vec3_t *bonePos, vec3_t *bone
 CG_GetEntityBModelBounds
 ==============
 */
-void CG_GetEntityBModelBounds(
+void CG_GetEntityBModelBounds(int a1, const centity_t *cent, vec3_t *mins, vec3_t *maxs, vec3_t *absMins, vec3_t *absMaxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -166,7 +166,7 @@ void CG_ClipMoveToEntity(const moveclip_t *clip, int entIndex, trace_t *results)
 CG_ClipMoveToEntities_r
 ==============
 */
-void CG_ClipMoveToEntities_r(
+void CG_ClipMoveToEntities_r(const moveclip_t *clip, unsigned __int16 sectorIndex, const vec4_t *p1, const vec4_t *p2, trace_t *results)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -196,7 +196,7 @@ void CG_PointTraceToEntity(const pointtrace_t *clip, int entIndex, trace_t *resu
 CG_PointTraceToEntities_r
 ==============
 */
-void CG_PointTraceToEntities_r(
+void CG_PointTraceToEntities_r(const pointtrace_t *clip, unsigned __int16 sectorIndex, const vec4_t *p1, const vec4_t *p2, trace_t *results, col_context_t *context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -228,7 +228,7 @@ CG_TracePoint
 CG_LocationalTrace
 ==============
 */
-void CG_LocationalTrace(
+void CG_LocationalTrace(trace_t *results, const vec3_t *start, const vec3_t *end, int passEntityNum, int contentMask, bool checkRopes, col_context_t *context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -262,7 +262,7 @@ CG_SightTracePoint
 CG_TraceCapsule
 ==============
 */
-void CG_TraceCapsule(
+void CG_TraceCapsule(int a1, trace_t *results, const vec3_t *start, const vec3_t *mins, const vec3_t *maxs, const vec3_t *end, int passEntityNum, int contentMask, col_context_t *context)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

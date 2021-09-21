@@ -78,22 +78,22 @@ void IPak_BeginIndexRead(IPakWorkData *work, IPakLoadedPackfile *pak)
 IPak_CurrentIndexEntry
 ==============
 */
-/*char IPak_CurrentIndexEntry@<al>(int a1@<edx>, IPakWorkData *work, IPakIndexEntry *entry)
+char IPak_CurrentIndexEntry(int a1, IPakWorkData *work, IPakIndexEntry *entry)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 IPak_NextIndexEntry
 ==============
 */
-/*char IPak_NextIndexEntry@<al>(int a1@<edx>, IPakWorkData *work, IPakIndexEntry *entry)
+char IPak_NextIndexEntry(int a1, IPakWorkData *work, IPakIndexEntry *entry)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -132,10 +132,10 @@ int IPak_CompareImageOffsets(const void *A, const void *B)
 IPak_BuildAdjacencyInfo
 ==============
 */
-void IPak_BuildAdjacencyInfo(unsigned __int8 *workBuffer, int workBufferSize)
+/*void IPak_BuildAdjacencyInfo(const char *a1@<edi>, unsigned __int8 *workBuffer, int workBufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

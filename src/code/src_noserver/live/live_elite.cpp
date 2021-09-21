@@ -104,7 +104,7 @@ char LiveElite_CreateClanFailure(TaskRecord *task)
 LiveElite_TeamSetPublicProfile
 ==============
 */
-TaskRecord *LiveElite_TeamSetPublicProfile(
+TaskRecord *LiveElite_TeamSetPublicProfile(const ControllerIndex_t localControllerIndex, __int64 teamId, const char *clantag)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -137,7 +137,7 @@ char LiveElite_TeamSetPublicProfileFailure(TaskRecord *task)
 LiveElite_TeamSetPrivateProfile
 ==============
 */
-TaskRecord *LiveElite_TeamSetPrivateProfile(
+TaskRecord *LiveElite_TeamSetPrivateProfile(const ControllerIndex_t localControllerIndex, __int64 teamId, const char *motd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -458,7 +458,7 @@ eventAccumulator::setMatchID
 eventAccumulator::getSegmentJSON
 ==============
 */
-/*int __thiscall eventAccumulator::getSegmentJSON(
+/*int __thiscall eventAccumulator::getSegmentJSON(eventAccumulator *this, segment *segmentData, char *outBuffer, int outBufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -543,7 +543,7 @@ jsonWriter::terminate
 eventAccumulator::writeCategoryValue
 ==============
 */
-/*void __thiscall eventAccumulator::writeCategoryValue(
+/*void __thiscall eventAccumulator::writeCategoryValue(eventAccumulator *this, char *strValue, bool isNameValuePair, bool checkDvarAllowedWrite)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

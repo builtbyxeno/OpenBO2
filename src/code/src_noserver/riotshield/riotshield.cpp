@@ -6,7 +6,7 @@
 Riotshield_RegisterDvars
 ==============
 */
-void Riotshield_RegisterDvars(int a1, dvarType_t a2)
+void Riotshield_RegisterDvars(dvarType_t a1, dvarType_t a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

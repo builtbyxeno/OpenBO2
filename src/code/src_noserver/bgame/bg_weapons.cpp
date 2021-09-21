@@ -459,7 +459,7 @@ void PM_BeginWeaponChange(pmove_t *pm, pml_t *pml, Weapon newweapon, const bool 
 PM_Weapon_BeginWeaponRaise
 ==============
 */
-void PM_Weapon_BeginWeaponRaise(
+void PM_Weapon_BeginWeaponRaise(playerState_s *ps, unsigned int anim, unsigned int time, float aim, int altSwitch)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -490,7 +490,7 @@ void BG_SwitchWeaponsIfEmpty(playerState_s *ps)
 BG_GetValidPrimaryWeaponForAltMode
 ==============
 */
-Weapon BG_GetValidPrimaryWeaponForAltMode(
+Weapon BG_GetValidPrimaryWeaponForAltMode(const playerState_s *ps, Weapon newWeapon, Weapon lastWeaponAltModeSwitch)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	Weapon tmp;
@@ -1076,7 +1076,7 @@ BOOL BG_ThrowingBackGrenade(const playerState_s *ps)
 BG_CalcVehicleTurretWeaponPosOffset
 ==============
 */
-void BG_CalcVehicleTurretWeaponPosOffset(
+void BG_CalcVehicleTurretWeaponPosOffset(float positionFrac, const float weapDef, const WeaponDef *a3, vec3_t *outOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1205,10 +1205,11 @@ Weapon BG_GetViewmodelWeaponIndex(const playerState_s *ps)
 BG_TakePlayerWeapon
 ==============
 */
-int BG_TakePlayerWeapon(playerState_s *ps, const Weapon weapon)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1216,10 +1217,10 @@ int BG_TakePlayerWeapon(playerState_s *ps, const Weapon weapon)
 PM_UpdateAimDownSightFlag
 ==============
 */
-/*void PM_UpdateAimDownSightFlag(pml_t *a1@<edx>, pmove_t *a2@<ecx>, pmove_t *pm)
+void PM_UpdateAimDownSightFlag(pml_t *a1, pmove_t *a2, pmove_t *pm)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1430,7 +1431,7 @@ void UpdatePendingTriggerPull(pmove_t *pm)
 PM_Weapon_BurstFireWaitingForTriggerRelease
 ==============
 */
-bool PM_Weapon_BurstFireWaitingForTriggerRelease(
+bool PM_Weapon_BurstFireWaitingForTriggerRelease(pmove_t *pm, const WeaponDef *weapDef, const Weapon weapon, int weaponState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1732,9 +1733,11 @@ void BG_IncrementWeaponMovementIdleTime(const playerState_s *ps, float frametime
 PM_UpdateSwayPrediction
 ==============
 */
-void PM_UpdateSwayPrediction(playerState_s *ps, float frametime)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1752,7 +1755,7 @@ void PM_Weapon_Turret(pmove_t *pm, pml_t *pml)
 BG_WeaponFireRecoil
 ==============
 */
-void BG_WeaponFireRecoil(
+void BG_WeaponFireRecoil(const playerState_s *ps, vec2_t *recoilSpeed, vec3_t *kickAVel, int *previousRecoilTime, bool previouslyFiring, float *previousRecoilRatio, unsigned int *holdrand)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1866,8 +1869,10 @@ int BG_CheckForUniversalActionDW(playerState_s *ps)
 PM_Weapon
 ==============
 */
-void PM_Weapon(pmove_t *pm, pml_t *pml)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 

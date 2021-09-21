@@ -88,7 +88,7 @@ void HudElem_DestroyAll()
 HudElem_SetEnumString
 ==============
 */
-void HudElem_SetEnumString(
+void HudElem_SetEnumString(game_hudelem_s *hud, const game_hudelem_field_t *f, const char **names, int nameCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -98,7 +98,7 @@ void HudElem_SetEnumString(
 HudElem_GetEnumString
 ==============
 */
-void HudElem_GetEnumString(
+void HudElem_GetEnumString(game_hudelem_s *hud, const game_hudelem_field_t *f, const char **names, int nameCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -478,9 +478,11 @@ void HudElem_SetFontScale(game_hudelem_s *hud, int offset)
 HudElem_SetFont
 ==============
 */
-void HudElem_SetFont(game_hudelem_s *hud, int offset)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -488,9 +490,11 @@ void HudElem_SetFont(game_hudelem_s *hud, int offset)
 HudElem_GetFont
 ==============
 */
-void HudElem_GetFont(game_hudelem_s *a1, const game_hudelem_field_t *a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -498,9 +502,11 @@ void HudElem_GetFont(game_hudelem_s *a1, const game_hudelem_field_t *a2)
 HudElem_SetAlignX
 ==============
 */
-void HudElem_SetAlignX(game_hudelem_s *hud, int offset)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -508,9 +514,11 @@ void HudElem_SetAlignX(game_hudelem_s *hud, int offset)
 HudElem_GetAlignX
 ==============
 */
-void HudElem_GetAlignX(game_hudelem_s *a1, const game_hudelem_field_t *a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -518,9 +526,11 @@ void HudElem_GetAlignX(game_hudelem_s *a1, const game_hudelem_field_t *a2)
 HudElem_SetAlignY
 ==============
 */
-void HudElem_SetAlignY(game_hudelem_s *hud, int offset)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -528,9 +538,11 @@ void HudElem_SetAlignY(game_hudelem_s *hud, int offset)
 HudElem_GetAlignY
 ==============
 */
-void HudElem_GetAlignY(game_hudelem_s *a1, const game_hudelem_field_t *a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -538,9 +550,11 @@ void HudElem_GetAlignY(game_hudelem_s *a1, const game_hudelem_field_t *a2)
 HudElem_SetHorzAlign
 ==============
 */
-void HudElem_SetHorzAlign(game_hudelem_s *hud, int offset)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -548,9 +562,11 @@ void HudElem_SetHorzAlign(game_hudelem_s *hud, int offset)
 HudElem_GetHorzAlign
 ==============
 */
-void HudElem_GetHorzAlign(game_hudelem_s *a1, const game_hudelem_field_t *a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -558,9 +574,11 @@ void HudElem_GetHorzAlign(game_hudelem_s *a1, const game_hudelem_field_t *a2)
 HudElem_SetVertAlign
 ==============
 */
-void HudElem_SetVertAlign(game_hudelem_s *hud, int offset)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -568,9 +586,11 @@ void HudElem_SetVertAlign(game_hudelem_s *hud, int offset)
 HudElem_GetVertAlign
 ==============
 */
-void HudElem_GetVertAlign(game_hudelem_s *a1, const game_hudelem_field_t *a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

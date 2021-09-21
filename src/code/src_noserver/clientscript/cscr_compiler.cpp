@@ -127,9 +127,11 @@ void EvalFloat(float value, sval_u sourcePos, VariableCompileValue *constValue)
 EmitAnimTree
 ==============
 */
-void EmitAnimTree(scriptInstance_t inst, sval_u sourcePos)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -167,9 +169,11 @@ void EvalString(unsigned int value, sval_u sourcePos, VariableCompileValue *cons
 EmitGetString
 ==============
 */
-void EmitGetString(scriptInstance_t inst, unsigned int value, sval_u sourcePos)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -187,9 +191,11 @@ void EvalIString(unsigned int value, sval_u sourcePos, VariableCompileValue *con
 EmitGetIString
 ==============
 */
-void EmitGetIString(scriptInstance_t inst, unsigned int value, sval_u sourcePos)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -238,7 +244,7 @@ int EmitExpressionList(scriptInstance_t inst, sval_u exprlist, scr_block_s *bloc
 AddFilePrecache
 ==============
 */
-void AddFilePrecache(
+void AddFilePrecache(scriptInstance_t inst, unsigned int filename, unsigned int sourcePos, bool include, unsigned int *filePosId, unsigned int *fileCountId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -321,7 +327,7 @@ void Scr_CreateVector(scriptInstance_t inst, VariableCompileValue *constValue, V
 EvalBinaryOperatorExpression
 ==============
 */
-char EvalBinaryOperatorExpression(
+char EvalBinaryOperatorExpression(scriptInstance_t inst, sval_u expr1, sval_u expr2, sval_u opcode, sval_u sourcePos, VariableCompileValue *constValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -393,7 +399,7 @@ void EmitCaseStatementInfo(scriptInstance_t inst, unsigned int name, sval_u sour
 EmitStatementList
 ==============
 */
-void EmitStatementList(
+void EmitStatementList(scriptInstance_t inst, sval_u val, bool lastStatement, unsigned int endSourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -403,7 +409,7 @@ void EmitStatementList(
 EmitOpcode
 ==============
 */
-void EmitOpcode(
+void EmitOpcode(VariableCompileValue *a1, scriptInstance_t inst, unsigned int op, int offset, int callType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -413,7 +419,7 @@ void EmitOpcode(
 Scr_FindLocalVarIndex
 ==============
 */
-int Scr_FindLocalVarIndex(
+int Scr_FindLocalVarIndex(scriptInstance_t inst, unsigned int name, sval_u sourcePos, bool create, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -424,10 +430,10 @@ int Scr_FindLocalVarIndex(
 EmitCreateLocalVars
 ==============
 */
-/*void EmitCreateLocalVars(VariableCompileValue *a1@<edx>, scriptInstance_t inst, scr_block_s *block)
+void EmitCreateLocalVars(VariableCompileValue *a1, scriptInstance_t inst, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -444,9 +450,11 @@ void EmitRemoveLocalVars(scriptInstance_t inst, scr_block_s *block, scr_block_s 
 EmitNOP2
 ==============
 */
-void EmitNOP2(scriptInstance_t inst, bool lastStatement, unsigned int endSourcePos, scr_block_s *block)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -484,9 +492,11 @@ void EmitAnimObject(scriptInstance_t inst, sval_u sourcePos)
 EmitLocalVariable
 ==============
 */
-void EmitLocalVariable(scriptInstance_t inst, sval_u expr, sval_u sourcePos, scr_block_s *block)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -494,9 +504,11 @@ void EmitLocalVariable(scriptInstance_t inst, sval_u expr, sval_u sourcePos, scr
 EmitLocalVariableRef
 ==============
 */
-void EmitLocalVariableRef(scriptInstance_t inst, sval_u expr, sval_u sourcePos, scr_block_s *block)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -544,7 +556,7 @@ void EmitCastFieldObject(scriptInstance_t inst, sval_u sourcePos)
 EmitArrayVariable
 ==============
 */
-void EmitArrayVariable(
+void EmitArrayVariable(scriptInstance_t inst, sval_u expr, sval_u index, sval_u sourcePos, sval_u indexSourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -574,7 +586,7 @@ void EmitCall(scriptInstance_t inst, sval_u func_name, sval_u params, bool bStat
 EmitMethod
 ==============
 */
-void EmitMethod(
+void EmitMethod(scriptInstance_t inst, sval_u expr, sval_u func_name, sval_u params, sval_u methodSourcePos, bool bStatement, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -584,9 +596,11 @@ void EmitMethod(
 EmitCallExpression
 ==============
 */
-void EmitCallExpression(scriptInstance_t inst, sval_u expr, bool bStatement, scr_block_s *block)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -594,9 +608,11 @@ void EmitCallExpression(scriptInstance_t inst, sval_u expr, bool bStatement, scr
 EmitCallExpressionFieldObject
 ==============
 */
-void EmitCallExpressionFieldObject(scriptInstance_t inst, sval_u expr, scr_block_s *block)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -604,7 +620,7 @@ void EmitCallExpressionFieldObject(scriptInstance_t inst, sval_u expr, scr_block
 EvalPrimitiveExpressionList
 ==============
 */
-bool EvalPrimitiveExpressionList(
+bool EvalPrimitiveExpressionList(scriptInstance_t inst, sval_u exprlist, sval_u sourcePos, VariableCompileValue *constValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -615,18 +631,18 @@ bool EvalPrimitiveExpressionList(
 EmitOrEvalPrimitiveExpressionList
 ==============
 */
-/*bool EmitOrEvalPrimitiveExpressionList@<al>(
+bool EmitOrEvalPrimitiveExpressionList(VariableCompileValue *a1, scriptInstance_t inst, sval_u exprlist, sval_u sourcePos, VariableCompileValue *constValue, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 EmitExpressionListFieldObject
 ==============
 */
-void EmitExpressionListFieldObject(
+void EmitExpressionListFieldObject(scriptInstance_t inst, sval_u exprlist, sval_u sourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -636,18 +652,19 @@ void EmitExpressionListFieldObject(
 EvalPrimitiveExpression
 ==============
 */
-/*bool EvalPrimitiveExpression@<al>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 EmitBoolOrExpression
 ==============
 */
-void EmitBoolOrExpression(
+void EmitBoolOrExpression(scriptInstance_t inst, sval_u expr1, sval_u expr2, sval_u expr1sourcePos, sval_u expr2sourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -657,7 +674,7 @@ void EmitBoolOrExpression(
 EmitBoolAndExpression
 ==============
 */
-void EmitBoolAndExpression(
+void EmitBoolAndExpression(scriptInstance_t inst, sval_u expr1, sval_u expr2, sval_u expr1sourcePos, sval_u expr2sourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -667,7 +684,7 @@ void EmitBoolAndExpression(
 EmitOrEvalBinaryOperatorExpression
 ==============
 */
-bool EmitOrEvalBinaryOperatorExpression(
+bool EmitOrEvalBinaryOperatorExpression(scriptInstance_t inst, sval_u expr1, sval_u expr2, sval_u opcode, sval_u sourcePos, VariableCompileValue *constValue, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -678,7 +695,7 @@ bool EmitOrEvalBinaryOperatorExpression(
 EmitArrayPrimitiveExpressionRef
 ==============
 */
-void EmitArrayPrimitiveExpressionRef(
+void EmitArrayPrimitiveExpressionRef(scriptInstance_t inst, sval_u expr, sval_u sourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -688,9 +705,11 @@ void EmitArrayPrimitiveExpressionRef(
 EmitPrimitiveExpressionFieldObject
 ==============
 */
-void EmitPrimitiveExpressionFieldObject(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -698,9 +717,11 @@ void EmitPrimitiveExpressionFieldObject(
 EmitCallExpressionStatement
 ==============
 */
-void EmitCallExpressionStatement(scriptInstance_t inst, sval_u expr, scr_block_s *block)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -728,9 +749,11 @@ void EmitFormalWaittillParameterListRefInternal(scriptInstance_t inst, sval_u *n
 EmitCaseStatement
 ==============
 */
-void EmitCaseStatement(scriptInstance_t inst, sval_u expr, sval_u sourcePos)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -738,7 +761,7 @@ void EmitCaseStatement(scriptInstance_t inst, sval_u expr, sval_u sourcePos)
 EmitSwitchStatementList
 ==============
 */
-void EmitSwitchStatementList(
+void EmitSwitchStatementList(scriptInstance_t inst, sval_u val, bool lastStatement, unsigned int endSourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -748,9 +771,11 @@ void EmitSwitchStatementList(
 EmitBreakStatement
 ==============
 */
-void EmitBreakStatement(scriptInstance_t inst, sval_u sourcePos, scr_block_s *block)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -758,9 +783,11 @@ void EmitBreakStatement(scriptInstance_t inst, sval_u sourcePos, scr_block_s *bl
 EmitContinueStatement
 ==============
 */
-void EmitContinueStatement(scriptInstance_t inst, sval_u sourcePos, scr_block_s *block)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -768,7 +795,7 @@ void EmitContinueStatement(scriptInstance_t inst, sval_u sourcePos, scr_block_s 
 EmitDeveloperStatementList
 ==============
 */
-void EmitDeveloperStatementList(
+void EmitDeveloperStatementList(scriptInstance_t inst, sval_u val, sval_u sourcePos, scr_block_s *block, sval_u *devStatBlock)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -778,7 +805,7 @@ void EmitDeveloperStatementList(
 EmitClearFieldVariable
 ==============
 */
-void EmitClearFieldVariable(
+void EmitClearFieldVariable(scriptInstance_t inst, sval_u expr, sval_u field, sval_u sourcePos, sval_u rhsSourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -788,9 +815,11 @@ void EmitClearFieldVariable(
 EmitVariableExpression
 ==============
 */
-void EmitVariableExpression(scriptInstance_t inst, sval_u expr, scr_block_s *block)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -798,22 +827,22 @@ void EmitVariableExpression(scriptInstance_t inst, sval_u expr, scr_block_s *blo
 EmitOrEvalPrimitiveExpression
 ==============
 */
-/*bool EmitOrEvalPrimitiveExpression@<al>(
+bool EmitOrEvalPrimitiveExpression(VariableCompileValue *a1, scriptInstance_t inst, sval_u expr, VariableCompileValue *constValue, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 EmitOrEvalExpression
 ==============
 */
-bool EmitOrEvalExpression(
+/*bool EmitOrEvalExpression@<al>(const char *a1@<edi>, scriptInstance_t inst, sval_u expr, VariableCompileValue *constValue, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
@@ -840,7 +869,7 @@ void EmitReturnStatement(scriptInstance_t inst, sval_u expr, sval_u sourcePos, s
 EmitIfStatement
 ==============
 */
-void EmitIfStatement(
+void EmitIfStatement(scriptInstance_t inst, sval_u expr, sval_u stmt, sval_u sourcePos, bool lastStatement, unsigned int endSourcePos, scr_block_s *block, sval_u *ifStatBlock)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -850,7 +879,7 @@ void EmitIfStatement(
 EmitIfElseStatement
 ==============
 */
-void EmitIfElseStatement(
+void EmitIfElseStatement(scriptInstance_t inst, sval_u expr, sval_u stmt1, sval_u stmt2, sval_u sourcePos, sval_u elseSourcePos, bool lastStatement, unsigned int endSourcePos, scr_block_s *block, sval_u *ifStatBlock, sval_u *elseStatBlock)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -860,7 +889,7 @@ void EmitIfElseStatement(
 EmitWhileStatement
 ==============
 */
-void EmitWhileStatement(
+void EmitWhileStatement(scriptInstance_t inst, sval_u expr, sval_u stmt, sval_u sourcePos, sval_u whileSourcePos, scr_block_s *block, sval_u *whileStatBlock)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -870,7 +899,7 @@ void EmitWhileStatement(
 EmitForStatement
 ==============
 */
-void EmitForStatement(
+void EmitForStatement(scriptInstance_t inst, sval_u stmt1, sval_u expr, sval_u stmt2, sval_u stmt, sval_u sourcePos, sval_u forSourcePos, scr_block_s *block, sval_u *forStatBlock, sval_u *forStatPostBlock)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -880,7 +909,7 @@ void EmitForStatement(
 EmitWaittillStatement
 ==============
 */
-void EmitWaittillStatement(
+void EmitWaittillStatement(scriptInstance_t inst, sval_u obj, sval_u exprlist, sval_u sourcePos, sval_u waitSourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -890,7 +919,7 @@ void EmitWaittillStatement(
 EmitWaittillmatchStatement
 ==============
 */
-void EmitWaittillmatchStatement(
+void EmitWaittillmatchStatement(scriptInstance_t inst, sval_u obj, sval_u exprlist, sval_u sourcePos, sval_u waitSourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -900,7 +929,7 @@ void EmitWaittillmatchStatement(
 EmitNotifyStatement
 ==============
 */
-void EmitNotifyStatement(
+void EmitNotifyStatement(scriptInstance_t inst, sval_u obj, sval_u exprlist, sval_u sourcePos, sval_u notifySourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -910,7 +939,7 @@ void EmitNotifyStatement(
 EmitEndOnStatement
 ==============
 */
-void EmitEndOnStatement(
+void EmitEndOnStatement(scriptInstance_t inst, sval_u obj, sval_u expr, sval_u sourcePos, sval_u exprSourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -920,17 +949,17 @@ void EmitEndOnStatement(
 EmitSwitchStatement
 ==============
 */
-void EmitSwitchStatement(
+/*void EmitSwitchStatement(const char *a1@<edi>, scriptInstance_t inst, sval_u expr, sval_u stmtlist, sval_u sourcePos, bool lastStatement, unsigned int endSourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 EmitArrayVariableRef
 ==============
 */
-void EmitArrayVariableRef(
+void EmitArrayVariableRef(scriptInstance_t inst, sval_u expr, sval_u index, sval_u sourcePos, sval_u indexSourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -940,7 +969,7 @@ void EmitArrayVariableRef(
 EmitClearArrayVariable
 ==============
 */
-void EmitClearArrayVariable(
+void EmitClearArrayVariable(scriptInstance_t inst, sval_u expr, sval_u index, sval_u sourcePos, sval_u indexSourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -950,9 +979,11 @@ void EmitClearArrayVariable(
 EmitVariableExpressionRef
 ==============
 */
-void EmitVariableExpressionRef(scriptInstance_t inst, sval_u expr, scr_block_s *block)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -960,10 +991,11 @@ void EmitVariableExpressionRef(scriptInstance_t inst, sval_u expr, scr_block_s *
 EmitClearVariableExpression
 ==============
 */
-bool EmitClearVariableExpression(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -971,7 +1003,7 @@ bool EmitClearVariableExpression(
 EmitAssignmentStatement
 ==============
 */
-void EmitAssignmentStatement(
+void EmitAssignmentStatement(scriptInstance_t inst, sval_u lhs, sval_u rhs, sval_u sourcePos, sval_u rhsSourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1001,7 +1033,7 @@ void EmitDecStatement(scriptInstance_t inst, sval_u expr, sval_u sourcePos, scr_
 EmitBinaryEqualsOperatorExpression
 ==============
 */
-void EmitBinaryEqualsOperatorExpression(
+void EmitBinaryEqualsOperatorExpression(scriptInstance_t inst, sval_u lhs, sval_u rhs, sval_u opcode, sval_u sourcePos, scr_block_s *block)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1011,9 +1043,11 @@ void EmitBinaryEqualsOperatorExpression(
 EmitStatement
 ==============
 */
-void EmitStatement(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1021,8 +1055,8 @@ void EmitStatement(
 Scr_CompileStatement
 ==============
 */
-/*void Scr_CompileStatement(scr_block_s *a1@<edx>, scriptInstance_t inst, sval_u parseData)
+void Scr_CompileStatement(scr_block_s *a1, scriptInstance_t inst, sval_u parseData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 

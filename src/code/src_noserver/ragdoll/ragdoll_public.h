@@ -21,7 +21,7 @@ int *Ragdoll_ReferenceDObjBody(int dobj);
 int Ragdoll_CountPhysicsBodies();
 RagdollBody *Ragdoll_GetUnusedBody();
 void Ragdoll_FreeBody(int ragdollBody);
-RagdollBody *Ragdoll_CreateRagdollForDObj(;
+RagdollBody *Ragdoll_CreateRagdollForDObj(LocalClientNum_t localClientNum, int ragdollDef, int dobj, bool reset, bool share);
 void Ragdoll_Remove(int ragdoll);
 
 //#include "ragdoll/ragdoll.h"
@@ -56,7 +56,7 @@ void Ragdoll_QuatMulInvSecond(const vec4_t *qa, const vec4_t *qb, vec4_t *dest);
 
 //t6/code/src_noserver/ragdoll/ragdoll_update.cpp
 void Ragdoll_CopyMirrorQuat(const vec4_t *src, bool mirror, vec4_t *dest);
-bool Ragdoll_GetDObjWorldBoneOriginQuat(;
+bool Ragdoll_GetDObjWorldBoneOriginQuat(LocalClientNum_t localClientNum, const cpose_t *pose, DObj *obj, unsigned __int8 boneIndex, vec3_t *origin, vec4_t *quat);
 void Ragdoll_PoseInvAxis(const cpose_t *pose, vec3_t *invAxis);
 void Ragdoll_AnimMatToMat43(const DObjAnimMat *mat, vec3_t *out);
 void Ragdoll_SnapshotBaseLerpBones(RagdollBody *body, BoneOrientation *snapshot);
@@ -68,10 +68,10 @@ void Ragdoll_SnapshotBaseLerpOffsets(RagdollBody *body);
 void Ragdoll_RemoveBodyPhysics(RagdollBody *body);
 char Ragdoll_RebindBody(int ragdollHandle);
 bool Ragdoll_ValidatePrecalcBoneDef(RagdollDef *def, BoneDef *bone);
-void Ragdoll_Launch(;
+void Ragdoll_Launch(const LocalClientNum_t localClientNum, int ragdollHandle, const vec3_t *force, const hitLocation_t hitloc);
 void Ragdoll_SetInitialVelocities(RagdollBody *body);
 void Ragdoll_EstimateInitialVelocities(RagdollBody *body);
-void Ragdoll_Attach(;
+void Ragdoll_Attach(const LocalClientNum_t localClientNum, int ragdollHandle, int attachEnt, const hitLocation_t hitloc);
 bool Ragdoll_BoneTrace(trace_t *trace, trace_t *revTrace, const vec3_t *start, const vec3_t *end);
 void Ragdoll_PrintTunnelFail(RagdollBody *body);
 void Ragdoll_DebugRender(RagdollBody *body);
@@ -92,13 +92,13 @@ char Ragdoll_EnterTunnelTest(RagdollBody *body);
 void Ragdoll_UpdateVelocityCapture(RagdollBody *body);
 void Ragdoll_UpdateFriction(RagdollBody *body);
 char Ragdoll_ExitIdle(RagdollBody *body, RagdollBodyState curState, RagdollBodyState newState);
-// char Ragdoll_EnterIdle@<al>(RagdollBody *body);
+char Ragdoll_EnterIdle(int a1, RagdollBody *body);
 void Ragdoll_UpdateDObjWait(RagdollBody *body);
 char Ragdoll_EnterDobjWait(RagdollBody *body);
-// void Ragdoll_UpdateRunning(int a1@<edx>, RagdollBody *a2@<ecx>, RagdollBody *body);
+void Ragdoll_UpdateRunning(int a1, RagdollBody *a2, RagdollBody *body);
 void Ragdoll_Update(int msec);
 void Ragdoll_RemoveConstraintsForRope(int rope_id);
 // phys_free_list<RagdollBody>::T_internal_base *Ragdoll_GetRBForBone(int entnum, unsigned int boneName);
-void Ragdoll_ExplosionEvent(;
-void Ragdoll_JetThrustEvent(;
+// void Ragdoll_ExplosionEvent(const char *a1@<edi>, const char *a2@<esi>, LocalClientNum_t localClientNum, bool isCylinder, const vec3_t *origin, float innerRadius, float outerRadius, const vec3_t *impulse, float inScale);
+void Ragdoll_JetThrustEvent(LocalClientNum_t localClientNum, const vec3_t *origin, const vec3_t *forward, float outerRadius, float dotLimit);
 

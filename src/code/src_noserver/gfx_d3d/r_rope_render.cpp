@@ -6,7 +6,7 @@
 SetupVertex
 ==============
 */
-void SetupVertex(
+void SetupVertex(const __m128 *pos, const __m128 *normal, const __m128 *tangent, const GfxColor *color, PackedTexCoords texCoord, GfxPackedVertex *v)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -16,10 +16,10 @@ void CL_AddReliableCommand(LocalClientNum_t localClientNum, const char *cmd)
 CL_MapLoading_SetupDevmap
 ==============
 */
-/*void CL_MapLoading_SetupDevmap(int a1@<ebx>)
+void CL_MapLoading_SetupDevmap(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

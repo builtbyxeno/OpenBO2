@@ -146,7 +146,7 @@ int G_GetActorSize()
 G_CreateDObj
 ==============
 */
-void G_CreateDObj(
+void G_CreateDObj(DObjModel_s *dobjModels, unsigned __int16 numModels, XAnimTree_s *tree, int handle, LocalClientNum_t unusedLocalClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -199,7 +199,7 @@ int G_IsServerGameSystem(ClientNum_t clientNum)
 G_AttachWeapon
 ==============
 */
-unsigned __int16 G_AttachWeapon(
+unsigned __int16 G_AttachWeapon(DObjModel_s *dobjModels, unsigned __int16 numModels, clientInfo_t *ci, bool hideClip)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

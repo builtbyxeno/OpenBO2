@@ -26,7 +26,7 @@ void CG_ClearSoundPlaybackTracking()
 CG_ShouldPlaySoundOnLocalClient
 ==============
 */
-bool CG_ShouldPlaySoundOnLocalClient(
+bool CG_ShouldPlaySoundOnLocalClient(LocalClientNum_t localClientNum, int entitynum, const vec3_t *origin, unsigned int aliasname)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -49,7 +49,7 @@ SndEntHandle CG_SndEntHandle(LocalClientNum_t localClientNum, int entIndex)
 CG_PlaySound
 ==============
 */
-void CG_PlaySound(
+void CG_PlaySound(LocalClientNum_t localClientNum, int entitynum, const vec3_t *origin, int fadeMs, bool doNotify, float attenuation, unsigned int id)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -59,7 +59,7 @@ void CG_PlaySound(
 CG_PlaySound
 ==============
 */
-void CG_PlaySound(
+void CG_PlaySound(LocalClientNum_t localClientNum, int entitynum, const vec3_t *origin, int fadeMs, bool doNotify, float attenuation, const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -69,7 +69,7 @@ void CG_PlaySound(
 CG_PlaySound
 ==============
 */
-void CG_PlaySound(
+void CG_PlaySound(LocalClientNum_t localClientNum, const vec3_t *origin, int fadeMs, bool doNotify, float attenuation, const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -79,7 +79,7 @@ void CG_PlaySound(
 CG_PlaySoundWithHandle
 ==============
 */
-int CG_PlaySoundWithHandle(
+int CG_PlaySoundWithHandle(LocalClientNum_t localClientNum, int entitynum, const vec3_t *origin, int fadeMs, bool doNotify, float volume, unsigned int id)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -90,7 +90,7 @@ int CG_PlaySoundWithHandle(
 CG_PlaySoundWithHandle
 ==============
 */
-int CG_PlaySoundWithHandle(
+int CG_PlaySoundWithHandle(LocalClientNum_t localClientNum, int entitynum, const vec3_t *origin, int fadeMs, bool doNotify, float attenuation, const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -161,7 +161,7 @@ void CG_ScriptSndLengthNotify(int msec, int lengthNotifyData)
 CG_CopySoundEntityOrientation
 ==============
 */
-void CG_CopySoundEntityOrientation(
+void CG_CopySoundEntityOrientation(LocalClientNum_t localClientNum, int entIndex, vec3_t *origin_out, vec3_t *axis_out)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -182,7 +182,7 @@ unsigned int CG_SoundGetUseCount(const SndEntHandle sndEnt)
 CG_GetSoundEntityOrientation
 ==============
 */
-void CG_GetSoundEntityOrientation(
+void CG_GetSoundEntityOrientation(const SndEntHandle sndEnt, vec3_t *origin_out, vec3_t *axis_out, vec3_t *velocity_out)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -222,7 +222,7 @@ void CG_SndUpdateFire()
 CG_FlameSourceUpdate
 ==============
 */
-void CG_FlameSourceUpdate(
+void CG_FlameSourceUpdate(LocalClientNum_t localClientNum, int entityNum, const vec3_t *sourcePosition, const vec3_t *flamePosition, snd_flame_source_flags flags, const char *flameOffLoopSound, const char *flameIgniteSound, const char *flameOnLoopSound, const char *flameCooldownSound)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -232,7 +232,7 @@ void CG_FlameSourceUpdate(
 CG_SoundWhizby
 ==============
 */
-void CG_SoundWhizby(
+void CG_SoundWhizby(LocalClientNum_t localClientNum, const WeaponDef *weapDef, const vec3_t *shotPosition, const vec3_t *shotDirection, const vec3_t *position)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -342,7 +342,7 @@ void CG_SoundSetAmbientData(const snd_ambient_script_data *ambData)
 CG_SoundSetAmbientContext
 ==============
 */
-void CG_SoundSetAmbientContext(
+void CG_SoundSetAmbientContext(const unsigned int roomName, const char *ctxType, const char *ctxValue, const bool defaultRoom)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

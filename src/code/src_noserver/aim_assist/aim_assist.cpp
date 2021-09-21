@@ -88,7 +88,7 @@ void AimAssist_CreateScreenMatrix(AimAssistGlobals *aaGlob)
 AimAssist_ConvertToClipBounds
 ==============
 */
-bool AimAssist_ConvertToClipBounds(
+bool AimAssist_ConvertToClipBounds(const AimAssistGlobals *aaGlob, const vec3_t *bounds, const vec3_t *mtx, vec3_t *clipBounds)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -99,7 +99,7 @@ bool AimAssist_ConvertToClipBounds(
 AimAssist_GetCrosshairDistSqr
 ==============
 */
-float AimAssist_GetCrosshairDistSqr(
+float AimAssist_GetCrosshairDistSqr(LocalClientNum_t localClientNum, const vec2_t *clipMins, const vec2_t *clipMaxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -110,7 +110,7 @@ float AimAssist_GetCrosshairDistSqr(
 AimAssist_DoBoundsIntersectCenterBox
 ==============
 */
-bool AimAssist_DoBoundsIntersectCenterBox(
+bool AimAssist_DoBoundsIntersectCenterBox(const vec2_t *clipMins, const vec2_t *clipMaxs, float clipHalfWidth, float clipHalfHeight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -132,11 +132,11 @@ double AimAssist_GetAimAssistRange(Weapon weapon, float adsLerp)
 AimAssist_GetAutoAimRange
 ==============
 */
-/*double AimAssist_GetAutoAimRange@<st0>(double a1@<st1>, LocalClientNum_t localClientNum, Weapon weapon)
+double AimAssist_GetAutoAimRange(double localClientNum, LocalClientNum_t a2, Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -153,7 +153,7 @@ void AimAssist_AddToTargetList(AimAssistGlobals *aaGlob, const AimScreenTarget *
 AimTarget_GetTagPos
 ==============
 */
-int AimTarget_GetTagPos(
+int AimTarget_GetTagPos(LocalClientNum_t localClientNum, const centity_t *cent, unsigned int tagName, vec3_t *pos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -175,7 +175,7 @@ int AimAssist_CalcAimPos(LocalClientNum_t localClientNum, const centity_t *targe
 AimAssist_UpdateScreenTargets
 ==============
 */
-void AimAssist_UpdateScreenTargets(
+void AimAssist_UpdateScreenTargets(LocalClientNum_t localClientNum, const vec3_t *viewOrg, const vec3_t *viewAngles, float tanHalfFovX, float tanHalfFovY)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -239,22 +239,22 @@ AimScreenTarget *AimAssist_GetTargetFromEntity(AimAssistGlobals *aaGlob, int ent
 AimAssist_GetBestTarget
 ==============
 */
-/*AimScreenTarget *AimAssist_GetBestTarget@<eax>(
+AimScreenTarget* AimAssist_GetBestTarget(AimAssistGlobals* aaGlob, float range, float regionWidth, float regionHeight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 AimAssist_GetPrevOrBestTarget
 ==============
 */
-/*AimScreenTarget *AimAssist_GetPrevOrBestTarget@<eax>(
+AimScreenTarget* AimAssist_GetPrevOrBestTarget(AimAssistGlobals* aaGlob, float range, float regionWidth, float regionHeight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -314,11 +314,11 @@ float AimAssist_GetProfileSensitivity(LocalClientNum_t localClientNum)
 AimAssist_ApplyTurnRates
 ==============
 */
-/*double AimAssist_ApplyTurnRates@<st0>(
+double AimAssist_ApplyTurnRates(float *a1, LocalClientNum_t a2, const AimInput *input, AimOutput *output)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -355,7 +355,7 @@ void AimAssist_SetAutoMeleeTarget(AimAssistGlobals *aaGlob, const AimScreenTarge
 AimAssit_ShouldMeleeChargeMoveLimit
 ==============
 */
-bool AimAssit_ShouldMeleeChargeMoveLimit(
+bool AimAssit_ShouldMeleeChargeMoveLimit(const AimAssistGlobals *aaGlob, const AimScreenTarget *screenTarget)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -366,7 +366,7 @@ bool AimAssit_ShouldMeleeChargeMoveLimit(
 AimAssist_ScreenTargetGetAimPos
 ==============
 */
-void AimAssist_ScreenTargetGetAimPos(
+void AimAssist_ScreenTargetGetAimPos(LocalClientNum_t localClientNum, AimScreenTarget* aimScreenTarget, vec3_t* aimPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -376,7 +376,7 @@ void AimAssist_ScreenTargetGetAimPos(
 AimAssist_DrawCenterBox
 ==============
 */
-void AimAssist_DrawCenterBox(
+void AimAssist_DrawCenterBox(const AimAssistGlobals *aaGlob, float clipHalfWidth, float clipHalfHeight, const vec4_t *color, bool centerOnCrosshair)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -396,10 +396,10 @@ void AimAssist_DrawTargets(LocalClientNum_t localClientNum, const playerState_s 
 AimAssist_DrawDebugOverlay
 ==============
 */
-/*void AimAssist_DrawDebugOverlay(bool a1@<dil>, LocalClientNum_t localClientNum)
+void AimAssist_DrawDebugOverlay(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -478,10 +478,10 @@ void AimAssist_ApplyAutoAim(const AimInput *input, AimOutput *output)
 AimAssist_ApplyLockOn
 ==============
 */
-void AimAssist_ApplyLockOn(const AimInput *input, AimOutput *output)
+/*void AimAssist_ApplyLockOn(char *a1@<edi>, const AimInput *input, AimOutput *output)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -520,7 +520,7 @@ void AimAssist_ApplyAutoMelee(const AimInput *input, AimOutput *output)
 AimAssist_UpdateGamePadInput
 ==============
 */
-void AimAssist_UpdateGamePadInput(
+void AimAssist_UpdateGamePadInput(LocalClientNum_t a1, const AimInput *a2, const AimInput *input, AimOutput *output)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -530,7 +530,7 @@ void AimAssist_UpdateGamePadInput(
 AimAssist_UpdateMouseInput
 ==============
 */
-void AimAssist_UpdateMouseInput(
+void AimAssist_UpdateMouseInput(LocalClientNum_t a1, const AimInput *a2, const AimInput *input, AimOutput *output)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

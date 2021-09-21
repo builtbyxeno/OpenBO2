@@ -173,7 +173,7 @@ void XDoll_SetCollides(int xdoll_handle, bool collides)
 XDoll_CreatePhysObj
 ==============
 */
-bool XDoll_CreatePhysObj(
+bool XDoll_CreatePhysObj(XDollBody *body, XDollBone *bone, XModel *model, const cpose_t *pose, PhysPreset *physPreset, bool collide)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -214,7 +214,7 @@ void XDoll_DestroyXDoll(int xdoll_handle)
 XDoll_CreateXDollForBoneLaunch
 ==============
 */
-int XDoll_CreateXDollForBoneLaunch(
+int XDoll_CreateXDollForBoneLaunch(LocalClientNum_t localClientNum, int entity_index, int piece_index, int bone_name, PhysPreset *physPreset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -225,7 +225,7 @@ int XDoll_CreateXDollForBoneLaunch(
 XDoll_CreateXDollForConstraints
 ==============
 */
-int XDoll_CreateXDollForConstraints(
+int XDoll_CreateXDollForConstraints(LocalClientNum_t localClientNum, int entity_index, int piece_index, int health, PhysConstraints *constraints, PhysPreset *physPreset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -246,8 +246,10 @@ void XDoll_UpdateHealth(int xdoll_handle, int health)
 XDoll_ApplyForce
 ==============
 */
-void XDoll_ApplyForce(int xdoll_handle, const vec3_t *hitp, const vec3_t *hitd, const int mod)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 

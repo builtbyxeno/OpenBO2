@@ -182,7 +182,7 @@ void CG_DrawFullScreenDebugOverlays(LocalClientNum_t localClientNum)
 CG_DrawGfxStatsLine
 ==============
 */
-void CG_DrawGfxStatsLine(
+void CG_DrawGfxStatsLine(const ScreenPlacement *scrPlace, float line, const char *header, const vec4_t *color, int surfs, int mats, int prims, int tris)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -202,10 +202,12 @@ void CG_DrawGfxStatsMatrix(const ScreenPlacement *scrPlace, GfxPrimStatsCounters
 CG_DrawGfxStats
 ==============
 */
-/*void CG_DrawGfxStats(int a1@<ebx>, LocalClientNum_t localClientNum)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -254,7 +256,7 @@ double CG_GetCornerDebugPrintScale_Y()
 CG_CornerDebugPrint
 ==============
 */
-double CG_CornerDebugPrint(
+double CG_CornerDebugPrint(LocalClientNum_t localClientNum, const ScreenPlacement *sP, float posX, float posY, float labelWidth, const char *text, const char *label, const vec4_t *color, Font_s *font)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -316,7 +318,7 @@ void CG_DebugLineVertical(const vec3_t *p, const vec4_t *color, int depthTest, i
 CG_DebugStarWithText
 ==============
 */
-void CG_DebugStarWithText(
+void CG_DebugStarWithText(const vec3_t *point, const vec4_t *starColor, const vec4_t *textColor, const char *string, float fontsize, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -326,7 +328,7 @@ void CG_DebugStarWithText(
 CG_DebugBox
 ==============
 */
-void CG_DebugBox(
+void CG_DebugBox(const vec3_t *origin, const vec3_t *mins, const vec3_t *maxs, float yaw, const vec4_t *color, int depthTest, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -336,7 +338,7 @@ void CG_DebugBox(
 CG_DebugBoxOriented
 ==============
 */
-void CG_DebugBoxOriented(
+void CG_DebugBoxOriented(const vec3_t *origin, const vec3_t *mins, const vec3_t *maxs, const vec3_t *rotation, const vec4_t *color, int depthTest, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -346,7 +348,7 @@ void CG_DebugBoxOriented(
 CG_CornerDebugPrintCaption
 ==============
 */
-float CG_CornerDebugPrintCaption(
+float CG_CornerDebugPrintCaption(LocalClientNum_t localClientNum, const ScreenPlacement *sP, float posX, float posY, float labelWidth, const char *text, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -423,7 +425,7 @@ double CG_DrawAnimTagInfo(LocalClientNum_t localClientNum, const ScreenPlacement
 CG_DrawFPS
 ==============
 */
-double CG_DrawFPS(
+double CG_DrawFPS(LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, float y, meminfo_t *meminfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

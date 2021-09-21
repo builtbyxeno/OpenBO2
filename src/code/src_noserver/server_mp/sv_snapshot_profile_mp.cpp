@@ -6,7 +6,7 @@
 MSG_PacketAnalyze_SetPacketEntityType
 ==============
 */
-void MSG_PacketAnalyze_SetPacketEntityType(
+void MSG_PacketAnalyze_SetPacketEntityType(SnapshotInfo_s *snapInfo, PacketEntityType packetEntityType, bool archived)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -27,7 +27,7 @@ const char *SV_GetEntityTypeString(const int packetEntityType)
 SV_PacketAnalyze_TrackETypeBytes
 ==============
 */
-void SV_PacketAnalyze_TrackETypeBytes(
+void SV_PacketAnalyze_TrackETypeBytes(int eType, int number, int bits, bool archived, const NetFieldList *fieldList)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -6,7 +6,7 @@
 CG_GetTagMatrix
 ==============
 */
-void CG_GetTagMatrix(
+void CG_GetTagMatrix(LocalClientNum_t localClientNum, int linkEntNum, unsigned __int16 tagName, vec3_t *resultTagMat)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -26,7 +26,7 @@ void CG_CalcTagParentAxis(LocalClientNum_t localClientNum, centity_t *cent, vec3
 CG_CalcEntityScriptedAnimTransform
 ==============
 */
-void CG_CalcEntityScriptedAnimTransform(
+void CG_CalcEntityScriptedAnimTransform(LocalClientNum_t localClientNum, centity_t *cent, vec3_t *matrix, vec3_t *origin, vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -36,7 +36,7 @@ void CG_CalcEntityScriptedAnimTransform(
 CG_LinkTransformForEntity
 ==============
 */
-void CG_LinkTransformForEntity(
+void CG_LinkTransformForEntity(LocalClientNum_t localClientNum, centity_t *cent, vec3_t *resultOrigin, vec3_t *resultAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -46,7 +46,7 @@ void CG_LinkTransformForEntity(
 CG_GenerateLinkInfo
 ==============
 */
-void CG_GenerateLinkInfo(
+void CG_GenerateLinkInfo(LocalClientNum_t localClientNum, centity_t *cent, int attachedEntNum, int attachedTagIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

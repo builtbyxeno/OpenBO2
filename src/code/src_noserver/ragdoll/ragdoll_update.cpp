@@ -16,7 +16,7 @@ void Ragdoll_CopyMirrorQuat(const vec4_t *src, bool mirror, vec4_t *dest)
 Ragdoll_GetDObjWorldBoneOriginQuat
 ==============
 */
-bool Ragdoll_GetDObjWorldBoneOriginQuat(
+bool Ragdoll_GetDObjWorldBoneOriginQuat(LocalClientNum_t localClientNum, const cpose_t *pose, DObj *obj, unsigned __int8 boneIndex, vec3_t *origin, vec4_t *quat)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -140,7 +140,7 @@ bool Ragdoll_ValidatePrecalcBoneDef(RagdollDef *def, BoneDef *bone)
 Ragdoll_Launch
 ==============
 */
-void Ragdoll_Launch(
+void Ragdoll_Launch(const LocalClientNum_t localClientNum, int ragdollHandle, const vec3_t *force, const hitLocation_t hitloc)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -170,7 +170,7 @@ void Ragdoll_EstimateInitialVelocities(RagdollBody *body)
 Ragdoll_Attach
 ==============
 */
-void Ragdoll_Attach(
+void Ragdoll_Attach(const LocalClientNum_t localClientNum, int ragdollHandle, int attachEnt, const hitLocation_t hitloc)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -394,11 +394,11 @@ char Ragdoll_ExitIdle(RagdollBody *body, RagdollBodyState curState, RagdollBodyS
 Ragdoll_EnterIdle
 ==============
 */
-/*char Ragdoll_EnterIdle@<al>(RagdollBody *body)
+char Ragdoll_EnterIdle(int a1, RagdollBody *body)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -426,10 +426,10 @@ char Ragdoll_EnterDobjWait(RagdollBody *body)
 Ragdoll_UpdateRunning
 ==============
 */
-/*void Ragdoll_UpdateRunning(int a1@<edx>, RagdollBody *a2@<ecx>, RagdollBody *body)
+void Ragdoll_UpdateRunning(int a1, RagdollBody *a2, RagdollBody *body)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -467,17 +467,17 @@ Ragdoll_GetRBForBone
 Ragdoll_ExplosionEvent
 ==============
 */
-void Ragdoll_ExplosionEvent(
+/*void Ragdoll_ExplosionEvent(const char *a1@<edi>, const char *a2@<esi>, LocalClientNum_t localClientNum, bool isCylinder, const vec3_t *origin, float innerRadius, float outerRadius, const vec3_t *impulse, float inScale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 Ragdoll_JetThrustEvent
 ==============
 */
-void Ragdoll_JetThrustEvent(
+void Ragdoll_JetThrustEvent(LocalClientNum_t localClientNum, const vec3_t *origin, const vec3_t *forward, float outerRadius, float dotLimit)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

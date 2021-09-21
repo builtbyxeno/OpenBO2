@@ -49,19 +49,19 @@ void R_UpdateGfxEntityBoundsCmd(void *data)
 R_SkinSceneModel
 ==============
 */
-/*int R_SkinSceneModel@<eax>(
+int R_SkinSceneModel(int a1, int a2, int drawInfo, XModelDrawInfo *model, const XModel *obj, const DObj *pose, const cpose_t *placement, const GfxPlacement *scale, float gfxEntIndex, unsigned int noLodCullOut, int a11)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 R_ModelSkelCmd
 ==============
 */
-void R_ModelSkelCmd(void *data)
+/*void R_ModelSkelCmd(const char *a1@<edi>, void *data)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 

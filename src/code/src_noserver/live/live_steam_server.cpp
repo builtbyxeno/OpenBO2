@@ -47,7 +47,7 @@ LiveSteamServer::OnSteamServersConnected
 LiveSteamServer::OnSteamServerConnectFailure
 ==============
 */
-/*void __thiscall LiveSteamServer::OnSteamServerConnectFailure(
+/*void __thiscall LiveSteamServer::OnSteamServerConnectFailure(LiveSteamServer *this, SteamServerConnectFailure_t *pConnectFailure)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -57,7 +57,7 @@ LiveSteamServer::OnSteamServerConnectFailure
 LiveSteamServer::OnSteamServersDisconnected
 ==============
 */
-/*void __thiscall LiveSteamServer::OnSteamServersDisconnected(
+/*void __thiscall LiveSteamServer::OnSteamServersDisconnected(LiveSteamServer *this, SteamServersDisconnected_t *pLoggedOff)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -77,7 +77,7 @@ LiveSteamServer::OnPolicyResponse
 LiveSteamServer::KickClientFromSteamGameServer
 ==============
 */
-/*void __thiscall LiveSteamServer::KickClientFromSteamGameServer(
+/*void __thiscall LiveSteamServer::KickClientFromSteamGameServer(LiveSteamServer *this, CSteamID clientID, EDenyReason reason)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -138,7 +138,7 @@ void LiveSteam_Server_HandleInitError(const char *error)
 LiveSteam_Server_ClientSteamAuthentication
 ==============
 */
-void LiveSteam_Server_ClientSteamAuthentication(
+void LiveSteam_Server_ClientSteamAuthentication(unsigned __int64 clientSteamID, netadr_t netAddr, void *authBlob, unsigned int authBlobSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -36,7 +36,7 @@ void CG_ResetSpectatorViewAngles(LocalClientNum_t localClientNum)
 CG_CheckPlayerstateEvents
 ==============
 */
-void CG_CheckPlayerstateEvents(
+void CG_CheckPlayerstateEvents(LocalClientNum_t localClientNum, playerState_s *ps, const transPlayerState_t *ops)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -46,9 +46,11 @@ void CG_CheckPlayerstateEvents(
 CG_TransitionPlayerState
 ==============
 */
-void CG_TransitionPlayerState(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

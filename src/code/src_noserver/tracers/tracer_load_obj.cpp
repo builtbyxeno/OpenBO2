@@ -17,11 +17,12 @@ int Tracer_GetStringArrayIndex(const char *value, const char **stringArray, int 
 BG_ParseTracerDefSpecificFieldType
 ==============
 */
-/*int BG_ParseTracerDefSpecificFieldType@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -114,9 +115,9 @@ TracerDef *Tracer_Register(const char *name)
 BG_TracerUpdateField
 ==============
 */
-/*bool BG_TracerUpdateField@<al>(
+bool BG_TracerUpdateField(int (*a1)(unsigned __int8 *, const char *, const int, const int), const char *tracerName, const char *keyValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 

@@ -80,7 +80,7 @@ void R_DrawStaticModels(GfxStaticModelDrawStream *drawStream, GfxCmdBufContext c
 R_DrawStaticModelSurfLit
 ==============
 */
-void R_DrawStaticModelSurfLit(
+void R_DrawStaticModelSurfLit(const unsigned int *primDrawSurfPos, GfxCmdBufContext context, const GfxDrawSurfListInfo *info)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -90,7 +90,7 @@ void R_DrawStaticModelSurfLit(
 R_DrawStaticModelDrawSurfPlacement
 ==============
 */
-void R_DrawStaticModelDrawSurfPlacement(
+void R_DrawStaticModelDrawSurfPlacement(const GfxStaticModelDrawInst *smodelDrawInst, GfxCmdBufSourceState *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -130,7 +130,7 @@ void R_DrawStaticModelsSkinnedDrawSurf(GfxStaticModelDrawStream *drawStream, Gfx
 R_DrawStaticModelSkinnedSurfLit
 ==============
 */
-void R_DrawStaticModelSkinnedSurfLit(
+void R_DrawStaticModelSkinnedSurfLit(const unsigned int *primDrawSurfPos, GfxCmdBufContext context, const GfxDrawSurfListInfo *info)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -140,7 +140,7 @@ void R_DrawStaticModelSkinnedSurfLit(
 R_DrawStaticModelSkinnedSurf
 ==============
 */
-void R_DrawStaticModelSkinnedSurf(
+void R_DrawStaticModelSkinnedSurf(const unsigned int *primDrawSurfPos, GfxCmdBufContext context, const GfxDrawSurfListInfo *info)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -150,7 +150,7 @@ void R_DrawStaticModelSkinnedSurf(
 R_DrawStaticModelSurf
 ==============
 */
-void R_DrawStaticModelSurf(
+void R_DrawStaticModelSurf(const unsigned int *primDrawSurfPos, GfxCmdBufContext context, const GfxDrawSurfListInfo *info)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

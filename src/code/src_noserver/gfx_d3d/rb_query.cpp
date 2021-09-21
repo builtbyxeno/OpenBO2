@@ -17,7 +17,7 @@ unsigned int RB_CalcOcclusionQuerySamples()
 RB_TessRectBillboard
 ==============
 */
-void RB_TessRectBillboard(
+void RB_TessRectBillboard(const vec3_t *inPos, bool isWorldPos, float widthInPixels, float heightInPixels, GfxColor color, float depthBias)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -99,9 +99,9 @@ double RB_GetOcclusionQueryVisibility(unsigned __int16 handle)
 RB_AllocOcclusionQuery
 ==============
 */
-/*unsigned __int16 RB_AllocOcclusionQuery@<ax>(
+unsigned __int16 RB_AllocOcclusionQuery(float localClientNum, LocalClientNum_t a2, const vec3_t *position, bool isWorldPos, float depthBias)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 

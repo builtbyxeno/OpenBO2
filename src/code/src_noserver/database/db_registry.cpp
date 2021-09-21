@@ -298,7 +298,7 @@ void DB_FreeXAssetEntry(XAssetEntry *assetEntry)
 DB_LogMissingAsset
 ==============
 */
-void DB_LogMissingAsset(XAssetType type, const char *name)
+void DB_LogMissingAsset(int a1, XAssetType type, const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -308,7 +308,7 @@ void DB_LogMissingAsset(XAssetType type, const char *name)
 DB_EnumXAssets_FastFile
 ==============
 */
-void DB_EnumXAssets_FastFile(
+void DB_EnumXAssets_FastFile(XAssetType type, void (*func)(XAssetHeader, void *), void *inData, bool includeOverride)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -318,7 +318,7 @@ void DB_EnumXAssets_FastFile(
 DB_EnumXAssetsTimeout_FastFile
 ==============
 */
-char DB_EnumXAssetsTimeout_FastFile(
+char DB_EnumXAssetsTimeout_FastFile(XAssetType type, void (*func)(XAssetHeader, void *), void *inData, bool includeOverride, int msec)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -380,12 +380,12 @@ XAssetEntry *DB_FindXAssetEntry(XAssetType type, const char *name)
 DB_FindXAssetDefaultHeaderInternal
 ==============
 */
-/*XAssetHeader DB_FindXAssetDefaultHeaderInternal@<eax>(XAssetType a1@<edx>, XAssetType type)
+XAssetHeader DB_FindXAssetDefaultHeaderInternal(XAssetType a1, XAssetType type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	XAssetHeader tmp;
 	return tmp;
-}*/
+}
 
 /*
 ==============
@@ -506,11 +506,11 @@ void DB_SetInitializing(bool inUse)
 DB_IsXAssetDefault
 ==============
 */
-/*bool DB_IsXAssetDefault@<al>(XAssetType a1@<edx>, XAssetType type, const char *name)
+bool DB_IsXAssetDefault(XAssetType a1, XAssetType type, const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -632,20 +632,20 @@ int DB_PostLoadPerXZone()
 DB_UpdateDebugZone
 ==============
 */
-/*void DB_UpdateDebugZone(int a1@<ebp>)
+void DB_UpdateDebugZone(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 DB_LoadZone_f
 ==============
 */
-/*void DB_LoadZone_f(int a1@<ebp>)
+void DB_LoadZone_f(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -897,11 +897,11 @@ char *DB_ReferencedFFNameList()
 DB_FileExists
 ==============
 */
-/*char DB_FileExists@<al>(FF_DIR a1@<edx>, const char *zoneName, FF_DIR source)
+char DB_FileExists(FF_DIR a1, const char *zoneName, FF_DIR source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -929,9 +929,11 @@ void Load_PhysPresetAsset(PhysPreset **physPreset)
 Mark_PhysPresetAsset
 ==============
 */
-void Mark_PhysPresetAsset(PhysPreset *physPreset)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -949,9 +951,11 @@ void Load_PhysConstraintsAsset(PhysConstraints **physConstraints)
 Mark_PhysConstraintsAsset
 ==============
 */
-void Mark_PhysConstraintsAsset(PhysConstraints *physConstraints)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -969,9 +973,11 @@ void Load_DestructibleDefAsset(DestructibleDef **destructibleDef)
 Mark_DestructibleDefAsset
 ==============
 */
-void Mark_DestructibleDefAsset(DestructibleDef *destructibleDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -989,9 +995,11 @@ void Load_XAnimPartsAsset(XAnimParts **parts)
 Mark_XAnimPartsAsset
 ==============
 */
-void Mark_XAnimPartsAsset(XAnimParts *parts)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1009,9 +1017,11 @@ void Load_XModelAsset(XModel **model)
 Mark_XModelAsset
 ==============
 */
-void Mark_XModelAsset(XModel *model)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1029,9 +1039,11 @@ void Load_MaterialAsset(Material **material)
 Mark_MaterialAsset
 ==============
 */
-void Mark_MaterialAsset(Material *material)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1049,9 +1061,11 @@ void Load_MaterialTechniqueSetAsset(MaterialTechniqueSet **techniqueSet)
 Mark_MaterialTechniqueSetAsset
 ==============
 */
-void Mark_MaterialTechniqueSetAsset(MaterialTechniqueSet *techniqueSet)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1069,9 +1083,11 @@ void Load_GfxImageAsset(GfxImage **image)
 Mark_GfxImageAsset
 ==============
 */
-void Mark_GfxImageAsset(GfxImage *image)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1089,9 +1105,11 @@ void Load_SndBankAsset(SndBank **sound)
 Mark_SndBankAsset
 ==============
 */
-void Mark_SndBankAsset(SndBank *sound)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1109,9 +1127,11 @@ void Load_SndDriverGlobalsAsset(SndDriverGlobals **sndDriverGlobals)
 Mark_SndDriverGlobalsAsset
 ==============
 */
-void Mark_SndDriverGlobalsAsset(SndDriverGlobals *sndDriverGlobals)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1129,9 +1149,11 @@ void Load_SndPatchAsset(SndPatch **soundPatch)
 Mark_SndPatchAsset
 ==============
 */
-void Mark_SndPatchAsset(SndPatch *soundPatch)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1149,9 +1171,11 @@ void Load_ClipMapAsset(clipMap_t **clipMap)
 Mark_ClipMapAsset
 ==============
 */
-void Mark_ClipMapAsset(clipMap_t *clipMap)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1169,9 +1193,11 @@ void Load_ComWorldAsset(ComWorld **comWorld)
 Mark_ComWorldAsset
 ==============
 */
-void Mark_ComWorldAsset(ComWorld *comWorld)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1189,9 +1215,11 @@ void Load_GameWorldSpAsset(GameWorldSp **gameWorldSp)
 Mark_GameWorldSpAsset
 ==============
 */
-void Mark_GameWorldSpAsset(GameWorldSp *gameWorldSp)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1209,9 +1237,11 @@ void Load_GameWorldMpAsset(GameWorldMp **gameWorldMp)
 Mark_GameWorldMpAsset
 ==============
 */
-void Mark_GameWorldMpAsset(GameWorldMp *gameWorldMp)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1229,9 +1259,11 @@ void Load_MapEntsAsset(MapEnts **mapEnts)
 Mark_MapEntsAsset
 ==============
 */
-void Mark_MapEntsAsset(MapEnts *mapEnts)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1249,9 +1281,11 @@ void Load_DDLAsset(ddlRoot_t **ddlRoot)
 Mark_DDLAsset
 ==============
 */
-void Mark_DDLAsset(ddlRoot_t *ddlRoot)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1269,9 +1303,11 @@ void Load_GfxWorldAsset(GfxWorld **gfxWorld)
 Mark_GfxWorldAsset
 ==============
 */
-void Mark_GfxWorldAsset(GfxWorld *gfxWorld)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1289,9 +1325,11 @@ void Load_LightDefAsset(GfxLightDef **lightDef)
 Mark_LightDefAsset
 ==============
 */
-void Mark_LightDefAsset(GfxLightDef *lightDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1309,9 +1347,11 @@ void Load_FontAsset(Font_s **font)
 Mark_FontAsset
 ==============
 */
-void Mark_FontAsset(Font_s *font)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1329,9 +1369,11 @@ void Load_FontIconAsset(FontIcon **fontIcon)
 Mark_FontIconAsset
 ==============
 */
-void Mark_FontIconAsset(FontIcon *fontIcon)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1349,9 +1391,11 @@ void Load_MenuListAsset(MenuList **menuList)
 Mark_MenuListAsset
 ==============
 */
-void Mark_MenuListAsset(MenuList *menuList)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1369,9 +1413,11 @@ void Load_MenuAsset(menuDef_t **menu)
 Mark_MenuAsset
 ==============
 */
-void Mark_MenuAsset(menuDef_t *menu)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1389,9 +1435,11 @@ void Load_LocalizeEntryAsset(LocalizeEntry **localize)
 Mark_LocalizeEntryAsset
 ==============
 */
-void Mark_LocalizeEntryAsset(LocalizeEntry *localize)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1409,9 +1457,11 @@ void Load_WeaponVariantDefAsset(WeaponVariantDef **weapon)
 Mark_WeaponVariantDefAsset
 ==============
 */
-void Mark_WeaponVariantDefAsset(WeaponVariantDef *weapon)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1429,9 +1479,11 @@ void Load_WeaponAttachmentAsset(WeaponAttachment **attachment)
 Mark_WeaponAttachmentAsset
 ==============
 */
-void Mark_WeaponAttachmentAsset(WeaponAttachment *attachment)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1449,9 +1501,11 @@ void Load_WeaponAttachmentUniqueAsset(WeaponAttachmentUnique **attachmentUnique)
 Mark_WeaponAttachmentUniqueAsset
 ==============
 */
-void Mark_WeaponAttachmentUniqueAsset(WeaponAttachmentUnique *attachmentUnique)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1469,9 +1523,11 @@ void Load_WeaponCamoAsset(WeaponCamo **weaponCamo)
 Mark_WeaponCamoAsset
 ==============
 */
-void Mark_WeaponCamoAsset(WeaponCamo *weaponCamo)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1489,9 +1545,11 @@ void Load_FxEffectDefAsset(const FxEffectDef **fx)
 Mark_FxEffectDefAsset
 ==============
 */
-void Mark_FxEffectDefAsset(FxEffectDef *fx)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1509,9 +1567,11 @@ void Load_FxImpactTableAsset(FxImpactTable **impactFx)
 Mark_FxImpactTableAsset
 ==============
 */
-void Mark_FxImpactTableAsset(FxImpactTable *impactFx)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1529,9 +1589,11 @@ void Load_RawFileAsset(RawFile **rawfile)
 Mark_RawFileAsset
 ==============
 */
-void Mark_RawFileAsset(RawFile *rawfile)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1549,9 +1611,11 @@ void Load_StringTableAsset(StringTable **stringTable)
 Mark_StringTableAsset
 ==============
 */
-void Mark_StringTableAsset(StringTable *stringTable)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1569,9 +1633,11 @@ void Load_LeaderboardDefAsset(LeaderboardDef **leaderboardDef)
 Mark_LeaderboardDefAsset
 ==============
 */
-void Mark_LeaderboardDefAsset(LeaderboardDef *leaderboardDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1589,9 +1655,11 @@ void Load_XGlobalsAsset(XGlobals **xGlobals)
 Mark_XGlobalsAsset
 ==============
 */
-void Mark_XGlobalsAsset(XGlobals *xGlobals)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1609,9 +1677,11 @@ void Load_GlassesAsset(Glasses **glasses)
 Mark_GlassesAsset
 ==============
 */
-void Mark_GlassesAsset(Glasses *glasses)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1629,9 +1699,11 @@ void Load_EmblemSetAsset(EmblemSet **emblemSet)
 Mark_EmblemSetAsset
 ==============
 */
-void Mark_EmblemSetAsset(EmblemSet *emblemSet)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1649,9 +1721,11 @@ void Load_ScriptParseTreeAsset(ScriptParseTree **scriptParseTree)
 Mark_ScriptParseTreeAsset
 ==============
 */
-void Mark_ScriptParseTreeAsset(ScriptParseTree *scriptParseTree)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1669,9 +1743,11 @@ void Load_QdbAsset(Qdb **qdb)
 Mark_QdbAsset
 ==============
 */
-void Mark_QdbAsset(Qdb *qdb)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1689,9 +1765,11 @@ void Load_SlugAsset(Slug **slug)
 Mark_SlugAsset
 ==============
 */
-void Mark_SlugAsset(Slug *slug)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1709,9 +1787,11 @@ void Load_KeyValuePairsAsset(KeyValuePairs **keyValuePairs)
 Mark_KeyValuePairsAsset
 ==============
 */
-void Mark_KeyValuePairsAsset(KeyValuePairs *keyValuePairs)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1729,9 +1809,11 @@ void Load_VehicleDefAsset(VehicleDef **vehicleDef)
 Mark_VehicleDefAsset
 ==============
 */
-void Mark_VehicleDefAsset(VehicleDef *vehicleDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1749,9 +1831,11 @@ void Load_MemoryBlockAsset(MemoryBlock **memoryBlock)
 Mark_MemoryBlockAsset
 ==============
 */
-void Mark_MemoryBlockAsset(MemoryBlock *memoryBlock)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1769,9 +1853,11 @@ void Load_AddonMapEntsAsset(AddonMapEnts **addonMapEnts)
 Mark_AddonMapEntsAsset
 ==============
 */
-void Mark_AddonMapEntsAsset(AddonMapEnts *addonMapEnts)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1789,9 +1875,11 @@ void Load_TracerDefAsset(TracerDef **tracerDef)
 Mark_TracerDefAsset
 ==============
 */
-void Mark_TracerDefAsset(TracerDef *tracerDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1809,9 +1897,11 @@ void Load_SkinnedVertsDefAsset(SkinnedVertsDef **skinnedVertsDef)
 Mark_SkinnedVertsDefAsset
 ==============
 */
-void Mark_SkinnedVertsDefAsset(SkinnedVertsDef *skinnedVertsDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1829,9 +1919,11 @@ void Load_FootstepTableDefAsset(FootstepTableDef **footstepTableDef)
 Mark_FootstepTableDefAsset
 ==============
 */
-void Mark_FootstepTableDefAsset(FootstepTableDef *footstepTableDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1849,9 +1941,11 @@ void Load_FootstepFXTableDefAsset(FootstepFXTableDef **footstepFXTableDef)
 Mark_FootstepFXTableDefAsset
 ==============
 */
-void Mark_FootstepFXTableDefAsset(FootstepFXTableDef *footstepFXTableDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1869,9 +1963,11 @@ void Load_ZBarrierDefAsset(ZBarrierDef **zbarrierDef)
 Mark_ZBarrierDefAsset
 ==============
 */
-void Mark_ZBarrierDefAsset(ZBarrierDef *zbarrierDef)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -2005,12 +2101,12 @@ void DB_RegisteredReorderAsset(int type, const char *assetName, XAssetEntry *ass
 DB_FindXAssetHeader
 ==============
 */
-XAssetHeader DB_FindXAssetHeader(XAssetType type, const char *name, bool errorIfMissing, int waitTime)
+/*XAssetHeader DB_FindXAssetHeader@<eax>(char *a1@<edi>, XAssetType type, const char *name, bool errorIfMissing, int waitTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	XAssetHeader tmp;
 	return tmp;
-}
+}*/
 
 /*
 ==============

@@ -50,17 +50,17 @@ double Snd_PanMono(float angle)
 SND_EqualPowerFadeCoefs
 ==============
 */
-/*void SND_EqualPowerFadeCoefs(float a1@<edi>, float t, float *a, float *b)
+void SND_EqualPowerFadeCoefs(float t, float a, float *a3, float *b)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 SND_GetNearestPointOnSegment
 ==============
 */
-void SND_GetNearestPointOnSegment(
+void SND_GetNearestPointOnSegment(const vec3_t *P, const vec3_t *segmentA, const vec3_t *segmentB, vec3_t *nearPoint)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -188,10 +188,10 @@ void Snd_PanStereo(float angle, float boost, float *left, float *right)
 Snd_Pan
 ==============
 */
-void Snd_Pan(unsigned int speakerCount, const float *angles, float toSound, float *levels)
+/*void Snd_Pan(const char *a1@<edi>, unsigned int speakerCount, const float *angles, float toSound, float *levels)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -288,7 +288,7 @@ void SND_PanToSpeakermap28(const SndPan *pan, SndSpeakerMap *map)
 SND_PanToSpeakermap
 ==============
 */
-void SND_PanToSpeakermap(
+void SND_PanToSpeakermap(SndSpeakerMap *a1, const SndPan *a2, unsigned int inputChannelCount, unsigned int outputChannelCount, const SndPan *pan, float centerSend, SndSpeakerMap *map)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -298,7 +298,7 @@ void SND_PanToSpeakermap(
 Snd_Pan3dFast
 ==============
 */
-void Snd_Pan3dFast(
+void Snd_Pan3dFast(const vec3_t *position, const vec3_t *f, const vec3_t *listener, float centerSend, float lfeSend, float aliasOmni, SndSpeakerMap *pan)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -308,7 +308,7 @@ void Snd_Pan3dFast(
 Snd_DistanceCurveEval
 ==============
 */
-double Snd_DistanceCurveEval(
+double Snd_DistanceCurveEval(const SndCurve *minCurve, const SndCurve *curve, float minDist, float maxDist, float dist)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -329,7 +329,7 @@ void SND_FixupStereoPan(SndSpeakerMap *pan)
 Snd_Pan3d
 ==============
 */
-void Snd_Pan3d(
+void Snd_Pan3d(const SndSpeakerConfig *config, const vec3_t *position, const vec3_t *forward, const vec3_t *listener, float centerSend, float lfeSend, float aliasOmni, SndSpeakerMap *pan)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

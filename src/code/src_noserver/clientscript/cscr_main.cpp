@@ -112,7 +112,7 @@ void Scr_FreeScripts(scriptInstance_t inst, unsigned __int8 sys, bool shutdownSt
 Scr_SetGenericField
 ==============
 */
-void Scr_SetGenericField(
+void Scr_SetGenericField(scriptInstance_t inst, unsigned __int8 *b, fieldtype_t type, int ofs, unsigned int whichbits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -132,7 +132,7 @@ void Scr_BeginLoadScripts(scriptInstance_t inst, int user)
 Scr_GetGenericField
 ==============
 */
-void Scr_GetGenericField(
+void Scr_GetGenericField(scriptInstance_t inst, unsigned __int8 *b, fieldtype_t type, int ofs, unsigned int whichbits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

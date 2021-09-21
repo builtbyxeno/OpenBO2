@@ -47,7 +47,7 @@ void MSG_WriteBit1(msg_t *msg)
 MSG_WriteBitsCompress
 ==============
 */
-int MSG_WriteBitsCompress(
+int MSG_WriteBitsCompress(bool trainHuffman, const unsigned __int8 *from, int fromSizeBytes, unsigned __int8 *to, int toSizeBytes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -121,7 +121,7 @@ double MSG_ReadDemoRoundedFloat(msg_t *msg, int bits, float oldValue, int diffBi
 MSG_ReadDeltaField
 ==============
 */
-void MSG_ReadDeltaField(
+void MSG_ReadDeltaField(msg_t *msg, const int time, const void *from, void *to, const NetField *field, int print, __int16 noXor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -131,7 +131,7 @@ void MSG_ReadDeltaField(
 MSG_ReadDeltaEntityStruct
 ==============
 */
-int MSG_ReadDeltaEntityStruct(
+int MSG_ReadDeltaEntityStruct(msg_t *msg, const int time, const void *from, void *to, unsigned int number, const int totalFields)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -142,7 +142,7 @@ int MSG_ReadDeltaEntityStruct(
 MSG_ReadDeltaArchivedEntity
 ==============
 */
-int MSG_ReadDeltaArchivedEntity(
+int MSG_ReadDeltaArchivedEntity(msg_t *msg, const int time, const archivedEntity_s *from, archivedEntity_s *to, int number)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -163,7 +163,7 @@ void MSG_ReadDeltaHudElems(msg_t *msg, const int time, const hudelem_s *from, hu
 MSG_ReadDeltaPlayerstate
 ==============
 */
-void MSG_ReadDeltaPlayerstate(
+void MSG_ReadDeltaPlayerstate(const LocalClientNum_t localClientNum, msg_t *msg, const int time, const playerState_s *remoteFrom, playerState_s *remoteTo, bool predictedFieldsIgnoreXor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -193,7 +193,7 @@ void MSG_ReadDeltaUsercmdKey(msg_t *msg, int key, const usercmd_s *from, usercmd
 MSG_WriteDeltaUsercmdKey
 ==============
 */
-void MSG_WriteDeltaUsercmdKey(
+void MSG_WriteDeltaUsercmdKey(msg_t *msg, int key, const usercmd_s *from, const usercmd_s *to, int forceSendAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

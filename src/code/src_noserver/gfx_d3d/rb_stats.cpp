@@ -28,7 +28,7 @@ const char *RB_Stats_GetTargetName(GfxPrimStatsTarget t)
 RB_GetCounterSum
 ==============
 */
-int RB_GetCounterSum(
+int RB_GetCounterSum(GfxPrimStatsCounters counter, GfxPrimStatsStage stageFrom, GfxPrimStatsStage stageTo, GfxPrimStatsTarget tgtFrom, GfxPrimStatsTarget tgtTo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

@@ -100,7 +100,7 @@ void SND_SetVoiceStartSeeds(const SndAlias *alias, SndVoice *voice)
 SND_SetVoiceStartFades
 ==============
 */
-void SND_SetVoiceStartFades(
+void SND_SetVoiceStartFades(float fadetime, bool setScriptValues, float scriptPitch, float scriptPitchRate, float scriptAttenuation, float scriptAttenuationRate, SndVoice *voice)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -131,7 +131,7 @@ char SND_LosOcclusionCache(unsigned int channel, const vec3_t *position, float *
 SND_SetSoundFileVoiceInfo
 ==============
 */
-void SND_SetSoundFileVoiceInfo(
+void SND_SetSoundFileVoiceInfo(int voiceIndex, int srcChannelCount, int baserate, int total_msec, int start_msec, SndFileLoadingState loadingState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -162,7 +162,7 @@ void Snd_GetLowestPriority(float *priority, int *channel, unsigned int start, un
 SND_ContinueLoopingSound_Internal
 ==============
 */
-void SND_ContinueLoopingSound_Internal(
+void SND_ContinueLoopingSound_Internal(int voiceIndex, float volumeScale, int fadeTime, const vec3_t *org, SndPlayback *playback, bool setScriptValues, float scriptPitch, float scriptPitchRate, float scriptAttenuation, float scriptAttenuationRate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -172,7 +172,7 @@ void SND_ContinueLoopingSound_Internal(
 SND_ContinueLoopingSound
 ==============
 */
-unsigned int SND_ContinueLoopingSound(
+unsigned int SND_ContinueLoopingSound(unsigned int aliasId, float volumeScale, SndEntHandle sndEnt, const vec3_t *org, int fadeTime, SndPlayback *playback, bool setScriptValues, float scriptPitch, float scriptPitchRate, float scriptAttenuation, float scriptAttenuationRate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -216,7 +216,7 @@ bool SND_CheckValidSecondary(const SndAlias *alias, const SndAlias *secondaryAli
 SND_GetPlayingInfo
 ==============
 */
-void SND_GetPlayingInfo(
+void SND_GetPlayingInfo(unsigned int aliasHash, int *pcount, int *poldest, int *least, bool *isMultiple, SndEntHandle ent, bool useEnt)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -503,7 +503,7 @@ SndDuckActive *SND_DuckFindFree()
 SND_DuckRateLimit
 ==============
 */
-void SND_DuckRateLimit(
+void SND_DuckRateLimit(unsigned int count, const float *rate, const float *negrate, const float *target, float *delta, float *value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -513,7 +513,7 @@ void SND_DuckRateLimit(
 SND_SetDuckByCategory
 ==============
 */
-void SND_SetDuckByCategory(
+void SND_SetDuckByCategory(SndDuckCategoryType category, unsigned int duckId, const SndDuck *duck, float amount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -544,9 +544,11 @@ void SND_StopDuck(SndDuckActive *duck)
 SND_DuckUpdate
 ==============
 */
-void SND_DuckUpdate(float dt)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -565,11 +567,11 @@ unsigned int SND_GetCurrentGfutzId()
 SND_AddLengthNotify
 ==============
 */
-/*char SND_AddLengthNotify@<al>(
+char SND_AddLengthNotify(SndLengthType a1, char *a2, int playbackId, void *lengthNotifyData, SndLengthType id)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -646,9 +648,11 @@ void SND_DuckReset()
 SND_SetVoiceStartInfo
 ==============
 */
-void SND_SetVoiceStartInfo(int index, SndStartAliasInfo *SndStartAliasInfo)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -656,18 +660,18 @@ void SND_SetVoiceStartInfo(int index, SndStartAliasInfo *SndStartAliasInfo)
 SND_FindFreeVoice
 ==============
 */
-/*int SND_FindFreeVoice@<eax>(const vec3_t *a1@<edx>, float volume@<xmm0>, SndStartAliasInfo *startAliasInfo)
+int SND_FindFreeVoice(const vec3_t *a1, float volume, SndStartAliasInfo *startAliasInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 SND_Limit
 ==============
 */
-bool SND_Limit(
+bool SND_Limit(const char *name, int aliasHash, SndLimitType limitType, int limitCount, SndEntHandle ent, bool useEnt, float priority)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -689,11 +693,12 @@ char SND_LimitVoice(const SndAlias *alias, SndEntHandle ent)
 SND_PlaySoundAlias
 ==============
 */
-/*unsigned int SND_PlaySoundAlias@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -712,10 +717,10 @@ SND_UpdateDebug
 SNDL_Update
 ==============
 */
-/*void SNDL_Update(float a1@<edi>)
+void SNDL_Update(float a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

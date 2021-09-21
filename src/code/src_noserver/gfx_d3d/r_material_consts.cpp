@@ -6,7 +6,7 @@
 R_RegisterShaderConst
 ==============
 */
-void R_RegisterShaderConst(
+void R_RegisterShaderConst(unsigned int buffer, unsigned int offset, const vec4_t *value, GfxShaderConstantBlock *consts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -16,9 +16,11 @@ void R_RegisterShaderConst(
 R_GetPixelLiteralConsts
 ==============
 */
-void R_GetPixelLiteralConsts(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

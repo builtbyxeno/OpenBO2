@@ -196,7 +196,7 @@ void Destructible_GetHideParts(Destructible *destructible, unsigned int *partBit
 Destructible_GetPieceIndexFromBoneName
 ==============
 */
-char Destructible_GetPieceIndexFromBoneName(
+char Destructible_GetPieceIndexFromBoneName(Destructible *destructible, int modelIndex, unsigned int boneName, unsigned __int8 *index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -207,7 +207,7 @@ char Destructible_GetPieceIndexFromBoneName(
 GetHealthFromState
 ==============
 */
-int GetHealthFromState(
+int GetHealthFromState(const LerpEntityStateDestructibleHit *state, DestructibleDef *ddef, unsigned __int8 pieceIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -238,7 +238,7 @@ void CG_DestructibleClientOnlyCreate(centity_t *ent, DestructibleDef *ddef)
 CG_SpawnPhysObjForBone
 ==============
 */
-int CG_SpawnPhysObjForBone(
+int CG_SpawnPhysObjForBone(const centity_t *cent, int pieceIndex, int boneName, const vec3_t *hitp, const vec3_t *hitd, int mod)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -249,7 +249,7 @@ int CG_SpawnPhysObjForBone(
 CG_GetTagTransform
 ==============
 */
-unsigned int CG_GetTagTransform(
+unsigned int CG_GetTagTransform(centity_t *self, DestructibleDef *ddef, int pieceIndex, vec3_t *tagOrigin, vec3_t *tagMat)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -271,7 +271,7 @@ unsigned int G_GetTagTransform(gentity_t *ent, DestructibleDef *ddef, int pieceI
 CG_DestructibleSetBurn
 ==============
 */
-void CG_DestructibleSetBurn(
+void CG_DestructibleSetBurn(LocalClientNum_t localClientNum, centity_t *self, Destructible *destructible, int pieceIndex, bool burn)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -483,7 +483,7 @@ DestructiblePose *CG_GetDestructiblePose(__int16 index)
 CG_DestructibleShake
 ==============
 */
-void CG_DestructibleShake(
+void CG_DestructibleShake(LocalClientNum_t localClientNum, centity_t *cent, int pieceIndex, const vec3_t *dir, const vec3_t *hitp, const int mod)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -585,18 +585,18 @@ void DestructibleBulletDamageEvent(gentity_t *self, const vec3_t *point, const v
 DamagePiece
 ==============
 */
-/*char DamagePiece@<al>(
+char DamagePiece(gentity_t *self, unsigned __int8 index, int damage, const vec3_t *point, const vec3_t *dir, int mod, const bool damageChildren, const int excludeChild, gentity_t *attacker, int recursiveDepth, Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 DestructibleRadiusDamage
 ==============
 */
-double DestructibleRadiusDamage(
+double DestructibleRadiusDamage(gentity_t *self, const vec3_t *point, float damgeInner, float damgeOuter, float radius, int mod, gentity_t *attacker, Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -607,7 +607,7 @@ double DestructibleRadiusDamage(
 DestructibleDamage
 ==============
 */
-int DestructibleDamage(
+int DestructibleDamage(gentity_t *self, gentity_t *attacker, const vec3_t *dir, const vec3_t *point, int damage, int mod, unsigned int modelIndex, unsigned int partName, Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -618,7 +618,7 @@ int DestructibleDamage(
 CG_DestructibleUpdate
 ==============
 */
-unsigned int CG_DestructibleUpdate(
+unsigned int CG_DestructibleUpdate(centity_t *ent, DObjModel_s *dobjModels, unsigned int numModels, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -641,7 +641,7 @@ CG_DestructibleSpawnDynEnt
 CG_DestructibleBreakPiece
 ==============
 */
-void CG_DestructibleBreakPiece(
+void CG_DestructibleBreakPiece(centity_t *self, DestructiblePiece *piece, int pieceIndex, int stage, int nextStage, const vec3_t *hitp, const vec3_t *hitd, const int mod)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -661,11 +661,11 @@ void CG_RestartDestructibles(LocalClientNum_t localClientNum)
 CG_DestructibleDamage
 ==============
 */
-/*bool CG_DestructibleDamage@<al>(
+bool CG_DestructibleDamage(vec3_t *a1, centity_t *self, const vec3_t *dir, const vec3_t *point, const unsigned int pieceIndex, const int newHealth, int damage, const int mod, const bool updateDObj, const bool applyForce)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -692,18 +692,18 @@ void CG_FreeDestructible(LocalClientNum_t localClientNum, Destructible *destruct
 CG_DamagePiece
 ==============
 */
-/*char CG_DamagePiece@<al>(
+char CG_DamagePiece(vec3_t *a1, LocalClientNum_t localClientNum, centity_t *self, unsigned __int8 index, int damage, const vec3_t *point, const vec3_t *dir, int mod, const bool damageChildren, int recursiveDepth)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 CG_DestructibleRadiusDamage
 ==============
 */
-void CG_DestructibleRadiusDamage(
+void CG_DestructibleRadiusDamage(centity_t *self, const vec3_t *point, float damgeInner, float damgeOuter, float radius, int mod, const int lazyprocess)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -713,7 +713,7 @@ void CG_DestructibleRadiusDamage(
 CG_DestructibleHitEvent
 ==============
 */
-void CG_DestructibleHitEvent(
+void CG_DestructibleHitEvent(LocalClientNum_t localClientNum, int event, const entityState_s *es, const int lazyprocess)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -723,10 +723,10 @@ void CG_DestructibleHitEvent(
 CG_DestructibleDamage
 ==============
 */
-void CG_DestructibleDamage(
+/*void CG_DestructibleDamage(const char *a1@<edi>, centity_t *self, const centity_t *attacker, const vec3_t *dir, const vec3_t *point, int damage, int mod, unsigned int modelIndex, unsigned int partName, const int lazyprocess)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

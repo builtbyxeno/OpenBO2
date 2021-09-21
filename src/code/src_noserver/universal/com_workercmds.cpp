@@ -69,7 +69,7 @@ void jqCallbackPost(jqBatch *batch, void *data, bool finished)
 Sys_AddWorkerCmdToQueueInternal
 ==============
 */
-void Sys_AddWorkerCmdToQueueInternal(
+void Sys_AddWorkerCmdToQueueInternal(jqWorkerCmd *name, void *data, jqQueue *toQueue, WorkerCmdConditional *cond)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -89,7 +89,7 @@ void Sys_AddWorkerCmdInternal(jqWorkerCmd *name, void *data, WorkerCmdConditiona
 Sys_AddWorkerCmdGroupedToQueueInternal
 ==============
 */
-void Sys_AddWorkerCmdGroupedToQueueInternal(
+void Sys_AddWorkerCmdGroupedToQueueInternal(jqWorkerCmd *name, void *data, jqBatchGroup *group, jqQueue *toQueue, WorkerCmdConditional *cond)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -99,7 +99,7 @@ void Sys_AddWorkerCmdGroupedToQueueInternal(
 Sys_AddWorkerCmdGroupedInternal
 ==============
 */
-void Sys_AddWorkerCmdGroupedInternal(
+void Sys_AddWorkerCmdGroupedInternal(jqWorkerCmd *name, void *data, jqBatchGroup *group, WorkerCmdConditional *cond)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

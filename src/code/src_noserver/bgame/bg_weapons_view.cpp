@@ -91,7 +91,7 @@ float BG_CalculateWeaponMovement_GetDTPLerp(const weaponState_t *ws, const Weapo
 BG_CalculateWeaponMovement_Base_Internal_WeaponState
 ==============
 */
-void BG_CalculateWeaponMovement_Base_Internal_WeaponState(
+void BG_CalculateWeaponMovement_Base_Internal_WeaponState(const weaponState_t *ws, vec3_t *targetPos, vec3_t *targetAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -101,7 +101,7 @@ void BG_CalculateWeaponMovement_Base_Internal_WeaponState(
 BG_CalculateWeaponMovement_Base_Internal_Stance
 ==============
 */
-void BG_CalculateWeaponMovement_Base_Internal_Stance(
+void BG_CalculateWeaponMovement_Base_Internal_Stance(const weaponState_t *ws, vec3_t *targetPos, vec3_t *targetAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -111,7 +111,7 @@ void BG_CalculateWeaponMovement_Base_Internal_Stance(
 BG_CalculateWeaponMovement_Base_Internal_Movement
 ==============
 */
-void BG_CalculateWeaponMovement_Base_Internal_Movement(
+void BG_CalculateWeaponMovement_Base_Internal_Movement(const weaponState_t *ws, float minSpeed, vec3_t *targetPos, vec3_t *targetAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -121,7 +121,7 @@ void BG_CalculateWeaponMovement_Base_Internal_Movement(
 BG_CalculateWeaponMovement_Base_Internal_Save
 ==============
 */
-void BG_CalculateWeaponMovement_Base_Internal_Save(
+void BG_CalculateWeaponMovement_Base_Internal_Save(weaponState_t *ws, const vec3_t *targetPos, const vec3_t *targetAngles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -243,7 +243,7 @@ void BG_CalculateViewMovement_AdsBob(viewState_t *vs, vec3_t *angles)
 BG_CalculateViewMovementAngles
 ==============
 */
-void BG_CalculateViewMovementAngles(
+void BG_CalculateViewMovementAngles(vec3_t *a1, viewState_t *a2, viewState_t *vs, vec3_t *angles, bool bIgnoreIdleSway)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

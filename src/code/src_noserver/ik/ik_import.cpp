@@ -252,27 +252,27 @@ bool IKImport_ApplyRightHandIK(IKState *ikState)
 IKImport_DrawAxisOrigin
 ==============
 */
-void IKImport_DrawAxisOrigin(vec4_t *mat44, float colorScale)
-{
-	UNIMPLEMENTED(__FUNCTION__);
-}
-
-/*
-==============
-IKImport_DrawLine
-==============
-*/
-/*void IKImport_DrawLine(clientDebugLineInfo_t *a1@<edi>, vec3_t *start, vec3_t *end, int colorType)
+/*void IKImport_DrawAxisOrigin(const vec3_t *a1@<edx>, vec4_t *mat44, float colorScale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
 
 /*
 ==============
+IKImport_DrawLine
+==============
+*/
+void IKImport_DrawLine(clientDebugLineInfo_t *a1, vec3_t *start, vec3_t *end, int colorType)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
 IKImport_DrawDebugSkeleton
 ==============
 */
-void IKImport_DrawDebugSkeleton(IKState *ikState)
+void IKImport_DrawDebugSkeleton(int a1, IKState *ikState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -504,7 +504,7 @@ BOOL IKImport_IsValidEntityNum(int entityNum)
 IKImport_Profiler
 ==============
 */
-void IKImport_Profiler(IKState *ikState)
+void IKImport_Profiler(int a1, IKState *ikState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -558,7 +558,7 @@ char IKImport_GetBoneLookups(IKState *ikState, IKBoneNames ikBoneName)
 IKImport_AccumulateParentObjBones
 ==============
 */
-void IKImport_AccumulateParentObjBones(
+void IKImport_AccumulateParentObjBones(IKState *ikState, const unsigned __int8 *parentList, int numRootBones, float *transArray, int objBoneIndex, DObjAnimMat *matArray, DObjAnimMat *localMat)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -700,7 +700,7 @@ const WeaponDef *IKImport_GetWeaponDef(IKState *ikState)
 IKImport_GetLayerLerp
 ==============
 */
-double IKImport_GetLayerLerp(
+double IKImport_GetLayerLerp(IKState *ikState, IKLayerNames layerName, float layerLerpTime, LerpEntityState *lerpEntity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

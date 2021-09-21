@@ -27,7 +27,7 @@ int CG_UpdateCameraShake(const cg_t *cgameGlob, CameraShake *shake)
 CG_StartShakeCamera
 ==============
 */
-void CG_StartShakeCamera(
+void CG_StartShakeCamera(CameraShake *a1, const cg_t *a2, LocalClientNum_t localClientNum, float p, int duration, const vec3_t *src, float radius)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -37,10 +37,10 @@ void CG_StartShakeCamera(
 CG_ShakeCamera
 ==============
 */
-/*void CG_ShakeCamera(CameraShake *a1@<edx>, const cg_t *a2@<ecx>, LocalClientNum_t localClientNum)
+void CG_ShakeCamera(CameraShake *a1, const cg_t *a2, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

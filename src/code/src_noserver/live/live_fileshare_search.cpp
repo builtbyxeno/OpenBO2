@@ -27,7 +27,7 @@ void Live_FileshareSearch_PushResultsToLUA()
 Live_FileshareSearch_GetCounts
 ==============
 */
-bool Live_FileshareSearch_GetCounts(
+bool Live_FileshareSearch_GetCounts(const ControllerIndex_t localControllerIndex, unsigned int *inputLeaderboards, int inputLeaderboardCount, const TaskDefinition *taskDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

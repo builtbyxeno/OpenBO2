@@ -17,7 +17,7 @@ bool FX_IsDemoPlaying()
 FX_SpawnTrailLoopingElems
 ==============
 */
-void FX_SpawnTrailLoopingElems(
+void FX_SpawnTrailLoopingElems(const FxSystem *system, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef, FxTrail *trail, const FxElemDef *trailElemDef, const FxSpatialFrame *frameBegin, const FxSpatialFrame *frameEnd, int msecWhenPlayed, int msecUpdateBegin, int msecUpdateEnd, float distanceTravelledBegin, float distanceTravelledEnd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -38,7 +38,7 @@ int FX_LimitStabilizeTimeForEffectDef_Recurse(const FxEffectDef *remoteEffectDef
 FX_LimitStabilizeTimeForElemDef_Recurse
 ==============
 */
-int FX_LimitStabilizeTimeForElemDef_Recurse(
+int FX_LimitStabilizeTimeForElemDef_Recurse(const FxElemDef *elemDef, bool needToSpawnSystem, int originalUpdateTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -49,7 +49,7 @@ int FX_LimitStabilizeTimeForElemDef_Recurse(
 FX_SpawnLoopingElems
 ==============
 */
-void FX_SpawnLoopingElems(
+void FX_SpawnLoopingElems(FxSystem *system, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef, const FxElemDef *elemDef, int elemDefIndex, const FxSpatialFrame *frameBegin, const FxSpatialFrame *frameEnd, int msecWhenPlayed, int msecUpdateBegin, int msecUpdateEnd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -59,7 +59,7 @@ void FX_SpawnLoopingElems(
 FX_SpawnAllFutureLooping
 ==============
 */
-void FX_SpawnAllFutureLooping(
+void FX_SpawnAllFutureLooping(FxSystem *system, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef, const FxSpatialFrame *frameBegin, const FxSpatialFrame *frameEnd, int msecWhenPlayed, int msecUpdateBegin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -69,7 +69,7 @@ void FX_SpawnAllFutureLooping(
 FX_TriggerOneShot
 ==============
 */
-void FX_TriggerOneShot(
+void FX_TriggerOneShot(const FxSystem *system, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef, const FxSpatialFrame *frameWhenPlayed, int msecWhenPlayed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -79,7 +79,7 @@ void FX_TriggerOneShot(
 FX_IntegrateVelocityAcrossSegments
 ==============
 */
-void FX_IntegrateVelocityAcrossSegments(
+void FX_IntegrateVelocityAcrossSegments(int elemDefFlags, const orientation_t *orient, const FxElemVelStateSample *velState0, const FxElemVelStateSample *velState1, float t0, float t1, const vec3_t *amplitudeScale, float integralScale, vec3_t *posLocal, vec3_t *posWorld)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -89,7 +89,7 @@ void FX_IntegrateVelocityAcrossSegments(
 FX_IntegrateVelocityInSegment
 ==============
 */
-void FX_IntegrateVelocityInSegment(
+void FX_IntegrateVelocityInSegment(int elemDefFlags, const orientation_t *orient, const FxElemVelStateSample *velState, float t0, float t1, const vec3_t *amplitudeScale, float integralScale, vec3_t *posLocal, vec3_t *posWorld)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -99,17 +99,17 @@ void FX_IntegrateVelocityInSegment(
 FX_IntegrateVelocity
 ==============
 */
-/*void FX_IntegrateVelocity(int a1@<edx>, vec3_t *a2@<ecx>, float a3@<xmm0>, const vec3_t *t1)
+void FX_IntegrateVelocity(int a1, vec3_t *a2, float t1, const vec3_t *posLocal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 FX_NextElementPosition_NoExternalForces
 ==============
 */
-void FX_NextElementPosition_NoExternalForces(
+void FX_NextElementPosition_NoExternalForces(FxUpdateElem *update, int msecUpdateBegin, int msecUpdateEnd, vec3_t *posLocal, vec3_t *posWorld)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -119,18 +119,18 @@ void FX_NextElementPosition_NoExternalForces(
 FX_GetAtRestFraction
 ==============
 */
-/*double FX_GetAtRestFraction@<st0>(int a1@<eax>, float a2@<xmm0>)
+double FX_GetAtRestFraction(int a1, float a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 FX_GetQuatForOrientation
 ==============
 */
-void FX_GetQuatForOrientation(
+void FX_GetQuatForOrientation(const FxEffect *effect, const FxElemDef *elemDef, const FxSpatialFrame *frameNow, const orientation_t *orient, vec4_t *quat)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -140,7 +140,7 @@ void FX_GetQuatForOrientation(
 FX_UpdateElement_SetupUpdate
 ==============
 */
-bool FX_UpdateElement_SetupUpdate(
+bool FX_UpdateElement_SetupUpdate(FxEffect *effect, const FxEffectDef *effectDef, int msecUpdateBegin, int msecUpdateEnd, int elemDefIndex, int elemAtRestFraction, int elemMsecBegin, int elemSequence, float *elemOrigin, float elemWindInterp, FxUpdateElem *update)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -194,7 +194,7 @@ bool FX_GetBoneOrientation_IsDObjEntityValid(LocalClientNum_t localClientNum, in
 FX_GetBoneOrientation
 ==============
 */
-char FX_GetBoneOrientation(
+char FX_GetBoneOrientation(LocalClientNum_t localClientNum, int dobjHandle, int boneIndex, orientation_t *orient)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -216,7 +216,7 @@ bool FX_CanKillImmediate(const FxEffectDef *def)
 FX_UpdateEffectBolt
 ==============
 */
-int FX_UpdateEffectBolt(
+int FX_UpdateEffectBolt(FxSystem *system, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -227,7 +227,7 @@ int FX_UpdateEffectBolt(
 FX_GetWorldBoundingBox
 ==============
 */
-void FX_GetWorldBoundingBox(
+void FX_GetWorldBoundingBox(const vec3_t *origin, const vec3_t *orient, const vec3_t *boxCentre, const vec3_t *boxDim, unsigned int effectDefFlags, vec3_t *boxMin, vec3_t *boxMax)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -237,7 +237,7 @@ void FX_GetWorldBoundingBox(
 FX_TestEffectBoundingBoxMinMaxAgainstFrustum
 ==============
 */
-int FX_TestEffectBoundingBoxMinMaxAgainstFrustum(
+int FX_TestEffectBoundingBoxMinMaxAgainstFrustum(const FxSystem *system, const vec3_t *boxMin, const vec3_t *boxMax, unsigned int effectFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -319,7 +319,7 @@ void DB_RestartEffects_Begin()
 FX_SetupCamera
 ==============
 */
-void FX_SetupCamera(
+void FX_SetupCamera(FxCamera *camera, const vec3_t *vieworg, const vec3_t *viewaxis, const float tanHalfFovX, const float tanHalfFovY, const float zfar)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -339,9 +339,11 @@ void FX_GetCameraUpdateFromRefdefAndZFar(FxCameraUpdate *cameraUpdate, const ref
 FX_SetExtraCamera
 ==============
 */
-void FX_SetExtraCamera(LocalClientNum_t localClientNum, const FxCameraUpdate *cameraUpdate)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -349,9 +351,11 @@ void FX_SetExtraCamera(LocalClientNum_t localClientNum, const FxCameraUpdate *ca
 FX_SetNextUpdateCamera
 ==============
 */
-void FX_SetNextUpdateCamera(LocalClientNum_t localClientNum, const FxCameraUpdate *cameraUpdate)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -379,7 +383,7 @@ void FX_FillUpdateCmd(LocalClientNum_t localClientNum, FxCmd *cmd)
 FX_InitFxSpawnEffectCmd
 ==============
 */
-void FX_InitFxSpawnEffectCmd(
+void FX_InitFxSpawnEffectCmd(FxSpawnEffectCmd *cmd, LocalClientNum_t clientNum, const FxEffectDef *effectDef, int msecBegin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -389,9 +393,11 @@ void FX_InitFxSpawnEffectCmd(
 FX_ProcessLooping
 ==============
 */
-void FX_ProcessLooping(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -399,9 +405,11 @@ void FX_ProcessLooping(
 FX_BeginLooping
 ==============
 */
-void FX_BeginLooping(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -409,7 +417,7 @@ void FX_BeginLooping(
 FX_StartNewEffect
 ==============
 */
-void FX_StartNewEffect(
+void FX_StartNewEffect(const FxSystem *system, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -419,7 +427,7 @@ void FX_StartNewEffect(
 FX_ProcessEmitting
 ==============
 */
-unsigned __int8 FX_ProcessEmitting(
+unsigned __int8 FX_ProcessEmitting(FxSystem *system, const FxUpdateElem *update, unsigned __int8 emitResidual, const FxSpatialFrame *frameBegin, const FxSpatialFrame *frameEnd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -440,7 +448,7 @@ void FX_NextElementPosition(FxUpdateElem *update, int msecUpdateBegin, int msecU
 FX_SpawnImpactEffect
 ==============
 */
-void FX_SpawnImpactEffect(
+void FX_SpawnImpactEffect(FxSystem *system, const FxUpdateElem *update, const FxEffectDef *impactEffect, int msecOnImpact, const vec3_t *impactNormal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -450,7 +458,7 @@ void FX_SpawnImpactEffect(
 FX_CollisionResponse
 ==============
 */
-int FX_CollisionResponse(
+int FX_CollisionResponse(FxSystem *system, FxUpdateElem *update, const trace_t *trace, int msecUpdateBegin, int msecUpdateEnd, vec3_t *xyzWorldOld)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -485,10 +493,10 @@ FX_UpdateElementPosition_Colliding
 FX_UpdateElementPosition_Local
 ==============
 */
-FxUpdateResult FX_UpdateElementPosition_Local(FxUpdateElem *update)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	FxUpdateResult tmp;
+	 tmp;
 	return tmp;
 }
 
@@ -497,10 +505,10 @@ FxUpdateResult FX_UpdateElementPosition_Local(FxUpdateElem *update)
 FX_UpdateElementPosition
 ==============
 */
-FxUpdateResult FX_UpdateElementPosition(FxSystem *system, FxUpdateElem *update)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	FxUpdateResult tmp;
+	 tmp;
 	return tmp;
 }
 
@@ -519,7 +527,7 @@ void FX_SpawnDeathEffect(FxSystem *system, FxUpdateElem *update)
 FX_UpdateElement_HandleEmitting
 ==============
 */
-void FX_UpdateElement_HandleEmitting(
+void FX_UpdateElement_HandleEmitting(FxSystem *system, FxElem *elem, const FxUpdateElem *update, const vec3_t *elemOriginPrev, FxUpdateResult *outUpdateResult)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -529,7 +537,7 @@ void FX_UpdateElement_HandleEmitting(
 FX_UpdateElement_HandleAttachedEffect
 ==============
 */
-void FX_UpdateElement_HandleAttachedEffect(
+void FX_UpdateElement_HandleAttachedEffect(FxSystem *system, FxElem *elem, const FxUpdateElem *update, FxUpdateResult updateResult)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -539,10 +547,10 @@ void FX_UpdateElement_HandleAttachedEffect(
 FX_UpdateTrailElement
 ==============
 */
-FxUpdateResult FX_UpdateTrailElement(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	FxUpdateResult tmp;
+	 tmp;
 	return tmp;
 }
 
@@ -551,7 +559,7 @@ FxUpdateResult FX_UpdateTrailElement(
 FX_UpdateEffectPartialTrail
 ==============
 */
-bool FX_UpdateEffectPartialTrail(
+bool FX_UpdateEffectPartialTrail(FxSystem *system, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef, FxTrail *trail, int msecUpdateBegin, int msecUpdateEnd, float distanceTravelledBegin, float distanceTravelledEnd, unsigned __int16 trailElemHandleStart, unsigned __int16 trailElemHandleStop, FxSpatialFrame *frameNow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -582,9 +590,11 @@ void DB_RestartEffects_Finish()
 FX_UpdateSpotLightEffectPartial
 ==============
 */
-void FX_UpdateSpotLightEffectPartial(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -592,7 +602,7 @@ void FX_UpdateSpotLightEffectPartial(
 FX_UpdateEffectPartialForClass
 ==============
 */
-unsigned int FX_UpdateEffectPartialForClass(
+unsigned int FX_UpdateEffectPartialForClass(FxSystem *system, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef, int msecUpdateBegin, int msecUpdateEnd, unsigned __int16 elemHandleStart, unsigned __int16 elemHandleStop, unsigned int elemClass, bool OFFSCREEN)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -603,7 +613,7 @@ unsigned int FX_UpdateEffectPartialForClass(
 FX_UpdateEffectPartial<1>
 ==============
 */
-/*void FX_UpdateEffectPartial<1>(
+/*void FX_UpdateEffectPartial<1>(FxSystem *system, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef, int msecUpdateBegin, int msecUpdateEnd, float distanceTravelledBegin, float distanceTravelledEnd, unsigned __int16 *elemHandleStart, unsigned __int16 *elemHandleStop)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -613,17 +623,19 @@ FX_UpdateEffectPartial<1>
 FX_UpdateEffectPartial<0>
 ==============
 */
-/*void FX_UpdateEffectPartial<0>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 FX_UpdateCulledEffect
 ==============
 */
-void FX_UpdateCulledEffect(
+void FX_UpdateCulledEffect(FxSystem *system, FxEffect *effect, FxEffect *remoteEffect, const FxEffectDef *effectDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -653,7 +665,7 @@ void FX_UpdateSpotLightEffect(FxSystem *system, FxEffect *effect, FxEffect *remo
 FX_UpdateBatch
 ==============
 */
-void FX_UpdateBatch(
+void FX_UpdateBatch(FxSystem *system, FxSystem *remoteSystem, int firstEffect, int lastEffect, FxUpdateEffectType updateEffectType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -663,9 +675,11 @@ void FX_UpdateBatch(
 FX_UpdateSpotLight
 ==============
 */
-void FX_UpdateSpotLight(FxCmd *cmd)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -673,9 +687,11 @@ void FX_UpdateSpotLight(FxCmd *cmd)
 FX_UpdateNonSprite
 ==============
 */
-void FX_UpdateNonSprite(FxCmd *cmd)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -683,9 +699,11 @@ void FX_UpdateNonSprite(FxCmd *cmd)
 FX_UpdateNonDependent
 ==============
 */
-void FX_UpdateNonDependent(FxCmd *cmd)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -693,9 +711,11 @@ void FX_UpdateNonDependent(FxCmd *cmd)
 FX_UpdatePortalled
 ==============
 */
-void FX_UpdatePortalled(FxCmd *cmd)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -703,8 +723,10 @@ void FX_UpdatePortalled(FxCmd *cmd)
 FX_UpdateRemaining
 ==============
 */
-void FX_UpdateRemaining(FxCmd *cmd)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 

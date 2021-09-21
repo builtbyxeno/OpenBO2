@@ -101,7 +101,7 @@ char Session_CreateNonMatchmakingSessionSuccess(TaskRecord *task)
 Session_StartClient_Platform
 ==============
 */
-bool Session_StartClient_Platform(
+bool Session_StartClient_Platform(SessionData *session, const ControllerIndex_t localControllerIndex, const int flags, XSESSION_INFO *hostInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -112,7 +112,7 @@ bool Session_StartClient_Platform(
 Session_Modify
 ==============
 */
-void Session_Modify(
+void Session_Modify(const ControllerIndex_t localControllerIndex, SessionData *session, const int flags, const int publicSlots, const int privateSlots)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -133,7 +133,7 @@ char Session_ModifySessionSuccess(TaskRecord *task)
 Session_JoinSession
 ==============
 */
-void Session_JoinSession(
+void Session_JoinSession(const ControllerIndex_t localControllerIndex, SessionData *session, const int slot, const unsigned __int64 player, bool privateSlot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -153,7 +153,7 @@ void Session_LeaveSession(SessionData *session, const ClientNum_t registeredUser
 Session_RegisterRemotePlayer
 ==============
 */
-void Session_RegisterRemotePlayer(
+void Session_RegisterRemotePlayer(const ControllerIndex_t localControllerIndex, SessionData *session, const unsigned __int64 player, bool privateSlot, const ClientNum_t clientNum, const int natType, const netadr_t addr)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -184,7 +184,7 @@ TaskRecord *Session_StartHostCreateTask_Platform(ControllerIndex_t controllerInd
 Session_StartHost_Platform_DW
 ==============
 */
-int Session_StartHost_Platform_DW(
+int Session_StartHost_Platform_DW(SessionData *session, int sessionFlags, int numPrivateSlots, int numPublicSlots, ControllerIndex_t controllerIndex, TaskRecord *sessionCreateTask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

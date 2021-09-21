@@ -50,7 +50,7 @@ int R_SetMaterialNoShaderConstantSet(GfxCmdBufContext context, GfxDrawSurf drawS
 R_GetTechType
 ==============
 */
-unsigned __int8 R_GetTechType(
+unsigned __int8 R_GetTechType(const GfxCmdBufContext context, const GfxDrawSurfListInfo *info, unsigned __int8 baseTechType, GfxDrawSurf drawSurf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -72,22 +72,24 @@ const char *RB_LogTechniqueType(unsigned __int8 techType)
 R_SetTechnique
 ==============
 */
-/*int R_SetTechnique@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 R_SetLitTechniqueNoShaderConstantSet
 ==============
 */
-/*int R_SetLitTechniqueNoShaderConstantSet@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============

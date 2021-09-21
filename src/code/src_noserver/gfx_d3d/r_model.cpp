@@ -79,7 +79,7 @@ void R_XModelDebug(const DObj *obj, int *partBits)
 R_SkinXModel
 ==============
 */
-int R_SkinXModel(
+int R_SkinXModel(XModelDrawInfo *drawInfo, const XModel *model, const DObj *obj, const cpose_t *pose, const GfxPlacement *placement, float scale, unsigned int gfxEntIndex, int noLodCullOut)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

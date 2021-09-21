@@ -27,7 +27,7 @@ float GetWeaponAnimRate(LocalClientNum_t localClientNum, const Weapon weapon, XA
 GetWeaponAnimTimeFrac
 ==============
 */
-float GetWeaponAnimTimeFrac(
+float GetWeaponAnimTimeFrac(LocalClientNum_t localClientNum, const Weapon weapon, XAnim_s *anims, int animIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -38,7 +38,7 @@ float GetWeaponAnimTimeFrac(
 StartWeaponAnim
 ==============
 */
-void StartWeaponAnim(
+void StartWeaponAnim(LocalClientNum_t localClientNum, const Weapon weapon, DObj *obj, int animIndex, float transitionTime, int newPlayerstate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -48,11 +48,12 @@ void StartWeaponAnim(
 StartCameraAnim
 ==============
 */
-/*double StartCameraAnim@<st0>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -69,7 +70,7 @@ void StopCameraAnim(DObj *obj)
 PlayIdleAnim
 ==============
 */
-void PlayIdleAnim(
+void PlayIdleAnim(LocalClientNum_t localClientNum, const playerState_s *ps, ViewModelInfo *viewModelInfo, DObj *obj, Weapon weapon, float transitionTime, int newPlayerstate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -79,7 +80,7 @@ void PlayIdleAnim(
 PlayLeftIdleAnim
 ==============
 */
-void PlayLeftIdleAnim(
+void PlayLeftIdleAnim(LocalClientNum_t localClientNum, const playerState_s *ps, ViewModelInfo *viewModelInfo, DObj *obj, Weapon weapon, float transitionTime, int newPlayerstate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -89,7 +90,7 @@ void PlayLeftIdleAnim(
 PlayADSAnim
 ==============
 */
-void PlayADSAnim(
+void PlayADSAnim(LocalClientNum_t localClientNum, float weaponPosFrac, Weapon weapon, DObj *obj, int animIndex, bool bIsAltScope)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -154,7 +155,7 @@ int CheckForValidAnimIDDW(int animID)
 EnsureValidLeftAnim
 ==============
 */
-void EnsureValidLeftAnim(
+void EnsureValidLeftAnim(LocalClientNum_t localClientNum, DObj *obj, ViewModelInfo *viewModelInfo, XAnimTree_s *pAnimTree, Weapon weapon, int newPlayerstate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -164,9 +165,11 @@ void EnsureValidLeftAnim(
 WeaponRunXModelAnims
 ==============
 */
-void WeaponRunXModelAnims(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -217,7 +220,7 @@ Weapon RemoveAltAttachmentFromWeapon(const Weapon weapon)
 CG_CreateWeaponViewModelXAnimDefs
 ==============
 */
-void CG_CreateWeaponViewModelXAnimDefs(
+void CG_CreateWeaponViewModelXAnimDefs(const Weapon weapon, const Weapon lastWeaponAltModeSwitch, ViewModelInfo *viewModelInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -257,7 +260,7 @@ void CG_RegisterWeapon(LocalClientNum_t localClientNum, Weapon weapon)
 ShouldRebuildTree
 ==============
 */
-bool ShouldRebuildTree(
+bool ShouldRebuildTree(LocalClientNum_t localClientNum, const ClientPlayerWeaponInfo *weapInfo, Weapon weapon, unsigned __int8 weaponModel, XModel *newHands)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -289,9 +292,11 @@ void PlayViewmodelAdsAnim(ViewModelInfo *viewModelInfo, Weapon weapon, int animI
 PlayChangedViewmodelAdsAnim
 ==============
 */
-void PlayChangedViewmodelAdsAnim(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -321,7 +326,7 @@ XModel *CG_GetHandViewmodel(cg_t *cgameGlob)
 PlayNoteMappedSoundAliases
 ==============
 */
-void PlayNoteMappedSoundAliases(
+void PlayNoteMappedSoundAliases(LocalClientNum_t localClientNum, const char *noteName, const WeaponDef *weapDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -331,7 +336,7 @@ void PlayNoteMappedSoundAliases(
 ProcessWeaponNoteTracks
 ==============
 */
-void ProcessWeaponNoteTracks(
+void ProcessWeaponNoteTracks(LocalClientNum_t localClientNum, const playerState_s *predictedPlayerState, bool isViewArms)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -361,7 +366,7 @@ void CalculateWeaponPostion_PositionToADS(cg_t *cgameGlob, playerState_s *ps)
 PlayWeaponFx
 ==============
 */
-void PlayWeaponFx(
+void PlayWeaponFx(LocalClientNum_t localClientNum, int dobjHandle, const FxEffectDef *def, unsigned int flashTag, const vec3_t *offset, const vec3_t *offsetrot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -371,7 +376,7 @@ void PlayWeaponFx(
 WeaponFlash
 ==============
 */
-void WeaponFlash(
+void WeaponFlash(LocalClientNum_t localClientNum, int dobjHandle, Weapon weapon, int bViewFlash, unsigned int flashTag)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -381,7 +386,7 @@ void WeaponFlash(
 PlayWeaponContinuousFireFx
 ==============
 */
-void PlayWeaponContinuousFireFx(
+void PlayWeaponContinuousFireFx(LocalClientNum_t localClientNum, int dobjHandle, Weapon weapon, unsigned int flashTag)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -411,7 +416,7 @@ void HoldBreathUpdate(LocalClientNum_t localClientNum)
 ChargeShotUpdate
 ==============
 */
-void ChargeShotUpdate(
+void ChargeShotUpdate(LocalClientNum_t localClientNum, const WeaponVariantDef *weapVariantDef, int chargeShotLevel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -431,7 +436,7 @@ void CG_UpdateViewModelPose(const DObj *obj, LocalClientNum_t localClientNum)
 CG_UpdateMinigunTurretSounds
 ==============
 */
-void CG_UpdateMinigunTurretSounds(
+void CG_UpdateMinigunTurretSounds(LocalClientNum_t localClientNum, cg_t *cgameGlob, centity_t *cent, const WeaponDef *weaponDef, float lastWeaponSpinSpeed, float minigunRotationSpeed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -441,7 +446,7 @@ void CG_UpdateMinigunTurretSounds(
 CG_UpdateJetgunSounds
 ==============
 */
-void CG_UpdateJetgunSounds(
+void CG_UpdateJetgunSounds(LocalClientNum_t localClientNum, cg_t *cgameGlob, centity_t *cent, Weapon weapon, const WeaponDef *weaponDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -451,7 +456,7 @@ void CG_UpdateJetgunSounds(
 CG_UpdateMinigunSounds
 ==============
 */
-void CG_UpdateMinigunSounds(
+void CG_UpdateMinigunSounds(LocalClientNum_t localClientNum, cg_t *cgameGlob, centity_t *cent, Weapon weapon, const WeaponDef *weaponDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -461,7 +466,7 @@ void CG_UpdateMinigunSounds(
 UpdateMinigunTag
 ==============
 */
-void UpdateMinigunTag(
+void UpdateMinigunTag(cg_t *cgameGlob, centity_t *cent, const DObj *obj, unsigned __int16 name, int axis, int *partBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -471,7 +476,7 @@ void UpdateMinigunTag(
 UpdateJetgunDialTags
 ==============
 */
-void UpdateJetgunDialTags(
+void UpdateJetgunDialTags(cg_t *cgameGlob, const playerState_s *ps, centity_t *cent, const DObj *obj, unsigned __int16 lname, unsigned __int16 rname, int axis, int *partBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -481,7 +486,7 @@ void UpdateJetgunDialTags(
 UpdateParalyzerDialTags
 ==============
 */
-void UpdateParalyzerDialTags(
+void UpdateParalyzerDialTags(cg_t *cgameGlob, const playerState_s *ps, centity_t *cent, const DObj *obj, unsigned __int16 name1, unsigned __int16 name2, unsigned __int16 name3, int *partBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -491,9 +496,11 @@ void UpdateParalyzerDialTags(
 CG_UpdateMinigunTags
 ==============
 */
-void CG_UpdateMinigunTags(cg_t *cgameGlob, centity_t *cent, const DObj *obj, int *partBits)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -501,9 +508,11 @@ void CG_UpdateMinigunTags(cg_t *cgameGlob, centity_t *cent, const DObj *obj, int
 CG_UpdateJetgunTags
 ==============
 */
-void CG_UpdateJetgunTags(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -511,7 +520,7 @@ void CG_UpdateJetgunTags(
 CG_UpdateViewModelMinigun
 ==============
 */
-void CG_UpdateViewModelMinigun(
+void CG_UpdateViewModelMinigun(cg_t *cgameGlob, const playerState_s *ps, DObj *obj, const Weapon weapon, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -521,7 +530,7 @@ void CG_UpdateViewModelMinigun(
 CG_UpdateViewModelStackCounter
 ==============
 */
-void CG_UpdateViewModelStackCounter(
+void CG_UpdateViewModelStackCounter(cg_t *cgameGlob, const playerState_s *ps, const DObj *obj, const Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -531,7 +540,7 @@ void CG_UpdateViewModelStackCounter(
 BulletTrace
 ==============
 */
-bool BulletTrace(
+bool BulletTrace(LocalClientNum_t localClientNum, const BulletFireParams *bp, const WeaponDef *weapDef, const centity_t *attacker, BulletTraceResults *br, int lastSurfaceType, bool simulated)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -586,7 +595,7 @@ bool CG_IsPlayerADS(clientInfo_t *ci, const centity_t *cent)
 CG_GuessSpreadForWeapon
 ==============
 */
-void CG_GuessSpreadForWeapon(
+void CG_GuessSpreadForWeapon(LocalClientNum_t localClientNum, const centity_t *cent, const WeaponDef *weapDef, float *minSpread, float *maxSpread)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -606,7 +615,7 @@ void RandomBulletDir(unsigned int *randSeed, float *x, float *y)
 CG_BulletEndpos
 ==============
 */
-void CG_BulletEndpos(
+void CG_BulletEndpos(unsigned int *randSeed, const float spread, const vec3_t *start, vec3_t *end, vec3_t *dir, const vec3_t *forwardDir, const vec3_t *rightDir, const vec3_t *upDir, const float maxRange, Weapon weapon, int shotIndex, int maxShotIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -616,7 +625,7 @@ void CG_BulletEndpos(
 CG_GetPlayerVehicleViewOrigin_Internal
 ==============
 */
-char CG_GetPlayerVehicleViewOrigin_Internal(
+char CG_GetPlayerVehicleViewOrigin_Internal(LocalClientNum_t localClientNum, const playerState_s *ps, vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -627,7 +636,7 @@ char CG_GetPlayerVehicleViewOrigin_Internal(
 CG_GetPlayer3rdPersonVehicleViewOrigin
 ==============
 */
-void CG_GetPlayer3rdPersonVehicleViewOrigin(
+void CG_GetPlayer3rdPersonVehicleViewOrigin(LocalClientNum_t localClientNum, const playerState_s *ps, vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -648,7 +657,7 @@ char CG_GetPlayerVehicleViewOrigin(LocalClientNum_t localClientNum, const player
 CG_GetPlayerViewDirection
 ==============
 */
-void CG_GetPlayerViewDirection(
+void CG_GetPlayerViewDirection(LocalClientNum_t localClientNum, const playerState_s *ps, vec3_t *forward, vec3_t *right, vec3_t *up)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -719,7 +728,7 @@ void Anim_DrawTags(LocalClientNum_t localClientNum, int entityNum, Weapon weapon
 UpdateViewmodelAttachments
 ==============
 */
-bool UpdateViewmodelAttachments(
+bool UpdateViewmodelAttachments(LocalClientNum_t localClientNum, Weapon weapon, unsigned __int8 weaponModel, ClientPlayerWeaponInfo *weapInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -730,10 +739,11 @@ bool UpdateViewmodelAttachments(
 NeedToRebuildViewmodel
 ==============
 */
-bool NeedToRebuildViewmodel(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -781,7 +791,7 @@ void CG_CalculateWeaponMovement_SaveAngles(cg_t *cgameGlob, vec3_t *angles, GfxS
 CG_CalculateWeaponMovement_ClientSpecific
 ==============
 */
-void CG_CalculateWeaponMovement_ClientSpecific(
+void CG_CalculateWeaponMovement_ClientSpecific(cg_t *cgameGlob, GfxScaledPlacement *placement, vec3_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -811,7 +821,7 @@ void CG_SaveWeaponState(const weaponState_t *ws, cg_t *cgameGlob)
 NextWeapInCycle
 ==============
 */
-Weapon NextWeapInCycle(
+Weapon NextWeapInCycle(LocalClientNum_t localClientNum, const playerState_s *ps, weapInventoryType_t type, Weapon startWeapon, bool cycleForward, bool skipEmpties)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	Weapon tmp;
@@ -881,7 +891,7 @@ int CG_GetBrassTagForEvent(int event)
 CG_EjectWeaponBrass
 ==============
 */
-void CG_EjectWeaponBrass(
+void CG_EjectWeaponBrass(LocalClientNum_t localClientNum, const entityState_s *ent, Weapon weapon, int tagName, bool leftHand, bool lastShot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -922,7 +932,7 @@ bool CG_FireWeapon_LocalPlayerUsingVehicleWeapon(centity_t *cent, const playerSt
 CG_FireWeapon_VehicleFire
 ==============
 */
-void CG_FireWeapon_VehicleFire(
+void CG_FireWeapon_VehicleFire(LocalClientNum_t localClientNum, centity_t *cent, const playerState_s *ps, const Weapon weapon, int event)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -932,7 +942,7 @@ void CG_FireWeapon_VehicleFire(
 CG_FireWeapon_OriginAndDirection
 ==============
 */
-void CG_FireWeapon_OriginAndDirection(
+void CG_FireWeapon_OriginAndDirection(LocalClientNum_t localClientNum, centity_t *cent, const unsigned __int16 tagName, bool useViewModelDObj, vec3_t *origin, vec3_t *direction)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -952,7 +962,7 @@ void SetWeaponFxFlags(centity_t *cent, bool leftGun, bool shellEject, bool lastS
 CG_FireWeapon_Rumble
 ==============
 */
-void CG_FireWeapon_Rumble(
+void CG_FireWeapon_Rumble(LocalClientNum_t localClientNum, const entityState_s *ent, const Weapon weapon, bool isPlayerView, bool playerUsingVehicleWeapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1022,17 +1032,17 @@ void CG_SndKillAutoSimEnt(SndEntHandle ent)
 CG_SndUpdateAutoSim
 ==============
 */
-/*void CG_SndUpdateAutoSim(float a1@<ebx>)
+void CG_SndUpdateAutoSim(float a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 CG_WeaponFireSingle
 ==============
 */
-void CG_WeaponFireSingle(
+void CG_WeaponFireSingle(LocalClientNum_t localClientNum, SndEntHandle shooter, Weapon weapon, bool shooterIsPlayer, bool shooterIsLocalPlayer, bool leftGun, bool isLastShotInClip, const vec3_t *origin, const vec3_t *direction, unsigned int tagName, bool doubleTap, bool scriptedWeaponFire, bool firstShotOfBurst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1042,7 +1052,7 @@ void CG_WeaponFireSingle(
 CG_WeaponFireFake
 ==============
 */
-void CG_WeaponFireFake(
+void CG_WeaponFireFake(LocalClientNum_t localClientNum, SndEntHandle shooter, Weapon weapon, const vec3_t *origin, const vec3_t *direction, int count)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1052,7 +1062,7 @@ void CG_WeaponFireFake(
 CG_PullBackWeapon
 ==============
 */
-void CG_PullBackWeapon(
+void CG_PullBackWeapon(LocalClientNum_t localClientNum, const centity_t *cent, Weapon weapon, bool isPlayerView)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1073,7 +1083,7 @@ cg_t *CG_GetLocalClientGlobalsForEnt(LocalClientNum_t localClientNum, int entity
 CG_GetViewDirection
 ==============
 */
-void CG_GetViewDirection(
+void CG_GetViewDirection(LocalClientNum_t localClientNum, int entityNum, vec3_t *forward, vec3_t *right, vec3_t *up)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1113,7 +1123,7 @@ void CG_RandomEffectAxis(const vec3_t *forward, vec3_t *left, vec3_t *up)
 CG_ImpactEffectForWeapon
 ==============
 */
-void CG_ImpactEffectForWeapon(
+void CG_ImpactEffectForWeapon(Weapon weapon, int surfType, int impactFlags, const FxEffectDef **outFx, unsigned int *outSnd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1134,7 +1144,7 @@ centity_t *CG_BulletHitEvent_FindPlayerCorpse(LocalClientNum_t localClientNum, c
 CG_BulletHitDeployedDeployedRiotshield
 ==============
 */
-bool CG_BulletHitDeployedDeployedRiotshield(
+bool CG_BulletHitDeployedDeployedRiotshield(LocalClientNum_t localClientNum, int targetEntityNum, const vec3_t *position, int surfType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1155,17 +1165,17 @@ void CG_DogBloodEvent(LocalClientNum_t localClientNum, int entnum, vec3_t *posit
 CG_DeployRiotshieldEvent
 ==============
 */
-void CG_DeployRiotshieldEvent(LocalClientNum_t localClientNum)
+/*void CG_DeployRiotshieldEvent(char *a1@<edi>, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 CalcViewmodelHitPos
 ==============
 */
-bool CalcViewmodelHitPos(
+bool CalcViewmodelHitPos(LocalClientNum_t localClientNum, unsigned int eventParm, vec3_t *resultPos, vec3_t *resultNormal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1196,20 +1206,20 @@ void CG_ViewmodelShieldHitsProcess(LocalClientNum_t localClientNum)
 CG_BulletHitClientShieldEvent
 ==============
 */
-void CG_BulletHitClientShieldEvent(
+/*void CG_BulletHitClientShieldEvent(char *a1@<edi>, LocalClientNum_t localClientNum, int sourceEntityNum, const Weapon weapon, int surfType, int event, unsigned int eventParm)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 CG_ExplosiveImpactOnShieldEvent
 ==============
 */
-void CG_ExplosiveImpactOnShieldEvent(LocalClientNum_t localClientNum)
+/*void CG_ExplosiveImpactOnShieldEvent(char *a1@<edi>, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -1498,7 +1508,7 @@ int CG_IsInRemoteKillstreakStatic(const playerState_s *ps)
 CG_AirburstLazeCancelledByMovement
 ==============
 */
-int CG_AirburstLazeCancelledByMovement(
+int CG_AirburstLazeCancelledByMovement(float forwardMove, float rightMove, float pitchMove, float yawMove, float moveScale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1586,7 +1596,7 @@ void CG_FreeDroppedWeaponDobjInfo(LocalClientNum_t localClientNum, centity_t *ce
 AddViewmodelWeaponAttachments
 ==============
 */
-int AddViewmodelWeaponAttachments(
+int AddViewmodelWeaponAttachments(const playerState_s *ps, Weapon weapon, const WeaponVariantDef *currentWeapVariantDef, DObjModel_s *dobjModels, int mdlIdx, const unsigned __int16 boneIndex, bool inADS, WeaponDobjInfo *weaponDobjInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1597,7 +1607,7 @@ int AddViewmodelWeaponAttachments(
 ChangeViewmodelDobj
 ==============
 */
-void ChangeViewmodelDobj(
+void ChangeViewmodelDobj(LocalClientNum_t localClientNum, const playerState_s *ps, Weapon weapon, unsigned __int8 weaponModel, XModel *newHands, XModel *newGoggles, XModel *newRocket, bool updateClientInfo, bool forceRebuildTree, bool inADS)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1607,9 +1617,11 @@ void ChangeViewmodelDobj(
 CG_UpdateHandViewmodel_Internal
 ==============
 */
-void CG_UpdateHandViewmodel_Internal(LocalClientNum_t localClientNum, Weapon weapon, XModel *handModel)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1648,7 +1660,7 @@ char CG_GetPlayerViewOrigin(LocalClientNum_t localClientNum, const playerState_s
 CG_PrepFireParams
 ==============
 */
-char CG_PrepFireParams(
+char CG_PrepFireParams(LocalClientNum_t localClientNum, centity_t *ent, const unsigned __int16 boneName, const playerState_s *ps, Weapon weapon, int event, bool isPlayer, BulletFireParams *bp, vec3_t *tracerStart, int *shotCount, float *range, orientation_t *orient, vec3_t *origin, float *aimSpreadAmount, int *ignoreEntity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1671,7 +1683,7 @@ Weapon CG_GetWeaponDefBasedOnNumberOfBullets(const cg_t *cgameGlob, int numBulle
 CG_AddPlayerWeaponFx
 ==============
 */
-void CG_AddPlayerWeaponFx(
+void CG_AddPlayerWeaponFx(centity_t *a1, LocalClientNum_t localClientNum, const playerState_s *ps, centity_t *cent, Weapon weapon, int bViewModel, int bDrawGun)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1681,7 +1693,7 @@ void CG_AddPlayerWeaponFx(
 CG_AddPlayerWeapon
 ==============
 */
-void CG_AddPlayerWeapon(
+void CG_AddPlayerWeapon(LocalClientNum_t localClientNum, const GfxScaledPlacement *placement, const playerState_s *ps, centity_t *cent, int bDrawGun)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1765,7 +1777,7 @@ void CG_CycleWeapon(LocalClientNum_t localClientNum, int cycleForward)
 ToggleWeaponAltMode
 ==============
 */
-bool ToggleWeaponAltMode(LocalClientNum_t localClientNum, bool adsOnly)
+char ToggleWeaponAltMode(LocalClientNum_t localClientNum, bool adsOnly)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1797,7 +1809,7 @@ char CG_ActionSlot_SelectWeapon(const LocalClientNum_t localClientNum, Weapon we
 CG_FakeFireWeapon
 ==============
 */
-void CG_FakeFireWeapon(
+void CG_FakeFireWeapon(LocalClientNum_t localClientNum, centity_t *cent, Weapon weapon, vec3_t *origin, int count)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1807,7 +1819,7 @@ void CG_FakeFireWeapon(
 CG_BulletHitEvent_Internal
 ==============
 */
-void CG_BulletHitEvent_Internal(
+void CG_BulletHitEvent_Internal(LocalClientNum_t localClientNum, int sourceEntityNum, int targetEntityNum, Weapon weapon, const vec3_t *startPos, const vec3_t *position, const vec3_t *normal, const vec3_t *seeThruDecalNormal, int surfType, int event, unsigned __int8 eventParam, int hitContents, unsigned __int8 boneIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1817,9 +1829,11 @@ void CG_BulletHitEvent_Internal(
 CG_BulletHitEvent
 ==============
 */
-void CG_BulletHitEvent(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1827,7 +1841,7 @@ void CG_BulletHitEvent(
 CG_BulletHitClientEvent
 ==============
 */
-void CG_BulletHitClientEvent(
+void CG_BulletHitClientEvent(LocalClientNum_t localClientNum, int sourceEntityNum, Weapon weapon, int hitEntityNum, const vec3_t *startPos, const vec3_t *position, int surfType, int event)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1848,11 +1862,11 @@ char CG_ScopeIsOverlayed(LocalClientNum_t localClientNum)
 CG_GetAirburstMarkDistance
 ==============
 */
-int CG_GetAirburstMarkDistance(
+/*int CG_GetAirburstMarkDistance(LocalClientNum_t localClientNum, playerState_s *ps, bitarray<64> *buttons, unsigned int *outDistance, int lazeCancelled)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
@@ -1869,7 +1883,7 @@ void CG_WeaponMyChanges()
 CG_SimulateBulletFire_Effect
 ==============
 */
-void CG_SimulateBulletFire_Effect(
+void CG_SimulateBulletFire_Effect(LocalClientNum_t localClientNum, int sourceEntityNum, int targetEntityNum, Weapon weapon, const vec3_t *startPos, const vec3_t *position, const vec3_t *normal, const vec3_t *seeThruDecalNormal, int surfType, int event, unsigned __int8 eventParam, int hitContents, unsigned __int8 boneIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1879,7 +1893,7 @@ void CG_SimulateBulletFire_Effect(
 CG_WeaponBounceShot
 ==============
 */
-void CG_WeaponBounceShot(
+void CG_WeaponBounceShot(LocalClientNum_t localClientNum, Weapon weapon, BulletFireParams *incomingbp, BulletTraceResults *br, centity_t *attacker, bool drawTracer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2017,7 +2031,7 @@ void TakeClipOnlyWeaponIfEmpty(LocalClientNum_t localClientNum, playerState_s *p
 CG_FireWeapon
 ==============
 */
-void CG_FireWeapon(
+void CG_FireWeapon(LocalClientNum_t localClientNum, centity_t *cent, int event, int eventParm, const unsigned __int16 tagName, Weapon weapon, const playerState_s *ps, centity_t *leftGun)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2027,9 +2041,11 @@ void CG_FireWeapon(
 CG_UpdateViewWeaponAnim
 ==============
 */
-void CG_UpdateViewWeaponAnim(LocalClientNum_t localClientNum, int newPlayerstate)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -2037,7 +2053,7 @@ void CG_UpdateViewWeaponAnim(LocalClientNum_t localClientNum, int newPlayerstate
 CG_FireVehicleWeapon
 ==============
 */
-void CG_FireVehicleWeapon(
+void CG_FireVehicleWeapon(LocalClientNum_t localClientNum, centity_t *cent, int event, int eventParm, const unsigned __int16 tagName, Weapon weapon, const playerState_s *ps)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

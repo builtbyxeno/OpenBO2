@@ -6,7 +6,7 @@
 R_ChopPolyBehindPlane
 ==============
 */
-int R_ChopPolyBehindPlane(
+int R_ChopPolyBehindPlane(int inPointCount, const FxModelMarkPoint *inPoints, FxModelMarkPoint *outPoints, const vec4_t *plane)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -17,7 +17,7 @@ int R_ChopPolyBehindPlane(
 R_ChopWorldPolyBehindPlane
 ==============
 */
-int R_ChopWorldPolyBehindPlane(
+int R_ChopWorldPolyBehindPlane(int inPointCount, const FxWorldMarkPoint *inPoints, FxWorldMarkPoint *outPoints, const vec4_t *plane, float epsilon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -28,7 +28,7 @@ int R_ChopWorldPolyBehindPlane(
 R_Mark_MaterialAllowsMarks
 ==============
 */
-bool R_Mark_MaterialAllowsMarks(
+bool R_Mark_MaterialAllowsMarks(const Material *markReceiverMaterialHandle, const Material *markMaterialHandle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -50,7 +50,7 @@ BOOL R_AllowMarks()
 R_AABBTreeBoxSurfaces_r
 ==============
 */
-void R_AABBTreeBoxSurfaces_r(
+void R_AABBTreeBoxSurfaces_r(GfxAabbTree *treeEA, const vec3_t *mins, const vec3_t *maxs, int (*allowSurf)(int, void *), void *callbackContext, GfxSurface **surfList, unsigned int surfListSize, unsigned int *surfCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -60,7 +60,7 @@ void R_AABBTreeBoxSurfaces_r(
 R_AABBTreeBoxSurfacesTwoLists_r
 ==============
 */
-void R_AABBTreeBoxSurfacesTwoLists_r(
+void R_AABBTreeBoxSurfacesTwoLists_r(GfxAabbTree *treeEA, const vec3_t *mins, const vec3_t *maxs, int (**allowSurf)(int, void *), void *callbackContext, GfxSurface ***surfLists, unsigned int surfListSize, unsigned int *surfCounts)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -80,7 +80,7 @@ void R_AddStaticModelToList(int smodelIndex, unsigned __int16 *smodelList, int *
 R_AABBTreeBoxStaticModels_r
 ==============
 */
-void R_AABBTreeBoxStaticModels_r(
+void R_AABBTreeBoxStaticModels_r(GfxAabbTree *treeEA, const vec3_t *mins, const vec3_t *maxs, int (*allowSModel)(int), unsigned __int16 *smodelList, int smodelListSize, int *smodelCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -90,7 +90,7 @@ void R_AABBTreeBoxStaticModels_r(
 R_AABBTreeFrustumSurfaces_r
 ==============
 */
-void R_AABBTreeFrustumSurfaces_r(
+void R_AABBTreeFrustumSurfaces_r(GfxAabbTree *treeEA, const vec3_t *mins, const vec3_t *maxs, const vec4_t *planes, unsigned int numPlanes, int (*allowSurf)(int), GfxSurface **surfList, int surfListSize, int *surfCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -100,7 +100,7 @@ void R_AABBTreeFrustumSurfaces_r(
 R_AABBTreeFrustumStaticModels_r
 ==============
 */
-void R_AABBTreeFrustumStaticModels_r(
+void R_AABBTreeFrustumStaticModels_r(int *a1, GfxAabbTree *treeEA, const vec3_t *mins, const vec3_t *maxs, const vec4_t *planes, unsigned int numPlanes, int (*allowSModel)(int), unsigned __int16 *smodelList, int smodelListSize, int *smodelCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -110,7 +110,7 @@ void R_AABBTreeFrustumStaticModels_r(
 R_CellBoxSurfaces
 ==============
 */
-void R_CellBoxSurfaces(
+void R_CellBoxSurfaces(int cellIndex, const vec3_t *mins, const vec3_t *maxs, int (*allowSurf)(int, void *), void *callbackContext, GfxSurface **surfList, unsigned int surfListSize, unsigned int *surfCount, unsigned __int8 *cellBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -120,7 +120,7 @@ void R_CellBoxSurfaces(
 R_CellBoxSurfacesTwoLists
 ==============
 */
-void R_CellBoxSurfacesTwoLists(
+void R_CellBoxSurfacesTwoLists(int cellIndex, const vec3_t *mins, const vec3_t *maxs, int (**allowSurf)(int, void *), void *callbackContext, GfxSurface ***surfLists, unsigned int surfListSize, unsigned int *surfCounts, unsigned __int8 *cellBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -130,9 +130,11 @@ void R_CellBoxSurfacesTwoLists(
 R_BoxSurfaces_r
 ==============
 */
-void R_BoxSurfaces_r(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -140,7 +142,7 @@ void R_BoxSurfaces_r(
 R_BoxStaticModels_r
 ==============
 */
-void R_BoxStaticModels_r(
+void R_BoxStaticModels_r(mnode_t *node, const vec3_t *mins, const vec3_t *maxs, int (*allowSModel)(int), unsigned __int16 *smodelList, int smodelListSize, int *smodelCount, unsigned __int8 *cellBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -150,7 +152,7 @@ void R_BoxStaticModels_r(
 R_FrustumSurfaces_r
 ==============
 */
-void R_FrustumSurfaces_r(
+void R_FrustumSurfaces_r(mnode_t *node, const vec3_t *mins, const vec3_t *maxs, const vec4_t *planes, unsigned int numPlanes, int (*allowSurf)(int), GfxSurface **surfList, int surfListSize, int *surfCount, unsigned __int8 *cellBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -160,7 +162,7 @@ void R_FrustumSurfaces_r(
 R_FrustumStaticModels_r
 ==============
 */
-void R_FrustumStaticModels_r(
+void R_FrustumStaticModels_r(mnode_t *node, const vec3_t *mins, const vec3_t *maxs, const vec4_t *planes, unsigned int numPlanes, int (*allowSModel)(int), unsigned __int16 *smodelList, int smodelListSize, int *smodelCount, unsigned __int8 *cellBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -170,7 +172,7 @@ void R_FrustumStaticModels_r(
 R_BoxSurfaces
 ==============
 */
-void R_BoxSurfaces(
+void R_BoxSurfaces(int a1, const vec3_t *mins, const vec3_t *maxs, int (**allowSurf)(int, void *), void *callbackContext, GfxSurface ***surfLists, unsigned int surfListSize, unsigned int *surfCounts, unsigned int listCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -180,40 +182,40 @@ void R_BoxSurfaces(
 R_BoxStaticModels
 ==============
 */
-/*int R_BoxStaticModels@<eax>(
+int R_BoxStaticModels(int a1, const vec3_t *mins, const vec3_t *maxs, int (*allowSModel)(int), unsigned __int16 *smodelList, int smodelListSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 R_FrustumSurfaces
 ==============
 */
-/*int R_FrustumSurfaces@<eax>(
+int R_FrustumSurfaces(int a1, const vec3_t *mins, const vec3_t *maxs, const vec4_t *planes, unsigned int numPlanes, int (*allowSurf)(int), GfxSurface **surfList, int surfListSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 R_FrustumStaticModels
 ==============
 */
-/*int R_FrustumStaticModels@<eax>(
+int R_FrustumStaticModels(int a1, const vec3_t *mins, const vec3_t *maxs, const vec4_t *planes, unsigned int numPlanes, int (*allowSModel)(int), unsigned __int16 *smodelList, int smodelListSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 R_GetMarkFragmentClipPlanes
 ==============
 */
-void R_GetMarkFragmentClipPlanes(
+void R_GetMarkFragmentClipPlanes(const vec3_t *origin, const vec3_t *axis, float radius, MarkClipPlaneSet *clipPlanes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -223,7 +225,7 @@ void R_GetMarkFragmentClipPlanes(
 R_MarkFragments_BrushSurface
 ==============
 */
-bool R_MarkFragments_BrushSurface(
+bool R_MarkFragments_BrushSurface(MarkInfo *markInfo, GfxMarkContext *markContext, const MarkClipPlaneSet *clipPlanes, const vec3_t *markDir, const GfxSurface *remoteSurface, bool *anyMarks)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -245,7 +247,7 @@ bool R_MarkFragments_WorldBrushes(MarkInfo *markInfo)
 R_Mark_TransformClipPlanes
 ==============
 */
-void R_Mark_TransformClipPlanes(
+void R_Mark_TransformClipPlanes(const MarkClipPlaneSet *inClipPlanes, vec3_t *matrix, MarkClipPlaneSet *outClipPlanes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -277,7 +279,7 @@ bool R_MarkFragments_Glass(MarkInfo *markInfo)
 R_MarkUtil_GetDObjAnimMatAndHideParts
 ==============
 */
-void R_MarkUtil_GetDObjAnimMatAndHideParts(
+void R_MarkUtil_GetDObjAnimMatAndHideParts(const DObj *dobj, const cpose_t *pose, const DObjAnimMat **outBoneMtxList, unsigned int *outHidePartBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -287,9 +289,11 @@ void R_MarkUtil_GetDObjAnimMatAndHideParts(
 R_MarkFragments_Begin
 ==============
 */
-void R_MarkFragments_Begin(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -319,7 +323,7 @@ char R_MarkFragments_AddViewModelDObj(MarkInfo *markInfo, DObj *dObj, cpose_t *p
 R_MarkFragments_AddBModel
 ==============
 */
-bool R_MarkFragments_AddBModel(
+bool R_MarkFragments_AddBModel(MarkInfo *markInfo, GfxBrushModel *brushModel, cpose_t *pose, unsigned __int16 entityIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -330,18 +334,18 @@ bool R_MarkFragments_AddBModel(
 R_MarkFragments_XModelSurface_Basic
 ==============
 */
-/*char R_MarkFragments_XModelSurface_Basic@<al>(
+char R_MarkFragments_XModelSurface_Basic(GfxMarkContext *a1, __int64 *a2, float surfaceEA, const XSurface *modelAxis, const vec3_t *modelOrigin, const vec3_t *a6)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 R_MarkFragments_EntirelyRigidXModel
 ==============
 */
-bool R_MarkFragments_EntirelyRigidXModel(
+bool R_MarkFragments_EntirelyRigidXModel(MarkInfo *markInfo, const XModel *xmodelEA, const vec3_t *modelAxis, const vec3_t *modelOrigin, float modelScale, GfxMarkContext *markContext)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -364,7 +368,7 @@ R_MarkFragments_AnimatedXModel_VertList
 R_MarkFragments_AnimatedXModel
 ==============
 */
-bool R_MarkFragments_AnimatedXModel(
+bool R_MarkFragments_AnimatedXModel(MarkInfo *markInfo, const XModel *model, const unsigned int *hidePartBits, int boneIndex, const DObjAnimMat *boneMtxList, int boneCount, GfxMarkContext *markContext)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -419,7 +423,7 @@ bool R_MarkFragments_Models(MarkInfo *markInfo)
 R_MarkFragments_Go
 ==============
 */
-void R_MarkFragments_Go(
+void R_MarkFragments_Go(MarkInfo *markInfo, void (*callback)(void *, int, FxMarkTri *, int, FxMarkPoint *, const vec3_t *, const vec3_t *), void *callbackContext, int maxTris, FxMarkTri *tris, int maxPoints, FxMarkPoint *points)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

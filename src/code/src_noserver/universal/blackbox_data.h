@@ -26,9 +26,11 @@ void BB_WriteVarUInt32(bb_msg_t *msg, unsigned int c)
 BB_WriteInt8
 ==============
 */
-void BB_WriteInt8(bb_msg_t *msg, int c)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

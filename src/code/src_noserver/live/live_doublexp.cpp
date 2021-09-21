@@ -81,7 +81,7 @@ void Live_DoubleXPRecordIW6Promo(const ControllerIndex_t controllerIndex, bool a
 Live_DoubleXPUpdatGroupMaskForController
 ==============
 */
-void Live_DoubleXPUpdatGroupMaskForController(
+void Live_DoubleXPUpdatGroupMaskForController(const ControllerIndex_t controllerIndex, bdKeyValuePair *values, int count)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

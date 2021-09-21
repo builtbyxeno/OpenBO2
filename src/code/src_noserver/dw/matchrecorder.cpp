@@ -260,10 +260,11 @@ void MatchRecorder_UpdateSubparties()
 MatchRecord_SearchCreateForPlayer
 ==============
 */
-int MatchRecord_SearchCreateForPlayer(gclient_t *client, ddlState_t *playerState)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -323,7 +324,7 @@ void MatchRecorder_RecordGameResult(team_t winner, bool isDraw)
 GetWorldLocation
 ==============
 */
-void GetWorldLocation(
+void GetWorldLocation(float xPos, float yPos, float zPos, unsigned __int8 *xWorld, unsigned __int8 *yWorld, unsigned __int8 *zWorld)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -333,9 +334,11 @@ void GetWorldLocation(
 MatchRecord_ReviveZombie
 ==============
 */
-void MatchRecord_ReviveZombie(gclient_t *client, gclient_t *reviver)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -343,9 +346,11 @@ void MatchRecord_ReviveZombie(gclient_t *client, gclient_t *reviver)
 MatchRecordSpawn
 ==============
 */
-void MatchRecordSpawn(gclient_t *client)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -353,7 +358,7 @@ void MatchRecordSpawn(gclient_t *client)
 MatchRecordSetHitStat
 ==============
 */
-void MatchRecordSetHitStat(
+void MatchRecordSetHitStat(ddlState_t playerState, gclient_t *attackerClient, const hitLocation_t hitLocation, const char *hitLocStatName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -373,9 +378,11 @@ void MatchRecordHit(gclient_t *attackerClient, hitLocation_t hitLocation)
 MatchRecordDeath
 ==============
 */
-void MatchRecordDeath(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -393,9 +400,11 @@ void MatchRecordEnd(gclient_t *client)
 MatchRecordBegin
 ==============
 */
-void MatchRecordBegin()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -444,7 +453,7 @@ void MatchRecorder_TagXuids(int *numTags, bdTag *tags, int maxTags)
 MatchRecorder_RecordKillstreakEvent
 ==============
 */
-void MatchRecorder_RecordKillstreakEvent(
+void MatchRecorder_RecordKillstreakEvent(ddlState_t *a1, unsigned __int8 *a2, float client, gclient_t *killstreakIndex, int a5)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -454,7 +463,7 @@ void MatchRecorder_RecordKillstreakEvent(
 MatchRecorder_RecordKillstreakEndEvent
 ==============
 */
-void MatchRecorder_RecordKillstreakEndEvent(
+void MatchRecorder_RecordKillstreakEndEvent(ddlState_t *a1, gclient_t *a2, gclient_t *client, int killstreakIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -464,7 +473,7 @@ void MatchRecorder_RecordKillstreakEndEvent(
 MatchRecorder_RecordGameEvent
 ==============
 */
-void MatchRecorder_RecordGameEvent(
+void MatchRecorder_RecordGameEvent(ddlState_t *a1, gclient_t *a2, float client, gclient_t *gameEvent, const char *a5)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -474,7 +483,7 @@ void MatchRecorder_RecordGameEvent(
 MatchRecorder_RecordKillModifier
 ==============
 */
-void MatchRecorder_RecordKillModifier(
+void MatchRecorder_RecordKillModifier(ddlState_t *a1, gclient_t *a2, gclient_t *client, const char *killModifier)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -484,7 +493,7 @@ void MatchRecorder_RecordKillModifier(
 MatchRecorder_RecordScoreEvent
 ==============
 */
-void MatchRecorder_RecordScoreEvent(
+void MatchRecorder_RecordScoreEvent(ddlState_t *a1, gclient_t *a2, gclient_t *client, const char *scoreEvent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -494,9 +503,11 @@ void MatchRecorder_RecordScoreEvent(
 MatchRecorder_RecordLoadoutAndPerks
 ==============
 */
-void MatchRecorder_RecordLoadoutAndPerks(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -504,9 +515,11 @@ void MatchRecorder_RecordLoadoutAndPerks(
 MatchRecorder_RecordNumZombieRounds
 ==============
 */
-void MatchRecorder_RecordNumZombieRounds(ddlState_t *a1, const char *a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -514,7 +527,7 @@ void MatchRecorder_RecordNumZombieRounds(ddlState_t *a1, const char *a2)
 MatchRecorder_RecordMultiKill
 ==============
 */
-void MatchRecorder_RecordMultiKill(
+void MatchRecorder_RecordMultiKill(ddlState_t *a1, gclient_t *a2, gclient_t *client, int killCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -524,7 +537,7 @@ void MatchRecorder_RecordMultiKill(
 MatchRecord_WriteItemStats
 ==============
 */
-void MatchRecord_WriteItemStats(
+void MatchRecord_WriteItemStats(char *a1, gentity_t *playerEnt, ClientNum_t clientNum, int weaponStatIndex, int weaponIndex, int attachmentBits, const char *weapName, const char *statName, unsigned int addValue, int statNameHash)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -534,17 +547,19 @@ void MatchRecord_WriteItemStats(
 MatchRecorder_IncrementHeaderStat
 ==============
 */
-/*void MatchRecorder_IncrementHeaderStat(const char *a1@<edx>, ddlState_t *a2@<ecx>, const char *statName)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 MatchRecorder_RecordZombieGameInfoEnd
 ==============
 */
-void MatchRecorder_RecordZombieGameInfoEnd(
+void MatchRecorder_RecordZombieGameInfoEnd(const char *a1, ddlState_t *a2, const char *gameModeGroup, const char *gameMode, const char *mapLocation, int numRounds)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -564,10 +579,10 @@ void MatchRecorder_RecordZombiePlayerDeath()
 MatchRecorder_RecordZombiePlayerDown
 ==============
 */
-/*void MatchRecorder_RecordZombiePlayerDown(float a1@<ebx>, unsigned __int8 *a2@<edi>, gclient_t *client)
+void MatchRecorder_RecordZombiePlayerDown(float client, gclient_t *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -626,10 +641,11 @@ void MatchRecorder_IncrementPlayerStat(gclient_t *client, const char *statName)
 MatchRecord_InitMatchDataInternal
 ==============
 */
-int MatchRecord_InitMatchDataInternal(char *inputBuffer, int buffSize)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -647,9 +663,11 @@ void MatchRecord_InitMatchData()
 GenerateBinaryMatchSummary
 ==============
 */
-void GenerateBinaryMatchSummary(unsigned int titleID, const char *gameMode, unsigned __int64 fileID)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -657,7 +675,7 @@ void GenerateBinaryMatchSummary(unsigned int titleID, const char *gameMode, unsi
 GenerateRecordedMatchData
 ==============
 */
-void GenerateRecordedMatchData(
+void GenerateRecordedMatchData(ControllerIndex_t controllerIndex, const char *gameMode, char **matchRecordBuffer, int *matchRecordBufferSize, unsigned __int64 fileID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -667,18 +685,18 @@ void GenerateRecordedMatchData(
 MatchRecord_ParseDownloadedMatchData
 ==============
 */
-/*BOOL MatchRecord_ParseDownloadedMatchData@<eax>(
+BOOL MatchRecord_ParseDownloadedMatchData(int a1, char *a2, const ControllerIndex_t controllerIndex, char *inputBuffer, int buffsize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MatchRecordPointsSpent
 ==============
 */
-void MatchRecordPointsSpent(
+void MatchRecordPointsSpent(ControllerIndex_t controllerIndex, int amount, pointsSpent_t reasonType, int reasonIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

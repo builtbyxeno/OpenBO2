@@ -88,7 +88,7 @@ void SetBallisticAngles(LocalClientNum_t localClientNum, centity_t *cent)
 IsWeaponRetrieveable
 ==============
 */
-bool IsWeaponRetrieveable(
+bool IsWeaponRetrieveable(LocalClientNum_t localClientNum, const centity_t *cent, const WeaponDef *weapDef, const Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -143,7 +143,7 @@ void CG_InitZBarriers()
 CG_CreateZBarrierPieceDObj
 ==============
 */
-void CG_CreateZBarrierPieceDObj(
+void CG_CreateZBarrierPieceDObj(LocalClientNum_t localClientNum, centity_t *piece, centity_t *zbarrier, ZBarrierBoard *boardDef, int pieceIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -163,7 +163,7 @@ void CG_InitZBarrier(LocalClientNum_t localClientNum, centity_t *cent)
 CG_InitZBarrierPiece
 ==============
 */
-void CG_InitZBarrierPiece(
+void CG_InitZBarrierPiece(centity_t *piece, centity_t *parent, ZBarrierType *zbarrierType, int pieceIndex, DObj *pDobj)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -173,7 +173,7 @@ void CG_InitZBarrierPiece(
 CG_UpdateZBarrierPieceAnim
 ==============
 */
-void CG_UpdateZBarrierPieceAnim(
+void CG_UpdateZBarrierPieceAnim(LocalClientNum_t localClientNum, centity_t *parent, int pieceIndex, DObj *pDobj)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -193,7 +193,7 @@ void CG_GetZBarrierEffectPosition(const centity_t *pCent, const vec3_t *offset, 
 zbarrier_repair_logic
 ==============
 */
-void zbarrier_repair_logic(
+void zbarrier_repair_logic(LocalClientNum_t localClientNum, cg_t *cgameGlob, centity_t *pParent, ZBarrierDef *pZBarrierDef, _cgZBarrierPiece_t *pPiece, LerpEntityStateZBarrierPiece *pLerpPiece, unsigned int pieceIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -203,7 +203,7 @@ void zbarrier_repair_logic(
 zbarrier_piece_box_fly_away_logic
 ==============
 */
-void zbarrier_piece_box_fly_away_logic(
+void zbarrier_piece_box_fly_away_logic(LocalClientNum_t localClientNum, cg_t *cgameGlob, centity_t *pParent, ZBarrierDef *pZBarrierDef, _cgZBarrierPiece_t *pPiece, LerpEntityStateZBarrierPiece *pLerpPiece)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -213,7 +213,7 @@ void zbarrier_piece_box_fly_away_logic(
 zbarrier_piece_teardown_logic
 ==============
 */
-void zbarrier_piece_teardown_logic(
+void zbarrier_piece_teardown_logic(LocalClientNum_t localClientNum, cg_t *cgameGlob, centity_t *pParent, ZBarrierDef *pZBarrierDef, _cgZBarrierPiece_t *pPiece, LerpEntityStateZBarrierPiece *pLerpPiece, unsigned int pieceIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -263,7 +263,7 @@ void CG_SetFrameInterpolation(LocalClientNum_t localClientNum)
 CG_PlayClientRumbleNoteTracks
 ==============
 */
-void CG_PlayClientRumbleNoteTracks(
+void CG_PlayClientRumbleNoteTracks(LocalClientNum_t localClientNum, int entnum, const vec3_t *origin, const char *notifyName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -273,7 +273,7 @@ void CG_PlayClientRumbleNoteTracks(
 CG_PlayClientSoundNoteTracks
 ==============
 */
-void CG_PlayClientSoundNoteTracks(
+void CG_PlayClientSoundNoteTracks(LocalClientNum_t localClientNum, int entnum, const vec3_t *origin, const char *notifyName, bool isViewArms)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -304,7 +304,7 @@ void CG_ProcessFootstepNote(LocalClientNum_t localClientNum, centity_t *cent, co
 CG_ProcessClientNote
 ==============
 */
-void CG_ProcessClientNote(
+void CG_ProcessClientNote(const XAnimClientNotify *note, int entityNum, cg_t *cgameGlob, centity_t *cent, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -324,7 +324,7 @@ void CG_ProcessClientNoteTracks(LocalClientNum_t localClientNum, int entityNum)
 CG_ReduceOriginError
 ==============
 */
-void CG_ReduceOriginError(
+void CG_ReduceOriginError(LocalClientNum_t localClientNum, vec3_t *origin, vec3_t *originError, float maxChange)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -334,7 +334,7 @@ void CG_ReduceOriginError(
 CG_ReduceAnglesError
 ==============
 */
-void CG_ReduceAnglesError(
+void CG_ReduceAnglesError(LocalClientNum_t localClientNum, vec3_t *angles, vec3_t *anglesError, float maxChange)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -344,9 +344,11 @@ void CG_ReduceAnglesError(
 CG_LerpOriginAnglesError
 ==============
 */
-void CG_LerpOriginAnglesError(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -478,7 +480,7 @@ void CG_InterpolateEntityPosition(cg_t *cgameGlob, centity_t *cent, LocalClientN
 CG_LerpTrajectory
 ==============
 */
-void CG_LerpTrajectory(
+void CG_LerpTrajectory(const cg_t *cgameGlob, trajectory_t *trFrom, trajectory_t *trTo, float lerp, trajectory_t *trResult, bool isAngle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -520,9 +522,11 @@ bool ShouldInterpolateFromNitrousVehicleLocally(const cg_t *cgameGlob, centity_t
 CG_InterpolateVehicle
 ==============
 */
-void CG_InterpolateVehicle(const cg_t *cgameGlob, centity_t *cent, int curTime)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -580,9 +584,11 @@ void CG_InterpolateEntityAngles(cg_t *cgameGlob, centity_t *cent, LocalClientNum
 CG_CreateNitrousVehicle
 ==============
 */
-void CG_CreateNitrousVehicle(LocalClientNum_t localClientNum, cg_t *cgameGlob, centity_t *cent)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -610,7 +616,7 @@ void CG_UpdateTags(centity_t *ent, const DObj *obj)
 CG_AddClientScriptAttachedModel
 ==============
 */
-unsigned int CG_AddClientScriptAttachedModel(
+unsigned int CG_AddClientScriptAttachedModel(centity_t *cent, DObjModel_s *dobjModels, unsigned int numModels, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -621,7 +627,7 @@ unsigned int CG_AddClientScriptAttachedModel(
 CG_AddVehicleAttachedModel
 ==============
 */
-unsigned int CG_AddVehicleAttachedModel(
+unsigned int CG_AddVehicleAttachedModel(centity_t *cent, DObjModel_s *dobjModels, unsigned int numModels, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -632,7 +638,7 @@ unsigned int CG_AddVehicleAttachedModel(
 CG_AddScriptMoverAttachedModel
 ==============
 */
-unsigned int CG_AddScriptMoverAttachedModel(
+unsigned int CG_AddScriptMoverAttachedModel(centity_t *cent, DObjModel_s *dobjModels, unsigned int numModels, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -643,7 +649,7 @@ unsigned int CG_AddScriptMoverAttachedModel(
 CG_AddWeaponAttachedModel
 ==============
 */
-unsigned int CG_AddWeaponAttachedModel(
+unsigned int CG_AddWeaponAttachedModel(centity_t *cent, DObjModel_s *dobjModels, unsigned int numModels, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -654,7 +660,7 @@ unsigned int CG_AddWeaponAttachedModel(
 CG_PreProcess_GetDObj
 ==============
 */
-DObj *CG_PreProcess_GetDObj(
+DObj *CG_PreProcess_GetDObj(LocalClientNum_t localClientNum, int entIndex, int entType, XModel *model, XModel *model2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -829,7 +835,7 @@ __int16 *CG_EntitySonar(LocalClientNum_t localClientNum, centity_t *cent, bool c
 CG_WhatModelShouldLocalPlayerSee
 ==============
 */
-int CG_WhatModelShouldLocalPlayerSee(
+int CG_WhatModelShouldLocalPlayerSee(LocalClientNum_t localClientNum, const cg_t *cgameGlob, const centity_t *cent, int centTeam, int friendlyModel, int enemyModel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -956,7 +962,7 @@ DObj *CG_ScriptMover_GetDObj(LocalClientNum_t localClientNum, centity_t *cent)
 CG_HandleZBarrierModelChanges
 ==============
 */
-DObj *CG_HandleZBarrierModelChanges(
+DObj *CG_HandleZBarrierModelChanges(LocalClientNum_t localClientNum, centity_t *parent, int pieceIndex, DObj *pDobj, ZBarrierBoard *pBoardDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -967,7 +973,7 @@ DObj *CG_HandleZBarrierModelChanges(
 SwitchZombieBoxWeapon
 ==============
 */
-void SwitchZombieBoxWeapon(
+void SwitchZombieBoxWeapon(LocalClientNum_t localClientNum, centity_t *cent, zombieBoxWeapon_t *pZombieBoxWeapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -987,7 +993,7 @@ void ClearZombieBoxWeapon(LocalClientNum_t localClientNum, centity_t *cent)
 zbarrier_piece_box_rise_logic
 ==============
 */
-void zbarrier_piece_box_rise_logic(
+void zbarrier_piece_box_rise_logic(LocalClientNum_t localClientNum, cg_t *cgameGlob, centity_t *pParent, ZBarrierDef *pZBarrierDef, _cgZBarrierPiece_t *pPiece, LerpEntityStateZBarrierPiece *pLerpPiece, unsigned int pieceIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1007,9 +1013,11 @@ void CG_UpdateZBarrierPieceState(LocalClientNum_t localClientNum, cg_t *cgameGlo
 CG_ZBarrier
 ==============
 */
-void CG_ZBarrier(LocalClientNum_t localClientNum, centity_t *cent)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1048,7 +1056,7 @@ DObjAnimMat *CG_DObjGetLocalTagMatrix(const cpose_t *pose, DObj *obj, unsigned i
 CG_DObjGetWorldBoneMatrix
 ==============
 */
-int CG_DObjGetWorldBoneMatrix(
+int CG_DObjGetWorldBoneMatrix(const cpose_t *poseEA, DObj *objEA, int boneIndex, vec3_t *tagMat, vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1059,22 +1067,23 @@ int CG_DObjGetWorldBoneMatrix(
 CG_DObjGetWorldTagMatrix
 ==============
 */
-/*int CG_DObjGetWorldTagMatrix@<eax>(
+int CG_DObjGetWorldTagMatrix(DObj *a1, const cpose_t *pose, DObj *obj, unsigned int tagName, vec3_t *tagMat, vec3_t *origin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 CG_DObjGetWorldTagPos
 ==============
 */
-/*DObjAnimMat *CG_DObjGetWorldTagPos@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -1111,10 +1120,12 @@ void CG_CalcEntityPhysicsPositions(LocalClientNum_t localClientNum, centity_t *c
 CG_CalcEntityLerpPositions
 ==============
 */
-/*void CG_CalcEntityLerpPositions(cg_t *a1@<edx>, LocalClientNum_t localClientNum, centity_t *cent)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -1191,7 +1202,7 @@ void CG_AddPacketEntity(LocalClientNum_t localClientNum, int entnum)
 UpdatePacketEnt
 ==============
 */
-void UpdatePacketEnt(
+void UpdatePacketEnt(LocalClientNum_t localClientNum, int entnum, int timeNow, int *postPSEntNum, bool contextKey)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1201,7 +1212,7 @@ void UpdatePacketEnt(
 UpdateDelayedPacketEnts
 ==============
 */
-void UpdateDelayedPacketEnts(
+void UpdateDelayedPacketEnts(LocalClientNum_t localClientNum, DelayListInfo *delayList, int *postPSEntNum, bool contextKey)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

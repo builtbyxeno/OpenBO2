@@ -80,7 +80,7 @@ void XFriendToFriendInfo(const FriendInfo *xfriend, FriendInfo *info)
 Friends_SetInviteInfo
 ==============
 */
-void Friends_SetInviteInfo(
+void Friends_SetInviteInfo(ControllerIndex_t controllerIndex, XSESSION_INFO sessionInfo, unsigned __int64 fromXuid, bool byInvite)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -112,7 +112,7 @@ char Friends_GetByID(ControllerIndex_t controllerIndex, unsigned __int64 id, Fri
 Friends_GetByIndex
 ==============
 */
-char Friends_GetByIndex(
+char Friends_GetByIndex(ControllerIndex_t controllerIndex, int filter, int index, FriendInfo *info, int inverseFilter)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

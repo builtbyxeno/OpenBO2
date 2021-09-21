@@ -16,7 +16,7 @@ void TRACK_g_mover()
 G_PushEntity
 ==============
 */
-void G_PushEntity(
+void G_PushEntity(gentity_t *check, gentity_t *pusher, const vec3_t *move, const vec3_t *amove, const mover_info_t *mi)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -128,10 +128,10 @@ void G_CalcEntityPhysicsPositions(gentity_t *ent)
 G_MoverTeam
 ==============
 */
-/*void G_MoverTeam(const mover_info_t *a1@<edx>, gentity_t *ent, const mover_info_t *mi)
+void G_MoverTeam(const mover_info_t *a1, gentity_t *ent, const mover_info_t *mi)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

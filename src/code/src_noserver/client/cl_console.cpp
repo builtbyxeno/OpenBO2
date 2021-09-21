@@ -16,9 +16,11 @@ void SetupChatField(const LocalClientNum_t localClientNum, int teamChat, int wid
 Con_ChatModePublic_f
 ==============
 */
-void Con_ChatModePublic_f(LocalClientNum_t a1, int a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -26,9 +28,11 @@ void Con_ChatModePublic_f(LocalClientNum_t a1, int a2)
 Con_ChatModeTeam_f
 ==============
 */
-void Con_ChatModeTeam_f(LocalClientNum_t a1, int a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -56,10 +60,10 @@ void Con_ResetMessageWindowTimes(MessageWindow *msgwnd, int serverTime)
 Con_TimeJumped
 ==============
 */
-/*void Con_TimeJumped(int a1@<edx>, MessageWindow *a2@<ecx>, LocalClientNum_t localClientNum, int serverTime)
+void Con_TimeJumped(int a1, MessageWindow *a2, LocalClientNum_t localClientNum, int serverTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -76,9 +80,11 @@ void Con_NudgeMessageWindowTimes(MessageWindow *msgwnd, int serverTimeNudge, int
 Con_TimeNudged
 ==============
 */
-void Con_TimeNudged(LocalClientNum_t localClientNum, int serverTimeNudge)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -116,7 +122,7 @@ void Con_CheckResize()
 Con_InitMessageWindow
 ==============
 */
-void Con_InitMessageWindow(
+void Con_InitMessageWindow(MessageWindow *msgwnd, Message *messages, MessageLine *lines, char *text, int lineCount, int padding, int textPoolSize, int scrollTime, int fadeIn, int fadeOut)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -244,7 +250,7 @@ int GetNextValidPrintTimeForLine(LocalClientNum_t localClientNum, MessageWindow 
 Con_UpdateMessageWindowLine
 ==============
 */
-void Con_UpdateMessageWindowLine(
+void Con_UpdateMessageWindowLine(LocalClientNum_t localClientNum, MessageWindow *msgwnd, int linefeed, int flags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -275,9 +281,11 @@ void Con_UpdateNotifyMessage(LocalClientNum_t localClientNum, int channel, int d
 Con_UpdateNotifyLine
 ==============
 */
-void Con_UpdateNotifyLine(LocalClientNum_t localClientNum, int channel, bool lineFeed, int flags)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -285,9 +293,11 @@ void Con_UpdateNotifyLine(LocalClientNum_t localClientNum, int channel, bool lin
 Con_InitMessageBuffer
 ==============
 */
-void Con_InitMessageBuffer()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -295,10 +305,11 @@ void Con_InitMessageBuffer()
 CL_ConsolePrint_AddLine
 ==============
 */
-char CL_ConsolePrint_AddLine(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -328,10 +339,11 @@ int CL_AddMessageString(char *msg, unsigned int msgLen, unsigned int msgMaxLen, 
 CL_AddMessageIcon
 ==============
 */
-int CL_AddMessageIcon(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -339,7 +351,7 @@ int CL_AddMessageIcon(
 Con_AutoCompleteFromList
 ==============
 */
-void Con_AutoCompleteFromList(
+void Con_AutoCompleteFromList(const char **strings, unsigned int stringCount, const char *prefix, char *completed, unsigned int sizeofCompleted)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -391,7 +403,7 @@ void ConDrawInput_TextLimitChars(const char *str, int maxChars, const vec4_t *co
 ConDrawInput_TextAndOver
 ==============
 */
-void ConDrawInput_TextAndOver(
+void ConDrawInput_TextAndOver(const vec4_t *a1, const char *a2, LocalClientNum_t localClientNum, const char *str)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -411,9 +423,11 @@ void ConDraw_Box(float x, float y, float w, float h, const vec4_t *color)
 ConDrawInput_Box
 ==============
 */
-void ConDrawInput_Box(int lines, const vec4_t *color)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -421,7 +435,7 @@ void ConDrawInput_Box(int lines, const vec4_t *color)
 Con_GetAutoCompleteColorCodedStringDiscontiguous
 ==============
 */
-int Con_GetAutoCompleteColorCodedStringDiscontiguous(
+int Con_GetAutoCompleteColorCodedStringDiscontiguous(const char *query, const char *matchToText, int matchTextLen, char *colorCoded)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -432,7 +446,7 @@ int Con_GetAutoCompleteColorCodedStringDiscontiguous(
 Con_GetAutoCompleteColorCodedStringContiguous
 ==============
 */
-int Con_GetAutoCompleteColorCodedStringContiguous(
+int Con_GetAutoCompleteColorCodedStringContiguous(const char *query, const char *matchToText, int matchTextLen, char *colorCoded)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -464,9 +478,11 @@ void ConDrawInput_IncrMatchCounter(const char *str)
 ConDrawInput_DvarMatch
 ==============
 */
-void ConDrawInput_DvarMatch(const char *str)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -547,7 +563,7 @@ void ConDrawInput_CmdMatch(const char *str)
 Con_DrawAutoCompleteChoice
 ==============
 */
-void Con_DrawAutoCompleteChoice(
+void Con_DrawAutoCompleteChoice(LocalClientNum_t localClientNum, bool isDvarCommand, const char *originalCommand)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -631,7 +647,7 @@ void TypewriterSounds(LocalClientNum_t localClientNum, const MessageWindow *msgw
 Con_DrawMessageLineOnHUD
 ==============
 */
-void Con_DrawMessageLineOnHUD(
+void Con_DrawMessageLineOnHUD(LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, int x, int y, int charHeight, int horzAlign, int vertAlign, Font_s *font, const MessageWindow *msgwnd, int lineIdx, vec4_t *color, int textStyle, float msgwndScale, int textAlignMode)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -662,7 +678,7 @@ double Con_GetMessageAlpha(Message *message, MessageWindow *msgwnd, int serverTi
 Con_DrawMessageWindowNewToOld
 ==============
 */
-void Con_DrawMessageWindowNewToOld(
+void Con_DrawMessageWindowNewToOld(LocalClientNum_t localClientNum, MessageWindow *msgwnd, int x, int y, int hudCharHeight, int horzAlign, int vertAlign, bool up, Font_s *font, vec4_t *color, int textStyle, float msgwndScale, int textAlignMode)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -672,7 +688,7 @@ void Con_DrawMessageWindowNewToOld(
 Con_DrawMessageWindowOldToNew
 ==============
 */
-void Con_DrawMessageWindowOldToNew(
+void Con_DrawMessageWindowOldToNew(LocalClientNum_t localClientNum, MessageWindow *msgwnd, int x, int y, int charHeight, int horzAlign, int vertAlign, bool up, Font_s *font, vec4_t *color, int textStyle, float msgwndScale, int textAlignMode)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -682,9 +698,11 @@ void Con_DrawMessageWindowOldToNew(
 Con_DrawMessageWindow
 ==============
 */
-void Con_DrawMessageWindow(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -692,9 +710,11 @@ void Con_DrawMessageWindow(
 Con_DrawGameMessageWindow
 ==============
 */
-void Con_DrawGameMessageWindow(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -702,9 +722,11 @@ void Con_DrawGameMessageWindow(
 Con_DrawMiniConsole
 ==============
 */
-void Con_DrawMiniConsole(LocalClientNum_t localClientNum, int xPos, int yPos, float alpha)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -712,9 +734,11 @@ void Con_DrawMiniConsole(LocalClientNum_t localClientNum, int xPos, int yPos, fl
 Con_DrawErrors
 ==============
 */
-void Con_DrawErrors(LocalClientNum_t localClientNum, int xPos, int yPos, float alpha)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -855,7 +879,7 @@ bool Con_IsActive(LocalClientNum_t localClientNum)
 CL_PlayTextFXPulseSounds
 ==============
 */
-void CL_PlayTextFXPulseSounds(
+void CL_PlayTextFXPulseSounds(LocalClientNum_t localClientNum, int currentTime, int strLength, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int *soundTimeKeeper)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -885,9 +909,11 @@ void Con_Echo_f()
 Con_OneTimeInit
 ==============
 */
-void Con_OneTimeInit()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -905,7 +931,7 @@ void Con_Init()
 CL_ConsolePrint
 ==============
 */
-void CL_ConsolePrint(
+void CL_ConsolePrint(LocalClientNum_t localClientNum, int channel, const char *txt, int duration, int pixelWidth, int flags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -925,9 +951,11 @@ void CL_ConsoleFixPosition()
 CL_ReviveMessagePrint
 ==============
 */
-void CL_ReviveMessagePrint(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -935,9 +963,11 @@ void CL_ReviveMessagePrint(
 CL_DeathMessagePrint
 ==============
 */
-void CL_DeathMessagePrint(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -945,10 +975,10 @@ void CL_DeathMessagePrint(
 Con_DrawInput
 ==============
 */
-void Con_DrawInput(LocalClientNum_t localClientNum)
+/*void Con_DrawInput(char *a1@<edi>, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -966,9 +996,11 @@ char Con_CommitToAutoComplete()
 Con_DrawSolidConsole
 ==============
 */
-void Con_DrawSolidConsole(LocalClientNum_t localClientNum)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

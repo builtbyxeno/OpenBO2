@@ -6,7 +6,7 @@
 RepresentativeTriangleFromWinding
 ==============
 */
-float RepresentativeTriangleFromWinding(
+float RepresentativeTriangleFromWinding(const vec3_t *xyz, int pointCount, const vec3_t *normal, int *i0, int *i1, int *i2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -17,7 +17,7 @@ float RepresentativeTriangleFromWinding(
 GetPointListAllowDupes
 ==============
 */
-int GetPointListAllowDupes(
+int GetPointListAllowDupes(int planeIndex, const SimplePlaneIntersection *pts, int ptCount, const SimplePlaneIntersection **xyz, int xyzLimit)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -28,7 +28,7 @@ int GetPointListAllowDupes(
 PlaneInCommonExcluding
 ==============
 */
-char PlaneInCommonExcluding(
+char PlaneInCommonExcluding(const SimplePlaneIntersection *pt1, const SimplePlaneIntersection *pt2, int excludePlane, int *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -61,7 +61,7 @@ int NumberOfOccurancesOfPlane(int planeIndex, const SimplePlaneIntersection **pt
 FindCycleBFS
 ==============
 */
-bool FindCycleBFS(
+bool FindCycleBFS(int basePlane, const SimplePlaneIntersection **pts, int ptsCount, const SimplePlaneIntersection *start, const SimplePlaneIntersection *end, int connectingPlane, const SimplePlaneIntersection **resultCycle, int *resultCycleCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -83,7 +83,7 @@ int RemovePtsWithPlanesThatOccurLessThanTwice(const SimplePlaneIntersection **pt
 GetPtsFormedByPlane
 ==============
 */
-int GetPtsFormedByPlane(
+int GetPtsFormedByPlane(int planeIndex, const SimplePlaneIntersection **pts, int ptCount, const SimplePlaneIntersection **result, int maxResults)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -127,7 +127,7 @@ bool TestConvexWithoutNearPoints(const SimplePlaneIntersection **pts, unsigned i
 ChooseEdgeToRemove
 ==============
 */
-int ChooseEdgeToRemove(
+int ChooseEdgeToRemove(int basePlane, int connectingPlane, const SimplePlaneIntersection **pts, int ptsCount, const SimplePlaneIntersection **edges)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -138,7 +138,7 @@ int ChooseEdgeToRemove(
 PartitionEdges
 ==============
 */
-int PartitionEdges(
+int PartitionEdges(int basePlane, int connectingPlane, const SimplePlaneIntersection **pts, int ptsCount, const SimplePlaneIntersection **edges, int edgeCount, int *partition)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -171,7 +171,7 @@ int NumberOfUniquePoints(const SimplePlaneIntersection **pts, int ptsCount)
 BuildBrushdAdjacencyWindingForSide
 ==============
 */
-adjacencyWinding_t *BuildBrushdAdjacencyWindingForSide(
+adjacencyWinding_t *BuildBrushdAdjacencyWindingForSide(float a1, const char *name, const vec3_t *sideNormal, int basePlaneIndex, const SimplePlaneIntersection *InPts, int InPtCount, adjacencyWinding_t *optionalOutWinding, int optionalOutWindingCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

@@ -16,7 +16,7 @@ void SND_DebugFini()
 DebugDrawWorldSound3D
 ==============
 */
-void DebugDrawWorldSound3D(
+void DebugDrawWorldSound3D(int idx, int debugDrawStyle, int *offsets, int *closestId, float *closestIdDotProd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

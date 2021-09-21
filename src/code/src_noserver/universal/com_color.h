@@ -6,10 +6,10 @@
 Byte4PackVertexColor
 ==============
 */
-/*void Byte4PackVertexColor(unsigned int a1@<ecx>, int a2@<ebp>, const vec4_t *from, unsigned __int8 *to)
+void Byte4PackVertexColor(unsigned int a1, int a2, const vec4_t *from, unsigned __int8 *to)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

@@ -76,7 +76,7 @@ colgeom_visitor_t::intersect_box
 static_colgeom_visitor_t::update
 ==============
 */
-/*void __thiscall static_colgeom_visitor_t::update(
+/*void __thiscall static_colgeom_visitor_t::update(static_colgeom_visitor_t *this, const vec3_t *_mn, const vec3_t *_mx, int mask, const vec3_t *expand_vec)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

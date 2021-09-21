@@ -38,7 +38,7 @@ char CL_GetPredictedPlayerInformationForServerTime(clientActive_t *cl, const int
 CL_SavePredictedVehicleForServerTime
 ==============
 */
-void CL_SavePredictedVehicleForServerTime(
+void CL_SavePredictedVehicleForServerTime(clientActive_t *cl, const int serverTime, const PlayerVehicleState *predictedPlayerVehState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -48,7 +48,7 @@ void CL_SavePredictedVehicleForServerTime(
 CL_GetPredictedVehicleForServerTime
 ==============
 */
-int CL_GetPredictedVehicleForServerTime(
+int CL_GetPredictedVehicleForServerTime(clientActive_t *cl, const int serverTime, PlayerVehicleState *predictedPlayerVehState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -69,7 +69,7 @@ void CL_CopyOldEntity(clientActive_t *cl, clSnapshot_t *frame, entityState_s *ol
 CL_ParsePacketMatchState
 ==============
 */
-void CL_ParsePacketMatchState(
+void CL_ParsePacketMatchState(clientActive_t *cl, msg_t *msg, const int time, clSnapshot_t *oldframe, clSnapshot_t *newframe)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -79,7 +79,7 @@ void CL_ParsePacketMatchState(
 CL_DeltaClient
 ==============
 */
-void CL_DeltaClient(
+void CL_DeltaClient(clientActive_t *cl, msg_t *msg, const int time, clSnapshot_t *frame, int newnum, clientState_s *old, int unchanged)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -89,7 +89,7 @@ void CL_DeltaClient(
 CL_ParsePacketClients
 ==============
 */
-void CL_ParsePacketClients(
+void CL_ParsePacketClients(clientActive_t *cl, msg_t *msg, const int time, clSnapshot_t *oldframe, clSnapshot_t *newframe)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -99,7 +99,7 @@ void CL_ParsePacketClients(
 CL_ParsePacketActors
 ==============
 */
-void CL_ParsePacketActors(
+void CL_ParsePacketActors(clientActive_t *cl, msg_t *msg, const int time, clSnapshot_t *oldframe, clSnapshot_t *newframe)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -149,7 +149,7 @@ void StoreConfigString(int index, const char *s)
 CL_ParseConfigStrings_Internal
 ==============
 */
-void CL_ParseConfigStrings_Internal(
+void CL_ParseConfigStrings_Internal(LocalClientNum_t localClientNum, msg_t *msg, void (*storeHandler)(int, const char *))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

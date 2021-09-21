@@ -39,11 +39,12 @@ int CG_GetIncludesForFile(const char *file, char **list, int *count, int max)
 CG_BuildFileList
 ==============
 */
-/*int CG_BuildFileList@<eax>(int a1@<edx>, const char *rootFilePath, char **list, int *count)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -82,7 +83,7 @@ FxImpactTable *CG_RegisterImpactEffects_FastFile()
 CG_RegisterImpactEffects_NonFlesh
 ==============
 */
-int CG_RegisterImpactEffects_NonFlesh(
+int CG_RegisterImpactEffects_NonFlesh(const char **szEffectFile, const char *const pszTypeName, const FxEffectDef **fx)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

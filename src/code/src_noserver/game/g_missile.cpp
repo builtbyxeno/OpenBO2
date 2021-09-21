@@ -126,7 +126,7 @@ BOOL skip_horses(int entnum)
 G_MissileTrace
 ==============
 */
-void G_MissileTrace(
+void G_MissileTrace(trace_t *results, const vec3_t *start, const vec3_t *end, int passEntityNum, int contentmask, Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -136,7 +136,7 @@ void G_MissileTrace(
 GrenadeBounceVelocity
 ==============
 */
-char GrenadeBounceVelocity(
+char GrenadeBounceVelocity(const vec3_t *preBounceVelocity, float dot, const vec3_t *normal, int surfType, const WeaponDef *weapDef, trajectory_t *pos, float *rollSlideSpeed, vec3_t *rollSlideDir, bool isDud)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -222,7 +222,7 @@ void AttachMissileToEntity(gentity_t *missile, int entnum, int boneName, int hit
 StickMissile
 ==============
 */
-int StickMissile(
+int StickMissile(gentity_t *ent, gentity_t *other, const WeaponDef *weapDef, trace_t *trace, hitLocation_t hitLocation, vec3_t *velocity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -244,7 +244,7 @@ bool isBounceProjectile(gentity_t *ent)
 createRetrieveableProjectile
 ==============
 */
-void createRetrieveableProjectile(
+void createRetrieveableProjectile(gentity_t *ent, gentity_t *other, const WeaponDef *weapDef, trace_t *trace, hitLocation_t hitLocation, vec3_t *dir, vec3_t *endpos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -286,7 +286,7 @@ int GetSurfaceType(gentity_t *ent, bool inWater)
 Missile_PenetrateGlass
 ==============
 */
-void Missile_PenetrateGlass(
+void Missile_PenetrateGlass(trace_t *results, gentity_t *ent, const vec3_t *start, const vec3_t *end, int damage, bool predicted)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -448,7 +448,7 @@ void GetTargetPosition(gentity_t *ent, vec3_t *result)
 MissileVerticalSteerToTarget
 ==============
 */
-void MissileVerticalSteerToTarget(
+void MissileVerticalSteerToTarget(gentity_t *ent, const vec2_t *toTargetHorzRelDir, float horzDistToTarg, float vertDistToTarg, float currentHorzSpeed, vec3_t *steer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -458,7 +458,7 @@ void MissileVerticalSteerToTarget(
 MissileVerticalSteering
 ==============
 */
-void MissileVerticalSteering(
+void MissileVerticalSteering(gentity_t *ent, const vec3_t *toTargetRelative, float currentHorzSpeed, vec3_t *steer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -522,7 +522,7 @@ float DroneMaxDPS(gentity_t *ent, bool impactAvoidance)
 DroneRotateDir
 ==============
 */
-float DroneRotateDir(
+float DroneRotateDir(gentity_t *ent, const vec3_t *currentDir, const vec3_t *targetDir, vec3_t *resultDir, float currentRoll, bool avoidImpact)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -631,7 +631,7 @@ float JavelinRotateDir(gentity_t *ent, const vec3_t *currentDir, const vec3_t *t
 JavelinRotateVelocity
 ==============
 */
-void JavelinRotateVelocity(
+void JavelinRotateVelocity(gentity_t *ent, const vec3_t *currentVel, const vec3_t *targetDir, vec3_t *resultVel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -663,7 +663,7 @@ bool JavelinClimbIsAboveCeiling(gentity_t *ent, const vec3_t *targetPos)
 JavelinSteering
 ==============
 */
-void JavelinSteering(gentity_t *ent, const WeaponDef *weapDef)
+void JavelinSteering(char *a1, gentity_t *ent, const WeaponDef *weapDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -693,7 +693,7 @@ void G_MakeMissilePickupItem(gentity_t *ent)
 PredictBounceMissile
 ==============
 */
-void PredictBounceMissile(
+void PredictBounceMissile(gentity_t *ent, trajectory_t *pos, trace_t *trace, int time, int velocityTime, vec3_t *origin, vec3_t *endpos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -725,7 +725,7 @@ void G_InitGrenadeEntity(gentity_t *parent, gentity_t *grenade)
 G_InitGrenadeMovement
 ==============
 */
-void G_InitGrenadeMovement(
+void G_InitGrenadeMovement(gentity_t *grenade, const vec3_t *start, const vec3_t *dir, int rotate, WeapRotateType rotateType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -745,7 +745,7 @@ void InitGrenadeTimer(const gentity_t *parent, gentity_t *grenade, const WeaponD
 G_FireGrenade
 ==============
 */
-gentity_t *G_FireGrenade(
+gentity_t *G_FireGrenade(gentity_t *parent, vec3_t *start, vec3_t *dir, Weapon grenadeWPID, unsigned __int8 grenModel, int rotate, int time)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -831,7 +831,7 @@ void RunMissile_CreateWaterSplash(const gentity_t *missile, const vec3_t *hitPos
 MissileHorzSteerToTarget
 ==============
 */
-void MissileHorzSteerToTarget(
+void MissileHorzSteerToTarget(gentity_t *ent, const vec2_t *currentRight, const vec2_t *toTargetRelative, float currentHorzSpeed, vec3_t *steer, bool tvGuided)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -937,7 +937,7 @@ void InitRocketTimer(gentity_t *bolt, const WeaponDef *weapDef)
 G_FireRocket
 ==============
 */
-gentity_t *G_FireRocket(
+gentity_t *G_FireRocket(gentity_t *parent, Weapon weapon, vec3_t *start, vec3_t *dir, const vec3_t *gunVel, gentity_t *target, const vec3_t *targetOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -948,7 +948,7 @@ gentity_t *G_FireRocket(
 G_DropBomb
 ==============
 */
-gentity_t *G_DropBomb(
+gentity_t *G_DropBomb(gentity_t *parent, Weapon weapon, vec3_t *start, vec3_t *dir, const vec3_t *gunVel, gentity_t *target, const vec3_t *targetOffset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

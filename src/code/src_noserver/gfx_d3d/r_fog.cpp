@@ -6,7 +6,7 @@
 R_SetFogFromServer
 ==============
 */
-void R_SetFogFromServer(
+void R_SetFogFromServer(LocalClientNum_t localClientNum, float start, float r, float g, float b, float density, float heightDensity, float baseHeight, float fogColorScale, float sunFogColorR, float sunFogColorG, float sunFogColorB, float sunFogDirX, float sunFogDirY, float sunFogDirZ, float sunFogStartAng, float sunFogEndAng, float fogMaxOpacity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

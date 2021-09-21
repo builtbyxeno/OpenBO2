@@ -115,9 +115,11 @@ float LerpFloat(float from, float to, float fraction, visionSetLerpStyle_t style
 LerpVec4
 ==============
 */
-void LerpVec4(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -125,10 +127,11 @@ void LerpVec4(
 VisionSetCurrent
 ==============
 */
-bool VisionSetCurrent(LocalClientNum_t localClientNum, visionSetMode_t mode, const char *name)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -136,7 +139,7 @@ bool VisionSetCurrent(LocalClientNum_t localClientNum, visionSetMode_t mode, con
 CG_VisionSetStartLerp_To
 ==============
 */
-bool CG_VisionSetStartLerp_To(
+bool CG_VisionSetStartLerp_To(LocalClientNum_t localClientNum, visionSetMode_t mode, visionSetLerpStyle_t style, const char *nameTo, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -147,11 +150,11 @@ bool CG_VisionSetStartLerp_To(
 CG_VisionSetLerp_To
 ==============
 */
-/*char CG_VisionSetLerp_To@<al>(
+char CG_VisionSetLerp_To(const char *a1, char *a2, LocalClientNum_t localClientNum, visionSetMode_t mode, visionSetLerpStyle_t style, const char *nameTo, const char *nameFrom, float lerpFraction)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -198,9 +201,11 @@ void CG_VisionSetConfigString_LastStand(LocalClientNum_t localClientNum)
 CG_VisionSetMyChanges
 ==============
 */
-void CG_VisionSetMyChanges()
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -261,7 +266,7 @@ void CG_VisionSetApplyToRefdef(LocalClientNum_t localClientNum, bool isExtracam)
 UpdateVarsLerpCustom
 ==============
 */
-void UpdateVarsLerpCustom(
+void UpdateVarsLerpCustom(float lerpFraction, const visionSetVars_t *from, const visionSetVars_t *to, visionSetLerpData_t *lerpData, visionSetVars_t *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -271,7 +276,7 @@ void UpdateVarsLerpCustom(
 UpdateVarsLerp
 ==============
 */
-void UpdateVarsLerp(
+void UpdateVarsLerp(visionSetLerpStyle_t a1, int time, const visionSetVars_t *from, const visionSetVars_t *to, visionSetLerpData_t *lerpData, visionSetVars_t *result)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -291,20 +296,21 @@ void CG_InitVisionSets(LocalClientNum_t localClientNum)
 CG_VisionSetsUpdate
 ==============
 */
-void CG_VisionSetsUpdate(LocalClientNum_t localClientNum)
+/*void CG_VisionSetsUpdate(char *a1@<edi>, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 LoadVisionFileForTweaks
 ==============
 */
-bool LoadVisionFileForTweaks(visionSetVars_t *setVars)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*

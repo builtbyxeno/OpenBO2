@@ -109,9 +109,11 @@ void DrawClipAmmoBeltfed(cg_t *cgameGlob, const vec2_t *base, Weapon weapon, vec
 DrawClipAmmo
 ==============
 */
-void DrawClipAmmo(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -129,7 +131,7 @@ void CG_DrawAmmoCounterSingle(LocalClientNum_t localClientNum, rectDef_s *rect, 
 CG_DrawPlayerWeaponAmmoStock
 ==============
 */
-void CG_DrawPlayerWeaponAmmoStock(
+void CG_DrawPlayerWeaponAmmoStock(char *a1, LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float scale, vec4_t *color, Material *material, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -139,7 +141,7 @@ void CG_DrawPlayerWeaponAmmoStock(
 CG_DrawFuelTankPercentage
 ==============
 */
-void CG_DrawFuelTankPercentage(
+void CG_DrawFuelTankPercentage(char *a1, LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float scale, vec4_t *color, Material *material, int textStyle, float text_x, float text_y)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -149,7 +151,7 @@ void CG_DrawFuelTankPercentage(
 CG_DrawPlayerWeaponAmmoClip
 ==============
 */
-void CG_DrawPlayerWeaponAmmoClip(
+void CG_DrawPlayerWeaponAmmoClip(char *a1, LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float scale, vec4_t *color, Material *material, int textStyle, float text_x, float text_y, int textAlignMode)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -159,7 +161,7 @@ void CG_DrawPlayerWeaponAmmoClip(
 CG_DrawPlayerWeaponAmmoClipDualWield
 ==============
 */
-void CG_DrawPlayerWeaponAmmoClipDualWield(
+void CG_DrawPlayerWeaponAmmoClipDualWield(char *a1, LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float scale, vec4_t *color, Material *material, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -169,7 +171,7 @@ void CG_DrawPlayerWeaponAmmoClipDualWield(
 DpadIconDims
 ==============
 */
-void DpadIconDims(
+void DpadIconDims(const rectDef_s *rect, unsigned int slotIdx, weaponIconRatioType_t dpadIconRatio, float *x, float *y, float *w, float *h)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -179,7 +181,7 @@ void DpadIconDims(
 DpadTextPos
 ==============
 */
-void DpadTextPos(
+void DpadTextPos(LocalClientNum_t localClientNum, const rectDef_s *rect, unsigned int slotIdx, weaponIconRatioType_t dpadIconRatio, float *x, float *y)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -211,22 +213,22 @@ float DpadFadeAlpha(LocalClientNum_t localClientNum, cg_t *cgameGlob)
 CG_GetHudAlphaDPad
 ==============
 */
-/*double CG_GetHudAlphaDPad@<st0>(cg_t *a1@<edx>, LocalClientNum_t a2@<ecx>, LocalClientNum_t localClientNum)
+double CG_GetHudAlphaDPad(cg_t *a1, LocalClientNum_t a2, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 CG_GetHudAlphaAmmoCounter
 ==============
 */
-/*double CG_GetHudAlphaAmmoCounter@<st0>(
+double CG_GetHudAlphaAmmoCounter(cg_t *a1, LocalClientNum_t a2, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -244,7 +246,7 @@ char CG_ActionSlotIsUsable(const LocalClientNum_t localClientNum, unsigned int s
 CG_DrawPlayerActionSlotDpad
 ==============
 */
-void CG_DrawPlayerActionSlotDpad(
+void CG_DrawPlayerActionSlotDpad(LocalClientNum_t localClientNum, const rectDef_s *rect, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -254,7 +256,7 @@ void CG_DrawPlayerActionSlotDpad(
 CG_DrawPlayerActionSlotCarousel
 ==============
 */
-void CG_DrawPlayerActionSlotCarousel(
+void CG_DrawPlayerActionSlotCarousel(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float scale, vec4_t color, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -264,7 +266,7 @@ void CG_DrawPlayerActionSlotCarousel(
 CG_DrawPlayerActionSlotBack
 ==============
 */
-void CG_DrawPlayerActionSlotBack(
+void CG_DrawPlayerActionSlotBack(LocalClientNum_t localClientNum, const rectDef_s *rect, unsigned int slotIdx, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -274,7 +276,7 @@ void CG_DrawPlayerActionSlotBack(
 CG_DrawPlayerActionSlotArrow
 ==============
 */
-void CG_DrawPlayerActionSlotArrow(
+void CG_DrawPlayerActionSlotArrow(LocalClientNum_t localClientNum, const rectDef_s *rect, unsigned int slotIdx, vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -284,7 +286,7 @@ void CG_DrawPlayerActionSlotArrow(
 CG_DrawPlayerActionSlot
 ==============
 */
-void CG_DrawPlayerActionSlot(
+void CG_DrawPlayerActionSlot(LocalClientNum_t localClientNum, const rectDef_s *rect, unsigned int slotIdx, vec4_t *color, Font_s *textFont, float textScale, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -294,7 +296,7 @@ void CG_DrawPlayerActionSlot(
 CG_DrawPlayerWeaponBackground
 ==============
 */
-void CG_DrawPlayerWeaponBackground(
+void CG_DrawPlayerWeaponBackground(LocalClientNum_t localClientNum, const rectDef_s *rect, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -304,7 +306,7 @@ void CG_DrawPlayerWeaponBackground(
 CG_DrawPlayerWeaponAmmoClipGraphic
 ==============
 */
-void CG_DrawPlayerWeaponAmmoClipGraphic(
+void CG_DrawPlayerWeaponAmmoClipGraphic(cg_t *a1, LocalClientNum_t a2, LocalClientNum_t localClientNum, const rectDef_s *rect, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -314,7 +316,7 @@ void CG_DrawPlayerWeaponAmmoClipGraphic(
 CG_DrawPlayerWeaponAmmoClipGraphicDualWield
 ==============
 */
-void CG_DrawPlayerWeaponAmmoClipGraphicDualWield(
+void CG_DrawPlayerWeaponAmmoClipGraphicDualWield(cg_t *a1, LocalClientNum_t a2, LocalClientNum_t localClientNum, const rectDef_s *rect, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -324,7 +326,7 @@ void CG_DrawPlayerWeaponAmmoClipGraphicDualWield(
 DrawStretchPicGun
 ==============
 */
-void DrawStretchPicGun(
+void DrawStretchPicGun(const ScreenPlacement *scrPlace, const rectDef_s *rect, const vec4_t *color, Material *material, weaponIconRatioType_t ratio)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -334,7 +336,7 @@ void DrawStretchPicGun(
 CG_DrawPlayerWeaponIcon
 ==============
 */
-void CG_DrawPlayerWeaponIcon(
+void CG_DrawPlayerWeaponIcon(cg_t *a1, LocalClientNum_t a2, LocalClientNum_t localClientNum, const rectDef_s *rect, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -344,7 +346,7 @@ void CG_DrawPlayerWeaponIcon(
 CG_DrawPlayerWeaponLowAmmoWarning
 ==============
 */
-void CG_DrawPlayerWeaponLowAmmoWarning(
+void CG_DrawPlayerWeaponLowAmmoWarning(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float textScale, int textStyle, float text_x, float text_y, int textAlignMode, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

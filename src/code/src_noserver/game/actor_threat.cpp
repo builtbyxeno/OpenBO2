@@ -48,11 +48,11 @@ BOOL Actor_CaresAboutInfo(actor_t *self, sentient_t *pOther)
 Actor_ThreatFromScariness
 ==============
 */
-/*int Actor_ThreatFromScariness@<eax>(float a1@<xmm0>)
+int Actor_ThreatFromScariness(float a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -147,7 +147,7 @@ int Actor_ThreatFromAttackerCount(actor_t *self, sentient_t *enemy, int isCurren
 Actor_ThreatBonusForCurrentEnemy
 ==============
 */
-int Actor_ThreatBonusForCurrentEnemy(
+int Actor_ThreatBonusForCurrentEnemy(int isCurrentEnemy, int isFullyAware, int friendlyTimingOut, int isPlayer, int isDamaged)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -180,7 +180,7 @@ int Actor_ThreatFlashed(sentient_t *enemy)
 Actor_UpdateSingleThreat
 ==============
 */
-int Actor_UpdateSingleThreat(float enemyDist, sentient_t *enemya, float enemyDista)
+int Actor_UpdateSingleThreat(char *a1, float enemyDist, sentient_t *enemya, float enemyDista)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -211,7 +211,7 @@ void Actor_IncrementThreatTime(actor_t *self)
 Actor_InitPotentialTarget
 ==============
 */
-void Actor_InitPotentialTarget(
+void Actor_InitPotentialTarget(PotentialTargetData *potentialTarget, gentity_t *entity, float dist, const vec3_t *dirToEnemy)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -221,7 +221,7 @@ void Actor_InitPotentialTarget(
 Actor_InitSecondaryTarget
 ==============
 */
-void Actor_InitSecondaryTarget(
+void Actor_InitSecondaryTarget(actor_t *self, ActorSecondaryTarget *secondary, const PotentialTargetData *potentialTarget)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -231,7 +231,7 @@ void Actor_InitSecondaryTarget(
 Actor_IsSimilarTarget
 ==============
 */
-bool Actor_IsSimilarTarget(
+bool Actor_IsSimilarTarget(const vec2_t *dirToFirst, const vec2_t *dirToSecond, float distToFirst, float distToSecond)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -253,7 +253,7 @@ int Actor_GetClosestDirectionSecondary(const actor_t *self, const PotentialTarge
 Actor_UpdateSecondaryTargets
 ==============
 */
-void Actor_UpdateSecondaryTargets(
+void Actor_UpdateSecondaryTargets(actor_t *self, PotentialTargetData *potentialTargets, int numPotentialTargets)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -274,10 +274,10 @@ BOOL Actor_FullyAwareOfEnemy(actor_t *self)
 Actor_SetPotentialThreat
 ==============
 */
-/*void Actor_SetPotentialThreat(potential_threat_t *self@<ecx>, float a2@<esi>, float yaw)
+void Actor_SetPotentialThreat(potential_threat_t *self, float yaw, float a3)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

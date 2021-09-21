@@ -27,7 +27,7 @@ void MSG_WriteGroundEntityNum(const ClientNum_t clientNum, msg_t *msg, const int
 MSG_WriteDeltaField_Default
 ==============
 */
-void MSG_WriteDeltaField_Default(
+void MSG_WriteDeltaField_Default(const SnapshotInfo_s *snapInfo, msg_t *msg, const NetField *field, const int *fromF, const int *toF)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -37,7 +37,7 @@ void MSG_WriteDeltaField_Default(
 MSG_WriteDeltaStruct
 ==============
 */
-int MSG_WriteDeltaStruct(
+int MSG_WriteDeltaStruct(SnapshotInfo_s *snapInfo, msg_t *msg, const int time, unsigned __int8 *from, unsigned __int8 *to, int force, int numFields, int indexBits, const NetField *stateFields, int bChangeBit, int skippedFieldBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -48,7 +48,7 @@ int MSG_WriteDeltaStruct(
 MSG_WriteAppendedDeltaStruct
 ==============
 */
-int MSG_WriteAppendedDeltaStruct(
+int MSG_WriteAppendedDeltaStruct(SnapshotInfo_s *snapInfo, msg_t *msg, const int time, unsigned __int8 *from, unsigned __int8 *to, int force, int numFields, int indexBits, const NetField *stateFields, int bChangeBit, int skippedFieldBits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -59,7 +59,7 @@ int MSG_WriteAppendedDeltaStruct(
 MSG_WriteEntityDeltaFields
 ==============
 */
-void MSG_WriteEntityDeltaFields(
+void MSG_WriteEntityDeltaFields(const SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const entityState_s *fromES, const entityState_s *toES, const int force, int lastChanged, int numFields, const NetField *stateFields, const int skippedFieldBits, unsigned int *fieldsChanged)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -69,7 +69,7 @@ void MSG_WriteEntityDeltaFields(
 MSG_WriteEntityDelta
 ==============
 */
-int MSG_WriteEntityDelta(
+int MSG_WriteEntityDelta(const SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const entityState_s *fromES, const entityState_s *toES, DeltaFlags flags, int numFields, int indexBits, const NetField *stateFields, const char *tableName, const BitField *bitFields)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -80,7 +80,7 @@ int MSG_WriteEntityDelta(
 MSG_WriteDeltaArchivedEntity
 ==============
 */
-bool MSG_WriteDeltaArchivedEntity(
+bool MSG_WriteDeltaArchivedEntity(SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const archivedEntity_s *from, const archivedEntity_s *to, DeltaFlags flags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -121,7 +121,7 @@ void SV_ValidateEntityState(const entityState_s *entState)
 MSG_WriteEntity
 ==============
 */
-int MSG_WriteEntity(
+int MSG_WriteEntity(SnapshotInfo_s *snapInfo, msg_t *msg, const int timeDeltaFrom, const int timeDeltaTo, const int time, const entityState_s *from, const entityState_s *to, DeltaFlags flags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -132,7 +132,7 @@ int MSG_WriteEntity(
 MSG_WriteDeltaHudElems
 ==============
 */
-void MSG_WriteDeltaHudElems(
+void MSG_WriteDeltaHudElems(SnapshotInfo_s *snapInfo, msg_t *msg, const int time, const hudelem_s *from, const hudelem_s *to, int count)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

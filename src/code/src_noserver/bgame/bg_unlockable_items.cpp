@@ -71,7 +71,7 @@ int BG_UnlockablesSpendUnlocks(const ControllerIndex_t controllerIndex, int unlo
 BG_UnlockablesSetItemIndex
 ==============
 */
-void BG_UnlockablesSetItemIndex(
+void BG_UnlockablesSetItemIndex(const CACRoot *cacRoot, loadoutClass_t customClass, loadoutSlot_t loadoutSlot, int itemIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -112,7 +112,7 @@ int BG_UnlockablesGetGlobalItemIndex(const CACRoot *cacRoot, loadoutSlot_t loado
 BG_UnlockablesGetItemIndex
 ==============
 */
-int BG_UnlockablesGetItemIndex(
+int BG_UnlockablesGetItemIndex(const CACRoot *cacRoot, loadoutClass_t customClass, loadoutSlot_t loadoutSlot)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -123,28 +123,29 @@ int BG_UnlockablesGetItemIndex(
 BG_UnlockablesGetLoadoutItem
 ==============
 */
-/*int BG_UnlockablesGetLoadoutItem@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
 BG_UnlockablesEquipClassToSlot
 ==============
 */
-void BG_UnlockablesEquipClassToSlot(
+/*void BG_UnlockablesEquipClassToSlot(const char **a1@<edx>, const char *a2@<ecx>, char *a3@<edi>, const CACRoot *cacRoot, loadoutClass_t customClass, int itemIndex, const char *loadoutName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 BG_UnlockablesGetLocalCACRoot
 ==============
 */
-const CACRoot *BG_UnlockablesGetLocalCACRoot(
+const CACRoot *BG_UnlockablesGetLocalCACRoot(const CACRoot *result, const ControllerIndex_t controllerIndex, const loadoutClass_t loadoutClass)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

@@ -6,7 +6,7 @@
 Jump_RegisterDvars
 ==============
 */
-void Jump_RegisterDvars(int a1, dvarType_t a2)
+void Jump_RegisterDvars(dvarType_t a1, dvarType_t a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -90,11 +90,11 @@ float Jump_GetSlowdownFriction(playerState_s *ps)
 Jump_ReduceFriction
 ==============
 */
-/*float Jump_ReduceFriction@<st0>(playerState_s *a1@<ecx>, int a2@<xmm0>, playerState_s *ps)
+float Jump_ReduceFriction(playerState_s *a1, int a2, playerState_s *ps)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -152,9 +152,10 @@ void Jump_AddSurfaceEvent(playerState_s *ps, pml_t *pml)
 Jump_Check
 ==============
 */
-/*char Jump_Check@<al>(pmove_t *a1@<edi>, pmove_t *pm, pml_t *pml)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 

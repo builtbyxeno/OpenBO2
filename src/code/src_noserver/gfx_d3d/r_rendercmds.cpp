@@ -151,7 +151,7 @@ GfxViewParms *R_AllocViewParms()
 R_AddCmdDrawStretchPicWInternal
 ==============
 */
-void R_AddCmdDrawStretchPicWInternal(
+void R_AddCmdDrawStretchPicWInternal(float x, float y, float w0, float w, float h, float s0, float t0, float s1, float t1, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -161,7 +161,7 @@ void R_AddCmdDrawStretchPicWInternal(
 R_AddCmdDrawStretchPicInternal
 ==============
 */
-void R_AddCmdDrawStretchPicInternal(
+void R_AddCmdDrawStretchPicInternal(float x, float y, float w, float h, float s0, float t0, float s1, float t1, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -171,7 +171,7 @@ void R_AddCmdDrawStretchPicInternal(
 R_AddCmdDrawStretchPicRotateXYInternal
 ==============
 */
-void R_AddCmdDrawStretchPicRotateXYInternal(
+void R_AddCmdDrawStretchPicRotateXYInternal(float x, float y, float w, float h, float s0, float t0, float s1, float t1, float angle, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -181,7 +181,7 @@ void R_AddCmdDrawStretchPicRotateXYInternal(
 R_AddCmdDrawStretchPicRotateSTInternal
 ==============
 */
-void R_AddCmdDrawStretchPicRotateSTInternal(
+void R_AddCmdDrawStretchPicRotateSTInternal(float x, float y, float w, float h, float centerS, float centerT, float radiusST, float scaleFinalS, float scaleFinalT, float angle, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -191,7 +191,7 @@ void R_AddCmdDrawStretchPicRotateSTInternal(
 AddBaseDrawTextCmd
 ==============
 */
-GfxCmdDrawText2D *AddBaseDrawTextCmd(
+GfxCmdDrawText2D *AddBaseDrawTextCmd(const char *text, int maxChars, Font_s *font, float x, float y, float w, float xScale, float yScale, float rotation, const vec4_t *color, int style, int cursorPos, char cursor, float padding)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -202,7 +202,7 @@ GfxCmdDrawText2D *AddBaseDrawTextCmd(
 R_AddCmdDrawTextWithCursorInternal
 ==============
 */
-void R_AddCmdDrawTextWithCursorInternal(
+void R_AddCmdDrawTextWithCursorInternal(const char *text, int maxChars, Font_s *font, float x, float y, float w, float xScale, float yScale, float rotation, const vec4_t *color, int style, int cursorPos, char cursor, float padding)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -212,7 +212,7 @@ void R_AddCmdDrawTextWithCursorInternal(
 R_AddCmdDrawTextInternal
 ==============
 */
-void R_AddCmdDrawTextInternal(
+void R_AddCmdDrawTextInternal(const char *text, int maxChars, Font_s *font, float x, float y, float xScale, float yScale, float rotation, const vec4_t *color, int style)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -222,7 +222,7 @@ void R_AddCmdDrawTextInternal(
 R_AddCmdDrawTextWInternal
 ==============
 */
-void R_AddCmdDrawTextWInternal(
+void R_AddCmdDrawTextWInternal(const char *text, int maxChars, Font_s *font, float x, float y, float w, float xScale, float yScale, float rotation, const vec4_t *color, int style, float padding)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -232,7 +232,7 @@ void R_AddCmdDrawTextWInternal(
 R_AddCmdDrawTextSubtitleInternal
 ==============
 */
-void R_AddCmdDrawTextSubtitleInternal(
+void R_AddCmdDrawTextSubtitleInternal(const char *text, int maxChars, Font_s *font, float x, float y, float xScale, float yScale, float rotation, const vec4_t *color, int style, const vec4_t *glowColor, bool cinematic)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -242,7 +242,7 @@ void R_AddCmdDrawTextSubtitleInternal(
 R_AddCmdDrawTextWithEffectsInternal
 ==============
 */
-void R_AddCmdDrawTextWithEffectsInternal(
+void R_AddCmdDrawTextWithEffectsInternal(const char *text, int maxChars, Font_s *font, float x, float y, float w, float xScale, float yScale, float rotation, const vec4_t *color, int style, const vec4_t *glowColor, Material *fxMaterial, Material *fxMaterialGlow, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -252,7 +252,7 @@ void R_AddCmdDrawTextWithEffectsInternal(
 R_AddCmdDrawTextWithCOD7DecodeEffectsInternal
 ==============
 */
-void R_AddCmdDrawTextWithCOD7DecodeEffectsInternal(
+void R_AddCmdDrawTextWithCOD7DecodeEffectsInternal(const char *text, int maxChars, Font_s *font, float x, float y, float xScale, float yScale, float rotation, const vec4_t *color, int style, const vec4_t *glowColor, Material *fxMaterial, Material *fxMaterialGlow, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -262,7 +262,7 @@ void R_AddCmdDrawTextWithCOD7DecodeEffectsInternal(
 R_AddCmdDrawTextWithCOD7TypeWriterEffectsInternal
 ==============
 */
-void R_AddCmdDrawTextWithCOD7TypeWriterEffectsInternal(
+void R_AddCmdDrawTextWithCOD7TypeWriterEffectsInternal(const char *text, int maxChars, Font_s *font, float x, float y, float xScale, float yScale, float rotation, const vec4_t *color, int style, const vec4_t *glowColor, Material *fxMaterial, Material *fxMaterialGlow, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -272,7 +272,7 @@ void R_AddCmdDrawTextWithCOD7TypeWriterEffectsInternal(
 R_AddCmdDrawTextWithRedactEffectsInternal
 ==============
 */
-void R_AddCmdDrawTextWithRedactEffectsInternal(
+void R_AddCmdDrawTextWithRedactEffectsInternal(const char *text, int maxChars, Font_s *font, float x, float y, float xScale, float yScale, float rotation, const vec4_t *color, int style, const vec4_t *glowColor, Material *fxMaterial, Material *fxMaterialGlow, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, int fxRedactDecayStartTime, int fxRedactDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -282,7 +282,7 @@ void R_AddCmdDrawTextWithRedactEffectsInternal(
 R_AddCmdDrawTextWithPopInEffectsInternal
 ==============
 */
-void R_AddCmdDrawTextWithPopInEffectsInternal(
+void R_AddCmdDrawTextWithPopInEffectsInternal(const char *text, int maxChars, Font_s *font, float x, float y, float xScale, float yScale, float rotation, const vec4_t *color, int style, const vec4_t *glowColor, Material *fxMaterial, Material *fxMaterialGlow, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -292,7 +292,7 @@ void R_AddCmdDrawTextWithPopInEffectsInternal(
 CopyPoolTextToCmd
 ==============
 */
-void CopyPoolTextToCmd(
+void CopyPoolTextToCmd(const char *textPool, int poolSize, int firstChar, int charCount, GfxCmdDrawText2D *cmd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -302,10 +302,11 @@ void CopyPoolTextToCmd(
 AddBaseDrawConsoleTextCmd
 ==============
 */
-GfxCmdDrawText2D *AddBaseDrawConsoleTextCmd(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -313,9 +314,11 @@ GfxCmdDrawText2D *AddBaseDrawConsoleTextCmd(
 R_AddCmdDrawConsoleTextInternal
 ==============
 */
-void R_AddCmdDrawConsoleTextInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -323,9 +326,11 @@ void R_AddCmdDrawConsoleTextInternal(
 R_AddCmdDrawConsoleTextTypewriterFXInternal
 ==============
 */
-void R_AddCmdDrawConsoleTextTypewriterFXInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -333,9 +338,11 @@ void R_AddCmdDrawConsoleTextTypewriterFXInternal(
 R_AddCmdDrawConsoleTextSubtitleInternal
 ==============
 */
-void R_AddCmdDrawConsoleTextSubtitleInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -343,9 +350,11 @@ void R_AddCmdDrawConsoleTextSubtitleInternal(
 R_AddCmdDrawConsoleTextPulseFXInternal
 ==============
 */
-void R_AddCmdDrawConsoleTextPulseFXInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -486,7 +495,7 @@ void R_AddCmdProjectionSet2DInternal()
 R_AddCmdDrawFramedInternal
 ==============
 */
-void R_AddCmdDrawFramedInternal(
+void R_AddCmdDrawFramedInternal(float x, float y, float w, float h, float thicknessW, float thicknessH, float thicknessTex, int sides, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

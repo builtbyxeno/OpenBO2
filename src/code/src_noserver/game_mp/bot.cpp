@@ -27,7 +27,7 @@ bot_goal_t *Bot_GetCurrentGoal(bot_t *bot)
 Bot_AddGoal
 ==============
 */
-char Bot_AddGoal(
+char Bot_AddGoal(bot_t *bot, const vec3_t *goalPos, pathnode_t *goalNode, const float radius, BotGoalPriority priority, unsigned __int16 notify)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -58,7 +58,7 @@ void Bot_GoalFailed(bot_t *bot, bot_goal_t *goal)
 G_BotGoalAdd
 ==============
 */
-char G_BotGoalAdd(
+char G_BotGoalAdd(const client_t *cl, const vec3_t *goalPos, pathnode_t *goalNode, const float radius, BotGoalPriority priority, unsigned __int16 notify)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -185,7 +185,7 @@ void SV_BotRegisterDvars()
 Bot_DrawString
 ==============
 */
-void Bot_DrawString(
+void Bot_DrawString(LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, const char *text, float x, float *y, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -195,10 +195,12 @@ void Bot_DrawString(
 Bot_DrawDebug
 ==============
 */
-/*void Bot_DrawDebug(const vec4_t *a1@<ebx>, LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -216,11 +218,11 @@ unsigned int DrawClaimedNodes()
 LerpColor
 ==============
 */
-/*float *LerpColor@<eax>(float *result@<eax>, float *a2@<ecx>, float a3@<xmm4>, const vec4_t *a)
+float *LerpColor(float *result, float *a2, float a, const vec4_t *a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -237,10 +239,10 @@ void DrawGoalString(const client_t *cl, const vec3_t *origin, const char *txt, c
 Bot_DrawPath
 ==============
 */
-/*void Bot_DrawPath(float a1@<esi>, const client_t *cl)
+void Bot_DrawPath(float a1, const client_t *cl)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -257,10 +259,10 @@ void Bot_DrawDangerousNode(const pathnode_t *node, const vec4_t *teamColor, team
 Bot_DrawDangerousAreas
 ==============
 */
-/*void Bot_DrawDangerousAreas(float a1@<esi>)
+void Bot_DrawDangerousAreas(float a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -277,20 +279,20 @@ void Bot_DrawPaths()
 Bot_DrawThreats
 ==============
 */
-/*void Bot_DrawThreats(float a1@<esi>)
+void Bot_DrawThreats(float a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 G_DebugBots
 ==============
 */
-/*void G_DebugBots(float a1@<esi>)
+void G_DebugBots(void)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

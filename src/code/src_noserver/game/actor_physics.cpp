@@ -26,7 +26,7 @@ void AIPhys_AddTouchEnt(actor_physics_t *pPhys, int entityNum)
 AIPhys_ClipVelocity
 ==============
 */
-void AIPhys_ClipVelocity(
+void AIPhys_ClipVelocity(const vec3_t *in, const vec3_t *normal, bool isWalkable, vec3_t *out, float overbounce)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -56,7 +56,7 @@ void AIPhys_Footsteps(actor_physics_t *pPhys)
 ai_physics_trace
 ==============
 */
-void ai_physics_trace(
+void ai_physics_trace(trace_t *trace, const vec3_t *start, const vec3_t *mins, const vec3_t *maxs, const vec3_t *end, const int passEntityNum, const int contentmask, actor_physics_t *pPhys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -78,11 +78,9 @@ ai_gjk_slide_move_input_t::custom_process
 AIPhys_GroundTrace
 ==============
 */
-
+void AIPhys_GroundTrace(actor_physics_t* pPhys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -90,11 +88,9 @@ AIPhys_GroundTrace
 AIPhys_FoliageSounds
 ==============
 */
-
+void AIPhys_FoliageSounds(actor_physics_t* pPhys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -112,10 +108,10 @@ void Actor_PostPhysics(actor_physics_t *pPhys)
 AIPhys_SlideMove
 ==============
 */
-
+SlideMoveResult AIPhys_SlideMove(actor_physics_t* pPhys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
+	SlideMoveResult tmp;
 	return tmp;
 }
 
@@ -134,11 +130,10 @@ void AdjustBigDog(actor_physics_t *pPhys)
 AIPhys_StepSlideMove
 ==============
 */
-
+int AIPhys_StepSlideMove(actor_physics_t* pPhys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -211,7 +206,7 @@ void setup_gjkcc_input(pmove_t *pm, gjkcc_input_t *gjkcc_in)
 setup_gjkcc_input
 ==============
 */
-void setup_gjkcc_input(
+void setup_gjkcc_input(pmove_t *pm, const VehicleDef *vehDef, VehicleState *vehicleState, gjkcc_input_t *gjkcc_in, gjccc_create_t *gjkcc_create)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

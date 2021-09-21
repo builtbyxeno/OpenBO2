@@ -6,11 +6,10 @@
 Actor_Zombie_Scripted_Start
 ==============
 */
-
+BOOL Actor_Zombie_Scripted_Start(actor_t* pSelf, ai_state_t ePrevState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -18,11 +17,9 @@ Actor_Zombie_Scripted_Start
 Actor_Zombie_Scripted_Finish
 ==============
 */
-
+void Actor_Zombie_Scripted_Finish(actor_t* pSelf, ai_state_t eNextState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -41,11 +38,10 @@ int Actor_Zombie_Scripted_Think(actor_t *pSelf)
 Actor_Zombie_Custom_Start
 ==============
 */
-
+BOOL Actor_Zombie_Custom_Start(actor_t* pSelf, ai_state_t ePrevState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*

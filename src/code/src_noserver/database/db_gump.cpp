@@ -58,7 +58,7 @@ void DB_GumpEndAlloc(const char *name, unsigned int allocType)
 DB_GumpMemAlloc
 ==============
 */
-unsigned __int8 *DB_GumpMemAlloc(
+unsigned __int8 *DB_GumpMemAlloc(unsigned int size, unsigned int blockIndex, unsigned int location, unsigned int allocType, const char *filename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

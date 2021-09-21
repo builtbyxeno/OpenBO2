@@ -131,7 +131,7 @@ bool Live_Base_AuthorizeLicenseWithDW(const ControllerIndex_t controllerIndex, d
 Live_Base_HandleAuthServiceReady
 ==============
 */
-bool Live_Base_HandleAuthServiceReady(
+bool Live_Base_HandleAuthServiceReady(const ControllerIndex_t controllerIndex, dediUserData_t *userData, bdAuthService *authService)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -142,9 +142,11 @@ bool Live_Base_HandleAuthServiceReady(
 Live_Base_StateAuthorizing
 ==============
 */
-void Live_Base_StateAuthorizing(const ControllerIndex_t controllerIndex, dediUserData_t *userData)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -373,7 +375,7 @@ void Live_Base_StateConnected(const ControllerIndex_t controllerIndex, dediUserD
 Live_Base_PumpForController
 ==============
 */
-void Live_Base_PumpForController(
+void Live_Base_PumpForController(dediUserData_t *a1, ControllerIndex_t a2, const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -393,7 +395,7 @@ void Live_Base_Pump(ControllerIndex_t a1, dediUserData_t *a2)
 Live_HandleDemonwareLSP
 ==============
 */
-void Live_HandleDemonwareLSP(
+void Live_HandleDemonwareLSP(dediUserData_t *a1, ControllerIndex_t a2, ControllerIndex_t localControllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -403,8 +405,8 @@ void Live_HandleDemonwareLSP(
 Live_DedicatedFrame
 ==============
 */
-void Live_DedicatedFrame()
+/*void Live_DedicatedFrame(int a1@<ebp>)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 

@@ -6,7 +6,7 @@
 RemoveDuplicateBrushPlanes
 ==============
 */
-char RemoveDuplicateBrushPlanes(
+char RemoveDuplicateBrushPlanes(vec4_t *planes, unsigned int *sideCount, const char *mapname, unsigned int brushnum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -38,7 +38,7 @@ void SnapPlane(vec4_t *plane)
 GetPlaneIntersections
 ==============
 */
-unsigned int GetPlaneIntersections(
+unsigned int GetPlaneIntersections(const vec4_t *planes, unsigned int planeCount, SimplePlaneIntersection *OutPts, unsigned int maxPtCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -81,7 +81,7 @@ int IsAxisAligned(vec3_t *normal)
 Xmodel_ParsePhysicsBrush
 ==============
 */
-bool Xmodel_ParsePhysicsBrush(
+bool Xmodel_ParsePhysicsBrush(const char **file, const char *mapname, unsigned int brushCount, PhysGeomInfo *geom, unsigned int boneHash, DObjAnimMat *boneMat, void *(*Alloc)(int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -136,10 +136,11 @@ bool AddBoneName(unsigned int *boneNameArray, const int boneNameLen, const char 
 Xmodel_CountPhysicsCollMaps
 ==============
 */
-int Xmodel_CountPhysicsCollMaps(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -158,7 +159,7 @@ unsigned int Xmodel_CountPhysicsCollMapGeoms(const char **file, const char *name
 Xmodel_ParsePhysicsCollMap
 ==============
 */
-PhysGeomList *Xmodel_ParsePhysicsCollMap(
+PhysGeomList *Xmodel_ParsePhysicsCollMap(DObjAnimMat *boneMat, void *(*Alloc)(int), const char **file, const char *name, unsigned int geomCount, unsigned int boneHash)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

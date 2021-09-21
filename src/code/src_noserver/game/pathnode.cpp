@@ -120,7 +120,7 @@ void Path_CallFunctionForNodes(scriptInstance_t inst, void (*function)(scriptIns
 PathNode_UpdateStringField
 ==============
 */
-void PathNode_UpdateStringField(
+void PathNode_UpdateStringField(const char *destKey, unsigned __int16 *destScrString, const char *key, const char *value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -360,17 +360,17 @@ void Path_CheckSpawnExitNodesConnectivity()
 Path_DrawDebugNoLinks
 ==============
 */
-void Path_DrawDebugNoLinks(const pathnode_t *node, const vec4_t *color, int duration)
+/*void Path_DrawDebugNoLinks(const vec3_t *a1@<edx>, const pathnode_t *node, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 Path_DrawDebugLink
 ==============
 */
-void Path_DrawDebugLink(
+void Path_DrawDebugLink(float node, const pathnode_t *a2, const int i, const bool bShowAll, float heightOffset, const int showNodeDrawType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -410,10 +410,10 @@ void Path_DrawDebugPeekOuts(const pathnode_t *node)
 Path_DrawDebugFindPath
 ==============
 */
-void Path_DrawDebugFindPath(const vec3_t *vOrigin)
+/*void Path_DrawDebugFindPath(int a1@<edi>, const vec3_t *vOrigin)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -715,17 +715,17 @@ void Path_UpdateHasBadPlaceLink(pathnode_t *node)
 Path_UpdateArcBadPlaceCount
 ==============
 */
-/*void Path_UpdateArcBadPlaceCount(float a1@<esi>, badplace_arc_t *arc, int teamflags, int delta)
+void Path_UpdateArcBadPlaceCount(float arc, badplace_arc_t *a2, int teamflags, int delta)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 Path_CheckForInwardLinks
 ==============
 */
-void Path_CheckForInwardLinks(
+void Path_CheckForInwardLinks(pathnode_t *node, int currDepth, int maxDepth, float fRadiusSqrd, float fHeightSqrd, float fMaxRadiusSqrd, float fMaxHeightSqrd, vec3_t *centroid, badplace_arc_t *arc, vec3_t *side0, vec3_t *side1, int teamflags, int delta)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -735,7 +735,7 @@ void Path_CheckForInwardLinks(
 Path_IsNodeInArc
 ==============
 */
-int Path_IsNodeInArc(
+int Path_IsNodeInArc(pathnode_t *pNode, const vec3_t *origin, float radius, float angle0, float angle1, float halfHeight)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -858,7 +858,7 @@ void parented_pathnode_list_add(pathnode_parent_t *node_parent)
 parented_pathnode_list_update
 ==============
 */
-void parented_pathnode_list_update(
+void parented_pathnode_list_update(unsigned int a1, gentity_t *gent, const phys_mat44 *mat, const vec3_t *delta_angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -868,7 +868,7 @@ void parented_pathnode_list_update(
 parented_pathnode_lists_reset_position
 ==============
 */
-void parented_pathnode_lists_reset_position(generic_avl_map_node_t *gamn)
+void parented_pathnode_lists_reset_position(int a1, generic_avl_map_node_t *gamn)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1083,7 +1083,7 @@ void Path_MovingNodesInCylinder()
 Path_NodesInCylinder
 ==============
 */
-int Path_NodesInCylinder(
+int Path_NodesInCylinder(const vec3_t *origin, const vec3_t *enemyPos, float maxDist, float maxHeight, pathsort_t *nodes, int maxNodes, int typeFlags, int spawnFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1094,7 +1094,7 @@ int Path_NodesInCylinder(
 Path_NodesInRadius
 ==============
 */
-int Path_NodesInRadius(
+int Path_NodesInRadius(const vec3_t *origin, float maxDist, pathsort_t *nodes, int maxNodes, int typeFlags, int spawnFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1125,9 +1125,11 @@ void Path_DrawDebugNodeBox(const pathnode_t *node, float size, const vec4_t *col
 Path_DrawDebugNodeBox
 ==============
 */
-void Path_DrawDebugNodeBox(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1135,7 +1137,7 @@ void Path_DrawDebugNodeBox(
 Path_DrawDebugNode
 ==============
 */
-void Path_DrawDebugNode(const vec3_t *cameraPos, const pathnode_t *node)
+void Path_DrawDebugNode(char *a1, const vec3_t *cameraPos, const pathnode_t *node)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1195,7 +1197,7 @@ void Path_ConnectPathsForEntity(gentity_t *ent)
 Path_DisconnectPathsForEntity
 ==============
 */
-void Path_DisconnectPathsForEntity(gentity_t *ent)
+void Path_DisconnectPathsForEntity(char *a1, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1225,9 +1227,11 @@ void G_SetPathnodeScriptVariable(const char *key, const char *value, pathnode_t 
 G_ParsePathnodeScriptFields
 ==============
 */
-void G_ParsePathnodeScriptFields(pathnode_t *node, SpawnVar *spawnVar)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1369,10 +1373,10 @@ node_droptofloor
 G_DropPathNodeToFloor
 ==============
 */
-void G_DropPathNodeToFloor(unsigned int nodeIndex)
+/*void G_DropPathNodeToFloor(pathnode_t *a1@<edx>, unsigned int nodeIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -1439,10 +1443,10 @@ void Scr_NodesAreLinked()
 Scr_DropNodeToFloor
 ==============
 */
-/*void Scr_DropNodeToFloor(int a1@<ebp>)
+void Scr_DropNodeToFloor(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1530,7 +1534,7 @@ void Scr_GetNodesInRadiusSorted()
 Path_NearestNodeNotCrossPlanes
 ==============
 */
-pathnode_t *Path_NearestNodeNotCrossPlanes(
+pathnode_t *Path_NearestNodeNotCrossPlanes(const vec3_t *vOrigin, pathsort_t *nodes, int typeFlags, float fMaxDist, PathBlockPlanes *blockPlanes, int *returnCount, int maxNodes, nearestNodeHeightCheck heightCheck, int ownerEnt, float physRadius, float physHeight, int spawnFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -1591,7 +1595,7 @@ void Path_DrawDebugNearestNode(const vec3_t *vOrigin)
 Path_NearestNodeNoHeightCheck
 ==============
 */
-pathnode_t *Path_NearestNodeNoHeightCheck(
+pathnode_t *Path_NearestNodeNoHeightCheck(const vec3_t *vOrigin, int ownerEnt, float physRadius, float physHeight, int spawnFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -1602,7 +1606,7 @@ pathnode_t *Path_NearestNodeNoHeightCheck(
 Path_NearestNode
 ==============
 */
-pathnode_t *Path_NearestNode(
+pathnode_t *Path_NearestNode(const vec3_t *vOrigin, PathBlockPlanes *blockPlanes, int ownerEnt, float physRadius, float physHeight, int spawnFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -1654,10 +1658,10 @@ void Path_DrawDebugUnconnected(pathnode_t *node)
 Path_DrawDebug
 ==============
 */
-void Path_DrawDebug()
+/*void Path_DrawDebug(int a1@<edi>)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

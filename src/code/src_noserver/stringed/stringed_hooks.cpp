@@ -105,7 +105,7 @@ const char *SEH_SafeTranslateString(const char *pszReference)
 SEH_GetLocalizedTokenReference
 ==============
 */
-int SEH_GetLocalizedTokenReference(
+int SEH_GetLocalizedTokenReference(char *token, const char *reference, const char *messageType, msgLocErrType_t errType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -136,7 +136,7 @@ void SEH_GetBindingForDirective(LocalClientNum_t localClientNum, const char *dir
 SEH_ReplaceDirective
 ==============
 */
-bool SEH_ReplaceDirective(
+bool SEH_ReplaceDirective(LocalClientNum_t localClientNum, unsigned int *searchPos, unsigned int *dstLen, char *dstString, unsigned int size)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -147,7 +147,7 @@ bool SEH_ReplaceDirective(
 SEH_ReplaceDirectiveInStringWithBinding
 ==============
 */
-int SEH_ReplaceDirectiveInStringWithBinding(
+int SEH_ReplaceDirectiveInStringWithBinding(int a1, LocalClientNum_t localClientNum, const char *translatedString, char *finalString)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -158,7 +158,7 @@ int SEH_ReplaceDirectiveInStringWithBinding(
 SEH_LocalizeTextMessage
 ==============
 */
-const char *SEH_LocalizeTextMessage(
+const char *SEH_LocalizeTextMessage(const char *pszInputBuffer, const char *pszMessageType, msgLocErrType_t errType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -169,7 +169,7 @@ const char *SEH_LocalizeTextMessage(
 SEH_DecodeLetter
 ==============
 */
-int SEH_DecodeLetter(
+int SEH_DecodeLetter(unsigned __int8 firstChar, unsigned __int8 secondChar, unsigned __int8 thirdChar, int *usedCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -235,9 +235,11 @@ int SEH_StringEd_SetLanguageStrings(int iLanguage)
 SEH_TranslateMessage
 ==============
 */
-void SEH_TranslateMessage(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

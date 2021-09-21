@@ -391,8 +391,8 @@ void G_UpdateClientLinkInfo(gentity_t *ent)
 G_RunFrame
 ==============
 */
-void G_RunFrame(int levelTime)
+/*void G_RunFrame(char *a1@<edi>, int levelTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 

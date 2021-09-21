@@ -36,7 +36,7 @@ void ParseDirective(const char *directive, char *resultName, char *resultArg0)
 GetHudelemDirective
 ==============
 */
-void GetHudelemDirective(
+void GetHudelemDirective(LocalClientNum_t localClientNum, const char *directive, char *result, bool press, bool cap, bool limit, bool anim)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -46,7 +46,7 @@ void GetHudelemDirective(
 ReplaceDirective
 ==============
 */
-char ReplaceDirective(
+char ReplaceDirective(LocalClientNum_t localClientNum, unsigned int *searchPos, unsigned int *dstLen, char *dstString)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -57,7 +57,7 @@ char ReplaceDirective(
 CG_TranslateHudElemMessage
 ==============
 */
-void CG_TranslateHudElemMessage(
+void CG_TranslateHudElemMessage(LocalClientNum_t localClientNum, const char *message, const char *messageType, char *hudElemString)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -77,7 +77,7 @@ void SafeTranslateHudElemString(LocalClientNum_t localClientNum, int index, char
 HudElemStringWidth
 ==============
 */
-float HudElemStringWidth(
+float HudElemStringWidth(LocalClientNum_t localClientNum, const char *string, const hudelem_s *elem, const cg_hudelem_t *cghe)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -132,7 +132,7 @@ float HudElemMaterialWidth(const ScreenPlacement *scrPlace, const hudelem_s *ele
 HudElemMaterialHeight
 ==============
 */
-float HudElemMaterialHeight(
+float HudElemMaterialHeight(const ScreenPlacement *scrPlace, const hudelem_s *elem, const cg_hudelem_t *cghe)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -143,10 +143,11 @@ float HudElemMaterialHeight(
 HudElemWidth
 ==============
 */
-float HudElemWidth(const ScreenPlacement *scrPlace, const hudelem_s *elem, const cg_hudelem_t *cghe)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -165,7 +166,7 @@ float HudElemHeight(const ScreenPlacement *scrPlace, const hudelem_s *elem, cons
 GetHudElemOrg
 ==============
 */
-void GetHudElemOrg(
+void GetHudElemOrg(const ScreenPlacement *scrPlace, int alignOrg, int alignScreen, float xVirtual, float yVirtual, float width, float height, float *orgX, float *orgY)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -175,9 +176,11 @@ void GetHudElemOrg(
 SetHudElemPos
 ==============
 */
-void SetHudElemPos(const ScreenPlacement *scrPlace, const hudelem_s *elem, cg_hudelem_t *cghe)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -196,7 +199,7 @@ float OffsetHudElemY(const hudelem_s *elem, const cg_hudelem_t *cghe, float offs
 ConsolidateHudElemText
 ==============
 */
-void ConsolidateHudElemText(
+void ConsolidateHudElemText(LocalClientNum_t localClientNum, const hudelem_s *elem, cg_hudelem_t *cghe, char *hudElemString)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -216,9 +219,11 @@ void CopyStringToHudElemString(const char *string, char *hudElemString)
 GetHudElemInfo
 ==============
 */
-void GetHudElemInfo(LocalClientNum_t localClientNum, const hudelem_s *elem, cg_hudelem_t *cghe)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -236,7 +241,7 @@ void HudElemColorToVec4(const hudelem_color_t *hudElemColor, vec4_t *resultColor
 DrawHudElemString
 ==============
 */
-void DrawHudElemString(
+void DrawHudElemString(LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, const char *text, const hudelem_s *elem, cg_hudelem_t *cghe)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -299,7 +304,7 @@ char WorldPosToExtraCamScreenPos(LocalClientNum_t localClientNum, const vec3_t *
 ClampScreenPosToEdges
 ==============
 */
-BOOL ClampScreenPosToEdges(
+BOOL ClampScreenPosToEdges(LocalClientNum_t localClientNum, vec2_t *point, float padLeft, float padRight, float padTop, float padBottom, vec2_t *resultNormal, float *resultDist)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -332,7 +337,7 @@ float WaypointFadeGetTimeFrac(const cg_t *cgameGlob, int currentTime)
 WaypointTargetFade
 ==============
 */
-void WaypointTargetFade(
+void WaypointTargetFade(LocalClientNum_t localClientNum, const hudelem_s *elem, const vec2_t *screenPos, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -352,7 +357,7 @@ void DrawOffscreenViewableWaypoint(LocalClientNum_t localClientNum, const hudele
 DrawHudElemPerk
 ==============
 */
-float DrawHudElemPerk(
+float DrawHudElemPerk(LocalClientNum_t localClientNum, const hudelem_s *elem, cg_hudelem_t *cghe, int activePerkCategoryCount, int *specialtyCollectionIndexArray, int specialtyTypeCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -363,9 +368,11 @@ float DrawHudElemPerk(
 DrawHudElemPerkName
 ==============
 */
-void DrawHudElemPerkName(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -373,7 +380,7 @@ void DrawHudElemPerkName(
 DrawHudElemPerks
 ==============
 */
-void DrawHudElemPerks(
+void DrawHudElemPerks(LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, const hudelem_s *elem, cg_hudelem_t *cghe)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -426,7 +433,7 @@ int GetSortedDebugHudElems(hudelem_s **elems)
 CG_Draw2dHudElemList
 ==============
 */
-void CG_Draw2dHudElemList(
+void CG_Draw2dHudElemList(hudelem_s **elems, int elemCount, LocalClientNum_t localClientNum, int foreground, bool playerAlive, bool inKillCam)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -436,9 +443,11 @@ void CG_Draw2dHudElemList(
 CG_Draw2dHudElems
 ==============
 */
-void CG_Draw2dHudElems(LocalClientNum_t localClientNum, int foreground)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -497,7 +506,7 @@ void CG_AddDrawSurfsFor3dHudElems(LocalClientNum_t localClientNum)
 CG_AddWaypoint
 ==============
 */
-void CG_AddWaypoint(
+void CG_AddWaypoint(LocalClientNum_t localClientNum, Material *material, const vec4_t *color, const vec3_t *origin, float radius, bool screenSize, bool alignBottom, bool forceNear)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

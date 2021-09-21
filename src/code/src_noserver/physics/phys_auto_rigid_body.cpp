@@ -27,7 +27,7 @@ void fixup_wheel_constraints_arb(auto_rigid_body *arb)
 auto_rigid_body::add
 ==============
 */
-/*void auto_rigid_body::add(
+/*void auto_rigid_body::add(const centity_t *cent, gjk_physics_collision_visitor *collision_visitor, const int mask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -37,7 +37,7 @@ auto_rigid_body::add
 auto_rigid_body::update
 ==============
 */
-/*void auto_rigid_body::update(int a1@<ebp>)
+/*void auto_rigid_body::update(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

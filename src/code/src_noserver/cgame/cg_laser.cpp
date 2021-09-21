@@ -38,7 +38,7 @@ bool CG_LaserForceOnEnabled()
 AddCore
 ==============
 */
-void AddCore(
+void AddCore(LocalClientNum_t localClientNum, centity_t *cent, orientation_t *orient, const vec3_t *viewerPos, LaserOwnerEnum laserOwner, LaserLightEnum laserLightEnum, float beamAlpha, bool laserSourceHidden)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -48,7 +48,7 @@ void AddCore(
 CG_AddCore
 ==============
 */
-void CG_AddCore(
+void CG_AddCore(const vec3_t *viewerPos, vec3_t laserBegin, vec3_t laserEnd, float lengthFraction, float beamAlpha, float beamRadius)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -58,7 +58,7 @@ void CG_AddCore(
 CG_LaserDraw
 ==============
 */
-void CG_LaserDraw(
+void CG_LaserDraw(LocalClientNum_t localClientNum, Weapon weapon, centity_t *cent, DObj *obj, cpose_t *pose, const vec3_t *viewerPos, LaserOwnerEnum laserOwner, LaserLightEnum laserLightEnum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -112,7 +112,7 @@ R_GenerateWorldOutdoorLookupMatrix
 R_DeriveCodeMatrix
 ==============
 */
-void R_DeriveCodeMatrix(
+void R_DeriveCodeMatrix(GfxCmdBufSourceState *source, GfxCodeMatrices *activeMatrices, unsigned int baseIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -133,7 +133,7 @@ const vec4_t *R_GetCodeMatrix(GfxCmdBufSourceState *source, unsigned int sourceI
 R_GetTextureFromCode
 ==============
 */
-const GfxImage *R_GetTextureFromCode(
+const GfxImage *R_GetTextureFromCode(GfxCmdBufSourceState *source, unsigned int codeTexture, unsigned __int8 *samplerState, const Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -205,7 +205,7 @@ void R_FlushStreamSources(GfxCmdBufPrimState *state, int firstStream, int lastSt
 R_ChangeStreamSource
 ==============
 */
-void R_ChangeStreamSource(
+void R_ChangeStreamSource(GfxCmdBufPrimState *state, int streamIndex, ID3D11Buffer *vb, unsigned int vertexOffset, unsigned int vertexStride)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -215,7 +215,7 @@ void R_ChangeStreamSource(
 R_DrawIndexedPrimitive
 ==============
 */
-void R_DrawIndexedPrimitive(
+void R_DrawIndexedPrimitive(const GfxCmdBufState *state, GfxCmdBufPrimState *primState, const GfxDrawPrimArgs *args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -268,7 +268,7 @@ void R_DX11_ReleaseSamplerStates()
 R_SetSampler
 ==============
 */
-void R_SetSampler(
+void R_SetSampler(GfxCmdBufContext context, unsigned int textureIndex, unsigned int samplerIndex, unsigned __int8 samplerState, const GfxImage *image)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -278,7 +278,7 @@ void R_SetSampler(
 R_TextureOverride
 ==============
 */
-void R_TextureOverride(
+void R_TextureOverride(const GfxBackEndData *data, GfxCmdBufContext context, unsigned int modelIndex, int textureOverride)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -459,7 +459,7 @@ void R_ClearRenderTargetForMultiGpu(GfxCmdBufContext context, unsigned __int8 ta
 R_ClearScreenInternal
 ==============
 */
-void R_ClearScreenInternal(
+void R_ClearScreenInternal(GfxCmdBufState *state, unsigned __int8 whichToClear, const vec4_t *color, float depth, int stencil)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -469,7 +469,7 @@ void R_ClearScreenInternal(
 R_ClearScreen
 ==============
 */
-void R_ClearScreen(
+void R_ClearScreen(GfxCmdBufState *state, unsigned __int8 whichToClear, const vec4_t *color, float depth, int stencil)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -479,7 +479,7 @@ void R_ClearScreen(
 R_DrawCall
 ==============
 */
-void R_DrawCall(
+void R_DrawCall(int a1, void (*callback)(const void *, GfxCmdBufContext, const GfxViewInfo *), const void *userData, GfxCmdBufSourceState *source, const GfxViewInfo *viewInfo, const GfxViewParms *viewParms, GfxCmdBuf *cmdBufEA)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -540,7 +540,7 @@ ID3D11DepthStencilState *R_HW_FindDepthStencilState(unsigned int stateBits1, uns
 R_HW_SetDepthStencilState
 ==============
 */
-void R_HW_SetDepthStencilState(
+void R_HW_SetDepthStencilState(GfxCmdBufState *state, unsigned int stateBits1, unsigned __int8 stencilRef, unsigned __int8 stencilMask)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

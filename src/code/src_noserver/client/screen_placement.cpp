@@ -61,28 +61,28 @@ double ScrPlace_HiResGetScaleY()
 ScrPlace_CalcSafeAreaOffsets
 ==============
 */
-/*vec2_t *ScrPlace_CalcSafeAreaOffsets@<eax>(
+vec2_t *ScrPlace_CalcSafeAreaOffsets(float *a1, float *a2, float viewportY, float viewportWidth, float horzAspectScale, float vertAspectScale, float safeAreaRatioHorz, float safeAreaRatioVert, float virtualViewableMin, float virtualViewableMax, vec2_t *a11, vec2_t *a12)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 ScrPlace_SetupFloatViewport
 ==============
 */
-void ScrPlace_SetupFloatViewport(
+/*void ScrPlace_SetupFloatViewport(vec2_t *a1@<edi>, vec2_t *a2@<esi>, ScreenPlacement *scrPlace, float viewportX, float viewportY, float viewportWidth, float viewportHeight, float aspect, bool splitScreen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 ScrPlace_SetupViewport
 ==============
 */
-void ScrPlace_SetupViewport(
+void ScrPlace_SetupViewport(ScreenPlacement *scrPlace, int viewportX, int viewportY, int viewportWidth, int viewportHeight, float aspect, bool splitScreen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -92,7 +92,7 @@ void ScrPlace_SetupViewport(
 ScrPlace_SetupUnsafeViewport
 ==============
 */
-void ScrPlace_SetupUnsafeViewport(
+void ScrPlace_SetupUnsafeViewport(ScreenPlacement *scrPlace, int viewportX, int viewportY, int viewportWidth, int viewportHeight, float aspect, bool splitScreen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -156,9 +156,11 @@ void ApplySplitscreenScaling(float *x, float *y, float *w, float *h, float hudSp
 ScrPlace_ApplyRect
 ==============
 */
-void ScrPlace_ApplyRect(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

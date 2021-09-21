@@ -164,7 +164,7 @@ int GetVariableKeyObject(scriptInstance_t inst, unsigned int id)
 FindVariableIndexInternal2
 ==============
 */
-unsigned __int16 FindVariableIndexInternal2(
+unsigned __int16 FindVariableIndexInternal2(scriptInstance_t inst, unsigned __int16 *bucket, unsigned int match)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -197,7 +197,7 @@ ChildVariableValue *AllocChildVariable(scriptInstance_t inst, unsigned __int16 *
 GetNewVariableIndexInternal3
 ==============
 */
-unsigned __int16 GetNewVariableIndexInternal3(
+unsigned __int16 GetNewVariableIndexInternal3(scriptInstance_t inst, unsigned int parentId, unsigned int name, unsigned __int16 *bucket, unsigned int match)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -208,10 +208,11 @@ unsigned __int16 GetNewVariableIndexInternal3(
 GetNewVariableIndexInternal2
 ==============
 */
-unsigned __int16 GetNewVariableIndexInternal2(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -219,10 +220,11 @@ unsigned __int16 GetNewVariableIndexInternal2(
 GetNewVariableIndexReverseInternal2
 ==============
 */
-unsigned __int16 GetNewVariableIndexReverseInternal2(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -230,10 +232,11 @@ unsigned __int16 GetNewVariableIndexReverseInternal2(
 GetNewVariable
 ==============
 */
-unsigned __int16 GetNewVariable(scriptInstance_t inst, unsigned int parentId, unsigned int name)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -241,10 +244,11 @@ unsigned __int16 GetNewVariable(scriptInstance_t inst, unsigned int parentId, un
 GetNewVariableIndexReverseInternal
 ==============
 */
-unsigned __int16 GetNewVariableIndexReverseInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -252,10 +256,11 @@ unsigned __int16 GetNewVariableIndexReverseInternal(
 GetVariable
 ==============
 */
-int GetVariable(scriptInstance_t inst, unsigned int parentId, unsigned int name)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -263,7 +268,7 @@ int GetVariable(scriptInstance_t inst, unsigned int parentId, unsigned int name)
 FreeChildValuePart1
 ==============
 */
-void FreeChildValuePart1(
+void FreeChildValuePart1(scriptInstance_t inst, ChildVariableValue *value, unsigned __int16 index, ObjectVariableValue *parentValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -293,9 +298,11 @@ void FreeChildValuePart3(scriptInstance_t inst, ChildVariableValue *value, unsig
 RemoveVariableValue
 ==============
 */
-void RemoveVariableValue(scriptInstance_t inst, unsigned int parentId, unsigned int index)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -441,7 +448,7 @@ unsigned int AllocObject(scriptInstance_t inst)
 AllocEntity
 ==============
 */
-unsigned int AllocEntity(
+unsigned int AllocEntity(scriptInstance_t inst, unsigned int classnum, unsigned __int16 entnum, LocalClientNum_t clientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -497,9 +504,11 @@ unsigned int Scr_GetSelf(scriptInstance_t inst, unsigned int threadId)
 FreeValue
 ==============
 */
-void FreeValue(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -616,7 +625,7 @@ unsigned int Scr_GetVariableFieldIndex(scriptInstance_t inst, unsigned int paren
 Scr_FindAllVariableField
 ==============
 */
-unsigned int Scr_FindAllVariableField(
+unsigned int Scr_FindAllVariableField(scriptInstance_t inst, unsigned int parentId, unsigned int *names, unsigned int *localIds)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -649,10 +658,11 @@ unsigned int GetNewObjectVariable(scriptInstance_t inst, unsigned int parentId, 
 GetNewObjectVariableReverse
 ==============
 */
-unsigned int GetNewObjectVariableReverse(scriptInstance_t inst, unsigned int parentId)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -731,7 +741,7 @@ VariableUnion *GetVariableValueAddress(scriptInstance_t inst, unsigned int id)
 SetVariableEntityFieldValue
 ==============
 */
-void SetVariableEntityFieldValue(
+void SetVariableEntityFieldValue(scriptInstance_t inst, unsigned int entId, unsigned int fieldName, VariableValue *value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -783,10 +793,11 @@ VariableValue Scr_EvalVariableEntityField(scriptInstance_t inst, unsigned int en
 Scr_EvalVariableField
 ==============
 */
-int Scr_EvalVariableField(scriptInstance_t inst, unsigned int id)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1019,10 +1030,11 @@ unsigned int FindEntityId(scriptInstance_t inst, int entnum, unsigned int classn
 Scr_GetEntityId
 ==============
 */
-unsigned int Scr_GetEntityId(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1096,10 +1108,10 @@ scriptInstance_t Scr_FirstArrayKey(scriptInstance_t inst, unsigned int parentId,
 Scr_NextArrayKey
 ==============
 */
-scriptInstance_t Scr_NextArrayKey(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	scriptInstance_t tmp;
+	 tmp;
 	return tmp;
 }
 
@@ -1169,9 +1181,11 @@ void CopyEntity(scriptInstance_t inst, unsigned int parentId, unsigned int newPa
 Scr_CopyEntityNum
 ==============
 */
-void Scr_CopyEntityNum(scriptInstance_t inst, int fromEntnum, int toEntnum, unsigned int classnum)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1223,11 +1237,11 @@ unsigned int Scr_FindField(scriptInstance_t inst, const char *name, int *type)
 Scr_GetSourceFile_LoadObj
 ==============
 */
-/*char *Scr_GetSourceFile_LoadObj@<eax>(const char *a1@<edx>, const char *a2@<ecx>, const char *filename)
+char *Scr_GetSourceFile_LoadObj(const char *a1, const char *a2, const char *filename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -1245,10 +1259,10 @@ XModelPiece *Scr_GetSourceFile_FastFile(const char *filename)
 Scr_AddFieldsForFile
 ==============
 */
-/*void Scr_AddFieldsForFile(int a1@<edx>, int a2@<ecx>, scriptInstance_t inst, const char *filename)
+void Scr_AddFieldsForFile(int a1, int a2, scriptInstance_t inst, const char *filename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1306,10 +1320,10 @@ void Scr_AllocGameVariable(scriptInstance_t inst)
 Scr_FreeGameVariable
 ==============
 */
-/*void Scr_FreeGameVariable(ChildVariableValue *a1@<edx>, scriptInstance_t inst, int bComplete)
+void Scr_FreeGameVariable(ChildVariableValue *a1, scriptInstance_t inst, int bComplete)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1380,7 +1394,7 @@ unsigned int Scr_FindAllEndons(scriptInstance_t inst, unsigned int threadId, uns
 ArrayInsertVariable
 ==============
 */
-void ArrayInsertVariable(
+void ArrayInsertVariable(scriptInstance_t inst, unsigned int arrayId, unsigned int index, VariableValue *new_value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1411,7 +1425,7 @@ char IsInArray(scriptInstance_t inst, unsigned int arrayId, VariableValue *value
 Scr_DumpScriptVariables
 ==============
 */
-void Scr_DumpScriptVariables(
+void Scr_DumpScriptVariables(scriptInstance_t inst, bool spreadsheet, bool summary, bool total, bool functionSummary, bool lineSort, const char *fileName, const char *functionName, int minCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1431,10 +1445,10 @@ void Scr_DumpScriptVariablesDefault(scriptInstance_t inst)
 Scr_ShutdownVariables
 ==============
 */
-/*void Scr_ShutdownVariables(ChildVariableValue *a1@<edx>, scriptInstance_t a2@<ecx>, scriptInstance_t inst)
+void Scr_ShutdownVariables(ChildVariableValue *a1, scriptInstance_t a2, scriptInstance_t inst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -1461,9 +1475,11 @@ void Scr_RemoveThreadNotifyName(scriptInstance_t inst, unsigned int startLocalId
 RemoveRefToObject
 ==============
 */
-void RemoveRefToObject(scriptInstance_t inst, unsigned int id)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1554,7 +1570,7 @@ void Scr_UnmatchingTypesError(scriptInstance_t inst, VariableValue *value1, Vari
 Scr_CastWeakerPair2
 ==============
 */
-void Scr_CastWeakerPair2(
+void Scr_CastWeakerPair2(scriptInstance_t inst, VariableValue *value1, VariableValue *value2, int type1, int type2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1604,9 +1620,11 @@ void Scr_EvalAnd(scriptInstance_t inst, VariableValue *value1, VariableValue *va
 Scr_EvalEquality
 ==============
 */
-void Scr_EvalEquality(scriptInstance_t inst, VariableValue *value1, VariableValue *value2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1624,9 +1642,11 @@ void Scr_EvalInequality(scriptInstance_t inst, VariableValue *value1, VariableVa
 Scr_EvalLess
 ==============
 */
-void Scr_EvalLess(scriptInstance_t inst, VariableValue *value1, VariableValue *value2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1644,9 +1664,11 @@ void Scr_EvalGreaterEqual(scriptInstance_t inst, VariableValue *value1, Variable
 Scr_EvalGreater
 ==============
 */
-void Scr_EvalGreater(scriptInstance_t inst, VariableValue *value1, VariableValue *value2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1684,7 +1706,7 @@ void Scr_EvalShiftRight(scriptInstance_t inst, VariableValue *value1, VariableVa
 Scr_EvalPlus
 ==============
 */
-void Scr_EvalPlus(
+void Scr_EvalPlus(VariableValue *a1, scriptInstance_t inst, VariableValue *value1, VariableValue *value2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1694,9 +1716,11 @@ void Scr_EvalPlus(
 Scr_EvalMinus
 ==============
 */
-void Scr_EvalMinus(scriptInstance_t inst, VariableValue *value1, VariableValue *value2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1704,9 +1728,11 @@ void Scr_EvalMinus(scriptInstance_t inst, VariableValue *value1, VariableValue *
 Scr_EvalMultiply
 ==============
 */
-void Scr_EvalMultiply(scriptInstance_t inst, VariableValue *value1, VariableValue *value2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1714,9 +1740,11 @@ void Scr_EvalMultiply(scriptInstance_t inst, VariableValue *value1, VariableValu
 Scr_EvalDivide
 ==============
 */
-void Scr_EvalDivide(scriptInstance_t inst, VariableValue *value1, VariableValue *value2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1774,9 +1802,11 @@ void Scr_RemoveClassMap(scriptInstance_t inst, unsigned int classnum)
 Scr_EvalArray
 ==============
 */
-void Scr_EvalArray(scriptInstance_t inst, VariableValue *value, VariableValue *index)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1866,7 +1896,7 @@ void Scr_ClearThread(scriptInstance_t inst, unsigned int parentId)
 Scr_StopThread
 ==============
 */
-void Scr_StopThread(
+void Scr_StopThread(unsigned int a1, scriptInstance_t a2, scriptInstance_t inst, unsigned int threadId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1907,7 +1937,7 @@ void Scr_DumpScriptThreads(scriptInstance_t inst)
 Scr_KillThread
 ==============
 */
-void Scr_KillThread(
+void Scr_KillThread(unsigned int a1, scriptInstance_t a2, scriptInstance_t inst, unsigned int parentId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -26,7 +26,7 @@ void DebugPatchesAndBrushesEpilog()
 debug_brush_info_t::find_index_in_brush
 ==============
 */
-/*__int16 __thiscall debug_brush_info_t::find_index_in_brush(
+/*__int16 __thiscall debug_brush_info_t::find_index_in_brush(debug_brush_info_t *this, const cbrush_t *brush, const vec3_t *v)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	__int16 __thiscall tmp;
@@ -38,7 +38,7 @@ debug_brush_info_t::find_index_in_brush
 debug_patch_info_t::find_index_in_clipmap
 ==============
 */
-/*unsigned int __thiscall debug_patch_info_t::find_index_in_clipmap(
+/*unsigned int __thiscall debug_patch_info_t::find_index_in_clipmap(debug_patch_info_t *this, const CollisionAabbTree *tree, const vec3_t *v)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -149,11 +149,9 @@ void add_debug_patch(const CollisionAabbTree *tree)
 render_brush
 ==============
 */
-
+void render_brush(unsigned int a1, const cbrush_t *brush, const phys_mat44 *xform, const vec4_t *color, bool bLinesOnly, const vec3_t *lightPos, bool persistent, bool ztest, const vec4_t *edgeColor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -171,11 +169,9 @@ void render_convex_partition(const CollisionAabbTree *tree)
 render_chull
 ==============
 */
-
+void render_chull(unsigned int a1, const chull_t *first, const phys_mat44 *xform, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
 }
 
 /*
@@ -183,7 +179,7 @@ render_chull
 render_xmodel_chull
 ==============
 */
-void render_xmodel_chull(
+void render_xmodel_chull(const XModel *model, const unsigned int key, const phys_mat44 *xform, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -193,7 +189,7 @@ void render_xmodel_chull(
 render_brushmodel_chull
 ==============
 */
-void render_brushmodel_chull(
+void render_brushmodel_chull(cmodel_t **a1, int brushmodel, unsigned int key, const phys_mat44 *xform, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -203,7 +199,7 @@ void render_brushmodel_chull(
 render_line
 ==============
 */
-void render_line(
+void render_line(clientDebugLineInfo_t *a1, const phys_vec3 *p0, const phys_vec3 *p1, const vec4_t *color, int duration, int ztest)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -213,7 +209,7 @@ void render_line(
 render_box
 ==============
 */
-void render_box(
+void render_box(int a1, const phys_vec3 *mins, const phys_vec3 *maxs, const phys_mat44 *xform, const vec4_t *color, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -223,7 +219,7 @@ void render_box(
 render_box
 ==============
 */
-void render_box(const vec3_t *_mn, const vec3_t *_mx, const vec4_t *color, int duration)
+void render_box(float _mn, const vec3_t *a2, const vec3_t *_mx, const vec4_t *color, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -233,7 +229,7 @@ void render_box(const vec3_t *_mn, const vec3_t *_mx, const vec4_t *color, int d
 render_box
 ==============
 */
-void render_box(const phys_vec3 *mins, const phys_vec3 *maxs, const vec4_t *color, int duration)
+void render_box(const phys_vec3 *mins, const phys_vec3 *maxs, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -267,7 +263,7 @@ init_winding
 Phys_DebugPoint
 ==============
 */
-void Phys_DebugPoint(
+void Phys_DebugPoint(clientDebugLineInfo_t *a1, const phys_vec3 *pos, const float radius, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -309,7 +305,7 @@ Phys_RenderBase
 Phys_JointDebugRender
 ==============
 */
-void Phys_JointDebugRender(int id)
+void Phys_JointDebugRender(int a1, int id)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -329,7 +325,7 @@ void render_prims(col_prim_t *prims, int nprims)
 GjkTraceGeom::Render
 ==============
 */
-/*void GjkTraceGeom::Render(unsigned int a1@<ebp>)
+/*void GjkTraceGeom::Render(unsigned int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -351,7 +347,7 @@ render_debug_draw_gjk_trace_geom
 clip_winding
 ==============
 */
-/*void clip_winding(phys_static_array<phys_vec3,512> *winding, const plane_lt *clip)
+/*void clip_winding(int a1, phys_static_array<phys_vec3,512> *winding, const plane_lt *clip)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -361,12 +357,10 @@ clip_winding
 calc_winding
 ==============
 */
-
+/*void calc_winding(int a1, const phys_static_array<plane_lt,512> *planes, int plane_index, phys_static_array<phys_vec3,512> *winding)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
-}
+}*/
 
 /*
 ==============
@@ -385,7 +379,7 @@ render_contact
 debug_brush_info_t::add_brush
 ==============
 */
-/*void debug_brush_info_t::add_brush(
+/*void debug_brush_info_t::add_brush(debug_brush_info_t *this, int a2, const cbrush_t *brush, const phys_mat44 *mat)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

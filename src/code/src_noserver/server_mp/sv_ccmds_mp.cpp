@@ -60,10 +60,10 @@ void ShowLoadErrorsSummary(const char *mapName, unsigned int count)
 SV_Map_f
 ==============
 */
-void SV_Map_f()
+/*void SV_Map_f(char *a1@<edi>)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -121,10 +121,11 @@ int SV_KickClient(client_t *cl, char *playerName, int maxPlayerNameLen)
 SV_KickUser_f
 ==============
 */
-int SV_KickUser_f(char *playerName, int maxPlayerNameLen)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -132,10 +133,11 @@ int SV_KickUser_f(char *playerName, int maxPlayerNameLen)
 SV_KickClient_f
 ==============
 */
-client_t *SV_KickClient_f(char *playerName, int maxPlayerNameLen)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -153,7 +155,7 @@ void SV_KickClientForReason_f()
 SV_TempBan_f
 ==============
 */
-void SV_TempBan_f()
+void SV_TempBan_f(char *a1, char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -183,7 +185,7 @@ void SV_BanNum_f()
 SV_Drop_f
 ==============
 */
-void SV_Drop_f()
+void SV_Drop_f(char *a1, char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -193,7 +195,7 @@ void SV_Drop_f()
 SV_DropNum_f
 ==============
 */
-void SV_DropNum_f()
+void SV_DropNum_f(char *a1, char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -203,7 +205,7 @@ void SV_DropNum_f()
 SV_TempBanNum_f
 ==============
 */
-void SV_TempBanNum_f()
+void SV_TempBanNum_f(char *a1, char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -233,7 +235,7 @@ void SV_AssembleConSayMessage(int firstArg, char *text, int sizeofText)
 SV_ConSay_f
 ==============
 */
-void SV_ConSay_f()
+void SV_ConSay_f(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -253,7 +255,7 @@ void SV_TeamStatus_f()
 SV_ConTell_f
 ==============
 */
-void SV_ConTell_f()
+void SV_ConTell_f(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -70,7 +70,7 @@ int compareOutlineEdges(const void *s1, const void *s2)
 GlassClient::PlayShatterFX
 ==============
 */
-/*void __thiscall GlassClient::PlayShatterFX(
+/*void __thiscall GlassClient::PlayShatterFX(GlassClient *this, LocalClientNum_t localClientNum, const vec3_t *hitPos, const vec3_t *hitDir)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -141,7 +141,7 @@ void GlassCl_GenerateVerts(LocalClientNum_t localClientNum, unsigned int viewInd
 GlassCl_ExplosionEvent
 ==============
 */
-void GlassCl_ExplosionEvent(
+void GlassCl_ExplosionEvent(LocalClientNum_t localClientNum, const vec3_t *origin, const float damageInner, const float damageOuter, const float radius, int mod)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -171,7 +171,7 @@ void GlassCl_DrawDebug(LocalClientNum_t localClientNum)
 GlassesClient::AreaGlasses
 ==============
 */
-/*unsigned int __thiscall GlassesClient::AreaGlasses(
+/*unsigned int __thiscall GlassesClient::AreaGlasses(GlassesClient *this, const vec3_t *mins, const vec3_t *maxs, const Glass **glss, unsigned int maxGlasses)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -212,7 +212,7 @@ GlassClient::Init
 GlassClient::SetState
 ==============
 */
-/*void __thiscall GlassClient::SetState(
+/*void __thiscall GlassClient::SetState(GlassClient *this, LocalClientNum_t localClientNum, GlassState::State newState, const vec3_t *hitPos, const vec3_t *hitDir, bool gameState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -222,7 +222,7 @@ GlassClient::SetState
 GlassClient::Outlines::InitShards
 ==============
 */
-/*unsigned int __thiscall GlassClient::Outlines::InitShards(
+/*unsigned int __thiscall GlassClient::Outlines::InitShards(GlassClient::Outlines *this, const Glass *glass, GlassShard **shards, int maxNewShards)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -253,7 +253,7 @@ GlassesClient::TracePoint
 GlassCl_AreaGlasses
 ==============
 */
-unsigned int GlassCl_AreaGlasses(
+unsigned int GlassCl_AreaGlasses(const vec3_t *mins, const vec3_t *maxs, const Glass **glasses, unsigned int maxGlasses)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -294,7 +294,7 @@ GlassesClient::Reset
 GlassesClient::ParseSnapshot
 ==============
 */
-/*void __thiscall GlassesClient::ParseSnapshot(
+/*void __thiscall GlassesClient::ParseSnapshot(GlassesClient *this, LocalClientNum_t localClientNum, msg_t *msg, bool gameState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -304,7 +304,7 @@ GlassesClient::ParseSnapshot
 GlassClient::Outlines::SaveOutlines
 ==============
 */
-/*void __thiscall GlassClient::Outlines::SaveOutlines(
+/*void __thiscall GlassClient::Outlines::SaveOutlines(GlassClient::Outlines *this, FixedSizeAllocator<TempPackedOutline> *newOutlines)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/

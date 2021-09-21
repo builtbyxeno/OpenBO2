@@ -38,7 +38,7 @@ char Live_FileShare_IsCached(unsigned __int64 fileID, fileShareLocation location
 Live_FileShareCache_AddDescriptor
 ==============
 */
-void Live_FileShareCache_AddDescriptor(
+void Live_FileShareCache_AddDescriptor(unsigned __int64 fileID, fileShareLocation location, bdFileMetaData *descriptor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -48,7 +48,7 @@ void Live_FileShareCache_AddDescriptor(
 Live_FileShareCache_GetDescriptor
 ==============
 */
-char Live_FileShareCache_GetDescriptor(
+char Live_FileShareCache_GetDescriptor(unsigned __int64 fileID, fileShareLocation location, bdFileMetaData *descriptor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

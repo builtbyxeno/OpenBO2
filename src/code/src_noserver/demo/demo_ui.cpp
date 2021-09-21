@@ -136,7 +136,7 @@ char *Demo_GetSaveScreenDescription(const char *type)
 Demo_GetConnectionTimeInfoForPlayer
 ==============
 */
-void Demo_GetConnectionTimeInfoForPlayer(
+void Demo_GetConnectionTimeInfoForPlayer(LocalClientNum_t localClientNum, int *connectTime, int *disconnectTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -168,7 +168,7 @@ int Demo_GetNextDefaultBookmarkForPlayer(int playerIndex, ClientNum_t clientNum,
 Demo_GetNextDefaultBookmarkForPlayer
 ==============
 */
-int Demo_GetNextDefaultBookmarkForPlayer(
+int Demo_GetNextDefaultBookmarkForPlayer(LocalClientNum_t localClientNum, int index, int *type, int *time, vec4_t *color, bool *useBottomHalfColor, vec4_t *bottomHalfColor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -254,7 +254,7 @@ void Demo_GetActivatedColorForButton(demoControlsButton demoControlButtonType, v
 Demo_DrawVerticalLine
 ==============
 */
-void Demo_DrawVerticalLine(
+void Demo_DrawVerticalLine(const ScreenPlacement *scrPlace, float x, float y, float w, float h, int horzAlign, int vertAlign, float s1, float t1, float s2, float t2, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -350,7 +350,7 @@ bool Demo_ShouldDrawDemoControlsHUD(LocalClientNum_t localClientNum)
 Demo_KeyboardComplete
 ==============
 */
-void Demo_KeyboardComplete(
+void Demo_KeyboardComplete(LocalClientNum_t localClientNum, char *string, bool errorReported, const char *errorString)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

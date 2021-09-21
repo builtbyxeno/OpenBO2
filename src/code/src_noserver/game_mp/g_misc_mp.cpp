@@ -67,7 +67,7 @@ void EntinfoPosAndScale(gentity_t *self, vec3_t *source, vec3_t *pos, float *tex
 misc_EntInfo
 ==============
 */
-void misc_EntInfo(gentity_t *self, vec3_t *source)
+void misc_EntInfo(char *a1, gentity_t *self, vec3_t *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -77,7 +77,7 @@ void misc_EntInfo(gentity_t *self, vec3_t *source)
 EntInfo_Trigger
 ==============
 */
-void EntInfo_Trigger(gentity_t *self, vec3_t *source)
+void EntInfo_Trigger(char *a1, gentity_t *self, vec3_t *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -87,17 +87,17 @@ void EntInfo_Trigger(gentity_t *self, vec3_t *source)
 EntInfo_Vehicle
 ==============
 */
-void EntInfo_Vehicle(gentity_t *self, vec3_t *source)
+/*void EntInfo_Vehicle(gentity_t *a1@<edx>, char *a2@<ecx>, gentity_t *self)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 EntInfo_Item
 ==============
 */
-void EntInfo_Item(gentity_t *self, vec3_t *source)
+void EntInfo_Item(char *a1, gentity_t *self, vec3_t *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -46,7 +46,7 @@ void R_CubemapShotCopyBufferToTarga(const unsigned __int8 *srcBuffer, unsigned _
 R_CubemapShotApplyFresnelToTarga
 ==============
 */
-void R_CubemapShotApplyFresnelToTarga(
+void R_CubemapShotApplyFresnelToTarga(const CubemapShot shotIndex, const float n0, const float n1, unsigned __int8 *targa)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -56,7 +56,7 @@ void R_CubemapShotApplyFresnelToTarga(
 R_CubemapShotWriteTargaFile
 ==============
 */
-void R_CubemapShotWriteTargaFile(
+void R_CubemapShotWriteTargaFile(const char *filename, const CubemapShot shotIndex, const float n0, const float n1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -86,7 +86,7 @@ void R_SaveCubemapShot(const char *filename, const CubemapShot shotIndex, const 
 R_CubemapLightingForDir
 ==============
 */
-void R_CubemapLightingForDir(
+void R_CubemapLightingForDir(int a1, long double linearColors, vec3_t **a3, int width, int height, const vec3_t *dir, const vec3_t *baseColor, unsigned __int8 *pixel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -96,7 +96,7 @@ void R_CubemapLightingForDir(
 R_CubemapLighting
 ==============
 */
-void R_CubemapLighting(
+void R_CubemapLighting(vec3_t **linearColors, int width, int height, const vec3_t *baseColor, unsigned __int8 **pixels)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -126,11 +126,11 @@ void R_LightingFromCubemapShots(const vec3_t *baseColor)
 R_GetBackBufferData
 ==============
 */
-/*char R_GetBackBufferData@<al>(
+char R_GetBackBufferData(int a1, int x, int y, int width, int height, int bytesPerPixel, unsigned __int8 *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============

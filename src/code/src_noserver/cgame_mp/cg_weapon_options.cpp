@@ -16,7 +16,7 @@ WeaponOptions::InitWeaponOptions
 WeaponOptions::SetupWeaponCamoRender
 ==============
 */
-/*void __thiscall WeaponOptions::SetupWeaponCamoRender(
+/*void __thiscall WeaponOptions::SetupWeaponCamoRender(WeaponOptions *this, LocalClientNum_t localClientNum, const float dist, WeaponDobjInfo::Slot weaponSlot, unsigned int camo, const WeaponDobjInfo *weaponDobjInfo, int *textureOverrideIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -26,7 +26,7 @@ WeaponOptions::SetupWeaponCamoRender
 WeaponOptions::SetReticle
 ==============
 */
-/*void __thiscall WeaponOptions::SetReticle(
+/*void __thiscall WeaponOptions::SetReticle(WeaponOptions *this, WeaponOptions::ReticleType type, int reticle, unsigned int dobjModelMask, int *textureOverrideIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -77,10 +77,10 @@ void GC_InitWeaponOptions()
 CG_SetupWeaponCamoRender
 ==============
 */
-void CG_SetupWeaponCamoRender(
+/*void CG_SetupWeaponCamoRender(LocalClientNum_t localClientNum, const vec3_t *origin, WeaponDobjInfo::Slot weaponSlot, unsigned int camo, const WeaponDobjInfo *weaponDobjInfo, int *textureOverrideIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -118,7 +118,7 @@ void CG_SetRangeFinderShaderConstants(LocalClientNum_t localClientNum, ShaderCon
 CG_SetWeaponSharedShaderConstants
 ==============
 */
-void CG_SetWeaponSharedShaderConstants(
+void CG_SetWeaponSharedShaderConstants(LocalClientNum_t localClientNum, ShaderConstantSet *constantSet, int ammoCounter, float adsRatio)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -139,7 +139,7 @@ float CG_GetWeaponHeat(LocalClientNum_t localClientNum, centity_t *cent)
 CG_SetWeaponHeatConstants
 ==============
 */
-void CG_SetWeaponHeatConstants(
+void CG_SetWeaponHeatConstants(centity_t *a1, float x, LocalClientNum_t localClientNum, centity_t *cent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -149,7 +149,7 @@ void CG_SetWeaponHeatConstants(
 CG_SetWeaponHeatConstants
 ==============
 */
-void CG_SetWeaponHeatConstants(
+void CG_SetWeaponHeatConstants(centity_t *a1, float x, LocalClientNum_t localClientNum, centity_t *cent, WeaponDobjInfo *weaponDobjInfo, int *textureOverrideIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -169,7 +169,7 @@ void CG_SetWeaponMMSConstants(LocalClientNum_t localClientNum, ShaderConstantSet
 WeaponOptions::SetupWeaponOptionsRender
 ==============
 */
-/*void __thiscall WeaponOptions::SetupWeaponOptionsRender(
+/*void __thiscall WeaponOptions::SetupWeaponOptionsRender(WeaponOptions *this, LocalClientNum_t localClientNum, const vec3_t *origin, WeaponDobjInfo::Slot weaponSlot, renderOptions_s renderOptions, const WeaponDobjInfo *weaponDobjInfo, ShaderConstantSet *constantSet, int *textureOverrideIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -179,8 +179,8 @@ WeaponOptions::SetupWeaponOptionsRender
 CG_SetupWeaponOptionsRender
 ==============
 */
-void CG_SetupWeaponOptionsRender(
+/*void CG_SetupWeaponOptionsRender(LocalClientNum_t localClientNum, const vec3_t *origin, WeaponDobjInfo::Slot weaponSlot, renderOptions_s renderOptions, const WeaponDobjInfo *weaponDobjInfo, ShaderConstantSet *constantSet, int *textureOverrideIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 

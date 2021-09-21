@@ -338,7 +338,7 @@ gentity_t *G_CallSpawn(SpawnVar *spawnVar)
 GScr_SetGenericField
 ==============
 */
-void GScr_SetGenericField(
+void GScr_SetGenericField(scriptInstance_t a1, unsigned __int8 *b, fieldtype_t type, int ofs, unsigned int whichbits)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -379,11 +379,11 @@ int Scr_SetEntityField(int entnum, int offset)
 Scr_SetObjectField
 ==============
 */
-/*int Scr_SetObjectField@<eax>(int a1@<edx>, unsigned int classnum, int entnum, int offset)
+int Scr_SetObjectField(int a1, unsigned int classnum, int entnum, int offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============

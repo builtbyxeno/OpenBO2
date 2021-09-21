@@ -133,7 +133,7 @@ void UI_GameModeHistory_Clear()
 UI_DrawSides
 ==============
 */
-void UI_DrawSides(
+void UI_DrawSides(const ScreenPlacement *scrPlace, float x, float y, float w, float h, int horzAlign, int vertAlign, float size, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -143,7 +143,7 @@ void UI_DrawSides(
 UI_DrawTopBottom
 ==============
 */
-void UI_DrawTopBottom(
+void UI_DrawTopBottom(const ScreenPlacement *scrPlace, float x, float y, float w, float h, int horzAlign, int vertAlign, float size, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -153,7 +153,7 @@ void UI_DrawTopBottom(
 UI_DrawRect
 ==============
 */
-void UI_DrawRect(
+void UI_DrawRect(const ScreenPlacement *scrPlace, float x, float y, float width, float height, int horzAlign, int vertAlign, float size, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -163,7 +163,7 @@ void UI_DrawRect(
 UI_DrawHighlightRect
 ==============
 */
-void UI_DrawHighlightRect(
+void UI_DrawHighlightRect(const ScreenPlacement *scrPlace, float x, float y, float w, float h, int horzAlign, int vertAlign, float size, const vec4_t *hiColor, const vec4_t *loColor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -195,7 +195,7 @@ int UI_TextHeight(Font_s *font, float scale)
 UI_DrawTextRotated
 ==============
 */
-void UI_DrawTextRotated(
+void UI_DrawTextRotated(const ScreenPlacement *scrPlace, const char *text, int maxChars, Font_s *font, float x, float y, int horzAlign, int vertAlign, float scale, const vec4_t *color, int style, float rotation)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -205,7 +205,7 @@ void UI_DrawTextRotated(
 UI_DrawTextWithGlow
 ==============
 */
-void UI_DrawTextWithGlow(
+void UI_DrawTextWithGlow(const ScreenPlacement *scrPlace, const char *text, int maxChars, Font_s *font, float x, float y, int horzAlign, int vertAlign, float scale, const vec4_t *color, int style, const vec4_t *glowColor, bool subtitle, bool cinematic)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -215,7 +215,7 @@ void UI_DrawTextWithGlow(
 UI_DrawTextNoSnap
 ==============
 */
-void UI_DrawTextNoSnap(
+void UI_DrawTextNoSnap(const ScreenPlacement *scrPlace, const char *text, int maxChars, Font_s *font, float x, float y, int horzAlign, int vertAlign, float scale, const vec4_t *color, int style)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -225,7 +225,7 @@ void UI_DrawTextNoSnap(
 UI_DrawTextWithCursor
 ==============
 */
-void UI_DrawTextWithCursor(
+void UI_DrawTextWithCursor(const ScreenPlacement *scrPlace, const char *text, int maxChars, Font_s *font, float x, float y, int horzAlign, int vertAlign, float scale, const vec4_t *color, int style, int cursorPos, char cursor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -299,11 +299,11 @@ MenuList *Load_ScriptMenuInternal(const char *pszMenu, int imageTrack)
 Load_ScriptMenu
 ==============
 */
-/*int Load_ScriptMenu@<eax>(int a1@<edx>, const char *a2@<ecx>, LocalClientNum_t localClientNum)
+int Load_ScriptMenu(int a1, const char *a2, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -320,7 +320,7 @@ void UI_VerifyLanguage()
 UI_GetOpenOrCloseMenuOnDvarArgs
 ==============
 */
-bool UI_GetOpenOrCloseMenuOnDvarArgs(
+bool UI_GetOpenOrCloseMenuOnDvarArgs(const char **args, const char *cmd, char *dvarName, int dvarNameLen, char *testValue, int testValueLen, char *menuName, int menuNameLen)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -342,9 +342,11 @@ bool UI_DvarValueTest(const char *cmd, const char *dvarName, const char *testVal
 UI_OpenMenuOnDvar
 ==============
 */
-void UI_OpenMenuOnDvar(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -352,9 +354,11 @@ void UI_OpenMenuOnDvar(
 UI_CloseMenuOnDvar
 ==============
 */
-void UI_CloseMenuOnDvar(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -362,7 +366,7 @@ void UI_CloseMenuOnDvar(
 UI_RunMenuScript
 ==============
 */
-void UI_RunMenuScript(
+void UI_RunMenuScript(LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, const char **args, const char *actualScript)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -466,7 +470,7 @@ void UI_FilterStringForButtonAnimation(char *str, unsigned int strMaxSize)
 UI_ReplaceConversions
 ==============
 */
-void UI_ReplaceConversions(
+void UI_ReplaceConversions(const char *sourceString, ConversionArguments *arguments, char *outputString, int outputStringSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -613,7 +617,7 @@ int UI_OwnerDrawWidth(LocalClientNum_t localClientNum, int ownerDraw, Font_s *fo
 UI_DrawLocalTalking
 ==============
 */
-void UI_DrawLocalTalking(
+void UI_DrawLocalTalking(LocalClientNum_t localClientNum, SessionData *session, UIContextIndex_t contextIndex, const rectDef_s *rect, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -634,7 +638,7 @@ int UI_GetTalkerClientNum(LocalClientNum_t localClientNum, UIContextIndex_t cont
 UI_DrawPartyStatus
 ==============
 */
-void UI_DrawPartyStatus(
+void UI_DrawPartyStatus(LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, rectDef_s *rect, Font_s *font, vec4_t *color, float textScale, int style, float text_x, float text_y, int textAlignMode)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -655,7 +659,7 @@ char *GetXpLockDescription(const LocalClientNum_t localClientNum, const int play
 UI_DrawScrollingTextLong
 ==============
 */
-void UI_DrawScrollingTextLong(
+void UI_DrawScrollingTextLong(const LocalClientNum_t localClientNum, const UIContextIndex_t contextIndex, rectDef_s *rect, Font_s *font, float scale, vec4_t *color, int style, int textAlignMode, const char *text)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -665,7 +669,7 @@ void UI_DrawScrollingTextLong(
 UI_DrawScrollingTextMOTD
 ==============
 */
-void UI_DrawScrollingTextMOTD(
+void UI_DrawScrollingTextMOTD(const LocalClientNum_t localClientNum, const UIContextIndex_t contextIndex, rectDef_s *rect, Font_s *font, float scale, vec4_t *color, int style, int textAlignMode, const char *text)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -675,7 +679,7 @@ void UI_DrawScrollingTextMOTD(
 UI_DrawControllerIcon
 ==============
 */
-void UI_DrawControllerIcon(
+void UI_DrawControllerIcon(const LocalClientNum_t localClientNum, const UIContextIndex_t contextIndex, const rectDef_s *rect, const vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -685,9 +689,11 @@ void UI_DrawControllerIcon(
 UI_OwnerDraw
 ==============
 */
-void UI_OwnerDraw(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -725,7 +731,7 @@ void UI_Init(LocalClientNum_t localClientNum)
 UI_KeyEvent_CancelButtonPressed
 ==============
 */
-bool UI_KeyEvent_CancelButtonPressed(
+bool UI_KeyEvent_CancelButtonPressed(LocalClientNum_t localClientNum, UiContext *dc, menuDef_t *menu, int key, int down)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -747,7 +753,7 @@ bool UI_MenuInputAllowedForLocalClientNum(LocalClientNum_t localClientNum, UiCon
 UI_KeyEvent_IsLocalClientInputAllowedForMenu
 ==============
 */
-bool UI_KeyEvent_IsLocalClientInputAllowedForMenu(
+bool UI_KeyEvent_IsLocalClientInputAllowedForMenu(LocalClientNum_t localClientNum, uiInfo_s *uiInfo, menuDef_t *menu)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -758,7 +764,7 @@ bool UI_KeyEvent_IsLocalClientInputAllowedForMenu(
 UI_HandleLocalClientInput
 ==============
 */
-char UI_HandleLocalClientInput(
+char UI_HandleLocalClientInput(LocalClientNum_t localClientNum, int key, int down, uiInfo_s *uiInfo, menuDef_t *menu)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -779,7 +785,7 @@ void UI_CloseAll(LocalClientNum_t localClientNum)
 UI_UIContext_OpenToastPopup
 ==============
 */
-void UI_UIContext_OpenToastPopup(
+void UI_UIContext_OpenToastPopup(UIContextIndex_t contextIndex, const char *toastPopupIconName, const char *toastPopupTitle, const char *toastPopupDesc, int toastPopupDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -829,7 +835,7 @@ void UI_CloseFromMenuToTopOfStack(LocalClientNum_t localClientNum, const char *m
 UI_OpenToastPopup
 ==============
 */
-void UI_OpenToastPopup(
+void UI_OpenToastPopup(LocalClientNum_t localClientNum, const char *toastPopupIconName, const char *toastPopupTitle, const char *toastPopupDesc, int toastPopupDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -871,7 +877,7 @@ bool UI_KeysBypassMenu(const LocalClientNum_t localClientNum)
 UI_DrawTextPadding
 ==============
 */
-void UI_DrawTextPadding(
+void UI_DrawTextPadding(LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, const char *text, int maxChars, Font_s *font, float x, float y, int horzAlign, int vertAlign, float scale, const vec4_t *color, int style, float padding)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -881,7 +887,7 @@ void UI_DrawTextPadding(
 UI_DrawText
 ==============
 */
-void UI_DrawText(
+void UI_DrawText(const ScreenPlacement *scrPlace, const char *text, int maxChars, Font_s *font, float x, float y, int horzAlign, int vertAlign, float scale, const vec4_t *color, int style, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -966,7 +972,7 @@ char *UI_ReplaceConversionInts(const char *sourceString, int numInts, int *repla
 UI_DrawKeyBindStatus
 ==============
 */
-void UI_DrawKeyBindStatus(
+void UI_DrawKeyBindStatus(UIContextIndex_t contextIndex, rectDef_s *rect, Font_s *font, float scale, vec4_t *color, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -976,7 +982,7 @@ void UI_DrawKeyBindStatus(
 UI_DrawTalkerNum
 ==============
 */
-void UI_DrawTalkerNum(
+void UI_DrawTalkerNum(LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, const int num, rectDef_s *rect, Font_s *font, vec4_t *color, float textScale, int style)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -986,7 +992,7 @@ void UI_DrawTalkerNum(
 UI_DrawReservedSlots
 ==============
 */
-void UI_DrawReservedSlots(
+void UI_DrawReservedSlots(const UIContextIndex_t contextIndex, rectDef_s *rect, Font_s *font, vec4_t *color, float textScale, int style)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -996,7 +1002,7 @@ void UI_DrawReservedSlots(
 UI_DrawLoggedInUser
 ==============
 */
-void UI_DrawLoggedInUser(
+void UI_DrawLoggedInUser(LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, rectDef_s *rect, Font_s *font, float scale, vec4_t *color, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1006,7 +1012,7 @@ void UI_DrawLoggedInUser(
 UI_DrawLoggedInUserName
 ==============
 */
-void UI_DrawLoggedInUserName(
+void UI_DrawLoggedInUserName(LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, rectDef_s *rect, Font_s *font, float scale, vec4_t *color, int textStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1016,7 +1022,7 @@ void UI_DrawLoggedInUserName(
 UI_OwnerDrawText
 ==============
 */
-void UI_OwnerDrawText(
+void UI_OwnerDrawText(const LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, itemDef_s *item, float x, float y, float w, float h, int horzAlign, int vertAlign, float text_x, float text_y, int ownerDraw, int ownerDrawFlags, int align, Font_s *font, float scale, vec4_t *color, Material *material, int textStyle, rectDef_s parentRect, int textAlignMode, const char *text)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1046,7 +1052,7 @@ void UI_DrawBuildNumber(LocalClientNum_t localClientNum, const UIContextIndex_t 
 UI_DrawSessionAndGameModeLine
 ==============
 */
-void UI_DrawSessionAndGameModeLine(
+void UI_DrawSessionAndGameModeLine(LocalClientNum_t localClientNum, const UIContextIndex_t contextIndex, const char *text, Font_s *fh, vec2_t *buildLocation, float buildSize, bool error)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1056,9 +1062,11 @@ void UI_DrawSessionAndGameModeLine(
 UI_DrawSessionAndGameModes
 ==============
 */
-void UI_DrawSessionAndGameModes(LocalClientNum_t localClientNum, const UIContextIndex_t contextIndex)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1066,7 +1074,7 @@ void UI_DrawSessionAndGameModes(LocalClientNum_t localClientNum, const UIContext
 UI_DrawGameModeHistory_DrawMode_HostedOrPlayed
 ==============
 */
-void UI_DrawGameModeHistory_DrawMode_HostedOrPlayed(
+void UI_DrawGameModeHistory_DrawMode_HostedOrPlayed(const LocalClientNum_t localClientNum, const char *gamemode, const char *hostedOrPlayed, vec2_t *buildLocation, float buildSize, Font_s *fh)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1076,7 +1084,7 @@ void UI_DrawGameModeHistory_DrawMode_HostedOrPlayed(
 UI_DrawGameModeHistory_DrawMode
 ==============
 */
-void UI_DrawGameModeHistory_DrawMode(
+void UI_DrawGameModeHistory_DrawMode(const LocalClientNum_t localClientNum, const char *gamemode, vec2_t *buildLocation, float buildSize, Font_s *fh)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1139,7 +1147,7 @@ const char *GetPLevelLockDescription(const LocalClientNum_t localClientNum, cons
 UI_GetPlaylistDescription
 ==============
 */
-const char *UI_GetPlaylistDescription(
+const char *UI_GetPlaylistDescription(const LocalClientNum_t localClientNum, int playlistId, PlaylistLockState lockState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

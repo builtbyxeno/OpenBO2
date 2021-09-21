@@ -93,7 +93,7 @@ void LiveStorage_CheckWADTimestampRequired(ControllerIndex_t controllerIndex)
 LiveStorage_DecompressBuffer
 ==============
 */
-BOOL LiveStorage_DecompressBuffer(
+BOOL LiveStorage_DecompressBuffer(unsigned __int8 *compressedBuffer, unsigned int compressedSize, unsigned __int8 *uncompressedBuffer, unsigned int uncompressedSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

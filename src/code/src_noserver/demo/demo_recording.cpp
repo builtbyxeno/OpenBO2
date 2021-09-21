@@ -144,7 +144,7 @@ void Demo_WriteServerCommands(msg_t *msg, bool liveStreamNoDelta)
 Demo_WriteSnapshotStartData
 ==============
 */
-void Demo_WriteSnapshotStartData(
+void Demo_WriteSnapshotStartData(msg_t *msg, int msgSequence, int cmdSequence, int serverTime, int physicsTime, int lastFrame, int snapFlags, bool liveStreamNoDelta)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -274,9 +274,11 @@ void Demo_WriteExtraNetworkProfileData(msg_t *msg)
 Demo_BuildDemoSnapshotInternal
 ==============
 */
-void Demo_BuildDemoSnapshotInternal(msg_t *msg, bool liveStreamNoDelta)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -294,7 +296,7 @@ void Demo_WriteFooterInternal(msg_t *msg, demoFooter *footer, bool isClip)
 Demo_WriteClipFooterToBuffer
 ==============
 */
-unsigned int Demo_WriteClipFooterToBuffer(
+unsigned int Demo_WriteClipFooterToBuffer(demoFooter *footer, unsigned __int8 *buffer, int maxBufferSize, int clipDuration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -315,7 +317,7 @@ void Demo_WriteFooter(int handle, demoFooter *footer)
 Demo_AddBookmark
 ==============
 */
-void Demo_AddBookmark(
+void Demo_AddBookmark(int type, int time, int clientNum1, int clientNum2, int scoreEventPriority, int entityNumber, int eType, int birthTime, int overrideEntityCamera, int actorNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -398,10 +400,11 @@ void Demo_StartSaveProcess(bool gameState)
 Demo_SaveCallback
 ==============
 */
-int Demo_SaveCallback(jqBatch *batch)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*

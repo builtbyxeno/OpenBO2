@@ -101,7 +101,7 @@ void DynEnt_FixupLightConstraints(LocalClientNum_t localClientNum, int entnum, i
 DynEnt_UpdateLightConstraint
 ==============
 */
-void DynEnt_UpdateLightConstraint(
+void DynEnt_UpdateLightConstraint(LocalClientNum_t localClientNum, const DynEntityDef *dynEntDef, const DynEntityPose *dynEntPose)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -111,7 +111,7 @@ void DynEnt_UpdateLightConstraint(
 DynEnt_UpdateConstraints
 ==============
 */
-void DynEnt_UpdateConstraints(
+void DynEnt_UpdateConstraints(LocalClientNum_t localClientNum, DynEntityClient *dynEntClient, const DynEntityDef *dynEntDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -132,7 +132,7 @@ int DynEnt_GetSurfaceType(const DynEntityDef *dynEntDef)
 DynEntCl_PointTrace_r
 ==============
 */
-void DynEntCl_PointTrace_r(
+void DynEntCl_PointTrace_r(DynEntityDrawType drawType, const pointtrace_t *clip, unsigned int sectorIndex, vec4_t *p1, vec4_t *p2, trace_t *results)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -152,7 +152,7 @@ void DynEntCl_PointTrace(const pointtrace_t *clip, trace_t *results)
 DynEntCl_AreaEntities_r
 ==============
 */
-void DynEntCl_AreaEntities_r(
+void DynEntCl_AreaEntities_r(DynEntityDrawType drawType, unsigned int sectorIndex, DynEntityAreaParms *areaParms)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -162,7 +162,7 @@ void DynEntCl_AreaEntities_r(
 DynEntCl_AreaEntities
 ==============
 */
-unsigned __int16 DynEntCl_AreaEntities(
+unsigned __int16 DynEntCl_AreaEntities(DynEntityDrawType drawType, const vec3_t *mins, const vec3_t *maxs, int contentMask, unsigned __int16 dynEntMaxCount, unsigned __int16 *dynEntList)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -183,7 +183,7 @@ void DynEntCl_PlayEventFx(const FxEffectDef *def, const vec3_t *origin, const ve
 DynEntCl_PlayImpactEffects
 ==============
 */
-void DynEntCl_PlayImpactEffects(
+void DynEntCl_PlayImpactEffects(LocalClientNum_t localClientNum, int sourceEntityNum, int surfType, const vec3_t *hitPos, const vec3_t *hitNormal)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -213,7 +213,7 @@ void DynEntCl_Enable(unsigned __int16 absId, const bool enable)
 DynEntCl_Damage
 ==============
 */
-void DynEntCl_Damage(
+void DynEntCl_Damage(LocalClientNum_t localClientNum, unsigned __int16 dynEntId, DynEntityDrawType drawType, const vec3_t *hitPos, const vec3_t *hitDir, int damage)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -287,7 +287,7 @@ BOOL DynEntCl_CompareDynEntsForExplosion(const DynEntSortStruct *ent1, const Dyn
 DynEntCl_DestroyEvent
 ==============
 */
-void DynEntCl_DestroyEvent(
+void DynEntCl_DestroyEvent(LocalClientNum_t localClientNum, unsigned __int16 dynEntId, DynEntityDrawType drawType, const vec3_t *hitPos, const vec3_t *hitDir)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -370,7 +370,7 @@ DynEnt_SetupConstraints
 DynEntCl_CreatePhysObj
 ==============
 */
-int DynEntCl_CreatePhysObj(
+int DynEntCl_CreatePhysObj(const DynEntityDef *dynEntDef, DynEntityClient *dynEntClient, const GfxPlacement *pose)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -413,7 +413,7 @@ LocalClientNum_t DynEnt_UpdateBurning()
 DynEntCl_FlameDamage
 ==============
 */
-void DynEntCl_FlameDamage(
+void DynEntCl_FlameDamage(LocalClientNum_t localClientNum, unsigned __int16 dynEntId, DynEntityDrawType drawType, const vec3_t *hitPos, const vec3_t *hitVel, int damage)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -423,7 +423,7 @@ void DynEntCl_FlameDamage(
 DynEntCl_EntityImpactEvent
 ==============
 */
-void DynEntCl_EntityImpactEvent(
+void DynEntCl_EntityImpactEvent(const trace_t *trace, LocalClientNum_t localClientNum, int sourceEntityNum, const vec3_t *start, const vec3_t *hitPos, bool isMelee)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -457,7 +457,7 @@ DynEntCl_DynEntImpactEvent
 DynEntCl_DynEntBulletImpactEvent
 ==============
 */
-char DynEntCl_DynEntBulletImpactEvent(
+char DynEntCl_DynEntBulletImpactEvent(LocalClientNum_t localClientNum, int sourceEntityNum, const vec3_t *start, const vec3_t *end, const WeaponDef *weapDef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -509,7 +509,7 @@ unsigned __int16 DynEntCl_AddEntityModel()
 DynEntCl_CreateEntityModel
 ==============
 */
-unsigned __int16 DynEntCl_CreateEntityModel(
+unsigned __int16 DynEntCl_CreateEntityModel(XModel *model, const vec4_t *quat, const vec3_t *origin, const vec3_t *hitPos, const vec3_t *hitDir, const int mod, PhysPreset *preset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -560,7 +560,7 @@ void DynEntCl_ProcessEntities(LocalClientNum_t localClientNum, int time)
 DynEntCl_GetClosestEntities
 ==============
 */
-unsigned int DynEntCl_GetClosestEntities(
+unsigned int DynEntCl_GetClosestEntities(DynEntityDrawType drawType, const vec3_t *radiusMins, const vec3_t *radiusMaxs, const vec3_t *origin, unsigned __int16 *hitEnts, bool isCylinder)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -571,7 +571,7 @@ unsigned int DynEntCl_GetClosestEntities(
 DynEntCl_ExplosionEvent
 ==============
 */
-void DynEntCl_ExplosionEvent(
+void DynEntCl_ExplosionEvent(int a1, LocalClientNum_t a2, LocalClientNum_t localClientNum, bool isCylinder, const vec3_t *origin, float innerRadius, float outerRadius, const vec3_t *impulse, float inScale, int innerDamage, int outerDamage, bool isBulletExplosiveDamage)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -581,7 +581,7 @@ void DynEntCl_ExplosionEvent(
 DynEntCl_JetThrustEvent
 ==============
 */
-void DynEntCl_JetThrustEvent(
+void DynEntCl_JetThrustEvent(int a1, LocalClientNum_t a2, LocalClientNum_t localClientNum, const vec3_t *origin, const vec3_t *forward, float outerRadius, float dotLimit)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

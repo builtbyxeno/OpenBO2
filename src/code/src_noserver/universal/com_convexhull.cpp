@@ -6,7 +6,7 @@
 Com_InitialHull
 ==============
 */
-void Com_InitialHull(
+void Com_InitialHull(const vec2_t *points, unsigned int *pointOrder, unsigned int pointCount, unsigned int *hullOrder)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -16,7 +16,7 @@ void Com_InitialHull(
 Com_RecursivelyGrowHull
 ==============
 */
-unsigned int Com_RecursivelyGrowHull(
+unsigned int Com_RecursivelyGrowHull(const vec2_t *points, unsigned int *pointOrder, unsigned int pointCount, unsigned int firstIndex, unsigned int secondIndex, unsigned int *hullOrder, unsigned int hullPointCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -27,7 +27,7 @@ unsigned int Com_RecursivelyGrowHull(
 Com_GrowInitialHull
 ==============
 */
-unsigned int Com_GrowInitialHull(
+unsigned int Com_GrowInitialHull(const vec2_t *points, unsigned int *pointOrder, unsigned int pointCount, unsigned int *hullOrder)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -48,9 +48,9 @@ void Com_TranslatePoints(vec2_t *points, unsigned int pointCount, vec2_t *offset
 Com_ConvexHull
 ==============
 */
-/*signed int Com_ConvexHull@<eax>(
+unsigned int Com_ConvexHull(unsigned int a1, vec2_t *points, unsigned int pointCount, vec2_t *hull)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 

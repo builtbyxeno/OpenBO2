@@ -36,10 +36,10 @@ void GScr_AddFieldsForSentient()
 Scr_SetSentientField
 ==============
 */
-void Scr_SetSentientField(sentient_t *sentient, int offset)
+/*void Scr_SetSentientField(const char *a1@<esi>, sentient_t *sentient, int offset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

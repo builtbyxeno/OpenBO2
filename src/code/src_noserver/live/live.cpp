@@ -134,7 +134,7 @@ void Live_SetComErrorIfJoinInProgressFails(bool shouldComError)
 Live_ResetLobbyModeDvars
 ==============
 */
-void Live_ResetLobbyModeDvars(
+void Live_ResetLobbyModeDvars(PartyData_s *party, const eGameModes currentLobbyMode, const dvar_t *playerCountDvar, const dvar_t *localPlayerCountDvar)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -306,7 +306,7 @@ void Live_GetGeoLocationData(const ControllerIndex_t controllerIndex)
 Live_CanHostServer
 ==============
 */
-bool Live_CanHostServer(
+bool Live_CanHostServer(const ControllerIndex_t localControllerIndex, const int playerCount, int *failureReason)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

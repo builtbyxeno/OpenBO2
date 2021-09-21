@@ -130,7 +130,7 @@ void TaskManager2_SkipCallbacksForTasksAfterComplete(const TaskDefinition *defin
 TaskManger2_TaskGetInProgressForControllerByName
 ==============
 */
-char TaskManger2_TaskGetInProgressForControllerByName(
+char TaskManger2_TaskGetInProgressForControllerByName(const char *taskName, const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -192,7 +192,7 @@ void TaskManager2_Init()
 TaskManager2_ReportTaskComplete
 ==============
 */
-void TaskManager2_ReportTaskComplete(
+void TaskManager2_ReportTaskComplete(TaskRecord *task, bool success, const char *reason, unsigned int errorcode)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -222,9 +222,11 @@ void TaskManager2_HandleTimedOutTask(TaskRecord *TimedOutTask)
 TaskManager2_ProcessLocalTask
 ==============
 */
-void TaskManager2_ProcessLocalTask(TaskRecord *task)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -252,9 +254,11 @@ void TaskManager2_ProcessDemonwareTask(TaskRecord *task)
 TaskManager2_ProcessNestedTask
 ==============
 */
-void TaskManager2_ProcessNestedTask(TaskRecord *task)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -262,7 +266,7 @@ void TaskManager2_ProcessNestedTask(TaskRecord *task)
 TaskManager2_CreateTask
 ==============
 */
-TaskRecord *TaskManager2_CreateTask(
+TaskRecord *TaskManager2_CreateTask(const TaskDefinition *definition, const ControllerIndex_t controllerIndex, TaskRecord *nestTask, int timeout)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -283,7 +287,7 @@ void TaskManager2_EnumTasksInProgress(void (*func)(TaskRecord *, void *), void *
 TaskManager2_TaskGetInProgressForController
 ==============
 */
-TaskRecord *TaskManager2_TaskGetInProgressForController(
+TaskRecord *TaskManager2_TaskGetInProgressForController(const TaskDefinition *definition, const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -316,7 +320,7 @@ TaskRecord *TaskManager2_TaskGetInProgressCallBackSkipCallbacks(const TaskDefini
 TaskManager2_TaskIsInProgressForController
 ==============
 */
-BOOL TaskManager2_TaskIsInProgressForController(
+BOOL TaskManager2_TaskIsInProgressForController(const TaskDefinition *definition, const ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -349,7 +353,7 @@ int TaskManager2_CountTasksInProgress(const TaskDefinition *definition)
 TaskManager2_CountTasksInProgressForControllerByType
 ==============
 */
-int TaskManager2_CountTasksInProgressForControllerByType(
+int TaskManager2_CountTasksInProgressForControllerByType(const int controllerindex, const unsigned __int64 type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -390,7 +394,7 @@ void TaskManager2_StartTask(TaskRecord *task)
 TaskManager2_SetupNestedTask
 ==============
 */
-TaskRecord *TaskManager2_SetupNestedTask(
+TaskRecord *TaskManager2_SetupNestedTask(const TaskDefinition *taskdef, ControllerIndex_t controllerIndex, TaskRecord *nestedTask, void *payload)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -401,7 +405,7 @@ TaskRecord *TaskManager2_SetupNestedTask(
 TaskManager2_SetupRemoteTask
 ==============
 */
-TaskRecord *TaskManager2_SetupRemoteTask(
+TaskRecord *TaskManager2_SetupRemoteTask(const TaskDefinition *definition, const ControllerIndex_t controllerIndex, bdRemoteTask *remoteTask, void *payload)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

@@ -37,7 +37,7 @@ void AimTarget_Init(LocalClientNum_t localClientNum)
 R_SortStaticModelsOnAxis_PosX
 ==============
 */
-BOOL R_SortStaticModelsOnAxis_PosX(
+BOOL R_SortStaticModelsOnAxis_PosX(const GfxStaticModelCombinedInst *smodelCombinedInst0, const GfxStaticModelCombinedInst *smodelCombinedInst1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -152,11 +152,10 @@ void AimTarget_UpdateClientTargets(LocalClientNum_t localClientNum)
 AimTarget_IsTargetVisible
 ==============
 */
-
+BOOL AimTarget_IsTargetVisible(LocalClientNum_t localClientNum, const centity_t* targetEnt)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	 tmp;
-	return tmp;
+	return 0;
 }
 
 /*
@@ -164,7 +163,7 @@ AimTarget_IsTargetVisible
 AimTarget_GetClientTargetList
 ==============
 */
-void AimTarget_GetClientTargetList(
+void AimTarget_GetClientTargetList(LocalClientNum_t localClientNum, const AimTarget **targetList, int *targetCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

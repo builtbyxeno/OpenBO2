@@ -132,7 +132,7 @@ int PC_Script_Parse(int handle, const char **out)
 PC_CndStackPush
 ==============
 */
-int PC_CndStackPush(
+int PC_CndStackPush(int handle, ExpressionStatement expressionStatement, bool fireOnTrue, bool incrementLevel, int blockID, int constructID, int type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -535,44 +535,44 @@ int ItemParse_decoration(itemDef_s *item)
 ItemParse_notselectable
 ==============
 */
-/*int ItemParse_notselectable@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item)
+int ItemParse_notselectable(int a1, itemDef_s *a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_noScrollBars
 ==============
 */
-/*int ItemParse_noScrollBars@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item)
+int ItemParse_noScrollBars(int a1, itemDef_s *a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_noBlinkingHighlight
 ==============
 */
-/*int ItemParse_noBlinkingHighlight@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item)
+int ItemParse_noBlinkingHighlight(int a1, itemDef_s *a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_usePaging
 ==============
 */
-/*int ItemParse_usePaging@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item)
+int ItemParse_usePaging(int a1, itemDef_s *a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -645,22 +645,22 @@ int ItemParse_background(itemDef_s *item, int handle)
 ItemParse_doubleClick
 ==============
 */
-/*int ItemParse_doubleClick@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item)
+int ItemParse_doubleClick(int a1, itemDef_s *a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_rightClick
 ==============
 */
-/*int ItemParse_rightClick@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item)
+int ItemParse_rightClick(int a1, itemDef_s *a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -777,132 +777,132 @@ int ItemParse_dvarTest(itemDef_s *item, int handle)
 ItemParse_dvar
 ==============
 */
-/*int ItemParse_dvar@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_dvar(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_profile
 ==============
 */
-/*int ItemParse_profile@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_profile(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 Item_Parse_maxCharsGotoNext
 ==============
 */
-/*int Item_Parse_maxCharsGotoNext@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item)
+int Item_Parse_maxCharsGotoNext(int a1, itemDef_s *a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_dvarStrList
 ==============
 */
-/*int ItemParse_dvarStrList@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_dvarStrList(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_profileStrList
 ==============
 */
-/*int ItemParse_profileStrList@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_profileStrList(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_dvarEnumList
 ==============
 */
-/*int ItemParse_dvarEnumList@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_dvarEnumList(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_actionOnEnterPressOnly
 ==============
 */
-/*int ItemParse_actionOnEnterPressOnly@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item)
+int ItemParse_actionOnEnterPressOnly(int a1, itemDef_s *a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_enableDvar
 ==============
 */
-/*int ItemParse_enableDvar@<eax>(const char **a1@<edx>, int a2@<ecx>, itemDef_s *item)
+int ItemParse_enableDvar(const char **a1, int a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_disableDvar
 ==============
 */
-/*int ItemParse_disableDvar@<eax>(const char **a1@<edx>, int a2@<ecx>, itemDef_s *item)
+int ItemParse_disableDvar(const char **a1, int a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_showDvar
 ==============
 */
-/*int ItemParse_showDvar@<eax>(const char **a1@<edx>, int a2@<ecx>, itemDef_s *item)
+int ItemParse_showDvar(const char **a1, int a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_hideDvar
 ==============
 */
-/*int ItemParse_hideDvar@<eax>(const char **a1@<edx>, int a2@<ecx>, itemDef_s *item)
+int ItemParse_hideDvar(const char **a1, int a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_focusDvar
 ==============
 */
-/*int ItemParse_focusDvar@<eax>(const char **a1@<edx>, int a2@<ecx>, itemDef_s *item)
+int ItemParse_focusDvar(const char **a1, int a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -942,44 +942,44 @@ BOOL ItemParse_execExp(itemDef_s *item, int handle)
 ItemParse_selectIcon
 ==============
 */
-/*int ItemParse_selectIcon@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_selectIcon(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_backgroundItemListbox
 ==============
 */
-/*int ItemParse_backgroundItemListbox@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_backgroundItemListbox(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_highlightTexture
 ==============
 */
-/*int ItemParse_highlightTexture@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_highlightTexture(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_onListboxSelectionChange
 ==============
 */
-/*listBoxDef_s *ItemParse_onListboxSelectionChange@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item)
+listBoxDef_s *ItemParse_onListboxSelectionChange(int a1, itemDef_s *a2, itemDef_s *item)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -1040,11 +1040,11 @@ int PC_Int_Parse(int handle, int *i)
 PC_Rect_Parse
 ==============
 */
-/*int PC_Rect_Parse@<eax>(float *a1@<edx>, int handle, rectDef_s *r)
+int PC_Rect_Parse(float *a1, int handle, rectDef_s *r)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -1062,363 +1062,363 @@ int WindowParse_frame(windowDef_t *window, int handle)
 MenuParse_fullscreen
 ==============
 */
-/*int MenuParse_fullscreen@<eax>(int *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_fullscreen(int *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_rect
 ==============
 */
-/*int MenuParse_rect@<eax>(float *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_rect(float *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_style
 ==============
 */
-/*int ItemParse_style@<eax>(int *a1@<edx>, itemDef_s *item, int handle)
+int ItemParse_style(int *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_border
 ==============
 */
-/*int ItemParse_border@<eax>(int *a1@<edx>, itemDef_s *item, int handle)
+int ItemParse_border(int *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_borderSize
 ==============
 */
-/*int MenuParse_borderSize@<eax>(float *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_borderSize(float *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_backcolor
 ==============
 */
-/*int MenuParse_backcolor@<eax>(vec4_t *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_backcolor(vec4_t *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_forecolor
 ==============
 */
-/*int MenuParse_forecolor@<eax>(vec4_t *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_forecolor(vec4_t *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_bordercolor
 ==============
 */
-/*int MenuParse_bordercolor@<eax>(vec4_t *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_bordercolor(vec4_t *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_focuscolor
 ==============
 */
-/*int MenuParse_focuscolor@<eax>(vec4_t *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_focuscolor(vec4_t *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_disablecolor
 ==============
 */
-/*int MenuParse_disablecolor@<eax>(vec4_t *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_disablecolor(vec4_t *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_outlinecolor
 ==============
 */
-/*int MenuParse_outlinecolor@<eax>(vec4_t *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_outlinecolor(vec4_t *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_ownerdrawFlag
 ==============
 */
-/*int ItemParse_ownerdrawFlag@<eax>(int *a1@<edx>, itemDef_s *item, int handle)
+int ItemParse_ownerdrawFlag(int *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_ownerdraw
 ==============
 */
-/*int MenuParse_ownerdraw@<eax>(int *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_ownerdraw(int *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_fadeClamp
 ==============
 */
-/*int MenuParse_fadeClamp@<eax>(float *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_fadeClamp(float *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_fadeAmount
 ==============
 */
-/*int MenuParse_fadeAmount@<eax>(float *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_fadeAmount(float *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_fadeInAmount
 ==============
 */
-/*int MenuParse_fadeInAmount@<eax>(float *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_fadeInAmount(float *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_fadeCycle
 ==============
 */
-/*int MenuParse_fadeCycle@<eax>(int *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_fadeCycle(int *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_execKeyInt
 ==============
 */
-/*int MenuParse_execKeyInt@<eax>(int *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_execKeyInt(int *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_blurWorld
 ==============
 */
-/*int MenuParse_blurWorld@<eax>(float *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_blurWorld(float *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_ui3dWindowId
 ==============
 */
-/*int MenuParse_ui3dWindowId@<eax>(int *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_ui3dWindowId(int *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_priority
 ==============
 */
-/*int MenuParse_priority@<eax>(int *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_priority(int *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_openSlideSpeed
 ==============
 */
-/*int MenuParse_openSlideSpeed@<eax>(int *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_openSlideSpeed(int *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_closeSlideSpeed
 ==============
 */
-/*int MenuParse_closeSlideSpeed@<eax>(int *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_closeSlideSpeed(int *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_openSlideDirection
 ==============
 */
-/*int MenuParse_openSlideDirection@<eax>(int *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_openSlideDirection(int *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_closeSlideDirection
 ==============
 */
-/*int MenuParse_closeSlideDirection@<eax>(int *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_closeSlideDirection(int *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_openFadingTime
 ==============
 */
-/*int MenuParse_openFadingTime@<eax>(int *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_openFadingTime(int *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_closeFadingTime
 ==============
 */
-/*int MenuParse_closeFadingTime@<eax>(int *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_closeFadingTime(int *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 MenuParse_control
 ==============
 */
-/*int MenuParse_control@<eax>(int *a1@<edx>, menuDef_t *menu, int handle)
+int MenuParse_control(int *a1, menuDef_t *menu, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_rect
 ==============
 */
-/*int ItemParse_rect@<eax>(float *a1@<edx>, itemDef_s *item, int handle)
+int ItemParse_rect(float *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_origin
 ==============
 */
-/*int ItemParse_origin@<eax>(int *a1@<edx>, itemDef_s *item, int handle)
+int ItemParse_origin(int *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_type
 ==============
 */
-/*int ItemParse_type@<eax>(int *a1@<edx>, itemDef_s *item, int handle)
+int ItemParse_type(int *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_elementwidth
 ==============
 */
-/*listBoxDef_s *ItemParse_elementwidth@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+listBoxDef_s *ItemParse_elementwidth(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 ItemParse_elementheight
 ==============
 */
-/*listBoxDef_s *ItemParse_elementheight@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+listBoxDef_s *ItemParse_elementheight(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -1436,22 +1436,22 @@ BOOL ItemParse_special(itemDef_s *item, int handle)
 ItemParse_elementtype
 ==============
 */
-/*int ItemParse_elementtype@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_elementtype(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_columns
 ==============
 */
-/*int ItemParse_columns@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_columns(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -1469,44 +1469,44 @@ int ItemParse_menuColDef(listBoxDef_s *listPtr, int handle, MenuCell *cells, int
 ItemParse_menuItemsDef
 ==============
 */
-/*int ItemParse_menuItemsDef@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_menuItemsDef(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_menuarea
 ==============
 */
-/*int ItemParse_menuarea@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_menuarea(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_userarea
 ==============
 */
-/*int ItemParse_userarea@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_userarea(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_bordersize
 ==============
 */
-/*BOOL ItemParse_bordersize@<eax>(float *a1@<edx>, itemDef_s *item, int handle)
+BOOL ItemParse_bordersize(float *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -1678,11 +1678,11 @@ BOOL ItemParse_textstyle(itemDef_s *item, int handle)
 ItemParse_rotation
 ==============
 */
-/*BOOL ItemParse_rotation@<eax>(float *a1@<edx>, itemDef_s *item, int handle)
+BOOL ItemParse_rotation(float *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -1711,11 +1711,11 @@ int ItemParse_backcolor(itemDef_s *item, int handle)
 ItemParse_forecolor
 ==============
 */
-/*int ItemParse_forecolor@<eax>(float *a1@<edx>, itemDef_s *item, int handle)
+int ItemParse_forecolor(float *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -1744,176 +1744,176 @@ int ItemParse_frame(windowDef_t *a1, int a2)
 ItemParse_outlinecolor
 ==============
 */
-/*BOOL ItemParse_outlinecolor@<eax>(vec4_t *a1@<edx>, itemDef_s *item, int handle)
+BOOL ItemParse_outlinecolor(vec4_t *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_profileFloat
 ==============
 */
-/*int ItemParse_profileFloat@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_profileFloat(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_maxChars
 ==============
 */
-/*int ItemParse_maxChars@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_maxChars(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_maxPaintChars
 ==============
 */
-/*int ItemParse_maxPaintChars@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_maxPaintChars(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_dvarFloat
 ==============
 */
-/*int ItemParse_dvarFloat@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_dvarFloat(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_dvarFloatList
 ==============
 */
-/*int ItemParse_dvarFloatList@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_dvarFloatList(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_profileFloatList
 ==============
 */
-/*int ItemParse_profileFloatList@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+int ItemParse_profileFloatList(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_execKeyInt
 ==============
 */
-/*int ItemParse_execKeyInt@<eax>(int *a1@<edx>, itemDef_s *item, int handle)
+int ItemParse_execKeyInt(int *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_gameMsgWindowIndex
 ==============
 */
-/*int ItemParse_gameMsgWindowIndex@<eax>(int *a1@<edx>, itemDef_s *item, int handle)
+int ItemParse_gameMsgWindowIndex(int *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_gameMsgWindowMode
 ==============
 */
-/*int ItemParse_gameMsgWindowMode@<eax>(int *a1@<edx>, itemDef_s *item, int handle)
+int ItemParse_gameMsgWindowMode(int *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 ItemParse_selectBorder
 ==============
 */
-/*listBoxDef_s *ItemParse_selectBorder@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+listBoxDef_s *ItemParse_selectBorder(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 ItemParse_elementHighlightColor
 ==============
 */
-/*listBoxDef_s *ItemParse_elementHighlightColor@<eax>(
+listBoxDef_s *ItemParse_elementHighlightColor(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 ItemParse_elementBackgroundColor
 ==============
 */
-/*listBoxDef_s *ItemParse_elementBackgroundColor@<eax>(
+listBoxDef_s *ItemParse_elementBackgroundColor(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 ItemParse_disableColor
 ==============
 */
-/*listBoxDef_s *ItemParse_disableColor@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+listBoxDef_s *ItemParse_disableColor(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 ItemParse_focusColor
 ==============
 */
-/*listBoxDef_s *ItemParse_focusColor@<eax>(int a1@<edx>, itemDef_s *a2@<ecx>, itemDef_s *item, int handle)
+listBoxDef_s *ItemParse_focusColor(int a1, itemDef_s *a2, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 ItemParse_ui3dWindowId
 ==============
 */
-/*int ItemParse_ui3dWindowId@<eax>(int *a1@<edx>, itemDef_s *item, int handle)
+int ItemParse_ui3dWindowId(int *a1, itemDef_s *item, int handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============

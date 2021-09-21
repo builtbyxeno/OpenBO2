@@ -6,7 +6,7 @@
 SND_PlayInternal
 ==============
 */
-void SND_PlayInternal(
+void SND_PlayInternal(unsigned int id, int fadeTimeMs, float attenuation, SndEntHandle entHandle, const vec3_t *position, const vec3_t *direction, bool notify, SndPlayback *playback, bool startPaused, bool setScriptValues, float scriptPitch, float scriptPitchRate, float scriptAttenuation, float scriptAttenuationRate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -16,9 +16,11 @@ void SND_PlayInternal(
 SND_Play
 ==============
 */
-void SND_Play(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -26,9 +28,11 @@ void SND_Play(
 SND_Play
 ==============
 */
-void SND_Play(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -86,7 +90,7 @@ void SND_DisconnectListener(LocalClientNum_t listener)
 SND_SetListener
 ==============
 */
-void SND_SetListener(
+void SND_SetListener(LocalClientNum_t listener, ClientNum_t clientNum, team_t team, const vec3_t *origin, const vec3_t *axis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -346,7 +350,7 @@ void SND_AddGlobals(SndDriverGlobals *globals)
 SND_WhizbyPath
 ==============
 */
-bool SND_WhizbyPath(
+bool SND_WhizbyPath(const vec3_t *p1, const vec3_t *p2, const vec3_t *p3, float r, vec3_t *start, vec3_t *end)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -357,7 +361,7 @@ bool SND_WhizbyPath(
 SND_Whizby
 ==============
 */
-void SND_Whizby(
+void SND_Whizby(SndEntHandle sndEnt, const vec3_t *shotPosition, const vec3_t *shotDirection, const vec3_t *position, const vec3_t *center, const char *whizbySound, const bool isUnderwater, const char *crackSound)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -378,7 +382,7 @@ SndEntState **SND_FindEntState(SndEntHandle handle, bool createNew)
 SNDL_SetEntState
 ==============
 */
-void SNDL_SetEntState(
+void SNDL_SetEntState(SndEntHandle handle, const vec3_t *origin, const vec3_t *velocity, const vec3_t *orientation)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -504,22 +508,21 @@ bool SND_GetKnownLength(int playbackId, int *msec)
 SND_Frame
 ==============
 */
-/*int SND_Frame@<eax>(float a1@<edi>)
+int SND_Frame(float a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 updatesound_workerCallback_Implementation
 ==============
 */
-/*int updatesound_workerCallback_Implementation@<eax>(float a1@<edi>)
+void updatesound_workerCallback_Implementation(jqBatch *,void *)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+}
 
 /*
 ==============
@@ -566,7 +569,7 @@ void SND_GameReset()
 SND_BeginFrame
 ==============
 */
-void SND_BeginFrame(
+void SND_BeginFrame(bool isMature, bool isPaused, float timescale, unsigned int cgTime, unsigned int seed, float voiceScale, float musicScale, float sfxScale, float masterScale, float cinematicScale, int masterPatch, bool hearingImpaired)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -586,7 +589,7 @@ void SND_SetFrontendMusic(const char *musicAlias)
 SND_SetLoopState
 ==============
 */
-void SND_SetLoopState(
+void SND_SetLoopState(SndEntHandle ent, unsigned int alias, float attenuation, float attenuationRate, float pitch, float pitchRate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -626,10 +629,11 @@ void SND_Shutdown()
 SND_PlaybackBundle
 ==============
 */
-int SND_PlaybackBundle(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -637,10 +641,11 @@ int SND_PlaybackBundle(
 SND_Playback
 ==============
 */
-int SND_Playback(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -648,7 +653,7 @@ int SND_Playback(
 SND_Playback
 ==============
 */
-int SND_Playback(
+int SND_Playback(const char *alias, int fadeTimeMs, float attenuation, int entHandle, const vec3_t *position, const vec3_t *direction, SndPlayback *notify, bool startPaused)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

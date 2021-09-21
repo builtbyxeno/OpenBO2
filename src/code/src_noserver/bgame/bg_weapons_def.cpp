@@ -240,10 +240,11 @@ int GunPerkFromIndex(int index)
 BG_SetupWeaponVariantDef
 ==============
 */
-unsigned int BG_SetupWeaponVariantDef(WeaponVariantDef *weapVariantDef, void (*regWeap)(unsigned int))
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -285,7 +286,7 @@ Weapon BG_GetWeaponForName(const char *name)
 BG_SetupAltWeaponIndex
 ==============
 */
-void BG_SetupAltWeaponIndex(
+void BG_SetupAltWeaponIndex(const Weapon baseWeapon, WeaponVariantDef *weapVariantDef, void (*regWeap)(unsigned int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -295,9 +296,11 @@ void BG_SetupAltWeaponIndex(
 BG_WeaponVariantPrecache
 ==============
 */
-void BG_WeaponVariantPrecache(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -305,7 +308,7 @@ void BG_WeaponVariantPrecache(
 PrecacheGunPerk_r
 ==============
 */
-void PrecacheGunPerk_r(
+void PrecacheGunPerk_r(int index, int weaponTableItemIndex, const Weapon baseWeapon, void (*regWeap)(unsigned int), const char *namePrefix, const char *namePostfix, int *attachmentCount, unsigned __int64 incompatibleAttachments)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -315,7 +318,7 @@ void PrecacheGunPerk_r(
 WeaponVariantPrecacheGunPerk
 ==============
 */
-void WeaponVariantPrecacheGunPerk(
+void WeaponVariantPrecacheGunPerk(int weaponTableItemIndex, const Weapon baseWeapon, void (*regWeap)(unsigned int), const char *namePrefix, const char *namePostfix, int *attachmentCount, unsigned __int64 incompatibleAttachments)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -325,7 +328,7 @@ void WeaponVariantPrecacheGunPerk(
 BG_WeaponVariantPrecache_r
 ==============
 */
-bool BG_WeaponVariantPrecache_r(
+bool BG_WeaponVariantPrecache_r(int weaponTableItemIndex, const Weapon baseWeapon, void (*regWeap)(unsigned int), const char *namePrefix, const char *namePostfix, eAttachmentPoint point, int index, void (*alreadyRegistered)(unsigned int), int *numAttachments, unsigned __int64 incompatibleAttachments)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -336,11 +339,11 @@ bool BG_WeaponVariantPrecache_r(
 BG_LoadWeaponTableBaseAndVariants
 ==============
 */
-/*bool BG_LoadWeaponTableBaseAndVariants@<al>(
+bool BG_LoadWeaponTableBaseAndVariants(statsTableColumns_t a1, int a2, int weaponTableItemIndex, const char *weaponNamePostfix, void (*regWeap)(unsigned int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============

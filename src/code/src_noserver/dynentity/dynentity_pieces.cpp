@@ -26,7 +26,7 @@ void DynEntPieces_AddDrawSurfs()
 DynEntPieces_SpawnPhysObj
 ==============
 */
-int DynEntPieces_SpawnPhysObj(
+int DynEntPieces_SpawnPhysObj(const char *modelName, int stype, const vec3_t *mins, const vec3_t *maxs, const vec3_t *position, const vec4_t *quat, const vec3_t *velocity, const vec3_t *angularVelocity, const PhysPreset *physPreset)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -37,7 +37,7 @@ int DynEntPieces_SpawnPhysObj(
 DynEntPieces_SpawnPieces
 ==============
 */
-void DynEntPieces_SpawnPieces(
+void DynEntPieces_SpawnPieces(LocalClientNum_t localClientNum, const XModelPieces *pieces, const vec3_t *origin, const vec3_t *axis, const vec3_t *hitPos, const vec3_t *hitDir)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

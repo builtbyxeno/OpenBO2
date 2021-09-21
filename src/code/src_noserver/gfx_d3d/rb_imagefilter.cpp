@@ -16,7 +16,7 @@ void RB_VirtualToSceneRadius(float radius, float *radiusX, float *radiusY)
 RB_GaussianFilterPoints1D
 ==============
 */
-int RB_GaussianFilterPoints1D(
+int RB_GaussianFilterPoints1D(float pixels, int srcRes, int dstRes, int tapLimit, float *tapOffsets, float *tapWeights)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -27,18 +27,18 @@ int RB_GaussianFilterPoints1D(
 RB_GenerateGaussianFilter1D
 ==============
 */
-/*int *RB_GenerateGaussianFilter1D@<eax>(int a1@<esi>, float pixels@<xmm0>, int *res, int axis)
+int *RB_GenerateGaussianFilter1D(int a1, float pixels, int *res, int axis)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 RB_GenerateGaussianFilter2D
 ==============
 */
-void RB_GenerateGaussianFilter2D(
+void RB_GenerateGaussianFilter2D(float radius, int srcWidth, int srcHeight, int dstWidth, int dstHeight, GfxImageFilterPass *filterPass)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -48,10 +48,11 @@ void RB_GenerateGaussianFilter2D(
 RB_GenerateGaussianFilterChain
 ==============
 */
-int RB_GenerateGaussianFilterChain(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -79,19 +80,21 @@ void RB_FilterPingPong(const GfxImageFilter *filter, int passIndex)
 RB_FilterImage
 ==============
 */
-/*void RB_FilterImage(int a1@<edx>, GfxImageFilter *filter)
+void RB_FilterImage(int a1, GfxImageFilter *filter)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 RB_GaussianFilterImage
 ==============
 */
-void RB_GaussianFilterImage(float radius, unsigned __int8 srcRenderTargetId, unsigned __int8 dstRenderTargetId)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -99,7 +102,7 @@ void RB_GaussianFilterImage(float radius, unsigned __int8 srcRenderTargetId, uns
 RB_GaussianFilter
 ==============
 */
-void RB_GaussianFilter(
+void RB_GaussianFilter(float radiusX, float radiusY, unsigned __int8 srcRenderTargetId, unsigned __int8 dstRenderTargetId, unsigned __int8 tmpRenderTargetId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

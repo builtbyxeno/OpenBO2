@@ -199,7 +199,7 @@ void RB_WaterSheetingFX(const GfxViewInfo *viewInfo)
 RB_GetSceneDepthOfFieldEquation
 ==============
 */
-void RB_GetSceneDepthOfFieldEquation(
+void RB_GetSceneDepthOfFieldEquation(float nearOutOfFocus, float nearInFocus, float farInFocus, float farOutOfFocus, vec4_t *dofEquation, float zNear)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -240,10 +240,10 @@ void RB_DepthOfFieldHDR(GfxViewInfo *viewInfo, int mode)
 RB_ReviveFX
 ==============
 */
-/*void RB_ReviveFX(__m128 a2@<xmm6>, const GfxViewInfo *viewInfo)
+void RB_ReviveFX(int a1, __m128 a2, const GfxViewInfo *viewInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -260,10 +260,10 @@ void RB_BlurSceneFX(const GfxViewInfo *viewInfo)
 RB_AdditionalPostFX
 ==============
 */
-/*void RB_AdditionalPostFX(__m128 a1@<xmm6>, const GfxViewInfo *viewInfo)
+void RB_AdditionalPostFX(__m128 a1, const GfxViewInfo *viewInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

@@ -116,10 +116,10 @@ void GScr_box()
 GScr_debugstar
 ==============
 */
-/*void GScr_debugstar(clientDebugLineInfo_t *a1@<edi>)
+void GScr_debugstar(clientDebugLineInfo_t *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -798,7 +798,7 @@ int GScr_MoveToStatPath(ddlState_t *resultState, int numParams, ddlState_t *sear
 GScr_AddStatFromState
 ==============
 */
-statAddValue_t *GScr_AddStatFromState(
+statAddValue_t *GScr_AddStatFromState(ddlState_t *searchState, ClientNum_t clientNum, statValue_t addValue, statsLocation location)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -832,7 +832,7 @@ gunLevelRow_t *CheckWeaponChallengeForStatValue(int weaponStatIndex, statAddValu
 CheckPrerequisiteChallengeComplete
 ==============
 */
-bool CheckPrerequisiteChallengeComplete(
+bool CheckPrerequisiteChallengeComplete(ClientNum_t clientNum, int itemIndex, challengeTableRow_t *challengeRow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -843,7 +843,7 @@ bool CheckPrerequisiteChallengeComplete(
 CheckChallengeForStatValue
 ==============
 */
-challengeTableRow_t *CheckChallengeForStatValue(
+challengeTableRow_t *CheckChallengeForStatValue(statAddValue_t statValue, int rank, int pLevel, challengeTableRow_t *challengeRow, int itemIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -854,7 +854,7 @@ challengeTableRow_t *CheckChallengeForStatValue(
 IsChallengeCompleted
 ==============
 */
-bool IsChallengeCompleted(
+bool IsChallengeCompleted(ClientNum_t clientNum, ddlState_t *searchState, int rank, int pLevel, challengeTableRow_t *challengeRow, int itemIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -886,7 +886,7 @@ void SetStatAddValueToChallengeMax(statAddValue_t *statAddValue, int maxValue)
 GScr_CallGunChallengeCallback
 ==============
 */
-void GScr_CallGunChallengeCallback(
+void GScr_CallGunChallengeCallback(gentity_t *playerEnt, int rankID, int itemIndex, eAttachment attachment, int rewardXP)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -970,11 +970,11 @@ int GScr_GetWeaponStatIndex(int argNum, int *attachmentBits, int *weaponIdx)
 RegisterNewScore
 ==============
 */
-/*const char *RegisterNewScore@<eax>(
+const char *RegisterNewScore(__int16 a1, char a2, int *nameHash, int addPlayerStat, int scoreInfoTable, int a6, const StringTable *a7)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
@@ -1057,9 +1057,11 @@ GScr_AddRankXPToPlayerEnt
 GScr_AddGameTypeStatMoreInternal
 ==============
 */
-void GScr_AddGameTypeStatMoreInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1115,10 +1117,11 @@ GScr_AddGroupStatInternal
 GScr_AddWeaponStatMoreInternal
 ==============
 */
-int GScr_AddWeaponStatMoreInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1126,7 +1129,7 @@ int GScr_AddWeaponStatMoreInternal(
 GScr_AddSpecialWeaponStatInternal
 ==============
 */
-int GScr_AddSpecialWeaponStatInternal(
+int GScr_AddSpecialWeaponStatInternal(gentity_t *playerEnt, ClientNum_t clientNum, int weaponStatIndex, const char *statNameInput, const char *prefix, itemGroup_t groupIndex, statValue_t addValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -1149,9 +1152,11 @@ GScr_AddSpecialWeaponStat
 GScr_AddBonusCardStatInternal
 ==============
 */
-void GScr_AddBonusCardStatInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1159,10 +1164,11 @@ void GScr_AddBonusCardStatInternal(
 GScr_AddWeaponStatInternal
 ==============
 */
-int GScr_AddWeaponStatInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -2388,9 +2394,11 @@ void PlayerLinkTo_Internal(scr_entref_t entref, PlayerLinkToType linkType)
 ScrCmd_PlayerLinkTo
 ==============
 */
-void ScrCmd_PlayerLinkTo(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -2398,9 +2406,11 @@ void ScrCmd_PlayerLinkTo(scr_entref_t entref)
 ScrCmd_PlayerLinkToDelta
 ==============
 */
-void ScrCmd_PlayerLinkToDelta(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -2408,9 +2418,11 @@ void ScrCmd_PlayerLinkToDelta(scr_entref_t entref)
 ScrCmd_PlayerLinkWeaponViewToDelta
 ==============
 */
-void ScrCmd_PlayerLinkWeaponViewToDelta(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -2428,7 +2440,7 @@ void CheckTimes(float *totalTime, float accelTime, float decelTime)
 ScrCmd_PlayerLinkToBlend
 ==============
 */
-void ScrCmd_PlayerLinkToBlend(scr_entref_t entref)
+void ScrCmd_PlayerLinkToBlend(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2468,7 +2480,7 @@ void ScrCmd_PlayerCamUnlink(scr_entref_t entref)
 ScrCmd_LerpViewAngleClamp
 ==============
 */
-void ScrCmd_LerpViewAngleClamp(scr_entref_t entref)
+void ScrCmd_LerpViewAngleClamp(char *a1, scr_entref_t entref)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2749,7 +2761,7 @@ void ScrCmd_ResetFov(scr_entref_t entref)
 BuiltIn_GetCommonMethod
 ==============
 */
-void (*BuiltIn_GetCommonMethod(
+void (*BuiltIn_GetCommonMethod(const char **pName, int *type, int *min_args, int *max_args))(scr_entref_t)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -2760,7 +2772,7 @@ void (*BuiltIn_GetCommonMethod(
 Scr_GetArrayValues_Vector
 ==============
 */
-int Scr_GetArrayValues_Vector(
+int Scr_GetArrayValues_Vector(int parameter_index, int parent_id, vec3_t *vector_array, int vector_array_size, const char *array_type_description)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -2852,10 +2864,11 @@ char IsItemLockedForChallenge(scr_entref_t entref, int itemIndex, bool purchaseR
 GScr_AddChallengeStat
 ==============
 */
-int GScr_AddChallengeStat(gentity_t *playerEnt, int itemIndex, challengeTableRow_t *challengeRow)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -2863,11 +2876,11 @@ int GScr_AddChallengeStat(gentity_t *playerEnt, int itemIndex, challengeTableRow
 GScr_CallChallengeCallback
 ==============
 */
-/*int GScr_CallChallengeCallback@<eax>(
+int GScr_CallChallengeCallback(int a1, gentity_t *playerEnt, int itemIndex, challengeTableRow_t *challengeRow)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -2934,9 +2947,11 @@ void GScr_HasSeasonPass(scr_entref_t entref)
 GScr_AddPlayerStatInternal
 ==============
 */
-void GScr_AddPlayerStatInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -2954,9 +2969,11 @@ void GScr_AddPlayerStat(scr_entref_t entref)
 GScr_AddPlayerStatWithGameTypeInternal
 ==============
 */
-void GScr_AddPlayerStatWithGameTypeInternal(scr_entref_t entref, bool setGlobalStat)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -2994,9 +3011,11 @@ void GScr_AddDStat(scr_entref_t entref)
 GScr_AddBonusCardStat
 ==============
 */
-void GScr_AddBonusCardStat(scr_entref_t entref)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

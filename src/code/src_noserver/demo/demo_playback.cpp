@@ -36,7 +36,7 @@ void Demo_TagPlayers(LocalClientNum_t localClientNum, demoTaggedPlayers *players
 Demo_PopulateDefaultMetaInformation
 ==============
 */
-void Demo_PopulateDefaultMetaInformation(
+void Demo_PopulateDefaultMetaInformation(demoDefaultMetaInfo *metaInfo, char *mapName, char *gameType, char *zmMapStartLoc, char *zmGameModeGroup)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -46,10 +46,12 @@ void Demo_PopulateDefaultMetaInformation(
 Demo_HiResScreenshot
 ==============
 */
-/*void Demo_HiResScreenshot(char *a1@<edx>, LocalClientNum_t localClientNum)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -278,7 +280,7 @@ void Demo_Pause()
 Demo_SwitchPlayerInternal
 ==============
 */
-bool Demo_SwitchPlayerInternal(
+bool Demo_SwitchPlayerInternal(LocalClientNum_t localClientNum, bool reverse, int forceClientNum, bool forceToLivePlayer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -637,7 +639,7 @@ void Demo_ReadCustomSnapshotInformation(LocalClientNum_t localClientNum, msg_t *
 Demo_GenerateUncompressedSnapshot
 ==============
 */
-void Demo_GenerateUncompressedSnapshot(
+void Demo_GenerateUncompressedSnapshot(int a1, LocalClientNum_t localClientNum, msg_t *msg, demoSnapshotData *snapshotData, bool writeAllPlayerStates)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -710,9 +712,11 @@ void Demo_AdjustTimeForPlayerStateHudElement(int currentTime, int clipTime, int 
 Demo_AdjustTimeForPlayerState
 ==============
 */
-void Demo_AdjustTimeForPlayerState(int currentTime, int clipTime, playerState_s *ps)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -751,7 +755,7 @@ char Demo_CaptureThumbnailForSegment()
 Demo_WriteTransitionClipCommandBlockToBuffer
 ==============
 */
-unsigned int Demo_WriteTransitionClipCommandBlockToBuffer(
+unsigned int Demo_WriteTransitionClipCommandBlockToBuffer(int transition, unsigned __int8 *buffer, int maxBufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -762,7 +766,7 @@ unsigned int Demo_WriteTransitionClipCommandBlockToBuffer(
 Demo_SaveClipRecordMessageToMainMemory
 ==============
 */
-void Demo_SaveClipRecordMessageToMainMemory(
+void Demo_SaveClipRecordMessageToMainMemory(LocalClientNum_t localClientNum, unsigned __int8 *data, int size, bool forceWrite)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -842,7 +846,7 @@ void Demo_ReadMatchState(LocalClientNum_t localClientNum, msg_t *msg, int time)
 Demo_ReadPlayerStates
 ==============
 */
-playerState_s *Demo_ReadPlayerStates(
+playerState_s *Demo_ReadPlayerStates(playerState_s *result, LocalClientNum_t localClientNum, msg_t *msg, int time)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -1116,9 +1120,11 @@ void Demo_ReadConfigStrings(LocalClientNum_t localClientNum, msg_t *msg)
 Demo_InitClipRecord
 ==============
 */
-void Demo_InitClipRecord(LocalClientNum_t localClientNum, bool newClip)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1146,7 +1152,7 @@ void Demo_WriteClipCommands(LocalClientNum_t localClientNum, msg_t *msg, bool se
 Demo_WriteUncompressedClipSnapshot
 ==============
 */
-void Demo_WriteUncompressedClipSnapshot(LocalClientNum_t localClientNum)
+void Demo_WriteUncompressedClipSnapshot
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1207,7 +1213,7 @@ void Demo_UpdateCurrentSnapshot(LocalClientNum_t localClientNum, playerState_s *
 Demo_HandleInputForControllerConfig
 ==============
 */
-void Demo_HandleInputForControllerConfig(
+void Demo_HandleInputForControllerConfig(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, int key, int pressed)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1238,9 +1244,11 @@ BOOL Demo_IsTimeStopped()
 Demo_SwitchPlayer
 ==============
 */
-void Demo_SwitchPlayer(LocalClientNum_t localClientNum, bool anticlockwise)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -1289,7 +1297,7 @@ void Demo_WriteClipCommandsWhenPaused(LocalClientNum_t localClientNum)
 Demo_ParseClipCommand
 ==============
 */
-demoClipCommand Demo_ParseClipCommand(LocalClientNum_t localClientNum, msg_t *msg, bool setClipPlaybackParams)
+demoClipCommand Demo_ParseClipCommand(char *a1, LocalClientNum_t localClientNum, msg_t *msg, bool setClipPlaybackParams)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	demoClipCommand tmp;
@@ -1401,9 +1409,9 @@ void Demo_ProcessPlayback(ControllerIndex_t controllerIndex)
 Demo_ReadDemoMessage
 ==============
 */
-char Demo_ReadDemoMessage(LocalClientNum_t localClientNum)
+/*char Demo_ReadDemoMessage@<al>(const char *a1@<ebx>, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 

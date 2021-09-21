@@ -485,9 +485,11 @@ void DObjSetTree(DObj *obj, XAnimTree_s *tree)
 DObjCreate
 ==============
 */
-void DObjCreate(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -495,7 +497,7 @@ void DObjCreate(
 DObjCreateExt
 ==============
 */
-void DObjCreateExt(
+void DObjCreateExt(DObjModel_s *dobjModels, unsigned int numModels, XAnimTree_s *tree, void *buf, unsigned int entnum, bool isServer, bool isLocalPlayer, LocalClientNum_t localClientIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

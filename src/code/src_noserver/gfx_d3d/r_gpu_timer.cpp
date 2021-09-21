@@ -66,10 +66,10 @@ void R_GPU_EndFrame()
 R_GPU_BeginTimer
 ==============
 */
-/*void R_GPU_BeginTimer(int a1@<edi>, int a2@<esi>, GPUTimerId timerId)
+void R_GPU_BeginTimer(int a1, int a2, GPUTimerId timerId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

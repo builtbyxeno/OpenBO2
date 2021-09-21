@@ -37,11 +37,11 @@ void PhysConstraintsPostLoadFixup(PhysConstraints *physConstraints)
 PhysConstraintsLoadFile
 ==============
 */
-PhysConstraints *PhysConstraintsLoadFile(const char *name, void *(*Alloc)(int))
+/*PhysConstraints *PhysConstraintsLoadFile@<eax>(fsMode_t a1@<esi>, const char *name, void *(*Alloc)(int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}
+}*/
 
 /*
 ==============
@@ -59,7 +59,7 @@ PhysConstraints *PhysConstraintsPrecache(const char *name, void *(*Alloc)(int))
 PhysConstraintsUpdateField
 ==============
 */
-void PhysConstraintsUpdateField(
+void PhysConstraintsUpdateField(int (*a1)(unsigned __int8 *, const char *, const int, const int), const char *name, const char *keyvalue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

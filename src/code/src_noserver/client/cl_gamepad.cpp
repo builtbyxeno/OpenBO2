@@ -62,7 +62,7 @@ GamepadMapping Gamepad_InputTypeStringToId(const char *name)
 Gamepad_BindAxis
 ==============
 */
-void Gamepad_BindAxis(
+void Gamepad_BindAxis(GpadAxesGlob *gaGlob, GamepadPhysicalAxis realIndex, GamepadVirtualAxis axisIndex, GamepadMapping mapType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -124,7 +124,7 @@ void CL_GamepadResetMenuScrollTime(LocalClientNum_t localClientNum, int key, int
 GamepadButtonEvent_LocationSelection
 ==============
 */
-bool GamepadButtonEvent_LocationSelection(
+bool GamepadButtonEvent_LocationSelection(bool pressed, int keyCatchers, KeyState *keys, int key, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -135,7 +135,7 @@ bool GamepadButtonEvent_LocationSelection(
 GamepadButtonEvent_DevguiKeyEvent
 ==============
 */
-bool GamepadButtonEvent_DevguiKeyEvent(
+bool GamepadButtonEvent_DevguiKeyEvent(LocalClientNum_t localClientNum, bool pressed, const char *kb, int keyCatchers, connstate_t clcState, int activeMenu)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -146,7 +146,7 @@ bool GamepadButtonEvent_DevguiKeyEvent(
 GamepadButtonEvent_UnlockableItems
 ==============
 */
-void GamepadButtonEvent_UnlockableItems(
+void GamepadButtonEvent_UnlockableItems(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, int key, KeyState *keys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -156,7 +156,7 @@ void GamepadButtonEvent_UnlockableItems(
 GamepadButtonEvent_Cheats
 ==============
 */
-void GamepadButtonEvent_Cheats(
+void GamepadButtonEvent_Cheats(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, int key, bool pressed, KeyState *keys)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -166,17 +166,17 @@ void GamepadButtonEvent_Cheats(
 CL_GamepadButtonEvent
 ==============
 */
-void CL_GamepadButtonEvent(
+/*void CL_GamepadButtonEvent(char *a1@<edi>, LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, int key, int buttonEvent, unsigned int time, int gamePadButton)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
 CL_GamepadButtonEventForPort
 ==============
 */
-void CL_GamepadButtonEventForPort(
+void CL_GamepadButtonEventForPort(ControllerIndex_t portIndex, int key, int buttonEvent, unsigned int time, int button)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -196,7 +196,7 @@ void CL_InitGamepadCommands()
 CL_GamepadGenerateAPad
 ==============
 */
-void CL_GamepadGenerateAPad(
+void CL_GamepadGenerateAPad(LocalClientNum_t localClientNum, ControllerIndex_t portIndex, int physicalAxis, int time)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

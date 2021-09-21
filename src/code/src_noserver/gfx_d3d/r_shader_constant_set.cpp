@@ -135,7 +135,7 @@ void XModelDrawSurf_EncodeIndex(GfxDrawSurf *drawSurf, unsigned int scsIndex)
 RB_ShaderConstantSetFromDrawSurf
 ==============
 */
-ShaderConstantSet *RB_ShaderConstantSetFromDrawSurf(
+ShaderConstantSet *RB_ShaderConstantSetFromDrawSurf(const GfxBackEndData *backEndData, const GfxDrawSurf *drawSurf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -178,7 +178,7 @@ unsigned int CopyShaderConstantSetToBackendData(const ShaderConstantSet *scs)
 R_XModelDrawSurfEncodeShaderConstantSet
 ==============
 */
-void R_XModelDrawSurfEncodeShaderConstantSet(
+void R_XModelDrawSurfEncodeShaderConstantSet(unsigned int a1, GfxDrawSurf *a2, GfxDrawSurf *drawSurf, unsigned int constSetIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -210,7 +210,7 @@ ShaderConstantSet *R_ShaderConstantSet_FromFrontEndDataOut(unsigned int constSet
 RB_SaveCurrentShaderConstantSetValues
 ==============
 */
-void RB_SaveCurrentShaderConstantSetValues(
+void RB_SaveCurrentShaderConstantSetValues(ShaderConstantSet *destSet, GfxCmdBufSourceState *gfxSourceState, const ShaderConstantSet *srcSet)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -220,7 +220,7 @@ void RB_SaveCurrentShaderConstantSetValues(
 ScopedShaderConstantSetUndo::ScopedShaderConstantSetUndo
 ==============
 */
-/*void __thiscall ScopedShaderConstantSetUndo::ScopedShaderConstantSetUndo(
+/*void __thiscall ScopedShaderConstantSetUndo::ScopedShaderConstantSetUndo(ScopedShaderConstantSetUndo *this, GfxCmdBufSourceState *sourceState, const ShaderConstantSet *cscEA)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -240,7 +240,7 @@ ScopedShaderConstantSetUndo::~ScopedShaderConstantSetUndo
 R_ShaderConstantShowDebug
 ==============
 */
-void R_ShaderConstantShowDebug(
+void R_ShaderConstantShowDebug(const vec3_t *eyePos, const vec3_t *objOrigin, float objRad, const ShaderConstantSet *scs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

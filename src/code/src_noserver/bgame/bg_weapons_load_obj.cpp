@@ -123,11 +123,11 @@ char **BG_RegisterSurfaceTypeSounds(const char *surfaceSoundBase)
 BG_ParseWeaponDefSpecificFieldType
 ==============
 */
-/*int BG_ParseWeaponDefSpecificFieldType@<eax>(
+int BG_ParseWeaponDefSpecificFieldType(const char **a1, unsigned __int8 *pStruct, const char *pValue, const int iFieldType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -194,7 +194,7 @@ void InitWeaponDef(WeaponFullDef *weapFullDef)
 BG_LoadFlameTableInternal
 ==============
 */
-flameTable *BG_LoadFlameTableInternal(const char *folder, const char *name)
+const cspField_t *BG_LoadFlameTableInternal(const char *folder, const char *name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -216,11 +216,11 @@ flameTable *BG_GetFlameTable(const char *folder, const char *name)
 BG_LoadWeaponFile
 ==============
 */
-char BG_LoadWeaponFile(const char *szFileName, char *szBuffer, int iBufferSize)
+/*char BG_LoadWeaponFile@<al>(const char *a1@<edx>, const char *a2@<ecx>, const char *szFileName, char *szBuffer, int iBufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}
+}*/
 
 /*
 ==============
@@ -237,7 +237,7 @@ void BG_LoadWeaponMergeSupport()
 BG_SplitWeaponDefNames
 ==============
 */
-char BG_SplitWeaponDefNames(
+char BG_SplitWeaponDefNames(const char *name, char **sources, WeaponComponentList *componentAll, char *outputName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -325,7 +325,7 @@ int BG_MergeWeaponDefSpecialCases(const char *fieldName, char **value, char *mer
 BG_LoadWeaponVariantDefFile
 ==============
 */
-bool BG_LoadWeaponVariantDefFile(
+bool BG_LoadWeaponVariantDefFile(WeaponFullDef *weapFullDef, const char *folder, const char *name, const char *postfix)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -358,11 +358,11 @@ char BG_WeaponUpdateField(const char *weaponName, const char *keyValue)
 BG_FlameTableUpdateField
 ==============
 */
-/*bool BG_FlameTableUpdateField@<al>(
+bool BG_FlameTableUpdateField(int (*a1)(unsigned __int8 *, const char *, const int, const int), const char *flameTableName, const char *keyValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -401,10 +401,11 @@ char BG_WeaponCamoUpdateField(const char *camoName, const char *keyValue)
 BG_LoadDefaultWeaponVariantDef_LoadObj
 ==============
 */
-WeaponFullDef *__thiscall BG_LoadDefaultWeaponVariantDef_LoadObj(WeaponFullDef *this)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*

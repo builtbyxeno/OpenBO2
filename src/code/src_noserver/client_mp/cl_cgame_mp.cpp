@@ -90,7 +90,7 @@ int CL_GetSnapshot(LocalClientNum_t localClientNum, int snapshotNumber, snapshot
 CL_SetUserCmdWeapons
 ==============
 */
-void CL_SetUserCmdWeapons(
+void CL_SetUserCmdWeapons(LocalClientNum_t localClientNum, Weapon weapon, Weapon offHandWeapon, Weapon lastWeaponForAlt)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -110,7 +110,7 @@ void CL_SetUserCmdAimValues(LocalClientNum_t localClientNum, const vec3_t *kickA
 CL_SetUserCmdOrigin
 ==============
 */
-void CL_SetUserCmdOrigin(
+void CL_SetUserCmdOrigin(LocalClientNum_t localClientNum, const vec3_t *origin, const vec3_t *velocity, int bobCycle, int movementDir)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -253,7 +253,7 @@ void CL_GetDebugViewPos(vec3_t *pos)
 CL_RenderScene
 ==============
 */
-void CL_RenderScene(
+void CL_RenderScene(const refdef_t *fd, int frameTime, const GfxViewParms *viewParmsDraw, const GfxViewParms *viewParmsDpvs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -293,7 +293,7 @@ void CL_SetCustomConstant(unsigned int type, const vec4_t *vec)
 CL_DrawStretchPicPhysicalInternal
 ==============
 */
-void CL_DrawStretchPicPhysicalInternal(
+void CL_DrawStretchPicPhysicalInternal(float x, float y, float w, float h, float s1, float t1, float s2, float t2, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -303,7 +303,7 @@ void CL_DrawStretchPicPhysicalInternal(
 CL_DrawStretchPicPhysicalDPInternal
 ==============
 */
-void CL_DrawStretchPicPhysicalDPInternal(
+void CL_DrawStretchPicPhysicalDPInternal(float x, float y, float w, float h, float s1, float t1, float s2, float t2, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -313,7 +313,7 @@ void CL_DrawStretchPicPhysicalDPInternal(
 CL_DrawStretchPicPhysicalDPx2Internal
 ==============
 */
-void CL_DrawStretchPicPhysicalDPx2Internal(
+void CL_DrawStretchPicPhysicalDPx2Internal(float x, float y, float w, float h, float s1, float t1, float s2, float t2, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -323,7 +323,7 @@ void CL_DrawStretchPicPhysicalDPx2Internal(
 CL_DrawStretchPicPhysicalWInternal
 ==============
 */
-void CL_DrawStretchPicPhysicalWInternal(
+void CL_DrawStretchPicPhysicalWInternal(float x, float y, float w0, float w, float h, float s1, float t1, float s2, float t2, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -333,7 +333,7 @@ void CL_DrawStretchPicPhysicalWInternal(
 CL_DrawStretchPicPhysicalRotateXYInternal
 ==============
 */
-void CL_DrawStretchPicPhysicalRotateXYInternal(
+void CL_DrawStretchPicPhysicalRotateXYInternal(float x, float y, float w, float h, float s1, float t1, float s2, float t2, float angle, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -343,7 +343,7 @@ void CL_DrawStretchPicPhysicalRotateXYInternal(
 CL_DrawStretchPicWDPInternal
 ==============
 */
-void CL_DrawStretchPicWDPInternal(
+void CL_DrawStretchPicWDPInternal(const ScreenPlacement *scrPlace, float x, float y, float w0, float w, float h, int horzAlign, int vertAlign, float s1, float t1, float s2, float t2, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -353,7 +353,7 @@ void CL_DrawStretchPicWDPInternal(
 CL_DrawStretchPicInternal
 ==============
 */
-void CL_DrawStretchPicInternal(
+void CL_DrawStretchPicInternal(const ScreenPlacement *scrPlace, float x, float y, float w, float h, int horzAlign, int vertAlign, float s1, float t1, float s2, float t2, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -363,7 +363,7 @@ void CL_DrawStretchPicInternal(
 CL_DrawStretchPicDPInternal
 ==============
 */
-void CL_DrawStretchPicDPInternal(
+void CL_DrawStretchPicDPInternal(const ScreenPlacement *scrPlace, float x, float y, float w, float h, int horzAlign, int vertAlign, float s1, float t1, float s2, float t2, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -373,7 +373,7 @@ void CL_DrawStretchPicDPInternal(
 CL_DrawStretchPicRotatedSTInternal
 ==============
 */
-void CL_DrawStretchPicRotatedSTInternal(
+void CL_DrawStretchPicRotatedSTInternal(const ScreenPlacement *scrPlace, float x, float y, float w, float h, int horzAlign, int vertAlign, float centerS, float centerT, float radiusST, float scaleFinalS, float scaleFinalT, float angle, const vec4_t *color, Material *material)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

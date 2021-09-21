@@ -195,7 +195,7 @@ void Ragdoll_FreeBody(int ragdollBody)
 Ragdoll_CreateRagdollForDObj
 ==============
 */
-RagdollBody *Ragdoll_CreateRagdollForDObj(
+RagdollBody *Ragdoll_CreateRagdollForDObj(LocalClientNum_t localClientNum, int ragdollDef, int dobj, bool reset, bool share)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

@@ -18,7 +18,7 @@ FxElemVisuals FX_GetElemVisuals(const FxElemDef *elemDef, int randomSeed)
 FX_InterpolateSize
 ==============
 */
-double FX_InterpolateSize(
+double FX_InterpolateSize(const FxElemVisStateSample *refState, int randomSeed, FxRandKey randomKey, float sampleLerp, float sampleLerpInv, int channel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

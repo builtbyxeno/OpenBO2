@@ -27,7 +27,7 @@ void CMod_LoadSubmodels()
 CMod_GetPartitionScore
 ==============
 */
-float CMod_GetPartitionScore(
+float CMod_GetPartitionScore(unsigned __int16 *leafBrushes, int numLeafBrushes, int axis, const vec3_t *mins, const vec3_t *maxs, float *dist)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -38,7 +38,7 @@ float CMod_GetPartitionScore(
 CMod_PartionLeafBrushes_r
 ==============
 */
-cLeafBrushNode_s *CMod_PartionLeafBrushes_r(
+cLeafBrushNode_s *CMod_PartionLeafBrushes_r(char *a1, unsigned __int16 *leafBrushes, int numLeafBrushes, const vec3_t *mins, const vec3_t *maxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -59,7 +59,7 @@ void CMod_PartionLeafBrushes(unsigned __int16 *leafBrushes, int numLeafBrushes, 
 CMod_LoadSubmodelBrushNodes
 ==============
 */
-unsigned int CMod_LoadSubmodelBrushNodes()
+unsigned int CMod_LoadSubmodelBrushNodes(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -112,7 +112,7 @@ void CMod_LoadLeafs_Version14(bool usePvs)
 CMod_LoadLeafBrushNodes
 ==============
 */
-int *CMod_LoadLeafBrushNodes()
+int *CMod_LoadLeafBrushNodes(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -123,7 +123,7 @@ int *CMod_LoadLeafBrushNodes()
 CMod_LoadLeafBrushNodes_Version14
 ==============
 */
-int *CMod_LoadLeafBrushNodes_Version14()
+int *CMod_LoadLeafBrushNodes_Version14(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -177,7 +177,7 @@ CollisionAabbTree *CMod_LoadCollisionAabbTrees()
 MapEnts_CanPurgeEntity
 ==============
 */
-bool MapEnts_CanPurgeEntity(
+bool MapEnts_CanPurgeEntity(const char *classname, void *userData, const char *(*GetKeyCallback)(void *, const char *))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -220,7 +220,7 @@ void CMod_LoadVisibility()
 EmitTechniqueSetName
 ==============
 */
-unsigned int EmitTechniqueSetName(
+unsigned int EmitTechniqueSetName(const char *techSetName, char **emittedTechSetNames, unsigned int emittedCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -264,7 +264,7 @@ const LayeredTechniqueSetName *GetLayeredTechniqueSetName(const char *mtlName)
 AssembleLayeredMaterial
 ==============
 */
-unsigned int AssembleLayeredMaterial(
+unsigned int AssembleLayeredMaterial(const dmaterial_t *diskMtl, const LayeredTechniqueSetName **lyrTechSetName, const char *lyrMtlName, char **emittedTechSetNames, unsigned int emittedCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -350,7 +350,7 @@ RunPIMP
 AssembleBspLayeredMaterials
 ==============
 */
-void AssembleBspLayeredMaterials()
+void AssembleBspLayeredMaterials(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

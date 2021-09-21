@@ -18,7 +18,7 @@ IK_GenerateIKXformMatrices
 IK_Process
 ==============
 */
-void IK_Process(IKState *ikState)
+void IK_Process(int a1, IKState *ikState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

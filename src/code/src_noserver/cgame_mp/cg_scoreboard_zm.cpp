@@ -37,7 +37,7 @@ void CG_RegisterScoreboardDvarsZM()
 DrawCompetitiveListString
 ==============
 */
-void DrawCompetitiveListString(
+void DrawCompetitiveListString(LocalClientNum_t localClientNum, const char *string, float x, float y, float width, int horzAlign, int vertAlign, int alignment, Font_s *font, float scale, int style, const vec4_t *color, float list_item_height)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -47,7 +47,7 @@ void DrawCompetitiveListString(
 CG_DrawCompetitiveClientScore
 ==============
 */
-float CG_DrawCompetitiveClientScore(
+float CG_DrawCompetitiveClientScore(LocalClientNum_t localClientNum, ClientNum_t clientNum, const vec4_t *color, const score_s *score, float x, float y, float listWidth, float itemHeight, int horzAlign, int vertAlign, int isPlayer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

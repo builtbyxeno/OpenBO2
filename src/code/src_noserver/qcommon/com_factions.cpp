@@ -50,20 +50,20 @@ const char *Com_FactionLookupAllies(const char *a1, int columnIndex)
 Com_FactionFastFileAxis
 ==============
 */
-/*char Com_FactionFastFileAxis@<al>(
+char Com_FactionFastFileAxis(int a1, const char *a2, const char *mapName, char *buffer, const int bufSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 Com_FactionFastFileAllies
 ==============
 */
-/*char Com_FactionFastFileAllies@<al>(
+char Com_FactionFastFileAllies(int a1, const char *a2, const char *mapName, char *buffer, const int bufSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 

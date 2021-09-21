@@ -25,11 +25,11 @@ int Sound_Init(const void *handle);
 ;
 
 //t6/code/src_noserver/groupvoice/play_dsound.cpp
-HRESULT CreateBasicBuffer(;
+HRESULT CreateBasicBuffer(IDirectSound8 *lpDirectSound, IDirectSoundBuffer **ppDsb, int sampleRate, int channels, int bufferSize);
 void DSound_AdjustSamplePlayback(dsound_sample_t *sample, int bytesLeft);
 void DSound_HandleBufferUnderrun(dsound_sample_t *sample);
 void DSound_SetVolume(dsound_sample_t *sample, int level);
-// dsound_sample_t *DSound_NewSample@<eax>(int a1@<edi>);
+;
 char DSound_StopSample(dsound_sample_t *sample);
 int DSound_Init(bool callDsoundInit, const void *handle);
 void DSound_Shutdown();
@@ -47,7 +47,7 @@ int Record_Init(bool callInit, const void *handle);
 //t6/code/src_noserver/groupvoice/record_dsound.cpp
 dsound_sample_t *DSOUNDRecord_NewSample();
 int DSOUNDRecord_DestroySample(dsound_sample_t *pRecSample);
-// int DSOUNDRecord_Stop@<eax>(int a1@<edi>, int a2@<esi>, dsound_sample_t *pRecSample);
+int DSOUNDRecord_Stop(int a1, int a2, dsound_sample_t *pRecSample);
 const char *GetDSoundErrorDesc(HRESULT hr);
 int DSOUNDRecord_Init(bool bCallDsoundInit);
 void DSOUNDRecord_Shutdown();

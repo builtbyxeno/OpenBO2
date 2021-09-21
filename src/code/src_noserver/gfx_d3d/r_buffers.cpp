@@ -16,7 +16,7 @@ void TRACK_r_buffers()
 R_LockVertexBuffer
 ==============
 */
-char *R_LockVertexBuffer(
+char *R_LockVertexBuffer(ID3D11DeviceContext *device, ID3D11Buffer *handle, int offset, int bytes, int lockFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -37,7 +37,7 @@ void R_UnlockVertexBuffer(ID3D11DeviceContext *device, ID3D11Buffer *handle)
 R_LockIndexBuffer
 ==============
 */
-char *R_LockIndexBuffer(
+char *R_LockIndexBuffer(ID3D11DeviceContext *device, ID3D11Buffer *handle, int offset, int bytes, int lockFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

@@ -112,7 +112,7 @@ void Voice_EnableMicIfAllowed(SessionData *session)
 Voice_RegisterRemotePlayer
 ==============
 */
-char Voice_RegisterRemotePlayer(
+char Voice_RegisterRemotePlayer(ControllerIndex_t localControllerIndex, SessionData *session, const unsigned __int64 player, const ClientNum_t clientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

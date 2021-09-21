@@ -272,17 +272,17 @@ bool Com_StartupProcessSetCommand(int lineIndex, const char *match)
 Com_StartupVariable
 ==============
 */
-/*void Com_StartupVariable(const char *a1@<edx>, const char *match)
+void Com_StartupVariable(const char *a1, const char *match)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 Com_AddStartupCommands
 ==============
 */
-void Com_AddStartupCommands()
+void Com_AddStartupCommands(char *a1, const char *a2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -385,7 +385,7 @@ void Com_Crash_f()
 Com_CompressWithZLib
 ==============
 */
-unsigned int Com_CompressWithZLib(
+unsigned int Com_CompressWithZLib(const unsigned __int8 *from, int inSizeBytes, unsigned __int8 *to, int outSizeBytes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -396,7 +396,7 @@ unsigned int Com_CompressWithZLib(
 Com_DecompressWithZLib
 ==============
 */
-unsigned int Com_DecompressWithZLib(
+unsigned int Com_DecompressWithZLib(const unsigned __int8 *from, int inSizeBytes, unsigned __int8 *to, int outSizeBytes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -530,7 +530,7 @@ void Com_ResetSlowMotion()
 Com_SetSlowMotionDelayed
 ==============
 */
-void Com_SetSlowMotionDelayed(
+void Com_SetSlowMotionDelayed(const float startTimescale, const float endTimescale, const int deltaMsec, const int delayMsec)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

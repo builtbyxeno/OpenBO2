@@ -118,7 +118,7 @@ void Actor_EventGunshot(actor_t *self, sentient_t *originator, const vec3_t *vOr
 Actor_EventBullet
 ==============
 */
-void Actor_EventBullet(
+void Actor_EventBullet(actor_t *self, gentity_t *originator, const vec3_t *vStart, const vec3_t *vEnd, const vec3_t *vClosest, float fDistSqrd, float fRadiusSqrd, PARM_SUPPRESSION suppression)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -139,7 +139,7 @@ bool Actor_ShouldKnowAboutPainDeathEvent(actor_t *self, gentity_t *originator, c
 Actor_ReceivePointEvent
 ==============
 */
-void Actor_ReceivePointEvent(
+void Actor_ReceivePointEvent(actor_t *self, gentity_t *originator, ai_event_t eType, const vec3_t *vOrigin, float fDistSqrd, float fRadiusSqrd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -149,7 +149,7 @@ void Actor_ReceivePointEvent(
 Actor_ReceiveLineEvent
 ==============
 */
-void Actor_ReceiveLineEvent(
+void Actor_ReceiveLineEvent(actor_t* self, gentity_t* originator, gentity_t* hitEnt, ai_event_t eType, const vec3_t* vStart, const vec3_t* vEnd, const vec3_t* vClosest, float fDistSqrd, float fRadiusSqrd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -159,7 +159,7 @@ void Actor_ReceiveLineEvent(
 Actor_BroadcastPointEvent
 ==============
 */
-void Actor_BroadcastPointEvent(
+void Actor_BroadcastPointEvent(gentity_t *originator, ai_event_t eType, int teamFlags, const vec3_t *vOrigin, float fRadiusSqrd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -169,7 +169,7 @@ void Actor_BroadcastPointEvent(
 Actor_BroadcastLineEvent
 ==============
 */
-void Actor_BroadcastLineEvent(
+void Actor_BroadcastLineEvent(gentity_t *originator, gentity_t *hitEnt, ai_event_t eType, int teamFlags, const vec3_t *vStart, const vec3_t *vEnd, float fRadiusSqrd)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

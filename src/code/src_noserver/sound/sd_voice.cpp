@@ -48,7 +48,7 @@ sd_voice *SD_VoiceAllocate()
 SD_VoiceAllocateRam
 ==============
 */
-sd_voice *SD_VoiceAllocateRam(
+sd_voice *SD_VoiceAllocateRam(unsigned int assetId, bool looping, unsigned int channelCount, unsigned int frameRate, unsigned int frameCount, unsigned int dataSize, const char *data, const SndAssetBankEntry *entry)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -59,7 +59,7 @@ sd_voice *SD_VoiceAllocateRam(
 SD_VoiceAllocateStream
 ==============
 */
-sd_voice *SD_VoiceAllocateStream(
+sd_voice *SD_VoiceAllocateStream(const char *name, const SndAssetBankEntry *entry, int fid, const char *primeData, unsigned int primeSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

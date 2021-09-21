@@ -96,7 +96,7 @@ void Cmd_AddServerCommandInternal(const char *cmdName, void (*function)(), cmd_f
 Cmd_ExecFromDiskAddText
 ==============
 */
-bool Cmd_ExecFromDiskAddText(
+bool Cmd_ExecFromDiskAddText(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, const char *filename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -178,7 +178,7 @@ void Cmd_EvaluateExpression(const char **text_in, CmdArgs *argsPriv)
 Cmd_TokenizeStringInternal
 ==============
 */
-int Cmd_TokenizeStringInternal(
+int Cmd_TokenizeStringInternal(const char *text_in, int max_tokens, bool evalExpressions, const char **argv, CmdArgs *argsPriv)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -199,9 +199,11 @@ void AssertCmdArgsConsistency(const CmdArgs *args)
 Cmd_TokenizeStringKernel
 ==============
 */
-void Cmd_TokenizeStringKernel(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -219,9 +221,11 @@ void Cmd_EndTokenizedStringKernel(CmdArgs *args)
 Cmd_TokenizeStringWithLimit
 ==============
 */
-void Cmd_TokenizeStringWithLimit(const char *text_in)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -229,9 +233,11 @@ void Cmd_TokenizeStringWithLimit(const char *text_in)
 Cmd_TokenizeString
 ==============
 */
-void Cmd_TokenizeString(const char *text_in)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -239,9 +245,11 @@ void Cmd_TokenizeString(const char *text_in)
 Cmd_TokenizeStringNoEval
 ==============
 */
-void Cmd_TokenizeStringNoEval(const char *text_in)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -259,10 +267,12 @@ void Cmd_EndTokenizedString()
 SV_Cmd_TokenizeString
 ==============
 */
-/*void SV_Cmd_TokenizeString(ControllerIndex_t a1@<edx>, LocalClientNum_t a2@<ecx>, const char *text_in)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -403,10 +413,12 @@ void Cmd_HandleMissingCommand(const char *msg, bool fromRemoteConsole)
 Cmd_ExecuteServerString
 ==============
 */
-/*void Cmd_ExecuteServerString(ControllerIndex_t a1@<edx>, LocalClientNum_t a2@<ecx>, const char *text)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -423,9 +435,11 @@ void Cbuf_SV_Execute()
 Cmd_ExecuteSingleCommandInternal
 ==============
 */
-void Cmd_ExecuteSingleCommandInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -433,7 +447,7 @@ void Cmd_ExecuteSingleCommandInternal(
 Cmd_ExecuteSingleCommand
 ==============
 */
-void Cmd_ExecuteSingleCommand(
+void Cmd_ExecuteSingleCommand(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, const char *text, bool fromRemoteConsole)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -475,7 +489,7 @@ Cmd_IfMP_f
 Cbuf_ExecuteBufferInternal
 ==============
 */
-void Cbuf_ExecuteBufferInternal(
+void Cbuf_ExecuteBufferInternal(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, itemDef_s *item, const char *buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -485,9 +499,11 @@ void Cbuf_ExecuteBufferInternal(
 Cbuf_ExecuteBuffer
 ==============
 */
-void Cbuf_ExecuteBuffer(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -495,9 +511,11 @@ void Cbuf_ExecuteBuffer(
 Cbuf_ExecuteBufferUI
 ==============
 */
-void Cbuf_ExecuteBufferUI(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -525,7 +543,7 @@ void Cbuf_Execute(LocalClientNum_t localClientNum)
 Cmd_ExecFromDisk
 ==============
 */
-bool Cmd_ExecFromDisk(
+bool Cmd_ExecFromDisk(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex, const char *filename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

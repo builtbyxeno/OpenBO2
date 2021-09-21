@@ -269,7 +269,7 @@ void Live_UpdatePlayerNetAddr(SessionData *session, const ClientNum_t clientNum,
 Live_UpdatePlayerInAddr
 ==============
 */
-void Live_UpdatePlayerInAddr(
+void Live_UpdatePlayerInAddr(SessionData *session, const ClientNum_t clientNum, const in_addr inaddr, const unsigned __int16 port)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -331,7 +331,7 @@ int Session_GetSessionCreateController(int requiredSigninState)
 Session_StartClient
 ==============
 */
-char Session_StartClient(
+char Session_StartClient(SessionData *session, const ControllerIndex_t localControllerIndex, const int flags, XSESSION_INFO *hostInfo, unsigned __int64 sessionNonce, int numPublicSlots, int numPrivateSlots)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -458,10 +458,10 @@ void Session_WaitForTaskToComplete(TaskRecord *sessionTask, int startTime, int t
 Session_FinishOngoingSessionJoinTasksForXUID
 ==============
 */
-void Session_FinishOngoingSessionJoinTasksForXUID(SessionData *session, unsigned __int64 player)
+/*void Session_FinishOngoingSessionJoinTasksForXUID(const char *a1@<edi>, SessionData *session, unsigned __int64 player)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -530,7 +530,7 @@ void Session_DeleteSession(SessionData *session)
 Session_StartHost
 ==============
 */
-void Session_StartHost(
+void Session_StartHost(SessionData *session, int sessionFlags, int numPrivateSlots, int numPublicSlots, bool silentFail)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -540,7 +540,7 @@ void Session_StartHost(
 Session_FinishModify
 ==============
 */
-void Session_FinishModify()
+void Session_FinishModify(void)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -570,10 +570,10 @@ void Session_RemoveAllPlayersFromSession(SessionData *session)
 Session_CleanUpSearches
 ==============
 */
-void Session_CleanUpSearches()
+/*void Session_CleanUpSearches(const char *a1@<esi>)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============

@@ -88,10 +88,10 @@ void SV_ClientEnterWorld(client_t *client, usercmd_s *cmd)
 SV_VerifyIwds_f
 ==============
 */
-void SV_VerifyIwds_f(client_t *cl)
+/*void SV_VerifyIwds_f(char *a1@<edi>, client_t *cl)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -140,7 +140,7 @@ BOOL SV_SanitizeName(const char *name, char *sanitizedName, int size)
 SegmentIntersectsSphere
 ==============
 */
-bool SegmentIntersectsSphere(
+bool SegmentIntersectsSphere(const vec3_t *point1, const vec3_t *point2, const vec3_t *center, const float *radius)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -182,10 +182,10 @@ void SV_FX_FreeVisBlocker(const gentity_t *ent)
 SV_ExecuteClientCommand
 ==============
 */
-void SV_ExecuteClientCommand(client_t *cl, const char *s, int clientOK, int fromOldServer)
+/*void SV_ExecuteClientCommand(char *a1@<edi>, client_t *cl, const char *s, int clientOK, int fromOldServer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}
+}*/
 
 /*
 ==============
@@ -304,7 +304,7 @@ void SV_BanClient(client_t *cl)
 ReconnectMigratedClient
 ==============
 */
-void ReconnectMigratedClient(
+void ReconnectMigratedClient(client_t *cl, netadr_t from, const int qport, const int challenge, int playerGuid, const char *userinfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

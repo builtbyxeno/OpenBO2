@@ -120,18 +120,18 @@ void G_SnapToViewAngleClampGoal(viewClampState *clamp)
 CalcLerpFraction
 ==============
 */
-/*__int64 CalcLerpFraction@<xmm0>(float a1@<xmm1>, __int64 a2@<xmm3>, float a3@<xmm6>, float startTime)
+__int64 CalcLerpFraction(float startTime, __int64 a2, float a3, float a4)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 G_UpdateViewAngleClamp
 ==============
 */
-void G_UpdateViewAngleClamp(gclient_t *client, const vec3_t *worldAnglesCenter)
+void G_UpdateViewAngleClamp(gclient_t *,vec3_t const &)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -192,7 +192,7 @@ void SetPlayerFixedLinkOrigin(gentity_t *ent, const vec3_t *worldAxis, float ler
 G_SetFixedLinkPlayer
 ==============
 */
-void G_SetFixedLinkPlayer(gentity_t *ent)
+void G_SetFixedLinkPlayer(char *a1, gentity_t *ent)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -246,10 +246,11 @@ int EntLinkTo_Internal(gentity_t *ent, gentity_t *parent, unsigned int tagName)
 G_EntLinkTo
 ==============
 */
-int G_EntLinkTo(gentity_t *ent, gentity_t *parent, unsigned int tagName)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -257,10 +258,11 @@ int G_EntLinkTo(gentity_t *ent, gentity_t *parent, unsigned int tagName)
 G_EntLinkToWithOffset
 ==============
 */
-int G_EntLinkToWithOffset(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*

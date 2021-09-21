@@ -26,7 +26,7 @@ void Stream_SeekInternal(void *fh, unsigned __int64 offset)
 Stream_ReadInternal
 ==============
 */
-char Stream_ReadInternal(
+char Stream_ReadInternal(void *fh, unsigned __int64 readOffset, unsigned __int8 *dest, unsigned __int64 nBytes, unsigned __int64 *bytesRead)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

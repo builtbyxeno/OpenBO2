@@ -61,7 +61,7 @@ Weapon WeaponPickup_GetCompatibleWeapon(gentity_t *player, Weapon weapon)
 WeaponPickup_Notifies
 ==============
 */
-void WeaponPickup_Notifies(
+void WeaponPickup_Notifies(gentity_t *thisItem, gentity_t *newDroppedItem, gentity_t *player, const WeaponDef *weapDef, bool pickedUp)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -282,7 +282,7 @@ int Add_Ammo(gentity_t *ent, Weapon weapon, int count, int fillClip)
 WeaponPickup_LeechFromWeaponEnt
 ==============
 */
-bool WeaponPickup_LeechFromWeaponEnt(
+bool WeaponPickup_LeechFromWeaponEnt(gentity_t *weaponEnt, gentity_t *player, int haveExactWeapon, int *pickupEvent, bool suppressNotifies)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -303,10 +303,11 @@ void WeaponPickup_AddAmmoForNewWeapon(gentity_t *weaponEnt, gentity_t *player)
 WeaponPickup_Touch
 ==============
 */
-int WeaponPickup_Touch(gentity_t *weaponEnt, gentity_t *player, Weapon weapon, int *pickupEvent)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -359,7 +360,7 @@ ThrowDownWeapon
 Drop_Weapon
 ==============
 */
-gentity_t *Drop_Weapon(gentity_t *ent, Weapon weapon, unsigned __int8 weaponModel, unsigned int tag)
+gentity_t *Drop_Weapon(gentity_t *ent, Weapon weapon, unsigned int weaponModel, unsigned int tag)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -382,10 +383,11 @@ WeaponPickup_AddWeapon
 WeaponPickup_Grab
 ==============
 */
-int WeaponPickup_Grab(gentity_t *weaponEnt, gentity_t *player, Weapon weapon, int *pickupEvent)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -393,10 +395,11 @@ int WeaponPickup_Grab(gentity_t *weaponEnt, gentity_t *player, Weapon weapon, in
 WeaponPickup
 ==============
 */
-int WeaponPickup(gentity_t *weaponEnt, gentity_t *player, int *pickupEvent, int touched)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*

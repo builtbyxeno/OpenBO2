@@ -48,9 +48,11 @@ void RB_DrawSunFlareCore(vec4_t *colorTint, float alpha, float sizeIn640x480)
 RB_DrawSunFlare
 ==============
 */
-void RB_DrawSunFlare(vec4_t *colorTint, SunFlareDynamic *sunFlare, int frameTime)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -58,9 +60,11 @@ void RB_DrawSunFlare(vec4_t *colorTint, SunFlareDynamic *sunFlare, int frameTime
 RB_CalcSunBlind
 ==============
 */
-void RB_CalcSunBlind(SunFlareDynamic *sunFlare, int frameTime, float *blind, float *glare)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -98,7 +102,7 @@ void RB_DrawSun(LocalClientNum_t localClientNum)
 RB_DrawSunPostEffects
 ==============
 */
-void RB_DrawSunPostEffects(
+void RB_DrawSunPostEffects(const GfxViewInfo *viewInfo, LocalClientNum_t localClientNum, float sunVisibilityAdjust)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

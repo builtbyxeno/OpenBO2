@@ -196,7 +196,7 @@ clientField_s *BG_GetClientField(int system, const char *pFieldName, bool bError
 BG_AddClientfieldCodeCallback
 ==============
 */
-void BG_AddClientfieldCodeCallback(
+void BG_AddClientfieldCodeCallback(int system, const char *pFieldName, void (*cbFunc)(LocalClientNum_t, unsigned int, float, float, bool, bool, const char *, bool), bool bFailGracefully)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -206,7 +206,7 @@ void BG_AddClientfieldCodeCallback(
 BG_AddClientfieldCodeCallback
 ==============
 */
-void BG_AddClientfieldCodeCallback(
+void BG_AddClientfieldCodeCallback(int system, const char *pFieldName, void (*cbFunc)(LocalClientNum_t, unsigned int, unsigned int, unsigned int, bool, bool, const char *, bool), bool bFailGracefully)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -216,7 +216,7 @@ void BG_AddClientfieldCodeCallback(
 BG_RegisterClientFieldInternal
 ==============
 */
-clientField_s *BG_RegisterClientFieldInternal(
+clientField_s *BG_RegisterClientFieldInternal(int system, const char *pFieldName, int version, unsigned int numBits, unsigned int fieldType, int scriptFunc, int bSplitScreenHostOnly, int bCallbacksFor0WhenNew)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -227,7 +227,7 @@ clientField_s *BG_RegisterClientFieldInternal(
 BG_RegisterClientField
 ==============
 */
-void BG_RegisterClientField(
+void BG_RegisterClientField(int system, const char *pFieldName, int version, unsigned int numBits, unsigned int fieldType, int scriptFunc, int bSplitScreenHostOnly, int bCallbacksFor0WhenNew)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -237,7 +237,7 @@ void BG_RegisterClientField(
 BG_RegisterClientField
 ==============
 */
-void BG_RegisterClientField(
+void BG_RegisterClientField(int system, const char *pFieldName, int version, unsigned int numBits, unsigned int fieldType, float minFloatVal, float maxFloatVal, int scriptFunc, int bSplitScreenHostOnly, int bCallbacksFor0WhenNew)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -310,7 +310,7 @@ void BG_ReportPendingClientfieldCallbackEvents(LocalClientNum_t localClientNum)
 BG_AddClientfieldCallbackEvent
 ==============
 */
-void BG_AddClientfieldCallbackEvent(
+void BG_AddClientfieldCallbackEvent(LocalClientNum_t localClientNum, unsigned int entNum, clientField_s *pField, unsigned int oldInt, unsigned int newInt, bool bNewEnt, bool bInitialSnap, bool bWasDemoJump)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -320,7 +320,7 @@ void BG_AddClientfieldCallbackEvent(
 BG_AddClientfieldCallbackEvent
 ==============
 */
-void BG_AddClientfieldCallbackEvent(
+void BG_AddClientfieldCallbackEvent(LocalClientNum_t localClientNum, unsigned int entNum, clientField_s *pField, float oldFloat, float newFloat, bool bNewEnt, bool bInitialSnap, bool bWasDemoJump)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -340,7 +340,7 @@ void BG_ExecuteClientFieldCallbacks(LocalClientNum_t localClientNum)
 BG_ProcessClientFieldSet
 ==============
 */
-void BG_ProcessClientFieldSet(
+void BG_ProcessClientFieldSet(int systemIndex, LocalClientNum_t localClientNum, int entNum, void *pOldData, void *pNewData, bool bNewEnt, bool bWasDemoJump)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

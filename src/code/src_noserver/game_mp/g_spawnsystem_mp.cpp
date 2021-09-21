@@ -129,7 +129,7 @@ void SpawnSystem_ClearPointsBaseWeight(int teammask)
 SpawnSystem_SetPointsBaseWeight
 ==============
 */
-void SpawnSystem_SetPointsBaseWeight(
+void SpawnSystem_SetPointsBaseWeight(float teammask, int a2, vec3_t *objective_position, float angle, float score)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -179,7 +179,7 @@ void SpawnSystem_CalculateCylinderAxisMidpoint(SpawnInfluencer *influencer)
 SpawnSystem_FindPreset
 ==============
 */
-SpawnInfluencerPreset *SpawnSystem_FindPreset(
+SpawnInfluencerPreset *SpawnSystem_FindPreset(eInfluencerType type, eInfluencerShape shape, float length, float radius, float score, eInfluencerScoreCurve score_curve, const char *description)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -190,7 +190,7 @@ SpawnInfluencerPreset *SpawnSystem_FindPreset(
 SpawnSystem_SetPresetData
 ==============
 */
-SpawnInfluencerPreset *SpawnSystem_SetPresetData(
+SpawnInfluencerPreset *SpawnSystem_SetPresetData(int influencerIndex, eInfluencerType type, eInfluencerShape shape, float length, float radius, float score, eInfluencerScoreCurve score_curve, const char *description)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -201,7 +201,7 @@ SpawnInfluencerPreset *SpawnSystem_SetPresetData(
 SpawnSystem_InitInfluencer
 ==============
 */
-void SpawnSystem_InitInfluencer(
+void SpawnSystem_InitInfluencer(SpawnInfluencer *influencer, eInfluencerType type, eInfluencerShape shape, const vec3_t *origin, const vec3_t *forward, const vec3_t *up, float radius, float axis_length, float score, eInfluencerScoreCurve score_curve, int teamMask, int entNum, int timeout, const char *description)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -211,7 +211,7 @@ void SpawnSystem_InitInfluencer(
 SpawnSystem_AddSphereInfluencer
 ==============
 */
-int SpawnSystem_AddSphereInfluencer(
+int SpawnSystem_AddSphereInfluencer(eInfluencerType type, vec3_t *origin, float radius, float score, eInfluencerScoreCurve score_curve, int teamMask, int entNum, int timeout, const char *description)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -275,7 +275,7 @@ void __thiscall SpawnSystem_ClearTimedOutInfluencers(SpawnInfluencer *this)
 SpawnSystem_InfluenceWeight
 ==============
 */
-double SpawnSystem_InfluenceWeight(
+double SpawnSystem_InfluenceWeight(eInfluencerScoreCurve curve_type, float influencer_radius_sq, float distance_sq, float score)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -308,7 +308,7 @@ double SpawnSystem_ComputeCylinderInfluence(SpawnInfluencer *influencer, SpawnPo
 SpawnSystem_ComputePointWeight
 ==============
 */
-bool SpawnSystem_ComputePointWeight(
+bool SpawnSystem_ComputePointWeight(gentity_t *player, int point_team, int influencer_team, SpawnPoint *point, bool noScoreCull, bool noDangerCull, bool bIsArchiveCall)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -319,7 +319,7 @@ bool SpawnSystem_ComputePointWeight(
 SpawnSystem_ComputePointWeights
 ==============
 */
-int SpawnSystem_ComputePointWeights(
+int SpawnSystem_ComputePointWeights(gentity_t *player, int point_team, int influencer_team, bool allSpawns, bool noDangerCull)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -351,7 +351,7 @@ bool SpawnSystem_SpotWouldTelefrag(vec3_t *vPos, vec3_t *otherPos)
 SpawnSystem_ArchiveManualSpawn
 ==============
 */
-void SpawnSystem_ArchiveManualSpawn(
+void SpawnSystem_ArchiveManualSpawn(bool a1, gentity_t *a2, gentity_t *ent, vec3_t *spawn_origin, vec3_t *spawn_angles, const char *reason)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -395,7 +395,7 @@ SpawnSystem_DebugRenderVisibilityCheck
 SpawnSystem_IsSpawnPointVisible
 ==============
 */
-char SpawnSystem_IsSpawnPointVisible(
+char SpawnSystem_IsSpawnPointVisible(vec3_t *origin, vec3_t *angles, int vis_teams_mask, gentity_t *ignore_entity, bool render_mode_success, vec3_t *enemyPos, vec3_t *sightPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -406,7 +406,7 @@ char SpawnSystem_IsSpawnPointVisible(
 SpawnSystem_IsSpawnPointVisible
 ==============
 */
-char SpawnSystem_IsSpawnPointVisible(
+char SpawnSystem_IsSpawnPointVisible(vec3_t *origin, vec3_t *angles, int vis_teams_mask, gentity_t *ignore_entity)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -427,7 +427,7 @@ void SpawnSystem_SetSpawnClientFlag(int clientNum, int flags)
 SpawnSystem_DemoBadSpawn
 ==============
 */
-void SpawnSystem_DemoBadSpawn(
+void SpawnSystem_DemoBadSpawn(int playerEntityNum, int enemyEntityNum, int playerTeam, int pointTeam, int influencerTeam)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -479,7 +479,7 @@ void SpawnSystem_UpdateCylinderInfluencer(SpawnInfluencer *influencer)
 SpawnSystem_AddCylinderInfluencer
 ==============
 */
-int SpawnSystem_AddCylinderInfluencer(
+int SpawnSystem_AddCylinderInfluencer(eInfluencerType type, vec3_t *origin, vec3_t *forward, vec3_t *up, float radius, float axis_length, float score, eInfluencerScoreCurve score_curve, int teamMask, int entNum, int timeout, const char *description)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -510,7 +510,7 @@ void SpawnSystem_UpdateInfluencerOriginAngles()
 SpawnSystem_CheckDangerousPoints
 ==============
 */
-int SpawnSystem_CheckDangerousPoints(
+int SpawnSystem_CheckDangerousPoints(gentity_t *ent, int point_team, int vis_teams_mask, int maxDangerousChecks, bool bUseFirstNonTelefragWhenAllPointsDangerous)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -561,11 +561,11 @@ void SpawnSystem_SortPointsByScore(int team)
 SpawnSystem_UpdateSpawnPointsForPlayer
 ==============
 */
-/*int SpawnSystem_UpdateSpawnPointsForPlayer@<eax>(
+int SpawnSystem_UpdateSpawnPointsForPlayer(bool a1, gentity_t *a2, char *allSpawns, gentity_t *ent, int point_team, int influencer_team, int vis_teams_mask, bool skipRecording)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============

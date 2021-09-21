@@ -59,7 +59,7 @@ float R_NearestPointOnWinding(const vec3_t *points, int pointCount, const DpvsPl
 R_FrustumClipPlanes
 ==============
 */
-void R_FrustumClipPlanes(
+void R_FrustumClipPlanes(const GfxMatrix *viewProjMtx, const vec4_t *sidePlanes, int sidePlaneCount, DpvsPlane *frustumPlanes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -80,7 +80,7 @@ char *R_PortalAssertMsg()
 R_ProjectPortal
 ==============
 */
-void R_ProjectPortal(
+void R_ProjectPortal(int vertexCount, const vec3_t *winding, vec2_t *mins, vec2_t *maxs, DpvsClipChildren *clipChildren)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -100,7 +100,7 @@ void R_UnprojectPoint(GfxViewParms *viewParms, const vec2_t *projected, vec4_t *
 R_AddBevelPlanes
 ==============
 */
-unsigned int R_AddBevelPlanes(
+unsigned int R_AddBevelPlanes(DpvsPlane *planes, unsigned int vertexCount, const vec3_t *windingNormals, const vec2_t *mins, const vec2_t *maxs, DpvsForceBevels forceBevels)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -111,7 +111,7 @@ unsigned int R_AddBevelPlanes(
 R_PortalClipPlanes
 ==============
 */
-unsigned int R_PortalClipPlanes(
+unsigned int R_PortalClipPlanes(DpvsPlane *planes, unsigned int vertexCount, const vec3_t *winding, DpvsClipChildren *clipChildren)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -144,7 +144,7 @@ bool R_PortalBehindAnyPlane(const GfxPortal *portal, const DpvsPlane *planes, in
 R_ChopPortalWinding
 ==============
 */
-const vec3_t *R_ChopPortalWinding(
+const vec3_t *R_ChopPortalWinding(const vec3_t *vertsIn, int *vertexCount, const DpvsPlane *plane, vec3_t *vertsOut)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -155,7 +155,7 @@ const vec3_t *R_ChopPortalWinding(
 R_GetLightingMask_Box
 ==============
 */
-unsigned int R_GetLightingMask_Box(
+unsigned int R_GetLightingMask_Box(const GfxLight *visibleLights, int visibleLightCount, const vec4_t *dynamicSpotLightPlanes, const vec3_t *mins, const vec3_t *maxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -166,7 +166,7 @@ unsigned int R_GetLightingMask_Box(
 R_GetLightingMask_Sphere
 ==============
 */
-unsigned int R_GetLightingMask_Sphere(
+unsigned int R_GetLightingMask_Sphere(const GfxLight *visibleLights, int visibleLightCount, const vec4_t *dynamicSpotLightPlanes, const vec3_t *origin, float baseRadius)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -237,7 +237,7 @@ void R_AddSceneEntSurfs_SceneDynBrush(AddSceneEntSurfsCmd *cmd)
 R_InitSceneEntDrawSurfs
 ==============
 */
-void R_InitSceneEntDrawSurfs(
+void R_InitSceneEntDrawSurfs(GfxDrawSurf **drawSurfs, unsigned int drawSurfsByteSize, GfxDrawSurf **lastDrawSurfs, unsigned int lastDrawSurfsByteSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -257,7 +257,7 @@ void R_FinishSceneEntDrawSurfs(GfxDrawSurf **drawSurfs)
 R_AddAllSceneEntSurfacesCamera
 ==============
 */
-void R_AddAllSceneEntSurfacesCamera(
+void R_AddAllSceneEntSurfacesCamera(const GfxViewInfo *viewInfo, GfxDrawSurf **drawSurfs, GfxDrawSurf **lastDrawSurfs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -287,7 +287,7 @@ void R_AddAllSceneEntSurfacesSunShadow()
 R_AddAllSceneEntSurfacesSpotShadow
 ==============
 */
-void R_AddAllSceneEntSurfacesSpotShadow(
+void R_AddAllSceneEntSurfacesSpotShadow(const GfxViewInfo *viewInfo, unsigned int spotShadowIndex, unsigned int primaryLightIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -297,7 +297,7 @@ void R_AddAllSceneEntSurfacesSpotShadow(
 R_DrawBModel
 ==============
 */
-int R_DrawBModel(
+int R_DrawBModel(BModelDrawInfo *bmodelInfo, const GfxBrushModel *bmodel, const GfxPlacement *placement, const ShaderConstantSet *constSet)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -338,7 +338,7 @@ void R_DrawAllDynEnt(const GfxViewInfo *viewInfo)
 R_FilterEntIntoCells_r
 ==============
 */
-void R_FilterEntIntoCells_r(
+void R_FilterEntIntoCells_r(float entInfo, const cplane_s *a2, float node, FilterEntInfo *a4, mnode_t *mins, const vec3_t *maxs, const vec3_t *a7)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -348,7 +348,7 @@ void R_FilterEntIntoCells_r(
 R_FilterDynEntIntoCells_r
 ==============
 */
-void R_FilterDynEntIntoCells_r(
+void R_FilterDynEntIntoCells_r(float node, const cplane_s *a2, float dynEntIndex, mnode_t *a4, unsigned int drawType, DynEntityDrawType mins, const vec3_t *maxs, const vec3_t *a8)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -378,7 +378,7 @@ void R_UnfilterDynEntFromCells(unsigned int dynEntId, DynEntityDrawType drawType
 R_FilterDObjIntoCells
 ==============
 */
-void R_FilterDObjIntoCells(
+void R_FilterDObjIntoCells(float localClientNum, LocalClientNum_t a2, unsigned int entnum, vec3_t *origin, float radius)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -388,7 +388,7 @@ void R_FilterDObjIntoCells(
 R_FilterBModelIntoCells
 ==============
 */
-void R_FilterBModelIntoCells(
+void R_FilterBModelIntoCells(float localClientNum, LocalClientNum_t a2, unsigned int entnum, GfxBrushModel *bmodel)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -398,7 +398,7 @@ void R_FilterBModelIntoCells(
 R_FilterDynEntIntoCells
 ==============
 */
-void R_FilterDynEntIntoCells(
+void R_FilterDynEntIntoCells(float dynEntId, unsigned int a2, DynEntityDrawType drawType, vec3_t *mins, vec3_t *maxs)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -408,7 +408,7 @@ void R_FilterDynEntIntoCells(
 R_DpvsBoxIsVisible
 ==============
 */
-int R_DpvsBoxIsVisible(
+int R_DpvsBoxIsVisible(const vec3_t *mins, const vec3_t *maxs, LocalClientNum_t localClientNum, unsigned int view)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -419,7 +419,7 @@ int R_DpvsBoxIsVisible(
 R_FilterXModelIntoScene
 ==============
 */
-void R_FilterXModelIntoScene(
+void R_FilterXModelIntoScene(const XModel *model, const GfxScaledPlacement *placement, unsigned int renderFxFlags, unsigned __int16 *cachedLightingHandle, float lightToleranceSq)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -439,7 +439,7 @@ void R_InitialEntityCulling()
 R_GetStaticModelsAabb
 ==============
 */
-void R_GetStaticModelsAabb(
+void R_GetStaticModelsAabb(const GfxAabbTree *tree, const vec3_t *mins, const vec3_t *maxs, int *models, int *models_count, int max_models)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -479,7 +479,7 @@ void R_FinishDpvsDynamicBatch(DpvsDynamicCellCmd *dpvsDynamicBatch, bool bRunCmd
 R_AddDpvsDynamicBatch
 ==============
 */
-void R_AddDpvsDynamicBatch(
+void R_AddDpvsDynamicBatch(DpvsDynamicCellCmd *dpvsDynamicBatch, int cellIndex, const DpvsPlane *planes, int planeCount, int frustumPlaneCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -489,7 +489,7 @@ void R_AddDpvsDynamicBatch(
 R_AddCellSurfacesInFrustumDelayed
 ==============
 */
-void R_AddCellSurfacesInFrustumDelayed(
+void R_AddCellSurfacesInFrustumDelayed(const GfxCell *cell, const DpvsPlane *planes, int planeCount, int frustumPlaneCount, DpvsDynamicCellCmd *dpvsDynamicBatch)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -509,9 +509,11 @@ void R_CacheCell(int cellIndex, int planeIndex, int planeCount, int frustumPlane
 R_AddCellSurfaces
 ==============
 */
-void R_AddCellSurfaces(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -529,10 +531,12 @@ void R_AssertValidQueue()
 R_EnqueuePortal
 ==============
 */
-/*void R_EnqueuePortal(const vec3_t *a1@<ecx>, const DpvsPlane *a2@<edi>, float a3@<xmm0>, GfxPortal *portal)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -560,10 +564,11 @@ void R_AddVertToPortalHullPoints(GfxPortal *portal, const vec3_t *v)
 R_ChopPortal
 ==============
 */
-int R_ChopPortal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -571,7 +576,7 @@ int R_ChopPortal(
 R_ChopPortalAndAddHullPoints
 ==============
 */
-bool R_ChopPortalAndAddHullPoints(
+bool R_ChopPortalAndAddHullPoints(GfxPortal *portal, const DpvsPlane *parentPlane, const DpvsPlane *planes, int planeCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -582,7 +587,7 @@ bool R_ChopPortalAndAddHullPoints(
 R_ChopPortalAndAddHullPointsNoFrustum
 ==============
 */
-bool R_ChopPortalAndAddHullPointsNoFrustum(
+bool R_ChopPortalAndAddHullPointsNoFrustum(GfxPortal *portal, const DpvsPlane *parentPlane, const DpvsPlane *planes, int planeCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -593,10 +598,11 @@ bool R_ChopPortalAndAddHullPointsNoFrustum(
 R_GetFurtherCellList_r
 ==============
 */
-int R_GetFurtherCellList_r(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -614,7 +620,7 @@ void R_SetCellVisible(unsigned int cellIndex)
 R_VisitAllFurtherCells
 ==============
 */
-void R_VisitAllFurtherCells(
+void R_VisitAllFurtherCells(const GfxCell *cell, const DpvsPlane *parentPlane, const DpvsPlane *planes, int planeCount, int frustumPlaneCount, DpvsDynamicCellCmd *dpvsDynamicBatch)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -634,7 +640,7 @@ void R_SetAncestorListStatus(GfxPortal *portal, bool isAncestor)
 R_VisitPortalsForCell
 ==============
 */
-int R_VisitPortalsForCell(
+int R_VisitPortalsForCell(const GfxCell *cell, GfxPortal *parentPortal, const DpvsPlane *parentPlane, DpvsPlane *planes, unsigned int maxPlaneCount, unsigned int planeCount, int frustumPlaneCount, unsigned int recursionDepth, DpvsClipChildren clipChildren, DpvsDynamicCellCmd *dpvsDynamicBatch)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -645,7 +651,7 @@ int R_VisitPortalsForCell(
 R_VisitPortals
 ==============
 */
-void R_VisitPortals(
+void R_VisitPortals(const GfxCell *cell, const DpvsPlane *parentPlane, DpvsPlane *planes, int planeCount, DpvsDynamicCellCmd *dpvsDynamicBatch)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -655,9 +661,11 @@ void R_VisitPortals(
 R_VisitPortalsForCellNoFrustum
 ==============
 */
-void R_VisitPortalsForCellNoFrustum(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -665,9 +673,11 @@ void R_VisitPortalsForCellNoFrustum(
 R_VisitPortalsNoFrustum
 ==============
 */
-void R_VisitPortalsNoFrustum(const GfxCell *cell)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -805,7 +815,7 @@ void R_StartCachedDpvsBatches(unsigned int view, unsigned int batchMask)
 R_SetupShadowSurfacesDpvs
 ==============
 */
-void R_SetupShadowSurfacesDpvs(
+void R_SetupShadowSurfacesDpvs(const GfxViewParms *viewParms, const vec4_t *sidePlanes, unsigned int sidePlaneCount, int partitionIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -836,7 +846,7 @@ void R_SetCullDist(float dist)
 R_CullBoxCurDpvs_SceneSelect
 ==============
 */
-int R_CullBoxCurDpvs_SceneSelect(
+int R_CullBoxCurDpvs_SceneSelect(const vec3_t *mins, const vec3_t *maxs, unsigned int viewIndex, unsigned int sceneIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -891,7 +901,7 @@ int R_CullLine(int localClient, const vec3_t *p0, const vec3_t *p1, float cutoff
 R_ExtraCam_SaveDpvsData
 ==============
 */
-unsigned int R_ExtraCam_SaveDpvsData(
+unsigned int R_ExtraCam_SaveDpvsData(LocalClientNum_t localClientNum, unsigned __int8 *buffer, unsigned int bufferByteSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

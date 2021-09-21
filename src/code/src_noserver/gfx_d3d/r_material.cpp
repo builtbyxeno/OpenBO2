@@ -88,22 +88,22 @@ bool MaterialTechniqueSet_FindHashLocation(const char *name, int *foundHashIndex
 Material_FindTechniqueSet_LoadObj
 ==============
 */
-/*MaterialTechniqueSet *Material_FindTechniqueSet_LoadObj@<eax>(
+MaterialTechniqueSet *Material_FindTechniqueSet_LoadObj(int *a1, const char *a2, const char *tname, MtlTechSetNotFoundBehavior notFoundBehavior)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 Material_FindTechniqueSet_FastFile
 ==============
 */
-MaterialTechniqueSet *Material_FindTechniqueSet_FastFile(
+/*MaterialTechniqueSet *Material_FindTechniqueSet_FastFile@<eax>(char *a1@<edi>, const char *name, MtlTechSetNotFoundBehavior notFoundBehavior)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}
+}*/
 
 /*
 ==============
@@ -130,7 +130,7 @@ void Material_SetAlwaysUseDefaultMaterial(const bool alwaysUseDefaultMaterial)
 Material_RegisterTechniqueSet
 ==============
 */
-MaterialTechniqueSet *Material_RegisterTechniqueSet(
+MaterialTechniqueSet *Material_RegisterTechniqueSet(const char *prefix, const char *materialName, char *name, bool isLayerOrDefault)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

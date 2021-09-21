@@ -16,10 +16,11 @@ void CM_InitStaticModel(cStaticModel_s *staticModel, vec3_t *origin, vec3_t *ang
 CM_CreateStaticModel
 ==============
 */
-bool CM_CreateStaticModel(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -27,7 +28,7 @@ bool CM_CreateStaticModel(
 CM_LoadStaticModels
 ==============
 */
-void CM_LoadStaticModels()
+void CM_LoadStaticModels(char *a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -198,7 +198,7 @@ void LiveSteam_Init()
 LiveSteam_FriendPersonaNameFromXuid
 ==============
 */
-char *LiveSteam_FriendPersonaNameFromXuid(unsigned __int64 xuid, char *buff, int size, bool asciionly)
+char *LiveSteam_FriendPersonaNameFromXuid(int a1, char *a2, unsigned __int64 xuid, char *buff, int size, bool asciionly)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -209,7 +209,7 @@ char *LiveSteam_FriendPersonaNameFromXuid(unsigned __int64 xuid, char *buff, int
 LiveSteam_Client_ConnectToSteamServer
 ==============
 */
-unsigned int LiveSteam_Client_ConnectToSteamServer(
+unsigned int LiveSteam_Client_ConnectToSteamServer(unsigned __int64 serverID, const netadr_t *serverAddr, void *authBlob, unsigned int bufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

@@ -26,7 +26,7 @@ void SaveScreenToBuffer(LocalClientNum_t localClientNum)
 CG_DrawShellShockSavedScreenBlendBlurred
 ==============
 */
-int CG_DrawShellShockSavedScreenBlendBlurred(
+int CG_DrawShellShockSavedScreenBlendBlurred(LocalClientNum_t localClientNum, const shellshock_parms_t *parms, int start, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -37,7 +37,7 @@ int CG_DrawShellShockSavedScreenBlendBlurred(
 CG_DrawShellShockSavedScreenBlendFlashed
 ==============
 */
-int CG_DrawShellShockSavedScreenBlendFlashed(
+int CG_DrawShellShockSavedScreenBlendFlashed(LocalClientNum_t localClientNum, const shellshock_parms_t *parms, int start, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -98,7 +98,7 @@ void EndShellShock(LocalClientNum_t localClientNum)
 UpdateShellShockSound
 ==============
 */
-void UpdateShellShockSound(
+void UpdateShellShockSound(LocalClientNum_t localClientNum, const shellshock_parms_t *parms, int time, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -108,7 +108,7 @@ void UpdateShellShockSound(
 UpdateShellShockLookControl
 ==============
 */
-void UpdateShellShockLookControl(
+void UpdateShellShockLookControl(LocalClientNum_t localClientNum, const shellshock_parms_t *parms, int time, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -118,7 +118,7 @@ void UpdateShellShockLookControl(
 UpdateShellShockCamera
 ==============
 */
-void UpdateShellShockCamera(
+void UpdateShellShockCamera(LocalClientNum_t localClientNum, const shellshock_parms_t *parms, int time, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -128,7 +128,7 @@ void UpdateShellShockCamera(
 UpdateShellShockVisionSet
 ==============
 */
-void UpdateShellShockVisionSet(
+void UpdateShellShockVisionSet(LocalClientNum_t localClientNum, const shellshock_parms_t *parms, int time, int duration)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -138,9 +138,11 @@ void UpdateShellShockVisionSet(
 CG_UpdateShellShock
 ==============
 */
-void CG_UpdateShellShock(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*

@@ -27,7 +27,7 @@ char CG_GetWeapReticleZoom(const cg_t *cgameGlob, float *zoom)
 CG_DrawFrameOverlay
 ==============
 */
-void CG_DrawFrameOverlay(
+void CG_DrawFrameOverlay(float innerLeft, float innerRight, float innerTop, float innerBottom, const vec4_t *color, Material *material, LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -68,7 +68,7 @@ void CG_UpdateScissorViewport(refdef_t *refdef, vec2_t *drawPos, vec2_t *drawSiz
 CG_DrawAdsOverlay
 ==============
 */
-void CG_DrawAdsOverlay(
+void CG_DrawAdsOverlay(LocalClientNum_t localClientNum, Weapon weapon, const vec4_t *color, const vec2_t *crosshairPos)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -152,7 +152,7 @@ bool AllowedToDrawCrosshair(LocalClientNum_t localClientNum, const playerState_s
 CG_DrawAdsAimIndicator
 ==============
 */
-void CG_DrawAdsAimIndicator(
+void CG_DrawAdsAimIndicator(LocalClientNum_t localClientNum, const WeaponDef *weapDef, const vec4_t *color, float centerX, float centerY, float transScale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -162,7 +162,7 @@ void CG_DrawAdsAimIndicator(
 CG_TransitionToAds
 ==============
 */
-void CG_TransitionToAds(
+void CG_TransitionToAds(const cg_t *cgameGlob, const WeaponDef *weapDef, float posLerp, float *transScale, float *transShift)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -172,7 +172,7 @@ void CG_TransitionToAds(
 CG_DrawReticleCenter
 ==============
 */
-bool CG_DrawReticleCenter(
+bool CG_DrawReticleCenter(LocalClientNum_t localClientNum, const Weapon weapon, const vec4_t *color, float centerX, float centerY, float centerW, float transScale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -183,7 +183,7 @@ bool CG_DrawReticleCenter(
 CG_CalcReticleSpread
 ==============
 */
-void CG_CalcReticleSpread(
+void CG_CalcReticleSpread(const cg_t *cgameGlob, const Weapon weapon, const vec2_t *drawSize, float transScale, vec2_t *spread)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -193,7 +193,7 @@ void CG_CalcReticleSpread(
 CG_CalcReticleColor
 ==============
 */
-void CG_CalcReticleColor(
+void CG_CalcReticleColor(LocalClientNum_t localClientNum, const vec4_t *baseColor, float alpha, float aimSpreadScale, vec4_t *reticleColor)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -203,7 +203,7 @@ void CG_CalcReticleColor(
 CG_DrawReticleSides
 ==============
 */
-void CG_DrawReticleSides(
+void CG_DrawReticleSides(LocalClientNum_t localClientNum, Weapon weapon, const vec4_t *baseColor, float centerX, float centerY, float centerW, float transScale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

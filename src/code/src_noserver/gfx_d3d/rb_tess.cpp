@@ -56,7 +56,7 @@ void R_SetVertexDeclTypeModel(const XSurface *surf, GfxCmdBufState *state)
 R_TessCodeMeshList_AddCodeMeshArgs
 ==============
 */
-void R_TessCodeMeshList_AddCodeMeshArgs(
+void R_TessCodeMeshList_AddCodeMeshArgs(GfxCmdBufSourceState *source, const GfxBackEndData *data, const FxCodeMeshData *codeMesh)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -66,10 +66,10 @@ void R_TessCodeMeshList_AddCodeMeshArgs(
 R_SetObjectIdentityPlacement
 ==============
 */
-/*void R_SetObjectIdentityPlacement(const GfxScaledPlacement *a1@<edx>, GfxCmdBufSourceState *source)
+void R_SetObjectIdentityPlacement(const GfxScaledPlacement *a1, GfxCmdBufSourceState *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
@@ -140,7 +140,7 @@ void RB_CreateParticleCloud2dAxis(const GfxParticleCloud *cloud, const vec3_t *v
 R_SetParticleCloudConstants
 ==============
 */
-void R_SetParticleCloudConstants(
+void R_SetParticleCloudConstants(GfxCmdBufSourceState *source, const GfxParticleCloud *cloud, bool shaderUsesVelDirWorld)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -171,7 +171,7 @@ void R_DrawXModelSkinnedCached(GfxCmdBufContext context, const GfxModelSkinnedSu
 R_DrawXModelSkinnedUncached
 ==============
 */
-void R_DrawXModelSkinnedUncached(
+void R_DrawXModelSkinnedUncached(GfxCmdBufContext context, XSurface *xsurf, GfxPackedVertex *skinnedVert, int baseIndex, int triCount, int vertexCount)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -181,9 +181,11 @@ void R_DrawXModelSkinnedUncached(
 R_DrawXModelSkinnedModelSurf
 ==============
 */
-void R_DrawXModelSkinnedModelSurf(GfxCmdBufContext context, const GfxModelSkinnedSurface *modelSurf)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -258,7 +260,7 @@ unsigned int R_TessTrianglesList(const GfxDrawSurfListArgs *listArgs)
 R_SetBModelPlacement
 ==============
 */
-void R_SetBModelPlacement(
+void R_SetBModelPlacement(GfxCmdBufContext context, const GfxSurface *surface, const GfxScaledPlacement *remotePlacement)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

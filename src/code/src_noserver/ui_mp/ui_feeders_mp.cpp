@@ -17,7 +17,7 @@ int UI_GetMapCount()
 UI_Project_FeederCount
 ==============
 */
-int UI_Project_FeederCount(
+int UI_Project_FeederCount(const LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, float feederID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -39,7 +39,7 @@ int UI_GetMapIdForNum(const int num)
 UI_FeederItemText_Maps
 ==============
 */
-const GfxViewParms *UI_FeederItemText_Maps(
+const GfxViewParms *UI_FeederItemText_Maps(ControllerIndex_t controllerIndex, itemDef_s *item, int index, int column, Material **handle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -50,7 +50,7 @@ const GfxViewParms *UI_FeederItemText_Maps(
 UI_FeederItemColor_InGamePlayerList
 ==============
 */
-bool UI_FeederItemColor_InGamePlayerList(
+bool UI_FeederItemColor_InGamePlayerList(ControllerIndex_t controllerIndex, UIContextIndex_t contextIndex, itemDef_s *item, int index, int column, vec4_t *color, bool onFocus, team_t team)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -61,7 +61,7 @@ bool UI_FeederItemColor_InGamePlayerList(
 UI_FeederItemColor_ClanMembers
 ==============
 */
-bool UI_FeederItemColor_ClanMembers(
+bool UI_FeederItemColor_ClanMembers(ControllerIndex_t controllerIndex, UIContextIndex_t contextIndex, itemDef_s *item, int index, int column, vec4_t *color, bool onFocus)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -72,7 +72,7 @@ bool UI_FeederItemColor_ClanMembers(
 UI_FeederItemColor_AARScoreboard
 ==============
 */
-bool UI_FeederItemColor_AARScoreboard(
+bool UI_FeederItemColor_AARScoreboard(ControllerIndex_t controllerIndex, UIContextIndex_t contextIndex, float feederID, itemDef_s *item, int index, int column, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -83,9 +83,11 @@ bool UI_FeederItemColor_AARScoreboard(
 UI_Project_FeederItemColor
 ==============
 */
-void UI_Project_FeederItemColor(ControllerIndex_t,UIContextIndex_t,itemDef_s *,float,int,int,vec4_t &,bool)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -104,7 +106,7 @@ int UI_GetCurrentIndexForSplitscreen(int index)
 UI_FeederDoubleClickDlcMaps
 ==============
 */
-void UI_FeederDoubleClickDlcMaps(
+void UI_FeederDoubleClickDlcMaps(const LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, int index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -135,7 +137,7 @@ void UI_OverrideCursorPos_Maps(UIContextIndex_t contextIndex, listBoxDef_s *list
 UI_OverrideCursorPos_Gametypes
 ==============
 */
-void UI_OverrideCursorPos_Gametypes(
+void UI_OverrideCursorPos_Gametypes(const LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, listBoxDef_s *listPtr, float feederID)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -145,7 +147,7 @@ void UI_OverrideCursorPos_Gametypes(
 UI_OverrideCursorPos_Contracts
 ==============
 */
-void UI_OverrideCursorPos_Contracts(
+void UI_OverrideCursorPos_Contracts(const LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, itemDef_s *item, listBoxDef_s *listPtr)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -155,11 +157,12 @@ void UI_OverrideCursorPos_Contracts(
 UI_Project_OverrideCursorPos
 ==============
 */
-/*bool UI_Project_OverrideCursorPos@<al>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+	 tmp;
+	return tmp;
+}
 
 /*
 ==============
@@ -176,7 +179,7 @@ void UI_FeederSelection_Maps(UIContextIndex_t contextIndex, float feederID, int 
 UI_FeederSelection_GametypesBase
 ==============
 */
-void UI_FeederSelection_GametypesBase(
+void UI_FeederSelection_GametypesBase(LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, float feederID, int index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -186,7 +189,7 @@ void UI_FeederSelection_GametypesBase(
 UI_Project_FeederSelection
 ==============
 */
-void UI_Project_FeederSelection(
+void UI_Project_FeederSelection(const LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, float feederID, int index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -196,7 +199,7 @@ void UI_Project_FeederSelection(
 UI_Project_FeederDataExtended
 ==============
 */
-bool UI_Project_FeederDataExtended(
+bool UI_Project_FeederDataExtended(ControllerIndex_t controllerIndex, UIContextIndex_t contextIndex, int feederID, listBoxDef_s *listBox, const char *field)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -207,7 +210,7 @@ bool UI_Project_FeederDataExtended(
 UI_FeederBackColor
 ==============
 */
-void UI_FeederBackColor(
+void UI_FeederBackColor(const LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, itemDef_s *item, const float feederID, int index, vec4_t *color)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

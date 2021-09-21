@@ -16,7 +16,7 @@ void R_DepthPrepassCallback(const void *userData, GfxCmdBufContext context, cons
 R_DepthPrepass
 ==============
 */
-void R_DepthPrepass(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf)
+void R_DepthPrepass(int a1, const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -26,10 +26,10 @@ void R_DepthPrepass(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf)
 RB_DrawDepthPrepassCommandBuffer
 ==============
 */
-/*void RB_DrawDepthPrepassCommandBuffer(int a1@<esi>, const GfxBackEndData *data, const GfxViewInfo *viewInfo)
+void RB_DrawDepthPrepassCommandBuffer(int a1, const GfxBackEndData *data, const GfxViewInfo *viewInfo)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============

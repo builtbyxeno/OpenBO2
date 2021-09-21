@@ -50,7 +50,7 @@ gjk_entity_info_t::get_glass
 cached_query_info_t::add_query
 ==============
 */
-/*void __thiscall cached_query_info_t::add_query(
+/*void __thiscall cached_query_info_t::add_query(cached_query_info_t *this, const phys_vec3 *query_aabb_min, const phys_vec3 *query_aabb_max, const phys_vec3 *extra, const int query_contents, const unsigned int query_flags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }*/
@@ -60,7 +60,7 @@ cached_query_info_t::add_query
 cached_query_info_t::is_subset
 ==============
 */
-/*BOOL __thiscall cached_query_info_t::is_subset(
+/*BOOL __thiscall cached_query_info_t::is_subset(cached_query_info_t *this, const phys_vec3 *query_aabb_min, const phys_vec3 *query_aabb_max, const int query_contents, const unsigned int query_flags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -81,7 +81,7 @@ gjk_query_output::verify_empty
 gjk_trace_aabb
 ==============
 */
-char gjk_trace_aabb(
+char gjk_trace_aabb(const phys_vec3 *p0, const phys_vec3 *dir, const phys_vec3 *aabb_min, const phys_vec3 *aabb_max, float *t_)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

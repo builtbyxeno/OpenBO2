@@ -77,7 +77,7 @@ void Flame_Class_Chunk_Age(bool is_server, int time, LocalClientNum_t localClien
 Flame_Class_Chunk_Spawn
 ==============
 */
-flameChunk_s *Flame_Class_Chunk_Spawn(
+flameChunk_s *Flame_Class_Chunk_Spawn(bool is_server, flameChunkSpawnVars_t *spawnVars, flameChunk_s **chunkList, vec3_t *velocityAdd, flameTable *fTable)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

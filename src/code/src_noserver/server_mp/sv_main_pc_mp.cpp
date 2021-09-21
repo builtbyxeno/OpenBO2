@@ -175,21 +175,21 @@ int validateAndGetCmd(msg_t *pktMsg)
 SV_Query_Pump
 ==============
 */
-/*void SV_Query_Pump(int a1@<ebp>)
+void SV_Query_Pump(int a1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-}*/
+}
 
 /*
 ==============
 SV_Query_SendTo
 ==============
 */
-/*int SV_Query_SendTo@<eax>(unsigned __int8 *payload, int paylen, int cmd, netadr_t *to)
+int SV_Query_SendTo(int a1, unsigned __int8 *payload, int paylen, int cmd, netadr_t *to)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -237,11 +237,11 @@ void SV_Perf_Frame()
 SVC_Perf
 ==============
 */
-/*char SVC_Perf@<al>(netadr_t from, msg_t *payload)
+char SVC_Perf(int a1, netadr_t from, msg_t *payload)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============

@@ -6,7 +6,7 @@
 Hunk_UserDebugInit
 ==============
 */
-HunkUser *Hunk_UserDebugInit(
+HunkUser *Hunk_UserDebugInit(void *buffer, int size, HU_ALLOCATION_SCHEME scheme, unsigned int flags, void *scheme_specific_data, const char *name, int type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -58,7 +58,7 @@ void Hunk_UserDebugFree(HunkUser *_user, void *ptr)
 Hunk_UserDefaultInit
 ==============
 */
-HunkUser *Hunk_UserDefaultInit(
+HunkUser *Hunk_UserDefaultInit(void *buffer, int size, HU_ALLOCATION_SCHEME scheme, unsigned int flags, void *scheme_specific_data, const char *name, int type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -89,7 +89,7 @@ void Hunk_UserDefaultFree(HunkUser *user, void *ptr)
 Hunk_UserNullInit
 ==============
 */
-HunkUser *Hunk_UserNullInit(
+HunkUser *Hunk_UserNullInit(void *buffer, int size, HU_ALLOCATION_SCHEME scheme, unsigned int flags, void *scheme_specific_data, const char *name, int type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -141,7 +141,7 @@ void Hunk_UserNullFree(HunkUser *user)
 Hunk_UserCreateFromBuffer
 ==============
 */
-HunkUser *Hunk_UserCreateFromBuffer(
+HunkUser *Hunk_UserCreateFromBuffer(void *buffer, int size, HU_ALLOCATION_SCHEME scheme, unsigned int flags, void *scheme_specific_data, const char *name, int type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -152,7 +152,7 @@ HunkUser *Hunk_UserCreateFromBuffer(
 Hunk_UserCreate
 ==============
 */
-HunkUser *Hunk_UserCreate(
+HunkUser *Hunk_UserCreate(int size, HU_ALLOCATION_SCHEME scheme, unsigned int flags, void *scheme_specific_data, const char *name, int type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

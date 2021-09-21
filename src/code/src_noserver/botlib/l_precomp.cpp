@@ -165,7 +165,7 @@ void PC_FreeDefine(define_s *define)
 PC_ExpandBuiltinDefine
 ==============
 */
-int PC_ExpandBuiltinDefine(
+int PC_ExpandBuiltinDefine(source_s *source, token_s *deftoken, define_s *define, token_s **firsttoken, token_s **lasttoken)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -176,7 +176,7 @@ int PC_ExpandBuiltinDefine(
 PC_ExpandDefine
 ==============
 */
-int PC_ExpandDefine(
+int PC_ExpandDefine(source_s *source, token_s *deftoken, define_s *define, token_s **firsttoken, token_s **lasttoken)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -219,11 +219,11 @@ int PC_ReadLine(token_s *token, source_s *source, bool expandDefines)
 PC_Directive_undef
 ==============
 */
-/*int PC_Directive_undef@<eax>(source_s *a1@<edx>, token_s *a2@<ecx>, source_s *source)
+int PC_Directive_undef(source_s *a1, token_s *a2, source_s *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -251,33 +251,33 @@ void PC_AddGlobalDefinesToSource(source_s *source)
 PC_Directive_if_def
 ==============
 */
-/*int PC_Directive_if_def@<eax>(source_s *a1@<edx>, token_s *a2@<ecx>, source_s *source, int type)
+int PC_Directive_if_def(source_s *a1, token_s *a2, source_s *source, int type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 PC_Directive_ifdef
 ==============
 */
-/*int PC_Directive_ifdef@<eax>(source_s *a1@<edx>, token_s *a2@<ecx>, source_s *source)
+int PC_Directive_ifdef(source_s *a1, token_s *a2, source_s *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
 PC_Directive_ifndef
 ==============
 */
-/*int PC_Directive_ifndef@<eax>(source_s *a1@<edx>, token_s *a2@<ecx>, source_s *source)
+int PC_Directive_ifndef(source_s *a1, token_s *a2, source_s *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -350,10 +350,11 @@ int PC_DollarEvaluate(source_s *source, int *intvalue, long double *floatvalue, 
 PC_Directive_elif
 ==============
 */
-int PC_Directive_elif(source_s *source)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -415,7 +416,7 @@ void UnreadSignToken(source_s *source)
 PC_Directive_eval
 ==============
 */
-int PC_Directive_eval(source_s *source)
+int PC_Directive_eval(int a1, source_s *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -426,10 +427,11 @@ int PC_Directive_eval(source_s *source)
 PC_Directive_evalfloat
 ==============
 */
-int PC_Directive_evalfloat(source_s *source)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -513,11 +515,11 @@ int PC_FreeSourceHandle(int handle)
 PC_ReadLineHandle
 ==============
 */
-/*int PC_ReadLineHandle@<eax>(source_s *a1@<edx>, int handle, pc_token_s *pc_token)
+int PC_ReadLineHandle(source_s *a1, int handle, pc_token_s *pc_token)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
-}*/
+}
 
 /*
 ==============
@@ -578,11 +580,10 @@ int PC_ReadTokenHandle(int handle, pc_token_s *pc_token)
 PC_Directive_define
 ==============
 */
-/*int PC_Directive_define@<eax>(source_s *a1@<edx>, token_s *a2@<ecx>, source_s *source)
+void PC_Directive_define(source_s *)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}*/
+}
 
 /*
 ==============

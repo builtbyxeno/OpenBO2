@@ -38,7 +38,7 @@ void OffHandFlash(const cg_t *cgameGlob, const vec4_t *base_color, vec4_t *out_c
 CG_DrawOffHandHighlight
 ==============
 */
-void CG_DrawOffHandHighlight(
+void CG_DrawOffHandHighlight(char *a1, LocalClientNum_t localClientNum, const rectDef_s *rect, const vec4_t *color, Material *material, OffhandSlot weaponType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -48,7 +48,7 @@ void CG_DrawOffHandHighlight(
 CG_DrawOffHandAmmo
 ==============
 */
-void CG_DrawOffHandAmmo(
+void CG_DrawOffHandAmmo(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float scale, const vec4_t *color, int textStyle, OffhandSlot weaponType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -58,7 +58,7 @@ void CG_DrawOffHandAmmo(
 CG_DrawOffHandName
 ==============
 */
-void CG_DrawOffHandName(
+void CG_DrawOffHandName(LocalClientNum_t localClientNum, const rectDef_s *rect, Font_s *font, float scale, const vec4_t *color, int textStyle, OffhandSlot weaponType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -68,7 +68,7 @@ void CG_DrawOffHandName(
 CG_PrepOffHand
 ==============
 */
-void CG_PrepOffHand(
+void CG_PrepOffHand(LocalClientNum_t localClientNum, const entityState_s *ent, Weapon weapon, bool isPlayerView)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -98,7 +98,7 @@ void CG_SetEquippedOffHand(LocalClientNum_t localClientNum, Weapon offHandWeapon
 CG_DrawOffHandIcon
 ==============
 */
-void CG_DrawOffHandIcon(
+void CG_DrawOffHandIcon(LocalClientNum_t localClientNum, const rectDef_s *rect, const vec4_t *color, Material *material, OffhandSlot weaponType)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

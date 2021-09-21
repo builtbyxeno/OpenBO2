@@ -16,7 +16,7 @@ void SD_DecoderShutdown()
 SD_DecoderAllocate
 ==============
 */
-sd_decoder *SD_DecoderAllocate(
+sd_decoder *SD_DecoderAllocate(sd_source *source, const SndAssetBankEntry *entry, sd_decoder *pool, unsigned int count)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -27,9 +27,10 @@ sd_decoder *SD_DecoderAllocate(
 SD_DecoderAllocate
 ==============
 */
-/*sd_decoder *SD_DecoderAllocate@<eax>(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
-}*/
+	 tmp;
+	return tmp;
+}
 

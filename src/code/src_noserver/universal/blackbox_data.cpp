@@ -48,9 +48,11 @@ int BB_CacheString(const char *str, int len)
 BB_WriteString
 ==============
 */
-void BB_WriteString(bb_msg_t *msg, const char *str, int len)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -88,9 +90,11 @@ void BB_InitDefinitions()
 BB_RewriteDefinitions
 ==============
 */
-void BB_RewriteDefinitions(bb_msg_t *a1, const void *a2)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -98,10 +102,11 @@ void BB_RewriteDefinitions(bb_msg_t *a1, const void *a2)
 BB_BeginDefinition
 ==============
 */
-int BB_BeginDefinition(const char *name)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -131,7 +136,7 @@ DefinitionMap *BB_GetDefinitionMap(unsigned int nameHash, unsigned int formatHas
 BB_ParseAndCacheFormatString
 ==============
 */
-int BB_ParseAndCacheFormatString(
+int BB_ParseAndCacheFormatString(bb_msg_t *msg, const char *name, const char *fmt, int *parameterCount, const unsigned __int8 **parameters)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -142,7 +147,7 @@ int BB_ParseAndCacheFormatString(
 BB_WriteFormatParameters
 ==============
 */
-void BB_WriteFormatParameters(
+void BB_WriteFormatParameters(const void *a1, bb_msg_t *msg, int parameterCount, const unsigned __int8 *parameters, char *args)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

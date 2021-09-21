@@ -79,7 +79,7 @@ void SatellitePingEnemyPlayer(LocalClientNum_t localClientNum, CompassActor *act
 CanLocalPlayerHearActorFootsteps
 ==============
 */
-bool CanLocalPlayerHearActorFootsteps(
+bool CanLocalPlayerHearActorFootsteps(LocalClientNum_t localClientNum, const vec3_t *actorPos, int actorClientIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -90,7 +90,7 @@ bool CanLocalPlayerHearActorFootsteps(
 ActorUpdatePos
 ==============
 */
-void ActorUpdatePos(
+void ActorUpdatePos(LocalClientNum_t localClientNum, CompassActor *actor, const vec3_t *newPos, int actorClientIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -206,9 +206,11 @@ void CG_CompassUpdateVehicleOccupantInfo(LocalClientNum_t localClientNum, int en
 CG_CompassUpdateDogInfo
 ==============
 */
-void CG_CompassUpdateDogInfo(LocalClientNum_t localClientNum, int entityIndex)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -216,9 +218,11 @@ void CG_CompassUpdateDogInfo(LocalClientNum_t localClientNum, int entityIndex)
 CG_CompassUpdateZombieInfo
 ==============
 */
-void CG_CompassUpdateZombieInfo(LocalClientNum_t localClientNum, int entityIndex)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -226,9 +230,11 @@ void CG_CompassUpdateZombieInfo(LocalClientNum_t localClientNum, int entityIndex
 CG_CompassUpdateTurretInfo
 ==============
 */
-void CG_CompassUpdateTurretInfo(LocalClientNum_t localClientNum, int entityIndex)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -236,7 +242,7 @@ void CG_CompassUpdateTurretInfo(LocalClientNum_t localClientNum, int entityIndex
 CG_CompassRadarPingEnemyVehicles
 ==============
 */
-void CG_CompassRadarPingEnemyVehicles(
+void CG_CompassRadarPingEnemyVehicles(LocalClientNum_t localClientNum, float oldRadarProgress, float newRadarProgress, float oldLocalRadarProgress, float newLocalRadarProgress)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -246,7 +252,7 @@ void CG_CompassRadarPingEnemyVehicles(
 CG_CompassRadarPingEnemyTurrets
 ==============
 */
-void CG_CompassRadarPingEnemyTurrets(
+void CG_CompassRadarPingEnemyTurrets(LocalClientNum_t localClientNum, float oldRadarProgress, float newRadarProgress, float oldLocalRadarProgress, float newLocalRadarProgress)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -256,7 +262,7 @@ void CG_CompassRadarPingEnemyTurrets(
 CG_CompassRadarPingEnemyPlayers
 ==============
 */
-void CG_CompassRadarPingEnemyPlayers(
+void CG_CompassRadarPingEnemyPlayers(LocalClientNum_t localClientNum, float oldRadarProgress, float newRadarProgress, float oldLocalRadarProgress, float newLocalRadarProgress)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -266,9 +272,11 @@ void CG_CompassRadarPingEnemyPlayers(
 CG_CompassIncreaseRadarTime
 ==============
 */
-void CG_CompassIncreaseRadarTime(LocalClientNum_t localClientNum)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -276,7 +284,7 @@ void CG_CompassIncreaseRadarTime(LocalClientNum_t localClientNum)
 CG_SensorGrenadePingPlayer
 ==============
 */
-void CG_SensorGrenadePingPlayer(
+void CG_SensorGrenadePingPlayer(LocalClientNum_t localClientNum, const clientInfo_t *ci, int time, bool explosionTag)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -286,9 +294,11 @@ void CG_SensorGrenadePingPlayer(
 CG_AddTurretWeaponPingInfo
 ==============
 */
-void CG_AddTurretWeaponPingInfo(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -296,9 +306,11 @@ void CG_AddTurretWeaponPingInfo(
 CG_CompassAddWeaponPingInfoInternal
 ==============
 */
-void CG_CompassAddWeaponPingInfoInternal(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -306,7 +318,7 @@ void CG_CompassAddWeaponPingInfoInternal(
 CG_CompassAddWeaponPingInfo
 ==============
 */
-void CG_CompassAddWeaponPingInfo(
+void CG_CompassAddWeaponPingInfo(LocalClientNum_t localClientNum, const centity_t *cent, const vec3_t *origin, int msec, bool isSuppressedFire)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -316,7 +328,7 @@ void CG_CompassAddWeaponPingInfo(
 CG_CompassAddVehicleWeaponPingInfo
 ==============
 */
-void CG_CompassAddVehicleWeaponPingInfo(
+void CG_CompassAddVehicleWeaponPingInfo(LocalClientNum_t localClientNum, const centity_t *cent, const vec3_t *origin, int msec)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -326,7 +338,7 @@ void CG_CompassAddVehicleWeaponPingInfo(
 CG_FindFakeFireActor
 ==============
 */
-CompassFakeFire *CG_FindFakeFireActor(
+CompassFakeFire *CG_FindFakeFireActor(LocalClientNum_t localClientNum, const int playerIndex, const int entNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -337,7 +349,7 @@ CompassFakeFire *CG_FindFakeFireActor(
 CG_CompassAddFakeFirePingInfo
 ==============
 */
-void CG_CompassAddFakeFirePingInfo(
+void CG_CompassAddFakeFirePingInfo(LocalClientNum_t localClientNum, const int ownerNum, const int entNum, const vec3_t *origin, const vec3_t *dir, int msec)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

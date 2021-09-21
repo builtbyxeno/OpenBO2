@@ -67,7 +67,7 @@ int Image_GetAvailableHashLocation(const char *name)
 Image_Construct
 ==============
 */
-void Image_Construct(
+void Image_Construct(const char *name, int nameSize, unsigned __int8 category, unsigned __int8 semantic, int imageTrack, GfxImage *image)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -99,10 +99,11 @@ GfxImage *Image_GetProg(int imageProgType)
 Image_Alloc
 ==============
 */
-GfxImage *Image_Alloc(const char *name, const char *category, int semantic, int imageTrack)
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -110,7 +111,7 @@ GfxImage *Image_Alloc(const char *name, const char *category, int semantic, int 
 Image_Create2DTexture_PC
 ==============
 */
-void Image_Create2DTexture_PC(
+void Image_Create2DTexture_PC(GfxImage *image, unsigned __int16 width, unsigned __int16 height, int mipmapCount, int imageFlags, DXGI_FORMAT imageFormat, void *initData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -120,7 +121,7 @@ void Image_Create2DTexture_PC(
 Image_Create3DTexture_PC
 ==============
 */
-void Image_Create3DTexture_PC(
+void Image_Create3DTexture_PC(GfxImage *image, unsigned __int16 width, unsigned __int16 height, unsigned __int16 depth, int mipmapCount, int imageFlags, DXGI_FORMAT imageFormat, void *initData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -130,7 +131,7 @@ void Image_Create3DTexture_PC(
 Image_CreateCubeTexture_PC
 ==============
 */
-void Image_CreateCubeTexture_PC(
+void Image_CreateCubeTexture_PC(GfxImage *image, unsigned __int16 edgeLen, int mipmapCount, DXGI_FORMAT imageFormat, void *initData)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -140,7 +141,7 @@ void Image_CreateCubeTexture_PC(
 Image_SetupRenderTarget
 ==============
 */
-void Image_SetupRenderTarget(
+void Image_SetupRenderTarget(GfxImage *image, unsigned __int16 width, unsigned __int16 height, DXGI_FORMAT imageFormat, const char *name, unsigned int allocFlags)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

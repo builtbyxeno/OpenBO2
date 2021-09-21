@@ -16,7 +16,7 @@ void Bullet_RandomDir(unsigned int *randSeed, float *x, float *y)
 Bullet_Endpos
 ==============
 */
-void Bullet_Endpos(
+void Bullet_Endpos(float randSeed, char *a2, unsigned int *a3, float spread, vec3_t *end, vec3_t *dir, const weaponParms *wp, float maxRange, int shotIndex, int maxShotIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -26,7 +26,7 @@ void Bullet_Endpos(
 Bullet_GetDamage
 ==============
 */
-int Bullet_GetDamage(
+int Bullet_GetDamage(const BulletFireParams *bp, const BulletTraceResults *br, const Weapon weapon, gentity_t *attacker)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -37,7 +37,7 @@ int Bullet_GetDamage(
 Bullet_NofifyActor
 ==============
 */
-void Bullet_NofifyActor(
+void Bullet_NofifyActor(const BulletFireParams *bp, gentity_t *attacker, const vec3_t *start, const vec3_t *end, gentity_t *hitEnt, Weapon weapon)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -79,10 +79,11 @@ bool Bullet_IgnoreHitEntity(const BulletFireParams *bp, const BulletTraceResults
 Bullet_Trace
 ==============
 */
-bool Bullet_Trace(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -153,7 +154,7 @@ void Bullet_ReportBBInfo(int time)
 BroadcastShieldHitEvent
 ==============
 */
-void BroadcastShieldHitEvent(
+void BroadcastShieldHitEvent(const vec3_t *hitPos, const vec3_t *hitNormal, const vec3_t *startPos, int surfType, const Weapon weapon, int attackerEntNum, int victimEntNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -163,7 +164,7 @@ void BroadcastShieldHitEvent(
 BroadcastShieldHitEventToVictim
 ==============
 */
-void BroadcastShieldHitEventToVictim(
+void BroadcastShieldHitEventToVictim(unsigned int *randSeed, const vec3_t *hitPos, const vec3_t *hitNormal, const vec3_t *startPos, const Weapon weapon, int attackerEntNum, int victimEntNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -173,7 +174,7 @@ void BroadcastShieldHitEventToVictim(
 Bullet_ImpactEffect
 ==============
 */
-void Bullet_ImpactEffect(
+void Bullet_ImpactEffect(unsigned int *randSeed, const BulletFireParams *bp, const BulletTraceResults *br, const vec3_t *normal, const Weapon weapon, gentity_t *attacker, int impactEffectFlags, gentity_t **outTempEnt)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -183,7 +184,7 @@ void Bullet_ImpactEffect(
 BulletRicochet
 ==============
 */
-void BulletRicochet(
+void BulletRicochet(unsigned int *randSeed, gentity_t *hitEnt, gentity_t *attacker, const Weapon weapon, const vec3_t *contactPoint, const vec3_t *surfaceNormal, const vec3_t *incomingNormal, int gameTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -193,7 +194,7 @@ void BulletRicochet(
 Bullet_ProcessShieldHit
 ==============
 */
-bool Bullet_ProcessShieldHit(
+bool Bullet_ProcessShieldHit(unsigned int *randSeed, BulletFireParams *bp, BulletTraceResults *br, const Weapon weapon, gentity_t *attacker, int gameTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -204,10 +205,11 @@ bool Bullet_ProcessShieldHit(
 Bullet_Process
 ==============
 */
-bool Bullet_Process(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -215,9 +217,11 @@ bool Bullet_Process(
 Bullet_HitNothing
 ==============
 */
-void Bullet_HitNothing(
+
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	 tmp;
+	return tmp;
 }
 
 /*
@@ -225,7 +229,7 @@ void Bullet_HitNothing(
 G_WeaponBounceShot
 ==============
 */
-bool G_WeaponBounceShot(
+bool G_WeaponBounceShot(Weapon weapon, BulletFireParams *incomingbp, BulletTraceResults *br, gentity_t *attacker, unsigned int *randSeed, int gameTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -260,7 +264,7 @@ Bullet_FireExtended
 Bullet_Fire
 ==============
 */
-void Bullet_Fire(
+void Bullet_Fire(gentity_t *attacker, float spread, const weaponParms *wp, const gentity_t *weaponEnt, int gameTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

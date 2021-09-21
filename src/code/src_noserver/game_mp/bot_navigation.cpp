@@ -111,18 +111,18 @@ void Bot_CalcAdjustedAxis(float pitchAxis, float yawAxis, float *outPitchAxis, f
 Bot_ApplyTurnRates
 ==============
 */
-/*float *Bot_ApplyTurnRates@<eax>(
+float *Bot_ApplyTurnRates(float *a1, float *a2, float pitchDelta, float ads, float yawDelta, float accel, float pitchAxis, float pitch, float *yaw, float *a10)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============
 Bot_UpdateSteeringInput
 ==============
 */
-void Bot_UpdateSteeringInput(
+void Bot_UpdateSteeringInput(const dvar_t *a1, const dvar_t *a2, bot_steering_t *steer, float ads, vec2_t *angles)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

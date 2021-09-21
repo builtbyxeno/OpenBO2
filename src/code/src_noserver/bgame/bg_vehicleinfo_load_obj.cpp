@@ -26,11 +26,11 @@ void InitVehicle(VehicleDef *vehicleDef)
 VehicleDefLoadFile
 ==============
 */
-/*VehicleDef *VehicleDefLoadFile@<eax>(FsThread a1@<edi>, const char *name, void *(*Alloc)(int))
+VehicleDef *VehicleDefLoadFile(FsThread a1, const char *name, void *(*Alloc)(int))
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============

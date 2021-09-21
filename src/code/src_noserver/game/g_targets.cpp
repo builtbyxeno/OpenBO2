@@ -128,7 +128,7 @@ void Scr_Target_Remove()
 G_WorldDirToScreenPos
 ==============
 */
-bool G_WorldDirToScreenPos(
+bool G_WorldDirToScreenPos(const gentity_t *player, float fov_x, const vec3_t *worldDir, vec2_t *outScreenPos, bool relativeToReticle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

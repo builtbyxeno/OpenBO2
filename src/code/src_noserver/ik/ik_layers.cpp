@@ -6,7 +6,7 @@
 IK_Layer_ApplyFootIK
 ==============
 */
-void IK_Layer_ApplyFootIK(
+void IK_Layer_ApplyFootIK(int a1, IKState *ikState, IKJointBones *jointBones, IKJointVars *jointVars, vec4_t *childMat, bool flipBones)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -16,7 +16,7 @@ void IK_Layer_ApplyFootIK(
 IK_Layer_ApplyHandIK
 ==============
 */
-void IK_Layer_ApplyHandIK(
+void IK_Layer_ApplyHandIK(int a1, IKState *ikState, IKJointBones *jointBones, IKJointVars *jointVars, vec4_t *childMat, bool flipBones)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
