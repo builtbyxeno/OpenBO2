@@ -1,4 +1,4 @@
-[![License: GPL v2](https://img.shields.io/github/license/OpenIW/OpenBO2)](https://github.com/OpenIW/OpenBO2/blob/cmake/LICENSE)
+[![License: GPL v2](https://img.shields.io/github/license/OpenIW/OpenBO2)](https://github.com/OpenIW/OpenBO2/blob/main/LICENSE)
 
 ## OpenBO2
 This is still barebones, so **NOTHING** is working!
