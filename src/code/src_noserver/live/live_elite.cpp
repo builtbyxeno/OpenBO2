@@ -634,7 +634,7 @@ eventAccumulator::beginCategory
 terminate
 ==============
 */
-void __noreturn terminate()
+void terminate()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

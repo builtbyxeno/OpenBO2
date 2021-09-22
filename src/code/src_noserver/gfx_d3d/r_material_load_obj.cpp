@@ -833,7 +833,7 @@ bool Material_HasAlphaTest(const Material *mtl)
 Material_GetTechniqueSetDrawRegion
 ==============
 */
-void Material_GetTechniqueSetDrawRegion
+void Material_GetTechniqueSetDrawRegion(MaterialTechniqueSet* techniqueSet)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1101,7 +1101,7 @@ const LayeredTechniqueSetName *Material_GetLayeredTechniqueSetName(const char *t
 Material_SetGameFlags
 ==============
 */
-void Material_SetGameFlags
+void Material_SetGameFlags(Material* material, const MaterialRaw* mtlRaw)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

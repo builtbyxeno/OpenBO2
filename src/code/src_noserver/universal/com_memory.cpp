@@ -1,5 +1,6 @@
 #include "types.h"
 #include "functions.h"
+#include "universal_public.h"
 
 /*
 ==============
@@ -189,5 +190,26 @@ unsigned __int8 *Hunk_AllocLow(int size, const char *name, int type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
+}
+
+/*
+==============
+Z_Malloc
+==============
+*/
+void* Z_Malloc(int size, const char* name, int type)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return nullptr;
+}
+
+/*
+==============
+Z_Free
+==============
+*/
+void Z_Free(void* ptr, int type)
+{
+	UNIMPLEMENTED(__FUNCTION__);
 }
 

@@ -23,17 +23,6 @@ void R_GenerateQuadStampCodeMeshVerts(Material *material, const vec3_t *viewAngl
 
 /*
 ==============
-really_fast_sincos
-==============
-*/
-_DWORD *really_fast_sincos(_DWORD *result, _DWORD *a2, __m128d a3)
-{
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
-}
-
-/*
-==============
 R_GenerateQuadStampCodeMeshVertsArray
 ==============
 */

@@ -220,7 +220,7 @@ void Com_PrintStackTrace(int code, void (*cb)(const char *))
 Com_ErrorAbort
 ==============
 */
-void __noreturn Com_ErrorAbort()
+void Com_ErrorAbort()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

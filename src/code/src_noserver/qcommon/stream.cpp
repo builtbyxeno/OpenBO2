@@ -145,7 +145,7 @@ streamInfo *Stream_GetNextStreamToLoad()
 Stream_Thread
 ==============
 */
-void __noreturn Stream_Thread(char *id, unsigned int threadContext)
+void Stream_Thread(char *id, unsigned int threadContext)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

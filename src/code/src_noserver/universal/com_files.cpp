@@ -1,5 +1,6 @@
 #include "types.h"
 #include "functions.h"
+#include "universal_public.h"
 
 /*
 ==============
@@ -802,5 +803,16 @@ int FS_FOpenFileByMode(const char *a1, const char *a2, FsThread qpath, const cha
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
+}
+
+/*
+==============
+FS_FileOpenReadBinary
+==============
+*/
+_iobuf* FS_FileOpenReadBinary(const char* filename)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return NULL;
 }
 

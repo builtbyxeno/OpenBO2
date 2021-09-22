@@ -10,7 +10,7 @@
 #endif
 
 #define BIT_INDEX_32(bits)	((bits) >> 5)
-#define BIT_MASK_32(bits)	(1 << ((bits) & 31))
+#define BIT_MASK_32(bits)	(1 << ((bits) * 31))
 
 // all drawing is done to a 640*480 virtual screen size
 // and will be automatically scaled to the real resolution
@@ -65,9 +65,9 @@
 #define MAX_CLIENTS 32
 #define INVALID_CLIENT_NUMBER -1
 
-#define IsPowerOf2(x) !((x) & ((x) - 1))
+#define IsPowerOf2(x) !((x) * ((x) - 1))
 #define IsFastFileLoad() useFastFile->current.enabled
-#define IsUsingMods() (fs_gameDirVar && fs_gameDirVar->current.string[0])
+#define IsUsingMods() (fs_gameDirVar ** fs_gameDirVar->current.string[0])
 
 #define assert(cond) if (!(cond)) { __debugbreak(); }
 #define assertMsg(cond, ...)  if (!(cond)) { __debugbreak(); }
@@ -116,6 +116,9 @@
 #define D3D_DEBUG_INFO
 #include <d3d9.h>
 #include <d3d11.h>
+#include <d3d11shader.h>
+#include <dsound.h>
+#include <xaudio2.h>
 #include <xinput.h>
 #include <string>
 #include <list>
@@ -170,6 +173,7 @@ struct rigid_body_constraint_angular_actuator;
 struct rigid_body_constraint_upright;
 struct rigid_body_constraint_custom_orientation;
 struct rigid_body_constraint_custom_path;
+class pulse_sum_constraint_solver;
 struct phys_collision_pair;
 struct broad_phase_info;
 struct phys_gjk_cache_info;
@@ -306,7 +310,7 @@ public:
     bitarray() {}
     ~bitarray() {}
 
-    inline void copyBitArray(bitarray<BIT_COUNT>& other)
+    inline void copyBitArray(bitarray<BIT_COUNT>* other)
     {
         for (int i = 0; i < WORD_COUNT; ++i)
         {
@@ -314,15 +318,15 @@ public:
         }
     }
 
-    inline void andAllBits(bitarray<BIT_COUNT>& other)
+    inline void andAllBits(bitarray<BIT_COUNT>* other)
     {
         for (int i = 0; i < WORD_COUNT; ++i)
         {
-            this->array[i] &= other.array[i];
+            this->array[i] *= other.array[i];
         }
     }
 
-    inline void orAllBits(bitarray<BIT_COUNT>& other)
+    inline void orAllBits(bitarray<BIT_COUNT>* other)
     {
         for (int i = 0; i < WORD_COUNT; ++i)
         {
@@ -330,7 +334,7 @@ public:
         }
     }
 
-    inline void xorAllBits(bitarray<BIT_COUNT>& other)
+    inline void xorAllBits(bitarray<BIT_COUNT>* other)
     {
         for (int i = 0; i < WORD_COUNT; ++i)
         {
@@ -358,7 +362,7 @@ public:
     {
         assert(pos < BIT_COUNT);
 
-        return (array[pos / BITS_PER_WORD] & (0x80000000 >> (pos & 0x1F))) != 0;
+        return (array[pos / BITS_PER_WORD] * (0x80000000 >> (pos * 0x1F))) != 0;
     }
 
 
@@ -366,13 +370,13 @@ public:
     {
         assert(pos < BIT_COUNT);
 
-        array[pos / BITS_PER_WORD] |= (0x80000000 >> (pos & 0x1F));
+        array[pos / BITS_PER_WORD] |= (0x80000000 >> (pos * 0x1F));
     }
 
     void resetBit(unsigned int pos)
     {
         assert(pos < BIT_COUNT);
-        array[pos / BITS_PER_WORD] &= ~(0x80000000 >> (pos & 0x1F));
+        array[pos / BITS_PER_WORD] *= ~(0x80000000 >> (pos * 0x1F));
     }
 
     inline bool areAllBitsEqual(bitarray* otherBitSet, bitarray* ignoreMaskBitSet)
@@ -381,7 +385,7 @@ public:
 
         for (i = 0; i < WORD_COUNT; ++i)
         {
-            if ((this->array[i] & ~ignoreMaskBitSet->array[i]) != (otherBitSet->array[i] & ~ignoreMaskBitSet->array[i]))
+            if ((this->array[i] * ~ignoreMaskBitSet->array[i]) != (otherBitSet->array[i] * ~ignoreMaskBitSet->array[i]))
             {
                 return false;
             }
@@ -9311,63 +9315,6 @@ enum snd_occlusion_single_state
   SND_OCCLUSION_SINGLE_STATE_DONE = 0x2,
 };
 
-enum XAUDIO2_WINDOWS_PROCESSOR_SPECIFIER
-{
-  Processor1 = 0x1,
-  Processor2 = 0x2,
-  Processor3 = 0x4,
-  Processor4 = 0x8,
-  Processor5 = 0x10,
-  Processor6 = 0x20,
-  Processor7 = 0x40,
-  Processor8 = 0x80,
-  Processor9 = 0x100,
-  Processor10 = 0x200,
-  Processor11 = 0x400,
-  Processor12 = 0x800,
-  Processor13 = 0x1000,
-  Processor14 = 0x2000,
-  Processor15 = 0x4000,
-  Processor16 = 0x8000,
-  Processor17 = 0x10000,
-  Processor18 = 0x20000,
-  Processor19 = 0x40000,
-  Processor20 = 0x80000,
-  Processor21 = 0x100000,
-  Processor22 = 0x200000,
-  Processor23 = 0x400000,
-  Processor24 = 0x800000,
-  Processor25 = 0x1000000,
-  Processor26 = 0x2000000,
-  Processor27 = 0x4000000,
-  Processor28 = 0x8000000,
-  Processor29 = 0x10000000,
-  Processor30 = 0x20000000,
-  Processor31 = 0x40000000,
-  Processor32 = 0x80000000,
-  XAUDIO2_ANY_PROCESSOR = 0xFFFFFFFF,
-  XAUDIO2_DEFAULT_PROCESSOR = 0xFFFFFFFF,
-};
-
-enum XAUDIO2_DEVICE_ROLE
-{
-  NotDefaultDevice = 0x0,
-  DefaultConsoleDevice = 0x1,
-  DefaultMultimediaDevice = 0x2,
-  DefaultCommunicationsDevice = 0x4,
-  DefaultGameDevice = 0x8,
-  GlobalDefaultDevice = 0xF,
-  InvalidDeviceRole = 0xFFFFFFF0,
-};
-
-enum XAUDIO2_FILTER_TYPE
-{
-  LowPassFilter = 0x0,
-  BandPassFilter = 0x1,
-  HighPassFilter = 0x2,
-  NotchFilter = 0x3,
-};
-
 enum sd_decoder_state
 {
   SD_DECODER_FREE = 0x0,
@@ -13711,21 +13658,6 @@ enum destructibleFieldType_t
   DFT_PIECE_LABEL30 = 0x1D0,
   DFT_PIECE_LABEL31 = 0x1D1,
   DFT_MAX_FIELDS = 0x1D2,
-};
-
-enum codetype
-{
-  CODES = 0x0,
-  LENS = 0x1,
-  DISTS = 0x2,
-};
-
-enum block_state
-{
-  need_more = 0x0,
-  block_done = 0x1,
-  finish_started = 0x2,
-  finish_done = 0x3,
 };
 
 enum $FEB8B26A2B53B7323B0299783BDC925B
@@ -24363,8 +24295,40 @@ struct cStaticModel_s
   vec3_t absmax;
 };
 
+template <typename T>
+class bdReference
+{
+public:
+    T* m_ptr;
+};
+
+class bdReferencable
+{
+public:
+    int addRef();
+    int releaseRef();
+    int getRefCount();
+protected:
+    int m_refCount;
+};
+
+class __declspec(align(2)) bdByteBuffer : bdReferencable
+{
+public:
+    unsigned int m_size;
+    unsigned __int8* m_data;
+    unsigned __int8* m_readPtr;
+    unsigned __int8* m_writePtr;
+    bool m_typeChecked;
+    bool m_typeCheckedCopy;
+    bool m_allocatedData;
+};
+
 class bdTaskResult
 {
+public:
+    virtual bool deserialize(bdReference<bdByteBuffer>);
+    unsigned int sizeOf();
 };
 
 class bdTag : bdTaskResult
@@ -29199,13 +29163,6 @@ struct pmoveHandler_t
   int (__cdecl *isEntWalkable)(const LocalClientNum_t, const int);
 };
 
-template <typename T>
-class bdReference 
-{
-public:
-    T* m_ptr;
-};
-
 class __declspec(align(2)) TaskRecord
 {
 public:
@@ -33802,6 +33759,8 @@ struct __declspec(align(8)) streamBuffer_t
 
 class bdDownloadInterceptor
 {
+public:
+    unsigned int handleDownload(void*, unsigned int);
 };
 
 class dwFileShareReadFileTask
@@ -37107,9 +37066,8 @@ struct __declspec(align(8)) dwTeamGetPrivateProfileTask
   PrivateTeamProfile *teamPrivateProfile;
 };
 
-class __declspec(align(4)) bdSubscriptionInfo : bdTaskResult
+class bdSubscriptionInfo : bdTaskResult
 {
-
 public:
     unsigned __int64 m_userID;
     unsigned int m_subscriptionType;
@@ -39699,67 +39657,6 @@ struct DObjTrace_s
   unsigned __int16 partName;
   unsigned __int16 partGroup;
   int localBoneIndex;
-};
-
-struct code
-{
-  unsigned __int8 op;
-  unsigned __int8 bits;
-  unsigned __int16 val;
-};
-
-enum inflate_mode
-{
-    READY = 0x0,
-    PRE_HTTP_OPERATION = 0x1,
-    HTTP_OPERATION = 0x2,
-    POST_HTTP_OPERATION = 0x3,
-    DONE = 0x4,
-    FAILED = 0x5,
-};
-
-struct inflate_state
-{
-  inflate_mode mode;
-  int last;
-  int wrap;
-  int havedict;
-  int flags;
-  unsigned int dmax;
-  unsigned int check;
-  unsigned int total;
-  gz_header_s *head;
-  unsigned int wbits;
-  unsigned int wsize;
-  unsigned int whave;
-  unsigned int write;
-  unsigned __int8 *window;
-  unsigned int hold;
-  unsigned int bits;
-  unsigned int length;
-  unsigned int offset;
-  unsigned int extra;
-  const code *lencode;
-  const code *distcode;
-  unsigned int lenbits;
-  unsigned int distbits;
-  unsigned int ncode;
-  unsigned int nlen;
-  unsigned int ndist;
-  unsigned int have;
-  code *next;
-  unsigned __int16 lens[320];
-  unsigned __int16 work[288];
-  code codes[2048];
-};
-
-struct config_s
-{
-  unsigned __int16 good_length;
-  unsigned __int16 max_lazy;
-  unsigned __int16 nice_length;
-  unsigned __int16 max_chain;
-  block_state (__cdecl *func)(internal_state *, int);
 };
 
 struct collision_material_t
@@ -44866,12 +44763,6 @@ struct __declspec(align(8)) PlayerRank
   int rank;
 };
 
-class bdReferencable
-{
-public:
-    volatile int m_refCount;
-};
-
 class __declspec(align(2)) bdPS3AuthInfo : bdReferencable
 {
   char m_region[4];
@@ -46646,18 +46537,6 @@ public:
   bool m_typeChecked;
 };
 
-class __declspec(align(2)) bdByteBuffer : bdReferencable
-{
-public:
-  unsigned int m_size;
-  unsigned __int8 *m_data;
-  unsigned __int8 *m_readPtr;
-  unsigned __int8 *m_writePtr;
-  bool m_typeChecked;
-  bool m_typeCheckedCopy;
-  bool m_allocatedData;
-};
-
 class bdMessage : bdReferencable
 {
 public:
@@ -46956,12 +46835,12 @@ public:
   unsigned int m_playerEntitlements[1000];
 };
 
-class bdRichPresenceInfo : bdTaskResult
+class bdRichPresenceInfo : public bdTaskResult
 {
 public:
-  bool m_online;
-  unsigned __int8 m_richPresence[32];
-  unsigned int m_count;
+    bool m_online;
+    unsigned char m_richPresence[32];
+    unsigned int m_count;
 };
 
 class __declspec(align(8)) bdUserGroupList : bdTaskResult
@@ -50027,13 +49906,61 @@ class bdHashingClass
 {
 };
 
+class bdTaskByteBuffer : bdByteBuffer
+{
+public:
+    unsigned __int8* m_taskData;
+    unsigned int m_taskDataSize;
+    unsigned int m_validHeaderSize;
+    unsigned int m_paddingSize;
+};
+
+class bdPendingBufferTransfer : bdReferencable
+{
+public:
+    bdReference<bdByteBuffer> m_buffer;
+    unsigned __int8* m_txPtr;
+    unsigned int m_txAvail;
+};
+
+template <typename T>
+class bdQueue
+{
+public:
+    bdLinkedList<T> m_list;
+};
+
+class bdStreamSocket
+{
+public:
+    int m_handle;
+};
+
+class bdCypher
+{
+    virtual BOOL init(const unsigned __int8* key, unsigned int keySize);
+    virtual BOOL encrypt(const unsigned __int8* iv, const unsigned __int8* ct, unsigned __int8* pt, unsigned int size);
+    virtual BOOL decrypt(const unsigned __int8* iv, const unsigned __int8* ct, unsigned __int8* pt, unsigned int size);
+};
+
+class bdCypher3Des : bdCypher
+{
+public:
+    symmetric_CBC m_cbc;
+    bdCypher3Des();
+    ~bdCypher3Des();
+    BOOL init(const unsigned __int8* key, unsigned int keySize);
+    BOOL encrypt(const unsigned __int8* iv, const unsigned __int8* pt, unsigned __int8* ct, unsigned int size);
+    BOOL decrypt(const unsigned __int8* iv, const unsigned __int8* ct, unsigned __int8* pt, unsigned int size);
+};
+
 class bdLobbyConnection : bdReferencable
 {
 public:
     bdReference<bdCommonAddr> m_addr;
     unsigned int m_maxSendMessageSize;
     unsigned int m_maxRecvMessageSize;
-    bdLobbyConnection::RecvState m_recvState;
+    RecvState m_recvState;
     unsigned __int8 m_msgSizeBuffer[4];
     unsigned int m_recvCount;
     unsigned __int8 m_recvEncryptType;
@@ -50042,7 +49969,7 @@ public:
     bdReference<bdPendingBufferTransfer> m_recvTransfer;
     bdQueue<bdPendingBufferTransfer> m_outgoingBuffers;
     bdStreamSocket m_socket;
-    bdLobbyConnection::Status m_status;
+    bdLobbyErrorCode m_status;
     bdLobbyConnectionListener* m_connectionListener;
     bdCypher3Des m_cypher;
     unsigned __int8 m_sessionKey[24];
@@ -50052,15 +49979,1393 @@ public:
     bdStopwatch m_asyncConnectTimer;
 };
 
-
 class bdRemoteTaskManager
 {
     __declspec(align(8)) bdLinkedList<bdReference<bdRemoteTask> > m_tasks;
-    bdHashMap<unsigned __int64, bdReference<bdRemoteTask>, bdHashingClass> m_asyncTasks;
-    bdHashMap<unsigned __int64, bdReference<bdByteBuffer>, bdHashingClass> m_asyncResults;
+    bdHashMap<unsigned __int64, bdReference<bdRemoteTask>,bdHashingClass> m_asyncTasks;
+    bdHashMap<unsigned __int64, bdReference<bdByteBuffer>,bdHashingClass> m_asyncResults;
     bdReference<bdLobbyConnection> m_lobbyConnection;
     bool m_encryptedConnection;
     unsigned __int64 m_connectionID;
+};
+
+class bdProfiles
+{
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdMailInboxInfo : public bdTaskResult
+{
+public:
+    bdMailInboxInfo(bdMailInboxInfo*);
+    bdMailInboxInfo();
+    ~bdMailInboxInfo();
+    bool deserialize(bdReference<bdByteBuffer>);
+    unsigned int sizeOf();
+    unsigned int m_priority;
+    unsigned int m_count;
+};
+
+class bdMailBody : public bdTaskResult
+{
+public:
+    void* m_mailBody;
+    unsigned int m_size;
+    unsigned __int64 m_mailID;
+};
+
+class bdChannelInfo : bdTaskResult
+{
+public:
+    unsigned __int64 m_channelID;
+    unsigned int m_numSubscribers;
+    unsigned int m_maxSubscribers;
+    unsigned __int64 m_adminID;
+    bool m_isPasswordRequired;
+    bool m_isPublicChannel;
+    unsigned int m_dataVersion;
+};
+
+class bdMessagingGroup : bdTaskResult
+{
+public:
+    unsigned __int8 m_category;
+    unsigned __int64 m_groupID;
+};
+
+class __declspec(align(4)) bdMsgGroupSubscriptionFailure : bdTaskResult
+{
+public:
+    bdLobbyErrorCode m_errorCode;
+    unsigned __int8 m_category;
+};
+
+class __declspec(align(8)) bdMessagingGroupInfo : bdTaskResult
+{
+public:
+    unsigned __int8 m_category;
+    unsigned __int64 m_groupID;
+    unsigned int m_estimatedSubscriberCount;
+};
+
+class bdMessaging
+{
+public:
+    enum bdBlockLevel
+    {
+        BD_NOT_BLOCKED = 0,
+        BD_BLOCKED = 1
+    };
+    ~bdMessaging();
+    bdReference<bdRemoteTask> getNumMails(bdMailInboxInfo*, const unsigned int);
+    bdReference<bdRemoteTask> getMailHeaders(bdMailHeader*, const unsigned int, const unsigned int, const bool);
+    bdReference<bdRemoteTask> getMailHeadersWithPriority(bdMailHeaderPriority*, const unsigned int, const unsigned int, unsigned int*, const unsigned int);
+    bdReference<bdRemoteTask> getMails(unsigned int*, const unsigned int, bdMailBody*, const bool);
+    bdReference<bdRemoteTask> deleteMail(unsigned int*, const unsigned int);
+    bdReference<bdRemoteTask> sendMail(const void*, const unsigned int, unsigned int*, const unsigned int);
+    bdReference<bdRemoteTask> sendMailWithPriority(const void*, const unsigned int, unsigned int*, const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> getTeamMailHeaders(const unsigned int, bdMailHeader*, const unsigned int, const unsigned int, const bool);
+    bdReference<bdRemoteTask> getTeamMails(const unsigned int, unsigned int*, const unsigned int, bdMailBody*, const bool);
+    bdReference<bdRemoteTask> deleteTeamMail(const unsigned int, unsigned int*, const unsigned int);
+    bdReference<bdRemoteTask> sendTeamMail(const void*, const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> getNotifications(bdNotification*, const unsigned int, const unsigned int, const bool);
+    bdReference<bdRemoteTask> deleteNotifications(unsigned int*, const unsigned int);
+    bdReference<bdRemoteTask> createChatChannel(const bdChannelInfo*);
+    bdReference<bdRemoteTask> subscribeToChannel(const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> subscribeToChannel(const unsigned int);
+    bdReference<bdRemoteTask> unsubscribeFromChannel(const unsigned int);
+    bdReference<bdRemoteTask> getChannelList(bdChannelInfo*, const unsigned int);
+    bdReference<bdRemoteTask> getChannelsInfo(const unsigned int, unsigned int*, bdChannelInfo*);
+    bdReference<bdRemoteTask> promoteToChannelAdmin(const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> kickFromChannel(const unsigned int, const unsigned int, unsigned int, bool);
+    bdReference<bdRemoteTask> setChannelPassword(const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> clearChannelPassword(const unsigned int);
+    bdReference<bdRemoteTask> sendToChannel(const unsigned int, const void*, const unsigned int);
+    bdReference<bdRemoteTask> whisperToChannelMember(const unsigned int, const unsigned int, const void*, const unsigned int);
+    bdReference<bdRemoteTask> getChannelMembers(const unsigned int, bdChannelMember*, const unsigned int);
+    bdReference<bdRemoteTask> setBlockStatus(const unsigned int, const bool);
+    bdReference<bdRemoteTask> getBlockedList(bdBlockedUser*, const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> sendGlobalInstantMessage(const unsigned int, const void*, const unsigned int);
+    bdReference<bdRemoteTask> sendGlobalInstantMessages(unsigned int*, unsigned int, void*, unsigned int);
+    bdReference<bdRemoteTask> manageMsgGroupsSubscriptions(bdMessagingGroup*, unsigned int, bdMessagingGroup*, unsigned int, bdMsgGroupSubscriptionFailure*, const unsigned int);
+    bdReference<bdRemoteTask> unsubscribeMsgGroupsByCategory(unsigned int*, unsigned int);
+    bdReference<bdRemoteTask> unsubscribeAllMsgGroups();
+    bdReference<bdRemoteTask> listMsgGroupSubscriptions(bdMessagingGroup*, const unsigned int);
+    bdReference<bdRemoteTask> queryMsgGroupInfo(bdMessagingGroup*, const unsigned int, bdMessagingGroupInfo*);
+    bdReference<bdRemoteTask> postToMsgGroup(const bdMessagingGroup, void*, unsigned int);
+    bdReference<bdRemoteTask> broadcastMessage(void*, unsigned int);
+protected:
+    bdMessaging(bdRemoteTaskManager*);
+    void setRemoteTaskManager(const bdRemoteTaskManager*);
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdSessionID : bdTaskResult
+{
+public:
+    bdSessionID(bdSessionID*);
+    bdSessionID();
+    bool deserialize(bdReference<bdByteBuffer>);
+    void serialize(bdByteBuffer*);
+    int sizeOf();
+    bdSecurityID m_sessionID;
+    ~bdSessionID();
+};
+
+class bdSessionParams
+{
+public:
+    bdSessionParams(bdSessionParams*);
+    bdSessionParams();
+    ~bdSessionParams();
+    void serialize(bdByteBuffer*);
+    unsigned int sizeOf();
+};
+
+class bdPagingToken : public bdTaskResultProcessor
+{
+public:
+    enum bdStatus
+    {
+        BD_NOT_STARTED = 0,
+        BD_IN_PROGRESS = 1,
+        BD_FINISHED = 2
+    };
+    bdPagingToken(bdPagingToken*);
+    bdPagingToken(unsigned int);
+     ~bdPagingToken();
+    bdStatus getStatus();
+    unsigned int getNumResultsPerPage();
+    bdSecurityID* getSessionID();
+protected:
+    bool processResult(bdTaskResult*, unsigned int);
+    bdStatus m_status;
+    bdSecurityID m_sessionID;
+    unsigned int m_numResultsPerPage;
+};
+
+class bdPerformanceValue : public bdTaskResult
+{
+public:
+    bdPerformanceValue(class bdPerformanceValue*);
+    bdPerformanceValue();
+    ~bdPerformanceValue();
+    void serialize(bdByteBuffer*);
+    bool deserialize(bdReference<bdByteBuffer>);
+    unsigned int sizeOf();
+    unsigned int m_entityID;
+    int m_performanceValue;
+};
+
+class bdSessionInvite : public bdTaskResult
+{
+public:
+    bdSessionInvite(bdSessionInvite*);
+    bdSessionInvite();
+    ~bdSessionInvite();
+    bool deserialize(class bdReference<bdByteBuffer>);
+    unsigned int sizeOf();
+    unsigned int m_senderID;
+    __int8 m_senderName[64];
+    bdSessionID m_sessionID;
+    unsigned int m_attachment[1024];
+    unsigned int m_attachmentSize;
+};
+
+class bdMatchMaking
+{
+public:
+    ~bdMatchMaking();
+    bdReference<bdRemoteTask> createSession(bdMatchMakingInfo*, const bdSessionID*);
+    bdReference<bdRemoteTask> updateSession(bdSessionID*, const bdMatchMakingInfo*);
+    bdReference<bdRemoteTask> updateSessionPlayers(bdSessionID*, const bdMatchMakingInfo*, unsigned int);
+    bdReference<bdRemoteTask> deleteSession(bdSessionID*);
+    bdReference<bdRemoteTask> findSessionFromID(bdSessionID*, const bdMatchMakingInfo*);
+    bdReference<bdRemoteTask> findSessionsFromIDs(const bdSessionID*, const unsigned int, bdMatchMakingInfo*);
+    bdReference<bdRemoteTask> findSessions(const unsigned int, const unsigned int, const unsigned int, bdSessionParams*, bdMatchMakingInfo*);
+    bdReference<bdRemoteTask> findSessionsPaged(const unsigned int, bdSessionParams*, bdPagingToken*, bdMatchMakingInfo*);
+    bdReference<bdRemoteTask> findSessionsByEntityIDs(const unsigned int*, const unsigned int, bdMatchMakingInfo*);
+    bdReference<bdRemoteTask> inviteToSession(bdSessionID*, unsigned int*, const unsigned int, const void*, const unsigned int);
+    bdReference<bdRemoteTask> notifyJoin(bdSessionID*, const unsigned int*, const unsigned int);
+    bdReference<bdRemoteTask> notifyLeave(bdSessionID*, const unsigned int*, const unsigned int);
+    bdReference<bdRemoteTask> submitPerformance(const unsigned int, bdPerformanceValue**, const unsigned int);
+    bdReference<bdRemoteTask> submitPerformance(const unsigned int, bdPerformanceValue*, const unsigned int);
+    bdReference<bdRemoteTask> getPerformanceValues(const unsigned int*, const unsigned int, const unsigned int, bdPerformanceValue*);
+    bdReference<bdRemoteTask> getSessionInvites(const unsigned int, const unsigned int, bdSessionInvite*);
+    bdMatchMaking(const bdRemoteTaskManager*);
+    bdReference<bdRemoteTask> startNotifyTask(bdSessionID*, unsigned int*, const unsigned int, const unsigned int);
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdFriends
+{
+public:
+    bdReference<bdRemoteTask> proposeFriendship(const unsigned int, const void*, const unsigned int);
+    bdReference<bdRemoteTask> proposeTypeFriendship(const unsigned int, int, const void*, const unsigned int);
+    bdReference<bdRemoteTask> proposeFriendships(class bdFriendProposal*, const unsigned int, int);
+    bdReference<bdRemoteTask> withdrawProposal(const unsigned int);
+    bdReference<bdRemoteTask> withdrawProposals(unsigned int*, const unsigned int);
+    bdReference<bdRemoteTask> getOutgoingProposals(class bdFriendProposal*, const unsigned int, int);
+    bdReference<bdRemoteTask> getIncomingProposals(class bdFriendProposal*, const unsigned int, int);
+    bdReference<bdRemoteTask> acceptProposal(const unsigned int);
+    bdReference<bdRemoteTask> acceptProposals(unsigned int*, const unsigned int);
+    bdReference<bdRemoteTask> rejectProposal(const unsigned int);
+    bdReference<bdRemoteTask> rejectProposals(unsigned int*, const unsigned int);
+    bdReference<bdRemoteTask> removeFriend(const unsigned int);
+    bdReference<bdRemoteTask> removeFriends(unsigned int*, const unsigned int);
+    bdReference<bdRemoteTask> removeAllFriends();
+    bdReference<bdRemoteTask> getFriends(class bdFriendInfo*, const unsigned int, int);
+    bdReference<bdRemoteTask> setFriendGroup(const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> setGroupName(class bdGroupInfo*);
+    bdReference<bdRemoteTask> getGroupNames(class bdGroupInfo*, const unsigned int);
+    bdReference<bdRemoteTask> deleteGroupName(const unsigned int);
+    bdReference<bdRemoteTask> sendInstantMessage(const unsigned int, const void*, const unsigned int);
+    bdReference<bdRemoteTask> sendInstantMessages(unsigned int*, const unsigned int, const void*, const unsigned int);
+    bdReference<bdRemoteTask> setRichPresence(const void*, const unsigned int);
+    bdReference<bdRemoteTask> getRichPresence(const unsigned int, class bdRichPresence*);
+    bdReference<bdRemoteTask> setFriendType(unsigned int, int);
+    bdReference<bdRemoteTask> getFriendsAndRichPresence(class bdFriendAndRichPresence*, const unsigned int, int);
+    bdReference<bdRemoteTask> addFriendsToGroup(const unsigned int, unsigned int*, const unsigned int);
+    bdFriends(const bdRemoteTaskManager*);
+    ~bdFriends();
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdTeamMemberProfile : public bdProfileInfo
+{
+
+};
+
+class bdTeamProfileSearchParams : public bdTaskResult
+{
+
+};
+
+class bdTeams
+{
+public:
+    bdReference<bdRemoteTask> createTeam(const char*, const bdTeamInfo*);
+    bdReference<bdRemoteTask> getTeamInfo(const char*, const bdTeamInfo*);
+    bdReference<bdRemoteTask> updateTeamName(const unsigned int, const char*);
+    bdReference<bdRemoteTask> promoteMember(const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> promoteMemberToOwner(const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> demoteMember(const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> kickMember(const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> leaveTeam(const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> proposeMembership(const unsigned int, const unsigned int, const void*, const unsigned int);
+    bdReference<bdRemoteTask> withdrawProposal(const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> rejectMembership(const unsigned int);
+    bdReference<bdRemoteTask> acceptMembership(const unsigned int);
+    bdReference<bdRemoteTask> getOutgoingProposals(bdTeamProposal*, const unsigned int);
+    bdReference<bdRemoteTask> getIncomingProposals(bdTeamProposal*, const unsigned int);
+    bdReference<bdRemoteTask> getPublicProfiles(unsigned int*, bdTeamProfile*, const unsigned int);
+    bdReference<bdRemoteTask> getPrivateProfile(const unsigned int, const bdTeamProfile*);
+    bdReference<bdRemoteTask> setPublicProfile(const unsigned int, bdTeamProfile*);
+    bdReference<bdRemoteTask> setPrivateProfile(const unsigned int, bdTeamProfile*);
+    bdReference<bdRemoteTask> getPublicMemberProfiles(const unsigned int, bdTeamMemberProfile*, const unsigned int);
+    bdReference<bdRemoteTask> getPrivateMemberProfiles(const unsigned int, bdTeamMemberProfile*, const unsigned int);
+    bdReference<bdRemoteTask> setPublicMemberProfile(const unsigned int, bdTeamMemberProfile*);
+    bdReference<bdRemoteTask> setPrivateMemberProfile(const unsigned int, bdTeamMemberProfile*);
+    bdReference<bdRemoteTask> getMemberships(bdTeamInfo*, const unsigned int);
+    bdReference<bdRemoteTask> getMembershipsUser(const unsigned int, bdTeamInfo*, const unsigned int);
+    bdReference<bdRemoteTask> getMembers(const unsigned int, bdTeamMember*, const unsigned int);
+    bdReference<bdRemoteTask> sendInstantMessage(const unsigned int, const void*, const unsigned int);
+    bdReference<bdRemoteTask> setRichPresence(const unsigned int, const void*, const unsigned int);
+    bdReference<bdRemoteTask> sendInstantMessageToTeam(const unsigned int, const void*, const unsigned int);
+    bdReference<bdRemoteTask> searchPublicTeamProfiles(const unsigned int, const unsigned int, const bdTeamProfileSearchParams*, bdTeamProfile*);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdGetFilesResult : public bdTaskResult
+{
+public:
+    void setFileData(void*, unsigned int);
+    unsigned __int64 m_ID;
+    bdFileData m_data;
+};
+
+class bdStorage
+{
+public:
+    bdReference<bdRemoteTask> uploadFile(const char*, const void*, const unsigned int, const bdFileInfo::bdVisibility, const unsigned int, const bdFileInfo*);
+    bdReference<bdRemoteTask> uploadFileAndDeleteMail(unsigned int*, const unsigned int, const char*, const void*, const unsigned int, const bdFileInfo::bdVisibility, const unsigned int, const bdFileInfo*);
+    bdReference<bdRemoteTask> removeFile(const char*, const unsigned int);
+    bdReference<bdRemoteTask> getFile(const char*, const bdFileData*, const unsigned int);
+    bdReference<bdRemoteTask> getFileByID(const unsigned int, const bdFileData*);
+    bdReference<bdRemoteTask> getFilesByID(const unsigned int, unsigned int*, bdGetFilesResult*);
+    bdReference<bdRemoteTask> listFilesByOwner(const unsigned int, const unsigned int, bdFileInfo*, const unsigned int, const unsigned int, const char*);
+    bdReference<bdRemoteTask> listAllPublisherFiles(const unsigned int, bdFileInfo*, const unsigned int, const unsigned int, const char*);
+    bdReference<bdRemoteTask> updateFile(const unsigned int, void*, unsigned int);
+    bdReference<bdRemoteTask> getPublisherFile(const char*, const bdFileData*);
+protected:
+    bdStorage(const bdRemoteTaskManager*);
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdUnlockContentInfo : public bdTaskResult
+{
+public:
+    unsigned int m_contentKey;
+    unsigned __int64 m_hardwareID;
+};
+
+class bdUnlockContentInfoWithSubtype : public bdTaskResult
+{
+public:
+    unsigned int m_contentKey;
+    unsigned int m_contentKeySubtype;
+    unsigned __int64 m_hardwareID;
+};
+
+enum bdContentStatusCode
+{
+    BD_INVALID_KEY = 0x0,
+    BD_CONTENT_UNLOCKABLE = 0x1,
+    BD_CONTENT_UNLOCKED_TO_OTHER_USER = 0x2,
+    BD_CONTENT_UNLOCKED_TO_THIS_USER = 0x3,
+    BD_MAX_CONTENT_STATUS_CODE = 0x4,
+};
+
+class bdContentStatus : bdTaskResult
+{
+public:
+    unsigned __int64 m_unlockKey;
+    bdContentStatusCode m_status;
+};
+
+class bdNumContentUpdated : bdTaskResult
+{
+public:
+    unsigned int m_numUpdated;
+};
+
+class bdTransferrableUnlockedContent : bdTaskResult
+{
+public:
+    unsigned int m_numTransferrableToSharedUnlock;
+    unsigned int m_numTransferrableToRegularUnlock;
+};
+
+class bdContentUnlock
+{
+public:
+    bdReference<bdRemoteTask> listContentByLicenseCode(char*, bdUnlockContentInfo*);
+    bdReference<bdRemoteTask> listContentByLicenseCodeWithSubtype(char*, bdUnlockContentInfoWithSubtype*);
+    bdReference<bdRemoteTask> listContent(const unsigned int, bdUnlockContentInfo*);
+    bdReference<bdRemoteTask> listContentWithSubtype(const unsigned int, bdUnlockContentInfoWithSubtype*);
+    bdReference<bdRemoteTask> unlockContentByLicenseCode(char*, bdUnlockContentInfo*, const unsigned int);
+    bdReference<bdRemoteTask> unlockContentByLicenseCodeWithSubtype(char*, bdUnlockContentInfoWithSubtype*, const unsigned int);
+    bdReference<bdRemoteTask> unlockSharedContentByLicenseCode(char*, bdUnlockContentInfo*, const unsigned int);
+    bdReference<bdRemoteTask> unlockSharedContentByLicenseCodeWithSubtype(char*, bdUnlockContentInfoWithSubtype*, const unsigned int);
+    bdReference<bdRemoteTask> unlockContent(const unsigned int, bdUnlockContentInfo*, const unsigned int);
+    bdReference<bdRemoteTask> unlockContentWithSubtype(const unsigned int, bdUnlockContentInfoWithSubtype*, const unsigned int);
+    bdReference<bdRemoteTask> unlockSharedContent(const unsigned int, bdUnlockContentInfo*, const unsigned int);
+    bdReference<bdRemoteTask> unlockSharedContentWithSubtype(const unsigned int, bdUnlockContentInfoWithSubtype*, const unsigned int);
+    bdReference<bdRemoteTask> listUnlockedContent(bdUnlockContentInfo*, unsigned int);
+    bdReference<bdRemoteTask> listUnlockedContentWithSubtype(bdUnlockContentInfoWithSubtype*, unsigned int);
+    bdReference<bdRemoteTask> listUnlockedSharedContent(bdUnlockContentInfo*, unsigned int);
+    bdReference<bdRemoteTask> listUnlockedSharedContentWithSubtype(bdUnlockContentInfoWithSubtype*, unsigned int);
+    bdReference<bdRemoteTask> checkContentStatusByLicenseCodes(char**, const unsigned int, bdContentStatus*);
+    bdReference<bdRemoteTask> takeOwnershipOfUsersSharedContent(const unsigned int, const unsigned int, bdNumContentUpdated*);
+    bdReference<bdRemoteTask> synchronizeUnlockedContent(const unsigned int, const unsigned int, const unsigned int, const bool, bdTransferrableUnlockedContent*);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdVerifyString : public bdTaskResult
+{
+public:
+    bool m_verified;
+};
+
+class bdTitleStats : public bdTaskResult
+{
+public:
+    unsigned int m_numOnlineSessions;
+    unsigned int m_numTotalUsers;
+    unsigned int m_numOnlineUsers;
+};
+
+class bdOnlineUserInfo : public bdTaskResult
+{
+public:
+    unsigned __int64 m_userID;
+    bool m_isOnline;
+};
+
+class bdTimeStamp : public bdTaskResult
+{
+public:
+    unsigned int m_timeStamp;
+};
+
+class bdMessageSigning : public bdTaskResult
+{
+public:
+    unsigned int m_timeStamp;
+    unsigned __int8 m_messageAuthenticationCode[44];
+    unsigned __int8 m_macPiggyback[512];
+};
+
+class bdEventInfo : public bdTaskResult
+{
+public:
+    bool m_isBinary;
+    unsigned int m_category;
+    unsigned int m_length;
+    unsigned char* m_eventDesc;
+};
+
+class bdEventLogID : public bdTaskResult
+{
+public:
+    unsigned __int64 m_eventLogID;
+};
+
+class bdEventLog
+{
+public:
+    bdReference<bdRemoteTask> recordEventsMixed(bdEventInfo*, unsigned int, bdEventLogID*);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdTitleUtilities
+{
+public:
+    bdReference<bdRemoteTask> verifyString(const char*, const unsigned int, bdVerifyString*);
+    bdReference<bdRemoteTask> getTitleStats(bdTitleStats*);
+    bdReference<bdRemoteTask> areUsersOnline(bdOnlineUserInfo*, const unsigned int);
+    bdReference<bdRemoteTask> getServerTime(bdTimeStamp*);
+    bdReference<bdRemoteTask> sendOwnedContent(const void*, const unsigned int);
+    bdReference<bdRemoteTask> getMAC(const void*, const unsigned int, bdMessageSigning*);
+    bdReference<bdRemoteTask> getUserNames(unsigned long long*, const unsigned int, bdUserInfo*);
+    bdReference<bdRemoteTask> getUserIDs(char**, const unsigned int, bdUserInfo*);
+    void setEventLog(bdEventLog*);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+    bdEventLog* m_eventLog;
+};
+
+class bdEntityIDKeyArchiveMap : public bdTaskResult
+{
+public:
+    unsigned __int64 m_entityID;
+    unsigned short m_numMatchingKeys;
+    bdArray<bdKeyValuePair> m_keyValuePairs;
+};
+
+class bdKeyArchive
+{
+    enum bdReservedCategory
+    {
+        USERS = 0,
+        TEAMS = 1
+    };
+    bdReference<bdRemoteTask> write(const unsigned long long, const unsigned short, bdKeyValuePair*, const unsigned int);
+    bdReference<bdRemoteTask> read(const unsigned long long, const unsigned short, const bool, bdKeyValuePair*, const unsigned int);
+    bdReference<bdRemoteTask> readAll(const unsigned long long, const unsigned short, const bool, bdKeyValuePair*, const unsigned int);
+    bdReference<bdRemoteTask> readMultipleEntityIDs(unsigned long long*, const unsigned int, const unsigned short, const bool, unsigned short*, const unsigned int, bdEntityIDKeyArchiveMap**);
+protected:
+     bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdCounterValue : public bdTaskResult
+{
+public:
+    unsigned int m_counterID;
+    __int64 m_counterValue;
+};
+
+class bdCounter
+{
+public:
+    bdReference<bdRemoteTask> incrementCounters(const bdCounterValue*, const unsigned int);
+    bdReference<bdRemoteTask> getCounterTotals(bdCounterValue*, const unsigned int);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdGroupID : public bdTaskResult
+{
+public:
+    unsigned int m_groupID;
+};
+
+class bdGroupCount : public bdTaskResult
+{
+public:
+    unsigned int m_groupID;
+    unsigned int m_groupCount;
+};
+
+class bdGroup
+{
+public:
+    bdReference<bdRemoteTask> setGroups(const unsigned int*, const unsigned int);
+    bdReference<bdRemoteTask> setGroupsForEntity(const unsigned long long, const unsigned int*, const unsigned int);
+    bdReference<bdRemoteTask> getEntityGroups(const unsigned long long, bdGroupID*, const unsigned int);
+    bdReference<bdRemoteTask> getGroupCounts(const unsigned int*, const unsigned int, bdGroupCount*, const unsigned int);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdQuotaUsage : public bdTaskResult
+{
+public:
+    unsigned int m_usedStorageSpace;
+    unsigned int m_usedNumFiles;
+    unsigned int m_usedDailyUploadBW;
+    unsigned int m_usedDailyDownloadBW;
+    unsigned int m_maxStorageSpace;
+    unsigned int m_maxNumFiles;
+    unsigned int m_maxDailyUploadBW;
+    unsigned int m_maxDailyDownloadBW;
+};
+
+class bdURL : public bdTaskResult
+{
+public:
+    char m_url[384];
+    unsigned short m_serverType;
+    char m_serverIndex[128];
+    unsigned __int64 m_fileID;
+};
+
+class bdPreCopyResult : public bdTaskResult
+{
+public:
+    bdURL* m_source;
+    char m_destination[384];
+    unsigned int m_fileSize;
+protected:
+    void reset();
+};
+
+class bdSummaryMetaHandler : public bdTaskResult
+{
+
+};
+
+class bdMutex
+{
+public:
+    void lock();
+    void unlock();
+protected:
+    void* m_handle;
+};
+
+class bdSemaphore
+{
+public:
+    void release();
+    bool wait();
+    void destroy();
+protected:
+    void* m_handle;
+};
+
+class bdHTTPWrapperBase
+{
+public:
+    enum bdStatus
+    {
+        BD_EMPTY = 0,
+        BD_PENDING = 1,
+        BD_DONE = 2,
+        BD_FAILED = 3,
+        BD_TIMED_OUT = 4,
+        BD_FAILED_TO_START = 5,
+        BD_MAX_STATUS = 6
+    };
+    enum bdOperation
+    {
+        BD_IDLE = 0,
+        BD_UPLOAD = 1,
+        BD_DOWNLOAD = 2,
+        BD_DELETE = 3,
+        BD_COPY = 4
+    };
+    enum bdStatus getStatus();
+    bool isOkayToStart();
+    void finalize();
+protected:
+    bool startAsyncOperation(enum bdHTTPWrapperBase::bdOperation);
+    unsigned int parseURLPort(const char*);
+    bool parseURL(const char*, char*, char**, unsigned int*);
+    bool m_threadExiting;
+    bdMutex m_threadMutex;
+    bdSemaphore* m_httpSema;
+    bdThread* m_thread;
+    bdStatus m_status;
+    bdOperation m_operation;
+};
+
+class bdHTTPWrapper : public bdHTTPWrapperBase
+{
+public:
+   bdStatus startDownload(const char*, bdDownloadInterceptor*, unsigned long long, unsigned int, unsigned int);
+   bdStatus startDownload(const char*, const void*, unsigned int, unsigned long long, unsigned int, unsigned int);
+   bdStatus startUpload(const char*, bdUploadInterceptor*, unsigned int, unsigned long long);
+   bdStatus startUpload(const char*, const void*, unsigned int, unsigned long long, char*);
+   bdStatus startCopy(const char*, const char*, unsigned long long);
+   bdStatus startDelete(const char*, unsigned long long);
+   void enableVerboseOutput(bool);
+   void enableProgressMeter(bool);
+   void abortOperation();
+   bool abortInProgress();
+   unsigned int getTransferProgress();
+   float getTransferSpeed();
+   void resetTransferStats();
+   int getLastHTTPError();
+   unsigned int run(void*);
+   void init();
+   void cleanup();
+   void setCAPath(char*);
+protected:
+    bdStatus _startDownload(const char*, const void*, unsigned int, bdDownloadInterceptor*, unsigned long long, unsigned int, unsigned int);
+    bdStatus _startUpload(const char*, const void*, bdUploadInterceptor*, unsigned int, unsigned long long, char*);
+    void performOperation();
+    void resetState();
+    int defaultDownloadCallback(char*, unsigned int, unsigned int);
+    int defaultUploadCallback(char*, unsigned int, unsigned int);
+    int userDownloadCallback(char*, unsigned int, unsigned int);
+    int userUploadCallback(char*, unsigned int, unsigned int);
+    int curlDownloadCallback(char*, unsigned int, unsigned int, void*);
+    int curlUploadCallback(char*, unsigned int, unsigned int, void*);
+    void* m_curl;
+    struct curl_slist* m_headerList;
+    unsigned int m_bytesTransfered;
+    bdDownloadInterceptor* m_downloadHandler;
+    unsigned char* m_downloadBuffer;
+    unsigned int m_downloadBufferSize;
+    bdUploadInterceptor* m_uploadHandler;
+    unsigned char* m_uploadBuffer;
+    unsigned int m_uploadSize;
+    bool m_abortOperation;
+    bool m_customVerification;
+    float m_dataRate;
+    bdStopwatch m_stopwatch;
+    char* m_caPath;
+    int  initCurlSSL();
+    char m_errorBuffer[1024];
+    int m_httpErrorCode;
+    bool m_verboseOutput;
+    bool m_progressMeter;
+};
+
+class bdHash
+{
+public:
+    virtual bool hash(unsigned char*, const unsigned int, unsigned char*, unsigned int*);
+};
+
+class bdHashMD5 : public bdHash
+{
+    bool hash(unsigned char*, const unsigned int, unsigned char*, unsigned int*);
+};
+
+class bdContentStreamingBase
+{
+public:
+    bool ready();
+    void abortHTTPOperation(bool);
+    void checkProgress(unsigned int*, float*);
+    int getLastHTTPError();
+    void pump();
+    void enableVerboseOutput(bool);
+    void enableProgressMeter(bool);
+    void enablePersistentThread(bool);
+    void setTestLSPServerAddresses(bdURL*, unsigned int);
+    enum bdStatus
+    {
+        READY = 0,
+        PRE_HTTP_OPERATION = 1,
+        HTTP_OPERATION = 2,
+        POST_HTTP_OPERATION = 3,
+        DONE = 4,
+        FAILED = 5
+    };
+    void setCAPath(char*);
+    bdStatus  getStatus();
+protected:
+    void handlePreHTTPComplete();
+    void handleHTTPComplete();
+    void handleHTTPFailed();
+    bdReference<bdRemoteTask> _postUpload();
+    bdReference<bdRemoteTask> _postUploadFile();
+    bdReference<bdRemoteTask> _postUploadSummary();
+    bdReference<bdRemoteTask> _postCopy();
+    bool initUpload(const unsigned short, void*, bdUploadInterceptor*, const unsigned int, const char*, const unsigned short, void*, const unsigned int, const unsigned int, bdTag*, bdFileID*, char*, const unsigned int, const bool);
+    bool initDownload(void*, unsigned int, bdDownloadInterceptor*, bdFileMetaData*, unsigned int, unsigned int);
+    bool initDelete();
+    unsigned int getMaxMetaDataSize();
+    bdReference<bdRemoteTask> startUpload();
+    bdReference<bdRemoteTask> startCopy();
+    bdReference<bdRemoteTask> startDownload();
+    bdReference<bdRemoteTask> startDelete();
+    bdReference<bdRemoteTask> start(unsigned short);
+    void setState(bdStatus, bdLobbyErrorCode);
+    unsigned int m_operation;
+    bdStatus m_state;
+    bdUploadInterceptor* m_uploadHandler;
+    bdFileMetaData m_taskData;
+    void* m_uploadData;
+    bdFileID* m_uploadFileID;
+    bdURL m_URLs[3];
+    void* m_thumbData;
+    unsigned int m_thumbDataSize;
+    unsigned short m_httpSite;
+    bool m_sendChecksum;
+    unsigned char m_checksum[33];
+    char m_clientLocale[16];
+    unsigned long long m_copySourceFileID;
+    bool m_wasCopyingPooledFile;
+    bdDownloadInterceptor* m_downloadHandler;
+    bdFileMetaData* m_downloadMetaData;
+    void* m_downloadData;
+    unsigned int m_downloadDataSize;
+    unsigned int m_startByte;
+    unsigned int m_endByte;
+    bdPreCopyResult m_preCopyResults[3];
+    bool m_uploadSummary;
+    bdSummaryMetaHandler m_summaryMeta;
+    bdReference<bdRemoteTask> m_overallTask;
+    bdReference<bdRemoteTask> m_remoteTask;
+    bdHTTPWrapper m_http;
+    bdHashMD5 m_md5Hash;
+    bdURL* m_testURLs;
+    unsigned int m_testAddressCount;
+    bool m_useTestAddresses;
+    void  swapURLInfo(char*);
+    bool m_finalizeOnComplete;
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdContentStreaming : public bdContentStreamingBase
+{
+    bdReference<bdRemoteTask> upload(const unsigned short, bdUploadInterceptor*, const unsigned int, const char*, const unsigned short, void*, const unsigned int, const unsigned int, bdTag*, bdFileID*, char*);
+    bdReference<bdRemoteTask> upload(const unsigned short, void*, const unsigned int, const char*, const unsigned short, void*, const unsigned int, const unsigned int, bdTag*, bdFileID*, char*);
+    bdReference<bdRemoteTask> copyFromPooledStorage(unsigned long long, const unsigned short, char*, const unsigned short, void*, unsigned int, unsigned int, bdTag*, bdFileID*);
+    bdReference<bdRemoteTask> copyFromUserStorage(unsigned long long, const unsigned short, char*, const unsigned short, void*, unsigned int, unsigned int, bdTag*, bdFileID*);
+    bdReference<bdRemoteTask> download(const unsigned long long, bdDownloadInterceptor*, bdFileMetaData*, unsigned int, unsigned int);
+    bdReference<bdRemoteTask> download(const unsigned long long, void*, const unsigned int, bdFileMetaData*, unsigned int, unsigned int);
+    bdReference<bdRemoteTask> downloadFileBySlot(const unsigned long long, const unsigned short, bdDownloadInterceptor*, bdFileMetaData*, unsigned int, unsigned int);
+    bdReference<bdRemoteTask> downloadFileBySlot(const unsigned long long, const unsigned short, void*, const unsigned int, bdFileMetaData*, unsigned int, unsigned int);
+    bdReference<bdRemoteTask> downloadPublisherFile(const unsigned long long, bdDownloadInterceptor*, bdFileMetaData*, unsigned int, unsigned int);
+    bdReference<bdRemoteTask> downloadPublisherFile(const unsigned long long, void*, const unsigned int, bdFileMetaData*, unsigned int, unsigned int);
+    bdReference<bdRemoteTask> downloadApplePurchasedFile(const unsigned long long, void*, const unsigned int, bdDownloadInterceptor*, bdFileMetaData*, unsigned int, unsigned int);
+    bdReference<bdRemoteTask> downloadApplePurchasedFile(const unsigned long long, void*, const unsigned int, void*, const unsigned int, bdFileMetaData*, unsigned int, unsigned int);
+    bdReference<bdRemoteTask> removeFile(const unsigned short);
+    bdReference<bdRemoteTask> getFileMetaDataByID(const unsigned int, unsigned long long*, bdFileMetaData*);
+    bdReference<bdRemoteTask> uploadUserSummaryMetaData(unsigned long long, void*, unsigned int, void*, unsigned int, unsigned int, bdTag*);
+    bdReference<bdRemoteTask> downloadUserSummary(unsigned long long, void*, unsigned int, unsigned int, unsigned int);
+    bdReference<bdRemoteTask> listAllPublisherFiles(const unsigned int, const unsigned short, bdFileMetaData*, const unsigned short, const unsigned short, char*);
+    bdReference<bdRemoteTask> listFilesByOwner(const unsigned long long, const unsigned int, const unsigned short, bdFileMetaData*, const unsigned short, const unsigned short, char*);
+    bdReference<bdRemoteTask> listFilesByOwners(unsigned long long*, unsigned int, const unsigned int, const unsigned short, bdFileMetaData*, const unsigned short, const unsigned short, char*);
+    bdReference<bdRemoteTask> getQuotaUsage(bdQuotaUsage*);
+    bdReference<bdRemoteTask> reportContent(const unsigned long long);
+protected:
+    bdReference<bdRemoteTask> _preUpload(const char*, const unsigned short, const unsigned int, const unsigned short, bdURL*);
+    bdReference<bdRemoteTask> _preUploadSummary();
+    bdReference<bdRemoteTask> _postUploadFile();
+    bdReference<bdRemoteTask> _postUploadSummary();
+    bdReference<bdRemoteTask> _preCopy(const unsigned long long, const unsigned char);
+    bdReference<bdRemoteTask> _postCopy();
+    bdReference<bdRemoteTask> _preDownloadFileBySlot(unsigned long long, unsigned short, unsigned int, bdFileMetaData*);
+    bdReference<bdRemoteTask> _preDownloadByFileID(unsigned long long, unsigned int, bdFileMetaData*);
+    bdReference<bdRemoteTask> _preDownloadPublisherFile(unsigned long long, unsigned int, bdFileMetaData*);
+    bdReference<bdRemoteTask> _preDownloadITunesPurchasedFile(unsigned long long, unsigned int, void*, const unsigned int, bdFileMetaData*);
+    bdReference<bdRemoteTask> _preDownloadSummary();
+    bdReference<bdRemoteTask> _preDeleteFile(unsigned short, bdURL*);
+    unsigned int getMaxMetaDataSize();
+};
+
+class bdPooledStorage : public bdContentStreamingBase
+{
+public:
+    bdReference<bdRemoteTask> upload(bdUploadInterceptor*, unsigned short, char*, unsigned int, bdTag*, bdFileID*, char*);
+    bdReference<bdRemoteTask> download(unsigned long long, bdDownloadInterceptor*, bdFileMetaData*, unsigned int, unsigned int);
+    bdReference<bdRemoteTask> remove(unsigned long long);
+    bdReference<bdRemoteTask> uploadSummaryMetaData(unsigned long long, void*, unsigned int, void*, unsigned int, unsigned int, bdTag*);
+    bdReference<bdRemoteTask> downloadSummary(unsigned long long, void*, unsigned int, unsigned int, unsigned int);
+    bdReference<bdRemoteTask> getPooledMetaDataByID(const unsigned int, unsigned long long*, bdFileMetaData*);
+    void handlePreHTTPComplete();
+    bool isFileIDReady();
+    unsigned __int64 getFileID();
+protected:
+    unsigned int getMaxMetaDataSize();
+    bdReference<bdRemoteTask> _preUpload();
+    bdReference<bdRemoteTask> _preUploadSummary();
+    bdReference<bdRemoteTask> _postUploadFile();
+    bdReference<bdRemoteTask> _postUploadSummary();
+    bdReference<bdRemoteTask> _preDownload();
+    bdReference<bdRemoteTask> _preDownloadSummary();
+    unsigned __int64 m_pooledStoragefileID;
+    bool m_fileIDReady;
+};
+
+class bdTags
+{
+public:
+    const unsigned int BD_TAG_CONTENT_SERVER_USER_STORAGE;
+    const unsigned int BD_TAG_CONTENT_SERVER_POOLED_STORAGE;
+    const unsigned int BD_TAG_BINARY_EVENT_LOG;
+    const unsigned int BD_TAG_CONTENT_SERVER_PUBLISHER_STORAGE;
+    bdReference<bdRemoteTask> getTagsForEntityIDs(const unsigned int, const unsigned int, unsigned long long*, bdTagsArray*);
+    bdReference<bdRemoteTask> setTagsForEntityID(const unsigned int, const unsigned long long, const unsigned int, bdTag*);
+    bdReference<bdRemoteTask> removeTagsForEntityID(const unsigned int, const unsigned long long, const unsigned int, bdTag*);
+    bdReference<bdRemoteTask> removeAllTagsForEntityID(const unsigned int, const unsigned long long);
+    bdReference<bdRemoteTask> searchByTags(const unsigned int, const unsigned int, const unsigned int, const bool, const unsigned int, bdTag*, bdFileID*);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+private:
+    unsigned int countValidTags(const unsigned int, bdTag*);
+};
+
+class bdVoteRank
+{
+public:
+    bdReference<bdRemoteTask> submitRating(bdRatingInfo*, const unsigned int);
+    bdReference<bdRemoteTask> submitCategorizedRating(bdCategorizedRatingInfo*, const unsigned int);
+    bdReference<bdRemoteTask> getVoteHistory(const unsigned short, class bdCategorizedRatingInfo*, const unsigned int, const unsigned int);
+    bool getLikeDislikeRatioFromRating(bdVoteRankStatsInfo*, unsigned int*, unsigned int*);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdBoolResult : public bdTaskResult
+{
+public:
+    bool m_result;
+};
+
+class bdTwitch
+{
+public:
+    bdReference<bdRemoteTask> linkAccount(char*);
+    bdReference<bdRemoteTask> unlinkAccount();
+    bdReference<bdRemoteTask> isLinked(bdBoolResult*);
+    bdReference<bdRemoteTask> getUserInfo(bdTwitchUserInfo*);
+private:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdYouTubeUploadStats : public bdTaskResult
+{
+public:
+    unsigned int m_windowSize;
+    unsigned int m_uploadCount;
+    unsigned int m_minimumDuration;
+    unsigned int m_maximumDuration;
+    unsigned int m_averageDuration;
+    unsigned int m_age;
+};
+
+class bdYouTubeRegistrationResult : public bdTaskResult
+{
+public:
+    bdLobbyErrorCode m_result;
+};
+
+class bdYouTube
+{
+public:
+    bdReference<bdRemoteTask> startAccountRegistration(const bdYouTubeAuthorizationCode*);
+    bdReference<bdRemoteTask> isRegistered(const bdBoolResult*);
+    bdReference<bdRemoteTask> unregister();
+    bdReference<bdRemoteTask> uploadVideo(unsigned long long, bool, unsigned int, char**);
+    bdReference<bdRemoteTask> getUploadStats(bdYouTubeUploadStats*);
+    bdReference<bdRemoteTask> getUserToken(bdYouTubeUserToken*);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdTwitter
+{
+public:
+    bdReference<bdRemoteTask> registerAccount(const char*, const char*, const bdTwitterAccount*);
+    bdReference<bdRemoteTask> registerToken(const char*, const char*, const bdTwitterAccount*);
+    bdReference<bdRemoteTask> post(const char*);
+    bdReference<bdRemoteTask> unregisterAccount();
+    bdReference<bdRemoteTask> isRegistered(const bdBoolResult*);
+    bdReference<bdRemoteTask> getInfo(const unsigned int, const unsigned int, const bdTwitterUserAttribute*);
+    bdReference<bdRemoteTask> getRegisteredAccounts(const unsigned int, const class bdTwitterAccount*);
+    bdReference<bdRemoteTask> search(char*, const unsigned int, const unsigned int, const bdTwitterSearchResult*, const bdTwitterResultType);
+    bdReference<bdRemoteTask> follow(char*);
+    bdReference<bdRemoteTask> unfollow(char*);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+enum bdFacebookFriendSort
+{
+    BD_FBSORT_UNSORTED = 0,
+    BD_FBSORT_ACCOUNT_NAME_ASC = 1,
+    BD_FBSORT_ACCOUNT_NAME_DESC = 2
+};
+
+class bdStreamingTask : public bdRemoteTask
+{
+public:
+    bdStatus getStatus();
+    void handleAsyncTaskReply(const class bdReference<bdByteBuffer>);
+    float getStreamingTimeout();
+    void setStreamingTimeout(float);
+    void setFailBehavior(bool);
+    bool deserializeTaskReply(const class bdReference<bdByteBuffer>);
+protected:
+    void start(const float);
+    bool m_failOnPartialError;
+    unsigned int m_partsFailed;
+    bdStopwatch m_streamingTimer;
+    float m_streamingTimeout;
+};
+
+class bdFacebookTag : public bdTaskResult
+{
+public:
+    unsigned long long m_accountID;
+    unsigned short m_x;
+    unsigned short m_y;
+};
+
+class bdFacebook
+{
+public:
+    bdReference<bdRemoteTask> registerAccount(const char*, const char*, const unsigned char*, const unsigned int, const bdFacebookAccount*);
+    bdReference<bdRemoteTask> registerAccount(const char*, const char*, const bdFacebookAccount*);
+    bdReference<bdRemoteTask> registerToken(const char*, const unsigned int, const unsigned char*, const unsigned int, const bdFacebookAccount*);
+    bdReference<bdRemoteTask> post(const unsigned long long, const char*, const char*, const char*, const char*, const char*, const char*, const unsigned int, const bdFacebookAttachmentProperty*, const char*, const char*);
+    bdReference<bdRemoteTask> post(const char*, const char*, const char*, const char*, const char*, const char*, const char*, const char*);
+    bdReference<bdRemoteTask> post(const char*, const char*, const char*, const char*, const char*, const char*, const unsigned int, const bdFacebookAttachmentProperty*, const char*, const char*);
+    bdReference<bdRemoteTask> unregisterAccount(const unsigned long long);
+    bdReference<bdRemoteTask> unregisterAccount();
+    bdReference<bdRemoteTask> uploadPhoto(const unsigned long long, const char*, const unsigned int, const bdFacebookTag*);
+    bdReference<bdRemoteTask> uploadVideo(const unsigned long long, const char*);
+    bdReference<bdRemoteTask> isRegistered(const bdBoolResult*);
+    bdReference<bdRemoteTask> getInfo(const unsigned long long, const unsigned int, const unsigned int, const bdFacebookUserAttribute*);
+    bdReference<bdRemoteTask> getInfo(const unsigned int, const unsigned int, const bdFacebookUserAttribute*);
+    bdReference<bdRemoteTask> getRegisteredAccounts(const unsigned int, const bdFacebookAccount*);
+    bdReference<bdRemoteTask> getFriends(const bool, const unsigned int, const unsigned int, const bdFacebookFriend*, bdFacebookFriendSort);
+    bdReference<bdRemoteTask> getFriendsByID(unsigned long long*, unsigned short, bdFacebookFriend*);
+    bdReference<bdStreamingTask> getProfilePictures(unsigned long long*, const unsigned short, const bdFacebookProfilePicture*);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdLinkCode
+{
+public:
+    bdReference<bdRemoteTask> getLinkCodes(const unsigned long long, const unsigned int*, const bdLink*, const unsigned int);
+    bdReference<bdRemoteTask> getEntityIDsFromLinkCodes(const unsigned int, const char**, const bdLink*, const unsigned int);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdAntiCheatChallengeParam : bdRemoteTask
+{
+public:
+    unsigned char* m_data;
+    unsigned int m_size;
+};
+
+class bdAntiCheatChallenge : bdRemoteTask
+{
+public:
+    unsigned short m_functionID;
+    unsigned long long m_challengeID;
+    bdArray<bdAntiCheatChallengeParam> m_parameters;
+};
+
+class bdAntiCheatChallenges : public bdReferencable
+{
+public:
+    bdAntiCheatChallenge* getChallengeByIndex(unsigned int);
+    unsigned int  getNumChallenges();
+private:
+    bdArray<bdAntiCheatChallenge>* m_challenges;
+};
+
+class bdAntiCheatResponses : bdRemoteTask
+{
+public:
+    void clear();
+    void addResponse(bdAntiCheatChallenge*, __int64);
+    bool findResponse(bdAntiCheatChallenge*, long long*);
+    void setLogMessage(unsigned char*, unsigned int);
+private:
+    bdFastArray<unsigned __int64> m_challengeIDs;
+    bdFastArray<__int64> m_responses;
+    unsigned short m_numResponses;
+    unsigned char m_logMessage[64];
+    unsigned int m_logMessageSize;
+};
+
+class bdConsoleID : bdTaskResult
+{
+public:
+    bool readConsoleID();
+    unsigned char m_id[16];
+};
+
+class bdMACAddr
+{
+public:
+    unsigned char m_data[6];
+};
+
+class bdAntiCheat
+{
+public:
+    bdReference<bdRemoteTask> answerChallenges(bdAntiCheatResponses*);
+    bdReference<bdRemoteTask> reportConsoleID(bdConsoleID*);
+    bdReference<bdRemoteTask> reportConsoleDetails(unsigned int, unsigned int, unsigned long long, bdMACAddr*, unsigned long long, unsigned long long, bdConsoleID*);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdDMLHierarchicalInfo : public bdDMLInfo
+{
+public:
+    unsigned int m_tier0;
+    unsigned int m_tier1;
+    unsigned int m_tier2;
+    unsigned int m_tier3;
+};
+
+class bdDML
+{
+public:
+    bdReference<bdRemoteTask> recordIP(const unsigned int);
+    bdReference<bdRemoteTask> getUserData(bdDMLInfo*);
+    bdReference<bdRemoteTask> getUserHierarchicalData(bdDMLHierarchicalInfo*);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdUserGroupNumMembers : public bdTaskResult
+{
+public:
+    unsigned __int64 m_numMembers;
+};
+
+class bdUserGroups
+{
+public:
+    bdReference<bdRemoteTask> createGroup(const char*, const unsigned long long, const short, const bdUserGroupInfo*);
+    bdReference<bdRemoteTask> deleteGroup(const unsigned long long);
+    bdReference<bdRemoteTask> joinGroup(const unsigned long long, const unsigned long long, const short);
+    bdReference<bdRemoteTask> leaveGroup(const unsigned long long, const unsigned long long);
+    bdReference<bdRemoteTask> getMembershipInfo(const unsigned long long, const unsigned long long, const bdUserGroupMembershipInfo*);
+    bdReference<bdRemoteTask> changeMemberType(const unsigned long long, const unsigned long long, const short);
+    bdReference<bdRemoteTask> getNumMembers(const unsigned long long, const short, bdUserGroupNumMembers*);
+    bdReference<bdRemoteTask> getMembers(const unsigned long long, const short, const unsigned long long, const unsigned short, bdUserGroupMembershipInfo*);
+    bdReference<bdRemoteTask> getMemberships(unsigned long long*, const unsigned int, bdUserGroupMembershipInfo*, const unsigned int);
+    bdReference<bdRemoteTask> getGroupLists(unsigned long long*, const unsigned int, const unsigned int, bdUserGroupList*);
+    bdReference<bdRemoteTask> readStatsByRank(const unsigned long long, const unsigned int, const unsigned long long, bdStatsInfo*, const unsigned int);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdRichPresenceService
+{
+public:
+    bdReference<bdRemoteTask> setInfo(const bdRichPresenceInfo*);
+    bdReference<bdRemoteTask> getInfo(unsigned __int64*, bdRichPresenceInfo*, int);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdMarketplaceInventory : public bdTaskResult
+{
+public:
+    unsigned long long m_playerId;
+    unsigned int m_itemId;
+    unsigned int m_itemQuantity;
+    unsigned int m_itemXp;
+    unsigned int m_expireDateTime;
+    unsigned short m_collisionField;
+    unsigned int m_modDateTime;
+};
+
+class bdMarketplaceInventoryItemQuantity
+{
+public:
+    unsigned long long m_playerId;
+    unsigned int m_itemId;
+    unsigned int m_itemQuantity;
+};
+
+class bdMarketplace
+{
+public:
+    bdReference<bdRemoteTask> getBalance(bdMarketplaceCurrency*, const unsigned char);
+    bdReference<bdRemoteTask> deposit(bdMarketplaceCurrency*);
+    bdReference<bdRemoteTask> getProducts(bdMarketplaceProduct*, const unsigned short);
+    bdReference<bdRemoteTask> getSkus(bdMarketplaceSku*, const unsigned short, const bool, unsigned int*, const unsigned char);
+    bdReference<bdRemoteTask> purchaseSkus(unsigned int*, unsigned int*, const unsigned char, const bool);
+    bdReference<bdRemoteTask> purchaseSkus(unsigned int*, unsigned int*, const unsigned char);
+    bdReference<bdRemoteTask> getInventory(bdMarketplaceInventory*, const unsigned short);
+    bdReference<bdRemoteTask> putInventoryItem(bdMarketplaceInventory*);
+    bdReference<bdRemoteTask> putPlayersInventoryItems(bdMarketplaceInventory*, const unsigned char);
+    bdReference<bdRemoteTask> consumeInventoryItem(const unsigned long long, const unsigned int, const unsigned int);
+    bdReference<bdRemoteTask> consumeInventoryItems(bdMarketplaceInventoryItemQuantity*, const unsigned short);
+    bdReference<bdRemoteTask> consumeInventoryItems(unsigned int*, unsigned int*, const unsigned short);
+    bdReference<bdRemoteTask> getPlayersInventories(unsigned long long*, const unsigned char, bdMarketplaceInventory*, const unsigned short);
+    bdReference<bdRemoteTask> deleteInventory();
+    bdReference<bdRemoteTask> putPlayersEntitlements(bdMarketplaceEntitlement*, const unsigned char);
+    bdReference<bdRemoteTask> getPlayersEntitlements(unsigned long long*, const unsigned char, bdMarketplaceEntitlement*, const unsigned short);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdCommerceCurrency : public bdTaskResult
+{
+public:
+    int m_currencyID;
+    int m_value;
+};
+
+class bdCommerceReceiptStatus : public bdTaskResult
+{
+public:
+    bool m_isValid;
+};
+
+class bdCommerceItemQuantity : public bdTaskResult
+{
+public:
+    unsigned __int64 m_inventoryItemId;
+    unsigned int m_itemQuantity;
+};
+
+class bdCommerce
+{
+public:
+    bdReference<bdRemoteTask> getBalances(bdCommerceCurrency*, const unsigned char);
+    bdReference<bdRemoteTask> deposit(bdCommerceCurrency*, void*, const unsigned int, unsigned long long*, const unsigned long long);
+    bdReference<bdRemoteTask> modifyBalances(bdCommerceCurrency*, const unsigned int, unsigned long long*, const unsigned long long);
+    bdReference<bdRemoteTask> setBalances(bdCommerceCurrency*, const unsigned short, const unsigned long long);
+    bdReference<bdRemoteTask> migrateBalances(const unsigned long long, const unsigned long long);
+    bdReference<bdRemoteTask> setWriter(const bdCommerceWriter);
+    bdReference<bdRemoteTask> getWriter(const unsigned long long, bdCommerceWriter*);
+    bdReference<bdRemoteTask> getWriters(bdCommerceWriter*, const unsigned char);
+    bdReference<bdRemoteTask> getLastWriter(bdCommerceWriter*);
+    bdReference<bdRemoteTask> validateReceipt(void*, const unsigned int, const bdCommerceReceiptStatus*);
+    bdReference<bdRemoteTask> getItems(const unsigned long long, bdCommerceItem*, const unsigned short, const unsigned short);
+    bdReference<bdRemoteTask> getGiftsOfferedToUser(const unsigned long long, bdCommerceGiftItem*, const unsigned short, const unsigned short);
+    bdReference<bdRemoteTask> getGiftsOfferedByUser(const unsigned long long, bdCommerceGiftItem*, const unsigned short, const unsigned short);
+    bdReference<bdRemoteTask> retractGiftOffers(unsigned int*, const unsigned short, bdCommerceItem*, unsigned long long, const unsigned long long);
+    bdReference<bdRemoteTask> acceptGifts(unsigned int*, const unsigned short, bdCommerceItem*, const unsigned short, unsigned long long, const unsigned long long);
+    bdReference<bdRemoteTask> rejectGifts(unsigned int*, const unsigned short, unsigned long long, const unsigned long long);
+    bdReference<bdRemoteTask> purchaseItems(bdCommerceCurrency*, const unsigned short, bdCommerceItem*, const unsigned short, unsigned long long*, const unsigned long long);
+    bdReference<bdRemoteTask> consumeItems(bdCommerceItemQuantity*, const unsigned short, unsigned long long*, const unsigned long long);
+    bdReference<bdRemoteTask> giftItems(bdCommerceItemQuantity*, const unsigned short, const unsigned long long, unsigned long long*, const unsigned long long);
+    bdReference<bdRemoteTask> setInventory(bdCommerceItem*, const unsigned short, const unsigned long long);
+    bdReference<bdRemoteTask> setItems(bdCommerceItem*, const unsigned short, const unsigned long long);
+    bdReference<bdRemoteTask> setItemQuantities(bdCommerceItemQuantity*, const unsigned short, const unsigned long long);
+    bdReference<bdRemoteTask> transferInventory(const unsigned long long, const unsigned long long);
+    bdReference<bdRemoteTask> consolidateItems(unsigned long long*, const unsigned short, bdCommerceItemQuantity*, const unsigned long long);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+enum bdSubscriptionFilter
+{
+    BD_SUBSCRIPTION_FILTER_ALL = 0,
+    BD_SUBSCRIPTION_FILTER_VALID = 1,
+    BD_SUBSCRIPTION_FILTER_EXPIRED = 2
+};
+
+class bdSubscription
+{
+public:
+    bdReference<bdRemoteTask> getSubscriptionForUsers(unsigned long long*, unsigned int, unsigned int, bdSubscriptionInfo*, bdSubscriptionFilter);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdFeatureBanInfo : public bdTaskResult
+{
+public:
+    unsigned __int64 m_category;
+    unsigned int m_secondsRemaining;
+};
+
+class bdFeatureBan
+{
+public:
+    bdReference<bdRemoteTask> getFeatureBans(unsigned __int64, bdFeatureBanInfo*, unsigned int, unsigned int);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdSanitizedString : public bdTaskResult
+{
+public:
+    bool m_sanitized;
+    unsigned int m_length;
+    char* m_sanitizedBuffer;
+};
+
+class bdTencentAASRecord : public bdTaskResult
+{
+public:
+    enum bdRecordStatus
+    {
+        PENDING = 0,
+        NOINFO = 1,
+        MINOR = 2,
+        ADULT = 3
+    };
+    unsigned long long m_userID;
+    bdRecordStatus m_ageStatus;
+    unsigned int m_gameplaySeconds;
+    unsigned int m_recordAge;
+};
+
+class bdTencent
+{
+public:
+    bdReference<bdRemoteTask> verifyString(const char*, const unsigned int, bdVerifyString*);
+    bdReference<bdRemoteTask> sanitizeString(const char*, const unsigned int, bdSanitizedString*);
+    bdReference<bdRemoteTask> getAASRecord(bdTencentAASRecord*);
+    bdReference<bdRemoteTask> getAASRecordsByUserID(unsigned long long*, const unsigned int, bdTencentAASRecord*);
+    bdReference<bdRemoteTask> registerCodoID(unsigned char*, unsigned char*);
+    bdReference<bdRemoteTask> tLog(const char*, unsigned int);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdRunnable
+{
+public:
+    unsigned int run(void*);
+    void stop();
+    void start();
+protected:
+    bool m_stop;
+};
+
+class bdLeagueAndSubdivisionResult : public bdTaskResult
+{
+public:
+    unsigned long long m_leagueID;
+    unsigned long long m_subdivisionID;
+};
+
+class bdLeague
+{
+    enum bdWriteType
+    {
+        LEAGUE_STAT_WRITE_REPLACE = 0,
+        LEAGUE_STAT_WRITE_ADD = 1
+    };
+    enum bdOrderType
+    {
+        LEAGUE_ORDER_BY_TEAM_ID = 0,
+        LEAGUE_ORDER_BY_RECENT_ACTIVITY = 1
+    };
+public:
+    bdReference<bdRemoteTask> getTeamID(unsigned long long*, unsigned int, bdGenericLeagueID*);
+    bdReference<bdRemoteTask> setTeamName(unsigned long long, char*);
+    bdReference<bdRemoteTask> setTeamIcon(unsigned long long, unsigned char*, unsigned int);
+    bdReference<bdRemoteTask> getTeamInfos(unsigned long long*, bdLeagueTeamInfo*, unsigned int);
+    bdReference<bdRemoteTask> getTeamMemberInfos(unsigned long long*, bdLeagueTeamMemberInfo*, unsigned int);
+    bdReference<bdRemoteTask> getTeamIDsForUser(unsigned long long, unsigned char, bdLeagueUserTeamResult*, unsigned int, unsigned int);
+    bdReference<bdRemoteTask> getTeamSubdivisions(unsigned long long, unsigned long long*, unsigned int, bdLeagueSubdivisionResult*);
+    bdReference<bdRemoteTask> getTeamLeaguesAndSubdivisions(unsigned long long, bdLeagueAndSubdivisionResult*, unsigned int, unsigned int);
+    bdReference<bdRemoteTask> incrementGamesPlayedCount(unsigned long long*, unsigned long long*, unsigned int);
+    bdReference<bdRemoteTask> getSubdivisionInfos(unsigned long long*, bdLeagueSubdivisionInfo*, unsigned int);
+    bdReference<bdRemoteTask> getTeamSubdivisionHistory(unsigned long long, unsigned long long, unsigned long long*, bdLeagueSubdivisionHistoryResult*, unsigned int);
+    bdReference<bdRemoteTask> writeStats(bdLeagueStatsInfo*);
+    bdReference<bdRemoteTask> readStatsByTeamID(unsigned long long*, unsigned long long, bdLeagueStatsInfo*, unsigned int);
+    bdReference<bdRemoteTask> readStatsByRank(unsigned long long, unsigned int, bdLeagueStatsInfo*, unsigned int);
+    bdReference<bdRemoteTask> readStatsByPivot(const unsigned long long, const unsigned long long, bdLeagueStatsInfo*, unsigned int);
+protected:
+    bdRemoteTaskManager* m_remoteTaskManager;
+};
+
+class bdGetHostByNameConfig
+{
+public:
+    void reset();
+    void sanityCheckConfig();
+    float m_timeout;
+};
+
+class bdGetHostByName : public bdRunnable
+{
+    enum bdStatus
+    {
+        BD_LOOKUP_UNINITIALIZED = 0,
+        BD_LOOKUP_PENDING = 1,
+        BD_LOOKUP_SUCCEEDED = 2,
+        BD_LOOKUP_FAILED = 3,
+        BD_LOOKUP_CANCELLED = 4,
+        BD_LOOKUP_TIMED_OUT = 5,
+        BD_LOOKUP_ERROR = 6
+    };
+public:
+    bool start(char*, bdGetHostByNameConfig);
+    void pump();
+    void quit();
+    bdStatus  getStatus();
+    unsigned int getNumAddresses();
+    bdInAddr getAddressAt(unsigned int);
+protected:
+    unsigned int run(void*);
+    void cancelLookup();
+    class bdStopwatch m_timer;
+    bdStatus m_status;
+    bdThread* m_thread;
+    bdGetHostByNameConfig m_config;
+    bdInAddr m_adresses[4];
+    unsigned int m_numAddresses;
+    int m_handle;
+    unsigned int m_threadStackSize;
+};
+
+class bdLobbyEventHandler
+{
+public:
+    void onPlayerStatusUpdate(unsigned long long, char*, unsigned char);
+    void onTeamMemberStatusUpdate(unsigned long long, char*, unsigned long long, char*, unsigned char);
+    void onRichPresenceUpdate(unsigned long long, char*, void*, unsigned int, unsigned long long);
+    void onChatChannelUpdate(bdChannelInfo*, bdChannelMember*, unsigned char);
+    void onChatChannelUpdate(unsigned long long, unsigned long long, char*, unsigned char);
+    void onChatChannelMessage(unsigned long long, unsigned long long, char*, void*, unsigned int);
+    void onChatChannelUserPromoted(bdChannelInfo*, bdChannelMember*, bdChannelMember*);
+    void onChatChannelUserKicked(bdChannelInfo*, bdChannelMember*, bdChannelMember*, unsigned int, bool);
+    void onInstantMessage(unsigned long long, char*, void*, unsigned int, unsigned long long);
+    void onSessionInvite(bdSessionInvite*);
+    void onNotifyLeave(unsigned long long, bdSessionID);
+    void onFriendshipProposal();
+    void onTeamProposal();
+    void onNewNotification();
+    void onNewMail();
+    void onMultipleLogon(unsigned long long);
+    void onChallengesReceived(unsigned long long, bdReference<bdAntiCheatChallenges>);
+    void onPlayerBanned(unsigned long long, unsigned int);
+    void onNotWhiteListed(unsigned long long);
+    void onGlobalInstantMessage(unsigned long long, char*, void*, unsigned int);
+    void onFeatureBan(bdFeatureBanInfo*);
+    void onGroupMessagingMessage(unsigned long long, char*, void*, unsigned int);
+    void onBroadcastMessage(unsigned long long, char*, void*, unsigned int);
+    void onTencentAASRecordReceived(bdTencentAASRecord*);
+    void onYouTubeRegistration(bdYouTubeRegistrationResult*);
+};
+
+class bdAuthInfo
+{
+public:
+    unsigned int m_titleID;
+    unsigned int m_IVSeed;
+    char m_data[128];
+    unsigned char m_sessionKey[24];
 };
 
 class __declspec(align(8)) bdLobbyService : bdLobbyConnectionListener
@@ -50112,3 +51417,1793 @@ class __declspec(align(8)) bdLobbyService : bdLobbyConnectionListener
     bool m_encryptedConnection;
     unsigned int m_errorCode;
 };
+
+class bdAuthTicket : bdTaskResult
+{
+public:
+    unsigned int m_magicNumber;
+    unsigned char m_type;
+    unsigned int m_titleID;
+    unsigned int m_timeIssued;
+    unsigned int m_timeExpires;
+    unsigned long long m_licenseID;
+    unsigned long long m_userID;
+    char m_username[64];
+    unsigned char m_sessionKey[24];
+private:
+    unsigned char m_usingHashMagicNumber[3];
+    unsigned char m_hash[4];
+};
+
+class bdRSAKey
+{
+    enum bdRSAKeyStatus
+    {
+        BD_RSA_KEY_UNINITIALIZED = 0,
+        BD_RSA_KEY_INITIALIZED = 1
+    };
+public:
+    bool init();
+    bool import(char*);
+    bool verifyHash(char*, void*, unsigned long);
+    bool exportKey(unsigned char*, unsigned long*);
+    bool importKey(unsigned char*, const unsigned long);
+    bool encrypt(unsigned char*, unsigned long*, unsigned char*, unsigned long*);
+    bool decrypt(unsigned char*, unsigned long*, unsigned char*, unsigned long*);
+protected:
+    bdRSAKeyStatus m_status;
+    Rsa_key m_key;
+};
+
+class bdAuthService : public bdLobbyConnectionListener
+{
+    enum bdStatus
+    {
+        BD_READY = 0,
+        BD_CONNECTING = 1,
+        BD_PENDING_REPLY = 2
+    };
+public:
+    bool createAccount(char*, char*, char*);
+    bool changePassword(char*, char*, char*);
+    bool resetAccount(char*, char*, char*);
+    bool deleteAccount(char*, char*);
+    bool migrateAccount(char*, const unsigned int, char*);
+    bool authorizeAccount(char*, const unsigned long long, char*);
+    bool authorizeAccount(char*, char*);
+    bool authorizeAnonymous();
+    bool authorizeDedicatedHost(char*);
+    bool authorizeDedicatedServer();
+    bool authorizeDedicatedServerRSA();
+    bool getUsernamesForLicense(char*);
+    char* getSteamRequestData(char*, unsigned int*);
+    bool authorizeSteamTicket(unsigned char*, const unsigned int, unsigned int);
+    void createSteamCookie(char*);
+    void setSteamCookie(char*);
+    bdStatus getStatus();
+    bdLobbyErrorCode getErrorCode();
+    bdAuthInfo* getAuthInfo();
+    bdAuthTicket* getAuthTicket();
+    bool pumpDNSLookup(bdStatus*);
+    bdFastArray<char[64]> m_usernamesForLicenseResult;
+    void getHandleInfo(int*, bool*, bool*, float*);
+protected:
+    void startTask();
+    void onConnect(bdReference<bdLobbyConnection>);
+    void onDisconnect(bdReference<bdLobbyConnection>);
+    void onConnectFailed(bdReference<bdLobbyConnection>);
+    bdReference<bdBitBuffer> makeCreateAccount(const unsigned int, char*, char*, char*);
+    bdReference<bdBitBuffer> makeGetUsernamesForLicense(const unsigned int, char*);
+    bdReference<bdBitBuffer> makeChangeUserKey(const unsigned int, char*, char*, char*);
+    bdReference<bdBitBuffer> makeResetAccount(const unsigned int, char*, char*, char*);
+    bdReference<bdBitBuffer> makeDeleteAccount(const unsigned int, char*, char*);
+    bdReference<bdBitBuffer> makeMigrateAccount(const unsigned int, char*, const unsigned int, char*);
+    bdReference<bdBitBuffer> makeAuthAccountForService(const unsigned int, char*);
+    bdReference<bdBitBuffer> makeAuthAnonymousForService(const unsigned int);
+    bdReference<bdBitBuffer> makeAuthHostForService(const unsigned int, char*);
+    bdReference<bdBitBuffer> makeAuthRequestForDedicatedServer(const unsigned int);
+    bdReference<bdBitBuffer> makeAuthRequestForDedicatedServerRSA(const unsigned int);
+    bdReference<bdBitBuffer> makeAuthAccountForHost(const unsigned int, char*, const unsigned long long);
+    bdLobbyErrorCode handleReply(unsigned char, bdReference<bdBitBuffer>);
+    void createAuthCookie(char*);
+    bdReference<bdBitBuffer>  makeAuthForSteam(const unsigned int, unsigned char*, unsigned int, unsigned int);
+    bool handleSteamReply(bdReference<bdBitBuffer>);
+    bdReference<bdLobbyConnection> m_connection;
+    unsigned int m_titleID;
+    bdReference<bdCommonAddr> m_authServiceAddr;
+    bdStatus m_status;
+    bdReference<bdBitBuffer> m_request;
+    bdAuthInfo m_authInfo;
+    bdAuthTicket m_authTicket;
+    char m_steamCookieKey[88];
+    char m_userKey[24];
+    char m_licenseKey[24];
+    bdLobbyErrorCode m_errorCode;
+    unsigned int m_sendBufSize;
+    unsigned int m_recvBufSize;
+    bdGetHostByName m_authLookup;
+    char* m_authAddress;
+    unsigned short m_authPort;
+    bdAddr m_resolvedAuthAddress;
+    bool m_isResolved;
+public:
+    char m_cdKey[86];
+    int m_cdKeyTimeToLiveSecs;
+private:
+    bdRSAKey m_RSAKey;
+};
+
+struct AddressInfo_s
+{
+    unsigned int address;
+    char moduleName[64];
+    char bestFunction[64];
+    char bestFunctionFilename[64];
+    unsigned int bestFunctionAddress;
+    char bestLineFilename[64];
+    unsigned int bestLineAddress;
+    unsigned int bestLineNumber;
+};
+
+struct locTraceWork_t
+{
+    int contents;
+    TraceExtents extents;
+    locTraceWork_t();
+};
+
+struct staticmodeltrace_t
+{
+    TraceExtents extents;
+    int contents;
+    staticmodeltrace_t();
+};
+
+class rb_inplace_partition_node
+{
+public:
+    rigid_body_constraint_point* m_rbc_point_first;
+    rigid_body_constraint_hinge* m_rbc_hinge_first;
+    rigid_body_constraint_distance* m_rbc_dist_first;
+    rigid_body_constraint_ragdoll* m_rbc_ragdoll_first;
+    rigid_body_constraint_wheel* m_rbc_wheel_first;
+    rigid_body_constraint_angular_actuator* m_rbc_angular_actuator_first;
+    rigid_body_constraint_upright* m_rbc_upright_first;
+    rigid_body_constraint_custom_orientation* m_rbc_custom_orientation_first;
+    rigid_body_constraint_custom_path* m_rbc_custom_path_first;
+    rigid_body_constraint_contact* m_rbc_contact_first;
+    rigid_body* m_partition_head;
+    rigid_body* m_partition_tail;
+    rigid_body* m_next_node;
+    int m_partition_size;
+};
+
+class rigid_body
+{
+public:
+    void set(const float, phys_vec3*, phys_mat44*, phys_vec3*, phys_vec3*, const int);
+    void set_inertia(phys_vec3*);
+    void set_mass(const float);
+    void set_max_avel(const float);
+    void set_min_stable_contact_count(const int);
+    enum rigid_body_flags_e
+    {
+        FLAG_DISABLE_FORCES = 1,
+        FLAG_STABLE = 4,
+        FLAG_GROUP_STABLE = 8,
+        FLAG_ENVIRONMENT_RIGID_BODY = 16,
+        FLAG_USER_RIGID_BODY = 32,
+        FLAG_NO_AUTO_REMOVE = 64,
+        FLAG_DANGEROUS = 128,
+        FLAG_HAS_RBC_CONTACT = 256,
+        FLAG_EXPENSIVE = 512,
+        FLAG_CLIENT_FLAGS_START = 1024
+    };
+    void  set_flag(const unsigned int, const int);
+    const unsigned int  get_flag(const unsigned int);
+    void  set_client_flag(const unsigned int, const int);
+    const unsigned int  get_client_flag(const unsigned int);
+    const unsigned int  is_environment_rigid_body();
+    const unsigned int  is_user_rigid_body();
+    phys_mat44* get_mat();
+    phys_mat44* dangerous_get_mat();
+    phys_vec3 m_last_position;
+    phys_vec3 m_moved_vec;
+    float m_smallest_lambda;
+    void  swap_last_position();
+    void  update_last_position();
+    const phys_vec3  get_col_moved_dist();
+    void  adjust_col_moved_vec(const float);
+    phys_vec3* get_t_vel();
+    phys_vec3* get_a_vel();
+    void  dangerous_set_t_vel(phys_vec3*);
+    void  dangerous_set_a_vel(phys_vec3*);
+    const phys_vec3  get_force();
+    const phys_vec3  get_torque();
+    void  set_force(phys_vec3*);
+    void  set_torque(phys_vec3*);
+    void  add_force(phys_vec3*, phys_vec3*, const float);
+    void  add_force(phys_vec3*);
+    void  add_torque(phys_vec3*);
+    const phys_vec3  get_gravity_acc_vec();
+    void  set_gravity_acc_vec(phys_vec3*);
+    const float  get_max_delta_t();
+    void  set_max_delta_t(const float);
+    const float  get_inv_mass();
+    phys_vec3* get_inv_inertia();
+    const float  get_stable_energy_time();
+    const unsigned int  is_stable();
+    const unsigned int  is_dangerous();
+    const unsigned int  is_expensive();
+    const unsigned int  is_group_stable();
+    const unsigned int  is_no_auto_remove();
+    const int  get_constraint_count();
+    const int  get_contact_count();
+    void  set_user_data(void*);
+    void* get_user_data();
+    void  set_largest_vel_sq(const float);
+    const float  get_largest_vel_sq();
+    float* get_largest_vel_sq_ptr();
+    void  set_t_drag_coef(const float);
+    const float  get_t_drag_coef();
+    void  set_a_drag_coef(const float);
+    const float  get_a_drag_coef();
+    const int  get_tick();
+protected:
+    phys_mat44 m_mat;
+    phys_vec3 m_inv_inertia;
+    phys_vec3 m_gravity_acc_vec;
+    phys_vec3 m_t_vel;
+    phys_vec3 m_a_vel;
+    phys_vec3 m_last_t_vel;
+    phys_vec3 m_last_a_vel;
+    phys_vec3 m_force_sum;
+    phys_vec3 m_torque_sum;
+    float m_inv_mass;
+    float m_max_avel;
+    float m_max_delta_t;
+    unsigned int m_flags;
+    unsigned int m_tick;
+    pulse_sum_node* m_node;
+    int m_constraint_count;
+    int m_contact_count;
+    int m_stable_min_contact_count;
+    float m_stable_energy_time;
+    float m_largest_vel_sq;
+    float m_t_drag_coef;
+    float m_a_drag_coef;
+    void* m_userdata;
+public:
+    rb_inplace_partition_node m_partition_node;
+};
+
+class pulse_sum_cache
+{
+private:
+    float m_pulse_sum;
+public:
+    const float get_pulse_sum();
+    void set_pulse_sum(const float);
+    void zero_pulse_sum();
+};
+
+class user_rigid_body : public rigid_body
+{
+public:
+    void set(const phys_mat44*);
+    void setPosition(const phys_mat44*);
+    phys_mat44* get_dictator();
+    phys_mat44* m_dictator;
+    phys_mat44 m_dictator_mat;
+};
+
+template <typename T>
+class phys_link_list_base
+{
+    T* m_next_link;
+    void set_next_link(const T*);
+    T* get_next_link();
+};
+
+template <typename T>
+class phys_simple_link_list
+{
+private:
+    T* m_first;
+public:
+    phys_simple_link_list<T>();
+    void add(T*);
+    void remove_all();
+    T* get_first();
+    T* get_last_added();
+    void set_first(T*);
+    class iterator
+    {
+    private:
+        T* m_ptr;
+    public:
+        iterator(T*);
+        void operator++(int);
+        bool operator!=(iterator*);
+        T* operator*();
+    };
+    iterator begin();
+    iterator end();
+};
+
+class broad_phase_group;
+
+class phys_auto_activate_callback
+{
+public:
+    bool has_auto_activated();
+    void auto_activate(broad_phase_info*);
+    bool process_collision();
+};
+
+class broad_phase_base
+{
+public:
+    enum
+    {
+        FLAG_IS_BPI = 1,
+        FLAG_IS_BPG = 2,
+        FLAG_IS_BPI_ENV = 4,
+        FLAG_IS_IN_CLUSTER = 16,
+        FLAG_ON_ENV_LIST = 32,
+        FLAG_ON_BPG_LIST = 64,
+        FLAG_IS_AUTO_ACTIVATE = 128,
+        BPB_FIRST_UNUSED_FLAG = 512
+    };
+    phys_vec3 m_trace_aabb_min_whace;
+    phys_vec3 m_trace_aabb_max_whace;
+    phys_vec3 m_trace_translation;
+    unsigned int m_flags;
+    broad_phase_base* m_list_bpb_next;
+    broad_phase_base* m_list_bpb_cluster_next;
+    void* m_sap_node;
+    void* m_user_data;
+    unsigned int m_env_collision_flags;
+    unsigned int m_my_collision_type_flags;
+    broad_phase_base* get_bpb_cluster_next();
+    void  set_bpb_cluster_next(broad_phase_base*);
+    const float  get_cluster_pos(const int);
+    void  set_env_collision_flags(const unsigned int);
+    const unsigned int  get_env_collision_flags();
+    void  set_my_collision_type_flags(const unsigned int);
+    const unsigned int  get_my_collision_type_flags();
+    void  set_flag(const unsigned int, const int);
+    const unsigned int  get_flag(const unsigned int);
+    void  get_aabb(phys_vec3*);
+    phys_vec3* get_trace_aabb_min_whace();
+    phys_vec3* get_trace_aabb_max_whace();
+    phys_vec3* get_trace_translation();
+    const phys_vec3  get_trace_end_aabb_min_whace();
+    const phys_vec3  get_trace_end_aabb_max_whace();
+    const unsigned int  is_bpi();
+    const unsigned int  is_bpg();
+    const unsigned int  is_bpi_env();
+    broad_phase_info* get_bpi();
+    broad_phase_group* get_bpg();
+    broad_phase_info* get_bpi_env();
+    phys_auto_activate_callback* get_aac();
+    broad_phase_base();
+};
+
+template <typename T, int I>
+class phys_static_array
+{
+private:
+    char m_buffer[I * 32];
+    const T* m_slot_array;
+    int m_alloc_count;
+    void call_destructors();
+    void reset_buffer();
+public:
+    T* add(const int, char*);
+    T* add_nc(const int, char*);
+    T* add_fast();
+    T* add_block_nc(const int, const int, char*);
+    void remove(T*);
+    void remove_slow(T*);
+    void remove_all();
+    void remove_all_ndc();
+    bool is_member(T*);
+    T* find_by_val(T*);
+    void remove_by_val(T*);
+    bool is_member_by_val(T*);
+    T* get_list_head();
+    T* get_list_head_wo_assert();
+    const int get_max_slots();
+    const int get_available_slots();
+    const int get_used_slots();
+    const int get_count();
+    class iterator
+    {
+    };
+    iterator begin();
+    iterator end();
+    void push_back(T*);
+    T* back();
+};
+
+class rigid_body_constraint_wheel : public rigid_body_constraint
+{
+    enum internal_wheel_flags_e
+    {
+        WHEEL_FLAG_IS_COLLIDING = 1,
+        WHEEL_FLAG_HARD_LIMIT_ACTIVE = 2,
+        WHEEL_FLAG_IS_SLIDING = 4
+    };
+    enum wheel_state_e
+    {
+        WHEEL_STATE_ACCELERATING = 0,
+        WHEEL_STATE_BRAKING = 1
+    };
+    enum wheel_flags_e
+    {
+        WHEEL_FLAG_HAS_TURNING = 8,
+        WHEEL_FLAG_HAS_POWER = 16,
+        WHEEL_FLAG_HAS_POWER_BRAKING = 32,
+        WHEEL_FLAG_HAS_BRAKING = 64,
+        WHEEL_FLAG_HOVER = 128
+    };
+    enum ps_cache_e
+    {
+        PSC_HARD_LIMIT = 0,
+        PSC_SUSPENSION = 1,
+        PSC_SIDE_FRIC = 2,
+        PSC_FWD_FRIC = 3,
+        NUM_PSC = 4
+    };
+private:
+    phys_vec3 m_b2_hitp_loc;
+    phys_vec3 m_b2_hitn_loc;
+    phys_vec3 m_b1_wheel_center_loc;
+    phys_vec3 m_b1_suspension_dir_loc;
+    phys_vec3 m_b1_wheel_axis_loc;
+    float m_wheel_radius;
+    float m_fwd_fric_k;
+    float m_side_fric_k;
+    float m_side_fric_max;
+    float m_suspension_stiffness_k;
+    float m_suspension_damp_k;
+    float m_hard_limit_dist;
+    float m_roll_stability_factor;
+    float m_pitch_stability_factor;
+    float m_turning_radius_ratio_max_speed;
+    float m_turning_radius_ratio_accel;
+    float m_desired_speed_k;
+    float m_acceleration_factor_k;
+    float m_braking_factor_k;
+    float m_wheel_vel;
+    float m_wheel_fwd;
+    float m_wheel_pos;
+    float m_wheel_displaced_center_dist;
+    float m_wheel_normal_force;
+    unsigned int m_wheel_state;
+    unsigned int m_wheel_flags;
+public:
+    void set_wheel_flag(wheel_flags_e, const unsigned int);
+private:
+    void set_wheel_flag(internal_wheel_flags_e, const unsigned int);
+public:
+    const unsigned int get_wheel_flag(wheel_flags_e);
+private:
+    const unsigned int get_wheel_flag(internal_wheel_flags_e);
+    pulse_sum_cache m_ps_cache_list[4];
+    pulse_sum_normal* m_ps_suspension;
+    pulse_sum_normal* m_ps_side_fric;
+    pulse_sum_normal* m_ps_fwd_fric;
+public:
+    void set(phys_vec3*, phys_vec3*, phys_vec3*, const float, const float, const float, const float, const float, const float, const float, const float, const float);
+    void set_wheel_radius(const float);
+    void set_side_fric_k(const float);
+    void set_fwd_fric_k(const float);
+    void set_suspension_stiffness_k(float);
+    void set_suspension_damp_k(float);
+    void set_hard_limit_dist(const float);
+    const float get_wheel_radius();
+    float get_side_fric_k();
+    float get_fwd_fric_k();
+    float get_suspension_stiffness_k();
+    float get_suspension_damp_k();
+    void get_wheel_collide_segment(phys_mat44*, const phys_vec3*, const phys_vec3*);
+    void set_no_collision();
+    void set_collision(const rigid_body*, phys_vec3*, phys_vec3*);
+    const unsigned int get_wheel_is_colliding();
+    const unsigned int get_wheel_hard_limit_active();
+    void set_wheel_axis_loc(phys_vec3*, int);
+    void set_wheel_axis_loc(phys_vec3*);
+    void set_turning_radius_ratio(const float);
+    void set_turning_radius_ratio_max_speed(const float);
+    void set_turning_radius_ratio_accel(const float);
+    void set_roll_stability_factor(const float);
+    float get_roll_stability_factor();
+    void set_pitch_stability_factor(const float);
+    float get_pitch_stability_factor();
+    void set_wheel_state_accelerating(const float, const float);
+    void get_wheel_state_accelerating(float*, float*);
+    void set_wheel_state_braking(const float);
+    unsigned int get_wheel_state();
+    rigid_body* get_chassis();
+    const phys_vec3 get_wheel_center_loc(int);
+    const phys_vec3 get_wheel_center_loc();
+    const phys_vec3 get_suspension_dir_loc(int);
+    const phys_vec3 get_suspension_dir_loc();
+    const phys_vec3 get_wheel_axis_loc(int);
+    const phys_vec3 get_wheel_axis_loc();
+    const float get_hard_limit_dist();
+    const float get_displaced_center_dist();
+    const phys_vec3 get_hitp_loc();
+    const phys_vec3 get_hitn_loc();
+    const phys_vec3 get_hitp_abs();
+    const phys_vec3 get_hitn_abs();
+    const float get_wheel_vel();
+    const float get_wheel_pos();
+    void set_wheel_pos(const float);
+    const phys_vec3  get_wheel_displaced_center_loc();
+    const float get_wheel_normal_force();
+    const unsigned int get_wheel_is_sliding();
+    void zero_pulse_sums();
+    void setup_constraint(pulse_sum_constraint_solver*, const float);
+    void epilog_vel_constraint(const float);
+    rigid_body_constraint_wheel();
+};
+
+class rigid_body_constraint_upright : public rigid_body_constraint
+{
+private:
+    phys_vec3 m_b1_forward_axis_loc;
+    phys_vec3 m_b1_right_axis_loc;
+    phys_vec3 m_b1_up_axis_loc;
+    phys_vec3 m_b1_lean_axis_loc;
+    phys_vec3 m_b2_up_axis_loc;
+    phys_vec3 m_last_t_vel;
+    phys_vec3 m_last_a_vel;
+    float m_avg_side_force;
+    float m_avg_normal_force;
+    float m_lean_angle_calc_delta_t;
+    float m_lean_angle;
+    float m_lean_angle_multiplier;
+    float m_max_lean_angle;
+    float m_moving_average_total_time;
+    bool m_enabled;
+    enum ps_cache_e
+    {
+        PSC_FORWARD_AXIS = 0,
+        NUM_PSC = 1
+    };
+    pulse_sum_cache m_ps_cache_list[1];
+public:
+    void set(phys_vec3*, phys_vec3*, phys_vec3*, phys_vec3*, const float, const float, const float, const float, const bool, const bool);
+    void set_last_t_vel(phys_vec3*);
+    phys_vec3* get_last_t_vel();
+    void set_last_a_vel(phys_vec3*);
+    phys_vec3* get_last_a_vel();
+    void set_avg_side_force(const float);
+    const float get_avg_side_force();
+    void set_avg_normal_force(const float);
+    const float get_avg_normal_force();
+    void set_lean_angle_calc_delta_t(const float);
+    const float get_lean_angle_calc_delta_t();
+    void set_b1_lean_axis_loc(phys_vec3*);
+    void set_b2_up_axis_loc(phys_vec3*);
+    void set_lean_angle_multiplier(const float);
+    const float get_lean_angle_multiplier();
+    void set_moving_average_total_time(const float);
+    const float get_moving_average_total_time();
+    void set_max_lean_angle(const float);
+    const float get_max_lean_angle();
+    const float get_lean_angle();
+    phys_vec3* get_b1_forward_axis_loc();
+    phys_vec3* get_b1_right_axis_loc();
+    phys_vec3* get_b1_up_axis_loc();
+    phys_vec3* get_b1_lean_axis_loc();
+    phys_vec3* get_b2_up_axis_loc();
+    const float calc_current_lean_angle();
+    const phys_vec3 calc_b1_lean_axis_loc(const float);
+    void update_lean_axis(phys_vec3*, phys_vec3*);
+    void set_enabled(const bool);
+    bool is_enabled();
+    void zero_pulse_sums();
+    void setup_constraint(pulse_sum_constraint_solver*, const float);
+    void epilog_vel_constraint(const float);
+};
+
+class rb_vehicle_model
+{
+    enum rb_vehicle_model_flags_e
+    {
+        FLAG_IS_POWER_BRAKING = 1,
+        FLAG_IS_BRAKING = 2,
+        FLAG_IS_FORWARD_ACCELERATION = 4,
+        FLAG_IS_REVERSE_ACCELERATION = 8,
+        FLAG_IS_COASTING = 16
+    };
+private:
+    phys_vec3 m_right_dir_loc;
+    phys_vec3 m_forward_dir_loc;
+    phys_static_array<rigid_body_constraint_wheel*, 4> m_wheels;
+    float m_desired_speed_factor;
+    float m_acceleration_factor;
+    float m_power_braking_factor;
+    float m_braking_factor;
+    float m_coasting_factor;
+    float m_reference_wheel_radius;
+    float m_steer_factor;
+    float m_steer_factor_offset;
+    float m_steer_current_angle;
+    float m_steer_max_angle;
+    float m_steer_speed;
+    phys_vec3 m_steer_front_pt_loc;
+    float m_steer_front_back_length;
+    unsigned int m_state_flags;
+    rigid_body_constraint_upright* m_rbc_upright;
+    void  set_flag(rb_vehicle_model_flags_e, const unsigned int);
+    const unsigned int  get_flag(rb_vehicle_model_flags_e);
+public:
+    void  add_wheel(rigid_body_constraint_wheel*);
+    rigid_body_constraint_wheel* get_wheel(const int);
+    const int  get_wheel_count();
+    void set(const float, const float, const float, const float, const float, const float, const float, const float, phys_vec3*, const float, phys_vec3*, phys_vec3*);
+    void set_rbc_upright(rigid_body_constraint_upright*);
+    rigid_body_constraint_upright* get_rbc_upright();
+    const float calc_theoretical_max_lean_angle();
+    void set_power_braking_factor(const float);
+    void set_braking_factor(const float);
+    void set_acceleration_factor(const float);
+    void set_desired_speed_factor(const float);
+    void set_coasting_factor(const float);
+    const float get_power_braking_factor();
+    const float get_braking_factor();
+    const float get_acceleration_factor();
+    const float get_desired_speed_factor();
+    const float get_coasting_factor();
+    phys_vec3* get_steer_front_pt_loc();
+    phys_vec3* get_right_dir_loc();
+    phys_vec3* get_forward_dir_loc();
+    void set_power_braking(const unsigned int);
+    void set_braking(const unsigned int);
+    void set_forward_acceleration(const unsigned int);
+    void set_reverse_acceleration(const unsigned int);
+    void set_coasting(const unsigned int);
+    const unsigned int get_power_braking();
+    const unsigned int get_braking();
+    const unsigned int get_forward_acceleration();
+    const unsigned int get_reverse_acceleration();
+    const unsigned int get_coasting();
+    void set_steer_factor(const float);
+    void set_steer_factor_offset(const float);
+    const float get_steer_factor();
+    const float  get_steer_factor_offset();
+    void set_steer_max_angle(const float);
+    void set_steer_speed(const float);
+    const float get_steer_max_angle();
+    const float get_steer_speed();
+    void update_braking_and_acceleration(const float);
+    void update_steering(const float);
+    void update_upright_constraint(const float);
+    void get_wheel_matrix(const int, phys_mat44*);
+};
+
+class broad_phase_info;
+
+class phys_wheel_collide_info
+{
+public:
+    phys_vec3 m_ray_pos;
+    phys_vec3 m_ray_dir;
+    phys_vec3 m_hitn;
+    float m_hit_t;
+    broad_phase_info* m_hit_bpi;
+    phys_vec3* get_trace_aabb_min_whace();
+    phys_vec3* get_trace_aabb_max_whace();
+    phys_vec3* get_trace_translation();
+    const phys_vec3 get_trace_end_aabb_min_whace();
+    const phys_vec3 get_trace_end_aabb_max_whace();
+    void collision_prolog(rigid_body_constraint_wheel*, phys_mat44*);
+    void collision_process(broad_phase_info*);
+    void collision_epilog(rigid_body_constraint_wheel*);
+    phys_wheel_collide_info();
+};
+
+class broad_phase_group : public broad_phase_base
+{
+public:
+    enum
+    {
+        FLAG_DO_INITIAL_TUNNEL_TEST = 512,
+        BPG_FIRST_UNUSED_FLAG = 1024
+    };
+    broad_phase_info* m_list_bpi_head;
+    int m_bpi_count;
+    rb_vehicle_model* m_rbvm;
+    phys_wheel_collide_info* m_list_wci;
+    void set();
+    void set_rb_vehicle_model(class rb_vehicle_model*);
+    void add_bpi(class broad_phase_info*);
+    void collision_prolog();
+    void collision_epilog();
+};
+
+class broad_phase_info : public broad_phase_base
+{
+    enum
+    {
+        FLAG_CALC_CG_TO_WORLD_XFORM = 512,
+        BPI_FIRST_UNUSED_FLAG = 1024
+    };
+public:
+    rigid_body* m_rb;
+    phys_mat44* m_rb_to_world_xform;
+    phys_mat44* m_cg_to_world_xform;
+    phys_mat44* m_cg_to_rb_xform;
+    phys_gjk_geom* m_gjk_geom;
+    unsigned int m_gjk_geom_id;
+    int m_surface_type;
+    void  set_client_flag(const unsigned int, const int);
+    const unsigned int  get_client_flag(const unsigned int);
+    class broad_phase_info* get_next_bpi();
+    void  set(rigid_body*, phys_mat44*, phys_mat44*, phys_mat44*, phys_gjk_geom*, const unsigned int, const bool, const int, void*, const unsigned int);
+    void  set_bpi_env(phys_auto_activate_callback*);
+    rigid_body* get_rb();
+    phys_mat44* get_rb_to_world_xform();
+    phys_mat44* get_cg_to_world_xform();
+    phys_mat44* get_cg_to_rb_xform();
+    phys_gjk_geom* get_gjk_cg();
+    const unsigned int  get_gjk_geom_id();
+    void  collision_prolog();
+    broad_phase_info();
+};
+
+class phys_collision_pair : public phys_link_list_base<phys_collision_pair>
+{
+public:
+    phys_collision_pair();
+    broad_phase_info* m_bpi1;
+    broad_phase_info* m_bpi2;
+    float m_hit_time;
+    phys_gjk_cache_info* m_gjk_ci;
+};
+
+class contact_point_info
+{
+    enum ps_cache_e
+    {
+        PSC_N = 0,
+        PSC_F1 = 1,
+        PSC_F2 = 2,
+        NUM_PSC = 3
+    };
+    enum flags_e
+    {
+        FLAG_SOLVER_PRIORITY_MASK = 7,
+        FLAG_NO_OVERFLOW_ERROR = 8,
+        FLAG_HAS_VALID_RB2_ENTITY = 16
+    };
+    struct pulse_sum_cache_info
+    {
+        pulse_sum_cache m_ps_cache_list[3];
+        pulse_sum_cache_info();
+    };
+public:
+    phys_vec3 m_normal;
+    float m_fric_coef;
+    float m_bounce_coef;
+    float m_max_restitution_vel;
+    int m_flags;
+    int m_point_pair_count;
+    phys_vec3* m_list_b1_r_loc;
+    phys_vec3* m_list_b2_r_loc;
+    pulse_sum_cache_info* m_list_pulse_sum_cache_info;
+    contact_point_info* m_next_link;
+    void* m_rb2_entity;
+    float m_translation_lambda;
+    void  set_translation_lambda(const float);
+    phys_collision_pair* m_pcp;
+    rigid_body_constraint_contact* m_rbc_contact;
+    void  set_solver_priority(const unsigned int);
+    const unsigned int  get_solver_priority();
+    void  swap();
+    void  set_rb2_entity(void*);
+    void* get_rb2_entity();
+    void  set_flag(const unsigned int, const int);
+    const unsigned int  get_flag(const unsigned int);
+    void  set_next_link(const contact_point_info*);
+    contact_point_info* get_next_link();
+    void  get_closest_psc(phys_vec3*, phys_vec3*, phys_vec3*, float*, pulse_sum_cache_info**);
+    void  set_normal(phys_vec3*);
+    void  fake_constructor();
+    void  check_surface_properties();
+    void  set(const float, const float, const float);
+    void  set_no_overflow_error(const bool);
+    phys_transient_allocator* get_cpi_allocator();
+    contact_point_info* create_cpi(const int, const bool, phys_transient_allocator*);
+    void  set_closest_cached_psc(contact_point_info*);
+    void  set_closest_cached_psc(contact_point_info*, phys_vec3*, phys_vec3*, phys_vec3*, struct contact_point_info::pulse_sum_cache_info*);
+    contact_point_info();
+    contact_point_info* operator=(contact_point_info*);
+};
+
+class pulse_sum_constraint_solver
+{
+    class temp_user_rigid_body : public user_rigid_body, public phys_link_list_base<pulse_sum_constraint_solver::temp_user_rigid_body>
+    {
+    public:
+        user_rigid_body* m_avl_key;
+        phys_inplace_avl_tree_node<pulse_sum_constraint_solver::temp_user_rigid_body> m_avl_tree_node;
+        struct avl_tree_accessor
+        {
+            phys_inplace_avl_tree_node<pulse_sum_constraint_solver::temp_user_rigid_body>* get_avl_node(pulse_sum_constraint_solver::temp_user_rigid_body*);
+            user_rigid_body* get_avl_key(pulse_sum_constraint_solver::temp_user_rigid_body*);
+            void set_avl_key(pulse_sum_constraint_solver::temp_user_rigid_body*, user_rigid_body*);
+        };
+        void set(user_rigid_body*);
+    };
+    class user_rigid_body_restore_info : public phys_link_list_base<pulse_sum_constraint_solver::user_rigid_body_restore_info>
+    {
+    public:
+        user_rigid_body** m_rbc_urb;
+        user_rigid_body* m_original_urb;
+        void set(user_rigid_body**, temp_user_rigid_body*);
+        void restore();
+    };
+    void add_urb(phys_inplace_avl_tree<user_rigid_body*, pulse_sum_constraint_solver::temp_user_rigid_body, pulse_sum_constraint_solver::temp_user_rigid_body::avl_tree_accessor>*, phys_simple_link_list<pulse_sum_constraint_solver::temp_user_rigid_body>*, phys_simple_link_list<pulse_sum_constraint_solver::user_rigid_body_restore_info>*, rigid_body_constraint*);
+    struct solver_info
+    {
+        int m_max_vel_iters;
+        int m_max_vel_pos_iters;
+        float m_max_vel_error_sq;
+        float m_max_vel_pos_error_sq;
+        float m_delta_t;
+    };
+    float m_outside_delta_t;
+    int m_psys_max_vel_iters;
+    int m_psys_max_vel_pos_iters;
+    solver_info m_si;
+    phys_transient_allocator m_solver_memory_allocator;
+    phys_link_list<pulse_sum_node> m_list_pulse_sum_node;
+    int m_memory_high_water;
+    void set_solver_params(const float, const int, const int);
+    phys_link_list<pulse_sum_normal> m_list_pulse_sum_normal;
+    phys_link_list<pulse_sum_point> m_list_pulse_sum_point;
+    phys_link_list<pulse_sum_angular> m_list_pulse_sum_angular;
+    phys_link_list<pulse_sum_wheel> m_list_pulse_sum_wheel;
+    phys_link_list<pulse_sum_contact> m_list_pulse_sum_contact;
+    void solve_iterative(const int, const float);
+    void solve_constraints(const rigid_body*);
+    void execute_constraint_solver(const rigid_body*);
+    void set_pulse_sum(const pulse_sum_cache*, const float);
+    const float  get_pulse_sum(const pulse_sum_cache*);
+    class pulse_sum_node* create_pulse_sum_node();
+    class pulse_sum_normal* create_pulse_sum_normal();
+    class pulse_sum_normal* create_pulse_sum_normal_();
+    void create_point(const rigid_body*, phys_vec3*, const rigid_body*, phys_vec3*, const pulse_sum_cache*, const float, const bool, const float, const float);
+    pulse_sum_angular* create_pulse_sum_angular(const rigid_body*, phys_vec3*, const rigid_body*, phys_vec3*, phys_vec3*, const pulse_sum_cache*);
+    pulse_sum_wheel* create_pulse_sum_wheel();
+    pulse_sum_normal* create_pulse_sum_wheel_side(pulse_sum_wheel*);
+    pulse_sum_normal* create_pulse_sum_wheel_fwd(pulse_sum_wheel*);
+    pulse_sum_contact* create_pulse_sum_contact(rigid_body*, rigid_body*, contact_point_info*, const float);
+    void  create_hinge(const rigid_body*, phys_vec3*, const rigid_body*, phys_vec3*, phys_vec3*, phys_vec3*, const pulse_sum_cache*, const float);
+    pulse_sum_constraint_solver();
+    ~pulse_sum_constraint_solver();
+};
+
+class rigid_body_constraint_point : public rigid_body_constraint
+{
+private:
+    phys_vec3 m_b1_r_loc;
+    phys_vec3 m_b2_r_loc;
+    enum ps_cache_e
+    {
+        PSC_X = 0,
+        PSC_Y = 1,
+        PSC_Z = 2,
+        NUM_PSC = 3
+    };
+    class pulse_sum_cache m_ps_cache_list[3];
+    float m_stress;
+    float m_spring_k;
+    float m_damp_k;
+    bool m_spring_enabled;
+public:
+    void set(class phys_vec3*, phys_vec3*);
+    void set_spring_params(const bool, const float, const float);
+    const phys_vec3 get_b1_r_loc();
+    const phys_vec3 get_b2_r_loc();
+    float get_stress();
+    void zero_pulse_sums();
+    void setup_constraint(pulse_sum_constraint_solver*, const float);
+    void epilog_vel_constraint(const float);
+};
+
+class environment_rigid_body : public rigid_body
+{
+public:
+    void set();
+};
+
+struct dwTeamSetPrivateProfileTask
+{
+    unsigned long long teamID;
+    PrivateTeamProfile teamPrivateProfile;
+};
+
+struct dwYouTubeIsRegisteredTask_t
+{
+    bdBoolResult isRegisteredResult;
+};
+
+struct ElemDefGetter
+{
+    FxElemDef* Def();
+    void Init(FxEffectDef*, int);
+    FxElemDef* mElemDef;
+};
+
+struct FxUpdateElem
+{
+    FxEffect* effect;
+    FxEffectDef* effectDef;
+    FxElemDef* elemDef;
+    int elemIndex;
+    int atRestFraction;
+    orientation_t orient;
+    int randomSeed;
+    int sequence;
+    float msecLifeSpan;
+    int msecElemBegin;
+    int msecElemEnd;
+    int msecUpdateBegin;
+    int msecUpdateEnd;
+    float msecElapsed;
+    float normTimeUpdateEnd;
+    float* elemOrigin;
+    float* elemBaseVel;
+    vec3_t posWorld;
+    bool onGround;
+    int physObjId;
+    ElemDefGetter elemDefGetter;
+};
+
+struct bbLoadoutData
+{
+    char* primaryname;
+    char* primary;
+    char* primaryattachment1;
+    char* primaryattachment2;
+    char* primaryattachment3;
+    char* primarycamo;
+    char* primaryreticle;
+    char* primaryreticlecolor;
+    char* primarylens;
+    char* primaryemblem;
+    char* secondaryname;
+    char* secondary;
+    char* secondaryattachment1;
+    char* secondaryattachment2;
+    char* secondaryattachment3;
+    char* secondarycamo;
+    char* secondaryreticle;
+    char* secondaryreticlecolor;
+    char* secondarylens;
+    char* secondaryemblem;
+    char* primarygrenade;
+    char* specialgrenade;
+    int primarygrenadecount;
+    int specialgrenadecount;
+    char* killstreak1;
+    char* killstreak2;
+    char* killstreak3;
+    char* killstreak4;
+    char* specialty1;
+    char* specialty2;
+    char* specialty3;
+    char* specialty4;
+    char* specialty5;
+    char* specialty6;
+    bbLoadoutData();
+};
+
+struct ipFilter_s
+{
+    unsigned int mask;
+    unsigned int compare;
+};
+
+struct GroupSet
+{
+    char* name;
+    bool exclusive;
+    char** groupNames;
+    int capacity;
+    unsigned int start;
+};
+
+struct InviteMessage
+{
+    XSESSION_INFO sessionInfo;
+    int fromMPInvite;
+    bool isDedicated;
+};
+
+struct JoinSessionMessage
+{
+    enum IMType mType;
+    int inviteID;
+    bool isJoinable;
+    bool invited;
+    int maxLocalPlayersAllowed;
+    bool allowGuests;
+    e_JoinRejectionReason rejectionReason;
+    InviteMessage inviteInfo;
+};
+
+struct gjk_geom_list_t
+{
+    gjk_base_t* m_first_geom;
+    int m_geom_count;
+    gjk_geom_list_t();
+    void reset_list();
+    void add_geom(gjk_base_t*);
+    gjk_base_t* get_first_geom();
+    int get_geom_count();
+    void comp_aabb_loc(phys_vec3*, phys_vec3*);
+};
+
+class broad_phase_environment_query_input
+{
+public:
+    phys_vec3 trace_aabb_min_wace;
+    phys_vec3 trace_aabb_max_wace;
+    phys_vec3 trace_translation;
+    unsigned int env_collision_flags;
+};
+
+class broad_phase_base_list
+{
+    class node
+    {
+        broad_phase_base* m_bpb;
+        node* m_next;
+    };
+    class node* m_list;
+    class node** m_list_cur;
+    void reset();
+    void add(broad_phase_base*);
+};
+
+class broad_phase_environement_query_results
+{
+public:
+    broad_phase_base_list m_list_bpi_env;
+    int m_list_bpi_env_count;
+    int m_thread_id;
+    unsigned int m_env_collision_flags;
+    const unsigned int get_env_collision_flags();
+    void reset();
+    void add(class broad_phase_base*);
+    void add(class broad_phase_info*);
+};
+
+class gjk_physics_collision_visitor : public gjk_collision_visitor
+{
+public:
+    void* allocate(const int, const int, const bool);
+    const bool  is_query();
+    void  get_local_query_aabb(vec3_t*, vec3_t*);
+    const bool  query_create_prolog(void*);
+    void  query_create_epilog(gjk_base_t*);
+    const bool  query_create_prolog_1(vec3_t*, vec3_t*, void*);
+    void  query_create_epilog_1(gjk_base_t*);
+    bpei_database_id m_local_database_id;
+    broad_phase_environment_info* m_local_bpei;
+    void* m_local_entity;
+    void  set_local_query_info(void*);
+    phys_vec3 m_local_query_trace_aabb_min;
+    phys_vec3 m_local_query_trace_aabb_max;
+    phys_vec3 m_local_query_trace_translation;
+    centity_t* cent;
+    DynEntityDef* dynEntDef;
+    Glass* glass;
+    rigid_body* rb;
+    phys_mat44* rb_to_world_xform;
+    phys_mat44* cg_to_world_xform;
+    phys_mat44* cg_to_rb_xform;
+    unsigned int env_collision_flags;
+    broad_phase_environment_query_input* bpeqi;
+    broad_phase_environement_query_results* bpeqr;
+    phys_auto_activate_callback* auto_activate_callback;
+    void set(rigid_body*, phys_mat44*, phys_mat44*, phys_mat44*, unsigned int);
+    void set_centity(centity_t*);
+    void set_dentity(DynEntityDef*);
+    void set_glass(Glass*);
+    void set_bpeq(broad_phase_environment_query_input*, broad_phase_environement_query_results*);
+    void set_env(phys_auto_activate_callback*);
+    gjk_physics_collision_visitor(gjk_physics_collision_visitor*);
+    gjk_physics_collision_visitor();
+};
+
+class phys_vec2
+{
+private:
+    float x;
+    float y;
+public:
+    phys_vec2(const float, const float, const float);
+    phys_vec2();
+    const float GetX();
+    const float GetY();
+    void SetX(const float);
+    void SetY(const float);
+    void operator+=(class phys_vec2*);
+    void operator-=(class phys_vec2*);
+    void operator*=(const float);
+    void operator/=(const float);
+    const phys_vec2  operator-();
+};
+
+struct contact_manifold_mesh_point
+{
+    class phys_vec3 m_p;
+    class phys_vec2 m_contact_p;
+    void set(phys_vec3*);
+};
+
+class phys_memory_heap
+{
+protected:
+    char* m_buffer_start;
+    char* m_buffer_end;
+    char* m_buffer_cur;
+    char* m_user_start;
+public:
+    phys_memory_heap();
+    void nullify_buffer();
+    void set_buffer(const void*, const int, const int);
+    void set_buffer_no_complain(const void*, const int, const int);
+    void capture_user_start();
+    void reset();
+    void reset_to_user_start();
+    void* allocate(const int, const int, const int, char*);
+    void* mt_allocate(const int, const int, const int, char*);
+    void align_cur(const int);
+    void* fast_align_start(const int, char*);
+    void* fast_allocate(const int, const int, char*);
+    void* fast_allocate(const int, char*);
+    bool fast_is_within_buffer_limits(void*, const int);
+    char** get_buffer_cur_ptr();
+    char* get_buffer_start();
+    char* get_buffer_cur();
+    char* get_buffer_end();
+    const int get_buffer_size();
+    const int get_current_alloc_size();
+    const int get_remaining_alloc_size();
+    void lock_buffer();
+    const phys_memory_heap  capture_state();
+    void reset_to_state(phys_memory_heap*);
+    const int is_empty();
+};
+
+class phys_contact_manifold
+{
+public:
+    const float GET_COS_SQ(contact_manifold_mesh_point*);
+    const float GET_NP_SQ(contact_manifold_mesh_point*);
+    void SET_COS_SQ(contact_manifold_mesh_point*, const float);
+    void SET_NP_SQ(contact_manifold_mesh_point*, const float);
+    const float get_LENGTH_TOLERANCE_SQ();
+    const float get_CLOSE_MESH_POINT_COS_SQ();
+    const float get_convex_poly_min_length_sq();
+    const float get_convex_poly_min_sin_sq();
+    phys_vec3 m_feature_normal;
+    phys_vec3 m_feature_hitp;
+    phys_vec3 m_feature_hitn;
+    float m_feature_distance_eps;
+    float m_sin_feautre_angular_eps_sq;
+    int m_close_mesh_point_count;
+    void set_get_feature_params(phys_vec3*, phys_vec3*, const float, const float);
+    void set_comp_feature_normal_eps(const float, const float);
+    phys_memory_heap* m_allocator;
+    contact_manifold_mesh_point* m_list_mesh_point;
+    int m_list_mesh_point_count;
+    contact_manifold_mesh_point** m_list_sorted_mesh_point;
+    contact_manifold_mesh_point** m_list_contact_point;
+    int m_list_contact_point_count;
+    void nullify_pointers();
+    bool rht(phys_vec2*, phys_vec2*, const float, const float);
+    void generate_convex_poly_internal();
+    void set_allocator(phys_memory_heap*);
+    void add_feature_point(phys_vec3*);
+    int get_mesh_point_count();
+    void xform_mesh_points(phys_mat44*);
+    void xform_and_translate_mesh_points(phys_mat44*, phys_vec3*);
+    void generate_convex_poly(phys_mat44*);
+    phys_vec2* get_poly_vert(const int);
+    const int get_poly_vert_count();
+    const float compute_convex_poly_area();
+    const float compute_convex_poly_perimeter();
+    void comp_feature_normal();
+    const float get_STD_COMP_FEATURE_NORMAL_DISTANCE_EPS(const float);
+    const float get_STD_COMP_FEATURE_NORMAL_SIN_ANGULAR_EPS_SQ(const float);
+    const float get_STD_GET_FEATURE_DISTANCE_EPS(const float);
+    const float get_STD_GET_FEATURE_SIN_ANGULAR_EPS_SQ(const float);
+    const float get_STD_PENETRATION_T(const float);
+};
+
+struct gjk_double_sphere_t : public gjk_base_t
+{
+    gjk_double_sphere_t* create(phys_vec3*, phys_vec3*, const float, const float, int, gjk_collision_visitor*);
+    gjk_double_sphere_t* create(phys_vec3*, phys_vec3*, const float, int, gjk_collision_visitor*);
+    gjk_double_sphere_t* create(phys_vec3*, const float, int, gjk_collision_visitor*);
+    void destroy(gjk_double_sphere_t*);
+    gjk_double_sphere_t* spu_fetch_async(gjk_double_sphere_t*, int);
+    void support(phys_vec3*, phys_vec3*, phys_vec3*);
+    struct csi
+    {
+        phys_vec3 m_normal;
+        int m_indices[3];
+    };
+    void  get_simplex(cached_simplex_info*, const int, phys_vec3*, phys_vec3*);
+    void  set_simplex(phys_vec3*, const int, phys_vec3*, cached_simplex_info*);
+    const phys_vec3  get_center();
+    void  get_feature(phys_contact_manifold*);
+    void  calc_aabb(phys_mat44*, phys_vec3*, phys_vec3*);
+    const bool  is_foot(phys_vec3*);
+    const float  get_geom_radius();
+    const unsigned int  get_type();
+    bool  is_polyhedron();
+    phys_vec3 m_list_center[2];
+    phys_vec3 m_center;
+    float m_list_radius[2];
+    float m_geom_radius;
+    int m_count;
+};
+
+struct gjk_cylinder_t : public gjk_base_t
+{
+    gjk_cylinder_t* create(int, float, float, phys_mat44&, int, gjk_collision_visitor*);
+    void  destroy(gjk_cylinder_t*);
+    gjk_cylinder_t* spu_fetch_async(gjk_cylinder_t*, int);
+    const phys_vec3  get_dims();
+    void  support(phys_vec3&, phys_vec3*, phys_vec3*);
+    void  get_simplex(cached_simplex_info&, const int, phys_vec3*, phys_vec3*);
+    const phys_vec3  get_center();
+    void  get_feature(phys_contact_manifold*);
+    void  calc_aabb(phys_mat44*, phys_vec3*, phys_vec3*);
+    const bool  is_foot(phys_vec3&);
+    const unsigned int  get_type();
+    bool  is_polyhedron();
+    const float  get_geom_radius();
+    int direction;
+    float halfHeight;
+    float radius;
+    float m_geom_radius;
+    phys_mat44 xform;
+};
+
+struct GfxStaticModelDrawStream
+{
+    GfxStaticModelDrawStream();
+    unsigned int precompiledIndex;
+    unsigned int* primDrawSurfPos;
+    unsigned int smodelCount;
+    unsigned short* smodelList;
+    GfxTexture* reflectionProbeTexture;
+    unsigned int customSamplerFlags;
+    vec4_t viewOrigin;
+    GfxFrameStats* frameStats;
+    GfxPrimStats* primStats;
+    unsigned int viewInfoIndex;
+    XSurface* localSurf;
+};
+
+class bdNATTravListener
+{
+public:
+    void onNATAddrDiscovery(bdReference<bdCommonAddr>, bdAddr&);
+    void onNATAddrDiscoveryFailed(bdReference<bdCommonAddr>);
+};
+
+class bdPacketInterceptor
+{
+public:
+    bool acceptPacket(class bdSocket*, class bdAddr, void*, const unsigned int, const unsigned char);
+};
+
+class bdQoSRequestPacket
+{
+public:
+    unsigned char getType();
+    unsigned long long getTimestamp();
+    unsigned int getId();
+    unsigned int getSecId();
+    bool serialize(void*, const unsigned int, const unsigned int, unsigned int&);
+    bool deserialize(void*, const unsigned int, const unsigned int, unsigned int&);
+protected:
+    unsigned char m_type;
+    unsigned long long m_timestamp;
+    unsigned int m_id;
+    unsigned int m_secid;
+};
+
+class bdQoSReplyPacket
+{
+public:
+    bool setData(unsigned char*, unsigned int);
+    void setId(unsigned int);
+    void setTimestamp(unsigned long long);
+    void setEnabled(bool);
+    unsigned char getType();
+    float getElapsedTime();
+    unsigned int getId();
+    unsigned char* getData();
+    unsigned int getDataSize();
+    bool getEnabled();
+    unsigned int getSerializedSize();
+    bool serialize(void*, const unsigned int, const unsigned int, unsigned int&);
+    bool deserialize(void*, const unsigned int, const unsigned int, unsigned int&);
+protected:
+    unsigned int getHeaderSize();
+    unsigned char m_type;
+    unsigned int m_id;
+    unsigned long long m_timestamp;
+    bool m_enabledMode;
+    unsigned char* m_data;
+    unsigned int m_dataSize;
+    unsigned int headerSize;
+    unsigned int m_serializedSize;
+};
+
+class bdQoSProbe : public bdNATTravListener, public bdPacketInterceptor
+{
+    enum bdQoSProbeStatus
+    {
+        BD_QOS_PROBE_UNINITIALIZED = 0,
+        BD_QOS_PROBE_INITIALIZED = 1,
+        BD_QOS_PROBE_RUNNING = 2
+    };
+public:
+    void setMaxBandwidth(const unsigned int);
+protected:
+    bool probe(bdReference<bdCommonAddr>, bdSecurityID&, bdSecurityKey&, bdQoSProbeListener*);
+public:
+    bool probe(bdArray<bdQoSRemoteAddr>&, bdQoSProbeListener*);
+    bool probe(bdQoSRemoteAddr&, bdQoSProbeListener*);
+    void cancelProbes();
+    void pump();
+    bool listen(bdFastArray<bdSecurityID>&, unsigned char*, unsigned int);
+    bool listen(bdSecurityID&, unsigned char*, unsigned int);
+    void registerSecId(bdSecurityID&);
+    bool setData(unsigned char*, unsigned int);
+    void disableListener();
+    void enableListener();
+    void shutdownListener();
+    bool isProbing();
+protected:
+    unsigned int m_maxBandwidth;
+public:
+    bool init(bdSocket*, bdNATTravClient*, bdServiceBandwidthArbitrator*);
+    bool quit();
+    void onNATAddrDiscovery(bdReference<bdCommonAddr>, bdAddr&);
+    void onNATAddrDiscoveryFailed(bdReference<bdCommonAddr>);
+    bool acceptPacket(bdSocket*, bdAddr, void*, const unsigned int, const unsigned char);
+    bool g_NATTraversalTrottling;
+    bool getNATTraversalTrottling();
+    void setNATTraversalTrottling(bool);
+protected:
+    bool handleRequest(bdQoSRequestPacket&, bdAddr&);
+    bool handleReply(bdQoSReplyPacket&, bdAddr&);
+    unsigned int shrinkSecId(bdSecurityID&);
+    bdSocket* m_socket;
+    bdNATTravClient* m_natTrav;
+    bdServiceBandwidthArbitrator* m_bandArb;
+    unsigned int m_lastProbeId;
+    bdStopwatch m_probingTimer;
+    bdFastArray<unsigned int> m_secids;
+    bdQoSReplyPacket m_replyData;
+    enum bdQoSListenerState
+    {
+        BD_QOS_OFF = 0,
+        BD_QOS_DISABLED = 1,
+        BD_QOS_ENABLED = 2
+    };
+    enum bdQoSProbe::bdQoSListenerState m_listenState;
+    enum bdQoSProbe::bdQoSProbeStatus m_status;
+    struct bdQoSProbeEntryWrapper
+    {
+        bdReference<bdCommonAddr> m_addr;
+        bdSecurityID m_id;
+        bdSecurityKey m_key;
+        bdQoSProbeListener* m_listener;
+        bdAddr m_realAddr;
+        unsigned int m_retries;
+        bdStopwatch m_lastTry;
+    };
+public:
+    bdHashMap<bdReference<bdCommonAddr>, bdArray<bdQoSProbeEntryWrapper>, bdHashingClass> m_probesResolving;
+    bdHashMap<unsigned int, bdQoSProbe::bdQoSProbeEntryWrapper, bdHashingClass> m_probesProbing;
+};
+
+class bdSecurityKeyMapListener
+{
+public:
+    void onSecurityKeyRemove(bdSecurityID&);
+};
+
+class bdSecurityKeyMap
+{
+public:
+    bool initKey(bdSecurityID&, bdSecurityKey&);
+    bool registerKey(bdSecurityID&, bdSecurityKey&);
+    bool unregisterKey(bdSecurityID&);
+    bool get(bdSecurityID&, bdSecurityKey&);
+    bool contains(bdSecurityID&);
+    void clear();
+    void registerListener(bdSecurityKeyMapListener*);
+    void unregisterListener();
+protected:
+    bdSecurityKeyMapListener* m_listener;
+    bdHashMap<bdSecurityID, bdSecurityKey, bdHashingClass> m_map;
+};
+
+struct $580888C0E76BEA18C0DDD064E36B47DD // ??
+{
+    target_t targets[32];
+    unsigned int targetCount;
+};
+
+struct pathnode_resized_links_t
+{
+    pathnode_t* m_node;
+    pathlink_s* m_original_links;
+    int m_original_link_count;
+    pathlink_s* m_new_links;
+    int m_new_link_count;
+};
+
+struct auto_rigid_body
+{
+    user_rigid_body* rb;
+    struct centity_t* cent;
+    int frame_count;
+    struct auto_rigid_body* next;
+    phys_inplace_avl_tree_node<auto_rigid_body> m_avl_node_info;
+    phys_inplace_avl_tree_node<auto_rigid_body>* get_avl_node(auto_rigid_body*);
+    centity_t* get_avl_key(auto_rigid_body*);
+    void set_avl_key(auto_rigid_body*, centity_t*);
+    void add(centity_t*, class gjk_physics_collision_visitor*, const int);
+    void remove_ent(centity_t*);
+    void update();
+    rigid_body* ent_has_auto_rigid_body(struct centity_t*);
+};
+
+struct gjk_aabb_t : public gjk_base_t
+{
+    gjk_aabb_t* create(phys_vec3&, phys_vec3&, int, gjk_collision_visitor*);
+    gjk_aabb_t* spu_fetch_async(gjk_aabb_t*, int);
+    void  destroy(gjk_aabb_t*);
+    void  support(phys_vec3&, phys_vec3*, phys_vec3*);
+    void  get_simplex(cached_simplex_info&, const int, phys_vec3*, phys_vec3*);
+    const phys_vec3  get_center();
+    void  get_feature(phys_contact_manifold*);
+    void  calc_aabb(phys_mat44&, phys_vec3*, phys_vec3*);
+    const bool  is_walkable(phys_vec3&, phys_vec3&);
+    cbrush_t* get_brush();
+    const unsigned int  get_type();
+    bool  is_polyhedron();
+    void  set_brush(cbrush_t*);
+    phys_vec3 m_center_local;
+    phys_vec3 m_dims;
+    cbrush_t* m_brush;
+};
+
+class phys_convex_hull
+{
+    struct ch_triangle
+    {
+        phys_vec3 m_normal;
+        phys_vec3* m_verts[3];
+        const float get_dist(phys_vec3&);
+    };
+    struct ch_edge
+    {
+        phys_vec3* m_verts[2];
+    };
+    enum
+    {
+        MAX_INPUT_VERTICES = 6144
+    };
+    phys_static_array<phys_vec3, 6144> m_vertex_buffer;
+    void  reset_vertex_buffer();
+    void  add_vertex_to_buffer(phys_vec3&);
+    phys_static_array<phys_vec3*, 6144> m_intermediate_vertex_list;
+    phys_static_array<ch_triangle, 256> m_intermediate_triangle_list;
+    phys_static_array<ch_edge, 128> m_intermediate_edge_list;
+    phys_static_array<phys_vec3*, 128> m_convex_hull_vert_list;
+    phys_static_array<phys_convex_hull::ch_triangle, 128> m_convex_hull_triangle_list;
+    void  add_convex_hull_triangle(ch_triangle*);
+    void  add_convex_hull_vert(phys_vec3**);
+    void  add_intermediate_edge(phys_vec3*, phys_vec3*);
+    void  add_triangle_edges(ch_triangle*);
+    void  create_intermediate_triangle(phys_vec3*, phys_vec3*, phys_vec3*);
+    void  destroy_intermediate_triangle(ch_triangle*);
+    phys_vec3** support_intermediate_verts(phys_vec3&);
+    void  calculate_initial_triangle_vertices();
+    void  init_convex_hull();
+    const float tetrahedron_volume(phys_vec3&, phys_vec3&, phys_vec3&, phys_vec3&);
+    const float calc_expansion_volume(phys_vec3&);
+    void  create_edge_list(phys_vec3&);
+    void  remove_inside_verts();
+    void  compute_convex_hull(const int, const float);
+};
+
+struct dsound_sample_t
+{
+    IDirectSoundCaptureBuffer* DSCB;
+    IDirectSoundBuffer* DSB;
+    unsigned long dwBufferSize;
+    unsigned long dwCaptureOffset;
+    unsigned int currentOffset;
+    unsigned int lastOffset;
+    unsigned int currentBufferLength;
+    int stopPosition;
+    unsigned int lastPlayPos;
+    int bytesBuffered;
+    int mode;
+    int frequency;
+    int volume;
+    int pan;
+    int channels;
+    bool playing;
+    int channel;
+    unsigned char playMode;
+};
+
+struct sd_mix_master_param
+{
+    SndRvParams radverb;
+    sd_mix_param_state state;
+    sd_mix_bus_param bus;
+    SndDspDynamoParam dyn1;
+    SndDspDynamoParam dyn2;
+    SndDspMasterEqParam eq;
+    SndDspVoiceFilterParam voiceFilter;
+    SndDspFutzParam gfutz;
+    SndDspFutzParam pfutz;
+    unsigned char padding[36];
+};
+
+struct AudioState
+{
+    unsigned char AUDC;
+    unsigned char AUDV;
+    unsigned char AUDF;
+    unsigned char output;
+    int dividerCount;
+    int dividerMax;
+    unsigned int poly_4;
+    unsigned int poly_5;
+    unsigned int poly_9;
+};
+
+struct TIAState
+{
+    void* pixels;
+    int pitch;
+    int height;
+    int linePosition;
+    int lineCount;
+    int state;
+    bool pendingVSync;
+    int posP0;
+    int posP1;
+    int posM0;
+    int posM1;
+    int posBL;
+    int HMP0;
+    int HMP1;
+    int HMM0;
+    int HMM1;
+    int HMBL;
+    unsigned char GRP0;
+    unsigned char GRP0D;
+    unsigned char GRP1;
+    unsigned char GRP1D;
+    unsigned char ENABL;
+    unsigned char ENABLD;
+    unsigned char GRPCache[4][9];
+    unsigned char GRPCached[4];
+    unsigned char CTRLPF;
+    unsigned char PF0;
+    unsigned char PF1;
+    unsigned char PF2;
+    unsigned char playFieldCache[40];
+    bool playFieldDirty;
+    unsigned char NUSIZ0;
+    unsigned char REFP0;
+    unsigned char NUSIZ1;
+    unsigned char REFP1;
+    unsigned char xCache[2][160];
+    bool xCacheDirty[2];
+    AudioState audio[2];
+    int audioCycles;
+    int audioResampleCount;
+    int audioReadSample;
+    int audioWriteSample;
+    unsigned char audioBuffer[4096];
+    SndDspBiquadState outputFilter;
+    float dcBlockX;
+    float dcBlockY;
+    unsigned char reg[64];
+};
+
+struct MOSState
+{
+    unsigned short PC;
+    unsigned char SP;
+    unsigned char X;
+    unsigned char Y;
+    unsigned char A;
+    unsigned char SR;
+};
+
+struct PIAState
+{
+    int interval;
+    int intervalRemaining;
+    unsigned char stat;
+    unsigned char timer;
+    unsigned char SWCHA;
+    unsigned char SWCHB;
+    unsigned char RAM[128];
+};
+
+struct ROMInfo
+{
+    char* name;
+    ROMType type;
+    void* data;
+    unsigned int size;
+    bool usesPaddles;
+};
+
+struct DPCChannel
+{
+    unsigned short counter;
+    unsigned char top;
+    unsigned char bottom;
+    unsigned char flag;
+    unsigned char musicMode;
+    unsigned char osc;
+};
+
+struct DPCState
+{
+    DPCChannel channel[8];
+    unsigned char rnd;
+};
+
+struct Machine
+{
+    MOSState MOS;
+    PIAState PIA;
+    TIAState TIA;
+    ROMInfo* ROM;
+    DPCState DPC;
+    int bank;
+    int paddle[4];
+    unsigned int paddleCycles[4];
+    int debug;
+    unsigned int MOSCycles;
+    unsigned int PIACycles;
+    unsigned int TIACycles;
+    unsigned int DPCCycles;
+};
+
+struct NTPMessage
+{
+    unsigned int header;
+    unsigned int root_delay;
+    unsigned int root_dispersion;
+    unsigned int reference_indentifier;
+    unsigned long long reference_timestamp;
+    unsigned long long originate_timestamp;
+    unsigned long long receive_timestamp;
+    unsigned long long transmit_timestamp;
+};
+
+struct ConversionArguments
+{
+    int argCount;
+    char* args[9];
+};
+
+class bdUPnPConfig
+{
+    enum bdUPnPRunMode
+    {
+        BD_UPNP_DO_PORT_MAPPING = 0,
+        BD_UPNP_EXTERNAL_IP_ONLY = 1
+    };
+public:
+    void reset();
+    void sanityCheckConfig();
+    float m_discoveryTimeout;
+    float m_responseTimeout;
+    float m_connectTimeout;
+    bdUPnPRunMode m_runMode;
+    unsigned int m_discoveryRetries;
+    bool m_disabled;
+    bdInetAddr m_gatewayAddr;
+    bool m_onlyUseGateway;
+};
+
+class bdSocketRouterConfig
+{
+public:
+    void reset();
+    void sanityCheckConfig();
+    bool m_ignoreConnectionReset;
+    float m_DTLSAssociationReceiveTimeout;
+    unsigned int m_maxConnectionResets;
+    bool m_simulateNAT;
+};
+
+class bdNetStartParams
+{
+public:
+    bool m_onlineGame;
+    unsigned short m_gamePort;
+    bdSocket* m_socket;
+    bdArray<bdString> m_natTravHosts;
+    unsigned short m_natTravPort;
+    class bdArray<bdInetAddr> m_localAddresses;
+    class bdAddr m_overridePublicAddr;
+    enum bdNATType m_overrideNATType;
+    class bdGetHostByNameConfig m_hostNameLookupConfig;
+    bdUPnPConfig m_UPnPConfig;
+    bool m_useAnyIP;
+    unsigned int m_threadStackSize;
+    bdSocketRouterConfig m_socketRouterConfig;
+};
+
+struct _DM_CMDCONT
+{
+    HRESULT(*HandlingFunction)(_DM_CMDCONT*, char*, unsigned long);
+    unsigned long DataSize;
+    void* Buffer;
+    unsigned long BufferSize;
+    void* CustomData;
+    unsigned long BytesRemaining;
+};
+
+struct DataNode
+{
+    DataNode* next;
+    DataNodeType type;
+    char* data;
+    int len;
+};
+
+enum XAUDIO2_DEVICE_ROLE
+{
+    NotDefaultDevice = 0,
+    DefaultConsoleDevice = 1,
+    DefaultMultimediaDevice = 2,
+    DefaultCommunicationsDevice = 4,
+    DefaultGameDevice = 8,
+    GlobalDefaultDevice = 15,
+    InvalidDeviceRole = -16
+};
+
+struct XAUDIO2_DEVICE_DETAILS
+{
+    wchar_t DeviceID[256];
+    wchar_t DisplayName[256];
+    XAUDIO2_DEVICE_ROLE Role;
+    WAVEFORMATEXTENSIBLE OutputFormat;
+};
+
+#include <nvapi.h>

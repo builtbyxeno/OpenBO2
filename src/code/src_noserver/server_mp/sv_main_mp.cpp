@@ -87,16 +87,6 @@ client_t *SV_FindClientByAddress(netadr_t from, int qport)
 
 /*
 ==============
-SVC_Status
-==============
-*/
-void SVC_Status(netadr_t from)
-{
-	UNIMPLEMENTED(__FUNCTION__);
-}
-
-/*
-==============
 SVC_Ping
 ==============
 */
@@ -442,7 +432,7 @@ void SV_UpdateBots()
 SV_ServerThread
 ==============
 */
-void __noreturn SV_ServerThread(unsigned int threadContext)
+void SV_ServerThread(unsigned int threadContext)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

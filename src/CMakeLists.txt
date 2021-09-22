@@ -4,6 +4,7 @@ project(t6mp)
 set(CMAKE_CXX_STANDARD 11)
 
 include_directories(code/src_noserver)
+include_directories(code/nvapi)
 
 add_executable(t6mp WIN32
 		code/src_noserver/aim_assist/aim_assist.cpp
@@ -927,6 +928,6 @@ target_link_options(t6mp PUBLIC
     /DYNAMICBASE:NO;
     /INCREMENTAL:NO)
 
-target_link_libraries(t6mp winmm.lib wsock32.lib d3d9.lib dsound.lib xinput.lib)
+target_link_libraries(t6mp winmm.lib wsock32.lib d3d9.lib dsound.lib xinput.lib nvapi.lib)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

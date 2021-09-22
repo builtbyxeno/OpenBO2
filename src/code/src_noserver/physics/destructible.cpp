@@ -410,7 +410,7 @@ int Destructible_GetXDollHandle(Destructible *obj, int piece_index)
 Destructible_GetRigidBody
 ==============
 */
-environment_rigid_body *__cdecl Destructible_GetRigidBody()
+environment_rigid_body *Destructible_GetRigidBody()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

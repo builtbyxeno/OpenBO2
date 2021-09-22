@@ -4,6 +4,7 @@
 #include "functions.h"
 #include "zlib/zutil.h"
 #include "zlib/ioapi.h"
+#include <universal/universal_public.h>
 
 #include <stdlib.h>
 

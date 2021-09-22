@@ -488,16 +488,6 @@ void trace_sphere_through_brush(const vec3_t *c0, const vec3_t *dir, float *t, c
 
 /*
 ==============
-trace_sphere_through_brush
-==============
-*/
-void trace_sphere_through_brush(const vec3_t *c0, const vec3_t *dir, float *t, const float r, const cbrush_t *brush, vec3_t *hitn, int *sflags, bool *startSolid)
-{
-	UNIMPLEMENTED(__FUNCTION__);
-}
-
-/*
-==============
 trace_point_through_brush
 ==============
 */

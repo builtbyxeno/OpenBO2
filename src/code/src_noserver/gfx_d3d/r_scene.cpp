@@ -406,7 +406,7 @@ int R_CheckExposureVolumes(vec3_t *position, float *feather)
 R_UpdateExposureValue
 ==============
 */
-void R_UpdateExposureValue
+void R_UpdateExposureValue(refdef_t* refdef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -416,7 +416,7 @@ void R_UpdateExposureValue
 R_SetExposure
 ==============
 */
-void R_SetExposure
+void R_SetExposure(GfxViewInfo* viewInfo, const refdef_t* refdef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -599,6 +599,7 @@ void Com_GetBspFilename(char *filename, int size, const char *mapname);
 int FS_FOpenFileRead(const char *filename, int *file);
 BOOL FS_TouchFile(const char *name);
 int FS_FOpenFileByMode(const char *a1, const char *a2, FsThread qpath, const char *f, int *mode, fsMode_t a6);
+_iobuf* FS_FileOpenReadBinary(const char* filename);
 
 //#include "universal/com_files_wrapper_stdio.h"
 
@@ -740,6 +741,8 @@ unsigned __int8 *Hunk_AllocAlign(int size, int alignment, const char *name, int 
 unsigned __int8 *Hunk_AllocLowAlign(int size, int alignment, const char *name, int type);
 unsigned __int8 *Hunk_Alloc(int size, const char *name, int type);
 unsigned __int8 *Hunk_AllocLow(int size, const char *name, int type);
+void* Z_Malloc(int size, const char* name, int type);
+void Z_Free(void* ptr, int type);
 
 //t6/code/src_noserver/universal/com_pack.cpp
 PackedUnitVec Vec3PackUnitVec(const vec3_t *unitVec);

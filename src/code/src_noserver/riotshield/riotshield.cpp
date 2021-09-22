@@ -26,8 +26,9 @@ void BG_SetRiotshieldModel(playerState_s *ps, bool redShader)
 BG_CanPlaceRiotshield_Box
 ==============
 */
-void (__cdecl *BG_CanPlaceRiotshield_Box(unsigned int a1, int a2, int ps, playerState_s *outOrigin, vec3_t *outAngles, vec3_t *handler, unsigned __int8 deploymentTrace, int a8))(trace_t *, const vec3_t *, const vec3_t *, const vec3_t *, const vec3_t *, int, int, col_context_t *)
+BOOL BG_CanPlaceRiotshield_Box(playerState_s * ps, vec3_t * outOrigin, vec3_t * outAngles, unsigned __int8 handler, int deploymentTrace)
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
 }
 

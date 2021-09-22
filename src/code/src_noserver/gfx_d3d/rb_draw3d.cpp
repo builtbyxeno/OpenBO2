@@ -245,16 +245,6 @@ void R_DrawEmissiveFX(const GfxViewInfo *viewInfo, GfxCmdBuf *cmdBuf)
 
 /*
 ==============
-R_DrawEmissiveFX
-==============
-*/
-void R_DrawEmissiveFX(const GfxViewInfo *a1, GfxCmdBuf *a2)
-{
-	UNIMPLEMENTED(__FUNCTION__);
-}
-
-/*
-==============
 R_DrawViewmodelFX
 ==============
 */

@@ -87,7 +87,7 @@ woven in by Terry Thorsen 1/2003.
 #define SIZEZIPLOCALHEADER (0x1e)
 
 #include "unzip.h"
-#include <universal/com_fileaccess.h>
+#include <universal/universal_public.h>
 
 
 const char unz_copyright[] =

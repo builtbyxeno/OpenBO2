@@ -1297,14 +1297,3 @@ bool FX_ParseRunner(unsigned __int8 a1, const char **parse, FxEditorElemDef *edE
 	return 0;
 }
 
-/*
-==============
-Hunk_AllocPhysPresetPrecache
-==============
-*/
-unsigned __int8 *Hunk_AllocPhysPresetPrecache(int size)
-{
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
-}
-
