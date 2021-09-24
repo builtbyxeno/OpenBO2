@@ -353,7 +353,7 @@ void Demo_ReadConfigStrings(LocalClientNum_t localClientNum, msg_t *msg);
 void Demo_InitClipRecord(LocalClientNum_t localClientNum, bool newClip);
 void Demo_WriteClipCommandsInternal(LocalClientNum_t localClientNum, msg_t *msg, bool setClipRecordParams);
 void Demo_WriteClipCommands(LocalClientNum_t localClientNum, msg_t *msg, bool setClipRecordParams);
-void Demo_WriteUncompressedClipSnapshot;
+void Demo_WriteUncompressedClipSnapshot(LocalClientNum_t localClientNum);
 bool Demo_CanStartClipRecord(LocalClientNum_t localClientNum);
 void Demo_PreviewSegment(LocalClientNum_t localClientNum, int segmentIndex);
 void Demo_WriteDemoPreviewPoint(LocalClientNum_t localClientNum, demoRestorePoint restorePoint);

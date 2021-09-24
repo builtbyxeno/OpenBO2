@@ -1,3 +1,6 @@
+#pragma once
+
+#include <win32/win32_public.h>
 #include "types.h"
 #include "vars.h"
 
@@ -10,7 +13,7 @@ static voiceCommunication_t cl_voiceCommunication[MAX_LOCAL_CLIENTS];
 CL_GetLocalClientConnectionState
 ==============
 */
-connstate_t CL_GetLocalClientConnectionState(const LocalClientNum_t localClientNum)
+inline connstate_t CL_GetLocalClientConnectionState(const LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	connstate_t tmp;
@@ -22,7 +25,7 @@ connstate_t CL_GetLocalClientConnectionState(const LocalClientNum_t localClientN
 CL_LocalClient_IsCGameInitialized
 ==============
 */
-unsigned int CL_LocalClient_IsCGameInitialized(LocalClientNum_t localClientNum)
+inline unsigned int CL_LocalClient_IsCGameInitialized(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -33,7 +36,7 @@ unsigned int CL_LocalClient_IsCGameInitialized(LocalClientNum_t localClientNum)
 CL_GetLocalClientMigrationState
 ==============
 */
-XModelRigidCullInfoContext *CL_GetLocalClientMigrationState(const LocalClientNum_t localClientNum)
+inline XModelRigidCullInfoContext *CL_GetLocalClientMigrationState(const LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -44,7 +47,7 @@ XModelRigidCullInfoContext *CL_GetLocalClientMigrationState(const LocalClientNum
 CL_GetLocalClientGlobals
 ==============
 */
-clientActive_t *CL_GetLocalClientGlobals(const LocalClientNum_t localClientNum)
+inline clientActive_t *CL_GetLocalClientGlobals(const LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -55,7 +58,7 @@ clientActive_t *CL_GetLocalClientGlobals(const LocalClientNum_t localClientNum)
 CL_GetLocalClientUIGlobals
 ==============
 */
-clientUIActive_t *CL_GetLocalClientUIGlobals(const LocalClientNum_t localClientNum)
+inline clientUIActive_t *CL_GetLocalClientUIGlobals(const LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -66,7 +69,7 @@ clientUIActive_t *CL_GetLocalClientUIGlobals(const LocalClientNum_t localClientN
 CL_GetLocalClientConnection
 ==============
 */
-clientConnection_t *CL_GetLocalClientConnection(const LocalClientNum_t localClientNum)
+inline clientConnection_t *CL_GetLocalClientConnection(const LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -77,7 +80,7 @@ clientConnection_t *CL_GetLocalClientConnection(const LocalClientNum_t localClie
 CL_SetLocalClientMigrationState
 ==============
 */
-void CL_SetLocalClientMigrationState(LocalClientNum_t client, clientMigState_t state)
+inline void CL_SetLocalClientMigrationState(LocalClientNum_t client, clientMigState_t state)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -87,7 +90,7 @@ void CL_SetLocalClientMigrationState(LocalClientNum_t client, clientMigState_t s
 CL_SetLocalClientConnectionState
 ==============
 */
-void CL_SetLocalClientConnectionState(LocalClientNum_t client, connstate_t state)
+inline void CL_SetLocalClientConnectionState(LocalClientNum_t client, connstate_t state)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -97,7 +100,7 @@ void CL_SetLocalClientConnectionState(LocalClientNum_t client, connstate_t state
 CL_LocalClient_SetCUIFlag
 ==============
 */
-void CL_LocalClient_SetCUIFlag(LocalClientNum_t localClientNum, int flag)
+inline void CL_LocalClient_SetCUIFlag(LocalClientNum_t localClientNum, int flag)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -107,7 +110,7 @@ void CL_LocalClient_SetCUIFlag(LocalClientNum_t localClientNum, int flag)
 CL_LocalClient_ClearCUIFlag
 ==============
 */
-void CL_LocalClient_ClearCUIFlag(LocalClientNum_t localClientNum, int flag)
+inline void CL_LocalClient_ClearCUIFlag(LocalClientNum_t localClientNum, int flag)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -117,7 +120,7 @@ void CL_LocalClient_ClearCUIFlag(LocalClientNum_t localClientNum, int flag)
 CL_LocalClient_IsInvited
 ==============
 */
-unsigned int CL_LocalClient_IsInvited(LocalClientNum_t localClientNum)
+inline unsigned int CL_LocalClient_IsInvited(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -128,7 +131,7 @@ unsigned int CL_LocalClient_IsInvited(LocalClientNum_t localClientNum)
 CL_LocalClient_IsDisplayingKeyCatcherHud
 ==============
 */
-unsigned int CL_LocalClient_IsDisplayingKeyCatcherHud(LocalClientNum_t localClientNum)
+inline unsigned int CL_LocalClient_IsDisplayingKeyCatcherHud(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

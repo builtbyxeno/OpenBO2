@@ -157,7 +157,7 @@ void CG_DrawActive(LocalClientNum_t localClientNum, const GfxViewParms *viewParm
 void CG_CheckForPlayerInput(LocalClientNum_t localClientNum);
 void CG_CheckTimedMenus(LocalClientNum_t localClientNum);
 void CG_Draw2DInternal(LocalClientNum_t localClientNum);
-void CG_Draw2D(LocalClientNum_t this);
+void CG_Draw2D(LocalClientNum_t notthis);
 
 //t6/code/src_noserver/cgame_mp/cg_draw_net_mp.cpp
 void CG_AddLagometerFrameInfo(const cg_t *cgameGlob);

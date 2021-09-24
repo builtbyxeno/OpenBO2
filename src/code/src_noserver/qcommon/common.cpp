@@ -100,6 +100,15 @@ char Com_IsMenuLevel(const char *name)
 
 /*
 ==============
+Com_AssetLoadUI
+==============
+*/
+void Com_AssetLoadUI(const char* name)
+{
+}
+
+/*
+==============
 Com_BeginRedirect
 ==============
 */
@@ -342,8 +351,8 @@ Com_InitDynamicRender
 void Com_InitDynamicRender()
 {
 	bool IsZoneTypeLoaded = DB_IsZoneTypeLoaded(0x2000000);
-	R_ExtraCam_Init(Com_IsMenuLevel(NULL) != 0);
-	R_UI3D_OnetimeInit(0x80u, 0x80u, 0, Com_IsMenuLevel(NULL) != 0, 0);
+	R_UI3D_OnetimeInit(512, 512, IsZoneTypeLoaded, 0);
+	R_ExtraCam_Init(IsZoneTypeLoaded);
 }
 
 /*

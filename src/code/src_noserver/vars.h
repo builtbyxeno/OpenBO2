@@ -3578,7 +3578,6 @@ extern dvar_t* zone_reorder; // idb
 
 extern dvar_t* party_maxplayers_partylobby;
 extern dvar_t* party_maxplayers_wagerpartylobby;
-extern dvar_t* party_maxlocalplayers_playermatch;
 extern dvar_t* party_maxplayers_privatematch;
 extern dvar_t* party_maxplayers_wagermatch;
 

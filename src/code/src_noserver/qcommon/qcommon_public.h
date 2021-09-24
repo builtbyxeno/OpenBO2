@@ -443,7 +443,7 @@ int Com_LocalClients_GetUsedControllerCount();
 LocalClientNum_t Com_ControllerIndex_GetLocalClientNum(ControllerIndex_t controllerIndex);
 netsrc_t Com_ControllerIndex_GetNetworkID(ControllerIndex_t controllerIndex);
 UIContextIndex_t Com_ControllerIndex_GetUIContextIndex(ControllerIndex_t controllerIndex);
-int Com_ControllerIndexes_GetPrimary();
+ControllerIndex_t Com_ControllerIndexes_GetPrimary();
 ControllerIndex_t Com_NetworkID_GetControllerIndex(netsrc_t netID);
 void Com_LocalClient_LastInput_Set(LocalClientNum_t localClientNum, LastInput_t currentInput);
 LastInput_t Com_LocalClient_LastInput_Get(LocalClientNum_t localClientNum);

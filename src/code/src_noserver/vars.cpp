@@ -3569,7 +3569,6 @@ dvar_t* zone_reorder;
 
 dvar_t* party_maxplayers_partylobby;
 dvar_t* party_maxplayers_wagerpartylobby;
-dvar_t* party_maxlocalplayers_playermatch;
 dvar_t* party_maxplayers_privatematch;
 dvar_t* party_maxplayers_wagermatch;
 
