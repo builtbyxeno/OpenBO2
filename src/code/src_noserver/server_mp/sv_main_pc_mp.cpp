@@ -1,5 +1,14 @@
 #include "types.h"
-#include "functions.h"
+#include "vars.h"
+
+#pragma comment(lib,"Ws2_32.lib")
+
+#include <win32/win32_public.h>
+
+static bool s_syslogInited;
+_RTL_CRITICAL_SECTION s_sysLogCritSec;
+static sockaddr_in s_sysLogAddr;
+static SOCKET s_syslogSocket;
 
 /*
 ==============
@@ -106,7 +115,26 @@ SV_SysLog_Init
 */
 void SV_SysLog_Init()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	int Error;
+	const char* String;
+	u_short Int;
+
+	if (Dvar_GetBool(sv_syslog_enabled))
+	{
+		InitializeCriticalSection(&s_sysLogCritSec);
+		s_syslogSocket = WSASocket(2, 2, 17, 0, 0, 0);
+		if (s_syslogSocket == -1)
+		{
+			Error = WSAGetLastError();
+			Sys_Error("Couldn't open syslog socket - error %u", Error);
+		}
+		String = Dvar_GetString(sv_syslog_address);
+		Int = Dvar_GetInt(sv_syslog_port);
+		s_sysLogAddr.sin_family = 2;
+		s_sysLogAddr.sin_port = htons(Int);
+		s_sysLogAddr.sin_addr.S_un.S_addr = inet_addr(String);
+		s_syslogInited = 1;
+	}
 }
 
 /*
@@ -136,7 +164,16 @@ SV_SysLog_LogMessage
 */
 void SV_SysLog_LogMessage(int severity, const char *msg)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	const char* String;
+	char syslogMsg[1264];
+
+	if (s_syslogInited && Dvar_GetBool(sv_syslog_enabled))
+	{
+		memset(syslogMsg, 0, sizeof(syslogMsg));
+		String = Dvar_GetString(sv_hostname);
+		Com_sprintf(syslogMsg, 1263, "<%u>%s: %s", severity + 128, String, msg);
+		enqueueSyslogMessage(syslogMsg);
+	}
 }
 
 /*

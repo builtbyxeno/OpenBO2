@@ -189,8 +189,8 @@ void UILocalVar_SetFloat(const UILocalVar *var, float f);
 void UILocalVar_SetString(const UILocalVar *var, const char *s);
 
 //t6/code/src_noserver/ui/ui_main.cpp
-UiContext *UI_UIContext_GetInfo(UIContextIndex_t contextIndex);
-UiContext *UI_GetInfo(LocalClientNum_t localClientNum);
+uiInfo_s* UI_UIContext_GetInfo(UIContextIndex_t contextIndex);
+UiContext* UI_GetInfo(LocalClientNum_t localClientNum);
 UILocalVarContext *UI_UIContext_GetLocalVarsContext(UIContextIndex_t contextIndex);
 const char *UI_GetMonthAbbrev(int month);
 void TRACK_ui_main();
@@ -585,7 +585,7 @@ void Menu_RunCloseScript(UiContext *dc, menuDef_t *menu);
 void Menus_CompleteItemAnimations(char *animDuration, const LocalClientNum_t localClientNum, UiContext *dc, menuDef_t *menu);
 void Menus_Close(const LocalClientNum_t localClientNum, UiContext *dc, menuDef_t *menu);
 void Menus_CloseByName(const LocalClientNum_t localClientNum, UiContext *dc, const char *p);
-void Menus_CloseAll(int a1, const LocalClientNum_t localClientNum, UiContext *dc);
+void Menus_CloseAll(const LocalClientNum_t localClientNum, UiContext *dc);
 void Menus_CloseAllBehindMain(const LocalClientNum_t localClientNum, UiContext *dc);
 void Menus_CloseFromMenuToTopOfStack(const LocalClientNum_t localClientNum, UiContext *dc, const char *menuName);
 bool RemoveMenuFromBlurStack(const LocalClientNum_t localClientNum, UiContext *dc, const char *menuName);
@@ -640,6 +640,8 @@ void UI_OpenMenuImmediate_f();
 void UI_RegisterCmds();
 void Menu_PaintAll_AppendToVisibleList(char *stringBegin, unsigned int stringSize, const char *stringToAppend);
 void Menu_PaintAll(LocalClientNum_t localClientNum, UiContext *dc);
+int UI_GetMenuScreen();
+int UI_GetForcedMenuScreen();
 
 //#include "ui/ui_shared_load_db.h"
 

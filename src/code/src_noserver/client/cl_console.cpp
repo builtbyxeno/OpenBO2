@@ -1,5 +1,6 @@
 #include "types.h"
-#include "functions.h"
+
+Console con;
 
 /*
 ==============
@@ -38,7 +39,45 @@ Con_GetTextCopy
 */
 void Con_GetTextCopy(char *text, int maxSize)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	unsigned int end;
+	int begin;
+	int totalSize;
+
+	if (con.consoleWindow.activeLineCount)
+	{
+		begin = con.consoleWindow.lines[con.consoleWindow.firstLineIndex].textBufPos;
+		end = con.consoleWindow.textBufPos;
+		totalSize = con.consoleWindow.textBufPos - begin;
+		if (con.consoleWindow.textBufPos - begin < 0)
+		{
+			totalSize += con.consoleWindow.textBufSize;
+		}
+
+		if (totalSize > maxSize - 1)
+		{
+			begin += totalSize - (maxSize - 1);
+			if (begin > con.consoleWindow.textBufSize)
+			{
+				begin -= con.consoleWindow.textBufSize;
+			}
+			totalSize = maxSize - 1;
+		}
+
+		if (begin >= con.consoleWindow.textBufPos)
+		{
+			memcpy(text, &con.consoleWindow.circularTextBuffer[begin], con.consoleWindow.textBufSize - begin);
+			memcpy(&text[con.consoleWindow.textBufSize - begin], con.consoleWindow.circularTextBuffer, end);
+		}
+		else
+		{
+			memcpy(text, &con.consoleWindow.circularTextBuffer[begin], con.consoleWindow.textBufPos - begin);
+		}
+		text[totalSize] = 0;
+	}
+	else
+	{
+		*text = 0;
+	}
 }
 
 /*

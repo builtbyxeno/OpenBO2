@@ -1,5 +1,4 @@
 #include "types.h"
-#include "functions.h"
 
 /*
 ==============
@@ -28,7 +27,7 @@ int Cmd_Argc()
 Cmd_Argv
 ==============
 */
-const GfxViewParms *Cmd_Argv(int argIndex)
+const char *Cmd_Argv(int argIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -50,7 +49,7 @@ int SV_Cmd_Argc()
 SV_Cmd_Argv
 ==============
 */
-const GfxViewParms *SV_Cmd_Argv(int argIndex)
+const char *SV_Cmd_Argv(int argIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

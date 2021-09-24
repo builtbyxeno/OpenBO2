@@ -9,6 +9,8 @@
 #define M_PI        3.14159265358979323846f
 #endif
 
+#define MAX_LOCAL_CLIENTS 1
+
 #define BIT_INDEX_32(bits)	((bits) >> 5)
 #define BIT_MASK_32(bits)	(1 << ((bits) * 31))
 
@@ -109,6 +111,8 @@
 #pragma warning(disable : 4220) // varargs matches remaining parameters
 
 //#define WIN32_LEAN_AND_MEAN
+#include <WinSock2.h>
+#include <WS2tcpip.h>
 #include <windows.h>
 #include <cstdio>
 #include <Psapi.h>
@@ -129,6 +133,10 @@
 #define __int16 short
 #define __int32 int
 #define __int64 long long
+
+typedef int qboolean;
+typedef int psize_int;
+typedef unsigned int uint;
 
 struct IRecordInfo;
 struct bdCommonAddr;
@@ -3036,12 +3044,6 @@ enum tlThreadFlags
   TL_THREAD_JOINABLE = 0x0,
   TL_THREAD_CREATE_SUSPENDED = 0x4,
   TL_THREAD_DEFAULT_FLAGS = 0x0,
-};
-
-enum MULTICAST_MODE_TYPE
-{
-  MCAST_INCLUDE = 0x0,
-  MCAST_EXCLUDE = 0x1,
 };
 
 enum UILocalVarType
@@ -7120,11 +7122,12 @@ enum uiMenuCommand_t
   UIMENU_WAGERLOBBY = 0x11,
   UIMENU_PRIVATELOBBY = 0x12,
   UIMENU_LEAGUELOBBY = 0x13,
-  UIMENU_THEATERLOBBY = 0x14,
-  UIMENU_MIGRATION = 0x15,
-  UIMENU_CONTROLLERREMOVED = 0x16,
-  UIMENU_ENDOFGAME = 0x17,
-  UIMENU_INGAME_NOUNPAUSE = 0x18,
+  UIMENU_LOCALGAMELOBBY = 0x14,
+  UIMENU_THEATERLOBBY = 0x15,
+  UIMENU_MIGRATION = 0x16,
+  UIMENU_CONTROLLERREMOVED = 0x17,
+  UIMENU_ENDOFGAME = 0x18,
+  UIMENU_INGAME_NOUNPAUSE = 0x19,
 };
 
 enum eSpawnSystemDebugMode
@@ -18989,14 +18992,6 @@ struct LerpEntityStateVehicleGunnerAngles
   __int16 yaw;
 };
 
-struct sockaddr_storage_xp
-{
-  __int16 ss_family;
-  char __ss_pad1[6];
-  __int64 __ss_align;
-  char __ss_pad2[112];
-};
-
 struct LerpEntityStateZBarrierPiece
 {
   unsigned __int8 flags;
@@ -24423,7 +24418,7 @@ public:
   unsigned int m_subscribedTimestamp;
 };
 
-const const struct outPacket_t
+const struct outPacket_t
 {
   int p_cmdNumber;
   int p_serverTime;
@@ -25434,15 +25429,6 @@ public:
   int serverKbps;
   int serverKbpsAvg[2];
   int serverKbpsCount[2];
-};
-
-struct ip_msfilter
-{
-  in_addr imsf_multiaddr;
-  in_addr imsf_interface;
-  MULTICAST_MODE_TYPE imsf_fmode;
-  unsigned int imsf_numsrc;
-  in_addr imsf_slist[1];
 };
 
 struct MaterialRaw
@@ -40266,11 +40252,11 @@ struct /*__cppobj*/ tlFixedString
 
 struct ALLOCATION_SCHEME_FUNCTIONS
 {
-  HunkUser *(__cdecl *Init)(void *, int, HU_ALLOCATION_SCHEME, unsigned int, void *, const char *, int);
-  void (__cdecl *Reset)(HunkUser *);
-  void (__cdecl *Destroy)(HunkUser *);
-  void *(__cdecl *Alloc)(HunkUser *, int, int, const char *);
-  void (__cdecl *Free)(HunkUser *, void *);
+  HunkUser *(*Init)(void *, int, HU_ALLOCATION_SCHEME, unsigned int, void *, const char *, int);
+  void (*Reset)(HunkUser *);
+  void (*Destroy)(HunkUser *);
+  void *(*Alloc)(HunkUser *, int, int, const char *);
+  void (*Free)(HunkUser *, void *);
 };
 
 struct __declspec(align(4)) HunkUserDefault
@@ -40298,6 +40284,12 @@ struct HunkUserDebug
   HunkUser *firstFit;
 };
 
+typedef struct _firstfit_heapnode
+{
+    _firstfit_heapnode* next;
+    int size;
+} FIRSTFIT_HEAPNODE;
+
 struct _fixed_heapnode
 {
   _fixed_heapnode *next;
@@ -40315,12 +40307,6 @@ struct FIXED_HUNKUSER
 struct USERHEAP_FIXED_SCHEME_SPECIFIC
 {
   int block_size;
-};
-
-struct _firstfit_heapnode
-{
-  _firstfit_heapnode *next;
-  int size;
 };
 
 struct FIRSTFIT_HUNKUSER

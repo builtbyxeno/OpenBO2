@@ -110,7 +110,7 @@ BOOL MatchmakingHopper_isParked();
 void Live_SetPingTestKey();
 void Live_Base_StateConnected(const ControllerIndex_t controllerIndex, dediUserData_t *userData);
 void Live_Base_PumpForController(dediUserData_t *a1, ControllerIndex_t a2, const ControllerIndex_t controllerIndex);
-void Live_Base_Pump(ControllerIndex_t a1, dediUserData_t *a2);
+void Live_Base_Pump();
 void Live_HandleDemonwareLSP(dediUserData_t *a1, ControllerIndex_t a2, ControllerIndex_t localControllerIndex);
 // void Live_DedicatedFrame(int a1@<ebp>);
 
@@ -191,7 +191,6 @@ void LiveElite_Clear(const ControllerIndex_t localControllerIndex);
 void LiveElite_Init(void *notthis);
 // void eventAccumulator::startMatch(eventAccumulator *notthis);
 // void eventAccumulator::beginCategory(eventAccumulator *notthis, char *categoryName);
-void __noreturn terminate();
 
 //t6/code/src_noserver/live/live_fileshare.cpp
 BOOL LiveFileShare_IsReady(ControllerIndex_t controllerIndex, bool allowRead);

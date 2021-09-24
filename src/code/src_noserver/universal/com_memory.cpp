@@ -1,6 +1,8 @@
 #include "types.h"
-#include "functions.h"
+#include "vars.h"
 #include "universal_public.h"
+
+#include <win32/win32_public.h>
 
 /*
 ==============
@@ -211,5 +213,43 @@ Z_Free
 void Z_Free(void* ptr, int type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+Z_VirtualFree
+==============
+*/
+void Z_VirtualFree(void* ptr)
+{
+	VirtualFree(ptr, 0, 0x8000u);
+}
+
+/*
+==============
+Z_VirtualDecommit
+==============
+*/
+void Z_VirtualDecommit(void* ptr, int size)
+{
+	VirtualFree(ptr, size, 0x4000u);
+}
+
+/*
+==============
+Z_VirtualCommit
+==============
+*/
+void Z_VirtualCommit(void* ptr, int size)
+{
+	if (!VirtualAlloc(ptr, size, (size > 0x20000 ? 0 : 0x100000) | 0x1000, 4u))
+		Sys_OutOfMemErrorInternal(__FILE__, __LINE__);
+}
+
+void* Z_VirtualReserve(int size)
+{
+	void* alloc = VirtualAlloc(0, size, (size > 0x20000 ? 0 : 0x100000) | 0x2000, 4u);
+	assert(alloc);
+	return alloc;
 }
 

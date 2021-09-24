@@ -1,5 +1,5 @@
 #include "types.h"
-#include "functions.h"
+#include "ui_public.h"
 
 /*
 ==============
@@ -2118,7 +2118,7 @@ void Menus_CloseByName(const LocalClientNum_t localClientNum, UiContext *dc, con
 Menus_CloseAll
 ==============
 */
-void Menus_CloseAll(int a1, const LocalClientNum_t localClientNum, UiContext *dc)
+void Menus_CloseAll(const LocalClientNum_t localClientNum, UiContext *dc)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2675,5 +2675,33 @@ Menu_PaintAll
 void Menu_PaintAll(LocalClientNum_t localClientNum, UiContext *dc)
 {
 	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+UI_GetForcedMenuScreen
+==============
+*/
+int UI_GetForcedMenuScreen()
+{
+	return -1;
+}
+
+/*
+==============
+UI_GetMenuScreen
+==============
+*/
+int UI_GetMenuScreen()
+{
+	int menu;
+
+	menu = UI_GetForcedMenuScreen();
+	if (menu >= UIMENU_NONE)
+	{
+		return menu;
+	}
+
+	return 1;
 }
 

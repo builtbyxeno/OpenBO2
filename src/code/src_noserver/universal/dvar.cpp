@@ -1,5 +1,4 @@
 #include "types.h"
-#include "functions.h"
 
 /*
 ==============
@@ -547,7 +546,7 @@ void Dvar_GetVec4(const dvar_t *dvar, vec4_t *result)
 Dvar_GetString
 ==============
 */
-const GfxViewParms *Dvar_GetString(const dvar_t *dvar)
+const char *Dvar_GetString(const dvar_t *dvar)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -1603,7 +1602,7 @@ void Dvar_SetCheatState()
 Dvar_Init
 ==============
 */
-void Dvar_Init(const char *a1, dvarType_t a2, int a3)
+void Dvar_Init()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

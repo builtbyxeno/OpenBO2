@@ -1,5 +1,4 @@
 #include "types.h"
-#include "functions.h"
 
 /*
 ==============

@@ -1,5 +1,4 @@
 #include "types.h"
-#include "functions.h"
 
 /*
 ==============
@@ -1215,7 +1214,7 @@ const FxEffectDef *FX_Register_LoadObj(bool *a1, const char *a2, const char *nam
 FX_Register
 ==============
 */
-const FxEffectDef *FX_Register()
+const FxEffectDef *FX_Register(char const* name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

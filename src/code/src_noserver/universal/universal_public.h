@@ -18,7 +18,7 @@ void StackTrace_ResetAddressInfo();
 void CopyMessageToClipboard(const char *msg);
 char AssertNotify(int type, AssertOccurance occurance);
 int Assert_BuildAssertMessageWithStack(const char *expr, const char *extra, const char *filename, int line, int type, int messageLen, char *message);
-BOOL __stdcall IsDebuggerConnected();
+BOOL IsDebuggerConnected();
 void RefreshQuitOnErrorCondition();
 bool QuitOnError();
 
@@ -547,8 +547,8 @@ int FS_FOpenFileWriteToDirForThread(const char *filename, const char *dir, const
 int FS_FOpenFileWriteToDir(const char *a1, const char *a2);
 int FS_FOpenFileWrite(const char *a1, const char *a2);
 int FS_FOpenFileWriteCurrentThread(FsThread a1);
-int FS_FOpenTextFileWrite(qfile_gus filename, const char *a2);
-int FS_FOpenFileAppend(qfile_gus filename, const char *a2);
+int FS_FOpenTextFileWrite(const char* filename);
+int FS_FOpenFileAppend(const char* filename);
 int FS_FilenameCompare(const char *s1, const char *s2);
 BOOL FS_PureIgnoreFiles(const char *filename);
 bool FS_SanitizeFilename(const char *filename, char *sanitizedName, int sanitizedNameSize);
@@ -743,6 +743,10 @@ unsigned __int8 *Hunk_Alloc(int size, const char *name, int type);
 unsigned __int8 *Hunk_AllocLow(int size, const char *name, int type);
 void* Z_Malloc(int size, const char* name, int type);
 void Z_Free(void* ptr, int type);
+void Z_VirtualFree(void* ptr);
+void Z_VirtualDecommit(void* ptr, int size);
+void Z_VirtualCommit(void* ptr, int size);
+void* Z_VirtualReserve(int size);
 
 //t6/code/src_noserver/universal/com_pack.cpp
 PackedUnitVec Vec3PackUnitVec(const vec3_t *unitVec);
@@ -947,7 +951,7 @@ double Dvar_GetFloat(void *notthis);
 void Dvar_GetVec2(const dvar_t *dvar, vec2_t *result);
 void Dvar_GetVec3(const dvar_t *dvar, vec3_t *result);
 void Dvar_GetVec4(const dvar_t *dvar, vec4_t *result);
-const GfxViewParms *Dvar_GetString(const dvar_t *dvar);
+const char *Dvar_GetString(const dvar_t *dvar);
 const char *Dvar_GetVariantString(void *notthis);
 const char *__cdecl Dvar_GetVariantString(const dvar_t *dvar);
 void Dvar_GetUnpackedColor(unsigned __int8 *a1, const char *a2, const dvar_t *dvar, vec4_t *expandedColor);
@@ -1047,7 +1051,7 @@ void Dvar_SetFromStringByName(dvarType_t a1, const char *dvarName, const char *s
 void Dvar_SetCommand(dvarType_t a1, const char *dvarName, const char *string);
 void Dvar_Reset(const dvar_t *dvar, DvarSetSource setSource);
 void Dvar_SetCheatState();
-void Dvar_Init(const char *a1, dvarType_t a2, int a3);
+void Dvar_Init();
 void __cdecl Dvar_LoadDvarsAddFlags(MemoryFile *memFile, unsigned __int16 flags);
 void Dvar_LoadDvars(MemoryFile *memFile);
 void Dvar_LoadScriptInfo(MemoryFile *memFile);
@@ -1092,24 +1096,37 @@ const GfxViewParms *MemFile_ReadCString(MemoryFile *memFile);
 HunkUser *Hunk_FirstFitInit(void *buffer, int size, HU_ALLOCATION_SCHEME scheme, unsigned int flags, void *scheme_specific_data, const char *name, int type);
 void Hunk_FirstFitReset(HunkUser *_user);
 void Hunk_FirstFitDestroy(HunkUser *_user);
-void *Hunk_FirstFitAlloc(HunkUser *_user, int size, int alignment);
+void *Hunk_FirstFitAlloc(HunkUser *_user, int size, int alignment, const char* name);
 void Hunk_FirstFitFree(HunkUser *_user, void *ptr);
 
 //t6/code/src_noserver/universal/mem_fixed.cpp
 HunkUser *Hunk_FixedInit(void *buffer, int size, HU_ALLOCATION_SCHEME scheme, unsigned int flags, void *scheme_specific_data, const char *name, int type);
 void Hunk_FixedReset(HunkUser *_user);
 void Hunk_FixedDestroy(HunkUser *_user);
-const char *Hunk_FixedAlloc(HunkUser *_user);
+void *Hunk_FixedAlloc(HunkUser* _user, int size, int alignment, const char* name);
 void Hunk_FixedFree(HunkUser *_user, void *ptr);
 
 //t6/code/src_noserver/universal/mem_largelocal.cpp
+
+struct LargeLocal
+{
+    LargeLocal(int sizeParam);
+    ~LargeLocal();
+
+    void* GetBuf();
+
+    int startPos;
+    int size;
+};
+
 void LargeLocalEnd(int startPos);
 void LargeLocalEndRight(int startPos);
 // void LargeLocal::~LargeLocal(LargeLocal *notthis);
 void LargeLocalReset();
 int LargeLocalBegin(int size);
 int LargeLocalBeginRight(int size);
-unsigned __int8 *LargeLocalGetBuf(int startPos, int size);
+void* LargeLocalGetBuf(int startPos, int size);
+unsigned int LargeLocalRoundSize(int size);
 // void LargeLocal::LargeLocal(LargeLocal *notthis, int sizeParam);
 // unsigned __int8 *LargeLocal::GetBuf(LargeLocal *notthis);
 
@@ -1117,7 +1134,7 @@ unsigned __int8 *LargeLocalGetBuf(int startPos, int size);
 HunkUser *Hunk_UserDebugInit(void *buffer, int size, HU_ALLOCATION_SCHEME scheme, unsigned int flags, void *scheme_specific_data, const char *name, int type);
 void Hunk_UserDebugReset(HunkUser *_user);
 void Hunk_UserDebugDestroy(HunkUser *_user);
-void *Hunk_UserDebugAlloc(HunkUser *_user, int size, int alignment);
+void *Hunk_UserDebugAlloc(HunkUser *_user, int size, int alignment, const char* name);
 void Hunk_UserDebugFree(HunkUser *_user, void *ptr);
 HunkUser *Hunk_UserDefaultInit(void *buffer, int size, HU_ALLOCATION_SCHEME scheme, unsigned int flags, void *scheme_specific_data, const char *name, int type);
 void Hunk_UserDefaultDestroy(HunkUser *_user);
@@ -1125,8 +1142,8 @@ void Hunk_UserDefaultFree(HunkUser *user, void *ptr);
 HunkUser *Hunk_UserNullInit(void *buffer, int size, HU_ALLOCATION_SCHEME scheme, unsigned int flags, void *scheme_specific_data, const char *name, int type);
 void Hunk_UserNullReset(HunkUser *_user);
 void Hunk_UserNullDestroy(HunkUser *_user);
-void *Hunk_UserNullAlloc(HunkUser *_user, int size, int alignment);
-void Hunk_UserNullFree(HunkUser *user);
+void *Hunk_UserNullAlloc(HunkUser *_user, int size, int alignment, const char* name);
+void Hunk_UserNullFree(HunkUser *user, void* ptr);
 HunkUser *Hunk_UserCreateFromBuffer(void *buffer, int size, HU_ALLOCATION_SCHEME scheme, unsigned int flags, void *scheme_specific_data, const char *name, int type);
 HunkUser *Hunk_UserCreate(int size, HU_ALLOCATION_SCHEME scheme, unsigned int flags, void *scheme_specific_data, const char *name, int type);
 HunkUser *Hunk_UserCreateNull(HunkUserNull *user);
@@ -1137,13 +1154,13 @@ void Hunk_UserDestroy(HunkUser *user);
 void Hunk_UserSetPos(HunkUser *_user, void *pos);
 char *Hunk_CopyString(HunkUser *user, const char *in);
 void Hunk_UserDefaultReset(HunkUser *_user);
-int Hunk_UserDefaultAlloc(HunkUser *_user, int size, int alignment, const char *name);
+void *Hunk_UserDefaultAlloc(HunkUser *_user, int size, int alignment, const char *name);
 void Hunk_UserStartup();
 void Hunk_UserShutdown();
 
 //t6/code/src_noserver/universal/physicalmemory.cpp
 void PMem_InitPhysicalMemory(PhysicalMemory *pmem, const char *name, void *memory, unsigned int memorySize, bool giveToStreamer);
-void PMem_Init(char *a1);
+void PMem_Init();
 void PMem_BeginAllocInPrim(PhysicalMemoryPrim *prim, const char *name, EMemTrack memTrack);
 void PMem_BeginAlloc(char *a1, const char *name, unsigned int allocType, EMemTrack memTrack);
 void PMem_EndAlloc(const char *name, unsigned int allocType);
@@ -1202,7 +1219,7 @@ void Com_Parse1DMatrix(const char **buf_p, int x, float *m);
 
 //t6/code/src_noserver/universal/q_shared.cpp
 void TRACK_q_shared();
-int ColorIndex(unsigned __int8 c);
+char ColorIndex(unsigned char c);
 const char *Com_GetFilenameSubString(const char *pathname);
 const char *Com_GetExtensionSubString(const char *filename);
 void Com_StripExtension(const char *in, char *out);
@@ -1223,6 +1240,7 @@ unsigned int I_atoui(const char *str);
 __int64 I_atoi64(const char *str);
 BOOL I_islower(int c);
 BOOL I_isupper(int c);
+BOOL I_isalpha(int c);
 BOOL I_isdigit(int c);
 BOOL I_isalnum(int c);
 BOOL I_isforfilename(int c);
@@ -1249,15 +1267,15 @@ BOOL CanKeepStringPointer(const char *string);
 char *I_itoa(int value, char *buf, int bufsize);
 char *va(const char *format, ...);
 void Com_InitThreadData(int threadContext);
-const GfxViewParms *Info_ValueForKey(const char *s, const char *key);
+const char *Info_ValueForKey(const char *s, const char *key);
 void Info_NextPair(const char **head, char *key, char *value);
 void Info_RemoveKey(char *s, const char *key);
 void Info_RemoveKey_Big(char *s, const char *key);
 BOOL Info_Validate(const char *s);
 void Info_SetValueForKey(char *s, const char *key, const char *value);
 void Info_SetValueForKey_Big(char *s, const char *key, const char *value);
-int KeyValueToField(unsigned __int8 *pStruct, const cspField_t *pField, const char *pszKeyValue, const int iMaxFieldTypes, int (*parseSpecialFieldType)(unsigned __int8 *, const char *, const int, const int), void (*parseStrcpy)(unsigned __int8 *, const char *));
-BOOL ParseConfigStringToStruct(int (__cdecl *a1)(unsigned __int8 *, const char *, const int, const int), unsigned __int8 *pStruct, const cspField_t *pFieldList, const int iNumFields, const char *pszBuffer, const int iMaxFieldTypes, int (__cdecl *parseSpecialFieldType)(unsigned __int8 *, const char *, const int, const int), void (__cdecl *parseStrCpy)(unsigned __int8 *, const char *));
+int KeyValueToField(byte* pStruct, cspField_t* pField, const char* pszKeyValue, const int iMaxFieldTypes, int (*parseSpecialFieldType)(byte*, const char*, const int, const int), void (*parseStrcpy)(byte*, const char*));
+BOOL ParseConfigStringToStruct(byte* pStruct, cspField_t* pFieldList, const int iNumFields, const char* pszBuffer, const int iMaxFieldTypes, int (*parseSpecialFieldType)(byte*, const char*, const int, const int), void (*parseStrCpy)(byte*, const char*));
 BOOL ParseConfigStringToStructMerged(unsigned __int8 *pStruct, const cspField_t *pFieldList, const int iNumFields, const char *mergedName, const char **pszBuffer, const char **sourceName, char *pszMergedBuffer, const int iMaxFieldTypes, int (*parseSpecialFieldType)(unsigned __int8 *, const char *, const int, const int), void (*parseStrCpy)(unsigned __int8 *, const char *), int (*parseMergeSpecialCase)(const char *, char **, char *, int));
 long double GetLeanFraction(const float fFrac);
 long double UnGetLeanFraction(const float fFrac);
@@ -1313,6 +1331,7 @@ const GfxViewParms *Clan_GetName();
 char *Sys_DefaultHomePath();
 char *Sys_DefaultInstallPath();
 bool Sys_FileExists(const char *path);
+bool HasFileExtension(const char* name, const char* extension);
 void Sys_ListFilteredFiles(HunkUser *user, const char *basedir, const char *subdirs, const char *filter, char **list, int *numfiles);
 char **Sys_ListFiles(const char *directory, const char *extension, const char *filter, int *numfiles, int wantsubs);
 int Sys_DirectoryHasContents(const char *directory);
@@ -1321,3 +1340,15 @@ void Sys_EnterCriticalSection(CriticalSection critSect);
 BOOL Sys_TryEnterCriticalSection(CriticalSection critSect);
 void Sys_LeaveCriticalSection(CriticalSection critSect);
 
+struct ScopedCriticalSection
+{
+    CriticalSection m_critId;
+    inline ScopedCriticalSection(CriticalSection critId) : m_critId(critId)
+    {
+        Sys_EnterCriticalSection(m_critId);
+    }
+    inline ~ScopedCriticalSection()
+    {
+        Sys_LeaveCriticalSection(m_critId);
+    }
+};

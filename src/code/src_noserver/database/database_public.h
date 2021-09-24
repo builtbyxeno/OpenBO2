@@ -278,7 +278,7 @@ bool DB_RegisterAllReorderAssetsOfType(int type, XAssetEntry *assetEntry);
 void DB_RegisteredReorderAsset(int type, const char *assetName, XAssetEntry *assetEntry);
 XAssetHeader DB_FindXAssetHeader(char *a1, XAssetType type, const char *name, bool errorIfMissing, int waitTime);
 void DB_LoadXAssets(XZoneInfo *zoneInfo, unsigned int zoneCount, int sync);
-void __noreturn DB_Thread(unsigned int threadContext);
+void DB_Thread(unsigned int threadContext);
 void DB_InitThread();
 void DB_ReplaceModel(const char *original, const char *replacement);
 void DB_LoadGraphicsAssetsForPC();

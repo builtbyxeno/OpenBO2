@@ -1,5 +1,4 @@
 #include "types.h"
-#include "functions.h"
 
 /*
 ==============
@@ -166,7 +165,7 @@ int Assert_BuildAssertMessageWithStack(const char *expr, const char *extra, cons
 IsDebuggerConnected
 ==============
 */
-BOOL __stdcall IsDebuggerConnected()
+BOOL IsDebuggerConnected()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

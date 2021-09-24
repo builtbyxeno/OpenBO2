@@ -1256,7 +1256,7 @@ MaterialTechnique *Material_RegisterTechnique(const char *name, int materialType
 bool Material_IgnoreTechnique(const char *name);
 unsigned __int8 Material_TechniqueTypeForName(const char *name, bool *inUse);
 bool Material_HasAlphaTest(const Material *mtl);
-void Material_GetTechniqueSetDrawRegion;
+void Material_GetTechniqueSetDrawRegion(MaterialTechniqueSet* techniqueSet);
 void Material_SetMaterialDrawRegion(Material *material);
 MaterialTechniqueSet *Material_LoadTechniqueSet(const char *fullName);
 void Material_RemapStateBits(const Material *material, unsigned int toolFlags, const MaterialStateMap *stateMap, const unsigned int *refStateBits, unsigned int *stateBitsOut);
@@ -1281,7 +1281,7 @@ Material *Material_CreateLayered(const char *name, const Material **layerMtl, un
 bool Material_HasNormalMap(const Material *mtl);
 unsigned int Material_AppendTechniqueSetName(char *name, unsigned int nameLen, const char *append, char lyrToken);
 const LayeredTechniqueSetName *Material_GetLayeredTechniqueSetName(const char *techSetName);
-void Material_SetGameFlags;
+void Material_SetGameFlags(Material* material, const MaterialRaw* mtlRaw);
 Material *Material_LoadRaw(const MaterialRaw *mtlRaw, unsigned int materialType, const char *matname, int imageTrack);
 void Material_GetInfo(Material *handle, MaterialInfo *matInfo);
 void Material_GetVertexShaderName(char *dest, const MaterialPass *pass, int destsize);
@@ -1565,8 +1565,8 @@ char R_CheckShadowMapVolume(const vec3_t *position, unsigned int volumeIdx);
 int R_CheckWorldFogModifierVolumes(vec3_t *position, unsigned int bankMask);
 void R_UpdateWorldFrameFog(refdef_t *refdef);
 int R_CheckExposureVolumes(vec3_t *position, float *feather);
-void R_UpdateExposureValue;
-void R_SetExposure;
+void R_UpdateExposureValue(refdef_t* refdef);
+void R_SetExposure(GfxViewInfo* viewInfo, const refdef_t* refdef);
 void R_InitModifierVolumes(float *a1, vec3_t *a2, refdef_t *refdef);
 void R_SetDepthOfField(GfxViewInfo *viewInfo, const GfxSceneParms *sceneParms);
 void R_SetDoubleVision(GfxViewInfo *viewInfo, const GfxSceneParms *sceneParms);
@@ -1746,8 +1746,7 @@ char __cdecl R_AddSpotShadowsForLight(GfxViewInfo *viewInfo, GfxLight *light, un
 //t6/code/src_noserver/gfx_d3d/r_sprite.cpp
 void R_BuildQuadStampCodeMeshVerts(Material *material, const vec3_t *viewAxis, const vec3_t *origin, const vec3_t *left, const vec3_t *up, const unsigned __int8 *rgbaColor, float s0, float t0, float s1, float t1);
 void R_GenerateQuadStampCodeMeshVerts(Material *material, const vec3_t *viewAngles, const vec3_t *origin, float worldRadius, const unsigned __int8 *rgbaColor, float frameFrac);
-_DWORD *really_fast_sincos(_DWORD *result, _DWORD *a2, __m128d a3);
-void R_GenerateQuadStampCodeMeshVertsArray(int a1, float material, Material *a3, renderQuad_t *quads, int numQuads, vec3_t *viewAxis, const unsigned __int8 *rgbaColor, bool keepAspectRatio);
+void R_GenerateQuadStampCodeMeshVertsArray(Material *material, renderQuad_t *quads, int numQuads, vec3_t *viewAxis);
 
 //t6/code/src_noserver/gfx_d3d/r_state.cpp
 void R_ChangeDepthHackNearClip(GfxCmdBufSourceState *source, unsigned int depthHackFlags);

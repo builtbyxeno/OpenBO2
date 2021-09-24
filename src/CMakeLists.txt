@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 include_directories(code/src_noserver)
 include_directories(code/nvapi)
+link_directories(code/nvapi/x86)
 
 add_executable(t6mp WIN32
 		code/src_noserver/aim_assist/aim_assist.cpp
@@ -898,6 +899,10 @@ add_executable(t6mp WIN32
 		code/src_noserver/zlib/zlib.h
 		code/src_noserver/zlib/zutil.cpp
 		code/src_noserver/zlib/zutil.h
+		code/src_noserver/vars.h
+		code/src_noserver/vars.cpp
+		code/src_noserver/win32/resource.h
+		code/src_noserver/win32/cod.rc
 )
 
 target_precompile_headers(t6mp

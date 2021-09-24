@@ -1,5 +1,4 @@
 #include "types.h"
-#include "functions.h"
 
 /*
 ==============
@@ -383,7 +382,7 @@ void Live_Base_PumpForController(dediUserData_t *a1, ControllerIndex_t a2, const
 Live_Base_Pump
 ==============
 */
-void Live_Base_Pump(ControllerIndex_t a1, dediUserData_t *a2)
+void Live_Base_Pump()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

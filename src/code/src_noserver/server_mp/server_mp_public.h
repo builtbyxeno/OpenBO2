@@ -131,7 +131,6 @@ void SV_SendServerCommand(client_t *cl, svscmd_type type, const char *fmt, ...);
 client_t *SV_FindClientByAddress(netadr_t from, int qport);
 void SVC_Status(netadr_t from);
 char SVC_Ping(netadr_t from, msg_t *payload);
-char SVC_Status(netadr_t from);
 char SVC_StatusScoreBoard(const char *a1, netadr_t from);
 char SVC_ClientUIDs(netadr_t from);
 void SV_ConnectionlessPacket(char *a1, netadr_t from, msg_t *msg);
@@ -163,7 +162,7 @@ void SV_WaitServer();
 void SV_FrameInternal(ControllerIndex_t controllerIndex, int msec);
 int SV_Frame(ControllerIndex_t controllerIndex, int msec);
 void SV_UpdateBots();
-void __noreturn SV_ServerThread(unsigned int threadContext);
+void SV_ServerThread(unsigned int threadContext);
 void SV_InitServerThread();
 
 //t6/code/src_noserver/server_mp/sv_main_pc_mp.cpp

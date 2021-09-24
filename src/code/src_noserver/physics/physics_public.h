@@ -103,7 +103,7 @@ PhysPreset *PhysPresetLoadFile(fsMode_t a1, const char *name, void *(*Alloc)(int
 PhysPreset *PhysPresetPrecache(const char *name, void *(*Alloc)(int));
 PhysPreset *PhysPreset_Register_FastFile(const char *name);
 PhysPreset *PhysPreset_Register_LoadObj(const char *name);
-PhysPreset *PhysPreset_Register();
+PhysPreset *PhysPreset_Register(const char* name);
 
 //t6/code/src_noserver/physics/phys_auto_rigid_body.cpp
 // user_rigid_body *auto_rigid_body::ent_has_auto_rigid_body(const centity_t *cent);

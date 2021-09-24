@@ -1,5 +1,9 @@
 #include "types.h"
-#include "functions.h"
+#include "vars.h"
+
+static clientActive_t* clients;
+static clientConnection_t* clientConnections;
+static voiceCommunication_t cl_voiceCommunication[MAX_LOCAL_CLIENTS];
 
 /*
 ==============

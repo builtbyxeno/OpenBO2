@@ -1,5 +1,4 @@
 #include "types.h"
-#include "functions.h"
 
 /*
 ==============
@@ -60,7 +59,7 @@ PhysPreset *PhysPreset_Register_LoadObj(const char *name)
 PhysPreset_Register
 ==============
 */
-PhysPreset *PhysPreset_Register()
+PhysPreset *PhysPreset_Register(const char* name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

@@ -1,12 +1,15 @@
 #include "types.h"
-#include "functions.h"
+#include "vars.h"
+#include <qcommon/qcommon_public.h>
+
+UiContext uiInfoArray;
 
 /*
 ==============
 UI_UIContext_GetInfo
 ==============
 */
-UiContext *UI_UIContext_GetInfo(UIContextIndex_t contextIndex)
+uiInfo_s* UI_UIContext_GetInfo(UIContextIndex_t contextIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -17,10 +20,9 @@ UiContext *UI_UIContext_GetInfo(UIContextIndex_t contextIndex)
 UI_GetInfo
 ==============
 */
-UiContext *UI_GetInfo(LocalClientNum_t localClientNum)
+UiContext* UI_GetInfo(LocalClientNum_t localClientNum)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	return &uiInfoArray;
 }
 
 /*
@@ -790,7 +792,10 @@ UI_OpenErrorPopup
 */
 void UI_OpenErrorPopup()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	const char* String;
+	String = Dvar_GetString(ui_errorMessage);
+	if (strlen(String))
+		I_stricmp(String, ";");
 }
 
 /*

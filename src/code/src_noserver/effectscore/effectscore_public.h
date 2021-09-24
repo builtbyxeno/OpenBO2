@@ -265,7 +265,7 @@ bool FX_ParseSound(unsigned __int8 a1, const char **parse, FxEditorElemDef *edEl
 const FxEffectDef *FX_LoadFailed(const char *name);
 const FxEffectDef *FX_Load(const char *name);
 const FxEffectDef *FX_Register_LoadObj(bool *a1, const char *a2, const char *name);
-const FxEffectDef *FX_Register();
+const FxEffectDef *FX_Register(const char* name);
 void FX_RegisterDefaultEffect();
 bool FX_RegisterAsset_EffectDef(const char *name, FxElemVisuals *visuals);
 char FX_ParseFxOnImpact(const char **parse, FxEditorElemDef *edElemDef);
@@ -273,7 +273,6 @@ char FX_ParseFxOnDeath(const char **parse, FxEditorElemDef *edElemDef);
 char FX_ParseEmission(const char **parse, FxEditorElemDef *edElemDef);
 char FX_ParseAttachment(const char **parse, FxEditorElemDef *edElemDef);
 bool FX_ParseRunner(unsigned __int8 a1, const char **parse, FxEditorElemDef *edElemDef);
-unsigned __int8 *Hunk_AllocPhysPresetPrecache(int size);
 
 //t6/code/src_noserver/effectscore/fx_marks.cpp
 void TRACK_fx_marks();

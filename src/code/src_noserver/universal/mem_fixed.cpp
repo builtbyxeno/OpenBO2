@@ -1,5 +1,4 @@
 #include "types.h"
-#include "functions.h"
 
 /*
 ==============
@@ -37,7 +36,7 @@ void Hunk_FixedDestroy(HunkUser *_user)
 Hunk_FixedAlloc
 ==============
 */
-const char *Hunk_FixedAlloc(HunkUser *_user)
+void *Hunk_FixedAlloc(HunkUser *_user, int size, int alignment, const char* name)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;

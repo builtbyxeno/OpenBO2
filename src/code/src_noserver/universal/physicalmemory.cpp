@@ -1,5 +1,4 @@
 #include "types.h"
-#include "functions.h"
 
 /*
 ==============
@@ -16,7 +15,7 @@ void PMem_InitPhysicalMemory(PhysicalMemory *pmem, const char *name, void *memor
 PMem_Init
 ==============
 */
-void PMem_Init(char *a1)
+void PMem_Init()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

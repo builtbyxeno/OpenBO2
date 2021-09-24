@@ -1,5 +1,34 @@
 #include "types.h"
-#include "functions.h"
+#include "vars.h"
+#include <csetjmp>
+#include <time.h>
+#include <client/client_public.h>
+#include <win32/win32_public.h>
+#include <qcommon/qcommon_public.h>
+#include <ui_mp/ui_mp_public.h>
+#include <ui/ui_public.h>
+#include <qcommon/cmd.h>
+#include <database/database_public.h>
+#include <gfx_d3d/gfx_d3d_public.h>
+
+int logfile;
+
+static char com_consoleBuffer[100][256];
+int com_consoleBufferCurLine;
+char* rd_buffer;
+unsigned int rd_buffersize;
+void(__cdecl* rd_flush)(char*);
+
+int com_frameNumber;
+int com_lastFrameIndex;
+int com_frameTime;
+
+char com_errorMessage[4096];
+
+int com_consoleLogOpenFailed;
+int opening_qconsole;
+
+int com_errorPrintsCount;
 
 /*
 ==============
@@ -18,7 +47,14 @@ Com_NTPSync_f
 */
 void Com_NTPSync_f()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (Cmd_Argc() == 1)
+	{
+		NTP_Sync("10.150.2.138");
+	}
+	else
+	{
+		NTP_Sync(Cmd_Argv(1));
+	}
 }
 
 /*
@@ -28,8 +64,26 @@ Com_IsRunningMenuLevel
 */
 bool Com_IsRunningMenuLevel(const char *name)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	if (!name)
+	{
+		if (!sv_mapname)
+		{
+			return 0;
+		}
+		name = Dvar_GetString(sv_mapname);
+	}
+
+	if (!Dvar_GetBool(com_sv_running))
+	{
+		return 0;
+	}
+
+	if (I_strnicmp(name, "menu_", 5))
+	{
+		return I_strcmp(name, "ui") == 0;
+	}
+
+	return 1;
 }
 
 /*
@@ -39,8 +93,9 @@ Com_IsMenuLevel
 */
 char Com_IsMenuLevel(const char *name)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	if (!name)
+		return DB_IsZoneTypeLoaded(0x2000000);
+	return !I_strcmp(name, "ui_mp") || !I_strcmp(name, "ui_zm");
 }
 
 /*
@@ -50,7 +105,16 @@ Com_BeginRedirect
 */
 void Com_BeginRedirect(char *buffer, unsigned int buffersize, void (*flush)(char *))
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (buffer && buffersize)
+	{
+		if (flush)
+		{
+			rd_buffer = buffer;
+			rd_buffersize = buffersize;
+			rd_flush = flush;
+			*buffer = 0;
+		}
+	}
 }
 
 /*
@@ -60,7 +124,13 @@ Com_EndRedirect
 */
 void Com_EndRedirect()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (rd_flush)
+	{
+		rd_flush(rd_buffer);
+	}
+	rd_buffer = NULL;
+	rd_buffersize = 0;
+	rd_flush = NULL;
 }
 
 /*
@@ -70,7 +140,27 @@ Com_OpenLogFile
 */
 void Com_OpenLogFile()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	__int64 aclock;
+	tm* newtime;
+
+	if (Sys_IsMainThread() && !opening_qconsole)
+	{
+		opening_qconsole = 1;
+		_time64(&aclock);
+		newtime = localtime(&aclock);
+		if (log_append && Dvar_GetBool(log_append))
+		{
+			logfile = FS_FOpenFileAppend("console_mp.log");
+		}
+		else
+		{
+			logfile = FS_FOpenTextFileWrite("console_mp.log");
+		}
+
+		com_consoleLogOpenFailed = logfile == 0;
+		Com_Printf(CON_CHANNEL_SYSTEM, "Build %d\nlogfile opened on %s\n", Com_GetBuildNumber(), asctime(newtime));
+		opening_qconsole = 0;
+	}
 }
 
 /*
@@ -90,8 +180,66 @@ Com_PrintMessage
 */
 void Com_PrintMessage(int channel, const char *msg, int error)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (channel >= CON_FIRST_DEBUG_CHANNEL && !Con_IsChannelVisible(CON_DEST_CONSOLE, channel, 0) && error != 2 && error != 3)
+	{
+		return;
+	}
+
+	Sys_EnterCriticalSection(CRITSECT_CONSOLE);
+	if (strlen(msg) + 1 <= 256)
+	{
+		strcpy(com_consoleBuffer[com_consoleBufferCurLine], msg);
+	}
+	else
+	{
+		strncpy(com_consoleBuffer[com_consoleBufferCurLine], (char*)msg, sizeof(com_consoleBuffer[com_consoleBufferCurLine]) - 1);
+		com_consoleBuffer[com_consoleBufferCurLine][255] = 0;
+	}
+
+	com_consoleBufferCurLine++;
+	if (com_consoleBufferCurLine >= 100)
+	{
+		com_consoleBufferCurLine = 0;
+	}
+
+	Sys_LeaveCriticalSection(CRITSECT_CONSOLE);
+	if (rd_buffer)
+	{
+		if (channel != CON_CHANNEL_LOGFILEONLY)
+		{
+			Sys_EnterCriticalSection(CRITSECT_RD_BUFFER);
+			if (strlen(rd_buffer) + strlen(msg) > rd_buffersize - 1)
+			{
+				rd_flush(rd_buffer);
+				*rd_buffer = 0;
+			}
+			I_strncat(rd_buffer, rd_buffersize, msg);
+			Sys_LeaveCriticalSection(CRITSECT_RD_BUFFER);
+		}
+	}
+	else
+	{
+		if (msg[0] == '^' && msg[1] != '\0')
+		{
+			msg += 2;
+		}
+
+		if (channel != CON_CHANNEL_LOGFILEONLY
+			&& (!Dvar_GetBool(com_filter_output) || Con_IsChannelVisible(CON_DEST_CONSOLE, channel, 3)))
+		{
+			// echo to dedicated console and early console
+			Sys_Print(msg);
+		}
+
+		// logfile
+		if (channel != CON_CHANNEL_CONSOLEONLY && com_logfile && Dvar_GetInt(com_logfile))
+		{
+			Com_LogPrintMessage(channel, msg);
+		}
+	}
 }
+
+#define MAXPRINTMSG 4096
 
 /*
 ==============
@@ -100,7 +248,16 @@ Com_Printf
 */
 void Com_Printf(int channel, const char *fmt, ...)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	char msg[MAXPRINTMSG];
+	va_list va;
+
+	va_start(va, fmt);
+	if (channel < 31 || Con_IsChannelVisible(CON_DEST_CONSOLE, channel, 0))
+	{
+		vsprintf(msg, fmt, va);
+		Com_PrintMessage(channel, msg, 0);
+	}
+	va_end(va);
 }
 
 /*
@@ -110,7 +267,22 @@ Com_DPrintf
 */
 void Com_DPrintf(int channel, const char *fmt, ...)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	char msg[MAXPRINTMSG];
+	va_list va;
+
+	if (!com_developer || !Dvar_GetBool(com_developer))
+	{
+		return;         // don't confuse non-developers with techie stuff...
+	}
+
+	if (channel < 31 || Con_IsChannelVisible(CON_DEST_CONSOLE, channel, 0))
+	{
+		va_start(va, fmt);
+		_vsnprintf(msg, sizeof(msg), fmt, va);
+		va_end(va);
+
+		Com_Printf(channel, "%s", msg);
+	}
 }
 
 /*
@@ -120,7 +292,26 @@ Com_PrintError
 */
 void Com_PrintError(int channel, const char *fmt, ...)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	char msg[4096];
+	int offset;
+	va_list va;
+
+	va_start(va, fmt);
+	if (I_stristr(fmt, "error"))
+	{
+		I_strncpyz(msg, "^1", sizeof(msg));
+	}
+	else
+	{
+		I_strncpyz(msg, "^1Error: ", sizeof(msg));
+	}
+
+	offset = strlen(msg);
+	_vsnprintf(&msg[offset], sizeof(msg) - offset, fmt, va);
+	va_end(va);
+
+	++com_errorPrintsCount;
+	Com_PrintMessage(channel, msg, 3);
 }
 
 /*
@@ -130,7 +321,17 @@ Com_PrintWarning
 */
 void Com_PrintWarning(int channel, const char *fmt, ...)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	char msg[4096];
+	int offset;
+	va_list va;
+
+	va_start(va, fmt);
+	I_strncpyz(msg, "^3", sizeof(msg));
+	offset = strlen(msg);
+	_vsnprintf(&msg[offset], sizeof(msg) - offset, fmt, va);
+	va_end(va);
+
+	Com_PrintMessage(channel, msg, 2);
 }
 
 /*
@@ -140,7 +341,9 @@ Com_InitDynamicRender
 */
 void Com_InitDynamicRender()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	bool IsZoneTypeLoaded = DB_IsZoneTypeLoaded(0x2000000);
+	R_ExtraCam_Init(Com_IsMenuLevel(NULL) != 0);
+	R_UI3D_OnetimeInit(0x80u, 0x80u, 0, Com_IsMenuLevel(NULL) != 0, 0);
 }
 
 /*
@@ -172,6 +375,25 @@ Com_SetTimeScale
 void Com_SetTimeScale(float timescale)
 {
 	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+Com_StartHunkUsers
+==============
+*/
+void Com_StartHunkUsers()
+{
+	if (setjmp((int*)Sys_GetValue(THREAD_VALUE_COM_ERROR)))
+	{
+		Sys_Error("Error during initialization:\n%s\n", com_errorMessage);
+		return;
+	}
+
+	Com_AssetLoadUI(NULL);
+	UI_SetActiveMenu(Com_LocalClients_GetPrimary(), UI_GetMenuScreen());
+	IN_Frame();
+	Com_EventLoop();
 }
 
 /*
@@ -873,7 +1095,28 @@ Com_Frame
 */
 void Com_Frame()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (!setjmp((int*)Sys_GetValue(THREAD_VALUE_COM_ERROR)))
+	{
+		Com_CheckSyncFrame();
+		Com_Frame_Try_Block_Function();
+		++com_frameNumber;
+	}
+
+	Sys_EnterCriticalSection(CRITSECT_COM_ERROR);
+	if (com_errorEntered)
+	{
+		Com_ErrorCleanup();
+		Sys_LeaveCriticalSection(CRITSECT_COM_ERROR);
+		if (!DEDICATED)
+		{
+			CL_InitRenderer();
+			Com_StartHunkUsers();
+		}
+	}
+	else
+	{
+		Sys_LeaveCriticalSection(CRITSECT_COM_ERROR);
+	}
 }
 
 /*

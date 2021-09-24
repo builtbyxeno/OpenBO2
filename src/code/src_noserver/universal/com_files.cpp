@@ -1,5 +1,4 @@
 #include "types.h"
-#include "functions.h"
 #include "universal_public.h"
 
 /*
@@ -263,7 +262,7 @@ int FS_FOpenFileWriteCurrentThread(FsThread a1)
 FS_FOpenTextFileWrite
 ==============
 */
-int FS_FOpenTextFileWrite(qfile_gus filename, const char *a2)
+int FS_FOpenTextFileWrite(const char* filename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -274,7 +273,7 @@ int FS_FOpenTextFileWrite(qfile_gus filename, const char *a2)
 FS_FOpenFileAppend
 ==============
 */
-int FS_FOpenFileAppend(qfile_gus filename, const char *a2)
+int FS_FOpenFileAppend(const char* filename)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
