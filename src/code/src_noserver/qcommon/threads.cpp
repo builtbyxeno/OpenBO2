@@ -472,6 +472,17 @@ BOOL Sys_IsServerThread()
 
 /*
 ==============
+Sys_IsDatabaseThread
+==============
+*/
+BOOL Sys_IsDatabaseThread()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
 Sys_DatabaseCompleted
 ==============
 */

@@ -10,6 +10,7 @@
 #include <qcommon/cmd.h>
 #include <database/database_public.h>
 #include <gfx_d3d/gfx_d3d_public.h>
+#include <client_mp/client_mp_public.h>
 
 int logfile;
 
@@ -105,6 +106,9 @@ Com_AssetLoadUI
 */
 void Com_AssetLoadUI(const char* name)
 {
+	Com_LoadCommonFastFile();
+	Com_LoadUiFastFile();
+
 }
 
 /*
@@ -805,6 +809,23 @@ Com_LoadCommonFastFile
 void Com_LoadCommonFastFile()
 {
 	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+Com_LoadUiFastFile
+==============
+*/
+void Com_LoadUiFastFile()
+{
+	void* webmAlloc;
+
+	Com_UnloadLevelFastFiles();
+	CL_AllocatePerLocalClientMemory(UI_FAST_FILE_NAME, 0);
+	PMem_BeginAlloc("WebM Playback", 1, TRACK_UI);
+	webmAlloc = _PMem_AllocNamed(20971520, 4, 4, 1, "WebM Playback", TRACK_UI);
+	//WebM_Init(webmAlloc, 0x1400000);
+	PMem_EndAlloc("WebM Playback", 1);
 }
 
 /*

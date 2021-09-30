@@ -3575,3 +3575,7 @@ dvar_t* party_maxplayers_wagermatch;
 int com_errorEntered;
 
 clientUIActive_t clientUIActives[1];
+
+char UI_FAST_FILE_NAME[24];
+
+int com_quitInProgress;

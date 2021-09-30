@@ -3586,3 +3586,7 @@ extern int com_errorEntered;
 extern Console con;
 
 extern clientUIActive_t clientUIActives[1];
+
+extern char UI_FAST_FILE_NAME[24];
+
+extern int com_quitInProgress;

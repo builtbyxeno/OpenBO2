@@ -9111,7 +9111,7 @@ enum fileshareState_e
   FILESHARE_STATE_VALID = 0x6,
 };
 
-enum $0FEF2AE19F63F5AC2B5BA33E1174B5C1
+enum
 {
   PHYS_ALLOC_LOW = 0x0,
   PHYS_ALLOC_HIGH = 0x1,
@@ -40239,7 +40239,7 @@ struct PhysicalMemoryPrim
 struct PhysicalMemory
 {
   const char *name;
-  unsigned __int8 *buf;
+  unsigned char* buf;
   PhysicalMemoryPrim prim[2];
   unsigned int size;
 };

@@ -362,7 +362,7 @@ int __cdecl UI_SetActiveMenu(LocalClientNum_t localClientNum, int menu)
         case UIMENU_LEAGUE_PARTY:
             UI_SetupLobby(localClientNum, 1, "LeaguePlayPartyLobby", GAMEMODE_LEAGUE_MATCH, party_maxplayers_partylobby, party_maxplayers_leaguematch, 1);
         case UIMENU_WAGER_PARTY:
-            UI_SetupLobby(localClientNum, 1, "PlayerMatchWagerLobby", GAMEMODE_WAGER_MATCH, party_maxplayers_wagerpartylobby, party_maxlocalplayers_wagermatch, 1);
+            UI_SetupLobby(localClientNum, 1, "WagerPartyLobby", GAMEMODE_WAGER_MATCH, party_maxplayers_wagerpartylobby, party_maxlocalplayers_wagermatch, 1);
             return 1;
         case UIMENU_GAMELOBBY:
             UI_SetupLobby(localClientNum, 0, "PublicGameLobby", GAMEMODE_PUBLIC_MATCH, 0, party_maxlocalplayers_playermatch, 1);
