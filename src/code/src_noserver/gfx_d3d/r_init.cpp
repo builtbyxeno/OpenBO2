@@ -1,4 +1,9 @@
 #include "types.h"
+#include "vars.h"
+#include <gfx_d3d/gfx_d3d_public.h>
+#include <qcommon/qcommon_public.h>
+
+int g_destroy_window;
 
 /*
 ==============
@@ -120,7 +125,7 @@ R_SetIsMultiplayer
 */
 void R_SetIsMultiplayer(bool isMp)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	r_glob.isMultiplayer = isMp;
 }
 
 /*
@@ -130,7 +135,7 @@ R_SetIsZombie
 */
 void R_SetIsZombie(bool isZM)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	r_glob.isZombie = isZM;
 }
 
 /*
@@ -140,7 +145,8 @@ R_ShutdownStreams
 */
 void R_ShutdownStreams()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (dx.device)
+		R_ClearAllStreamSources(&gfxCmdBufState.prim);
 }
 
 /*
@@ -150,7 +156,10 @@ R_Shutdown
 */
 void R_Shutdown(int destroyWindow)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	g_destroy_window = destroyWindow;
+	Sys_SetD3DShutdownEvent();
+	while (Sys_QueryD3DShutdownEvent())
+		NET_Sleep(0);
 }
 
 /*

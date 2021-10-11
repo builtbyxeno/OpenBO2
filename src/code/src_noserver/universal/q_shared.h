@@ -62,7 +62,10 @@ Com_BitSetAssert
 */
 void Com_BitSetAssert(unsigned int *array, int bitNum, int size)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	assert(array);
+
+	assertIn(bitNum, size * 8);
+	array[bitNum >> 5] |= 1 << (bitNum & 0x1F);
 }
 
 /*
@@ -72,7 +75,9 @@ Com_BitClearAssert
 */
 void Com_BitClearAssert(unsigned int *array, int bitNum, int size)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	assert(array);
+	assertIn(bitNum, size * 8);
+	array[bitNum >> 5] &= ~(1 << (bitNum & 0x1F));
 }
 
 /*
@@ -82,8 +87,20 @@ Com_HashString
 */
 int Com_HashString(const char *fname, int len)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int hash;
+	int i;
+
+	if (!fname)
+	{
+		return 0;
+	}
+
+	hash = 5381;
+	for (i = 0; fname[i] && (!len || i < len); ++i)
+	{
+		hash = tolower(fname[i]) + 33 * hash;
+	}
+	return hash;
 }
 
 /*
@@ -103,8 +120,7 @@ Com_HashLowerString
 */
 int Com_HashLowerString(const char *fname)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return Com_HashString(fname, 0);
 }
 
 /*
@@ -114,7 +130,17 @@ Com_HashCatString
 */
 int Com_HashCatString(int hash, const char *fname, int len)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int i;
+
+	if (!fname)
+	{
+		return hash;
+	}
+
+	for (i = 0; fname[i] && (!len || i < len); ++i)
+	{
+		hash = tolower(fname[i]) + 33 * hash;
+	}
+	return hash;
 }
 

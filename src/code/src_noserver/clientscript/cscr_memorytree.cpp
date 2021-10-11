@@ -106,7 +106,7 @@ void MT_Init(void)
 MT_GetSize
 ==============
 */
-int MT_GetSize(scriptInstance_t inst, int numBytes)
+int MT_GetSize(int numBytes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -117,9 +117,10 @@ int MT_GetSize(scriptInstance_t inst, int numBytes)
 MT_AllocIndex
 ==============
 */
-void MT_AllocIndex(int,int)
+unsigned short MT_AllocIndex(int numBytes, int type)
 {
 	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
 }
 
 /*
@@ -127,7 +128,7 @@ void MT_AllocIndex(int,int)
 MT_FreeIndex
 ==============
 */
-void MT_FreeIndex(scriptInstance_t inst, unsigned int nodeNum, int numBytes)
+void MT_FreeIndex(unsigned int nodeNum, int numBytes)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

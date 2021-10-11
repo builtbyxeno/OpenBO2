@@ -68,7 +68,7 @@
 #define INVALID_CLIENT_NUMBER -1
 
 #define IsPowerOf2(x) !((x) * ((x) - 1))
-#define IsFastFileLoad() useFastFile->current.enabled
+#define IsFastFileLoad() Dvar_GetBool(useFastFile)
 #define IsUsingMods() (fs_gameDirVar ** fs_gameDirVar->current.string[0])
 
 #define assert(cond) if (!(cond)) { __debugbreak(); }
@@ -109,6 +109,7 @@
 #pragma warning(disable : 4702) // unreachable code
 #pragma warning(disable : 4711) // selected for automatic inline expansion
 #pragma warning(disable : 4220) // varargs matches remaining parameters
+#pragma warning(disable : 26812)
 
 //#define WIN32_LEAN_AND_MEAN
 #include <WinSock2.h>
@@ -18403,27 +18404,21 @@ struct MenuCell
   char *stringValue;
 };
 
-struct $91D1B2149FAC90180ECB9AC277F76009
-{
-  float x;
-  float y;
-  float z;
-  float w;
-};
-
-struct $43F634250C0E94E2A09AB0840E4770D1
-{
-  float r;
-  float g;
-  float b;
-  float a;
-};
-
 union vec4_t
 {
   float v[4];
-  $91D1B2149FAC90180ECB9AC277F76009 __s1;
-  $43F634250C0E94E2A09AB0840E4770D1 __s2;
+  struct {
+      float x;
+      float y;
+      float z;
+      float w;
+  };
+  struct {
+      float r;
+      float g;
+      float b;
+      float a;
+  };
 };
 
 union DvarValue
@@ -18491,17 +18486,14 @@ union operandInternalDataUnion
   const dvar_t *dvar;
 };
 
-struct $393C16A032292777F0C3725FFB2C0008
-{
-  float x;
-  float y;
-  float z;
-};
-
 union vec3_t
 {
-  $393C16A032292777F0C3725FFB2C0008 __s0;
-  float v[3];
+    float v[3];
+    struct {
+        float x;
+        float y;
+        float z;
+    };
 };
 
 struct cplane_s
@@ -19918,16 +19910,13 @@ struct ItemKeyHandler
   ItemKeyHandler *next;
 };
 
-struct $38C3DEC81229B66F67FB6D350D75FF5A
-{
-  float x;
-  float y;
-};
-
 union vec2_t
 {
   float v[2];
-  $38C3DEC81229B66F67FB6D350D75FF5A __s1;
+  struct {
+      float x;
+      float y;
+  };
 };
 
 union focusDefData_t
@@ -25324,8 +25313,8 @@ struct CmdArgs
 
 struct scrStringDebugGlob_t
 {
-  volatile int refCount[65536];
-  volatile int totalRefCount;
+  volatile long refCount[65536];
+  volatile long totalRefCount;
   int ignoreLeaks;
 };
 
@@ -25626,8 +25615,8 @@ public:
 
 struct FastCriticalSection
 {
-  volatile int readCount;
-  volatile int writeCount;
+  volatile long readCount;
+  volatile long writeCount;
 };
 
 class /*__cppobj*/ __declspec(align(8)) bdTeamMember : bdTaskResult
@@ -49748,7 +49737,16 @@ public:
 
 struct __declspec(align(4)) RefString
 {
-    volatile int data;
+    union
+    {
+        struct
+        {
+            unsigned __int32 refCount : 16;
+            unsigned __int32 user : 8;
+            unsigned __int32 byteLen : 8;
+        };
+        volatile long data;
+    };
     char str[1];
 };
 

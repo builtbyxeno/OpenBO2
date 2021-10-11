@@ -3581,6 +3581,8 @@ extern dvar_t* party_maxplayers_wagerpartylobby;
 extern dvar_t* party_maxplayers_privatematch;
 extern dvar_t* party_maxplayers_wagermatch;
 
+extern dvar_t* s_dvarHashTable[1024];
+
 extern int com_errorEntered;
 
 extern Console con;
@@ -3590,3 +3592,11 @@ extern clientUIActive_t clientUIActives[1];
 extern char UI_FAST_FILE_NAME[24];
 
 extern int com_quitInProgress;
+
+extern GfxGlobals r_glob;
+extern DxGlobals dx;
+extern GfxCmdBufState gfxCmdBufState;
+
+extern qboolean g_dvar_modifiedFlags;
+
+extern scrMemTreePub_t gScrMemTreePub;
