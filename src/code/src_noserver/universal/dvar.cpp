@@ -11,7 +11,6 @@ static bool s_isDvarSystemActive;
 static dvarCallBack_t s_dvarCallbackPool[64];
 static int s_nextFreeCallback;
 FastCriticalSection g_dvarCritSect;
-int g_dvarCount;
 dvar_t s_dvarPool[4320];
 bool s_areDvarsSorted;
 bool s_canSetConfigDvars;

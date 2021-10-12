@@ -253,21 +253,21 @@ void Scr_GetGenericField(scriptInstance_t inst, unsigned __int8 *b, fieldtype_t 
 
 //t6/code/src_noserver/clientscript/cscr_memorytree.cpp
 void TRACK_scr_memorytree();
-void MT_GetSubTreeSize(scriptInstance_t inst, int nodeNum);
+int MT_GetSubTreeSize(int nodeNum);
 void MT_DumpTree(void);
 int Scr_GetStringUsage();
-void MT_InitBits(scriptInstance_t inst);
-void MT_GetScore(scriptInstance_t inst, int newNode, int size);
-void MT_AddMemoryNode(scriptInstance_t inst);
-void MT_RemoveMemoryNode(scriptInstance_t inst, int oldNode, int size);
-void MT_RemoveHeadMemoryNode(scriptInstance_t inst, int size);
-void MT_Init(void);
+void MT_InitBits();
+int MT_GetScore(int num);
+void MT_AddMemoryNode(int newNode, int size);
+bool MT_RemoveMemoryNode(int oldNode, int size);
+void MT_RemoveHeadMemoryNode(int size);
+void MT_Init();
 int MT_GetSize(int numBytes);
 unsigned short MT_AllocIndex(int numBytes, int type);
 void MT_FreeIndex(unsigned int nodeNum, int numBytes);
-void MT_Alloc(int,int);
-void MT_Free(void *,int);
-void MT_Realloc(int,int);
+void* MT_Alloc(int numBytes,int type);
+void MT_Free(void *p, int numBytes);
+qboolean MT_Realloc(int oldNumBytes, int newNumbytes);
 
 //t6/code/src_noserver/clientscript/cscr_obj_compiler.cpp
 void Scr_StubErrorReport(scriptInstance_t inst);

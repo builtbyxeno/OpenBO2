@@ -69,7 +69,7 @@
 
 #define IsPowerOf2(x) !((x) * ((x) - 1))
 #define IsFastFileLoad() Dvar_GetBool(useFastFile)
-#define IsUsingMods() (fs_gameDirVar ** fs_gameDirVar->current.string[0])
+#define IsUsingMods() (fs_gameDirVar && fs_gameDirVar->current.string[0])
 
 #define assert(cond) if (!(cond)) { __debugbreak(); }
 #define assertMsg(cond, ...)  if (!(cond)) { __debugbreak(); }
@@ -118,6 +118,8 @@
 #include <cstdio>
 #include <Psapi.h>
 #include <xmmintrin.h>
+#include <time.h>
+#include <Shlobj.h>
 #define D3D_DEBUG_INFO
 #include <d3d9.h>
 #include <d3d11.h>
@@ -138,6 +140,7 @@
 typedef int qboolean;
 typedef int psize_int;
 typedef unsigned int uint;
+typedef int fileHandle_t;
 
 struct IRecordInfo;
 struct bdCommonAddr;
@@ -13818,24 +13821,6 @@ enum ADDRESS_MODE
   AddrModeFlat = 0x3,
 };
 
-enum _SPACTION
-{
-  SPACTION_NONE = 0x0,
-  SPACTION_MOVING = 0x1,
-  SPACTION_COPYING = 0x2,
-  SPACTION_RECYCLING = 0x3,
-  SPACTION_APPLYINGATTRIBS = 0x4,
-  SPACTION_DOWNLOADING = 0x5,
-  SPACTION_SEARCHING_INTERNET = 0x6,
-  SPACTION_CALCULATING = 0x7,
-  SPACTION_UPLOADING = 0x8,
-  SPACTION_SEARCHING_FILES = 0x9,
-  SPACTION_DELETING = 0xA,
-  SPACTION_RENAMING = 0xB,
-  SPACTION_FORMATTING = 0xC,
-  SPACTION_COPY_MOVING = 0xD,
-};
-
 enum clientlsg_t
 {
   CLIENT_LSG_DEV = 0x0,
@@ -13854,13 +13839,6 @@ enum WinQuitBehavior
 {
   WIN_IGNORE_QUIT = 0x0,
   WIN_HANDLE_QUIT = 0x1,
-};
-
-enum DEFAULTSAVEFOLDERTYPE
-{
-  DSFT_DETECT = 0x1,
-  DSFT_PRIVATE = 0x2,
-  DSFT_PUBLIC = 0x3,
 };
 
 enum $E0F033F08EE5F4988292F1D8F4F80363
@@ -13882,94 +13860,6 @@ enum IdentityParam
   IDENTITY_ENVIRONMENT = 0x5,
   IDENTITY_PLATFORM = 0x6,
   IDENTITY_PARAM_COUNT = 0x7,
-};
-
-enum OfflineFolderStatus
-{
-  OFS_INACTIVE = 0xFFFFFFFF,
-  OFS_ONLINE = 0x0,
-  OFS_OFFLINE = 0x1,
-  OFS_SERVERBACK = 0x2,
-  OFS_DIRTYCACHE = 0x3,
-};
-
-enum MARKUPLINKTEXT
-{
-  MARKUPLINKTEXT_URL = 0x0,
-  MARKUPLINKTEXT_ID = 0x1,
-  MARKUPLINKTEXT_TEXT = 0x2,
-};
-
-enum MARKUPMESSAGE
-{
-  MARKUPMESSAGE_KEYEXECUTE = 0x0,
-  MARKUPMESSAGE_CLICKEXECUTE = 0x1,
-  MARKUPMESSAGE_WANTFOCUS = 0x2,
-};
-
-enum SHELL_LINK_DATA_FLAGS
-{
-  SLDF_DEFAULT = 0x0,
-  SLDF_HAS_ID_LIST = 0x1,
-  SLDF_HAS_LINK_INFO = 0x2,
-  SLDF_HAS_NAME = 0x4,
-  SLDF_HAS_RELPATH = 0x8,
-  SLDF_HAS_WORKINGDIR = 0x10,
-  SLDF_HAS_ARGS = 0x20,
-  SLDF_HAS_ICONLOCATION = 0x40,
-  SLDF_UNICODE = 0x80,
-  SLDF_FORCE_NO_LINKINFO = 0x100,
-  SLDF_HAS_EXP_SZ = 0x200,
-  SLDF_RUN_IN_SEPARATE = 0x400,
-  SLDF_HAS_LOGO3ID = 0x800,
-  SLDF_HAS_DARWINID = 0x1000,
-  SLDF_RUNAS_USER = 0x2000,
-  SLDF_HAS_EXP_ICON_SZ = 0x4000,
-  SLDF_NO_PIDL_ALIAS = 0x8000,
-  SLDF_FORCE_UNCNAME = 0x10000,
-  SLDF_RUN_WITH_SHIMLAYER = 0x20000,
-  SLDF_RESERVED = 0x80000000,
-};
-
-enum __MIDL_INamespaceWalk_0001
-{
-  NSWF_DEFAULT = 0x0,
-  NSWF_NONE_IMPLIES_ALL = 0x1,
-  NSWF_ONE_IMPLIES_ALL = 0x2,
-  NSWF_DONT_TRAVERSE_LINKS = 0x4,
-  NSWF_DONT_ACCUMULATE_RESULT = 0x8,
-  NSWF_TRAVERSE_STREAM_JUNCTIONS = 0x10,
-  NSWF_FILESYSTEM_ONLY = 0x20,
-  NSWF_SHOW_PROGRESS = 0x40,
-  NSWF_FLAG_VIEWORDER = 0x80,
-  NSWF_IGNORE_AUTOPLAY_HIDA = 0x100,
-  NSWF_ASYNC = 0x200,
-  NSWF_DONT_RESOLVE_LINKS = 0x400,
-  NSWF_ACCUMULATE_FOLDERS = 0x800,
-  NSWF_DONT_SORT = 0x1000,
-  NSWF_USE_TRANSFER_MEDIUM = 0x2000,
-  NSWF_DONT_TRAVERSE_STREAM_JUNCTIONS = 0x4000,
-};
-
-enum CPVIEW
-{
-  CPVIEW_CLASSIC = 0x0,
-  CPVIEW_ALLITEMS = 0x0,
-  CPVIEW_CATEGORY = 0x1,
-  CPVIEW_HOME = 0x1,
-};
-
-enum PKA_FLAGS
-{
-  PKA_SET = 0x0,
-  PKA_APPEND = 0x1,
-  PKA_DELETE = 0x2,
-};
-
-enum _SPTEXT
-{
-  SPTEXT_ACTIONDESCRIPTION = 0x1,
-  SPTEXT_ACTIONDETAIL = 0x2,
 };
 
 enum GamePadStickDir
@@ -14404,12 +14294,6 @@ enum FsThread
   FS_THREAD_SERVER = 0x4,
   FS_THREAD_COUNT = 0x5,
   FS_THREAD_INVALID = 0x6,
-};
-
-enum SHGFP_TYPE
-{
-  SHGFP_TYPE_CURRENT = 0x0,
-  SHGFP_TYPE_DEFAULT = 0x1,
 };
 
 enum FS_ErrorCodes
@@ -40448,7 +40332,7 @@ struct iwd_t
   unsigned __int8 *handle;
   int checksum;
   int pure_checksum;
-  volatile int hasOpenFile;
+  volatile long hasOpenFile;
   int numFiles;
   unsigned __int8 referenced;
   unsigned int hashSize;

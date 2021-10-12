@@ -653,6 +653,7 @@ add_executable(t6mp WIN32
 		code/src_noserver/qcommon/content.cpp
 		code/src_noserver/qcommon/dobj_management.cpp
 		code/src_noserver/qcommon/dvar_cmds.cpp
+		code/src_noserver/qcommon/com_fileaccess.cpp
 		code/src_noserver/qcommon/files.cpp
 		code/src_noserver/qcommon/gdt_remote.cpp
 		code/src_noserver/qcommon/graph.cpp

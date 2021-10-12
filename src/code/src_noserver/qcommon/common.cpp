@@ -507,7 +507,7 @@ bool Com_StartupProcessSetCommand(int lineIndex, const char *match)
 Com_StartupVariable
 ==============
 */
-void Com_StartupVariable(const char *a1, const char *match)
+void Com_StartupVariable(const char *match)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -517,7 +517,7 @@ void Com_StartupVariable(const char *a1, const char *match)
 Com_AddStartupCommands
 ==============
 */
-void Com_AddStartupCommands(char *a1, const char *a2)
+void Com_AddStartupCommands()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -447,4 +447,4 @@ staticsymbols.txt
 symbols.txt
 CoDMPServer.json
 build/
-src/code/nvapi/
+src/code/nvapi/*

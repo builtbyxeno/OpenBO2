@@ -10,9 +10,9 @@
 #define HASH_STAT_MOVABLE 0x10000
 #define HASH_STAT_FREE 0
 
-HashEntry gScrStringHashTable[49152];
-scrStringDebugGlob_t* gScrStringDebugGlob;
-scrStringDebugGlob_t gScrStringDebugGlobBuff;
+static HashEntry gScrStringHashTable[49152];
+static scrStringDebugGlob_t* gScrStringDebugGlob;
+static scrStringDebugGlob_t gScrStringDebugGlobBuff;
 
 scrStringGlob_t gScrStringGlob =
 {

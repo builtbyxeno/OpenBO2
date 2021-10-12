@@ -3583,6 +3583,8 @@ extern dvar_t* party_maxplayers_wagermatch;
 
 extern dvar_t* s_dvarHashTable[1024];
 
+extern int g_dvarCount;
+
 extern int com_errorEntered;
 
 extern Console con;
@@ -3600,3 +3602,21 @@ extern GfxCmdBufState gfxCmdBufState;
 extern qboolean g_dvar_modifiedFlags;
 
 extern scrMemTreePub_t gScrMemTreePub;
+
+extern cmd_function_s Dvar_ListByCount_f_VAR; // idb
+extern cmd_function_s Dvar_RestoreDvars_VAR; // idb
+extern cmd_function_s Dvar_AddConfigFlag_f_VAR; // idb
+extern cmd_function_s Dvar_RegisterColor_f_VAR; // idb
+extern cmd_function_s Dvar_RegisterFloat_f_VAR; // idb
+extern cmd_function_s Dvar_RegisterInt_f_VAR; // idb
+extern cmd_function_s Dvar_RegisterBool_f_VAR; // idb
+extern cmd_function_s Dvar_Dump_f_VAR; // idb
+extern cmd_function_s Dvar_List_f_VAR; // idb
+extern cmd_function_s Dvar_Reset_f_VAR; // idb
+extern cmd_function_s Dvar_SetToTime_f_VAR; // idb
+extern cmd_function_s Dvar_SetA_f_VAR; // idb
+extern cmd_function_s Dvar_Set_f_VAR; // idb
+extern cmd_function_s Dvar_TogglePrint_f_VAR; // idb
+extern cmd_function_s Dvar_Toggle_f_VAR; // idb
+
+extern int com_fileAccessed;

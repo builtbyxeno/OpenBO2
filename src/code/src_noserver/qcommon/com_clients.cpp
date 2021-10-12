@@ -3,6 +3,7 @@
 #include <win32/win32_public.h>
 #include <cgame/cgame_public.h>
 #include <client/client.h>
+#include "qcommon_public.h"
 
 ClientGameState clientGameStates[1];
 LocalClientNum_t primaryLocalClient = INVALID_LOCAL_CLIENT;
@@ -474,4 +475,3 @@ void Com_LocalClients_CompressClients()
 		}
 	}
 }
-

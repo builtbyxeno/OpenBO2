@@ -1,14 +1,22 @@
 #include "types.h"
+#include "vars.h"
+
+static CmdArgs sv_cmd_args;
+static CmdArgs g_cmd_args[2];
 
 /*
 ==============
 Cmd_Args
 ==============
 */
-CmdArgs *Cmd_Args()
+inline CmdArgs *Cmd_Args()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	CmdArgs* cmd_args;
+
+	cmd_args = (CmdArgs*)Sys_GetValue(THREAD_VALUE_CMD);
+	assert(cmd_args != NULL);
+
+	return cmd_args;
 }
 
 /*
@@ -16,10 +24,13 @@ CmdArgs *Cmd_Args()
 Cmd_Argc
 ==============
 */
-int Cmd_Argc()
+inline int Cmd_Argc()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	CmdArgs* cmd_args;
+
+	cmd_args = Cmd_Args();
+	assertIn(cmd_args->nesting, CMD_MAX_NESTING);
+	return cmd_args->argc[cmd_args->nesting];
 }
 
 /*
@@ -27,10 +38,19 @@ int Cmd_Argc()
 Cmd_Argv
 ==============
 */
-const char *Cmd_Argv(int argIndex)
+inline const char *Cmd_Argv(int argIndex)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	CmdArgs* cmd_args;
+
+	cmd_args = Cmd_Args();
+	assertIn(cmd_args->nesting, CMD_MAX_NESTING);
+	assertMsg((argIndex >= 0), "(argIndex) = %i", argIndex);
+	if (argIndex < cmd_args->argc[cmd_args->nesting])
+	{
+		return cmd_args->argv[cmd_args->nesting][argIndex];
+	}
+
+	return "";
 }
 
 /*
@@ -38,10 +58,10 @@ const char *Cmd_Argv(int argIndex)
 SV_Cmd_Argc
 ==============
 */
-int SV_Cmd_Argc()
+inline int SV_Cmd_Argc()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	assertIn(sv_cmd_args.nesting, CMD_MAX_NESTING);
+	return sv_cmd_args.argc[sv_cmd_args.nesting];
 }
 
 /*
@@ -49,10 +69,16 @@ int SV_Cmd_Argc()
 SV_Cmd_Argv
 ==============
 */
-const char *SV_Cmd_Argv(int argIndex)
+inline const char *SV_Cmd_Argv(int argIndex)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	assertIn(sv_cmd_args.nesting, CMD_MAX_NESTING);
+	assertMsg((argIndex >= 0), "(argIndex) = %i", argIndex);
+	if (argIndex < sv_cmd_args.argc[sv_cmd_args.nesting])
+	{
+		return sv_cmd_args.argv[sv_cmd_args.nesting][argIndex];
+	}
+
+	return "";
 }
 
 /*
@@ -60,9 +86,12 @@ const char *SV_Cmd_Argv(int argIndex)
 Cmd_ItemDef
 ==============
 */
-itemDef_s *Cmd_ItemDef()
+inline itemDef_s *Cmd_ItemDef()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	CmdArgs* cmd_args;
+
+	cmd_args = Cmd_Args();
+	assertIn(cmd_args->nesting, CMD_MAX_NESTING);
+	return cmd_args->itemDef[cmd_args->nesting];
 }
 

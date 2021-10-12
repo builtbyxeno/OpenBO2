@@ -97,6 +97,7 @@ const char unz_copyright[] =
 #ifndef NOUNCRYPT
 #include "crypt.h"
 #endif
+#include <qcommon/qcommon_public.h>
 
 /* ===========================================================================
      Read a byte from a gz_stream; update next_in and avail_in. Return EOF

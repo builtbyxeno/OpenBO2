@@ -3574,6 +3574,8 @@ dvar_t* party_maxplayers_wagermatch;
 
 dvar_t* s_dvarHashTable[1024];
 
+int g_dvarCount;
+
 int com_errorEntered;
 
 clientUIActive_t clientUIActives[1];
@@ -3589,3 +3591,21 @@ GfxCmdBufState gfxCmdBufState;
 qboolean g_dvar_modifiedFlags;
 
 scrMemTreePub_t gScrMemTreePub;
+
+cmd_function_s Dvar_ListByCount_f_VAR;
+cmd_function_s Dvar_RestoreDvars_VAR;
+cmd_function_s Dvar_AddConfigFlag_f_VAR;
+cmd_function_s Dvar_RegisterColor_f_VAR;
+cmd_function_s Dvar_RegisterFloat_f_VAR;
+cmd_function_s Dvar_RegisterInt_f_VAR;
+cmd_function_s Dvar_RegisterBool_f_VAR;
+cmd_function_s Dvar_Dump_f_VAR;
+cmd_function_s Dvar_List_f_VAR;
+cmd_function_s Dvar_Reset_f_VAR;
+cmd_function_s Dvar_SetToTime_f_VAR;
+cmd_function_s Dvar_SetA_f_VAR;
+cmd_function_s Dvar_Set_f_VAR;
+cmd_function_s Dvar_TogglePrint_f_VAR;
+cmd_function_s Dvar_Toggle_f_VAR;
+
+int com_fileAccessed;

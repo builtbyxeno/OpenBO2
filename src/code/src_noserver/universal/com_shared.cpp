@@ -1,4 +1,6 @@
 #include "types.h"
+#include "vars.h"
+#include "universal_public.h"
 
 /*
 ==============
@@ -40,7 +42,19 @@ Com_GetQTime
 */
 void Com_GetQTime(int time, qtime_s *qtime, bool useLocalTime)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	tm* localizedTime;
+	__int64 t;
+
+	if (qtime)
+	{
+		t = time;
+		if (useLocalTime)
+			localizedTime = _localtime64(&t);
+		else
+			localizedTime = _gmtime64(&t);
+		if (localizedTime)
+			*qtime = *(qtime_s*)&localizedTime;
+	}
 }
 
 /*
@@ -50,8 +64,12 @@ Com_RealTime
 */
 int Com_RealTime(qtime_s *qtime, bool useLocalTime)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int time;
+
+	time = _time64(0);
+	if (qtime)
+		Com_GetQTime(time, qtime, useLocalTime);
+	return time;
 }
 
 /*
@@ -61,6 +79,16 @@ Com_Memset
 */
 void Com_Memset(void *dest, const int val, int count)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	memset(dest, val, count);
+}
+
+/*
+==============
+Com_Memcpy
+==============
+*/
+void Com_Memcpy(void* dest, const void* src, int count)
+{
+	memcpy(dest, src, count);
 }
 
