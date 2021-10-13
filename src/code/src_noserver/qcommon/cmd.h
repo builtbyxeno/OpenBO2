@@ -1,8 +1,8 @@
 #include "types.h"
 #include "vars.h"
 
-static CmdArgs sv_cmd_args;
-static CmdArgs g_cmd_args[2];
+extern CmdArgs sv_cmd_args;
+extern CmdArgs g_cmd_args[2];
 
 /*
 ==============

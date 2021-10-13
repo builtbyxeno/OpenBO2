@@ -1998,7 +1998,7 @@ void DB_RegisteredReorderAsset(int type, const char *assetName, XAssetEntry *ass
 DB_FindXAssetHeader
 ==============
 */
-XAssetHeader DB_FindXAssetHeader(char *a1, XAssetType type, const char *name, bool errorIfMissing, int waitTime)
+XAssetHeader DB_FindXAssetHeader(XAssetType type, const char *name, bool errorIfMissing, int waitTime)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	XAssetHeader tmp;

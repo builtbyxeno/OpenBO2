@@ -1489,7 +1489,7 @@ void GetPlatformCommand(LocalClientNum_t localClientNum, const char *command, co
 UI_GetKeyBindingLocalizedString
 ==============
 */
-int UI_GetKeyBindingLocalizedString(const char *a1, const LocalClientNum_t localClientNum, const char *command, char *keys, int bindNum, bool presscmd, bool cap, bool limit, bool findGestures, bool anim, bool swapCommand)
+int UI_GetKeyBindingLocalizedString(const LocalClientNum_t localClientNum, const char *command, char *keys, int bindNum, bool presscmd, bool cap, bool limit, bool findGestures, bool anim, bool swapCommand)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

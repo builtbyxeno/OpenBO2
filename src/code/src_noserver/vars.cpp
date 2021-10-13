@@ -3609,3 +3609,9 @@ cmd_function_s Dvar_TogglePrint_f_VAR;
 cmd_function_s Dvar_Toggle_f_VAR;
 
 int com_fileAccessed;
+
+char CODE_FAST_FILE_NAME[24];
+
+ScreenPlacement scrPlaceFull;
+
+int com_inServerFrame;

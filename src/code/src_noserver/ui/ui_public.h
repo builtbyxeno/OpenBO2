@@ -524,7 +524,7 @@ void UI_DrawWrappedText(const vec4_t *a1, bool a2, LocalClientNum_t localClientN
 void UI_DrawWrappedTextScissored(const vec4_t *a1, bool a2, LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, const char *text, const rectDef_s *rect, Font_s *font, float x, float y, float scale, const vec4_t *color, int style, int textAlignMode, rectDef_s *textRect);
 void Item_Text_AutoWrapped_Paint(LocalClientNum_t localClientNum, UIContextIndex_t contextIndex, itemDef_s *item, const char *text, const vec4_t *color, bool subtitle, const vec4_t *subtitleGlowColor, bool cinematic);
 void GetPlatformCommand(LocalClientNum_t localClientNum, const char *command, const char **consoleCommand);
-int UI_GetKeyBindingLocalizedString(const char *a1, const LocalClientNum_t localClientNum, const char *command, char *keys, int bindNum, bool presscmd, bool cap, bool limit, bool findGestures, bool anim, bool swapCommand);
+int UI_GetKeyBindingLocalizedString(const LocalClientNum_t localClientNum, const char *command, char *keys, int bindNum, bool presscmd, bool cap, bool limit, bool findGestures, bool anim, bool swapCommand);
 void Item_Slider_Paint(const LocalClientNum_t localClientNum, UiContext *dc, itemDef_s *item);
 int Display_KeyBindPending();
 bool Item_Bind_IsActionKey(UiContext *dc, itemDef_s *item, int key);

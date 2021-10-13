@@ -101,11 +101,11 @@ CStringEdPackage::SetString
 SE_GetString_LoadObj
 ==============
 */
-/*std::string *SE_GetString_LoadObj(const char *psPackageAndStringReference)
+std::string *SE_GetString_LoadObj(const char *psPackageAndStringReference)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
-}*/
+}
 
 /*
 ==============

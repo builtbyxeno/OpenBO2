@@ -395,6 +395,105 @@ unsigned __int8 *Hunk_AllocLow(int size, const char *name, int type)
 
 /*
 ==============
+Hunk_AllocateTempMemory
+==============
+*/
+void* Hunk_AllocateTempMemory(int size, const char* name)
+{
+	hunkHeader_t* hdr;
+	unsigned char* buf;
+	int prev_temp;
+	unsigned char* beginBuf;
+
+	assert(Sys_IsMainThread() || Sys_IsRenderThread());
+
+	if (!s_hunkData)
+	{
+		return Z_Malloc(size, name, 11);
+	}
+
+	assert(s_hunkData);
+	size += 16;
+	prev_temp = hunk_low.temp;
+	beginBuf = (unsigned char*)((unsigned int)&s_hunkData[hunk_low.temp + 4095] & ~4095);
+	hunk_low.temp = (hunk_low.temp + 15) & ~15;
+
+	buf = &s_hunkData[hunk_low.temp];
+	hunk_low.temp += size;
+
+	if (hunk_high.temp + hunk_low.temp > s_hunkTotal)
+	{
+		track_PrintAllInfo();
+		Com_Error(
+			ERR_DROP,
+			"\x15" "Hunk_AllocateTempMemory: failed on %i bytes (total %i MB, low %i MB, high %iMB), needs %i more hunk bytes",
+			size,
+			s_hunkTotal / 0x100000,
+			hunk_low.temp / 0x100000,
+			hunk_high.temp / 0x100000,
+			hunk_high.temp + hunk_low.temp - s_hunkTotal);
+	}
+
+	hdr = (hunkHeader_t*)buf;
+	buf = (buf + 16);
+	assert(!(((psize_int)buf) & 15));
+
+	if ((unsigned char*)((unsigned int)&s_hunkData[hunk_low.temp + 4095] & ~4095) != beginBuf)
+	{
+		Z_VirtualCommit(beginBuf, ((unsigned int)&s_hunkData[hunk_low.temp + 4095] & ~4095) - (DWORD)beginBuf);
+	}
+
+	hdr->magic = -1991018350;
+	hdr->size = hunk_low.temp - prev_temp;
+	track_temp_alloc(hdr->size, hunk_high.temp + hunk_low.temp, hunk_low.permanent, name);
+	hdr->name = name;
+
+	return (void*)buf;
+}
+
+/*
+==============
+Hunk_FreeTempMemory
+==============
+*/
+void Hunk_FreeTempMemory(void* buf)
+{
+	hunkHeader_t* hdr;
+	char* endBuf;
+	char* beginBuf;
+
+	assert(Sys_IsMainThread() || Sys_IsRenderThread());
+	if (s_hunkData)
+	{
+		assert(s_hunkData);
+		assert(buf);
+		hdr = (hunkHeader_t*)((char*)buf - 16);
+		if (*((DWORD*)buf - 4) != -1991018350)
+		{
+			Com_Error(ERR_FATAL, "\x15" "Hunk_FreeTempMemory: bad magic");
+		}
+
+		hdr->magic = -1991018349;
+		assert(hdr == (void*)(s_hunkData + ((hunk_low.temp - hdr->size + 15) & ~15)));
+		endBuf = (char*)((unsigned int)&s_hunkData[hunk_low.temp + 4095] & ~4095);
+		hunk_low.temp -= hdr->size;
+
+		track_temp_free(hdr->size, hunk_low.permanent, hdr->name);
+
+		beginBuf = (char*)((unsigned int)&s_hunkData[hunk_low.temp + 4095] & ~4095);
+		if (endBuf != beginBuf)
+		{
+			Z_VirtualDecommit(beginBuf, endBuf - beginBuf);
+		}
+	}
+	else
+	{
+		Z_Free(buf, 11);
+	}
+}
+
+/*
+==============
 Z_Malloc
 ==============
 */

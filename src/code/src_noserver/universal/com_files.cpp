@@ -2701,3 +2701,70 @@ int FS_FOpenFileByMode(const char *qpath, int *f, fsMode_t mode)
 	fsh[*f].handleSync = sync;
 	return r;
 }
+
+/*
+==============
+FS_ReadFile
+==============
+*/
+int FS_ReadFile(const char* qpath, void** buffer)
+{
+	char* buf;
+	int len;
+	int h;
+
+	FS_CheckFileSystemStarted();
+	if (!qpath || !qpath[0])
+	{
+		Com_Error(ERR_FATAL, "\x15" "FS_ReadFile with empty name\n");
+	}
+
+	// look for it in the filesystem or iwd files
+	len = FS_FOpenFileReadCurrentThread(qpath, &h);
+	if (h == 0)
+	{
+		if (buffer)
+		{
+			*buffer = NULL;
+		}
+		return -1;
+	}
+
+	if (buffer)
+	{
+		++fs_loadStack;
+		buf = (char*)Hunk_AllocateTempMemory(len + 1, "FS_AllocMem");
+		*buffer = buf;
+
+		FS_Read(buf, len, h);
+
+		// guarantee that it will have a trailing 0 for string operations
+		buf[len] = 0;
+	}
+
+	FS_FCloseFile(h);
+	return len;
+}
+
+/*
+==============
+FS_FreeFile
+==============
+*/
+void FS_FreeFile(void* buffer)
+{
+	FS_CheckFileSystemStarted();
+	assert(buffer);
+	--fs_loadStack;
+	Hunk_FreeTempMemory(buffer);
+}
+
+/*
+==============
+FS_ListFiles
+==============
+*/
+const char** FS_ListFiles(const char* path, const char* extension, FsListBehavior_e behavior, int* numfiles)
+{
+	return FS_ListFilteredFiles(fs_searchpaths, path, extension, 0, behavior, numfiles);
+}

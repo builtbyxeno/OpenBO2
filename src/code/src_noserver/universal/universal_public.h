@@ -515,7 +515,7 @@ const GfxViewParms *GetExpressionResultString(itemDef_s *a1, const LocalClientNu
 bool IsExpressionTrue(itemDef_s *a1, const LocalClientNum_t localClientNum, itemDef_s *item, ExpressionStatement *statement);
 __int64 GetExpressionInt64(itemDef_s *a1, const LocalClientNum_t localClientNum, itemDef_s *item, ExpressionStatement *statement);
 double GetExpressionFloat(itemDef_s *a1, const LocalClientNum_t localClientNum, itemDef_s *item, ExpressionStatement *statement);
-const GfxViewParms *GetExpressionResultStringCompile(const LocalClientNum_t localClientNum, itemDef_s *item, const char **text, void *compileBuffer, int compileBufferSize);
+const char *GetExpressionResultStringCompile(const LocalClientNum_t localClientNum, itemDef_s *item, const char **text, void *compileBuffer, int compileBufferSize);
 int GetPlayerStatus(const ControllerIndex_t controllerIndex, unsigned __int64 playerXuid);
 void IsPlayerJoinable(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack);
 void IsPlayerInTitle(const LocalClientNum_t localClientNum, itemDef_s *item, OperandStack *dataStack);
@@ -537,7 +537,7 @@ FILE *FS_FileForHandle(int f);
 __int64 FS_filelength(int f);
 void FS_ReplaceSeparators(char *path);
 void FS_BuildOSPathForThread(const char *base, const char *game, const char *qpath, char *ospath, FsThread thread);
-void __cdecl FS_BuildOSPath(const char *base, const char *game, const char *qpath, char *ospath);
+void FS_BuildOSPath(const char *base, const char *game, const char *qpath, char *ospath);
 int FS_CreatePath(char *OSPath);
 void FS_CopyFile(char *fromOSPath, char *toOSPath);
 void FS_FCloseFile(int h);
@@ -546,7 +546,7 @@ int FS_GetHandleAndOpenFile(const char *filename, const char *ospath, FsThread t
 int FS_FOpenFileWriteToDirForThread(const char *filename, const char *dir, FsThread thread);
 int FS_FOpenFileWriteToDir(const char *filename, const char *dir);
 int FS_FOpenFileWrite(const char *filename);
-int FS_FOpenFileWriteCurrentThread(FsThread a1);
+int FS_FOpenFileWriteCurrentThread(const char* filename, const char* dir);
 int FS_FOpenTextFileWrite(const char* filename);
 int FS_FOpenFileAppend(const char* filename);
 int FS_FilenameCompare(const char *s1, const char *s2);
@@ -599,6 +599,9 @@ void Com_GetBspFilename(char *filename, int size, const char *mapname);
 int FS_FOpenFileRead(const char *filename, int *file);
 BOOL FS_TouchFile(const char *name);
 int FS_FOpenFileByMode(const char* qpath, int* f, fsMode_t mode);
+int FS_ReadFile(const char* qpath, void** buffer);
+void FS_FreeFile(void* buffer);
+const char** FS_ListFiles(const char* path, const char* extension, FsListBehavior_e behavior, int* numfiles);
 
 //#include "universal/com_files_wrapper_stdio.h"
 
@@ -741,6 +744,8 @@ unsigned __int8 *Hunk_AllocAlign(int size, int alignment, const char *name, int 
 unsigned __int8 *Hunk_AllocLowAlign(int size, int alignment, const char *name, int type);
 unsigned __int8 *Hunk_Alloc(int size, const char *name, int type);
 unsigned __int8 *Hunk_AllocLow(int size, const char *name, int type);
+void* Hunk_AllocateTempMemory(int size, const char* name);
+void Hunk_FreeTempMemory(void* buf);
 void* Z_Malloc(int size, const char* name, int type);
 void Z_Free(void* ptr, int type);
 void Z_VirtualFree(void* ptr);

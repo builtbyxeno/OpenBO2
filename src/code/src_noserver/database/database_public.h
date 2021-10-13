@@ -276,7 +276,7 @@ void DB_Update();
 void DB_EndReorderZone();
 bool DB_RegisterAllReorderAssetsOfType(int type, XAssetEntry *assetEntry);
 void DB_RegisteredReorderAsset(int type, const char *assetName, XAssetEntry *assetEntry);
-XAssetHeader DB_FindXAssetHeader(char *a1, XAssetType type, const char *name, bool errorIfMissing, int waitTime);
+XAssetHeader DB_FindXAssetHeader(XAssetType type, const char *name, bool errorIfMissing, int waitTime);
 void DB_LoadXAssets(XZoneInfo *zoneInfo, unsigned int zoneCount, int sync);
 void DB_Thread(unsigned int threadContext);
 void DB_InitThread();

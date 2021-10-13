@@ -16,7 +16,7 @@ int SEH_GetLocalizedTokenReference(char *token, const char *reference, const cha
 void SEH_ParseDirective(const char *directive, char *resultName, char *resultArg0);
 void SEH_GetBindingForDirective(LocalClientNum_t localClientNum, const char *directive, char *result);
 bool SEH_ReplaceDirective(LocalClientNum_t localClientNum, unsigned int *searchPos, unsigned int *dstLen, char *dstString, unsigned int size);
-int SEH_ReplaceDirectiveInStringWithBinding(int a1, LocalClientNum_t localClientNum, const char *translatedString, char *finalString);
+int SEH_ReplaceDirectiveInStringWithBinding(LocalClientNum_t localClientNum, const char *translatedString, char *finalString);
 const char *SEH_LocalizeTextMessage(const char *pszInputBuffer, const char *pszMessageType, msgLocErrType_t errType);
 int SEH_DecodeLetter(unsigned __int8 firstChar, unsigned __int8 secondChar, unsigned __int8 thirdChar, int *usedCount);
 int SEH_ReadCharFromString(const char **text);
@@ -24,7 +24,7 @@ int SEH_PrintStrlen(const char *string);
 const char *SEH_GetLanguageName(const int iLanguage);
 const char *SEH_GetLanguageNameAbbr(const int iLanguage);
 int SEH_StringEd_SetLanguageStrings(int iLanguage);
-void SEH_TranslateMessage(char *a1, LocalClientNum_t localClientNum, const char *message, const char *messageType, char *finalString, unsigned int size);
+void SEH_TranslateMessage(LocalClientNum_t localClientNum, const char *message, const char *messageType, char *finalString, unsigned int size);
 void SEH_UpdateLanguageInfo();
 
 //t6/code/src_noserver/stringed/stringed_ingame.cpp
@@ -37,7 +37,7 @@ void SEH_UpdateLanguageInfo();
 // const char *SE_GetFoundFile(std::string *strResult);
 // void CStringEdPackage::SetupNewFileParse(CStringEdPackage *notthis, const char *psFileName);
 // void CStringEdPackage::SetString(CStringEdPackage *notthis, const char *psLocalReference, const char *psNewString, int bSentenceIsEnglish);
-// std::string *SE_GetString_LoadObj(const char *psPackageAndStringReference);
+std::string *SE_GetString_LoadObj(const char *psPackageAndStringReference);
 // std::string *CStringEdPackage::ConvertCRLiterals_Read(CStringEdPackage *notthis, std::string *result, std::string string);
 // std::string *CStringEdPackage::InsideQuotes(CStringEdPackage *notthis, std::string *result, const char *psLine);
 // void CStringEdPackage::Clear(CStringEdPackage *notthis);

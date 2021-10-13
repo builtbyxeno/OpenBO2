@@ -3620,3 +3620,9 @@ extern cmd_function_s Dvar_TogglePrint_f_VAR; // idb
 extern cmd_function_s Dvar_Toggle_f_VAR; // idb
 
 extern int com_fileAccessed;
+
+extern char CODE_FAST_FILE_NAME[24];
+
+extern ScreenPlacement scrPlaceFull;
+
+extern int com_inServerFrame;
