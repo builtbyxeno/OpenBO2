@@ -1,4 +1,5 @@
 #include "types.h"
+#include "vars.h"
 
 /*
 ==============
@@ -27,7 +28,7 @@ Scr_ClearScrStringDebugGlob
 */
 void Scr_ClearScrStringDebugGlob()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	gScrStringDebugGlob = NULL;
 }
 
 /*
@@ -37,6 +38,6 @@ Scr_ResetScrStringDebugGlob
 */
 void Scr_ResetScrStringDebugGlob()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	gScrStringDebugGlob = &gScrStringDebugGlobBuff;
 }
 

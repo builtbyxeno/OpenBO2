@@ -3602,6 +3602,8 @@ extern GfxCmdBufState gfxCmdBufState;
 extern qboolean g_dvar_modifiedFlags;
 
 extern scrMemTreePub_t gScrMemTreePub;
+extern scrStringDebugGlob_t* gScrStringDebugGlob;
+extern scrStringDebugGlob_t gScrStringDebugGlobBuff;
 
 extern cmd_function_s Dvar_ListByCount_f_VAR; // idb
 extern cmd_function_s Dvar_RestoreDvars_VAR; // idb
@@ -3626,3 +3628,6 @@ extern char CODE_FAST_FILE_NAME[24];
 extern ScreenPlacement scrPlaceFull;
 
 extern int com_inServerFrame;
+
+extern long double msecPerRawTimerTick;
+extern long double usecPerRawTimerTick;

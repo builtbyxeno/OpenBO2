@@ -11,8 +11,6 @@
 #define HASH_STAT_FREE 0
 
 static HashEntry gScrStringHashTable[49152];
-static scrStringDebugGlob_t* gScrStringDebugGlob;
-static scrStringDebugGlob_t gScrStringDebugGlobBuff;
 
 scrStringGlob_t gScrStringGlob =
 {

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "vars.h"
 
 /*
 ==============
@@ -222,8 +223,7 @@ G_ExitAfterConnectPaths
 */
 bool G_ExitAfterConnectPaths()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return Dvar_GetInt(g_connectpaths) >= 2;
 }
 
 /*

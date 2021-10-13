@@ -823,8 +823,15 @@ CanKeepStringPointer
 */
 BOOL CanKeepStringPointer(const char *string)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	va_info_t* info;
+	char stack;
+
+	if (string >= &stack && string < "65" + 3) //(const char *)&a65 + 3 )
+	{
+		return 0;
+	}
+	info = (va_info_t*)Sys_GetValue(THREAD_VALUE_VA);
+	return string < (const char*)info || string > &info->va_string[3][1023];
 }
 
 /*
@@ -834,8 +841,7 @@ I_itoa
 */
 char *I_itoa(int value, char *buf, int bufsize)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	return itoa(value, buf, bufsize);
 }
 
 /*

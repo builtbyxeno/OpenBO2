@@ -6,8 +6,6 @@
 #define PROFLOAD_ENTRY_COUNT 384
 
 static mapLoadProfile_t mapLoadProfile;
-long double msecPerRawTimerTick;
-long double usecPerRawTimerTick;
 
 /*
 ==============

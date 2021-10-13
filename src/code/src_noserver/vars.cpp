@@ -3591,6 +3591,8 @@ GfxCmdBufState gfxCmdBufState;
 qboolean g_dvar_modifiedFlags;
 
 scrMemTreePub_t gScrMemTreePub;
+scrStringDebugGlob_t* gScrStringDebugGlob;
+scrStringDebugGlob_t gScrStringDebugGlobBuff;
 
 cmd_function_s Dvar_ListByCount_f_VAR;
 cmd_function_s Dvar_RestoreDvars_VAR;
@@ -3615,3 +3617,7 @@ char CODE_FAST_FILE_NAME[24];
 ScreenPlacement scrPlaceFull;
 
 int com_inServerFrame;
+
+// timing.cpp
+long double msecPerRawTimerTick;
+long double usecPerRawTimerTick;
