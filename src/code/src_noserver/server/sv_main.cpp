@@ -30,3 +30,14 @@ void SVC_Info(netadr_t from)
 	UNIMPLEMENTED(__FUNCTION__);
 }
 
+/*
+==============
+SVC_Info
+==============
+*/
+char SVC_Info(netadr_t from, msg_t* msg)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+

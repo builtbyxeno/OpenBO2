@@ -76,7 +76,7 @@ void SV_ShutdownGameProgs();
 void SV_MatchEnd();
 void SVC_Info(netadr_t from, const char *challengeResponse, const char *hostName, const char *mapName, const char *gameType, int privateClientCount, int clientCount);
 void SVC_Info(netadr_t from);
-char SVC_Info(netadr_t from);
+char SVC_Info(netadr_t from, msg_t* msg);
 
 //t6/code/src_noserver/server/sv_main_dw.cpp
 void SV_Live_RemoveClient(client_t *cl, const char *reason);

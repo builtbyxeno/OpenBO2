@@ -4227,7 +4227,7 @@ double GetExpressionFloat(itemDef_s *a1, const LocalClientNum_t localClientNum, 
 GetExpressionResultStringCompile
 ==============
 */
-const GfxViewParms *GetExpressionResultStringCompile(const LocalClientNum_t localClientNum, itemDef_s *item, const char **text, void *compileBuffer, int compileBufferSize)
+const char *GetExpressionResultStringCompile(const LocalClientNum_t localClientNum, itemDef_s *item, const char **text, void *compileBuffer, int compileBufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
