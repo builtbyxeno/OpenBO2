@@ -328,7 +328,7 @@ void Com_Freeze_f();
 void Com_Crash_f();
 unsigned int Com_CompressWithZLib(const unsigned __int8 *from, int inSizeBytes, unsigned __int8 *to, int outSizeBytes);
 unsigned int Com_DecompressWithZLib(const unsigned __int8 *from, int inSizeBytes, unsigned __int8 *to, int outSizeBytes);
-const dvar_t *Com_InitDvars();
+void Com_InitDvars();
 void Com_CheckForInvites_f();
 void Com_RunAutoExec(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex);
 void Com_ExecStartupConfigs(LocalClientNum_t localClientNum, const char *configFile);
@@ -343,6 +343,7 @@ void Com_ResetSlowMotion();
 void Com_SetSlowMotionDelayed(const float startTimescale, const float endTimescale, const int deltaMsec, const int delayMsec);
 double Com_ViewScaleMsec(float sec);
 void Com_Frame_Try_Block_Function();
+void Com_WriteConfiguration(LocalClientNum_t localClientNum);
 char *Com_GetLevelSharedFastFile(const char *mapName);
 void Com_LoadCommonFastFile();
 void Com_LoadUiFastFile();
@@ -472,10 +473,10 @@ FILE* FS_FileOpenAppendText(const char* filename);
 //t6/code/src_noserver/qcommon/com_factions.cpp
 const char *Com_FactionLookup(const char *mapName, int columnIndex);
 BOOL Com_IsFactionFastfile(const char *mapName);
-const char *Com_FactionLookupAxis(const char *a1, int columnIndex);
-const char *Com_FactionLookupAllies(const char *a1, int columnIndex);
-char Com_FactionFastFileAxis(int a1, const char *a2, const char *mapName, char *buffer, const int bufSize);
-char Com_FactionFastFileAllies(int a1, const char *a2, const char *mapName, char *buffer, const int bufSize);
+const char *Com_FactionLookupAxis(int columnIndex);
+const char *Com_FactionLookupAllies(int columnIndex);
+char Com_FactionFastFileAxis(const char *mapName, char *buffer, const int bufSize);
+char Com_FactionFastFileAllies(const char *mapName, char *buffer, const int bufSize);
 
 //t6/code/src_noserver/qcommon/com_gamemodes.cpp
 const char *Com_GameMode_GetModeName();

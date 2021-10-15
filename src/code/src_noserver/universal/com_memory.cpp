@@ -518,6 +518,51 @@ void Hunk_Clear()
 
 /*
 ==============
+Hunk_ClearTempMemory
+==============
+*/
+void Hunk_ClearTempMemory()
+{
+	unsigned char* endBuf;
+	unsigned char* beginBuf;
+
+	assert(Sys_IsMainThread());
+	assert(s_hunkData);
+	endBuf = (unsigned char*)((unsigned int)&s_hunkData[hunk_low.temp + 4095] & ~4095);
+	hunk_low.temp = hunk_low.permanent;
+	beginBuf = (unsigned char*)((unsigned int)&s_hunkData[hunk_low.permanent + 4095] & ~4095);
+
+	if (endBuf != beginBuf)
+	{
+		Z_VirtualDecommit(beginBuf, endBuf - beginBuf);
+	}
+	track_temp_clear(hunk_low.permanent);
+}
+
+/*
+==============
+Hunk_ClearTempMemoryHigh
+==============
+*/
+void Hunk_ClearTempMemoryHigh()
+{
+	int commitSize;
+	unsigned char* beginBuf;
+
+	assert(Sys_IsMainThread());
+	beginBuf = (unsigned char*)((unsigned int)&s_hunkData[s_hunkTotal - hunk_high.temp] & ~4095);
+	hunk_high.temp = hunk_high.permanent;
+	commitSize = ((int)&s_hunkData[s_hunkTotal - hunk_high.permanent] & ~4095) - (int)beginBuf;
+
+	if (commitSize)
+	{
+		Z_VirtualDecommit(beginBuf, commitSize);
+	}
+	track_temp_high_clear(hunk_high.permanent);
+}
+
+/*
+==============
 Com_InitHunkMemory
 ==============
 */

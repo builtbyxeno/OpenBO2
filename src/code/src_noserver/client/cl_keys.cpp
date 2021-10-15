@@ -1,4 +1,5 @@
 #include "types.h"
+#include "client_public.h"
 
 /*
 ==============
@@ -183,7 +184,7 @@ BOOL Key_IsValidGamePadChar(const char key)
 Key_KeynumToString
 ==============
 */
-const char *Key_KeynumToString(LocalClientNum_t localClientNum, int keynum, int translate)
+const char *Key_KeynumToString(int keynum, int translate)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -623,6 +624,30 @@ CL_GetGamePadBinding
 ==============
 */
 int CL_GetGamePadBinding(LocalClientNum_t localClientNum, const char *command, char (*keyNames)[128], BindIndex_t bindNum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+	return 0;
+}
+
+/*
+==============
+Key_WriteBindings
+==============
+*/
+void Key_WriteBindings(LocalClientNum_t localClientNum, int f)
+{
+	char buffer[8192];
+
+	Key_WriteBindingsToBuffer(localClientNum, buffer, sizeof(buffer));
+	FS_Printf(f, "%s", buffer);
+}
+
+/*
+==============
+Key_WriteBindingsToBuffer
+==============
+*/
+int Key_WriteBindingsToBuffer(LocalClientNum_t localClientNum, char* buffer, int bufferSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

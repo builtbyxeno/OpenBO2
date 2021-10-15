@@ -23,6 +23,12 @@
 #include <demo/demo_public.h>
 #include <vcs/vcs_public.h>
 #include <mjpeg/mjpeg_public.h>
+#include <gfx_d3d/r_pix_profile.h>
+#include <game_mp/game_mp_public.h>
+#include <physics/phys_colgeom.h>
+#include <server/server_public.h>
+#include <glass/glass_public.h>
+#include <flame/flame_public.h>
 
 int logfile;
 
@@ -61,6 +67,12 @@ cmd_function_s Com_Error_f_VAR;
 SlowMotionCommon g_slowmoCommon;
 
 int com_fullyInitialized;
+
+LaunchData g_launchData;
+
+int com_fixedConsolePosition;
+int weaponInfoSource;
+int com_quitAfterHostMigrates;
 
 /*
 ==============
@@ -652,8 +664,23 @@ Com_CompressWithZLib
 */
 unsigned int Com_CompressWithZLib(const unsigned __int8 *from, int inSizeBytes, unsigned __int8 *to, int outSizeBytes)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	z_stream_s stream;
+
+	stream.avail_in = inSizeBytes;
+	stream.next_in = (unsigned __int8*)from;
+	stream.next_out = to;
+	stream.avail_out = outSizeBytes;
+	memset(&stream.zalloc, 0, 16);
+	if (deflateInit2_(&stream, 9, 8, -13, 1, 0, "1.2.3", 52))
+		return 0;
+	if (deflate(&stream, 4) != 1)
+	{
+		deflateEnd(&stream);
+		return 0;
+	}
+	if (deflateEnd(&stream))
+		return 0;
+	return stream.total_out;
 }
 
 /*
@@ -663,8 +690,23 @@ Com_DecompressWithZLib
 */
 unsigned int Com_DecompressWithZLib(const unsigned __int8 *from, int inSizeBytes, unsigned __int8 *to, int outSizeBytes)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	z_stream_s stream;
+
+	stream.avail_in = inSizeBytes;
+	stream.next_in = (unsigned __int8*)from;
+	stream.next_out = to;
+	stream.avail_out = outSizeBytes;
+	memset(&stream.zalloc, 0, 16);
+	if (inflateInit2_(&stream, -13, "1.2.3", 52))
+		return 0;
+	if (inflate(&stream, 4) != 1)
+	{
+		inflateEnd(&stream);
+		return 0;
+	}
+	if (inflateEnd(&stream))
+		return 0;
+	return stream.total_out;
 }
 
 /*
@@ -672,10 +714,214 @@ unsigned int Com_DecompressWithZLib(const unsigned __int8 *from, int inSizeBytes
 Com_InitDvars
 ==============
 */
-const dvar_t *Com_InitDvars()
+void Com_InitDvars()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	int i;
+	const char* war_names[5];
+
+	com_maxclients = _Dvar_RegisterInt("com_maxclients", 18, 1, 18, 4u, "Maximum amount of clients on  the server");
+	if (Com_SessionMode_IsZombiesGame())
+	{
+		Dvar_SetInt(com_maxclients, 8);
+	}
+	com_freemoveScale = _Dvar_RegisterFloat("com_freemoveScale", 1.0, 0.0, 5.0, 0x80u, "Scale how fast you move in com_freemove mode");
+	disconnected_ctrls = _Dvar_RegisterString("disconnected_ctrls", "", 0, "String representing the disconnected controllers");
+	com_maxfps = _Dvar_RegisterInt("com_maxfps", 60, 0, 1000, 1u, "Cap frames per second");
+	grenade_indicators_enabled = _Dvar_RegisterBool("grenade_indicators_enabled", 1, 0x4000u, "Enables grenade indicators");
+	throwback_enabled = _Dvar_RegisterBool("throwback_enabled", 1, 0x4000u, "Enables throwbacks");
+	disable_vcs = _Dvar_RegisterBool("disable_vcs", 0, 0x20000u, "Disables VCS");
+	disable_vcs_viewmodel = _Dvar_RegisterBool("disable_vcs_viewmodel", 0, 0x20000u, "Disables VCS viewmodel in the VCS UI menu");
+	vcs_timelimit = _Dvar_RegisterInt("vcs_timelimit", 120, 0, 0x7FFFFFFF, 0x20000u, "Sets the timelimit for the VCS easter egg");
+	com_report_syserrors = _Dvar_RegisterBool("com_report_syserrors", 1, 0x20000u, "Enable syserror reporting");
+	gts_validation_enabled = _Dvar_RegisterBool("gts_validation_enabled", 0, 0x20000u, "Enables gametype settings validation in online modes");
+	lui_enabled = _Dvar_RegisterBool("lui_enabled", 1, 0, "Enables LUI");
+	lui_checksum_enabled = _Dvar_RegisterBool("lui_checksum_enabled", 0, 0x20000u, "Enables LUI checksums");
+	lui_error_report = _Dvar_RegisterBool("lui_error_report", 1, 0x20000u, "Enable LUI error reporting");
+	lui_error_report_delay = _Dvar_RegisterInt("lui_error_report_delay", 1000, 0, 0x7FFFFFFF, 0x20000u, "Number of ms to wait for error report to send before restarting the EXE");
+	lui_timescale = _Dvar_RegisterFloat("lui_timescale", 1.0, 0.001, 10.0, 0x80u, "Scale time of each frame of LUI animation");
+	lui_disable_blur = _Dvar_RegisterBool("lui_disable_blur", 0, 0, "Disable LUI blur");
+	tu7_restoreBlur = _Dvar_RegisterBool("tu7_restoreBlur", 1, 0x20000u, "Restore blur on com_error");
+	tu11_luiCompleteAnimationFix = _Dvar_RegisterBool("tu11_luiCompleteAnimationFix", 1, 0x20000u, "Enable fix for lui for completeAnimation setting the duration and time left to zero");
+	zombiemode_path_minz_bias = _Dvar_RegisterFloat("zombiemode_path_minz_bias", 0x82000000, 0x82000000, 0x82000000, 4096, "Bias to prevent missing valid cells below the origin");
+	zombieStopSplitScreen = _Dvar_RegisterBool("zombieStopSplitScreen", 0, 0x40u, "Force Split Screen to Fullscreen (for HUD)");
+	zombie_devgui = _Dvar_RegisterString("zombie_devgui", "", 0, "");
+	spmode = _Dvar_RegisterBool("spmode", 0, 0x100u, "Current game is a sp game");
+	onlinegame = _Dvar_RegisterBool("onlinegame", 0, 0, "Current game is an online game with stats, custom classes, unlocks");
+	xblive_rankedmatch = _Dvar_RegisterBool("xblive_rankedmatch", 0, 0, "Current game is a ranked match");
+	xblive_privatematch = _Dvar_RegisterBool("xblive_privatematch", 0, 0, "Current game is a private match");
+	sv_fakeServerLoad = _Dvar_RegisterInt("sv_fakeServerLoad", 0, 0, 500, 0, "Artificially load the server by this time in MS");
+	sv_fakeServerLoadRand = _Dvar_RegisterInt("sv_fakeServerLoadRand", 0, 0, 500, 0, "Additional server load to add randomly each frame");
+	sv_forceunranked = _Dvar_RegisterBool("sv_forceunranked", 0, 0, "");
+	if (Com_IsClientConsole())
+		consoleGame = _Dvar_RegisterString("consoleGame", "true", 0x40u, "True if running on a console");
+	if (Com_GetClientPlatform() == CLIENT_PLATFORM_XENON)
+		xenonGame = _Dvar_RegisterString("xenonGame", "true", 0x40u, "True if running on XBox 360");
+	if (Com_GetClientPlatform() == CLIENT_PLATFORM_PS3)
+		ps3Game = _Dvar_RegisterString("ps3Game", "true", 0x40u, "True if running on PS3");
+	if (Com_GetClientPlatform() == CLIENT_PLATFORM_WIIU)
+		wiiuGame = _Dvar_RegisterString("wiiuGame", "true", 0x40u, "True if running on WiiU");
+	com_masterServerName = _Dvar_RegisterString("masterServerName", "cod4master.activision.com", 0x80u, "Master server name for listing public inet games");
+	com_authServerName = _Dvar_RegisterString("authServerName", "cod4master.activision.com", 0x80u, "Authentication server name for listing public inet games");
+	com_masterPort = _Dvar_RegisterInt("masterPort", 20810, 0, 0xFFFF, 0x80u, "Master server port");
+	com_authPort = _Dvar_RegisterInt("authPort", 20800, 0, 0xFFFF, 0x80u, "Auth server port");
+	com_useConfig = _Dvar_RegisterBool("com_useConfig", 1, 1u, "Use configuration files");
+	fastfile_allowNoAuth = _Dvar_RegisterBool("fastfile_allowNoAuth", 0, 0x10u, "Enables loading data from non-authenticated fast files.");
+	com_developer = _Dvar_RegisterInt("developer", 0, 0, 2, 0, "Enable development options");
+	com_developer_script = _Dvar_RegisterBool("developer_script", Com_SessionMode_IsZombiesGame(), 0, "Enable developer script comments");
+	Dvar_SetBool(com_developer_script, 1);
+	Dvar_SetInt(com_developer, 1);
+	com_logfile = _Dvar_RegisterInt("logfile", 1, 0, 2, 0, "Write to log file - 0 = disabled, 1 = async file write, 2 = Sync every write");
+	com_statmon = _Dvar_RegisterBool("com_statmon", 0, 0, "Draw stats monitor");
+	com_timescale = _Dvar_RegisterFloat("com_timescale", 1.0, 0.001, 10.0, 0x11C0u, "Scale time of each frame");
+	dev_timescale = _Dvar_RegisterFloat("timescale", 1.0, 0.001, 10.0, 0x180u, "Scale time of each frame");
+	com_fixedtime = _Dvar_RegisterInt("fixedtime", 0, 0, 1000, 0x80u, "Use a fixed time rate for each frame");
+	com_fixedtime_float = _Dvar_RegisterFloat("fixedtime_float", 0.0, 0.0, 1000.0, 0x80u, "Use a fixed time rate for each frame");
+	long_blocking_call = _Dvar_RegisterBool("long_blocking_call", 0, 0, "Enable SCR_DrawPleaseWait dialog");
+	sv_network_warning = _Dvar_RegisterBool("sv_network_warning", 0, 0, "Alternative enable SCR_DrawPleaseWait dialog");
+	cl_network_warning = _Dvar_RegisterBool("cl_network_warning", 0, 0, "Alternative enable SCR_DrawPleaseWait dialog");
+	sv_paused = _Dvar_RegisterInt("sv_paused", 0, 0, 2, 0x40u, "Pause the server");
+	cl_paused = _Dvar_RegisterInt("cl_paused", 0, 0, 2, 0, "Pause the client");
+	cl_useMapPreloading = _Dvar_RegisterBool("useMapPreloading", 1, 1u, "Whether to start loading the map before connecting to server");
+	sv_useMapPreloading = _Dvar_RegisterBool("useSvMapPreloading", 1, 1u, "Whether to start loading the map before starting the server");
+	cl_paused_simple = _Dvar_RegisterBool("cl_paused_simple", 0, 0, "Toggling pause won't do any additional special processing if true.");
+	com_voip_resume_time = _Dvar_RegisterInt("com_voip_resume_time", 0, 0, 0x7FFFFFFF, 0, "Time at which voip can resume");
+	com_voip_bandwidth_restricted = _Dvar_RegisterBool("com_voip_bandwidth_restricted", 1, 0x40u, "Use VOIP inhibitor during high bandwidth usage");
+	com_voip_disable_threshold = _Dvar_RegisterInt("com_voip_disable_threshold", 1200, 0, 0x7FFFFFFF, 0, "Message size at which voip becomes disabled");
+	com_filter_output = _Dvar_RegisterBool("com_filter_output", 0, 0, "Use console filters for filtering output.");
+	com_introPlayed = _Dvar_RegisterBool("com_introPlayed", 0, 1u, "Intro movie has been played");
+	com_startupIntroPlayed = _Dvar_RegisterBool("com_startupIntroPlayed", 1, 1u, "Game startup intro movie(s) has been played");
+	com_desiredMenu = _Dvar_RegisterInt("com_desiredMenu", 0, 0, 0x7FFFFFFF, 0, "Target menu to navigate to when possible");
+	com_skipMovies = _Dvar_RegisterBool("com_skipMovies", 0, 0, "Skip intro movies");
+	com_animCheck = _Dvar_RegisterBool("com_animCheck", 0, 0, "Check anim tree");
+	com_hiDef = _Dvar_RegisterBool("hiDef", 1, 0x40u, "True if the game video is running in high-def.");
+	com_wideScreen = _Dvar_RegisterBool("wideScreen", 1, 0x40u, "True if the game video is running in 16x9 aspect, false if 4x3.");
+	doublesided_raycasts = _Dvar_RegisterBool("doublesided_raycasts", 0, 0x80u, "turn on double sided ray casts");
+	log_append = _Dvar_RegisterBool("log_append", 0, 1u, "Open log file in append mode");
+	com_walkpathnodes = _Dvar_RegisterBool("useWalkPathnodesMode", 0, 0x40u, "Walk path nodes and log static (map) texture streaming memory usage");
+	com_waitForStreamer = _Dvar_RegisterInt("waitForStreamer", 1, 0, 2, 0, "1) wait for initial lowmips, 2) wait for full initial texture load.");
+	recorder_enableRec = _Dvar_RegisterBool("recorder_enableRec", 0, 0x80u, "Turn on/off Recorder recording");
+	recorder_streamDObjects = _Dvar_RegisterBool("recorder_streamDObjects", 1, 0x80u, "Turn on/off recorder file streaming");
+	recorder_debugMemory = _Dvar_RegisterBool("recorder_debugMemory", 0, 0x80u, "Turn on/off Recorder memory debugging");
+	recorder_bufferSize = _Dvar_RegisterInt("recorder_bufferSize", 0, 0, 128, 0x80u, "Additional Recorder memory");
+	recorder_channelAccuracy = _Dvar_RegisterEnum("recorder_channelAccuracy", recorderModeNames, 0, 0x80u, "Accuracy Channel Replay Mode");
+	recorder_channelAiCode = _Dvar_RegisterEnum("recorder_channelAiCode", recorderModeNames, 0, 0x80u, "Ai Code Channel Replay Mode");
+	recorder_channelAnimation = _Dvar_RegisterEnum("recorder_channelAnimation", recorderModeNames, 0, 0x80u, "Animation Channel Replay Mode");
+	recorder_channelAnimscript = _Dvar_RegisterEnum("recorder_channelAnimscript", recorderModeNames, 0, 0x80u, "Animscript Channel Replay Mode");
+	recorder_channelAlex = _Dvar_RegisterEnum("recorder_channelAlex", recorderModeNames, 0, 0x80u, "Alex Channel Replay Mode");
+	recorder_channelCover = _Dvar_RegisterEnum("recorder_channelCover", recorderModeNames, 0, 0x80u, "Cover Channel Replay Mode");
+	recorder_channelGrenades = _Dvar_RegisterEnum("recorder_channelGrenades", recorderModeNames, 0, 0x80u, "Grenades Channel Replay Mode");
+	recorder_channelMessaging = _Dvar_RegisterEnum("recorder_channelMessaging", recorderModeNames, 0, 0x80u, "Messaging Channel Replay Mode");
+	recorder_channelNone = _Dvar_RegisterEnum("recorder_channelNone", recorderModeNames, 0, 0x80u, "No Channel Replay Mode");
+	recorder_channelPathFind = _Dvar_RegisterEnum("recorder_channelPathFind", recorderModeNames, 0, 0x80u, "Path Find Channel Replay Mode");
+	recorder_channelPerception = _Dvar_RegisterEnum("recorder_channelPerception", recorderModeNames, 0, 0x80u, "Perception Channel Replay Mode");
+	recorder_channelPhysics = _Dvar_RegisterEnum("recorder_channelPhysics", recorderModeNames, 0, 0x80u, "Physics Channel Replay Mode");
+	recorder_channelSuppression = _Dvar_RegisterEnum("recorder_channelSuppression", recorderModeNames, 0, 0x80u, "Suppression Channel Replay Mode");
+	recorder_channelScript = _Dvar_RegisterEnum("recorder_channelScript", recorderModeNames, 0, 0x80u, "Script Channel Replay Mode");
+	recorder_channelScriptedAnim = _Dvar_RegisterEnum("recorder_channelScriptedAnim", recorderModeNames, 0, 0x80u, "Scripted Anim Channel Replay Mode");
+	recorder_channelThreat = _Dvar_RegisterEnum("recorder_channelThreat", recorderModeNames, 0, 0x80u, "Threat Channel Replay Mode");
+	ui_mapname = _Dvar_RegisterString("ui_mapname", "", 0, "Current map name");
+	ui_gametype = _Dvar_RegisterString("ui_gametype", "", 0, "Current game type");
+	ui_levelEra = _Dvar_RegisterInt("ui_levelEra", 2020, 0, 2020, 0, "Int for the year/era of the current level. Default is 2020.");
+	ui_aarmapname = _Dvar_RegisterString("ui_aarmapname", "", 0, "Map to use in the aar");
+	all_players_are_connected = _Dvar_RegisterInt("all_players_are_connected", 0, 0, 0x7FFFFFFF, 0x4000u, "");
+	if (Com_SessionMode_IsZombiesGame())
+	{
+		ui_zm_mapstartlocation = _Dvar_RegisterString("ui_zm_mapstartlocation", "", 0, "Current zombie map start location");
+		tu6_startMovieEarly = _Dvar_RegisterBool("tu6_startMovieEarly", 1, 0x20000u, "start zm_highrise load movie earlier");
+	}
+	ui_combatCurrScrollBarPos = _Dvar_RegisterInt("ui_combatCurrScrollBarPos", 0, 0x80000000, 0x7FFFFFFF, 0, "");
+	ui_deadquote = _Dvar_RegisterString("ui_deadquote", "", 0x4000u, "");
+	ui_mapCount = _Dvar_RegisterInt("ui_mapCount", 0, 0, 0x7FFFFFFF, 0, "Number of maps the player has");
+	ui_errorTitle = _Dvar_RegisterString("ui_errorTitle", "", 0x40u, "Title of the most recent error message");
+	ui_errorMessage = _Dvar_RegisterString("ui_errorMessage", "", 0x40u, "Most recent error message");
+	ui_errorMessageDebug = _Dvar_RegisterString("ui_errorMessageDebug", "", 0x40u, "Most recent debug error message");
+	ui_autoContinue = _Dvar_RegisterBool("ui_autoContinue", 0, 0, "Automatically 'click to continue' after loading a level");
+	ui_creditsScrollScale = _Dvar_RegisterFloat("creditsScrollScale", 1.0, 0.0, 100.0, 0, "credits scroll speed");
+	ui_drawSpinnerAfterMovie = _Dvar_RegisterInt("ui_drawSpinnerAfterMovie", 0, 0, 1, 0, "True");
+	all_players_are_connected = _Dvar_RegisterInt("all_players_are_connected", 0, 0, 0x7FFFFFFF, 0x4000u, "");
+	dec20_Enabled = _Dvar_RegisterBool("dec20_Enabled", 0, 0x5000u, "enable dec20 terminal");
+	dec20_inuse = _Dvar_RegisterInt("dec20_inuse", 0, 0, 1, 0, "");
+	ui_keyboard_focus = _Dvar_RegisterString("ui_keyboard_focus", "", 0, "");
+	ui_keyboard_focus_key = _Dvar_RegisterString("ui_keyboard_focus_key", "", 0, "");
+	profile_reset = _Dvar_RegisterBool("profile_reset", 0, 0, "");
+	scr_hostmigrationtest = _Dvar_RegisterBool("scr_hostmigrationtest", 0, 0, "");
+	quit_on_error = _Dvar_RegisterBool("quit_on_error", 0, 0, "");
+	modPrvUseAnimDump = _Dvar_RegisterBool("modPrvUseAnimDump", 0, 0, "");
+	cheapSpawns = _Dvar_RegisterBool("cheapSpawns", 0, 0, "");
+	noCheapSpawns = _Dvar_RegisterBool("noCheapSpawns", 0, 0, "");
+	debug_show_viewpos = _Dvar_RegisterInt("debug_show_viewpos", 0, 0, 1, 0, "");
+	scr_wagerTier = _Dvar_RegisterInt("scr_wagerTier", 0, 0, 0x7FFFFFFF, 0, "");
+	scr_killcam = _Dvar_RegisterInt("scr_killcam", 0, 0, 0x7FFFFFFF, 0, "");
+	scr_numLives = _Dvar_RegisterInt("scr_numLives", 0, 0, 0x7FFFFFFF, 0, "");
+	modPrvAnimDumpInTime = _Dvar_RegisterInt("modPrvAnimDumpInTime", 0, 0, 0x7FFFFFFF, 0, "");
+	modPrvAnimDumpOutTime = _Dvar_RegisterInt("modPrvAnimDumpOutTime", 0, 0, 0x7FFFFFFF, 0, "");
+	fudgefactor = _Dvar_RegisterFloat("fudgefactor", 0, 0x82000000, 0x82000000, 0, "");
+	debug_protocol = _Dvar_RegisterString("debug_protocol", "", 0, "");
+	modPrvCurrAndMaxFrameIndexes = _Dvar_RegisterString("modPrvCurrAndMaxFrameIndexes", "", 0x4000u, "");
+	sidebet_made = _Dvar_RegisterString("sidebet_made", "", 0, "");
+	nextarena = _Dvar_RegisterString("nextarena", "", 0, "");
+	ClickToContinue = _Dvar_RegisterBool("ClickToContinue", 0, 0, "");
+	sv_forcelicensetype = _Dvar_RegisterInt("sv_forcelicensetype", 0, 0, 0x7FFFFFFF, 0, "");
+	credits_active = _Dvar_RegisterBool("credits_active", 0, 0x4000u, "");
+	demoname = _Dvar_RegisterString("demoname", "", 0, "");
+	createfx = _Dvar_RegisterString("createfx", "", 0, "");
+	saved_gameskill = _Dvar_RegisterString("saved_gameskill", "", 0x4000u, "");
+	war_sb = _Dvar_RegisterString("war_sb", "", 0, "");
+	scr_allies = _Dvar_RegisterString("scr_allies", "", 0, "");
+	scr_axis = _Dvar_RegisterString("scr_axis", "", 0, "");
+	next_menu_name = _Dvar_RegisterString("next_menu_name", "", 0, "");
+	scr_wagerBet = _Dvar_RegisterInt("scr_wagerBet", 0, 0, 0x7FFFFFFF, 0, "");
+	ui_mapCount = _Dvar_RegisterInt("ui_mapCount", 0, 0, 0x7FFFFFFF, 1u, "Number of maps the player has");
+	miniscoreboardhide = _Dvar_RegisterBool("miniscoreboardhide", 0, 0, "");
+	missingCommandWillError = _Dvar_RegisterBool("missingCommandWillError", 1, 0, "When true a missing command or config file will cause an ERR_DROP.");
+	war_names[0] = "war_a";
+	war_names[1] = "war_b";
+	war_names[2] = "war_c";
+	war_names[3] = "war_d";
+	war_names[4] = "war_e";
+	for (i = 0; i < 5; ++i)
+	{
+		war[i] = _Dvar_RegisterString(war_names[i], "", 0, "");
+	}
+	Dvar_SetInt(debug_show_viewpos, 1);
+	com_overviewProfile = _Dvar_RegisterInt("com_overviewProfile", 0, 0, 1, 0x4000u, "Display the overview profile.");
+	band_demosystem = _Dvar_RegisterInt("band_demosystem", 64000, 0, 0x7FFFFFFF, 0, "demo system bandwidth req'd");
+	band_2players = _Dvar_RegisterInt("band_2players", 64000, 0, 0x7FFFFFFF, 0, "2 player bandwidth req'd");
+	band_4players = _Dvar_RegisterInt("band_4players", 128000, 0, 0x7FFFFFFF, 0, "4 player bandwidth req'd");
+	band_6players = _Dvar_RegisterInt("band_6players", 192000, 0, 0x7FFFFFFF, 0, "8 player bandwidth req'd");
+	band_8players = _Dvar_RegisterInt("band_8players", 256000, 0, 0x7FFFFFFF, 0, "8 player bandwidth req'd");
+	band_12players = _Dvar_RegisterInt("band_12players", 384000, 0, 0x7FFFFFFF, 0, "12 player bandwidth req'd");
+	band_18players = _Dvar_RegisterInt("band_18players", 580000, 0, 0x7FFFFFFF, 0, "18 player bandwidth req'd");
+	com_isNotice = _Dvar_RegisterBool("com_isNotice", 0, 0, "");
+	error_menu_info = _Dvar_RegisterString("error_menu_info", "", 0, "");
+	tu9_testMissingContentPacks = _Dvar_RegisterBool("tu9_testMissingContentPacks", 1, 0x20000u, "When the DLC flag changes for a player, sent the result to Demonware.");
+	tu11_AddMapPackFlagsUserInfo = _Dvar_RegisterBool("tu11_AddMapPackFlagsUserInfo", 1, 0x20000u, "Send availableMappackFlags out with the User info.");
+	tu11_use_animscripted_blends = _Dvar_RegisterBool("tu11_use_animscripted_blends", 1, 0x20000u, "Use a 0.2 second blend time when playing animscripted anims (only used by zombies).");
+	tu12_zombies_allow_hint_weapon_from_script = _Dvar_RegisterBool("tu12_zombies_allow_hint_weapon_from_script", Com_SessionMode_IsZombiesGame(), 0x20000u, "Allow zombies scripts to call SetCursorHint(HINT_WEAPON,weapon).");
+	tu12_validate_bonus_cards_on_server = _Dvar_RegisterBool("tu12_validate_bonus_cards_on_server", 0, 0x20000u, "Validate that a player has the necessary bonus card(s) equipped when giving loadout items.");
+	tu13_allow_no_player_melee_blood = _Dvar_RegisterBool("tu13_allow_no_player_melee_blood", Com_SessionMode_IsZombiesGame(), 0x20000u, "Allow no player melee blood effect");
+	tu15_zombie_local_player_test_honors_client_server_divide = _Dvar_RegisterBool("tu15_zombie_local_player_test_honors_client_server_divide", Com_SessionMode_IsZombiesGame(), 0x20000u, "Use sv_ cg_ appropriate means of determining if all players are local");
+	G_RegisterRegisterToolDvars();
+	// Not used, but I'm keeping it.
+	fake_dvar0 = _Dvar_RegisterBool("sv_EnableDevCheats", 0, 0x4000u, "Enable dev only cheats options");
+	fake_dvar1 = _Dvar_RegisterBool("sv_NoClip", 0, 0x4000u, "enable server side no-clipping");
+	fake_dvar2 = _Dvar_RegisterBool("sv_FullAmmo", 0, 0x4000u, "Set server side ammo recharge");
+	fake_dvar3 = _Dvar_RegisterBool("sv_InfiniteSprint", 0, 0x4000u, "Set server side sprint recharge");
+	fake_dvar4 = _Dvar_RegisterBool("sv_RadarAlwaysOn", 0, 0x4000u, "Disable anti-radar events");
+	fake_dvar5 = _Dvar_RegisterBool("sv_Invisible", 0, 0x4000u, "Don't render client on other systems");
+	fake_dvar6 = _Dvar_RegisterBool("sv_SuperPenetrate", 0, 0x4000u, "Bullets ignore armor");
+	fake_dvar7 = _Dvar_RegisterBool("sv_TripleBullet", 0, 0x4000u, "Fire 3 bullets instead of the usual 2 for double tap");
+	fake_dvar8 = _Dvar_RegisterBool("sv_QuickHealthRecharge", 0, 0x4000u, "Restore health at 4x the usual rate");
+	fake_dvar9 = _Dvar_RegisterBool("sv_InstantReload", 0, 0x4000u, "Reload instantly");
+	fake_dvar10 = _Dvar_RegisterBool("sv_3xEXP", 0, 0x4000u, "3X multiplier for experience earned");
+	fake_dvar11 = _Dvar_RegisterBool("sv_UnlockAllIntel", 0, 0x4000u, "Unlock all intel pieces");
+	fake_dvar12 = _Dvar_RegisterBool("sv_UnlockAllSlots", 0, 0x4000u, "Unlock all custom slots");
+	fake_dvar13 = _Dvar_RegisterBool("sv_DoubleCodPoints", 0, 0x4000u, "Double cod point earnings");
+	fake_dvar14 = _Dvar_RegisterBool("sv_SetAllFree", 0, 0x4000u, "Don't charge for any purchases");
+	fake_dvar15 = _Dvar_RegisterBool("sv_EnableSuperuser", 0, 0x4000u, "Enable super user features");
+	fake_dvar16 = _Dvar_RegisterBool("sv_MakeMeHost", 0, 0x4000u, "Forces client to become host in game lobby");
+	fake_dvar17 = _Dvar_RegisterBool("sv_DisableTheatre", 0, 0x4000u, "Remove this client from all theater captures");
+	fake_dvar18 = _Dvar_RegisterBool("sv_BigHeadMode", 0, 0x4000u, "Double sized heads");
 }
 
 /*
@@ -685,7 +931,22 @@ Com_CheckForInvites_f
 */
 void Com_CheckForInvites_f()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	unsigned __int64 acceptingCrossExeInviteFrom;
+
+	acceptingCrossExeInviteFrom = 0i64;
+	StringToXUIDDecimal(Dvar_GetString(FriendXuidToJoinOnBoot), &acceptingCrossExeInviteFrom);
+	if (acceptingCrossExeInviteFrom)
+	{
+		GamerProfile_SetString(PROFILE_INVITE_XUID_DECIMAL, CONTROLLER_INDEX_FIRST, va("%llu", acceptingCrossExeInviteFrom));
+		Dvar_SetString(FriendXuidToJoinOnBoot, va("%lld", 0i64));
+		g_launchData.gameInviteAccepted = 1;
+	}
+	else
+	{
+		StringToXUIDDecimal(GamerProfile_GetString(PROFILE_INVITE_XUID_DECIMAL, CONTROLLER_INDEX_FIRST), &acceptingCrossExeInviteFrom);
+		if (acceptingCrossExeInviteFrom)
+			g_launchData.gameInviteAccepted = 1;
+	}
 }
 
 /*
@@ -695,7 +956,12 @@ Com_RunAutoExec
 */
 void Com_RunAutoExec(LocalClientNum_t localClientNum, ControllerIndex_t controllerIndex)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (localClientNum >= LOCAL_CLIENT_FIRST)
+	{
+		Dvar_SetInAutoExec(1);
+		Cmd_ExecuteSingleCommand(localClientNum, controllerIndex, "exec autoexec_dev_mp.cfg", 0);
+		Dvar_SetInAutoExec(0);
+	}
 }
 
 /*
@@ -705,7 +971,21 @@ Com_ExecStartupConfigs
 */
 void Com_ExecStartupConfigs(LocalClientNum_t localClientNum, const char *configFile)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Cbuf_AddText(localClientNum, "exec default_mp.cfg\n");
+	if (configFile)
+	{
+		Cbuf_AddText(localClientNum, va("exec %s\n", configFile));
+	}
+	Cbuf_Execute(localClientNum, Com_LocalClient_GetControllerIndex(localClientNum));
+	if (localClientNum >= LOCAL_CLIENT_FIRST)
+	{
+		Dvar_SetInAutoExec(1);
+		Cmd_ExecuteSingleCommand(localClientNum, Com_LocalClient_GetControllerIndex(localClientNum), "exec autoexec_mp.cfg", 0);
+		Dvar_SetInAutoExec(0);
+	}
+	if (Com_SafeMode())
+		Cbuf_AddText(localClientNum, "exec safemode_mp.cfg\n");
+	Cbuf_Execute(localClientNum, Com_LocalClient_GetControllerIndex(localClientNum));
 }
 
 /*
@@ -715,7 +995,25 @@ Com_WriteConfigToFile
 */
 void Com_WriteConfigToFile(LocalClientNum_t localClientNum, const char *filename)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	fileHandle_t configHandle;
+
+	configHandle = FS_FOpenFileWriteToDir(filename, "players");
+	if (configHandle)
+	{
+		FS_Printf(configHandle, "// generated by Call of Duty, do not modify\n");
+#if !DEDICATED
+		FS_Printf(configHandle, "unbindall\n");
+		Key_WriteBindings(localClientNum, configHandle);
+		Gamepad_WriteBindings(localClientNum, configHandle);
+#endif
+		Dvar_WriteVariables(configHandle);
+		Con_WriteFilterConfigString(configHandle);
+		FS_FCloseFile(configHandle);
+	}
+	else
+	{
+		Com_Printf(CON_CHANNEL_SYSTEM, "Couldn't write %s.\n", filename);
+	}
 }
 
 /*
@@ -725,8 +1023,7 @@ Com_isFullyInitialized
 */
 BOOL Com_isFullyInitialized()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return com_fullyInitialized != 0;
 }
 
 /*
@@ -736,7 +1033,19 @@ Com_WriteConfig_f
 */
 void Com_WriteConfig_f()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	char filename[128];
+
+	if (Cmd_Argc() == 2)
+	{
+		I_strncpyz(filename, Cmd_Argv(1), 128);
+		Com_DefaultExtension(filename, 128, ".cfg");
+		Com_Printf(CON_CHANNEL_DONT_FILTER, "Writing %s.\n", filename);
+		Com_WriteConfigToFile((LocalClientNum_t)0, filename);
+	}
+	else
+	{
+		Com_Printf(CON_CHANNEL_DONT_FILTER, "Usage: writeconfig <filename>\n");
+	}
 }
 
 /*
@@ -746,7 +1055,29 @@ Com_WriteKeyConfig_f
 */
 void Com_WriteKeyConfig_f()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	char filename[128];
+	int configHandle;
+
+	if (Cmd_Argc() == 2)
+	{
+		I_strncpyz(filename, Cmd_Argv(1), 128);
+		Com_DefaultExtension(filename, 128, ".cfg");
+		Com_Printf(CON_CHANNEL_DONT_FILTER, "Writing %s.\n", filename);
+		configHandle = FS_FOpenFileWriteToDir(filename, "players");
+		if (configHandle)
+		{
+			FS_Printf(configHandle, "// generated by Call of Duty, do not modify\n");
+			FS_FCloseFile(configHandle);
+		}
+		else
+		{
+			Com_Printf(CON_CHANNEL_SYSTEM, "Couldn't write %s.\n", filename);
+		}
+	}
+	else
+	{
+		Com_Printf(CON_CHANNEL_DONT_FILTER, "Usage: writekeyconfig <filename>\n");
+	}
 }
 
 /*
@@ -756,7 +1087,30 @@ Com_WriteDefaults_f
 */
 void Com_WriteDefaults_f()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	char filename[128];
+	int configHandle;
+
+	if (Cmd_Argc() == 2)
+	{
+		I_strncpyz(filename, Cmd_Argv(1), 128);
+		Com_DefaultExtension(filename, 128, ".cfg");
+		Com_Printf(CON_CHANNEL_DONT_FILTER, "Writing %s.\n", filename);
+		configHandle = FS_FOpenFileWrite(filename);
+		if (configHandle)
+		{
+			FS_Printf(configHandle, "// generated by Call of Duty, do not modify\n");
+			Dvar_WriteDefaults(configHandle);
+			FS_FCloseFile(configHandle);
+		}
+		else
+		{
+			Com_Printf(CON_CHANNEL_SYSTEM, "Couldn't write %s.\n", filename);
+		}
+	}
+	else
+	{
+		Com_Printf(CON_CHANNEL_DONT_FILTER, "Usage: writedefaults <filename>\n");
+	}
 }
 
 /*
@@ -766,8 +1120,21 @@ Com_GetTimescaleForSnd
 */
 double Com_GetTimescaleForSnd()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int fixedtime_i;
+	float fixedtime_f;
+
+	fixedtime_i = Dvar_GetInt(com_fixedtime);
+	if (fixedtime_i)
+	{
+		return fixedtime_i;
+	}
+	fixedtime_f = Dvar_GetFloat(com_fixedtime_float);
+	if (fixedtime_f == 0.0)
+	{
+		fixedtime_f = Dvar_GetFloat(dev_timescale);
+		return Dvar_GetFloat(com_timescale) * fixedtime_f * com_codeTimeScale;
+	}
+	return fixedtime_f;
 }
 
 /*
@@ -777,7 +1144,29 @@ Com_SetSlowMotion
 */
 void Com_SetSlowMotion(const float startTimescale, const float endTimescale, const int deltaMsec)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	g_slowmoCommon.delayMsec = 0;
+	if (endTimescale == startTimescale)
+	{
+		com_codeTimeScale = endTimescale;
+		g_slowmoCommon.enable = 0;
+		g_slowmoCommon.viewTimescale = endTimescale;
+		g_slowmoCommon.viewEnable = 0;
+	}
+	else
+	{
+		g_slowmoCommon.startTimescale = startTimescale;
+		g_slowmoCommon.viewStartTimescale = startTimescale;
+		g_slowmoCommon.type = 0;
+		g_slowmoCommon.viewType = 0;
+		g_slowmoCommon.endTimescale = endTimescale;
+		g_slowmoCommon.startMsec = com_frameTime + (((startTimescale - com_codeTimeScale) * deltaMsec) / (endTimescale - startTimescale));
+		g_slowmoCommon.viewEndTimescale = endTimescale;
+		g_slowmoCommon.viewStartMsec = com_frameTime + (((startTimescale - g_slowmoCommon.viewTimescale) * deltaMsec) / (endTimescale - startTimescale));
+		g_slowmoCommon.endMsec = com_frameTime + (((endTimescale - com_codeTimeScale) * deltaMsec) / (endTimescale - startTimescale));
+		g_slowmoCommon.enable = 1;
+		g_slowmoCommon.viewEndMsec = com_frameTime + (((endTimescale - g_slowmoCommon.viewTimescale) * deltaMsec) / (endTimescale - startTimescale));
+		g_slowmoCommon.viewEnable = 1;
+	}
 }
 
 /*
@@ -787,7 +1176,10 @@ Com_ResetSlowMotion
 */
 void Com_ResetSlowMotion()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	g_slowmoCommon.enable = 0;
+	g_slowmoCommon.viewEnable = 0;
+	g_slowmoCommon.viewTimescale = 1.0;
+	g_slowmoCommon.delayMsec = 0;
 }
 
 /*
@@ -797,7 +1189,8 @@ Com_SetSlowMotionDelayed
 */
 void Com_SetSlowMotionDelayed(const float startTimescale, const float endTimescale, const int deltaMsec, const int delayMsec)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Com_SetSlowMotion(startTimescale, endTimescale, deltaMsec);
+	g_slowmoCommon.delayMsec = delayMsec;
 }
 
 /*
@@ -807,8 +1200,29 @@ Com_ViewScaleMsec
 */
 double Com_ViewScaleMsec(float sec)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	float msConv;
+	float newMs;
+	float viewEndTimescale;
+
+	msConv = sec * 1000.0;
+	if (g_slowmoCommon.viewEnable)
+	{
+		if (g_slowmoCommon.viewEndMsec == g_slowmoCommon.viewStartMsec || (viewEndTimescale = (((g_slowmoCommon.viewEndTimescale - g_slowmoCommon.viewStartTimescale) * msConv) / (g_slowmoCommon.viewEndMsec - g_slowmoCommon.viewStartMsec)) + g_slowmoCommon.viewTimescale, g_slowmoCommon.viewTimescale = viewEndTimescale, g_slowmoCommon.viewEndTimescale > g_slowmoCommon.viewStartTimescale) && viewEndTimescale >= g_slowmoCommon.viewEndTimescale || g_slowmoCommon.viewStartTimescale > g_slowmoCommon.viewEndTimescale && g_slowmoCommon.viewEndTimescale >= viewEndTimescale || g_slowmoCommon.viewStartTimescale == g_slowmoCommon.viewEndTimescale)
+		{
+			viewEndTimescale = g_slowmoCommon.viewEndTimescale;
+			g_slowmoCommon.viewTimescale = g_slowmoCommon.viewEndTimescale;
+			g_slowmoCommon.viewEnable = 0;
+		}
+	}
+	else
+	{
+		viewEndTimescale = g_slowmoCommon.viewTimescale;
+	}
+	newMs = (viewEndTimescale * msConv) * 0.001;
+	if ((newMs - 0.001) < 0.0)
+		return 0.001;
+	else
+		return newMs;
 }
 
 /*
@@ -818,7 +1232,35 @@ Com_Frame_Try_Block_Function
 */
 void Com_Frame_Try_Block_Function()
 {
+	AssertEq(Cmd_Args()->nesting, -1);
+	PIXBeginNamedEvent(-1, "Com_Frame");
+#if !DEDICATED
+	Com_WriteConfiguration(LOCAL_CLIENT_FIRST);
+#endif
 	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+Com_WriteConfiguration
+==============
+*/
+void Com_WriteConfiguration(LocalClientNum_t localClientNum)
+{
+	char configFile[64];
+	if (Com_isFullyInitialized() && (g_dvar_modifiedFlags & 1) != 0)
+	{
+		g_dvar_modifiedFlags &= -1;
+		I_strncpyz(configFile, "config_mp.cfg", sizeof(configFile));
+		if (Dvar_GetBool(com_useConfig))
+		{
+			Com_WriteConfigToFile(localClientNum, configFile);
+		}
+		else
+		{
+			FS_Delete(configFile);
+		}
+	}
 }
 
 /*
@@ -839,7 +1281,21 @@ Com_LoadCommonFastFile
 */
 void Com_LoadCommonFastFile()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	XZoneInfo zoneInfo[1];
+
+	if (!DB_IsZoneTypeLoaded(128) && !DB_IsZoneTypeLoading(128))
+	{
+		DB_ResetZoneSize(0);
+		if (Dvar_GetBool(useFastFile))
+			DB_ReleaseXAssets();
+		if (!DB_IsZoneTypeLoaded(128))
+		{
+			zoneInfo[0].name = COMMON_FAST_FILE_NAME;
+			zoneInfo[0].allocFlags = 128;
+			zoneInfo[0].freeFlags = 0;
+			DB_LoadXAssets(zoneInfo, 1u, 0);
+		}
+	}
 }
 
 /*
@@ -866,7 +1322,24 @@ Com_UnloadLevelFastFiles
 */
 void Com_UnloadLevelFastFiles()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	XZoneInfo zoneInfo[2];
+	int zoneCount;
+
+	if (Dvar_GetBool(useFastFile))
+	{
+		zoneCount = 0;
+		if (Com_SessionMode_IsZombiesGame())
+		{
+			zoneInfo[0].name = 0;
+			zoneInfo[0].allocFlags = 0;
+			zoneInfo[0].freeFlags = 0x40000;
+			zoneCount = 1;
+		}
+		zoneInfo[zoneCount].name = 0;
+		zoneInfo[zoneCount].allocFlags = 0;
+		zoneInfo[zoneCount].freeFlags = 0x1C400;
+		DB_LoadXAssets(zoneInfo, zoneCount + 1, 0);
+	}
 }
 
 /*
@@ -876,7 +1349,117 @@ Com_LoadLevelFastFiles
 */
 void Com_LoadLevelFastFiles(const char *mapName)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	int zoneCount = 0;
+	const char* LevelSharedFastFile;
+	const char* String;
+	const char* baseMapName;
+	XZoneInfo zoneInfo[6];
+	char axis[64];
+	char addon_filename[64];
+	char allies[64];
+
+	DB_ResetZoneSize(0);
+	if (!mapName)
+	{
+		if (DB_IsZoneTypeLoaded(0x2000000))
+		{
+			while (R_Is3DOn())
+			{
+				if (mapName)
+				{
+					if (!I_strcmp(mapName, "ui_mp") || !I_strcmp(mapName, "ui_zm"))
+					{
+						break;
+					}
+				}
+				else if (DB_IsZoneTypeLoaded(0x2000000))
+				{
+					break;
+				}
+				DB_LoadLoadFastfilesForNewContent();
+				DB_SyncXAssets();
+				NET_Sleep(1u);
+			}
+		}
+		Com_LoadCommonFastFile();
+	}
+	if (I_strcmp(mapName, "ui_mp") && I_strcmp(mapName, "ui_zm"))
+	{
+		Com_LoadCommonFastFile();
+	}
+	while (R_Is3DOn())
+	{
+		if (mapName)
+		{
+			if (!I_strcmp(mapName, "ui_mp") || !I_strcmp(mapName, "ui_zm"))
+				break;
+		}
+		else if (DB_IsZoneTypeLoaded(0x2000000))
+		{
+			break;
+		}
+		DB_LoadLoadFastfilesForNewContent();
+		DB_SyncXAssets();
+		NET_Sleep(1u);
+	}
+	Phys_ReEvalPriority();
+	zoneInfo[zoneCount].name = 0;
+	zoneInfo[zoneCount].allocFlags = 0;
+	zoneInfo[zoneCount++].freeFlags = 167772160;
+	LevelSharedFastFile = Com_GetLevelSharedFastFile(mapName);
+	if (LevelSharedFastFile)
+	{
+		zoneInfo[zoneCount].name = LevelSharedFastFile;
+		zoneInfo[zoneCount].allocFlags = 4096;
+		zoneInfo[zoneCount++].freeFlags = 0;
+	}
+	if (Com_IsAddonMap(mapName, &baseMapName))
+	{
+		zoneInfo[zoneCount].name = baseMapName;
+		zoneInfo[zoneCount].allocFlags = 0x8000;
+		zoneInfo[zoneCount++].freeFlags = 0;
+		zoneInfo[zoneCount].name = mapName;
+		zoneInfo[zoneCount].allocFlags = 0x40000;
+		zoneInfo[zoneCount++].freeFlags = 0;
+	}
+	else
+	{
+		zoneInfo[zoneCount].name = mapName;
+		zoneInfo[zoneCount].allocFlags = 0x8000;
+		zoneInfo[zoneCount++].freeFlags = -2147385344;
+		if (Com_SessionMode_IsZombiesGame())
+		{
+			if (DB_ZoneLoadsOverlays(mapName))
+			{
+				_snprintf(addon_filename, 0x40u, "so_%s_%s", Dvar_GetString(ui_zm_gamemodegroup), mapName);
+				zoneInfo[zoneCount].name = addon_filename;
+				zoneInfo[zoneCount].allocFlags = 0x40000;
+				zoneInfo[zoneCount++].freeFlags = 0x80000000;
+			}
+			if (Dvar_GetBool(tu6_startMovieEarly) && Dvar_GetBool(ui_zm_useloadingmovie))
+			{
+				R_Cinematic_StartPlayback(va("%s_load", mapName), 0, 1.0, 0, 0);
+			}
+		}
+		else
+		{
+			if (Com_FactionFastFileAllies(mapName, allies, 64))
+			{
+				zoneInfo[zoneCount].name = allies;
+				zoneInfo[zoneCount].allocFlags = 0x8000;
+				zoneInfo[zoneCount++].freeFlags = 0;
+			}
+			if (Com_FactionFastFileAxis(mapName, axis, 64))
+			{
+				zoneInfo[zoneCount].name = axis;
+				zoneInfo[zoneCount].allocFlags = 0x8000;
+				zoneInfo[zoneCount++].freeFlags = 0;
+			}
+		}
+	}
+	R_BeginRemoteScreenUpdate();
+	DB_LoadXAssets(zoneInfo, zoneCount, 0);
+	R_EndRemoteScreenUpdate();
 }
 
 /*
@@ -886,7 +1469,10 @@ Com_LoadLevelFastFiles_BlockForOverlay
 */
 void Com_LoadLevelFastFiles_BlockForOverlay(const char *mapName)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (Com_IsAddonMap(mapName, 0))
+	{
+		DB_SyncXAssets();
+	}
 }
 
 /*
@@ -896,7 +1482,30 @@ Com_UnloadFrontEnd
 */
 void Com_UnloadFrontEnd()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	XZoneInfo zoneInfo[1];
+
+	LiveFileshare_Mem_Shutdown();
+#if XENON
+	for (int i = 0; i < 4; ++i)
+	{
+		UI_CloseAll(i);
+	}
+#else
+	UI_CloseAll(LOCAL_CLIENT_FIRST);
+#endif
+	if (Dvar_GetBool(useFastFile))
+	{
+		DB_ReleaseXAssets();
+		zoneInfo[0].name = 0;
+		zoneInfo[0].allocFlags = 0;
+#if XENON
+		zoneInfo[0].freeFlags = 0x14000000;
+#else
+		zoneInfo[0].freeFlags = 0x1E000000;
+#endif
+		DB_LoadXAssets(zoneInfo, 1u, 0);
+	}
+	R_UI3D_Shutdown();
 }
 
 /*
@@ -906,7 +1515,7 @@ Com_ResetFrametime
 */
 void Com_ResetFrametime()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	com_frameTime = Sys_Milliseconds();
 }
 
 /*
@@ -916,7 +1525,27 @@ Com_CheckSyncFrame
 */
 void Com_CheckSyncFrame()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+#if XENON
+	SV_WaitSaveGame();
+	DB_Update();
+#else
+	DB_Update();
+	if (Sys_WaitForGumpLoad(0) && Scr_IsSystemActive(SCRIPTINSTANCE_CLIENT))
+	{
+		Sys_GumpPrint("send gump_flushed notify to script\n");
+		Scr_AddInt(SCRIPTINSTANCE_CLIENT, 1);
+		CScr_NotifyLevel(Com_LocalClients_GetPrimaryDefault(), "gump_loaded");
+	}
+	if (Sys_WaitForGumpFlush(0))
+	{
+		if (Scr_IsSystemActive(SCRIPTINSTANCE_CLIENT))
+		{
+			Sys_GumpPrint("send gump_flushed notify to script\n");
+			Scr_AddInt(SCRIPTINSTANCE_CLIENT, 1);
+			CScr_NotifyLevel(Com_LocalClients_GetPrimaryDefault(), "gump_flushed");
+		}
+	}
+#endif
 }
 
 /*
@@ -926,8 +1555,7 @@ Com_LogFileOpen
 */
 BOOL Com_LogFileOpen()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return logfile != 0;
 }
 
 /*
@@ -937,7 +1565,14 @@ Field_Clear
 */
 void Field_Clear(field_t *edit)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+#if XENON
+	XMemSet(edit->buffer, 0, sizeof(edit->buffer));
+#else
+	memset(edit->buffer, 0, sizeof(edit->buffer));
+	edit->cursor = 0;
+	edit->scroll = 0;
+	edit->drawWidth = 256;
+#endif
 }
 
 /*
@@ -947,7 +1582,49 @@ Com_Restart
 */
 void Com_Restart()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	XZoneInfo zoneInfo[1];
+
+	com_codeTimeScale = 1.0;
+	BB_Send(INVALID_CONTROLLER_PORT, 1, 0);
+	CL_ShutdownHunkUsers();
+	SV_ShutdownGameProgs();
+	Com_ShutdownDObj();
+	DObjShutdown();
+	XAnimShutdown();
+	CL_FlushGumps();
+	Demo_DeallocatePlaybackMemory();
+	GlassCl_FreeMemory();
+	R_UI3D_Shutdown();
+	R_ExtraCam_Shutdown();
+	BB_ResetHighWaterMarks();
+	if (Dvar_GetBool(useFastFile))
+	{
+		zoneInfo[0].name = 0;
+		zoneInfo[0].allocFlags = 0;
+		zoneInfo[0].freeFlags = 0x1000000;
+		DB_LoadXAssets(zoneInfo, 1u, 0);
+	}
+	Com_ShutdownWorld();
+	CM_Shutdown();
+	Hunk_Clear();
+	Hunk_UserReset(g_ScriptDebugHunk);
+	CL_ShutdownDebugData();
+	if (Dvar_GetBool(useFastFile))
+	{
+		DB_ReleaseXAssets();
+	}
+	Scr_Settings(SCRIPTINSTANCE_SERVER, Dvar_GetInt(com_developer), Dvar_GetBool(com_developer_script), 0);
+	Scr_Settings(SCRIPTINSTANCE_CLIENT, Dvar_GetInt(com_developer), Dvar_GetBool(com_developer_script), 0);
+	com_fixedConsolePosition = 0;
+	XAnimInit();
+	DObjInit();
+	Com_InitDObj();
+	com_codeTimeScale = 1.0;
+	g_slowmoCommon.enable = 0;
+	g_slowmoCommon.viewEnable = 0;
+	g_slowmoCommon.viewTimescale = 1.0;
+	g_slowmoCommon.delayMsec = 0;
+	Flame_Init();
 }
 
 /*
@@ -957,8 +1634,7 @@ CG_AllocAnimTree
 */
 void *CG_AllocAnimTree(int size)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	return MT_Alloc(size, 5);
 }
 
 /*
@@ -968,8 +1644,7 @@ Com_XAnimCreateSmallTree
 */
 XAnimTree_s *Com_XAnimCreateSmallTree(XAnim_s *anims)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	return XAnimCreateTree(anims, CG_AllocAnimTree);
 }
 
 /*
@@ -979,7 +1654,7 @@ Com_XAnimFreeSmallTree
 */
 void Com_XAnimFreeSmallTree(XAnimTree_s *animtree)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	XAnimFreeTree(animtree, MT_Free);
 }
 
 /*
@@ -989,7 +1664,7 @@ Com_SetWeaponInfoMemory
 */
 void Com_SetWeaponInfoMemory(int source)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	weaponInfoSource = source;
 }
 
 /*
@@ -999,7 +1674,11 @@ Com_FreeWeaponInfoMemory
 */
 void Com_FreeWeaponInfoMemory(int source)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (source == weaponInfoSource)
+	{
+		weaponInfoSource = 0;
+		BG_ShutdownWeaponDefFiles();
+	}
 }
 
 /*
@@ -1009,8 +1688,7 @@ Com_GetWeaponInfoMemory
 */
 int Com_GetWeaponInfoMemory()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return weaponInfoSource;
 }
 
 /*
@@ -1020,8 +1698,41 @@ Com_AddToString
 */
 int Com_AddToString(const char *add, char *msg, int len, int maxlen, int mayAddQuotes)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int addQuotes;
+	int i;
+
+	addQuotes = 0;
+	if (mayAddQuotes)
+	{
+		if (*add)
+		{
+			for (i = 0; i < maxlen - len && add[i]; ++i)
+			{
+				if (add[i] <= 32)
+				{
+					addQuotes = 1;
+					break;
+				}
+			}
+		}
+		else
+		{
+			addQuotes = 1;
+		}
+	}
+	if (addQuotes && len < maxlen)
+	{
+		msg[len++] = 34;
+	}
+	for (i = 0; len < maxlen && add[i]; ++i)
+	{
+		msg[len++] = add[i];
+	}
+	if (addQuotes && len < maxlen)
+	{
+		msg[len++] = 34;
+	}
+	return len;
 }
 
 /*
@@ -1031,8 +1742,7 @@ Com_GetDecimalDelimiter
 */
 char Com_GetDecimalDelimiter()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return '.';
 }
 
 /*
@@ -1042,7 +1752,8 @@ Com_LocalizedFloatToString
 */
 void Com_LocalizedFloatToString(float f, char *buffer, unsigned int maxlen, unsigned int numDecimalPlaces)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	_snprintf(buffer, maxlen - 1, "%.*f", numDecimalPlaces, f);
+	buffer[maxlen - 1] = 0;
 }
 
 /*
@@ -1052,7 +1763,12 @@ Com_SyncThreads
 */
 void Com_SyncThreads()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	R_SyncRenderThread();
+	if (Dvar_GetBool(com_sv_running))
+	{
+		SV_WaitServer();
+		SV_AllowPackets(0);
+	}
 }
 
 /*
@@ -1062,8 +1778,18 @@ Com_DisplayName
 */
 const char *Com_DisplayName(const char *name, const char *clanAbbrev, int type)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	if (clanAbbrev[0])
+		type &= ~2;
+	switch (type)
+	{
+	case 3u:
+		return va("%c%s%c%s", '[', clanAbbrev, ']', name);
+	case 1u:
+		return name;
+	case 2u:
+		return va("%c%s%c", '[', clanAbbrev, ']');
+	}
+	return "";
 }
 
 /*
@@ -1073,8 +1799,18 @@ CS_DisplayName
 */
 char *CS_DisplayName(const clientState_s *cs, int type)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	if (!cs->clanAbbrev[0])
+		type &= ~2;
+	if (type == 3)
+		return va("%c%s%c%s", '[', cs->clanAbbrev, ']', cs->name);
+	if (type != 1)
+	{
+		if (type == 2)
+			return va("%c%s%c", '[', cs->clanAbbrev, ']');
+		else
+			return "";
+	}
+	return (char*)cs->name;;
 }
 
 /*
@@ -1084,7 +1820,13 @@ Com_GetPrivateClients
 */
 int Com_GetPrivateClients()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	int privateClients;
+
+	if (!Dvar_GetInt(com_maxclients))
+	{
+		privateClients = Dvar_GetInt(com_maxclients);
+		AssertMsg("privateClients doesn't index Dvar_GetInt( com_maxclients )\n\t%i not in [0, %i)", 0, privateClients);
+	}
 	return 0;
 }
 
@@ -1095,7 +1837,7 @@ Com_InitUIAndCommonXAssets
 */
 void Com_InitUIAndCommonXAssets()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Com_UnloadLevelFastFiles();
 }
 
 /*
@@ -1105,7 +1847,9 @@ NetAdr_SetType
 */
 void NetAdr_SetType(netadr_t *addr, netadrtype_t type)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	addr->type = type;
+	if (type == NA_LOOPBACK)
+		addr->inaddr = 0x100007F;
 }
 
 /*
@@ -1115,8 +1859,7 @@ Com_UseRawUDP
 */
 bool Com_UseRawUDP()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return Com_GetClientPlatform() == CLIENT_PLATFORM_XENON;
 }
 
 /*
@@ -1126,7 +1869,78 @@ Com_Quit_f
 */
 void Com_Quit_f()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (!Dvar_GetBool(com_sv_running) || !Com_SessionMode_IsPublicOnlineGame())
+	{
+		Com_Printf(CON_CHANNEL_DONT_FILTER, "quitting...\n");
+		DB_SyncXAssets();
+		R_PopRemoteScreenUpdate();
+		R_SyncRenderThread();
+		if (Dvar_GetBool(com_sv_running))
+		{
+			SV_WaitServer();
+			SV_AllowPackets(0);
+		}
+		BG_EvalVehicleName();
+		Sys_EnterCriticalSection(CRITSECT_COM_ERROR);
+		com_quitInProgress = 1;
+		GScr_Shutdown();
+		if (!com_errorEntered)
+		{
+			Hunk_ClearTempMemory();
+			Hunk_ClearTempMemoryHigh();
+			Sys_DestroySplashWindow();
+			Voice_ClearRemoteTalkers(&g_serverSession);
+			Voice_ClearRemoteTalkers(&g_partySession);
+			Voice_ClearRemoteTalkers(&g_partyPresenceSession);
+			CL_Disconnect(LOCAL_CLIENT_FIRST, 1);
+			clientUIActives[0].flags &= ~2u;
+			CL_ShutdownDebugData();
+			CL_ShutdownHunkUsers();
+			Voice_Shutdown();
+			Stream_Shutdown();
+			SND_Shutdown();
+			CL_ShutdownInput();
+			CL_RemoveCommands();
+			LiveFileshare_Mem_Shutdown();
+			SV_Shutdown("EXE_SERVERQUIT");
+			Session_EmptyGraveYard();
+			CL_ShutdownRef();
+			memset(&cls, 0, sizeof(cls));
+			SL_ShutdownSystem(1u);
+			Com_ShutdownDObj();
+			DObjShutdown();
+			XAnimShutdown();
+			Com_ShutdownWorld();
+			CM_Shutdown();
+			Live_FileShare_CacheShutdown();
+			Hunk_Clear();
+			if (Dvar_GetBool(useFastFile))
+				DB_ShutdownXAssets();
+			Scr_Shutdown(SCRIPTINSTANCE_SERVER);
+			Scr_Shutdown(SCRIPTINSTANCE_CLIENT);
+			NET_ShutdownDebug();
+			Hunk_UserShutdown();
+			CL_FreePerLocalClientMemory(0);
+			Com_LocalClients_GetPrimary();
+			if (logfile)
+			{
+				FS_FCloseLogFile(logfile);
+				logfile = 0;
+			}
+			FS_Shutdown();
+			FS_ShutDownIwdPureCheckReferences();
+			FS_ShutdownServerIwdNames();
+			FS_ShutdownServerReferencedIwds();
+			FS_ShutdownServerReferencedFFs();
+			BG_EvalVehicleName();
+		}
+		Sys_Quit();
+	}
+	if (!SV_IsMigrating())
+	{
+		Cbuf_AddText(Com_LocalClients_GetPrimary(), "hostmigration_start\n");
+	}
+	com_quitAfterHostMigrates = 1;
 }
 
 /*

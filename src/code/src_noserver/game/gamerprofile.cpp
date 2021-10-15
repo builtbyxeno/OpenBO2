@@ -48,7 +48,7 @@ bool GamerProfile_IsValidProfileVariable(const char *settingName)
 GamerProfile_GetInt
 ==============
 */
-unsigned int GamerProfile_GetInt(ControllerIndex_t a1, profile_setting setting)
+unsigned int GamerProfile_GetInt(profile_setting setting, ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -59,7 +59,7 @@ unsigned int GamerProfile_GetInt(ControllerIndex_t a1, profile_setting setting)
 GamerProfile_GetBool
 ==============
 */
-BOOL GamerProfile_GetBool(ControllerIndex_t a1, profile_setting setting)
+BOOL GamerProfile_GetBool(ControllerIndex_t a1, profile_setting setting, ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -70,7 +70,7 @@ BOOL GamerProfile_GetBool(ControllerIndex_t a1, profile_setting setting)
 GamerProfile_GetFloat
 ==============
 */
-double GamerProfile_GetFloat(ControllerIndex_t a1, profile_setting setting)
+double GamerProfile_GetFloat(profile_setting setting, ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -81,7 +81,7 @@ double GamerProfile_GetFloat(ControllerIndex_t a1, profile_setting setting)
 GamerProfile_GetString
 ==============
 */
-const GfxViewParms *GamerProfile_GetString(ControllerIndex_t a1, char *a2, profile_setting setting)
+const char* GamerProfile_GetString(profile_setting setting, ControllerIndex_t controllerIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -114,7 +114,7 @@ double GamerProfile_GetFloat(const char *setting)
 GamerProfile_GetString
 ==============
 */
-const GfxViewParms *GamerProfile_GetString(const char *settingName)
+const char *GamerProfile_GetString(const char *settingName)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -125,7 +125,7 @@ const GfxViewParms *GamerProfile_GetString(const char *settingName)
 GamerProfile_GetArrayString
 ==============
 */
-const GfxViewParms *GamerProfile_GetArrayString(const char *settingName, ControllerIndex_t controllerIndex, int index)
+const char *GamerProfile_GetArrayString(const char *settingName, ControllerIndex_t controllerIndex, int index)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -232,7 +232,7 @@ bool GamerProfile_SetString_Internal(ControllerIndex_t controllerIndex, ddlState
 GamerProfile_SetString
 ==============
 */
-void GamerProfile_SetString(ControllerIndex_t a1, char *a2, profile_setting setting, ControllerIndex_t controllerIndex, const char *newValue)
+void GamerProfile_SetString(profile_setting setting, ControllerIndex_t controllerIndex, const char *newValue)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

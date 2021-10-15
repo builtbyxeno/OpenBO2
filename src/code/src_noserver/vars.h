@@ -902,6 +902,7 @@ extern dvar_t* cl_maxppf; // idb
 extern dvar_t* cl_migrationPingTime; // idb
 extern dvar_t* cl_motdString; // idb
 extern dvar_t* cl_mouseAccel; // idb
+extern dvar_t* cl_network_warning;
 extern dvar_t* cl_nodelta; // idb
 extern dvar_t* cl_noprint; // idb
 extern dvar_t* cl_packetdup; // idb
@@ -948,6 +949,7 @@ extern dvar_t* com_introPlayed; // idb
 extern dvar_t* com_logfile; // idb
 extern dvar_t* com_masterPort; // idb
 extern dvar_t* com_masterServerName; // idb
+extern dvar_t* com_maxclients; // idb
 extern dvar_t* com_maxFrameTime; // idb
 extern dvar_t* com_maxfps; // idb
 extern dvar_t* com_profileLoading; // idb
@@ -957,6 +959,7 @@ extern dvar_t* com_skipMovies; // idb
 extern dvar_t* com_statmon; // idb
 extern dvar_t* com_sv_running; // idb
 extern dvar_t* com_timescale; // idb
+extern dvar_t* com_useConfig;
 extern dvar_t* com_voip_bandwidth_restricted; // idb
 extern dvar_t* com_voip_disable_threshold; // idb
 extern dvar_t* com_voip_resume_time; // idb
@@ -1037,6 +1040,7 @@ extern dvar_t* con_gameMsgWindowNSplitscreenScale[4]; // idb
 extern dvar_t* con_inputBoxColor; // idb
 extern dvar_t* con_inputHintBoxColor; // idb
 extern dvar_t* con_matchPrefixOnly; // idb
+
 extern dvar_t* con_miniconlines; // idb
 extern dvar_t* con_minicontime; // idb
 extern dvar_t* con_outputBarColor; // idb
@@ -1234,6 +1238,7 @@ extern dvar_t* enable_new_prone_check; // idb
 extern dvar_t* excellentPing; // idb
 extern dvar_t* exp_softclip; // idb
 extern dvar_t* facepaintLodDist; // idb
+extern dvar_t* fastfile_allowNoAuth;
 extern dvar_t* fire_debug; // idb
 extern dvar_t* fixNegativeLosses; // idb
 extern dvar_t* flameDvars[128]; // idb
@@ -2965,6 +2970,7 @@ extern dvar_t* sv_disableClientConsole; // idb
 extern dvar_t* sv_dwlsgerror; // idb
 extern dvar_t* sv_endGameIfISuck; // idb
 extern dvar_t* sv_externalEventLoop; // idb
+extern dvar_t* sv_fakeServerLoad;
 extern dvar_t* sv_fakeServerLoadRand; // idb
 extern dvar_t* sv_forcelicensetype; // idb
 extern dvar_t* sv_forceunranked; // idb
@@ -2991,6 +2997,7 @@ extern dvar_t* sv_maxclients; // idb
 extern dvar_t* sv_minPing; // idb
 extern dvar_t* sv_networkRateSolution; // idb
 extern dvar_t* sv_network_fps; // idb
+extern dvar_t* sv_network_warning;
 extern dvar_t* sv_noname; // idb
 extern dvar_t* sv_numreservedslots; // idb
 extern dvar_t* sv_onlineHostSnapshotRateThrottled; // idb
@@ -3570,6 +3577,7 @@ extern dvar_t* ytAuthCooloffTime; // idb
 extern dvar_t* ytForcePrivate; // idb
 extern dvar_t* zero_idle_movement; // idb
 extern dvar_t* zero_stats_check; // idb
+extern dvar_t* zombieStopSplitScreen;
 extern dvar_t* zombie_devgui; // idb
 extern dvar_t* zombie_double_wide_checks; // idb
 extern dvar_t* zombie_useOldPathFallback; // idb
@@ -3646,3 +3654,68 @@ extern long double usecPerRawTimerTick;
 extern clientStatic_t cls;
 extern int ARCHIVED_SNAPSHOT_BUFFER_SIZE;
 extern int ARCHIVED_SNAPSHOT_BUFFER_WRAP_POINT;
+
+extern const char* recorderModeNames[];
+
+extern dvar_t* cl_useMapPreloading;
+extern dvar_t* sv_useMapPreloading;
+extern dvar_t* com_startupIntroPlayed;
+extern dvar_t* com_walkpathnodes;
+extern dvar_t* com_waitForStreamer;
+extern dvar_t* recorder_enableRec;
+extern dvar_t* recorder_streamDObjects;
+extern dvar_t* recorder_debugMemory;
+extern dvar_t* recorder_bufferSize;
+extern dvar_t* recorder_channelAccuracy;
+extern dvar_t* recorder_channelAiCode;
+extern dvar_t* recorder_channelAnimation;
+extern dvar_t* recorder_channelAnimscript;
+extern dvar_t* recorder_channelAlex;
+extern dvar_t* recorder_channelCover;
+extern dvar_t* recorder_channelGrenades;
+extern dvar_t* recorder_channelMessaging;
+extern dvar_t* recorder_channelNone;
+extern dvar_t* recorder_channelPathFind;
+extern dvar_t* recorder_channelPerception;
+extern dvar_t* recorder_channelPhysics;
+extern dvar_t* recorder_channelSuppression;
+extern dvar_t* recorder_channelScript;
+extern dvar_t* recorder_channelScriptedAnim;
+extern dvar_t* recorder_channelThreat;
+extern dvar_t* ui_aarmapname;
+extern dvar_t* dec20_Enabled;
+extern dvar_t* dec20_inuse;
+extern dvar_t* ui_keyboard_focus;
+extern dvar_t* ui_keyboard_focus_key;
+extern dvar_t* scr_killcam;
+extern dvar_t* sidebet_made;
+extern dvar_t* credits_active;
+extern dvar_t* next_menu_name;
+extern dvar_t* com_overviewProfile;
+extern dvar_t* com_isNotice;
+extern dvar_t* error_menu_info;
+extern dvar_t* fake_dvar0;
+extern dvar_t* fake_dvar1;
+extern dvar_t* fake_dvar2;
+extern dvar_t* fake_dvar3;
+extern dvar_t* fake_dvar4;
+extern dvar_t* fake_dvar5;
+extern dvar_t* fake_dvar6;
+extern dvar_t* fake_dvar7;
+extern dvar_t* fake_dvar8;
+extern dvar_t* fake_dvar9;
+extern dvar_t* fake_dvar10;
+extern dvar_t* fake_dvar11;
+extern dvar_t* fake_dvar12;
+extern dvar_t* fake_dvar13;
+extern dvar_t* fake_dvar14;
+extern dvar_t* fake_dvar15;
+extern dvar_t* fake_dvar16;
+extern dvar_t* fake_dvar17;
+extern dvar_t* fake_dvar18;
+
+extern HunkUser* g_ScriptDebugHunk;
+extern SessionData g_serverSession;
+extern SessionData g_partySession;
+extern SessionData g_partyPresenceSession;
+extern clientplatform_t g_clientPlatform;

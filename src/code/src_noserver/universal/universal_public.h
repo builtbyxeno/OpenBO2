@@ -748,6 +748,8 @@ unsigned __int8 *Hunk_AllocLow(int size, const char *name, int type);
 void* Hunk_AllocateTempMemory(int size, const char* name);
 void Hunk_FreeTempMemory(void* buf);
 void Hunk_Clear();
+void Hunk_ClearTempMemory();
+void Hunk_ClearTempMemoryHigh();
 void Com_InitHunkMemory();
 void* Z_Malloc(int size, const char* name, int type);
 void Z_Free(void* ptr, int type);

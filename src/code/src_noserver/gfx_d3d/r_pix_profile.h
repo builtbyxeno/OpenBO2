@@ -5,7 +5,7 @@
 PIXBeginNamedEvent
 ==============
 */
-void PIXBeginNamedEvent(int Color, const char *Name, ...)
+inline void PIXBeginNamedEvent(int Color, const char *Name, ...)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -15,7 +15,7 @@ void PIXBeginNamedEvent(int Color, const char *Name, ...)
 PIXSetMarker
 ==============
 */
-void PIXSetMarker(int Color, const char *Name, ...)
+inline void PIXSetMarker(int Color, const char *Name, ...)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

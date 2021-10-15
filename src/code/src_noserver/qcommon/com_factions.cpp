@@ -27,7 +27,7 @@ BOOL Com_IsFactionFastfile(const char *mapName)
 Com_FactionLookupAxis
 ==============
 */
-const char *Com_FactionLookupAxis(const char *a1, int columnIndex)
+const char *Com_FactionLookupAxis(int columnIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -38,7 +38,7 @@ const char *Com_FactionLookupAxis(const char *a1, int columnIndex)
 Com_FactionLookupAllies
 ==============
 */
-const char *Com_FactionLookupAllies(const char *a1, int columnIndex)
+const char *Com_FactionLookupAllies(int columnIndex)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -49,7 +49,7 @@ const char *Com_FactionLookupAllies(const char *a1, int columnIndex)
 Com_FactionFastFileAxis
 ==============
 */
-char Com_FactionFastFileAxis(int a1, const char *a2, const char *mapName, char *buffer, const int bufSize)
+char Com_FactionFastFileAxis(const char *mapName, char *buffer, const int bufSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -60,7 +60,7 @@ char Com_FactionFastFileAxis(int a1, const char *a2, const char *mapName, char *
 Com_FactionFastFileAllies
 ==============
 */
-char Com_FactionFastFileAllies(int a1, const char *a2, const char *mapName, char *buffer, const int bufSize)
+char Com_FactionFastFileAllies(const char *mapName, char *buffer, const int bufSize)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

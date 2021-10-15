@@ -92,8 +92,7 @@ Com_IsClientConsole
 */
 bool Com_IsClientConsole()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return (g_clientPlatform - 1) <= 2;
 }
 
 /*
@@ -103,9 +102,7 @@ Com_GetClientPlatform
 */
 clientplatform_t Com_GetClientPlatform()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	clientplatform_t tmp;
-	return tmp;
+	return g_clientPlatform;
 }
 
 /*

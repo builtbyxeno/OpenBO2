@@ -75,7 +75,7 @@ void Scr_Settings(scriptInstance_t inst, int developer, int developer_script, in
 Scr_Shutdown
 ==============
 */
-void Scr_Shutdown(ChildVariableValue *a1, scriptInstance_t a2, scriptInstance_t inst)
+void Scr_Shutdown(scriptInstance_t inst)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

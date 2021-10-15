@@ -618,7 +618,7 @@ void Scr_ReportDataCycles();
 void Scr_VM_Init(scriptInstance_t inst);
 void Scr_Init(scriptInstance_t inst);
 void Scr_Settings(scriptInstance_t inst, int developer, int developer_script, int abort_on_error);
-void Scr_Shutdown(ChildVariableValue *a1, scriptInstance_t a2, scriptInstance_t inst);
+void Scr_Shutdown(scriptInstance_t inst);
 void Scr_SetLoading(scriptInstance_t inst, int bLoading);
 void Scr_ErrorInternal(scriptInstance_t inst);
 unsigned int Scr_GetLevelObjectId(scriptInstance_t inst);

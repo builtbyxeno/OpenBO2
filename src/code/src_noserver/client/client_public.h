@@ -163,6 +163,10 @@ void CL_GamepadButtonEventForPort(ControllerIndex_t portIndex, int key, int butt
 void CL_InitGamepadCommands();
 void CL_GamepadGenerateAPad(LocalClientNum_t localClientNum, ControllerIndex_t portIndex, int physicalAxis, int time);
 void CL_GamepadEvent(ControllerIndex_t portIndex, int physicalAxis, int value, int time);
+const char* Gamepad_VirtualAxisName(GamepadVirtualAxis axis);
+const char* Axis_NumToAxisString(GamepadPhysicalAxis axis);
+const char* Gamepad_InputTypeName(GamepadMapping mapType);
+void Gamepad_WriteBindings(LocalClientNum_t localClientNum, int f);
 
 //t6/code/src_noserver/client/cl_input.cpp
 void CL_LeanCount_Reset();
@@ -254,7 +258,7 @@ void Key_SetOverstrikeMode(LocalClientNum_t localClientNum, int state);
 int Key_IsDown(LocalClientNum_t localClientNum, int keynum);
 int Key_StringToKeynum(LocalClientNum_t localClientNum, const char *str);
 BOOL Key_IsValidGamePadChar(const char key);
-const char *Key_KeynumToString(LocalClientNum_t localClientNum, int keynum, int translate);
+const char *Key_KeynumToString(int keynum, int translate);
 void Key_SetBinding(LocalClientNum_t localClientNum, int keynum, Bind_t binding, BindIndex_t index);
 void Key_SetBindingCheat(LocalClientNum_t localClientNum, int keynum, const char *bindingCheat);
 void Key_SetBindings(LocalClientNum_t localClientNum, int *twokeys, Bind_t binding, BindIndex_t bindNum);
@@ -297,6 +301,8 @@ void CL_CharEvent(LocalClientNum_t localClientNum, int key);
 int __cdecl CL_GetKeyBindingInternal(LocalClientNum_t localClientNum, const char *command, char (*keyNames)[128], int gamePadOnly, BindIndex_t bindNum);
 int CL_GetKeyBinding(LocalClientNum_t localClientNum, const char *command, char (*keyNames)[128], BindIndex_t bindNum);
 int CL_GetGamePadBinding(LocalClientNum_t localClientNum, const char *command, char (*keyNames)[128], BindIndex_t bindNum);
+void Key_WriteBindings(LocalClientNum_t localClientNum, int f);
+int Key_WriteBindingsToBuffer(LocalClientNum_t localClientNum, char* buffer, int bufferSize);
 
 //t6/code/src_noserver/client/cl_main.cpp
 char CL_AnyLocalClientsRunning();

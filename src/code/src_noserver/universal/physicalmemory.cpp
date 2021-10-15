@@ -3,7 +3,7 @@
 #include <qcommon/qcommon_public.h>
 #include <win32/win32_public.h>
 
-PhysicalMemory g_mem;
+static PhysicalMemory g_mem;
 
 __declspec(thread) unsigned int g_alloc_type;
 

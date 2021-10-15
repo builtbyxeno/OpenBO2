@@ -727,7 +727,7 @@ bool Dvar_ValueInDomain(dvarType_t type, DvarValue value, DvarLimits domain)
 	switch (type)
 	{
 	case DVAR_TYPE_BOOL:
-		assert(value.enabled == true || value.enabled == false);
+		assert(!(value.enabled == true || value.enabled == false));
 		return 1;
 	case DVAR_TYPE_FLOAT:
 		if (domain.value.min <= value.value)
