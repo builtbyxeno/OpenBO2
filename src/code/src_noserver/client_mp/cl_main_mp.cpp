@@ -1,4 +1,5 @@
 #include "types.h"
+#include "client_mp_public.h"
 
 /*
 ==============
@@ -168,6 +169,16 @@ CL_Project_RegisterCommands
 ==============
 */
 void CL_Project_RegisterCommands()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+CL_Init
+==============
+*/
+void CL_Init(LocalClientNum_t localClientNum)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

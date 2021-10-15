@@ -9,7 +9,7 @@
 #define M_PI        3.14159265358979323846f
 #endif
 
-#define MAX_LOCAL_CLIENTS 1
+#define MAX_LOCAL_CLIENTS 4
 
 #define BIT_INDEX_32(bits)	((bits) >> 5)
 #define BIT_MASK_32(bits)	(1 << ((bits) * 31))
@@ -132,6 +132,7 @@
 #include <list>
 #include <memory>
 #include <zlib/unzip.h>
+#include <base/tl_thread.h>
 
 #define __int8 char
 #define __int16 short
@@ -204,7 +205,6 @@ struct XAnimTree_s;
 struct scr_animscript_t;
 struct gjkcc_input_t;
 struct tagPROPVARIANT;
-struct tlAtomicMutex;
 struct bdUploadInterceptor;
 struct bdFileID;
 struct curl_slist;
@@ -25634,14 +25634,6 @@ public:
     unsigned int ProcessorsMask;
 };
 
-class tlAtomicMutex
-{
-public:
-    unsigned __int64 ThreadId;
-    int LockCount;
-    tlAtomicMutex* ThisPtr;
-};
-
 class jqAtomicHeap
 {
 public:
@@ -41041,25 +41033,6 @@ struct WINTRUST_FILE_INFO_
   _GUID *pgKnownSubject;
 };
 
-struct tlFileBuf
-{
-  unsigned __int8 *Buf;
-  unsigned int Size;
-  unsigned int UserData;
-};
-
-struct tlSystemCallbacks
-{
-  bool (__cdecl *ReadFile)(const char *, tlFileBuf *, unsigned int, unsigned int);
-  void (__cdecl *ReleaseFile)(tlFileBuf *);
-  void (__cdecl *CriticalError)(const char *);
-  void (__cdecl *Warning)(const char *);
-  void (__cdecl *DebugPrint)(const char *);
-  void *(__cdecl *MemAlloc)(unsigned int, unsigned int, unsigned int);
-  void *(__cdecl *MemRealloc)(void *, unsigned int, unsigned int, unsigned int);
-  void (__cdecl *MemFree)(void *);
-};
-
 struct __declspec(align(4)) _jqWorker
 {
   jqWorkerType Type;
@@ -53073,6 +53046,124 @@ struct XAUDIO2_DEVICE_DETAILS
     wchar_t DisplayName[256];
     XAUDIO2_DEVICE_ROLE Role;
     WAVEFORMATEXTENSIBLE OutputFormat;
+};
+
+struct __declspec(align(4)) jpeg_encode_state
+{
+    unsigned __int16* qt;
+    unsigned __int16* DcCode;
+    unsigned __int16* DcSize;
+    unsigned __int16* AcCode;
+    unsigned __int16* AcSize;
+    __int16 ldc;
+};
+
+struct jpeg_encode
+{
+    char jpeg_Lqt[64];
+    char jpeg_Cqt[64];
+    unsigned __int16 jpeg_ILqt[64];
+    unsigned __int16 jpeg_ICqt[64];
+    unsigned int jpeg_lcode;
+    unsigned __int16 jpeg_bitindex;
+    jpeg_encode_state jpeg_encode_block_state_y;
+    jpeg_encode_state jpeg_encode_block_state_u;
+    jpeg_encode_state jpeg_encode_block_state_v;
+};
+
+struct vpx_rational
+{
+    int num;
+    int den;
+};
+
+enum vpx_enc_pass
+{
+    VPX_RC_ONE_PASS = 0x0,
+    VPX_RC_FIRST_PASS = 0x1,
+    VPX_RC_LAST_PASS = 0x2,
+};
+
+enum vpx_rc_mode
+{
+    VPX_VBR = 0x0,
+    VPX_CBR = 0x1,
+};
+
+struct vpx_fixed_buf
+{
+    void* buf;
+    unsigned int sz;
+};
+
+enum vpx_kf_mode
+{
+    VPX_KF_FIXED = 0x0,
+    VPX_KF_AUTO = 0x1,
+    VPX_KF_DISABLED = 0x0,
+};
+
+struct vpx_codec_enc_cfg
+{
+    unsigned int g_usage;
+    unsigned int g_threads;
+    unsigned int g_profile;
+    unsigned int g_w;
+    unsigned int g_h;
+    vpx_rational g_timebase;
+    unsigned int g_error_resilient;
+    vpx_enc_pass g_pass;
+    unsigned int g_lag_in_frames;
+    unsigned int rc_dropframe_thresh;
+    unsigned int rc_resize_allowed;
+    unsigned int rc_resize_up_thresh;
+    unsigned int rc_resize_down_thresh;
+    vpx_rc_mode rc_end_usage;
+    vpx_fixed_buf rc_twopass_stats_in;
+    unsigned int rc_target_bitrate;
+    unsigned int rc_min_quantizer;
+    unsigned int rc_max_quantizer;
+    unsigned int rc_undershoot_pct;
+    unsigned int rc_overshoot_pct;
+    unsigned int rc_buf_sz;
+    unsigned int rc_buf_initial_sz;
+    unsigned int rc_buf_optimal_sz;
+    unsigned int rc_2pass_vbr_bias_pct;
+    unsigned int rc_2pass_vbr_minsection_pct;
+    unsigned int rc_2pass_vbr_maxsection_pct;
+    vpx_kf_mode kf_mode;
+    unsigned int kf_min_dist;
+    unsigned int kf_max_dist;
+};
+
+enum vpx_codec_cx_pkt_kind
+{
+    VPX_CODEC_CX_FRAME_PKT = 0x0,
+    VPX_CODEC_STATS_PKT = 0x1,
+    VPX_CODEC_PSNR_PKT = 0x2,
+    VPX_CODEC_CUSTOM_PKT = 0x100,
+};
+
+struct vpx_codec_cx_pkt
+{
+    vpx_codec_cx_pkt_kind kind;
+    union {
+        struct {
+            void* buf;
+            unsigned int sz;
+            __int64 pts;
+            unsigned int duration;
+            unsigned int flags;
+        } frame;
+        vpx_fixed_buf twopass_stats;
+        struct vpx_psnr_pkt {
+            unsigned int samples[4];
+            unsigned __int64 sse[4];
+            long double psnr[4];
+        } psnr;
+        vpx_fixed_buf raw;
+        char pad[124];
+    } data;
 };
 
 #include <nvapi.h>

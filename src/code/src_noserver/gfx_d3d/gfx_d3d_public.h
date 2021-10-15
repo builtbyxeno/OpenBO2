@@ -906,7 +906,7 @@ XSurface *R_DrawXModelSurf(const XSurface *a1, const GfxModelRigidSurfacePiece *
 //#include "gfx_d3d/r_draw_xmodel.h"
 
 //t6/code/src_noserver/gfx_d3d/r_dvars.cpp
-void R_RegisterDvars(const char *a1, dvarType_t a2);
+void R_RegisterDvars();
 bool R_CheckDvarModified(const dvar_t *dvar);
 double R_GetDefaultNearClip();
 double R_GetDefaultNearClip_DepthHack();
@@ -1059,6 +1059,8 @@ void R_EndRegistration();
 void R_TrackStatistics(trStatistics_t *stats);
 void R_ConfigureRenderer(const GfxConfiguration *notthis);
 bool R_StereoActivated();
+void R_InitOnce();
+void R_InitThreads();
 
 //t6/code/src_noserver/gfx_d3d/r_light.cpp
 GfxLightDef *R_RegisterLightDef_LoadObj(const char *name);

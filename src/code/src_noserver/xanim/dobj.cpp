@@ -5,7 +5,7 @@
 DObjInit
 ==============
 */
-void DObjInit(int a1)
+void DObjInit()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

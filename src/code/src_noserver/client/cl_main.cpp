@@ -1,4 +1,5 @@
 #include "types.h"
+#include "client_public.h"
 
 /*
 ==============
@@ -1356,6 +1357,16 @@ CL_InitOnceForAllClients
 ==============
 */
 void CL_InitOnceForAllClients()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+CL_SetupClientsForFrontend
+==============
+*/
+void CL_SetupClientsForFrontend()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

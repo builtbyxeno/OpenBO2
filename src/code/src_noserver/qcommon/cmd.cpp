@@ -706,7 +706,6 @@ void AssertCmdArgsConsistency(const CmdArgs *args)
 		args->argc[1],
 		args->argc[2],
 		args->argc[3]));
-	assertMsg(!(totalUsedArgvPool != args->totalUsedTextPool), "totalUsedTextPool == args->totalUsedTextPool\n\t%i, %i", totalUsedTextPool, args->totalUsedTextPool)
 }
 
 /*

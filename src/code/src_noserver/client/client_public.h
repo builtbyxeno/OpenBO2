@@ -433,6 +433,7 @@ void CL_DrawLogo(LocalClientNum_t localClientNum);
 void CL_ShowIP_f(bdCommonAddr *notthis);
 void CL_RegisterCommands();
 void CL_InitOnceForAllClients();
+void CL_SetupClientsForFrontend();
 
 //t6/code/src_noserver/client/cl_main_dw.cpp
 void CL_Live_PartyPlay();
@@ -482,7 +483,7 @@ void CL_ParseGamestate(LocalClientNum_t localClientNum, msg_t *msg);
 void CL_ParseServerMessage(LocalClientNum_t localClientNum, msg_t *msg);
 
 //t6/code/src_noserver/client/con_channels.cpp
-char Con_OpenChannel(const char *name, bool allowScript);
+bool Con_OpenChannel(const char *name, bool allowScript);
 bool Con_ScriptHasPermission(int channel);
 BOOL Con_GetChannel(const char *name, int *channel_result);
 bool Con_IsChannelOpen(int channel);
@@ -517,6 +518,7 @@ void ApplySplitscreenScaling(float *x, float *y, float *w, float *h, float hudSp
 void ScrPlace_ApplyRect(float *a1, const ScreenPlacement *scrPlace, float *x, float *y, float *w, float *h, int horzAlign, int vertAlign);
 void ScrPlace_SetLegacySplitscreenScaling();
 void ScrPlace_SetNormalSplitscreenScaling();
+void ScrPlace_Init();
 
 //#include "client/screen_placement.h"
 

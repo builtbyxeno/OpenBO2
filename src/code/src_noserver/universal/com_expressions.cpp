@@ -87,3 +87,13 @@ char Expression_Read(int handle, ExpressionStatement *statement)
 	return 0;
 }
 
+/*
+==============
+Expression_Init
+==============
+*/
+void Expression_Init()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+

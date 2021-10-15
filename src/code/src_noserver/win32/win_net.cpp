@@ -207,7 +207,7 @@ int NET_IsWinsockReady()
 NET_Init
 ==============
 */
-void NET_Init(const char *a1, dvarType_t a2)
+void NET_Init()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

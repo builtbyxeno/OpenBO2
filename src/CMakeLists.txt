@@ -3,8 +3,7 @@ project(t6mp)
 
 set(CMAKE_CXX_STANDARD 11)
 
-include_directories(code/src_noserver)
-include_directories(code/nvapi)
+include_directories(code/src_noserver code/nvapi code/tl)
 link_directories(code/nvapi/x86)
 
 add_executable(t6mp WIN32
@@ -595,6 +594,14 @@ add_executable(t6mp WIN32
 		code/src_noserver/live/live_youtube.cpp
 		code/src_noserver/lui/lui_cod_fileio.cpp
 		code/src_noserver/lui/lui_public.h
+		code/src_noserver/mjpeg/avi.cpp
+		code/src_noserver/mjpeg/avi.h
+		code/src_noserver/mjpeg/jpeg.cpp
+		code/src_noserver/mjpeg/jpeg_screenshot.cpp
+		code/src_noserver/mjpeg/mjpeg.cpp
+		code/src_noserver/mjpeg/mjpeg_public.h
+		code/src_noserver/mjpeg/vpx.cpp
+		code/src_noserver/mjpeg/yuv.cpp
 		code/src_noserver/physics/destructible.cpp
 		code/src_noserver/physics/destructible.h
 		code/src_noserver/physics/destructibledef_load_db.h
@@ -904,6 +911,9 @@ add_executable(t6mp WIN32
 		code/src_noserver/vars.cpp
 		code/src_noserver/win32/resource.h
 		code/src_noserver/win32/cod.rc
+		code/tl/base/tl_defs.h
+		code/tl/base/tl_system.h
+		code/tl/base/tl_thread.h
 )
 
 target_precompile_headers(t6mp
@@ -913,7 +923,7 @@ target_precompile_headers(t6mp
         #codsrc/src/macros.h
 )
 
-add_definitions(-DDEDICATED=0)
+add_definitions(-DDEDICATED=0 -DXENON=0)
 #add_definitions(-DDEDICATED=1)
 
 #add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_ALLOW_RTCc_IN_STL)
@@ -934,6 +944,6 @@ target_link_options(t6mp PUBLIC
     /DYNAMICBASE:NO;
     /INCREMENTAL:NO)
 
-target_link_libraries(t6mp winmm.lib wsock32.lib d3d9.lib dsound.lib xinput.lib nvapi.lib)
+target_link_libraries(t6mp winmm.lib wsock32.lib d3d9.lib dsound.lib xinput.lib nvapi.lib dxgi.lib d3d11.lib)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

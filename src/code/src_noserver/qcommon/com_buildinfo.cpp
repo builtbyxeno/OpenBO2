@@ -1,4 +1,5 @@
 #include "types.h"
+#include "vars.h"
 
 /*
 ==============
@@ -73,8 +74,7 @@ Com_GetBuildName
 */
 const char *Com_GetBuildName()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	return "COD_T6_R MP";
 }
 
 /*

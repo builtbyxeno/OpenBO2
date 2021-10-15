@@ -1,4 +1,7 @@
 #include "types.h"
+#include "vars.h"
+#include <win32/win32_public.h>
+#include <qcommon/qcommon_public.h>
 
 /*
 ==============
@@ -586,7 +589,9 @@ DB_BuildOSPath
 */
 void DB_BuildOSPath(const char *zoneName, const char *ext, int size, char *filename)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	const char* Language;
+
+	Com_sprintf(filename, size, "%s\\zone\\%s\\%s%s", Sys_DefaultInstallPath(), Win_GetLanguage(), zoneName, ext);
 }
 
 /*
@@ -724,7 +729,39 @@ DB_InitFastFileNames
 */
 void DB_InitFastFileNames()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	I_strncpyz(CODE_PRE_GFX_FAST_FILE_NAME, "code_pre_gfx", 24);
+	I_strncpyz(CODE_FAST_FILE_NAME, "code_post_gfx", 24);
+	I_strncpyz(CODE_FAST_FILE_RES_NAME, "code_post_gfx", 24);
+	I_strncpyz(DEV_FAST_FILE_NAME, "dev", 24);
+	I_strncpyz(PATCH_FAST_FILE_NAME, "patch", 24);
+	I_strncpyz(LOC_PATCH_FAST_FILE_NAME, "patch_loc", 24);
+	I_strncpyz(LOC_PATCH_UI_FAST_FILE_NAME, "patch_ui_loc", 24);
+	I_strncpyz(PATCH_UI_FAST_FILE_NAME, "patch_ui", 24);
+	I_strncpyz(UI_FAST_FILE_NAME, "ui", 24);
+	I_strncpyz(COMMON_FAST_FILE_NAME, "common", 24);
+	I_strncpyz(DEFAULT_FAST_FILE_NAME, "default", 24);
+	I_strncpyz(FFOTD_FAST_FILE_NAME, "sv_ffotd", 24);
+	I_strncpyz(FFOTD_FILENAME, "", 24);
+	if (Com_SessionMode_IsZombiesGame())
+	{
+		I_strncpyz(COMMON_FASTFILE_SUFFIX, "_zm", 4);
+	}
+	else
+	{
+		I_strncpyz(COMMON_FASTFILE_SUFFIX, "_mp", 4);
+	}
+	I_strncat(CODE_PRE_GFX_FAST_FILE_NAME, 24, COMMON_FASTFILE_SUFFIX);
+	I_strncat(CODE_FAST_FILE_NAME, 24, COMMON_FASTFILE_SUFFIX);
+	I_strncat(CODE_FAST_FILE_RES_NAME, 24, va("_%d%s", Dvar_GetInt(r_fontResolution), COMMON_FASTFILE_SUFFIX));
+	I_strncat(DEV_FAST_FILE_NAME, 24, COMMON_FASTFILE_SUFFIX);
+	I_strncat(PATCH_FAST_FILE_NAME, 24, COMMON_FASTFILE_SUFFIX);
+	I_strncat(LOC_PATCH_FAST_FILE_NAME, 24, COMMON_FASTFILE_SUFFIX);
+	I_strncat(PATCH_UI_FAST_FILE_NAME, 24, COMMON_FASTFILE_SUFFIX);
+	I_strncat(LOC_PATCH_UI_FAST_FILE_NAME, 24, COMMON_FASTFILE_SUFFIX);
+	I_strncat(UI_FAST_FILE_NAME, 24, COMMON_FASTFILE_SUFFIX);
+	I_strncat(COMMON_FAST_FILE_NAME, 24, COMMON_FASTFILE_SUFFIX);
+	I_strncat(FFOTD_FAST_FILE_NAME, 24, va("%s%s%s", "_tu17", COMMON_FASTFILE_SUFFIX, "_147"));
+	I_strncat(FFOTD_FILENAME, 24, va("%s%s", FFOTD_FAST_FILE_NAME, ".ff"));
 }
 
 /*

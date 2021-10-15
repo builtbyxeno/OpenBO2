@@ -368,14 +368,19 @@ void Com_SyncThreads();
 const char *Com_DisplayName(const char *name, const char *clanAbbrev, int type);
 char *CS_DisplayName(const clientState_s *cs, int type);
 int Com_GetPrivateClients();
+
+// Added
+void Com_InitUIAndCommonXAssets();
+
 void NetAdr_SetType(netadr_t *addr, netadrtype_t type);
 bool Com_UseRawUDP();
 void Com_Quit_f();
 void Com_InitDynamicMemorySystems();
 void Com_ErrorCleanup();
-void Com_Init_Try_Block_Function(ControllerIndex_t a1, dediUserData_t *a2);
+void Com_Init_Try_Block_Function(char* commandLine);
 void Com_Frame();
 bool Com_SetPrivateClients();
+void Com_ShutdownInternal(const char* finalmsg);
 void Com_Shutdown(const char *finalmsg);
 void Com_Init(char *commandLine);
 

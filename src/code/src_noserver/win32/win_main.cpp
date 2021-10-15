@@ -192,7 +192,7 @@ sysEvent_t *Win_GetEvent(WinQuitBehavior quitBehavior)
 Sys_LoadingKeepAlive
 ==============
 */
-void Sys_LoadingKeepAlive(int a1)
+void Sys_LoadingKeepAlive()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

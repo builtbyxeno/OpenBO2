@@ -1,4 +1,6 @@
 #include "types.h"
+#include "vars.h"
+#include "client_public.h"
 
 /*
 ==============
@@ -176,6 +178,16 @@ ScrPlace_SetNormalSplitscreenScaling
 ==============
 */
 void ScrPlace_SetNormalSplitscreenScaling()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+ScrPlace_Init
+==============
+*/
+void ScrPlace_Init()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

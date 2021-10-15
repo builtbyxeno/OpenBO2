@@ -17,6 +17,9 @@ hunkUsed_t hunk_low;
 fileData_s* com_hunkData;
 fileData_s* com_fileDataHashTable[1024];
 
+static cmd_function_s Com_AllMemInfo_f_VAR;
+static cmd_function_s Com_TempMeminfo_f_VAR;
+
 /*
 ==============
 TRACK_com_memory
@@ -494,6 +497,65 @@ void Hunk_FreeTempMemory(void* buf)
 
 /*
 ==============
+Hunk_Clear
+==============
+*/
+void Hunk_Clear()
+{
+	assert(Sys_IsMainThread());
+	hunk_low.permanent = 0;
+	hunk_low.temp = 0;
+	hunk_high.permanent = 0;
+	hunk_high.temp = 0;
+	Hunk_ClearData();
+	assertMsg(!((s_hunkTotal & 0x80000000) != 0), "((size >= 0))", "(size) = %i", s_hunkTotal);
+	VirtualFree(s_hunkData, s_hunkTotal, 0x4000u);
+	track_hunk_ClearToMarkLow(0);
+	track_hunk_ClearToMarkHigh(0);
+	track_hunk_ClearToStart();
+	BB_ResetHighWaterMark("hunk_mem");
+}
+
+/*
+==============
+Com_InitHunkMemory
+==============
+*/
+void Com_InitHunkMemory()
+{
+	assert(Sys_IsMainThread());
+	assert(!s_hunkData);
+	if (FS_LoadStack())
+	{
+		Com_Error(ERR_FATAL, "\x15", "Hunk initialization failed. File system load stack not zero\n");
+	}
+	if (!IsFastFileLoad())
+	{
+		s_hunkTotal = 167772160;
+	}
+	else
+	{
+		s_hunkTotal = 3145728;
+		if (Com_SessionMode_IsZombiesGame())
+		{
+			s_hunkTotal = 15728640;
+		}
+	}
+	s_hunkData = (unsigned char*)Z_VirtualReserve(s_hunkTotal);
+	if (!s_hunkData)
+	{
+		Sys_OutOfMemErrorInternal(__FILE__, __LINE__);
+	}
+	s_origHunkData = s_hunkData;
+	track_set_hunk_size(s_hunkTotal);
+	track_physical_alloc(s_hunkTotal, "hunk", 1, 0);
+	Hunk_Clear();
+	Cmd_AddCommandInternal("meminfo", Com_AllMemInfo_f, &Com_AllMemInfo_f_VAR);
+	Cmd_AddCommandInternal("tempmeminfo", Com_TempMeminfo_f, &Com_TempMeminfo_f_VAR);
+}
+
+/*
+==============
 Z_Malloc
 ==============
 */
@@ -581,6 +643,11 @@ void Z_VirtualCommit(void* ptr, int size)
 		Sys_OutOfMemErrorInternal(__FILE__, __LINE__);
 }
 
+/*
+==============
+Z_VirtualReserve
+==============
+*/
 void* Z_VirtualReserve(int size)
 {
 	void* alloc = VirtualAlloc(0, size, (size > 0x20000 ? 0 : 0x100000) | 0x2000, 4u);

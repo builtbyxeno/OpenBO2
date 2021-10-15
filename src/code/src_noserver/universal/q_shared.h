@@ -15,10 +15,13 @@ AssignToSmallerType<short>
 Com_BitCheckAssert
 ==============
 */
-BOOL Com_BitCheckAssert(const unsigned int *array, int bitNum, int size)
+inline BOOL Com_BitCheckAssert(const unsigned int *array, int bitNum, int size)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	assert(array);
+
+	assertIn(bitNum, size * 8);
+
+	return (array[bitNum >> 5] & (1 << (bitNum & 0x1F))) != 0;
 }
 
 /*
@@ -26,7 +29,7 @@ BOOL Com_BitCheckAssert(const unsigned int *array, int bitNum, int size)
 Com_IsRagdollTrajectory
 ==============
 */
-BOOL Com_IsRagdollTrajectory(const trajectory_t *trajectory)
+inline BOOL Com_IsRagdollTrajectory(const trajectory_t *trajectory)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -37,7 +40,7 @@ BOOL Com_IsRagdollTrajectory(const trajectory_t *trajectory)
 Com_OnSameTeam
 ==============
 */
-BOOL Com_OnSameTeam(team_t team1, team_t team2)
+inline BOOL Com_OnSameTeam(team_t team1, team_t team2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -60,7 +63,7 @@ renderOptions_s::GetStowedRenderOptions
 Com_BitSetAssert
 ==============
 */
-void Com_BitSetAssert(unsigned int *array, int bitNum, int size)
+inline void Com_BitSetAssert(unsigned int *array, int bitNum, int size)
 {
 	assert(array);
 
@@ -73,7 +76,7 @@ void Com_BitSetAssert(unsigned int *array, int bitNum, int size)
 Com_BitClearAssert
 ==============
 */
-void Com_BitClearAssert(unsigned int *array, int bitNum, int size)
+inline void Com_BitClearAssert(unsigned int *array, int bitNum, int size)
 {
 	assert(array);
 	assertIn(bitNum, size * 8);
@@ -85,7 +88,7 @@ void Com_BitClearAssert(unsigned int *array, int bitNum, int size)
 Com_HashString
 ==============
 */
-int Com_HashString(const char *fname, int len)
+inline int Com_HashString(const char *fname, int len)
 {
 	int hash;
 	int i;
@@ -118,7 +121,7 @@ AssignToSmallerType<signed char>
 Com_HashLowerString
 ==============
 */
-int Com_HashLowerString(const char *fname)
+inline int Com_HashLowerString(const char *fname)
 {
 	return Com_HashString(fname, 0);
 }
@@ -128,7 +131,7 @@ int Com_HashLowerString(const char *fname)
 Com_HashCatString
 ==============
 */
-int Com_HashCatString(int hash, const char *fname, int len)
+inline int Com_HashCatString(int hash, const char *fname, int len)
 {
 	int i;
 

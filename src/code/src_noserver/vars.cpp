@@ -3580,8 +3580,6 @@ int com_errorEntered;
 
 clientUIActive_t clientUIActives[1];
 
-char UI_FAST_FILE_NAME[24];
-
 int com_quitInProgress;
 
 GfxGlobals r_glob;
@@ -3613,6 +3611,19 @@ cmd_function_s Dvar_Toggle_f_VAR;
 int com_fileAccessed;
 
 char CODE_FAST_FILE_NAME[24];
+char UI_FAST_FILE_NAME[24];
+char CODE_PRE_GFX_FAST_FILE_NAME[24];
+char PATCH_UI_FAST_FILE_NAME[24];
+char CODE_FAST_FILE_RES_NAME[24];
+char DEV_FAST_FILE_NAME[24];
+char PATCH_FAST_FILE_NAME[24];
+char LOC_PATCH_FAST_FILE_NAME[24];
+char LOC_PATCH_UI_FAST_FILE_NAME[24];
+char COMMON_FAST_FILE_NAME[24];
+char DEFAULT_FAST_FILE_NAME[24];
+char FFOTD_FAST_FILE_NAME[24];
+char FFOTD_FILENAME[24];
+char COMMON_FASTFILE_SUFFIX[24];
 
 ScreenPlacement scrPlaceFull;
 
@@ -3621,3 +3632,8 @@ int com_inServerFrame;
 // timing.cpp
 long double msecPerRawTimerTick;
 long double usecPerRawTimerTick;
+
+// common.cpp
+clientStatic_t cls;
+int ARCHIVED_SNAPSHOT_BUFFER_SIZE;
+int ARCHIVED_SNAPSHOT_BUFFER_WRAP_POINT;

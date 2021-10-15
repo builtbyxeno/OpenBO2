@@ -223,3 +223,23 @@ bool R_StereoActivated()
 	return 0;
 }
 
+/*
+==============
+R_InitOnce
+==============
+*/
+void R_InitOnce()
+{
+	;
+}
+
+/*
+==============
+R_InitThreads
+==============
+*/
+void R_InitThreads()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+

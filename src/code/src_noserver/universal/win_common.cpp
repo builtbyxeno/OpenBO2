@@ -5,6 +5,8 @@
 static bool inited_1;
 static _RTL_CRITICAL_SECTION s_criticalSection[CRITSECT_COUNT];
 static unsigned int s_threadAffinityMask;
+static char exePath[256];
+static char cwd[256];
 
 /*
 ==============
@@ -43,8 +45,9 @@ Sys_Cwd
 */
 char *Sys_Cwd()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+    _getcwd(cwd, 255);
+    cwd[255] = 0;
+    return cwd;
 }
 
 /*
@@ -76,8 +79,45 @@ Sys_DefaultInstallPath
 */
 char *Sys_DefaultInstallPath()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+    int i;
+    char currChar;
+
+    if (exePath[0])
+    {
+        return exePath;
+    }
+    if (IsDebuggerPresent())
+    {
+        _getcwd(cwd, 255);
+        cwd[255] = 0;
+        I_strncpyz(exePath, cwd, 256);
+        return exePath;
+    }
+    i = GetModuleFileNameA(0, exePath, 0x100u);
+    if (i == 256)
+    {
+        for (i = 255; i; --i)
+        {
+            currChar = exePath[i];
+            if (currChar == '\\' || currChar == '/' || currChar == ':')
+            {
+                break;
+            }
+        }
+    }
+    else if (i)
+    {
+        for (i; i; --i)
+        {
+            currChar = exePath[i];
+            if (currChar == '\\' || currChar == '/' || currChar == ':')
+            {
+                break;
+            }
+        }
+    }
+    exePath[i] = 0;
+    return exePath;
 }
 
 /*

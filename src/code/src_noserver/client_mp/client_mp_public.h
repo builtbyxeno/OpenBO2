@@ -88,6 +88,7 @@ void CL_OpenIngame_ChangeClass_f();
 void AllocatePerLocalClientMemory(int maxLocalClients, int maxClients, int flags);
 char CL_AllocatePerLocalClientMemory(const char *mapname, int flags);
 void CL_Project_RegisterCommands();
+void CL_Init(LocalClientNum_t localClientNum);
 
 //t6/code/src_noserver/client_mp/cl_milestone.cpp
 int CL_GetMilestoneRowNum(const StringTable **stringTable, int *tableNumber, const int comparisonColumn1, const char *value1);

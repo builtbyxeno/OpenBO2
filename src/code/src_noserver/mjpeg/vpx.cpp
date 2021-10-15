@@ -1,84 +1,72 @@
 #include "types.h"
+#include "functions.h"
 
 /*
 ==============
-R_RegisterDvars
+vpx_init
 ==============
 */
-void R_RegisterDvars()
+void vpx_init(const char *filename, int width, int height)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
 
 /*
 ==============
-R_CheckDvarModified
+write_ivf_file_header
 ==============
 */
-bool R_CheckDvarModified(const dvar_t *dvar)
-{
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}
-
-/*
-==============
-R_GetDefaultNearClip
-==============
-*/
-double R_GetDefaultNearClip()
-{
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}
-
-/*
-==============
-R_GetDefaultNearClip_DepthHack
-==============
-*/
-double R_GetDefaultNearClip_DepthHack()
-{
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}
-
-/*
-==============
-DvarBlock_SetFog
-==============
-*/
-void DvarBlock_SetFog()
+void write_ivf_file_header(FILE *outfile, vpx_codec_enc_cfg *cfg, int frame_cnt)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
 
 /*
 ==============
-DvarBlock_SetWSI
+mem_put_le16
 ==============
 */
-void DvarBlock_SetWSI()
+void mem_put_le16(char *mem, unsigned int val)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
 
 /*
 ==============
-DvarBlock_SetVcBloom
+mem_put_le32
 ==============
 */
-void DvarBlock_SetVcBloom()
+void mem_put_le32(char *mem, unsigned int val)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
 
 /*
 ==============
-DvarBlock_SetVcColor
+vpx_encode_frame
 ==============
 */
-void DvarBlock_SetVcColor()
+void vpx_encode_frame(char *y, char *u, char *v, bool eof)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+write_ivf_frame_header
+==============
+*/
+void write_ivf_frame_header(FILE *outfile, vpx_codec_cx_pkt *pkt)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+vpx_shutdown
+==============
+*/
+void vpx_shutdown()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

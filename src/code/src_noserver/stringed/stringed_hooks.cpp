@@ -781,10 +781,8 @@ SEH_UpdateLanguageInfo
 void SEH_UpdateLanguageInfo()
 {
 	language_t lang;
-	int p_lang;
-	bool hasLanguages;
 	const char* pszNameAbbr;
-	int* p_bPresent;
+	int i, iNumLanguages;
 	char filepath[256];
 	char fname[256];
 
@@ -803,41 +801,34 @@ void SEH_UpdateLanguageInfo()
 	DB_BuildOSPath(fname, ".ff", 256, filepath);
 	if (!Sys_FileExists(filepath) || (g_languages[lang].bPresent = 1, !SEH_StringEd_SetLanguageStrings(lang)))
 	{
-		hasLanguages = 0;
-		p_lang = LANGUAGE_ENGLISH;
-		p_bPresent = &g_languages[LANGUAGE_ENGLISH].bPresent;
-		do
+		iNumLanguages = 0;
+		for (i = 0; i < 13; ++i)
 		{
-			if (FS_LanguageHasAssets(p_lang))
+			if (FS_LanguageHasAssets(i))
 			{
-				*p_bPresent = 1;
-				++hasLanguages;
+				g_languages[i].bPresent = 1;
+				++iNumLanguages;
 			}
 			else
 			{
-				*p_bPresent = 0;
+				g_languages[i].bPresent = 0;
 			}
-			p_bPresent += 3;
-			++p_lang;
-		} while ((int)p_bPresent < 14490336);
-		if (!hasLanguages)
+		}
+		if (!iNumLanguages)
 			Com_PrintError(10, "ERROR: No languages available because no localized assets were found\n");
 		if (!SEH_StringEd_SetLanguageStrings(Dvar_GetInt(loc_language)))
 		{
-			p_lang = 0;
-			while (1)
+			for (i = 0; i < 13; ++i)
 			{
-				Dvar_SetInt(loc_language, p_lang);
+				Dvar_SetInt(loc_language, i);
 				SEH_UpdateCurrentLanguage();
-				if (SEH_StringEd_SetLanguageStrings(p_lang))
-					break;
-				if (++p_lang >= 16)
+				if (SEH_StringEd_SetLanguageStrings(i))
 				{
-					Dvar_SetInt(loc_language, 0);
-					SEH_UpdateCurrentLanguage();
 					return;
 				}
 			}
+			Dvar_SetInt(loc_language, 0);
+			SEH_UpdateCurrentLanguage();
 		}
 	}
 }

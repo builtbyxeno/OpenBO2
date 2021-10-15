@@ -3,7 +3,7 @@
 #include "types.h"
 
 //t6/code/src_noserver/xanim/dobj.cpp
-void DObjInit(int a1);
+void DObjInit();
 void DObjShutdown();
 void DObjDumpCreationInfo(DObjModel_s *dobjModels, unsigned int numModels);
 void DObjGetHierarchyBits(const DObj *obj, int boneIndex, int *partBits);

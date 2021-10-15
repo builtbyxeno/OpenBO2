@@ -842,7 +842,7 @@ bool FS_SanitizeFilename(const char *filename, char *sanitizedName, int sanitize
 		++srcIndex;
 	}
 
-	assertMsg(dstIndex > srcIndex, "dstIndex <= srcIndex\n\t%i, %i", dstIndex, srcIndex)
+	assertMsg(!(dstIndex > srcIndex), "dstIndex <= srcIndex\n\t%i, %i", dstIndex, srcIndex)
 
 	sanitizedName[dstIndex] = 0;
 	return 1;
@@ -2022,7 +2022,7 @@ void FS_RegisterDvars()
 	fs_restrict = _Dvar_RegisterBool("fs_restrict", 0, 0x10u, "Restrict file access for demos etc.");
 
 	fs_usedevdir_default = Sys_FileExists(va("%s\\raw\\fileSysCheck.cfg", Sys_DefaultInstallPath()));
-	_Dvar_RegisterBool("fs_usedevdir", fs_usedevdir_default, 0x10u, "Use development directories.");
+	fs_usedevdir = _Dvar_RegisterBool("fs_usedevdir", fs_usedevdir_default, 0x10u, "Use development directories.");
 }
 
 /*

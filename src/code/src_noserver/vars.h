@@ -3591,8 +3591,6 @@ extern Console con;
 
 extern clientUIActive_t clientUIActives[1];
 
-extern char UI_FAST_FILE_NAME[24];
-
 extern int com_quitInProgress;
 
 extern GfxGlobals r_glob;
@@ -3624,6 +3622,19 @@ extern cmd_function_s Dvar_Toggle_f_VAR; // idb
 extern int com_fileAccessed;
 
 extern char CODE_FAST_FILE_NAME[24];
+extern char UI_FAST_FILE_NAME[24];
+extern char CODE_PRE_GFX_FAST_FILE_NAME[24];
+extern char PATCH_UI_FAST_FILE_NAME[24];
+extern char CODE_FAST_FILE_RES_NAME[24];
+extern char DEV_FAST_FILE_NAME[24];
+extern char PATCH_FAST_FILE_NAME[24];
+extern char LOC_PATCH_FAST_FILE_NAME[24];
+extern char LOC_PATCH_UI_FAST_FILE_NAME[24];
+extern char COMMON_FAST_FILE_NAME[24];
+extern char DEFAULT_FAST_FILE_NAME[24];
+extern char FFOTD_FAST_FILE_NAME[24];
+extern char FFOTD_FILENAME[24];
+extern char COMMON_FASTFILE_SUFFIX[24];
 
 extern ScreenPlacement scrPlaceFull;
 
@@ -3631,3 +3642,7 @@ extern int com_inServerFrame;
 
 extern long double msecPerRawTimerTick;
 extern long double usecPerRawTimerTick;
+
+extern clientStatic_t cls;
+extern int ARCHIVED_SNAPSHOT_BUFFER_SIZE;
+extern int ARCHIVED_SNAPSHOT_BUFFER_WRAP_POINT;

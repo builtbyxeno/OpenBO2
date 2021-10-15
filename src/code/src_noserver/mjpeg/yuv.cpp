@@ -1,43 +1,32 @@
 #include "types.h"
+#include "functions.h"
 
 /*
 ==============
-R_RegisterDvars
+yuv_init_internal
 ==============
 */
-void R_RegisterDvars()
+void yuv_init_internal()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
 
 /*
 ==============
-R_CheckDvarModified
+yuv_init
 ==============
 */
-bool R_CheckDvarModified(const dvar_t *dvar)
+void yuv_init(int width, int height, bool double_buffer)
 {
 	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
 }
 
 /*
 ==============
-R_GetDefaultNearClip
+yuv_encode_frame
 ==============
 */
-double R_GetDefaultNearClip()
-{
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}
-
-/*
-==============
-R_GetDefaultNearClip_DepthHack
-==============
-*/
-double R_GetDefaultNearClip_DepthHack()
+char yuv_encode_frame()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -45,40 +34,50 @@ double R_GetDefaultNearClip_DepthHack()
 
 /*
 ==============
-DvarBlock_SetFog
+yuv_get_buffers
 ==============
 */
-void DvarBlock_SetFog()
+void yuv_get_buffers(char **y, char **u, char **v)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
 
 /*
 ==============
-DvarBlock_SetWSI
+yuv_shutdown_internal
 ==============
 */
-void DvarBlock_SetWSI()
+void yuv_shutdown_internal()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
 
 /*
 ==============
-DvarBlock_SetVcBloom
+yuv_shutdown
 ==============
 */
-void DvarBlock_SetVcBloom()
+void yuv_shutdown()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
 
 /*
 ==============
-DvarBlock_SetVcColor
+yuv_lost_device
 ==============
 */
-void DvarBlock_SetVcColor()
+void yuv_lost_device()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+yuv_recover_device
+==============
+*/
+void yuv_recover_device()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

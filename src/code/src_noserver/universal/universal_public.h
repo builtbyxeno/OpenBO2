@@ -93,6 +93,7 @@ expressionEntry *Expression_HashOperand(int a1, ExpressionAllocState *a2, const 
 expressionRpn *MakeRPN(expressionEntry *entry, int *length);
 char Expression_Parse(const char **text, ExpressionStatement *statement, void *compileBuffer, int compileBufferSize);
 char Expression_Read(int handle, ExpressionStatement *statement);
+void Expression_Init();
 
 //t6/code/src_noserver/universal/com_expressions_eval.cpp
 void AddOperandToStack(OperandStack *dataStack, Operand *data, bool addAddress);
@@ -746,6 +747,8 @@ unsigned __int8 *Hunk_Alloc(int size, const char *name, int type);
 unsigned __int8 *Hunk_AllocLow(int size, const char *name, int type);
 void* Hunk_AllocateTempMemory(int size, const char* name);
 void Hunk_FreeTempMemory(void* buf);
+void Hunk_Clear();
+void Com_InitHunkMemory();
 void* Z_Malloc(int size, const char* name, int type);
 void Z_Free(void* ptr, int type);
 void Z_VirtualFree(void* ptr);
