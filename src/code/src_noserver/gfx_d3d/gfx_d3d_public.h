@@ -23,18 +23,18 @@ void RB_SplitScreenFilter(const Material *material, const GfxViewInfo *viewInfo,
 void R_Resolve(GfxCmdBufContext context, GfxImage *image);
 void R_ResolveFloatZ(GfxCmdBufContext context);
 void RB_StretchPicCmd(GfxRenderCommandExecState *execState);
-void RB_StretchPicCmdFlipST(unsigned int a1, GfxRenderCommandExecState *execState);
+void RB_StretchPicCmdFlipST(GfxRenderCommandExecState *execState);
 void RB_StretchPicRotateXYCmd(GfxRenderCommandExecState *execState);
 void RB_StretchPicRotateSTCmd(GfxRenderCommandExecState *execState);
 void RB_DrawQuadPicCmd(GfxRenderCommandExecState *execState);
 void RB_DrawQuadList2DCmd(GfxRenderCommandExecState *execState);
 void RB_SetUIStencilState(unsigned __int8 stencilWrite, unsigned __int8 stencilValue, unsigned int *stateBits);
-void RB_DrawUIQuadsInternal(unsigned __int8 stencilWrite, unsigned __int8 stencilValue, bool isUI3D, int quadCount, const vec3_t *xyz, const vec2_t *st, const GfxColor *color, unsigned __int8 noclip);
-void RB_DrawEmblemLayer(char *a1, GfxRenderCommandExecState *execState);
-void RB_StretchCompositeCmd(char *a1, GfxRenderCommandExecState *execState);
+void RB_DrawUIQuadsInternal(unsigned __int8 stencilWrite, unsigned __int8 stencilValue, bool isUI3D, int quadCount, const vec3_t *xyz, const vec2_t *st, const GfxColor *color);
+void RB_DrawEmblemLayer(GfxRenderCommandExecState *execState);
+void RB_StretchCompositeCmd(GfxRenderCommandExecState *execState);
 void RB_DrawFullScreenColoredQuadCmd(GfxRenderCommandExecState *execState);
 void TessQuad(unsigned __int16 v0, unsigned __int16 v1, unsigned __int16 v2, unsigned __int16 v3);
-void __cdecl RB_DrawFramedCmd(GfxRenderCommandExecState *execState);
+void RB_DrawFramedCmd(GfxRenderCommandExecState *execState);
 void RB_ConstantSetCmd(GfxRenderCommandExecState *execState);
 unsigned int R_RenderDrawSurfStaticModelListMaterial(GfxCmdBufContext context, const GfxDrawSurfListInfo *info, unsigned int firstDrawSurfIndex);
 unsigned int R_RenderDrawSurfBspListMaterial(GfxCmdBufContext context, const GfxDrawSurfListInfo *info, unsigned int firstDrawSurfIndex);
@@ -44,7 +44,7 @@ void R_DrawSurfs(GfxCmdBufContext context, const GfxDrawSurfListInfo *info);
 void R_DrawSurfsBsp(GfxCmdBufContext context, const GfxDrawSurfListInfo *info);
 void R_DrawSurfsStaticModel(GfxCmdBufContext context, const GfxDrawSurfListInfo *info);
 void RB_ClearScreenCmd(GfxRenderCommandExecState *execState);
-void RB_SetGammaRamp(int a1, int a2, int a3);
+void RB_SetGammaRamp(GfxGammaRamp* gammaTable);
 void RB_BlendSavedScreenFlashedCmd(GfxRenderCommandExecState *execState);
 void RB_DrawPoints2D(const GfxCmdDrawPoints *cmd);
 void RB_DrawPoints3D(const GfxCmdDrawPoints *cmd);
@@ -81,15 +81,15 @@ void SetupRedactFXVars(int *randSeed, int fxBirthTime, int maxLength, int fxReda
 void GetDecayingStringAlphaInfo(int decayTimeElapsed, int fxDecayDuration, unsigned __int8 alpha, unsigned __int8 *resultAlpha);
 void GetDecayingLetterInfo(unsigned int letter, Font_s *font, int *randSeed, int decayTimeElapsed, int fxBirthTime, int fxDecayDuration, unsigned __int8 alpha, bool *resultSkipDrawing, unsigned __int8 *resultAlpha, unsigned int *resultLetter, bool *resultDrawExtraFxChar);
 void DrawTextFxExtraCharacter(const Material *material, int charIndex, float x, float y, float w0, float w, float h, float sinAngle, float cosAngle, unsigned int color);
-void DrawText2D(int *a1, int *a2, bool *text, const char *x, float y, float w, float font, Font_s *xScale, float yScale, float sinAngle, float cosAngle, float color, const GfxColor maxLength, int renderFlags, int cursorPos, int cursorLetter, float padding, float glowForcedColor, GfxColor fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, int fxRedactDecayStartTime, int fxRedactDecayDuration, int fxMaterial, const Material *fxMaterialGlow, const Material *a27);
+void DrawText2D(const char* text, float x, float y, float w, Font_s* font, float xScale, float yScale, float sinAngle, float cosAngle, const GfxColor color, int maxLength, int renderFlags, int cursorPos, unsigned __int8 cursorLetter, float padding, GfxColor glowForcedColor, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, int fxRedactDecayStartTime, int fxRedactDecayDuration, const Material* fxMaterial, const Material* fxMaterialGlow);
 void __cdecl DrawTeleType(const char *text, float x, float y, float w, float h, Font_s *font, float xScale, float yScale, const GfxColor color, int renderFlags, int cursorPos, float cursorLetter, float padding, int fxBirthTime);
 void RB_DrawText(int *a1, int *a2, bool *text, const char *font, Font_s *x, float y, float color, const GfxColor a8);
-void RB_DrawCharInSpace(const Material *material, const vec3_t *xyz, const vec3_t *dx, const vec3_t *dy, const Glyph *glyph, unsigned int color);
-void RB_DrawTextInSpace(unsigned int a1, const char *text, Font_s *font, const vec3_t *org, const vec3_t *xPixelStep, const vec3_t *yPixelStep, unsigned int color);
-void RB_DrawText2DCmd(const Material *a1, GfxRenderCommandExecState *execState);
+void RB_DrawCharInSpace(const Material *material, const vec3_t *xyz, const vec3_t *dx, const vec3_t *dy, const Glyph *glyph, GfxColor color);
+void RB_DrawTextInSpace(const char *text, Font_s *font, const vec3_t *org, const vec3_t *xPixelStep, const vec3_t *yPixelStep, GfxColor color);
+void RB_DrawText2DCmd(GfxRenderCommandExecState *execState);
 void RB_DrawText3DCmd(GfxRenderCommandExecState *execState);
 void RB_ProjectionSetCmd(GfxRenderCommandExecState *execState);
-_NvAPI_Status RB_SwapBuffers();
+void RB_SwapBuffers();
 void RB_EndFrame(unsigned int drawType);
 void RB_ExecuteRenderCommandsLoop(const void *cmds, int *ui3dTextureWindow);
 void RB_Draw3D();
@@ -97,10 +97,12 @@ void RB_CallExecuteRenderCommands();
 void RB_SetBspImages();
 void RB_SaveScreen_BlendBlurred(const GfxBlendSaveScreenBlurredParam *p);
 void RB_SaveScreen_BlendFlashed(const GfxBlendSaveScreenFlashedParam *p);
-void RB_SaveScreen(int a1, const GfxSaveScreenParam *p);
+void RB_SaveScreen(const GfxSaveScreenParam *p);
 void R_DrawSurfsDepthOnly(GfxCmdBufContext context, const GfxDrawSurfListInfo *info);
 void RB_Filter(const Material *material, const GfxViewInfo *viewInfo);
 void RB_BeginFrame(const void *data);
+void RB_RenderCommandFrame();
+void RB_RenderThread(unsigned int threadContext);
 
 //#include "gfx_d3d/rb_backend.h"
 
@@ -554,7 +556,7 @@ void R_Cinematic_CancelQueuedMovie(CinematicInfo *info);
 bool R_Cinematic_GetPathFromFilename(CinematicInfo *info, const char *filename, const char *ext, unsigned int playbackFlags);
 void R_Cinematic_StartSound(CinematicInfo *info, bool startPaused);
 void *R_Cinematic_OpenMovie_Now(CinematicInfo *cinematicInfo, const char *filename, unsigned int playbackFlags, bool isNextBink);
-void __cdecl StreamThread_OpenMovie(int msAllotted, void *user);
+void StreamThread_OpenMovie(int msAllotted, void *user);
 void R_Cinematic_QueueStreamOpen(bool isNextBink, bool isNeededImmediately);
 void R_Cinematic_PopFromQueue();
 void R_Cinematic_RemoveInactiveFromQueue(int a1);
@@ -565,13 +567,14 @@ int R_Cinematic_StartPlayback(const char *name, unsigned int playbackFlags, floa
 char R_Cinematic_StopPlayback(int id, bool cancelAll);
 void R_Cinematic_HandleFinishedCallbacks(CIN_CALLBACK_TYPE type);
 char R_Cinematic_UpdateSoundTime();
-void R_Cinematic_UpdateFrame(int a1, bool force_wait);
+void R_Cinematic_UpdateFrame(bool force_wait);
 char R_Cinematic_GetFilenameAndTimeInMsec(int id, char *outName, int outNameSize, unsigned int *outTimeInMsec);
 char R_Cinematic_IsAnyPlaying();
 char R_Cinematic_IsInProgress(int id);
 char R_Cinematic_IsPreloading(int id);
 void R_Cinematic_GetDebugInfo(const char **name, int *bytesUsed);
 void R_Cinematic_ForceRelinquishIO();
+void R_Cinematic_FreeBuffers();
 
 //t6/code/src_noserver/gfx_d3d/r_cinematic_bink.cpp
 const char *R_Cinematic_CheckBinkError();
@@ -964,8 +967,8 @@ void R_GPU_FreeInterveningTimeStamps(int lastReadIndex, int readIndex);
 void R_GPU_EndFrameCallback();
 void R_GPU_BeginFrame();
 void R_GPU_EndFrame();
-void R_GPU_BeginTimer(int a1, int a2, GPUTimerId timerId);
-void R_GPU_EndTimer(int a1);
+void R_GPU_BeginTimer(GPUTimerId timerId);
+void R_GPU_EndTimer();
 void R_GPU_DrawTimers();
 
 //t6/code/src_noserver/gfx_d3d/r_image.cpp
@@ -1040,25 +1043,28 @@ void TRACK_r_image_wavelet();
 //t6/code/src_noserver/gfx_d3d/r_init.cpp
 void TRACK_r_init();
 const char *R_ErrorDescription(int hr);
-bool __cdecl R_IsNullRenderer(LocalClientNum_t a1);
+bool R_IsNullRenderer();
 char *R_GetFontPathFromName(const char *fontName);
 void R_SetBrightness(float brightness);
 void R_SetColorMappings();
 void R_GammaCorrect(unsigned __int8 *buffer, int bufSize);
 void SetGfxConfig(const GfxConfiguration *config);
-void R_MakeDedicated(const GfxConfiguration *notthis);
+void R_MakeDedicated(const GfxConfiguration *config);
+bool R_Is3DOn();
 void R_SetVidRestart();
 void R_AllocateMinimalResources();
 void R_SetIsMultiplayer(bool isMp);
 void R_SetIsZombie(bool isZM);
 void R_ShutdownStreams();
+void R_ShutdownInternal();
 void R_Shutdown(int destroyWindow);
 void R_UnloadWorld();
 void R_BeginRegistration(vidConfig_t *vidConfigOut);
 void R_EndRegistration();
 void R_TrackStatistics(trStatistics_t *stats);
-void R_ConfigureRenderer(const GfxConfiguration *notthis);
+void R_ConfigureRenderer(const GfxConfiguration *config);
 bool R_StereoActivated();
+void R_Init();
 void R_InitOnce();
 void R_InitThreads();
 
@@ -1383,7 +1389,7 @@ void R_GenerateOutdoorImage(GfxImage *outdoorImage);
 void R_Perf_GetTimerAverageAndMaxMs(PerfTimerFrameHistory *timerFrameHistory, PerfTimerStyle *timerStyle, unsigned int timerId, float *averageMs, float *maxMs);
 void R_Perf_GetFrameAverageAndMaxMs(PerfTimerFrameHistory *timerFrameHistory, PerfTimerStyle *timerStyle, float *averageMs, float *maxMs);
 void R_Perf_ResetDraw();
-void R_Perf_DrawTimers(int a1, PerfTimerFrameHistory *timerFrameHistory, PerfTimerStyle *timerStyle);
+void R_Perf_DrawTimers(PerfTimerFrameHistory *timerFrameHistory, PerfTimerStyle *timerStyle);
 
 //#include "gfx_d3d/r_pix_profile.h"
 
@@ -1502,6 +1508,7 @@ void R_ToggleSmpFrameCmd();
 void R_IssueRenderCommands(unsigned int type);
 bool R_UpdateFrontEndDvarOptions();
 void R_BeginFrame();
+void R_InitRenderThread();
 
 //t6/code/src_noserver/gfx_d3d/r_rendertarget.cpp
 void AssertUninitializedRenderTarget(const GfxRenderTarget *renderTarget);
@@ -1804,6 +1811,7 @@ void R_SetMeshStream(GfxCmdBufState *state, GfxMeshData *mesh);
 void R_HW_SetBlendState(GfxCmdBufState *state, unsigned int stateBits0);
 ID3D11DepthStencilState *R_HW_FindDepthStencilState(unsigned int stateBits1, unsigned __int8 stencilMask);
 void R_HW_SetDepthStencilState(GfxCmdBufState *state, unsigned int stateBits1, unsigned __int8 stencilRef, unsigned __int8 stencilMask);
+void R_SetTexFilter();
 
 //#include "gfx_d3d/r_state.h"
 

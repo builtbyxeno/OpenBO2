@@ -1,4 +1,5 @@
 #include "types.h"
+#include "vars.h"
 
 /*
 ==============
@@ -210,7 +211,11 @@ Com_ShutdownWorld
 */
 void Com_ShutdownWorld()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	LONG Target;
+
+	comWorld.isInUse = 0;
+	Target = 0;
+	InterlockedExchange(&Target, 0);
 }
 
 /*

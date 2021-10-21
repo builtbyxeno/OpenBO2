@@ -73,6 +73,7 @@
 
 #define assert(cond) if (!(cond)) { __debugbreak(); }
 #define assertMsg(cond, ...)  if (!(cond)) { __debugbreak(); }
+#define assertCont(cond, cont) if (!(cond)) { __debugbreak(); cont; }
 #define AssertMsg(...)
 #define assertIn(...)
 #define assertGreaterEq(...)
@@ -18658,18 +18659,6 @@ struct GfxStateBits
   ID3D11RasterizerState *rasterizerState;
 };
 
-union $BCB88418F21235C26DC4B3F0337E3398
-{
-  MaterialTechniqueSet *localTechniqueSet;
-  MaterialTechniqueSet *techniqueSet;
-};
-
-union $6A288F01A0821CDAFC2CA40E2BA7B27F
-{
-  MaterialConstantDef *localConstantTable;
-  MaterialConstantDef *constantTable;
-};
-
 struct Material
 {
   MaterialInfo info;
@@ -18680,9 +18669,15 @@ struct Material
   unsigned __int8 stateFlags;
   unsigned __int8 cameraRegion;
   unsigned __int8 probeMipBits;
-  $BCB88418F21235C26DC4B3F0337E3398 ___u8;
+  union {
+      MaterialTechniqueSet* localTechniqueSet;
+      MaterialTechniqueSet* techniqueSet;
+  };
   MaterialTextureDef *textureTable;
-  $6A288F01A0821CDAFC2CA40E2BA7B27F ___u10;
+  union {
+      MaterialConstantDef* localConstantTable;
+      MaterialConstantDef* constantTable;
+  };
   GfxStateBits *stateBitsTable;
   Material *thermalMaterial;
 };
@@ -29627,80 +29622,79 @@ struct GfxFrameStats
   } counters;
 };
 
-class /*__cppobj*/ GfxBackEndData
+struct GfxBackEndData
 {
-public:
-  unsigned __int8 surfsBuffer[1];
-  __declspec(align(128)) FxCodeMeshData codeMeshes[1];
-  __declspec(align(128)) unsigned int primDrawSurfsBuf[65536];
-  unsigned __int8 lodData[4][16384];
-  GfxViewParms viewParms[9];
-  __declspec(align(64)) unsigned __int8 primaryLightTechType[16][256];
-  vec4_t codeMeshArgs[256];
-  GfxParticleCloud clouds[256];
-  GfxDrawSurf drawSurfs[1];
-  __declspec(align(16)) GfxMeshData *codeMeshPtr;
-  __declspec(align(16)) GfxMeshData markMesh;
-  __declspec(align(16)) GfxMeshData glassMesh;
-  GfxBackEndPrimitiveData prim;
-  unsigned __int8 shadowableLightHasShadowMap[255];
-  unsigned int frameCount;
-  int drawSurfCount;
-  volatile int surfPos;
-  volatile int gfxEntCount;
-  GfxEntity gfxEnts[256];
-  volatile int shaderConstantSetCount;
-  ShaderConstantSet shaderConstantSets[128];
-  volatile int textureOverrideCount;
-  GfxTextureOverride textureOverrides[1024];
-  volatile int cloudCount;
-  volatile int codeMeshCount;
-  volatile int codeMeshArgsCount;
-  volatile int markMeshCount;
-  FxMarkMeshData markMeshes[1];
-  GfxVertexBufferState *skinnedCacheVb;
-  volatile int skinnedCacheVertsAllocated;
-  GfxIndexBufferState *dynamicIndexBuffer;
-  GfxVertexBufferState *dynamicVertexBuffer;
-  ID3D11Query *endFence;
-  ID3D11Query *endFrameFence;
-  unsigned __int8 *tempSkinBuf;
-  volatile int tempSkinPos;
-  int tempSkinSize;
-  int viewParmCount;
-  GfxFog fogSettings;
-  GfxCmdArray *commands;
-  unsigned int viewInfoIndex;
-  unsigned int viewInfoCount;
-  GfxViewInfo *viewInfo;
-  GfxWorkerData workerData[4];
-  GfxUI3DBackend rbUI3D;
-  GfxQRCodeBackend rbQRCode;
-  const void *cmds;
-  const void *compositingCmds;
-  GfxLight sunLight;
-  int hasApproxSunDirChanged;
-  volatile int primDrawSurfPos;
-  unsigned int streamerExecedFrame;
-  unsigned int frameLastTransferId;
-  jqBatchGroup glassGenerateVertsBatchGroup;
-  DebugGlobals debugGlobals;
-  unsigned int dualPlaySplitScreenOn;
-  unsigned int drawType;
-  float eyeOffset;
-  int hideMatureContent;
-  int splitscreen;
-  GfxLight shadowableLights[255];
-  unsigned int shadowableLightCount;
-  unsigned int emissiveSpotLightIndex;
-  GfxLight emissiveSpotLight;
-  unsigned int emissiveSpotLightCount;
-  int emissiveSpotLightShadowableLightIndex;
-  GfxSunShadow sunShadow;
-  unsigned int spotShadowCount;
-  GfxSpotShadow spotShadows[4];
-  WindState gfxWindState;
-  GfxFrameStats frameStats;
+    unsigned __int8 surfsBuffer[262144];
+    __declspec(align(128)) FxCodeMeshData codeMeshes[2048];
+    __declspec(align(128)) unsigned int primDrawSurfsBuf[65536];
+    unsigned __int8 lodData[4][16384];
+    GfxViewParms viewParms[9];
+    __declspec(align(64)) unsigned __int8 primaryLightTechType[16][2][2][256];
+    vec4_t codeMeshArgs[256];
+    GfxParticleCloud clouds[256];
+    GfxDrawSurf drawSurfs[32768];
+    __declspec(align(16)) GfxMeshData* codeMeshPtr;
+    __declspec(align(16)) GfxMeshData markMesh;
+    __declspec(align(16)) GfxMeshData glassMesh;
+    GfxBackEndPrimitiveData prim;
+    unsigned __int8 shadowableLightHasShadowMap[255];
+    unsigned int frameCount;
+    int drawSurfCount;
+    volatile int surfPos;
+    volatile int gfxEntCount;
+    GfxEntity gfxEnts[256];
+    volatile int shaderConstantSetCount;
+    ShaderConstantSet shaderConstantSets[128];
+    volatile int textureOverrideCount;
+    GfxTextureOverride textureOverrides[1024];
+    volatile int cloudCount;
+    volatile int codeMeshCount;
+    volatile int codeMeshArgsCount;
+    volatile int markMeshCount;
+    FxMarkMeshData markMeshes[1536];
+    GfxVertexBufferState* skinnedCacheVb;
+    volatile int skinnedCacheVertsAllocated;
+    GfxIndexBufferState* dynamicIndexBuffer;
+    GfxVertexBufferState* dynamicVertexBuffer;
+    ID3D11Query* endFence;
+    ID3D11Query* endFrameFence;
+    unsigned __int8* tempSkinBuf;
+    volatile int tempSkinPos;
+    int tempSkinSize;
+    int viewParmCount;
+    GfxFog fogSettings;
+    GfxCmdArray* commands;
+    unsigned int viewInfoIndex;
+    unsigned int viewInfoCount;
+    GfxViewInfo* viewInfo;
+    GfxWorkerData workerData[4];
+    GfxUI3DBackend rbUI3D;
+    GfxQRCodeBackend rbQRCode;
+    const void* cmds;
+    const void* compositingCmds;
+    GfxLight sunLight;
+    int hasApproxSunDirChanged;
+    volatile int primDrawSurfPos;
+    unsigned int streamerExecedFrame;
+    unsigned int frameLastTransferId;
+    jqBatchGroup glassGenerateVertsBatchGroup;
+    DebugGlobals debugGlobals;
+    unsigned int dualPlaySplitScreenOn;
+    unsigned int drawType;
+    float eyeOffset;
+    int hideMatureContent;
+    int splitscreen;
+    GfxLight shadowableLights[255];
+    unsigned int shadowableLightCount;
+    unsigned int emissiveSpotLightIndex;
+    GfxLight emissiveSpotLight;
+    unsigned int emissiveSpotLightCount;
+    int emissiveSpotLightShadowableLightIndex;
+    GfxSunShadow sunShadow;
+    unsigned int spotShadowCount;
+    GfxSpotShadow spotShadows[4];
+    WindState gfxWindState;
+    GfxFrameStats frameStats;
 };
 
 struct GfxCmdBufSourceState
@@ -39314,8 +39308,8 @@ struct GfxVertex
 
 struct materialCommands_t
 {
-  GfxVertex verts[2];
-  unsigned __int16 indices[2];
+  GfxVertex verts[5450];
+  unsigned __int16 indices[1048576];
   MaterialVertexDeclType vertDeclType;
   unsigned int vertexSize;
   int indexCount;
@@ -41035,13 +41029,14 @@ struct WINTRUST_FILE_INFO_
 
 struct __declspec(align(4)) _jqWorker
 {
+public:
   jqWorkerType Type;
   void *Thread;
   unsigned int ThreadId;
   bool Idle;
 };
 
-class jqWorker : _jqWorker
+class jqWorker : public _jqWorker
 {
 public:
   jqWorker *ThisPtr;
@@ -47908,7 +47903,7 @@ struct PerfTimerFrameHistory
   PerfTimerFrame frames[64];
 };
 
-class GPUTimer : PerfTimer
+class GPUTimer : public PerfTimer
 {
 public:
     GPUTimeStamp* firstTimeStamp;
@@ -48568,6 +48563,10 @@ struct __declspec(align(4)) GfxCmdDrawTriangles
   unsigned __int8 techType;
   __int16 indexCount;
   __int16 vertexCount;
+  const vec4_t xyzw;
+  const vec3_t normal;
+  const GfxColor color;
+  const vec2_t st;
 };
 
 struct GfxCmdSetCustomConstant
@@ -48638,6 +48637,8 @@ struct GfxCmdDrawQuadList2D
   GfxCmdHeader header;
   const Material *material;
   int quadCount;
+  // not in the original but fuck it.
+  GfxQuadVertex** verts;
 };
 
 struct GfxCmdStretchPicRotateST

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "client_public.h"
 
 Console con;
 
@@ -1014,6 +1015,16 @@ Con_DrawConsole
 ==============
 */
 void Con_DrawConsole(LocalClientNum_t localClientNum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+TRACK_cl_console
+==============
+*/
+void TRACK_cl_console()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

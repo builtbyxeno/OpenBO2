@@ -109,6 +109,7 @@ void Con_DrawInput(char *a1, LocalClientNum_t localClientNum);
 char Con_CommitToAutoComplete();
 void Con_DrawSolidConsole(LocalClientNum_t localClientNum);
 void Con_DrawConsole(LocalClientNum_t localClientNum);
+void TRACK_cl_console();
 
 //t6/code/src_noserver/client/cl_debugdata.cpp
 void CL_DebugInitSVThreadVariables();
@@ -239,6 +240,7 @@ void CL_MouseMove(LocalClientNum_t localClientNum, usercmd_s *cmd, float frameti
 usercmd_s *CL_CreateCmd(LocalClientNum_t localClientNum);
 void CL_CreateNewCommands(LocalClientNum_t localClientNum);
 void CL_Input(LocalClientNum_t localClientNum);
+void TRACK_cl_input();
 
 //t6/code/src_noserver/client/cl_keys.cpp
 void Field_AdjustScroll(LocalClientNum_t localClientNum, const ScreenPlacement *scrPlace, field_t *edit);
@@ -303,6 +305,7 @@ int CL_GetKeyBinding(LocalClientNum_t localClientNum, const char *command, char 
 int CL_GetGamePadBinding(LocalClientNum_t localClientNum, const char *command, char (*keyNames)[128], BindIndex_t bindNum);
 void Key_WriteBindings(LocalClientNum_t localClientNum, int f);
 int Key_WriteBindingsToBuffer(LocalClientNum_t localClientNum, char* buffer, int bufferSize);
+void TRACK_cl_keys();
 
 //t6/code/src_noserver/client/cl_main.cpp
 char CL_AnyLocalClientsRunning();
@@ -430,6 +433,7 @@ void CL_ClearState(LocalClientNum_t localClientNum);
 void CL_MapLoading_SetupDevmapParty();
 void CL_Live_StopParty();
 void CL_Live_StopPartyKeepPartyTogether();
+void CL_ShutdownRenderer(int destroyWindow);
 void CL_ShutdownAll();
 void CL_MapLoading(const char *mapname);
 void CL_DownloadsComplete(LocalClientNum_t localClientNum);
@@ -440,6 +444,7 @@ void CL_ShowIP_f(bdCommonAddr *notthis);
 void CL_RegisterCommands();
 void CL_InitOnceForAllClients();
 void CL_SetupClientsForFrontend();
+void TRACK_cl_main();
 
 //t6/code/src_noserver/client/cl_main_dw.cpp
 void CL_Live_PartyPlay();
@@ -487,6 +492,7 @@ void CL_CheckBSPCheckSum(unsigned int serverChecksum);
 void CL_ParseGamestate_Checksums(LocalClientNum_t localClientNum, msg_t *msg);
 void CL_ParseGamestate(LocalClientNum_t localClientNum, msg_t *msg);
 void CL_ParseServerMessage(LocalClientNum_t localClientNum, msg_t *msg);
+void TRACK_cl_parse();
 
 //t6/code/src_noserver/client/con_channels.cpp
 bool Con_OpenChannel(const char *name, bool allowScript);

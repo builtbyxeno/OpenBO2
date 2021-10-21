@@ -1,5 +1,8 @@
 #include "types.h"
+#include "vars.h"
 #include "client_public.h"
+#include <qcommon/qcommon_public.h>
+#include <gfx_d3d/gfx_d3d_public.h>
 
 /*
 ==============
@@ -1276,9 +1279,32 @@ void CL_Live_StopPartyKeepPartyTogether()
 CL_ShutdownAll
 ==============
 */
+void CL_ShutdownRenderer(int destroyWindow)
+{
+	cls.rendererStarted = 0;
+	Com_ShutdownWorld();
+	if (Dvar_GetBool(useFastFile) && destroyWindow)
+	{
+		CM_Shutdown();
+	}
+	R_Shutdown(destroyWindow);
+	cls.whiteMaterial = 0;
+	cls.consoleMaterial = 0;
+	cls.consoleFont = 0;
+	cls.spinnerMaterial = 0;
+}
+
+/*
+==============
+CL_ShutdownAll
+==============
+*/
 void CL_ShutdownAll()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (cls.rendererStarted)
+	{
+		CL_ShutdownRenderer(0);
+	}
 }
 
 /*
@@ -1367,6 +1393,16 @@ CL_SetupClientsForFrontend
 ==============
 */
 void CL_SetupClientsForFrontend()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+TRACK_cl_main
+==============
+*/
+void TRACK_cl_main()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

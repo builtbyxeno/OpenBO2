@@ -5,7 +5,7 @@
 R_SetInputCodeConstantFromVec4
 ==============
 */
-void R_SetInputCodeConstantFromVec4(GfxCmdBufInput *input, unsigned int constant, const vec4_t *value)
+inline void R_SetInputCodeConstantFromVec4(GfxCmdBufInput *input, unsigned int constant, const vec4_t *value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -15,7 +15,7 @@ void R_SetInputCodeConstantFromVec4(GfxCmdBufInput *input, unsigned int constant
 R_SetCodeConstant
 ==============
 */
-void R_SetCodeConstant(GfxCmdBufSourceState *source, unsigned int constant, float x, float y, float z, float w)
+inline void R_SetCodeConstant(GfxCmdBufSourceState *source, unsigned int constant, float x, float y, float z, float w)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -36,7 +36,7 @@ int R_UpdateCodeConstant(GfxCmdBufSourceState *source, unsigned int constant, fl
 R_SetCodeConstantFromVec4
 ==============
 */
-void R_SetCodeConstantFromVec4(GfxCmdBufSourceState *source, unsigned int constant, const vec4_t *value)
+inline void R_SetCodeConstantFromVec4(GfxCmdBufSourceState *source, unsigned int constant, const vec4_t *value)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -57,7 +57,7 @@ int R_UpdateCodeConstantFromVec4(GfxCmdBufSourceState *source, unsigned int cons
 R_SetObjectPlacement
 ==============
 */
-void R_SetObjectPlacement(GfxCmdBufSourceState *source, const GfxScaledPlacement *placement)
+inline void R_SetObjectPlacement(GfxCmdBufSourceState *source, const GfxScaledPlacement *placement)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -67,7 +67,7 @@ void R_SetObjectPlacement(GfxCmdBufSourceState *source, const GfxScaledPlacement
 R_SetState
 ==============
 */
-void R_SetState(GfxCmdBufState *state, const GfxStateBits *stateBits, unsigned __int8 stencilRef)
+inline void R_SetState(GfxCmdBufState *state, const GfxStateBits *stateBits, unsigned __int8 stencilRef)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -77,7 +77,7 @@ void R_SetState(GfxCmdBufState *state, const GfxStateBits *stateBits, unsigned _
 R_SetStreamSource
 ==============
 */
-void R_SetStreamSource(GfxCmdBufPrimState *primState, ID3D11Buffer *vb, unsigned int vertexOffset, unsigned int vertexStride)
+inline void R_SetStreamSource(GfxCmdBufPrimState *primState, ID3D11Buffer *vb, unsigned int vertexOffset, unsigned int vertexStride)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -87,7 +87,7 @@ void R_SetStreamSource(GfxCmdBufPrimState *primState, ID3D11Buffer *vb, unsigned
 R_HW_SetRenderTarget
 ==============
 */
-void R_HW_SetRenderTarget(GfxCmdBufState *state, unsigned __int8 newTargetId)
+inline void R_HW_SetRenderTarget(GfxCmdBufState *state, unsigned __int8 newTargetId)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -97,7 +97,7 @@ void R_HW_SetRenderTarget(GfxCmdBufState *state, unsigned __int8 newTargetId)
 R_SetTripleStreamSource
 ==============
 */
-void R_SetTripleStreamSource(GfxCmdBufPrimState *primState, ID3D11Buffer *vb0, unsigned int vertexOffset0, unsigned int vertexStride0, ID3D11Buffer *vb1, unsigned int vertexOffset1, unsigned int vertexStride1, ID3D11Buffer *vb2, unsigned int vertexOffset2, unsigned int vertexStride2)
+inline void R_SetTripleStreamSource(GfxCmdBufPrimState *primState, ID3D11Buffer *vb0, unsigned int vertexOffset0, unsigned int vertexStride0, ID3D11Buffer *vb1, unsigned int vertexOffset1, unsigned int vertexStride1, ID3D11Buffer *vb2, unsigned int vertexOffset2, unsigned int vertexStride2)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -107,7 +107,7 @@ void R_SetTripleStreamSource(GfxCmdBufPrimState *primState, ID3D11Buffer *vb0, u
 R_SetDoubleStreamSource
 ==============
 */
-void R_SetDoubleStreamSource(GfxCmdBufPrimState *primState, ID3D11Buffer *vb0, unsigned int vertexOffset0, unsigned int vertexStride0, ID3D11Buffer *vb1, unsigned int vertexOffset1, unsigned int vertexStride1)
+inline void R_SetDoubleStreamSource(GfxCmdBufPrimState *primState, ID3D11Buffer *vb0, unsigned int vertexOffset0, unsigned int vertexStride0, ID3D11Buffer *vb1, unsigned int vertexOffset1, unsigned int vertexStride1)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -117,7 +117,7 @@ void R_SetDoubleStreamSource(GfxCmdBufPrimState *primState, ID3D11Buffer *vb0, u
 R_UpdateShadowLookupMatrix
 ==============
 */
-void R_UpdateShadowLookupMatrix(GfxCmdBufSourceState *source, unsigned int shadowableLightIndex, const GfxMatrix *lookupMatrix)
+inline void R_UpdateShadowLookupMatrix(GfxCmdBufSourceState *source, unsigned int shadowableLightIndex, const GfxMatrix *lookupMatrix)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

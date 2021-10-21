@@ -257,6 +257,7 @@ extern z_const char * const z_errmsg[10]; /* indexed by 2-zlib_error */
    voidpf ZLIB_INTERNAL zcalloc OF((voidpf opaque, unsigned items,
                                     unsigned size));
    void ZLIB_INTERNAL zcfree  OF((voidpf opaque, voidpf ptr));
+   void ZLIB_INTERNAL TRACK_zutil();
 #endif
 
 #define ZALLOC(strm, items, size) \

@@ -149,9 +149,26 @@ Com_AssetLoadUI
 */
 void Com_AssetLoadUI(const char* name)
 {
-	Com_LoadCommonFastFile();
-	Com_LoadUiFastFile();
+#if XENON
+	UI_SetMap("", "");
+	UI_SetLoadingScreenMaterial("");
+	R_BeginRemoteScreenUpdate();
+	CL_StartHunkUsers();
+	R_EndRemoteScreenUpdate();
+	if (name && !I_stricmp(name, "EXE_MATCHENDED") || !name)
+	{
+		if (Dvar_GetString(ui_errorMessage)[0])
+		{
+			UI_SetActiveMenu(Com_LocalClients_GetPrimary(), 1);
+		}
+		else
+		{
+			Com_LoadFrontEnd();
+		}
+	}
+#else
 
+#endif
 }
 
 /*
@@ -226,7 +243,24 @@ Com_LogPrintMessage
 */
 void Com_LogPrintMessage(int channel, const char *msg)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_EnterCriticalSection(CRITSECT_CONSOLE);
+	if (FS_Initialized())
+	{
+		if (!logfile)
+		{
+			Com_OpenLogFile();
+		}
+		if (logfile)
+		{
+			FS_WriteToDemo(msg, strlen(msg), logfile);
+
+			if (Dvar_GetInt(com_logfile) > 1)
+			{
+				FS_Flush(logfile);
+			}
+		}
+	}
+	Sys_LeaveCriticalSection(CRITSECT_CONSOLE);
 }
 
 /*
@@ -409,7 +443,12 @@ Com_ShutdownDynamicMemorySystems
 */
 void Com_ShutdownDynamicMemorySystems()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	CL_FlushGump();
+	R_Cinematic_FreeBuffers();
+	Prof_ForceCameraFreeMemory();
+	GlassCl_FreeMemory();
+	R_UI3D_Shutdown();
+	BB_ResetHighWaterMarks();
 }
 
 /*
@@ -2250,10 +2289,14 @@ void Com_ShutdownInternal(const char* finalmsg)
 {
 	int localClientNum;
 
+#if XENON
 	for (localClientNum = 0; localClientNum < MAX_LOCAL_CLIENTS; ++localClientNum)
 	{
 		CL_Disconnect((LocalClientNum_t)localClientNum, 0);
 	}
+#else
+	CL_Disconnect((LocalClientNum_t)0, (LocalClientNum_t)0);
+#endif
 
 	SV_AllowPackets(0);
 	CL_ShutdownAll();
@@ -2327,9 +2370,10 @@ void Com_Init(char *commandLine)
 		CL_StartHunkUsers();
 		Live_Base_Pump();
 		R_EndRemoteScreenUpdate();
-		if (*Dvar_GetString(ui_errorMessage))
+		if (Dvar_GetString(ui_errorMessage)[0])
 		{
-			Com_LoadUiFastFile();
+			//Com_LoadUiFastFile();
+			UI_SetActiveMenu(Com_LocalClients_GetPrimary(), 1);
 		}
 		Session_ChangeAdvertisedStatus(1, 1);
 #if XENON

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "client_public.h"
 
 /*
 ==============
@@ -706,6 +707,16 @@ CL_Input
 ==============
 */
 void CL_Input(LocalClientNum_t localClientNum)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+TRACK_cl_input
+==============
+*/
+void TRACK_cl_input()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

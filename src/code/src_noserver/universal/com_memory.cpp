@@ -679,6 +679,30 @@ void FreeString(const char* str)
 
 /*
 ==============
+Z_VirtualAlloc
+==============
+*/
+void* Z_VirtualAlloc(int size, const char* name, int type)
+{
+	void* buf;
+
+	buf = Z_VirtualReserve(size);
+
+	if (!buf)
+	{
+		Sys_OutOfMemErrorInternal(__FILE__, __LINE__);
+	}
+	if (Z_TryVirtualCommitInternal(buf, size))
+	{
+		VirtualFree(buf, 0, 0x8000u);
+		Sys_OutOfMemErrorInternal(__FILE__, __LINE__);
+	}
+	track_z_commit((size + 4095) & 0xFFFFF000, type);
+	return buf;
+}
+
+/*
+==============
 Z_VirtualCommit
 ==============
 */

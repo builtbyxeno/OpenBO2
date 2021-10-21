@@ -124,4 +124,5 @@ void SV_Flame_Age_All_Objects(int time);
 void CG_Flame_Update_Source(int a1, LocalClientNum_t localClientNum);
 void Flame_Enable_And_Allocate(void *buffer, unsigned int bufsize, int max_flame_sources, int max_flame_chunks, int max_flame_drips, int max_flame_fire, int max_flame_smoke, int max_flame_streams);
 void Flame_System_Disable();
+void TRACK_flame_system();
 

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "gfx_d3d_public.h"
 
 /*
 ==============
@@ -534,6 +535,16 @@ R_HW_SetDepthStencilState
 ==============
 */
 void R_HW_SetDepthStencilState(GfxCmdBufState *state, unsigned int stateBits1, unsigned __int8 stencilRef, unsigned __int8 stencilMask)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+R_SetTexFilter
+==============
+*/
+void R_SetTexFilter()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

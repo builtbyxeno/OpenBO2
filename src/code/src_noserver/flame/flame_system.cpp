@@ -1,4 +1,5 @@
 #include "types.h"
+#include "flame_public.h"
 
 /*
 ==============
@@ -451,6 +452,16 @@ Flame_System_Disable
 ==============
 */
 void Flame_System_Disable()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+TRACK_flame_system
+==============
+*/
+void TRACK_flame_system()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

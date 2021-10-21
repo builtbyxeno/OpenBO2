@@ -1,4 +1,5 @@
 #include "types.h"
+#include "gfx_d3d_public.h"
 
 /*
 ==============
@@ -77,7 +78,7 @@ void *R_Cinematic_OpenMovie_Now(CinematicInfo *cinematicInfo, const char *filena
 StreamThread_OpenMovie
 ==============
 */
-void __cdecl StreamThread_OpenMovie(int msAllotted, void *user)
+void StreamThread_OpenMovie(int msAllotted, void *user)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -191,7 +192,7 @@ char R_Cinematic_UpdateSoundTime()
 R_Cinematic_UpdateFrame
 ==============
 */
-void R_Cinematic_UpdateFrame(int a1, bool force_wait)
+void R_Cinematic_UpdateFrame(bool force_wait)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -256,6 +257,16 @@ R_Cinematic_ForceRelinquishIO
 ==============
 */
 void R_Cinematic_ForceRelinquishIO()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+R_Cinematic_FreeBuffers
+==============
+*/
+void R_Cinematic_FreeBuffers()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "client_public.h"
 
 /*
 ==============
@@ -189,6 +190,16 @@ CL_ParseServerMessage
 ==============
 */
 void CL_ParseServerMessage(LocalClientNum_t localClientNum, msg_t *msg)
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+TRACK_cl_parse
+==============
+*/
+void TRACK_cl_parse()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

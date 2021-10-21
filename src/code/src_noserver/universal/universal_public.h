@@ -757,6 +757,7 @@ void Z_VirtualFree(void* ptr);
 const char* CopyString(const char* string);
 void Z_VirtualDecommit(void* ptr, int size);
 void FreeString(const char* str);
+void* Z_VirtualAlloc(int size, const char* name, int type);
 void Z_VirtualCommit(void* ptr, int size);
 void* Z_VirtualReserve(int size);
 

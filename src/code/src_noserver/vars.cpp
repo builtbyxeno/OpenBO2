@@ -3715,3 +3715,24 @@ SessionData g_serverSession;
 SessionData g_partySession;
 SessionData g_partyPresenceSession;
 clientplatform_t g_clientPlatform;
+ComWorld comWorld;
+int g_gump_load_in_progress;
+int g_supress_db_prints;
+int jqNWorkers;
+jqWorker* jqWorkers;
+r_global_permanent_t rgp;
+vidConfig_t vidConfig;
+r_globals_t rg;
+GfxConfiguration gfxCfg;
+
+GfxBackEndData* frontEndDataOut;
+
+int g_showCursor;
+int g_showGameCursor;
+
+GfxRenderTarget gfxRenderTargets[72];
+GfxCmdBufSourceState gfxCmdBufSourceState;
+GfxCmdBufInput gfxCmdBufInput;
+int alwaysfails;
+int g_disableRendering;
+materialCommands_t tess;

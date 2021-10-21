@@ -35,7 +35,7 @@ void R_Perf_ResetDraw()
 R_Perf_DrawTimers
 ==============
 */
-void R_Perf_DrawTimers(int a1, PerfTimerFrameHistory *timerFrameHistory, PerfTimerStyle *timerStyle)
+void R_Perf_DrawTimers(PerfTimerFrameHistory *timerFrameHistory, PerfTimerStyle *timerStyle)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

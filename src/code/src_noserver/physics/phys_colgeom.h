@@ -2,17 +2,6 @@
 
 /*
 ==============
-R_Is3DOn
-==============
-*/
-bool R_Is3DOn()
-{
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
-}
-
-/*
-==============
 gjk_collision_visitor::get_local_query_aabb
 ==============
 */

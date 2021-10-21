@@ -653,3 +653,13 @@ int Key_WriteBindingsToBuffer(LocalClientNum_t localClientNum, char* buffer, int
 	return 0;
 }
 
+/*
+==============
+TRACK_cl_keys
+==============
+*/
+void TRACK_cl_keys()
+{
+	UNIMPLEMENTED(__FUNCTION__);
+}
+

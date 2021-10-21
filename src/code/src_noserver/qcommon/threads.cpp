@@ -2,15 +2,24 @@
 #include "vars.h"
 #include "qcommon_public.h"
 #include <qcommon/qcommon_public.h>
+#include <gfx_d3d/r_pix_profile.h>
+#include <gfx_d3d/gfx_d3d_public.h>
+#include <win32/win32_public.h>
 
 unsigned long threadId[THREAD_CONTEXT_COUNT];
 void* threadHandle[THREAD_CONTEXT_COUNT];
 void* g_threadValues[THREAD_CONTEXT_COUNT][5];
 __declspec(thread) void* g_dwTlsIndex[THREAD_CONTEXT_COUNT];
+__declspec(thread) DWORD g_currentThreadId;
+
+void* volatile smpData;
 
 unsigned int s_affinityMaskForCpu[8];
 unsigned int s_affinityMaskForProcess;
 unsigned int s_cpuCount;
+unsigned int g_networkOverrideThread;
+
+int g_databaseStopServer;
 
 const char* s_threadNames[17] =
 {
@@ -61,7 +70,15 @@ HANDLE win32QuitEvent;
 HANDLE win32ScriptDebuggerDrawEvent;
 HANDLE rgRegisteredEvent;
 HANDLE renderEvent;
+HANDLE gumpFlushedEvent;
+HANDLE gumpLoadedEvent;
+HANDLE demoStreamingReady;
+HANDLE webmStreamingReady;
 HANDLE backendEvent[BACKEND_EVENT_COUNT];
+HANDLE sndInitializedEvent;
+HANDLE streamCompletedEvent;
+HANDLE streamDatabasePausedReading;
+HANDLE streamEvent;
 
 /*
 ==============
@@ -101,6 +118,10 @@ Sys_CreateEvent
 void Sys_CreateEvent(int manualReset, int initialState, void **evt)
 {
 	*evt = CreateEvent(NULL, manualReset, initialState, NULL);
+	if (!evt)
+	{
+		Com_Printf(CON_CHANNEL_ERROR, "error %d while creating event\n", GetLastError());
+	}
 }
 
 /*
@@ -234,7 +255,6 @@ void Sys_InitThread(int threadContext)
 	Com_InitThreadData(threadContext);
 }
 
-
 /*
 ==============
 Sys_ThreadMain
@@ -300,7 +320,7 @@ Sys_InitDemoStreamingEvent
 */
 void Sys_InitDemoStreamingEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_CreateEvent(0, 0, &demoStreamingReady);
 }
 
 /*
@@ -310,7 +330,7 @@ Sys_WaitForDemoStreamingEvent
 */
 void Sys_WaitForDemoStreamingEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_WaitForSingleObject(&demoStreamingReady);
 }
 
 /*
@@ -320,8 +340,8 @@ Sys_WaitForDemoStreamingEventTimeout
 */
 BOOL Sys_WaitForDemoStreamingEventTimeout(unsigned int msec)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	assertEq(msec == INFINITE);
+	return WaitForSingleObject(demoStreamingReady, msec) == 0;
 }
 
 /*
@@ -331,7 +351,7 @@ Sys_SetDemoStreamingEvent
 */
 void Sys_SetDemoStreamingEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_SetEvent(&demoStreamingReady);
 }
 
 /*
@@ -341,7 +361,7 @@ Sys_InitWebMStreamingEvent
 */
 void Sys_InitWebMStreamingEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_CreateEvent(0, 0, &webmStreamingReady);
 }
 
 /*
@@ -351,7 +371,11 @@ Sys_InitServerEvents
 */
 void Sys_InitServerEvents()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_ResetEvent(&wakeServerEvent);
+	Sys_ResetEvent(&serverCompletedEvent);
+	Sys_SetEvent(&allowServerNetworkEvent);
+	Sys_SetEvent(&serverNetworkCompletedEvent);
+	g_networkOverrideThread = 0;
 }
 
 /*
@@ -361,7 +385,7 @@ Sys_NotifyRenderer
 */
 void Sys_NotifyRenderer()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_SetEvent(&backendEvent[BACKEND_EVENT_GENERIC]);
 }
 
 /*
@@ -371,8 +395,7 @@ Sys_WaitServer
 */
 BOOL Sys_WaitServer(int timeout)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return Sys_WaitForSingleObjectTimeout(&serverCompletedEvent, timeout);
 }
 
 /*
@@ -382,8 +405,7 @@ Sys_IsDBPrintingSuppressed
 */
 int Sys_IsDBPrintingSuppressed()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return g_supress_db_prints;
 }
 
 /*
@@ -393,7 +415,8 @@ Sys_StartGumpLoading
 */
 void Sys_StartGumpLoading()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	g_gump_load_in_progress = 1;
+	g_supress_db_prints = 1;
 }
 
 /*
@@ -403,8 +426,7 @@ Sys_IsLoadingGump
 */
 int Sys_IsLoadingGump()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return g_gump_load_in_progress;
 }
 
 /*
@@ -414,8 +436,7 @@ Sys_WaitForGumpLoad
 */
 BOOL Sys_WaitForGumpLoad(int timeout)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return Sys_WaitForSingleObjectTimeout(&gumpLoadedEvent, timeout);
 }
 
 /*
@@ -425,8 +446,7 @@ Sys_WaitForGumpFlush
 */
 BOOL Sys_WaitForGumpFlush(int timeout)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return Sys_WaitForSingleObjectTimeout(&gumpFlushedEvent, timeout);
 }
 
 /*
@@ -436,7 +456,7 @@ Sys_WakeServer
 */
 void Sys_WakeServer()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_SetEvent(&wakeServerEvent);
 }
 
 /*
@@ -446,7 +466,7 @@ Sys_ServerCompleted
 */
 void Sys_ServerCompleted()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_SetEvent(&serverCompletedEvent);
 }
 
 /*
@@ -456,8 +476,20 @@ Sys_WaitStartServer
 */
 BOOL Sys_WaitStartServer(int timeout)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int start;
+
+	start = Sys_WaitForSingleObjectTimeout(&wakeServerEvent, timeout);
+	if (start)
+	{
+		Sys_ResetEvent(&serverCompletedEvent);
+	}
+
+	if (g_databaseStopServer)
+	{
+		start = 0;
+	}
+
+	return start;
 }
 
 /*
@@ -477,8 +509,7 @@ Sys_IsDatabaseThread
 */
 BOOL Sys_IsDatabaseThread()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return GetCurrentThreadId() == threadId[THREAD_CONTEXT_DATABASE];
 }
 
 /*
@@ -488,7 +519,12 @@ Sys_DatabaseCompleted
 */
 void Sys_DatabaseCompleted()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	g_databaseStopServer = 1;
+	if (serverCompletedEvent)
+	{
+		Sys_WaitForSingleObject(&serverCompletedEvent);
+	}
+	Sys_SetEvent(&databaseCompletedEvent);
 }
 
 /*
@@ -498,7 +534,7 @@ Sys_WaitStartDatabase
 */
 void Sys_WaitStartDatabase()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_WaitForSingleObject(&wakeDatabaseEvent);
 }
 
 /*
@@ -508,8 +544,7 @@ Sys_IsDatabaseReady
 */
 BOOL Sys_IsDatabaseReady()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return Sys_WaitForSingleObjectTimeout(&databaseCompletedEvent, 0) == 0;
 }
 
 /*
@@ -519,7 +554,7 @@ Sys_WakeDatabase
 */
 void Sys_WakeDatabase()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_ResetEvent(&databaseCompletedEvent);
 }
 
 /*
@@ -529,7 +564,7 @@ Sys_NotifyDatabase
 */
 void Sys_NotifyDatabase()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_SetEvent(&wakeDatabaseEvent);
 }
 
 /*
@@ -539,7 +574,8 @@ Sys_DatabaseCompleted2
 */
 void Sys_DatabaseCompleted2()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	g_databaseStopServer = 0;
+	Sys_SetEvent(&databaseCompletedEvent2);
 }
 
 /*
@@ -549,8 +585,7 @@ Sys_IsDatabaseReady2
 */
 BOOL Sys_IsDatabaseReady2()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return Sys_WaitForSingleObjectTimeout(&databaseCompletedEvent2, 0) == 0;
 }
 
 /*
@@ -560,7 +595,7 @@ Sys_WakeDatabase2
 */
 void Sys_WakeDatabase2()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_ResetEvent(&databaseCompletedEvent2);
 }
 
 /*
@@ -594,7 +629,7 @@ int Sys_GetThreadContext()
 	unsigned int currThread;
 
 	currThread = GetCurrentThreadId();
-	for (i = 0; i < 15; ++i)
+	for (i = 0; i < 17; ++i)
 	{
 		if (threadId[i] == currThread)
 		{
@@ -635,7 +670,7 @@ Sys_SetWin32QuitEvent
 */
 void Sys_SetWin32QuitEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_SetEvent(&win32QuitEvent);
 }
 
 /*
@@ -645,8 +680,7 @@ Sys_QueryWin32QuitEvent
 */
 BOOL Sys_QueryWin32QuitEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return Sys_WaitForSingleObjectTimeout(&win32QuitEvent, 0) == 0;
 }
 
 /*
@@ -656,7 +690,7 @@ Sys_SetRGRegisteredEvent
 */
 void Sys_SetRGRegisteredEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_SetEvent(&rgRegisteredEvent);
 }
 
 /*
@@ -666,8 +700,27 @@ Sys_QueryRGRegisteredEvent
 */
 BOOL Sys_QueryRGRegisteredEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return Sys_WaitForSingleObjectTimeout(&rgRegisteredEvent, 0) == 0;
+}
+
+/*
+==============
+Sys_ResetRGRegisteredEvent
+==============
+*/
+void Sys_ResetRGRegisteredEvent()
+{
+	Sys_ResetEvent(&rgRegisteredEvent);
+}
+
+/*
+==============
+Sys_WaitRGRegisteredEvent
+==============
+*/
+void Sys_WaitRGRegisteredEvent()
+{
+	Sys_WaitForSingleObject(&rgRegisteredEvent);
 }
 
 /*
@@ -677,7 +730,7 @@ Sys_SetRenderEvent
 */
 void Sys_SetRenderEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_SetEvent(&renderEvent);
 }
 
 /*
@@ -687,7 +740,7 @@ Sys_SetD3DShutdownEvent
 */
 void Sys_SetD3DShutdownEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_SetEvent(&d3dShutdownEvent);
 }
 
 /*
@@ -697,8 +750,17 @@ Sys_QueryD3DShutdownEvent
 */
 BOOL Sys_QueryD3DShutdownEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return Sys_WaitForSingleObjectTimeout(&d3dShutdownEvent, 0) == 0;
+}
+
+/*
+==============
+Sys_ResetD3DShutdownEvent
+==============
+*/
+void Sys_ResetD3DShutdownEvent()
+{
+	Sys_ResetEvent(&d3dShutdownEvent);
 }
 
 /*
@@ -706,10 +768,19 @@ BOOL Sys_QueryD3DShutdownEvent()
 Sys_SpawnStreamThread
 ==============
 */
-char Sys_SpawnStreamThread()
+bool Sys_SpawnStreamThread(void(__cdecl* function)(unsigned int))
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	Sys_CreateEvent(1, 0, &sndInitializedEvent);
+	Sys_CreateEvent(1, 0, &streamCompletedEvent);
+	Sys_CreateEvent(1, 0, &streamDatabasePausedReading);
+	Sys_CreateEvent(0, 0, &streamEvent);
+	Sys_CreateThread(function, THREAD_CONTEXT_STREAM);
+	if (!threadHandle[THREAD_CONTEXT_STREAM])
+	{
+		return false;
+	}
+	ResumeThread(threadHandle[THREAD_CONTEXT_STREAM]);
+	return true;
 }
 
 /*
@@ -719,7 +790,11 @@ Sys_StreamSleep
 */
 void Sys_StreamSleep()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_SetEvent(&streamCompletedEvent);
+	Sys_SetEvent(&streamDatabasePausedReading);
+	Sys_WaitForSingleObject(&streamEvent);
+	Sys_ResetEvent(&streamCompletedEvent);
+	Sys_ResetEvent(&streamDatabasePausedReading);
 }
 
 /*
@@ -729,7 +804,7 @@ Sys_ResetSndInitializedEvent
 */
 void Sys_ResetSndInitializedEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_ResetEvent(&sndInitializedEvent);
 }
 
 /*
@@ -739,8 +814,7 @@ Sys_QueryStreamPaused
 */
 BOOL Sys_QueryStreamPaused()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return Sys_WaitForSingleObjectTimeout(&streamDatabasePausedReading, 1) == 0;
 }
 
 /*
@@ -750,7 +824,7 @@ Sys_WakeStream
 */
 void Sys_WakeStream()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_SetEvent(&streamEvent);
 }
 
 /*
@@ -760,8 +834,7 @@ Sys_IsStreamThread
 */
 BOOL Sys_IsStreamThread()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return GetCurrentThreadId() == threadId[THREAD_CONTEXT_STREAM];
 }
 
 /*
@@ -771,7 +844,7 @@ Sys_SetServerAllowNetworkEvent
 */
 void Sys_SetServerAllowNetworkEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_SetEvent(&allowServerNetworkEvent);
 }
 
 /*
@@ -781,7 +854,7 @@ Sys_ResetServerAllowNetworkEvent
 */
 void Sys_ResetServerAllowNetworkEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_ResetEvent(&allowServerNetworkEvent);
 }
 
 /*
@@ -791,7 +864,12 @@ Sys_SetServerNetworkCompletedEvent
 */
 void Sys_SetServerNetworkCompletedEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_EnterCriticalSection(CRITSECT_NETTHREAD_OVERRIDE);
+
+	assert(g_networkOverrideThread == GetCurrentThreadId());
+	g_networkOverrideThread = 0;
+	Sys_SetEvent(&serverNetworkCompletedEvent);
+	Sys_LeaveCriticalSection(CRITSECT_NETTHREAD_OVERRIDE);
 }
 
 /*
@@ -801,7 +879,8 @@ Sys_ResetServerNetworkCompletedEvent
 */
 void Sys_ResetServerNetworkCompletedEvent()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	assert(Sys_IsServerThread());
+	Sys_WaitForSingleObject(&allowServerNetworkEvent);
 }
 
 /*
@@ -811,7 +890,8 @@ Sys_WaitServerNetworkCompleted
 */
 void Sys_WaitServerNetworkCompleted()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	assert(Sys_IsMainThread());
+	Sys_WaitForSingleObject(&serverNetworkCompletedEvent);
 }
 
 /*
@@ -821,8 +901,13 @@ Sys_GetDefaultWorkerThreadsCount
 */
 unsigned int Sys_GetDefaultWorkerThreadsCount()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	if (s_cpuCount <= 2)
+		return 1;
+	if (s_cpuCount <= 4)
+		return 2;
+	if (s_cpuCount > 10)
+		return 8;
+	return s_cpuCount - 2;
 }
 
 /*
@@ -830,10 +915,21 @@ unsigned int Sys_GetDefaultWorkerThreadsCount()
 Sys_SpawnServerThread
 ==============
 */
-char Sys_SpawnServerThread()
+bool Sys_SpawnServerThread(void (*function)(unsigned int))
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	Sys_CreateEvent(1, 0, &wakeServerEvent);
+	Sys_CreateEvent(1, 0, &serverCompletedEvent);
+	Sys_CreateEvent(1, 1, &allowServerNetworkEvent);
+	Sys_CreateEvent(1, 1, &serverNetworkCompletedEvent);
+	Sys_CreateThread(function, THREAD_CONTEXT_SERVER);
+	if (!threadHandle[THREAD_CONTEXT_SERVER])
+	{
+		return 0;
+	}
+
+	ResumeThread(threadHandle[THREAD_CONTEXT_SERVER]);
+
+	return 1;
 }
 
 /*
@@ -841,10 +937,39 @@ char Sys_SpawnServerThread()
 Sys_SpawnDatabaseThread
 ==============
 */
-char Sys_SpawnDatabaseThread()
+bool Sys_SpawnDatabaseThread(void(__cdecl* function)(unsigned int))
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	Sys_CreateEvent(0, 0, &wakeDatabaseEvent);
+	Sys_CreateEvent(1, 1, &databaseCompletedEvent);
+	Sys_CreateEvent(1, 1, &databaseCompletedEvent2);
+	Sys_CreateEvent(1, 1, &resumedDatabaseEvent);
+	Sys_CreateEvent(0, 0, &gumpLoadedEvent);
+	Sys_CreateEvent(0, 0, &gumpFlushedEvent);
+
+	Sys_CreateThread(function, THREAD_CONTEXT_DATABASE);
+	if (!threadHandle[THREAD_CONTEXT_DATABASE])
+		return false;
+	ResumeThread(threadHandle[THREAD_CONTEXT_DATABASE]);
+	return true;
+}
+
+bool Sys_SpawnRenderThread(void(*function)(unsigned int))
+{
+	Sys_CreateEvent(0, 0, &renderPausedEvent);
+	Sys_CreateEvent(1, 1, &renderCompletedEvent);
+	Sys_CreateEvent(1, 1, &rendererRunningEvent);
+	Sys_CreateEvent(0, 0, &backendEvent[BACKEND_EVENT_GENERIC]);
+	Sys_CreateEvent(1, 0, &backendEvent[BACKEND_EVENT_WORKER_CMD]);
+	Sys_CreateEvent(1, 0, &d3dShutdownEvent);
+	Sys_CreateEvent(1, 0, &win32QuitEvent);
+	Sys_CreateEvent(1, 0, &win32ScriptDebuggerDrawEvent);
+	Sys_CreateEvent(1, 0, &rgRegisteredEvent);
+	Sys_CreateEvent(1, 0, &renderEvent);
+	Sys_CreateThread(function, THREAD_CONTEXT_BACKEND);
+	if (!threadHandle[THREAD_CONTEXT_BACKEND])
+		return false;
+	ResumeThread(threadHandle[THREAD_CONTEXT_BACKEND]);
+	return true;
 }
 
 /*
@@ -854,7 +979,34 @@ Sys_InitWorkerThreadContext
 */
 void Sys_InitWorkerThreadContext()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	threadId[2] = jqWorkers[1].ThreadId;
+	threadId[3] = jqWorkers[2].ThreadId;
+	if (s_cpuCount > 2 && s_cpuCount > 4 && (s_cpuCount > 0xA || s_cpuCount - 2 >= 4))
+	{
+		threadId[4] = jqWorkers[3].ThreadId;
+		threadId[5] = jqWorkers[4].ThreadId;
+		threadId[6] = jqWorkers[5].ThreadId;
+	}
+}
+
+/*
+==============
+Sys_RendererSleep
+==============
+*/
+LONG Sys_RendererSleep()
+{
+	return InterlockedExchange((volatile LONG*)&smpData, 0);
+}
+
+/*
+==============
+Sys_RendererReady
+==============
+*/
+bool Sys_RendererReady()
+{
+	return smpData != NULL;
 }
 
 /*
@@ -864,7 +1016,29 @@ Sys_RenderCompleted
 */
 void Sys_RenderCompleted()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_SetEvent(&renderCompletedEvent);
+	Sys_SetEvent(&backendEvent[BACKEND_EVENT_WORKER_CMD]);
+}
+
+/*
+==============
+Sys_RenderCompleted
+==============
+*/
+void Sys_StopRenderer()
+{
+	Sys_ResetEvent(&rendererRunningEvent);
+	Sys_SetEvent(&renderPausedEvent);
+}
+
+/*
+==============
+Sys_RenderCompleted
+==============
+*/
+void Sys_StartRenderer()
+{
+	Sys_SetEvent(&rendererRunningEvent);
 }
 
 /*
@@ -874,7 +1048,16 @@ Sys_FrontEndSleep
 */
 void Sys_FrontEndSleep()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	PIXBeginNamedEvent(-1, "frontend sleep");
+	Sys_WaitForSingleObject(&rendererRunningEvent);
+	if (!g_currentThreadId)
+	{
+		g_currentThreadId = GetCurrentThreadId();
+	}
+	if (g_currentThreadId == threadId[THREAD_CONTEXT_BACKEND])
+	{
+		D3DPERF_EndEvent();
+	}
 }
 
 /*
@@ -884,7 +1067,11 @@ Sys_WakeRenderer
 */
 void Sys_WakeRenderer(void *data)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_ResetEvent(&renderCompletedEvent);
+	smpData = data;
+	PIXSetMarker(-1, "set smpData");
+	Sys_SetEvent(&backendEvent[BACKEND_EVENT_GENERIC]);
+	Sys_SetEvent(&backendEvent[BACKEND_EVENT_WORKER_CMD]);
 }
 
 /*
@@ -894,7 +1081,22 @@ Sys_SleepServer
 */
 void Sys_SleepServer()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	int wakeServerResponse;
+
+	PIXBeginNamedEvent(-1, "sleep server");
+	wakeServerResponse = Sys_WaitForSingleObjectTimeout(&wakeServerEvent, 0);
+	if (!g_currentThreadId)
+	{
+		g_currentThreadId = GetCurrentThreadId();
+	}
+	if (g_currentThreadId == threadId[THREAD_CONTEXT_BACKEND])
+	{
+		D3DPERF_EndEvent();
+	}
+	if (wakeServerResponse)
+	{
+		Sys_ResetEvent(&wakeServerEvent);
+	}
 }
 
 /*
@@ -904,7 +1106,34 @@ Sys_SyncDatabase
 */
 void Sys_SyncDatabase()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	PIXBeginNamedEvent(-1, "Sys_SyncDatabase()");
+	if (Sys_WaitForSingleObjectTimeout(&databaseCompletedEvent, 0))
+	{
+		while (Sys_WaitForSingleObjectTimeout(&databaseCompletedEvent, 1000))
+		{
+			R_Cinematic_ForceRelinquishIO();
+			Sys_CheckQuitRequest();
+		}
+		if (!g_currentThreadId)
+		{
+			g_currentThreadId = GetCurrentThreadId();
+		}
+		if (g_currentThreadId == threadId[THREAD_CONTEXT_BACKEND])
+		{
+			D3DPERF_EndEvent();
+		}
+	}
+	else
+	{
+		if (!g_currentThreadId)
+		{
+			g_currentThreadId = GetCurrentThreadId();
+		}
+		if (g_currentThreadId == threadId[THREAD_CONTEXT_BACKEND])
+		{
+			D3DPERF_EndEvent();
+		}
+	}
 }
 
 /*
@@ -914,8 +1143,17 @@ Sys_GetCurrentThreadName
 */
 const char *Sys_GetCurrentThreadName()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	return s_threadNames[Sys_GetThreadContext()];
+}
+
+/*
+==============
+Sys_WaitBackendEvent
+==============
+*/
+int Sys_WaitBackendEvent(int msec)
+{
+	return Sys_WaitForSingleObjectTimeout(&backendEvent[BACKEND_EVENT_GENERIC], msec) == 0;
 }
 
 /*
@@ -925,7 +1163,20 @@ Sys_WaitAllowServerNetworkLoop
 */
 void Sys_WaitAllowServerNetworkLoop()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	PIXBeginNamedEvent(-1, "Sys_WaitAllowServerNetworkLoop");
+	if (!g_currentThreadId)
+	{
+		g_currentThreadId = GetCurrentThreadId();
+	}
+	Sys_WaitForSingleObject(&allowServerNetworkEvent);
+	if (!g_currentThreadId)
+	{
+		g_currentThreadId = GetCurrentThreadId();
+	}
+	if (g_currentThreadId == threadId[THREAD_CONTEXT_BACKEND])
+	{
+		D3DPERF_EndEvent();
+	}
 }
 
 /*
@@ -935,7 +1186,16 @@ Sys_GumpPrint
 */
 void Sys_GumpPrint(const char *fmt, ...)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	char msg[512];
+	va_list ap;
+
+	va_start(ap, fmt);
+	if (Dvar_GetBool(gump_verbose))
+	{
+		_vsnprintf(msg, 0x200u, fmt, ap);
+		msg[511] = 0;
+		Com_Printf(CON_CHANNEL_FILES, "GUMP(%s): %s\n", s_threadNames[Sys_GetThreadContext()], msg);
+	}
 }
 
 /*
@@ -945,7 +1205,10 @@ Sys_GumpLoaded
 */
 void Sys_GumpLoaded()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_GumpPrint("Sys_GumpLoaded set gumpLoadedEvent\n");
+	g_gump_load_in_progress = 0;
+	g_supress_db_prints = 0;
+	SetEvent(gumpLoadedEvent);
 }
 
 /*
@@ -955,6 +1218,7 @@ Sys_GumpFlushed
 */
 void Sys_GumpFlushed()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	Sys_GumpPrint("Sys_GumpFlushed set gumpFlushedEvent\n");
+	SetEvent(gumpFlushedEvent);
 }
 

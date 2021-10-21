@@ -1,4 +1,51 @@
 #include "types.h"
+#include "vars.h"
+#include "gfx_d3d_public.h"
+#include <qcommon/qcommon_public.h>
+#include <gfx_d3d/r_pix_profile.h>
+
+GfxViewInfo s_viewInfo[1][4];
+GfxCmdArray s_frontEndCmds[1];
+GfxCmdArray* s_cmdList;
+
+unsigned __int8 gRenderCmdDrawsSomething[33] =
+{
+  0u,
+  0u,
+  0u,
+  0u,
+  0u,
+  1u,
+  0u,
+  0u,
+  0u,
+  1u,
+  0u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  1u,
+  0u,
+  1u,
+  0u
+};
+
+#define GFXCMDHEADER_UI3D_MASK_WINDOW_INDEX 127
 
 /*
 ==============
@@ -7,8 +54,11 @@ TRACK_r_rendercmds
 */
 void TRACK_r_rendercmds()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	track_static_alloc_internal(s_viewInfo, 12608, "s_viewInfo", 21);
+	track_static_alloc_internal(s_frontEndCmds, 28, "s_frontEndCmds", 21);
 }
+
+GfxBackEndData s_backEndData[1];
 
 /*
 ==============
@@ -17,7 +67,14 @@ R_InitGlassRenderBuffers
 */
 void R_InitGlassRenderBuffers(int numIndices, int numVerts, int vertexSize)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	s_backEndData[0].glassMesh.thisPtr = &s_backEndData[0].glassMesh;
+	s_backEndData[0].glassMesh.indices = (unsigned short*)R_AllocDynamicIndexBuffer(&s_backEndData[0].glassMesh.ib, 2 * numIndices);
+	s_backEndData[0].glassMesh.indices = (unsigned short*)R_AllocGlobalVariable(2 * numIndices, "R_InitDynamicMesh");
+	s_backEndData[0].glassMesh.totalIndexCount = numIndices;
+	s_backEndData[0].glassMesh.indexCount = 0;
+	s_backEndData[0].glassMesh.vertSize = vertexSize;
+	R_InitDynamicVertexBufferState(&s_backEndData[0].glassMesh.vb, vertexSize * numVerts);
+	s_backEndData[0].glassMesh.vb.verts = (unsigned char*)Z_VirtualAlloc(vertexSize * numVerts, "glassMesh", 21);
 }
 
 /*
@@ -27,7 +84,11 @@ R_InitTempSkinBuf
 */
 void R_InitTempSkinBuf(unsigned int maxVerts)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	assert(!s_backEndData[0].tempSkinPos);
+	assert(!s_backEndData[0].tempSkinBuf);
+	s_backEndData[0].tempSkinBuf = (unsigned char*)Z_VirtualReserve(32 * maxVerts);
+	s_backEndData[0].tempSkinSize = 32 * maxVerts;
+	s_backEndData[0].tempSkinPos = 0;
 }
 
 /*
@@ -37,7 +98,13 @@ R_ShutdownTempSkinBuf
 */
 void R_ShutdownTempSkinBuf()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (s_backEndData[0].tempSkinBuf)
+	{
+		Z_VirtualFree(s_backEndData[0].tempSkinBuf);
+		s_backEndData[0].tempSkinBuf = 0;
+		s_backEndData[0].tempSkinPos = 0;
+		s_backEndData[0].tempSkinSize = 0;
+	}
 }
 
 /*
@@ -47,8 +114,7 @@ R_UpdateSkinCacheUsage
 */
 unsigned int R_UpdateSkinCacheUsage()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	rg.skinnedVertexCacheUsed[frontEndDataOut->viewInfoIndex] = frontEndDataOut->skinnedCacheVertsAllocated / frontEndDataOut->skinnedCacheVb->total;
 }
 
 /*
@@ -58,8 +124,67 @@ R_GetCommandBuffer
 */
 GfxCmdHeader *R_GetCommandBuffer(GfxRenderCommand renderCmd, int bytes)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	GfxCmdHeader* header;
+	int sizeLimit;
+	int ui3dWindowIndex;
+
+	assert(s_cmdList);
+	assertMsg((renderCmd >= 0 && renderCmd < RC_COUNT), "(renderCmd) = %i", renderCmd);
+	assertMsg(((bytes & 3) == 0), "(bytes) = %i", bytes);
+	assertMsg((bytes < s_cmdList->byteSize), "(bytes) = %i", bytes);
+	assertMsg((bytes == static_cast<unsigned short>(bytes)), "(bytes) = %i", bytes);
+	assert(s_cmdList->cmds);
+	assert(rg.inFrame);
+
+	if (renderCmd < RC_FIRST_NONCRITICAL)
+	{
+		if (s_cmdList->usedCritical < 7680 && bytes + s_cmdList->usedCritical >= 7680)
+		{
+			Com_PrintWarning(13, "RENDERCOMMAND_CRITICAL_WARN_SIZE (%i bytes) reached\n", 7680);
+		}
+	}
+
+	if (s_cmdList->usedTotal < s_cmdList->warnSize && bytes + s_cmdList->usedTotal >= s_cmdList->warnSize)
+	{
+		Com_PrintWarning(CON_CHANNEL_GFX, "RENDERCOMMAND_WARN_SIZE (%.0f KB) reached\n", (s_cmdList->warnSize * 0.0009765625));
+	}
+
+	sizeLimit = s_cmdList->byteSize - s_cmdList->usedTotal;
+	if (renderCmd >= RC_FIRST_NONCRITICAL)
+	{
+		sizeLimit -= 0x2000 - s_cmdList->usedCritical;
+	}
+
+	if (bytes > sizeLimit)
+	{
+		assertMsg(renderCmd >= RC_FIRST_NONCRITICAL, va("rc %i used %i critical %i bytes %i", renderCmd, s_cmdList->usedTotal, s_cmdList->usedCritical, bytes));
+		s_cmdList->lastCmd = NULL;
+
+		return NULL;
+	}
+
+	PIXSetMarker(0, gfxRenderCommandNames[renderCmd]);
+
+	header = (GfxCmdHeader*)&s_cmdList->cmds[s_cmdList->usedTotal];
+	s_cmdList->usedTotal += bytes;
+	s_cmdList->usedCritical += renderCmd >= RC_FIRST_NONCRITICAL ? 0 : bytes;
+	s_cmdList->lastCmd = header;
+	header->id = renderCmd;
+
+	ui3dWindowIndex = R_UI3DStack_Top(R_GetUI3DStack());
+
+	assert(ui3dWindowIndex <= GFXCMDHEADER_UI3D_MASK_WINDOW_INDEX);
+	if (ui3dWindowIndex >= 0)
+	{
+		header->ui3d = ui3dWindowIndex | 0x80;
+	}
+	else
+	{
+		header->ui3d = 0;
+	}
+	R_UI3D_IncrementRenderCmdCount(ui3dWindowIndex, gRenderCmdDrawsSomething[renderCmd]);
+	header->byteCount = bytes;
+	return header;
 }
 
 /*
@@ -69,7 +194,7 @@ R_BeginClientCmdList2D
 */
 void R_BeginClientCmdList2D()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	frontEndDataOut->viewInfo[frontEndDataOut->viewInfoCount].cmds = &s_cmdList->cmds[s_cmdList->usedTotal];
 }
 
 /*
@@ -79,7 +204,7 @@ R_ClearClientCmdList2D
 */
 void R_ClearClientCmdList2D()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	frontEndDataOut->viewInfo[frontEndDataOut->viewInfoCount].cmds = 0;
 }
 
 /*
@@ -89,7 +214,7 @@ R_BeginSharedCmdList
 */
 void R_BeginSharedCmdList()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	frontEndDataOut->cmds = &s_cmdList->cmds[s_cmdList->usedTotal];
 }
 
 /*
@@ -99,7 +224,7 @@ R_BeginCompositingCmdList
 */
 void R_BeginCompositingCmdList()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	frontEndDataOut->compositingCmds = &s_cmdList->cmds[s_cmdList->usedTotal];
 }
 
 /*
@@ -109,7 +234,7 @@ R_AddCmdEndOfList
 */
 void R_AddCmdEndOfList()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	R_GetCommandBuffer(RC_END_OF_LIST, 4);
 }
 
 /*
@@ -130,8 +255,7 @@ R_GetFrameCount
 */
 unsigned int R_GetFrameCount()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return frontEndDataOut->frameCount;
 }
 
 /*
@@ -141,8 +265,16 @@ R_AllocViewParms
 */
 GfxViewParms *R_AllocViewParms()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	GfxViewParms* viewParms;
+
+	assert(frontEndDataOut);
+	assertIn(frontEndDataOut->viewParmCount, ARRAY_COUNT(frontEndDataOut->viewParms));
+
+	viewParms = &frontEndDataOut->viewParms[frontEndDataOut->viewParmCount];
+	frontEndDataOut->viewParmCount++;
+	viewParms->bspCellIndex = -1;
+	
+	return viewParms;
 }
 
 /*
@@ -631,5 +763,18 @@ R_BeginFrame
 void R_BeginFrame()
 {
 	UNIMPLEMENTED(__FUNCTION__);
+}
+
+/*
+==============
+R_InitRenderThread
+==============
+*/
+void R_InitRenderThread()
+{
+	if (!Sys_SpawnRenderThread(RB_RenderThread))
+	{
+		Com_Error(ERR_FATAL, "Failed to create render thread");
+	}
 }
 
