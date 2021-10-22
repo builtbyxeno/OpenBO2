@@ -65,7 +65,7 @@ void R_TessCodeMeshList_AddCodeMeshArgs(GfxCmdBufSourceState *source, const GfxB
 R_SetObjectIdentityPlacement
 ==============
 */
-void R_SetObjectIdentityPlacement(const GfxScaledPlacement *a1, GfxCmdBufSourceState *source)
+void R_SetObjectIdentityPlacement(GfxCmdBufSourceState *source)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

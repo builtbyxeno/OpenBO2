@@ -48901,7 +48901,7 @@ struct GfxDrawSurfListArgs
 {
   GfxCmdBufContext context;
   unsigned int firstDrawSurfIndex;
-  const GfxDrawSurfListInfo *info;
+  GfxDrawSurfListInfo *info;
 };
 
 struct GfxRenderCommandExecState

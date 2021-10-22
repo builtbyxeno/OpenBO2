@@ -6,6 +6,7 @@
 void TRACK_rb_backend();
 void RB_SetIdentity();
 void R_SetVertex2d(GfxVertex *vert, float x, float y, float s, float t, unsigned int color);
+void R_SetVertex3d(GfxVertex* vert, float x, float y, float z, float s, float t, unsigned int color);
 void RB_DrawFullSceneTri(const Material *material, unsigned __int8 scene);
 void RB_TessAddQuadIndices(unsigned int vertCount);
 void RB_DrawSW4Quads(const Material *material, int ParticleCount);
@@ -38,7 +39,7 @@ void RB_DrawFramedCmd(GfxRenderCommandExecState *execState);
 void RB_ConstantSetCmd(GfxRenderCommandExecState *execState);
 unsigned int R_RenderDrawSurfStaticModelListMaterial(GfxCmdBufContext context, const GfxDrawSurfListInfo *info, unsigned int firstDrawSurfIndex);
 unsigned int R_RenderDrawSurfBspListMaterial(GfxCmdBufContext context, const GfxDrawSurfListInfo *info, unsigned int firstDrawSurfIndex);
-unsigned int R_RenderDrawSurfListMaterial(const GfxDrawSurfListArgs *listArgs);
+unsigned int R_RenderDrawSurfListMaterial(GfxDrawSurfListArgs *listArgs);
 void R_SetCustomCodeConstants(GfxCmdBufContext context);
 void R_DrawSurfs(GfxCmdBufContext context, const GfxDrawSurfListInfo *info);
 void R_DrawSurfsBsp(GfxCmdBufContext context, const GfxDrawSurfListInfo *info);
@@ -348,7 +349,7 @@ void R_SetVertexDeclTypeWorldSurface(GfxCmdBufState *state);
 void R_SetVertexDeclTypeModelLit(const XSurface *surf, GfxCmdBufState *state);
 void R_SetVertexDeclTypeModel(const XSurface *surf, GfxCmdBufState *state);
 void R_TessCodeMeshList_AddCodeMeshArgs(GfxCmdBufSourceState *source, const GfxBackEndData *data, const FxCodeMeshData *codeMesh);
-void R_SetObjectIdentityPlacement(const GfxScaledPlacement *a1, GfxCmdBufSourceState *source);
+void R_SetObjectIdentityPlacement(GfxCmdBufSourceState *source);
 unsigned int R_TessCodeMeshList(const GfxDrawSurfListArgs *listArgs);
 unsigned int R_TessRopeMeshList(const GfxDrawSurfListArgs *listArgs);
 unsigned int R_TessGlassMeshList(const GfxDrawSurfListArgs *listArgs);
@@ -858,8 +859,8 @@ int R_SetMaterial(GfxCmdBufContext context, GfxDrawSurf drawSurf, const Material
 int R_SetMaterialNoShaderConstantSet(GfxCmdBufContext context, GfxDrawSurf drawSurf, unsigned __int8 techType);
 unsigned __int8 R_GetTechType(const GfxCmdBufContext context, const GfxDrawSurfListInfo *info, unsigned __int8 baseTechType, GfxDrawSurf drawSurf);
 const char *RB_LogTechniqueType(unsigned __int8 techType);
-int R_SetTechnique(float context, const GfxCmdBufContext context_4, const GfxDrawSurfListInfo *info, GfxDrawSurf drawSurf);
-int R_SetLitTechniqueNoShaderConstantSet(float context, const GfxCmdBufContext context_4, const GfxDrawSurfListInfo *info, GfxDrawSurf drawSurf);
+int R_SetTechnique(const GfxCmdBufContext context, const GfxDrawSurfListInfo *info, GfxDrawSurf drawSurf);
+int R_SetLitTechniqueNoShaderConstantSet(const GfxCmdBufContext context, const GfxDrawSurfListInfo *info, GfxDrawSurf drawSurf);
 void R_SetGameTime(GfxCmdBufSourceState *source, float gameTime);
 int R_UpdateMaterialTime(GfxCmdBufSourceState *source, float materialTime, float burn);
 
@@ -1721,8 +1722,14 @@ void R_XModelDrawSurfEncodeShaderConstantSet(unsigned int a1, GfxDrawSurf *a2, G
 unsigned int R_ShaderConstantSet_CopyToFrontEndDataOut(const ShaderConstantSet *scs);
 ShaderConstantSet *R_ShaderConstantSet_FromFrontEndDataOut(unsigned int constSetindex);
 void RB_SaveCurrentShaderConstantSetValues(ShaderConstantSet *destSet, GfxCmdBufSourceState *gfxSourceState, const ShaderConstantSet *srcSet);
-// void ScopedShaderConstantSetUndo::ScopedShaderConstantSetUndo(ScopedShaderConstantSetUndo *notthis, GfxCmdBufSourceState *sourceState, const ShaderConstantSet *cscEA);
-// void ScopedShaderConstantSetUndo::~ScopedShaderConstantSetUndo(ScopedShaderConstantSetUndo *notthis);
+class ScopedShaderConstantSetUndo
+{
+public:
+	GfxCmdBufSourceState* m_sourceState;
+	ShaderConstantSet m_scs;
+	ScopedShaderConstantSetUndo(GfxCmdBufSourceState* sourceState, const ShaderConstantSet* cscEA);
+	~ScopedShaderConstantSetUndo();
+};
 void R_ShaderConstantShowDebug(const vec3_t *eyePos, const vec3_t *objOrigin, float objRad, const ShaderConstantSet *scs);
 bool R_MapShaderConstantSet(ShaderConstantSet *scs, int index, const char *constantName);
 int R_AllocShaderConstantSet(ShaderConstantSet *scs, const char *name);

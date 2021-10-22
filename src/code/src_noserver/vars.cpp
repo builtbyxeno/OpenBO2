@@ -3736,3 +3736,5 @@ GfxCmdBufInput gfxCmdBufInput;
 int alwaysfails;
 int g_disableRendering;
 materialCommands_t tess;
+GfxWorldDraw* g_worldDraw;
+GfxScaledPlacement s_manualObjectPlacement;

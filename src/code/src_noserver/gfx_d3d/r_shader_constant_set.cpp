@@ -1,4 +1,5 @@
 #include "types.h"
+#include "gfx_d3d_public.h"
 
 /*
 ==============
@@ -219,20 +220,28 @@ void RB_SaveCurrentShaderConstantSetValues(ShaderConstantSet *destSet, GfxCmdBuf
 ScopedShaderConstantSetUndo::ScopedShaderConstantSetUndo
 ==============
 */
-/*void ScopedShaderConstantSetUndo::ScopedShaderConstantSetUndo(ScopedShaderConstantSetUndo *notthis, GfxCmdBufSourceState *sourceState, const ShaderConstantSet *cscEA)
+ScopedShaderConstantSetUndo::ScopedShaderConstantSetUndo(GfxCmdBufSourceState *sourceState, const ShaderConstantSet *cscEA)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	m_sourceState = sourceState;
+	if (cscEA)
+	{
+		RB_SaveCurrentShaderConstantSetValues(&m_scs, sourceState, cscEA);
+	}
+	else
+	{
+		m_scs.used = 0;
+	}
+}
 
 /*
 ==============
 ScopedShaderConstantSetUndo::~ScopedShaderConstantSetUndo
 ==============
 */
-/*void ScopedShaderConstantSetUndo::~ScopedShaderConstantSetUndo(ScopedShaderConstantSetUndo *notthis)
+ScopedShaderConstantSetUndo::~ScopedShaderConstantSetUndo()
 {
-	UNIMPLEMENTED(__FUNCTION__);
-}*/
+	RB_ApplyShaderConstantSet(m_sourceState, &m_scs);
+}
 
 /*
 ==============

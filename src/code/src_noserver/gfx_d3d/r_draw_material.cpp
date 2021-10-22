@@ -71,7 +71,7 @@ const char *RB_LogTechniqueType(unsigned __int8 techType)
 R_SetTechnique
 ==============
 */
-int R_SetTechnique(float context, const GfxCmdBufContext context_4, const GfxDrawSurfListInfo *info, GfxDrawSurf drawSurf)
+int R_SetTechnique(const GfxCmdBufContext context, const GfxDrawSurfListInfo *info, GfxDrawSurf drawSurf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;
@@ -82,7 +82,7 @@ int R_SetTechnique(float context, const GfxCmdBufContext context_4, const GfxDra
 R_SetLitTechniqueNoShaderConstantSet
 ==============
 */
-int R_SetLitTechniqueNoShaderConstantSet(float context, const GfxCmdBufContext context_4, const GfxDrawSurfListInfo *info, GfxDrawSurf drawSurf)
+int R_SetLitTechniqueNoShaderConstantSet(const GfxCmdBufContext context, const GfxDrawSurfListInfo *info, GfxDrawSurf drawSurf)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return 0;

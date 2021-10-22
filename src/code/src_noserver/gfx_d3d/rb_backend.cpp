@@ -8,6 +8,7 @@
 #include <gfx_d3d/r_state.h>
 #include <gfx_d3d/rb_backend.h>
 #include <stringed/stringed_public.h>
+#include <gfx_d3d/r_setstate_d3d.h>
 
 r_backEndGlobals_t backEnd;
 GfxCmdBufState gfxCmdBufState;
@@ -15,7 +16,30 @@ GfxCmdBufState gfxCmdBufState;
 GfxBackEndData* data;
 const GfxBackEndData* backEndData;
 
+GfxCmdBufContext gfxCmdBufContext = { { { &gfxCmdBufSourceState, &gfxCmdBufState } } };
+GfxCmdBufSourceState gfxCmdBufSourceState;
+
 GfxFrameStats g_frameStatsCur;
+
+unsigned int(__cdecl* const rb_tessTable[16])(const GfxDrawSurfListArgs*) =
+{
+  &R_TessTrianglesList,
+  &R_TessTrianglesList,
+  &R_TessStaticModelRigidList,
+  &R_TessStaticModelRigidList,
+  &R_TessStaticModelSkinnedDrawSurfList,
+  &R_TessBModel,
+  &R_TessXModelRigidDrawSurfList,
+  &R_TessXModelRigidDrawSurfList,
+  &R_TessXModelRigidSkinnedDrawSurfList,
+  &R_TessXModelSkinnedDrawSurfList,
+  &R_TessXModelSkinnedDrawSurfList,
+  &R_TessCodeMeshList,
+  &R_TessMarkMeshList,
+  &R_TessParticleCloudList,
+  &R_TessRopeMeshList,
+  &R_TessGlassMeshList
+};
 
 /*
 ==============
@@ -24,7 +48,9 @@ TRACK_rb_backend
 */
 void TRACK_rb_backend()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	track_static_alloc_internal(&backEnd, sizeof(r_backEndGlobals_t), "backEnd", 21);
+	track_static_alloc_internal(&tess, sizeof(materialCommands_t), "tess", 21);
+	track_static_alloc_internal(&gfxCmdBufInput, sizeof(GfxCmdBufInput), "gfxCmdBufInput", 21);
 }
 
 /*
@@ -71,12 +97,48 @@ void R_SetVertex2d(GfxVertex *vert, float x, float y, float s, float t, unsigned
 
 /*
 ==============
+R_SetVertex3d
+==============
+*/
+void R_SetVertex3d(GfxVertex* vert, float x, float y, float z, float s, float t, unsigned int color)
+{
+	vert->xyzw.v[0] = x;
+	vert->xyzw.v[1] = y;
+	vert->xyzw.v[2] = z;
+	vert->xyzw.v[3] = 1.0;
+
+	vert->normal.packed = 0x3FFE7F7F;
+	vert->color.packed = color;
+
+	vert->texCoord.v[0] = s;
+	vert->texCoord.v[1] = t;
+}
+
+/*
+==============
 RB_DrawFullSceneTri
 ==============
 */
 void RB_DrawFullSceneTri(const Material *material, unsigned __int8 scene)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	int width, height;
+
+	assert(gfxCmdBufSourceState.viewMode == VIEW_MODE_2D);
+	RB_SetTessTechnique(material, 2);
+	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, GFX_PRIM_STATS_CODE);
+	RB_CheckTessOverflow(tess.vertexCount, tess.indexCount);
+	
+	tess.indices[tess.indexCount] = tess.vertexCount;
+	tess.indices[tess.indexCount + 1] = tess.vertexCount + 1;
+	tess.indices[tess.indexCount + 2] = tess.vertexCount + 2;
+	
+	width = gfxRenderTargets[scene].width;
+	height = gfxRenderTargets[scene].height;
+	R_SetVertex2d(&tess.verts[tess.vertexCount], 0, 0, 1.0, -1.0, -1);
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 1], width * 2, 0, 2.0, 0.0, -1);
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 2], 0, height * 2, 0.0, 2.0, -1);
+	tess.vertexCount += 3;
+	tess.indexCount += 3;
 }
 
 /*
@@ -90,7 +152,7 @@ void RB_TessAddQuadIndices(unsigned int vertCount)
 	tess.indices[tess.indexCount + 1] = vertCount;
 	tess.indices[tess.indexCount + 2] = vertCount + 2;
 	tess.indices[tess.indexCount + 3] = vertCount + 2;
-	tess.indices[tess.indexCount + 4] = vertCount + 0;
+	tess.indices[tess.indexCount + 4] = vertCount;
 	tess.indices[tess.indexCount + 5] = vertCount + 1;
 	tess.indexCount += 6;
 }
@@ -102,7 +164,31 @@ RB_DrawSW4Quads
 */
 void RB_DrawSW4Quads(const Material *material, int ParticleCount)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	unsigned short vertCount;
+	int i;
+
+	RB_SetTessTechnique(material, 2);
+	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, GFX_PRIM_STATS_CODE);
+	RB_CheckTessOverflow(4 * ParticleCount, 6 * ParticleCount);
+	for (i = 0; i < ParticleCount; ++i)
+	{
+		vertCount = tess.vertexCount;
+
+		tess.indices[tess.indexCount + 0] = vertCount + 3;
+		tess.indices[tess.indexCount + 1] = vertCount; // + 0
+		tess.indices[tess.indexCount + 2] = vertCount + 2;
+		tess.indices[tess.indexCount + 3] = vertCount + 2;
+		tess.indices[tess.indexCount + 4] = vertCount; // + 0
+		tess.indices[tess.indexCount + 5] = vertCount + 1;
+
+		R_SetVertex2d(&tess.verts[tess.vertexCount + 0], i, 0.0f, 0.0f, 0.0f, 0xFFFFFFFF);
+		R_SetVertex2d(&tess.verts[tess.vertexCount + 1], i, 0.0f, 1.0f, 0.0f, 0xFFFFFFFF);
+		R_SetVertex2d(&tess.verts[tess.vertexCount + 2], i, 0.0f, 1.0f, 1.0f, 0xFFFFFFFF);
+		R_SetVertex2d(&tess.verts[tess.vertexCount + 3], i, 0.0f, 0.0f, 1.0f, 0xFFFFFFFF);
+		tess.vertexCount += 4;
+		tess.indexCount += 6;
+	}
+	RB_EndTessSurface();
 }
 
 /*
@@ -112,7 +198,20 @@ RB_DrawStretchPic
 */
 void RB_DrawStretchPic(const Material *material, float x, float y, float w, float h, float s0, float t0, float s1, float t1, unsigned int color, GfxPrimStatsTarget statsTarget)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	unsigned short vertCount;
+
+	assert(gfxCmdBufSourceState.viewMode == VIEW_MODE_2D);
+	RB_SetTessTechnique(material, 2u);
+	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, statsTarget);
+	RB_CheckTessOverflow(4, 6);
+	RB_TessAddQuadIndices(tess.vertexCount);
+
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 0], x, y, s0, t0, color);
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 1], x + w, y, s1, t0, color);
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 2], x + w, y + h, s1, t1, color);
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 3], x, y + h, s0, t1, color);
+
+	tess.vertexCount += 4;
 }
 
 /*
@@ -122,7 +221,18 @@ RB_DrawStretchPicW
 */
 void RB_DrawStretchPicW(const Material *material, float x, float y, float w0, float w, float h, float s0, float t0, float s1, float t1, unsigned int color, GfxPrimStatsTarget statsTarget)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	assert(gfxCmdBufSourceState.viewMode == VIEW_MODE_2D);
+	RB_SetTessTechnique(material, 2u);
+	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, statsTarget);
+	RB_CheckTessOverflow(4, 6);
+	RB_TessAddQuadIndices(tess.vertexCount);
+
+	R_SetVertex4d(&tess.verts[tess.vertexCount + 0], x, y, 0.0f, w0, s0, t0, color);
+	R_SetVertex4d(&tess.verts[tess.vertexCount + 1], x + w, y, 0.0f, w0, s1, t0, color);
+	R_SetVertex4d(&tess.verts[tess.vertexCount + 2], x + w, y + h, 0.0f, w0, s1, t1, color);
+	R_SetVertex4d(&tess.verts[tess.vertexCount + 3], x, y + h, 0.0f, w0, s0, t1, color);
+
+	tess.vertexCount += 4;
 }
 
 /*
@@ -132,7 +242,18 @@ RB_DrawStretchPicZ
 */
 void RB_DrawStretchPicZ(const Material *material, float x, float y, float z, float w, float h, float s0, float t0, float s1, float t1, unsigned int color, GfxPrimStatsTarget statsTarget)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	assert(gfxCmdBufSourceState.viewMode == VIEW_MODE_2D);
+	RB_SetTessTechnique(material, 2u);
+	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, statsTarget);
+	RB_CheckTessOverflow(4, 6);
+	RB_TessAddQuadIndices(tess.vertexCount);
+
+	R_SetVertex3d(&tess.verts[tess.vertexCount + 0], x, y, z, s0, t0, color);
+	R_SetVertex3d(&tess.verts[tess.vertexCount + 1], x + w, y, z, s1, t0, color);
+	R_SetVertex3d(&tess.verts[tess.vertexCount + 2], x + w, y + h, z, s1, t1, color);
+	R_SetVertex3d(&tess.verts[tess.vertexCount + 3], x, y + h, z, s0, t1, color);
+
+	tess.vertexCount += 4;
 }
 
 /*
@@ -142,7 +263,18 @@ RB_DrawStretchPicFlipST
 */
 void RB_DrawStretchPicFlipST(const Material *material, float x, float y, float w, float h, float s0, float t0, float s1, float t1, unsigned int color, GfxPrimStatsTarget statsTarget)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	assert(gfxCmdBufSourceState.viewMode == VIEW_MODE_2D);
+	RB_SetTessTechnique(material, 2u);
+	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, statsTarget);
+	RB_CheckTessOverflow(4, 6);
+	RB_TessAddQuadIndices(tess.vertexCount);
+
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 0], x, y, s0, t0, color);
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 1], x + w, y, s0, t1, color);
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 2], x + w, y + h, s1, t1, color);
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 3], x, y + h, s1, t0, color);
+
+	tess.vertexCount += 4;
 }
 
 /*
@@ -152,7 +284,21 @@ RB_DrawStretchPicRotate
 */
 void RB_DrawStretchPicRotate(const Material *material, float x, float y, float w, float width, float height, float s0, float t0, float s1, float t1, float sinAngle, float cosAngle, unsigned int color, GfxPrimStatsTarget statsTarget)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	float stepY;
+
+	assert(gfxCmdBufSourceState.viewMode == VIEW_MODE_2D);
+	RB_SetTessTechnique(material, 2u);
+	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, statsTarget);
+	RB_CheckTessOverflow(4, 6);
+	RB_TessAddQuadIndices(tess.vertexCount);
+
+	stepY = -height * sinAngle;
+	R_SetVertex4d(&tess.verts[tess.vertexCount + 0], x, y, 0.0f, w, s0, t0, color);
+	R_SetVertex4d(&tess.verts[tess.vertexCount + 1], x + width * cosAngle, y + width * sinAngle, 0.0f, w, s1, t0, color);
+	R_SetVertex4d(&tess.verts[tess.vertexCount + 2], x + width * cosAngle + stepY, y + width * sinAngle + height * cosAngle, 0.0f, w, s1, t1, color);
+	R_SetVertex4d(&tess.verts[tess.vertexCount + 3], x + stepY, y + height * cosAngle, 0.0f, w, s0, t1, color);
+
+	tess.vertexCount += 4;
 }
 
 /*
@@ -162,7 +308,13 @@ RB_DrawFullScreenColoredQuad
 */
 void RB_DrawFullScreenColoredQuad(const Material *material, float s0, float t0, float s1, float t1, unsigned int color)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (tess.indexCount)
+	{
+		RB_EndTessSurface();
+	}
+	R_Set2D(&gfxCmdBufSourceState);
+	RB_DrawStretchPic(material, 0.0, 0.0, gfxCmdBufSourceState.renderTargetWidth, gfxCmdBufSourceState.renderTargetHeight, s0, t0, s1, t1, color, GFX_PRIM_STATS_CODE);
+	RB_EndTessSurface();
 }
 
 /*
@@ -172,7 +324,13 @@ RB_FullScreenColoredFilter
 */
 void RB_FullScreenColoredFilter(const Material *material, unsigned int color)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (tess.indexCount)
+	{
+		RB_EndTessSurface();
+	}
+	R_Set2D(&gfxCmdBufSourceState);
+	RB_DrawStretchPic(material, 0.0, 0.0, gfxCmdBufSourceState.renderTargetWidth, gfxCmdBufSourceState.renderTargetHeight, 0.0, 0.0, 1.0, 1.0, color, GFX_PRIM_STATS_CODE);
+	RB_EndTessSurface();
 }
 
 /*
@@ -182,7 +340,21 @@ RB_FullScreenFilterWithFlag
 */
 void RB_FullScreenFilterWithFlag(const Material *material, int filterFlags)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	R_UpdateCodeConstant(&gfxCmdBufSourceState, 0x55u, 0.0, 0.0, 1.0, 1.0);
+	if ((filterFlags & 4) != 0)
+	{
+		if (tess.indexCount)
+		{
+			RB_EndTessSurface();
+		}
+		R_Set2D(&gfxCmdBufSourceState);
+		RB_DrawStretchPic(material, 0.0, 0.0, gfxCmdBufSourceState.renderTargetWidth, gfxCmdBufSourceState.renderTargetHeight, 0.0, 0.0, 1.0, 1.0, 0xFFFFFFFF, GFX_PRIM_STATS_CODE);
+		RB_EndTessSurface();
+	}
+	else
+	{
+		RB_FullScreenColoredFilter(material, 0xFFFFFFFF);
+	}
 }
 
 /*
@@ -407,7 +579,6 @@ void RB_StretchPicRotateXYCmd(GfxRenderCommandExecState *execState)
 {
 	const GfxCmdStretchPicRotateXY* cmd;
 	float halfWidth, halfHeight, midX, midY, angle, cosAngle, sinAngle, stepY[2], stepX[2];
-	unsigned short vertCount;
 	int indexCount, col;
 
 	cmd = (const GfxCmdStretchPicRotateXY*)execState->cmd;
@@ -416,17 +587,8 @@ void RB_StretchPicRotateXYCmd(GfxRenderCommandExecState *execState)
 	RB_SetTessTechnique(cmd->material, 4);
 	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, GFX_PRIM_STATS_HUD);
 
-	vertCount = tess.vertexCount;
-	indexCount = tess.indexCount;
-	assertMsg((vertCount <= 5450), "(vertexCount) = %i", vertexCount);
-	assertMsg((indexCount <= ((2 * 1024 * 1024) / 2)), "(indexCount) = %i", indexCount);
-
-    if ( vertCount + tess.vertexCount > 5450 || indexCount + tess.indexCount > 0x100000 )
-    {
-        RB_TessOverflow();
-    }
-	RB_TessAddQuadIndices(vertCount);
-	tess.vertexCount += 4;
+	RB_CheckTessOverflow(4, 6);
+	RB_TessAddQuadIndices(tess.vertexCount);
 
 	halfWidth = cmd->w * 0.5f;
 	halfHeight = cmd->h * 0.5f;
@@ -444,7 +606,7 @@ void RB_StretchPicRotateXYCmd(GfxRenderCommandExecState *execState)
 	col = cmd->color.packed;
 
 	R_SetVertex4d(
-		&tess.verts[vertCount],
+		&tess.verts[tess.vertexCount],
 		(midX - halfWidth * cosAngle) - stepY[0],
 		(midY - halfWidth * sinAngle) - stepY[1],
 		0.0f,
@@ -453,7 +615,7 @@ void RB_StretchPicRotateXYCmd(GfxRenderCommandExecState *execState)
 		cmd->t0,
 		col);
 	R_SetVertex4d(
-		&tess.verts[vertCount + 1],
+		&tess.verts[tess.vertexCount + 1],
 		((midX + stepX[0]) - stepY[0]),
 		((midY + stepX[1]) - stepY[1]),
 		0.0f,
@@ -462,7 +624,7 @@ void RB_StretchPicRotateXYCmd(GfxRenderCommandExecState *execState)
 		cmd->t0,
 		col);
 	R_SetVertex4d(
-		&tess.verts[vertCount + 2],
+		&tess.verts[tess.vertexCount + 2],
 		((midX + stepX[0]) + stepY[0]),
 		((midY + stepX[1]) + stepY[1]),
 		0.0f,
@@ -471,7 +633,7 @@ void RB_StretchPicRotateXYCmd(GfxRenderCommandExecState *execState)
 		cmd->t1,
 		col);
 	R_SetVertex4d(
-		&tess.verts[vertCount + 3],
+		&tess.verts[tess.vertexCount + 3],
 		((midX - stepX[0]) + stepY[0]),
 		((midY - stepX[1]) + stepY[1]),
 		0.0f,
@@ -479,6 +641,8 @@ void RB_StretchPicRotateXYCmd(GfxRenderCommandExecState *execState)
 		cmd->s0,
 		cmd->t1,
 		col);
+
+	tess.vertexCount += 4;
 
 	execState->cmd = (char*)execState->cmd + *(unsigned short*)execState->cmd;
 }
@@ -491,8 +655,6 @@ RB_StretchPicRotateSTCmd
 void RB_StretchPicRotateSTCmd(GfxRenderCommandExecState *execState)
 {
 	const GfxCmdStretchPicRotateST* cmd;
-	unsigned short vertCount;
-	int indexCount;
 	float angle, cosAngle, sinAngle, texS[4], stepS[2], stepT[2], texT[4];
 
 	cmd = (const GfxCmdStretchPicRotateST*)execState->cmd;
@@ -500,25 +662,8 @@ void RB_StretchPicRotateSTCmd(GfxRenderCommandExecState *execState)
 	assert(gfxCmdBufSourceState.viewMode == VIEW_MODE_2D);
 	RB_SetTessTechnique(cmd->material, 4);
 	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, GFX_PRIM_STATS_HUD);
-
-	vertCount = tess.vertexCount;
-	indexCount = tess.indexCount;
-	assertMsg((vertCount <= 5450), "(vertexCount) = %i", vertexCount);
-	assertMsg((indexCount <= ((2 * 1024 * 1024) / 2)), "(indexCount) = %i", indexCount);
-
-	if (vertCount + tess.vertexCount > 5450 || indexCount + tess.indexCount > 0x100000)
-	{
-		RB_TessOverflow();
-	}
-	RB_TessAddQuadIndices(vertCount);
-	tess.vertexCount += 4;
-
-	tess.indices[indexCount + 0] = vertCount + 3;
-	tess.indices[indexCount + 1] = vertCount + 0;
-	tess.indices[indexCount + 2] = vertCount + 2;
-	tess.indices[indexCount + 3] = vertCount + 2;
-	tess.indices[indexCount + 4] = vertCount + 0;
-	tess.indices[indexCount + 5] = vertCount + 1;
+	RB_CheckTessOverflow(4, 6);
+	RB_TessAddQuadIndices(tess.vertexCount);
 
 	angle = cmd->rotation * (M_PI / 180.0f);
 	cosAngle = cos(angle);
@@ -537,10 +682,13 @@ void RB_StretchPicRotateSTCmd(GfxRenderCommandExecState *execState)
 	texS[3] = (float)(cmd->centerS - stepS[0]) + stepT[0];
 	texT[3] = (float)(cmd->centerT - stepS[1]) + stepT[1];
 
-	R_SetVertex2d(&tess.verts[vertCount + 0], cmd->x, cmd->y, texS[0], texT[0], cmd->color.packed);
-	R_SetVertex2d(&tess.verts[vertCount + 1], cmd->x + cmd->w, cmd->y, texS[1], texT[1], cmd->color.packed);
-	R_SetVertex2d(&tess.verts[vertCount + 2], cmd->x + cmd->w, cmd->y + cmd->h, texS[2], texT[2], cmd->color.packed);
-	R_SetVertex2d(&tess.verts[vertCount + 3], cmd->x, cmd->y + cmd->h, texS[3], texT[3], cmd->color.packed);
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 0], cmd->x, cmd->y, texS[0], texT[0], cmd->color.packed);
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 1], cmd->x + cmd->w, cmd->y, texS[1], texT[1], cmd->color.packed);
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 2], cmd->x + cmd->w, cmd->y + cmd->h, texS[2], texT[2], cmd->color.packed);
+	R_SetVertex2d(&tess.verts[tess.vertexCount + 3], cmd->x, cmd->y + cmd->h, texS[3], texT[3], cmd->color.packed);
+
+	tess.vertexCount += 4;
+
 	execState->cmd = (char*)execState->cmd + *(unsigned short*)execState->cmd;
 }
 
@@ -561,31 +709,16 @@ void RB_DrawQuadPicCmd(GfxRenderCommandExecState *execState)
 	assert(gfxCmdBufSourceState.viewMode == VIEW_MODE_2D);
 	RB_SetTessTechnique(cmd->material, 4);
 	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, GFX_PRIM_STATS_HUD);
-
-	vertCount = tess.vertexCount;
-	indexCount = tess.indexCount;
-	assertMsg((vertCount <= 5450), "(vertexCount) = %i", vertexCount);
-	assertMsg((indexCount <= ((2 * 1024 * 1024) / 2)), "(indexCount) = %i", indexCount);
-
-	if (vertCount + tess.vertexCount > 5450 || indexCount + tess.indexCount > 0x100000)
-	{
-		RB_TessOverflow();
-	}
-	RB_TessAddQuadIndices(vertCount);
-	tess.vertexCount += 4;
-
-	tess.indices[indexCount + 0] = vertCount + 3;
-	tess.indices[indexCount + 1] = vertCount + 0;
-	tess.indices[indexCount + 2] = vertCount + 2;
-	tess.indices[indexCount + 3] = vertCount + 2;
-	tess.indices[indexCount + 4] = vertCount + 0;
-	tess.indices[indexCount + 5] = vertCount + 1;
+	RB_CheckTessOverflow(4, 6);
+	RB_TessAddQuadIndices(tess.vertexCount);
 
 	w = cmd->w;
-	R_SetVertex4d(&tess.verts[vertCount + 0], cmd->verts[0].v[0], cmd->verts[0].v[1], 0.0f, w, 0.0f, 0.0f, cmd->color.packed);
-	R_SetVertex4d(&tess.verts[vertCount + 1], cmd->verts[1].v[0], cmd->verts[1].v[1], 0.0f, w, 1.0f, 0.0f, cmd->color.packed);
-	R_SetVertex4d(&tess.verts[vertCount + 2], cmd->verts[2].v[0], cmd->verts[2].v[1], 0.0f, w, 1.0f, 1.0f, cmd->color.packed);
-	R_SetVertex4d(&tess.verts[vertCount + 3], cmd->verts[3].v[0], cmd->verts[3].v[1], 0.0f, w, 0.0f, 1.0f, cmd->color.packed);
+	R_SetVertex4d(&tess.verts[tess.vertexCount], cmd->verts[0].v[0], cmd->verts[0].v[1], 0.0f, w, 0.0f, 0.0f, cmd->color.packed);
+	R_SetVertex4d(&tess.verts[tess.vertexCount + 1], cmd->verts[1].v[0], cmd->verts[1].v[1], 0.0f, w, 1.0f, 0.0f, cmd->color.packed);
+	R_SetVertex4d(&tess.verts[tess.vertexCount + 2], cmd->verts[2].v[0], cmd->verts[2].v[1], 0.0f, w, 1.0f, 1.0f, cmd->color.packed);
+	R_SetVertex4d(&tess.verts[tess.vertexCount + 3], cmd->verts[3].v[0], cmd->verts[3].v[1], 0.0f, w, 0.0f, 1.0f, cmd->color.packed);
+
+	tess.vertexCount += 4;
 	execState->cmd = (char*)execState->cmd + *(unsigned short*)execState->cmd;
 }
 
@@ -998,8 +1131,55 @@ R_RenderDrawSurfStaticModelListMaterial
 */
 unsigned int R_RenderDrawSurfStaticModelListMaterial(GfxCmdBufContext context, const GfxDrawSurfListInfo *info, unsigned int firstDrawSurfIndex)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	GfxDrawSurf drawSurf;
+	const unsigned int* primDrawSurfPos;
+	unsigned int i, remainingSurfs;
+
+	remainingSurfs = info->drawSurfCount - firstDrawSurfIndex;
+	assert(*((unsigned int*)&info->drawSurfs[firstDrawSurfIndex]) != 0xb0b0b0b0);
+	drawSurf = info->drawSurfs[firstDrawSurfIndex];
+
+	if (R_SetLitTechniqueNoShaderConstantSet(context, info, info->drawSurfs[firstDrawSurfIndex]))
+	{
+		R_SetPixPrimarySortKey(context.state, drawSurf.fields.primarySortKey);
+		R_BeginPixMaterial(context.state);
+		assert(context.local.state->technique->passCount == 1);
+		R_SetupPass(context, 0);
+		assert(drawSurf.fields.surfType == SF_STATICMODEL_RIGID || drawSurf.fields.surfType == SF_STATICMODEL_RIGID_NO_SUN_SHADOW || drawSurf.fields.surfType == SF_STATICMODEL_SKINNED);
+		R_SetupPassCriticalPixelShaderArgs(context);
+		assert(info->baseTechType == TECHNIQUE_LIT || info->baseTechType == TECHNIQUE_UNLIT || info->baseTechType == TECHNIQUE_DEBUG_BUMPMAP);
+
+		primDrawSurfPos = &context.source->input.data->primDrawSurfsBuf[(unsigned __int16)*(int*)&info->drawSurfs[firstDrawSurfIndex].fields];
+		RB_TrackPrimsBegin(&context.state->prim.frameStats, GFX_PRIM_STATS_SMODELRIGID);
+		if (drawSurf.fields.surfType == SF_STATICMODEL_SKINNED)
+		{
+			R_DrawStaticModelSkinnedSurfLit(primDrawSurfPos, context, info);
+		}
+		else
+		{
+			R_SetupPassPerObjectArgs(context);
+			R_DrawStaticModelSurfLit(primDrawSurfPos, context, info);
+		}
+		RB_TrackPrimsEnd(&context.state->prim.frameStats);
+		R_EndPixMaterial(context.state);
+		return 1;
+	}
+	else
+	{
+
+		for (i = 0; i < remainingSurfs; ++i)
+		{
+			if ((*(int*)&info->drawSurfs[firstDrawSurfIndex + i].fields & 0xC0000000) != (*(int*)&info->drawSurfs[firstDrawSurfIndex].fields & 0xC0000000))
+			{
+				break;
+			}
+			if (info->drawSurfs[firstDrawSurfIndex + i].packed != info->drawSurfs[firstDrawSurfIndex].packed)
+			{
+				break;
+			}
+		}
+		return i;
+	}
 }
 
 /*
@@ -1007,10 +1187,51 @@ unsigned int R_RenderDrawSurfStaticModelListMaterial(GfxCmdBufContext context, c
 R_RenderDrawSurfBspListMaterial
 ==============
 */
-unsigned int R_RenderDrawSurfBspListMaterial(GfxCmdBufContext context, const GfxDrawSurfListInfo *info, unsigned int firstDrawSurfIndex)
+unsigned int R_RenderDrawSurfBspListMaterial(GfxCmdBufContext context, const GfxDrawSurfListInfo* info, unsigned int firstDrawSurfIndex)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	GfxDrawSurf drawSurf;
+	const unsigned int* primDrawSurfPos;
+	unsigned int i, remainingSurfs;
+
+	remainingSurfs = info->drawSurfCount - firstDrawSurfIndex;
+	assert(*((unsigned int*)&info->drawSurfs[firstDrawSurfIndex]) != 0xb0b0b0b0);
+	drawSurf = info->drawSurfs[firstDrawSurfIndex];
+
+	if (R_SetLitTechniqueNoShaderConstantSet(context, info, info->drawSurfs[firstDrawSurfIndex]))
+	{
+		R_SetPixPrimarySortKey(context.state, drawSurf.fields.primarySortKey);
+		R_BeginPixMaterial(context.state);
+		assert(context.local.state->technique->passCount == 1);
+		R_SetupPass(context, 0);
+		assert(drawSurf.fields.surfType == SF_TRIANGLES || drawSurf.fields.surfType == SF_TRIANGLES_NO_SUN_SHADOW);
+		R_SetupPassCriticalPixelShaderArgs(context);
+		assert(info->baseTechType == TECHNIQUE_LIT || info->baseTechType == TECHNIQUE_UNLIT || info->baseTechType == TECHNIQUE_DEBUG_BUMPMAP);
+
+		primDrawSurfPos = &context.source->input.data->primDrawSurfsBuf[(unsigned __int16)*(int*)&info->drawSurfs[firstDrawSurfIndex].fields];
+		RB_TrackPrimsBegin(&context.state->prim.frameStats, GFX_PRIM_STATS_WORLD);
+		R_SetupPassPerObjectArgs(context);
+		R_SetupPassPerPrimArgs(context);
+		R_DrawBspDrawSurfsLit(primDrawSurfPos, context);
+		RB_TrackPrimsEnd(&context.state->prim.frameStats);
+		R_EndPixMaterial(context.state);
+		return 1;
+	}
+	else
+	{
+
+		for (i = 0; i < remainingSurfs; ++i)
+		{
+			if ((*(int*)&info->drawSurfs[firstDrawSurfIndex + i].fields & 0xC0000000) != (*(int*)&info->drawSurfs[firstDrawSurfIndex].fields & 0xC0000000))
+			{
+				break;
+			}
+			if (info->drawSurfs[firstDrawSurfIndex + i].packed != info->drawSurfs[firstDrawSurfIndex].packed)
+			{
+				break;
+			}
+		}
+		return i;
+	}
 }
 
 /*
@@ -1018,10 +1239,61 @@ unsigned int R_RenderDrawSurfBspListMaterial(GfxCmdBufContext context, const Gfx
 R_RenderDrawSurfListMaterial
 ==============
 */
-unsigned int R_RenderDrawSurfListMaterial(const GfxDrawSurfListArgs *listArgs)
+unsigned int R_RenderDrawSurfListMaterial(GfxDrawSurfListArgs *listArgs)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int i;
+	unsigned int firstDrawSurfIndex, passCount, drawSurfCount;
+	const GfxDrawSurfListInfo* info;
+	const GfxDrawSurf* drawSurfs;
+	GfxCmdBufSourceState* source;
+
+	firstDrawSurfIndex = listArgs->firstDrawSurfIndex;
+	drawSurfCount = info->drawSurfCount - firstDrawSurfIndex;
+	assert(*((unsigned int*)&listArgs->info->drawSurfs[firstDrawSurfIndex]) != 0xb0b0b0b0);
+	drawSurfs = listArgs->info->drawSurfs;
+	info = listArgs->info;
+
+	ScopedShaderConstantSetUndo shaderConstantUndo(listArgs->context.source, RB_ShaderConstantSetFromDrawSurf(source->input.data, &drawSurfs[firstDrawSurfIndex]));
+	if (listArgs->info->baseTechType == 0xFF)
+	{
+		MaterialTechniqueSet* localTechniqueSet = rgp.sortedMaterials[drawSurfs[firstDrawSurfIndex].fields.materialSortedIndex]->localTechniqueSet;
+		if (localTechniqueSet->techniques[4])
+		{
+			listArgs->info->baseTechType = 4;
+		}
+		else if (localTechniqueSet->techniques[3])
+		{
+			listArgs->info->baseTechType = 3;
+		}
+	}
+	if (R_SetTechnique(listArgs->context, listArgs->info, drawSurfs[firstDrawSurfIndex]))
+	{
+		R_SetPixPrimarySortKey(listArgs->context.state, drawSurfs[firstDrawSurfIndex].fields.primarySortKey);
+		R_BeginPixMaterial(listArgs->context.state);
+		passCount = listArgs->context.state->technique->passCount;
+		for (int i = 0; i < passCount; ++i)
+		{
+			R_UpdateMaterialTime(listArgs->context.source, 0.0, 0.0);
+			R_SetupPass(listArgs->context, i);
+		}
+		R_EndPixMaterial(listArgs->context.state);
+		return rb_tessTable[(drawSurfs[firstDrawSurfIndex].fields.surfType) & 0xF](listArgs);
+	}
+	else
+	{
+		for (i = 0; i < drawSurfCount; ++i)
+		{
+			if ((*(int*)&info->drawSurfs[firstDrawSurfIndex + i].fields & 0xC0000000) != (*(int*)&info->drawSurfs[firstDrawSurfIndex].fields & 0xC0000000))
+			{
+				break;
+			}
+			if (info->drawSurfs[firstDrawSurfIndex + i].packed != info->drawSurfs[firstDrawSurfIndex].packed)
+			{
+				break;
+			}
+		}
+		return i;
+	}
 }
 
 /*
@@ -1041,7 +1313,82 @@ R_DrawSurfs
 */
 void R_DrawSurfs(GfxCmdBufContext context, const GfxDrawSurfListInfo *info)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	unsigned int drawMatCount;
+	GfxViewport viewport;
+	GfxDrawSurfListArgs listArgs;
+	const GfxUI3DBackend* p_rbUI3D;
+	const GfxQRCodeBackend* p_rbQRCode;
+	vec4_t swrk_override_characterDissolveColor;
+
+	assert(context.local.source->cameraView == info->cameraView);
+	R_Set3D(context.source);
+	if (context.source->viewportIsDirty)
+	{
+		R_GetViewport(context.source, &viewport);
+		R_SetViewport(context.state, &viewport);
+		R_UpdateViewport(context.source, &viewport);
+	}
+	assert(dx.device);
+	if (context.state->prim.device != dx.context)
+	{
+		PIXBeginNamedEvent(-1, "draw surf %d", info->drawSurfCount);
+	}
+	R_BeginPixMaterials(context.state);
+	R_SetCustomCodeConstants(context);
+	context.source->input.consts[CONST_SRC_CODE_CHARACTER_CHARRED_AMOUNT].v[0] = 0.0;
+	context.source->input.consts[CONST_SRC_CODE_CHARACTER_CHARRED_AMOUNT].v[1] = 0.0;
+	context.source->input.consts[CONST_SRC_CODE_CHARACTER_CHARRED_AMOUNT].v[2] = 0.0;
+	context.source->input.consts[CONST_SRC_CODE_CHARACTER_CHARRED_AMOUNT].v[3] = 0.0;
+	++context.source->constVersions[CONST_SRC_CODE_CHARACTER_CHARRED_AMOUNT];
+
+	context.source->input.consts[CONST_SRC_CODE_CHARACTER_DISSOLVE_COLOR].v[0] = 0.0;
+	context.source->input.consts[CONST_SRC_CODE_CHARACTER_DISSOLVE_COLOR].v[1] = 0.0;
+	context.source->input.consts[CONST_SRC_CODE_CHARACTER_DISSOLVE_COLOR].v[2] = 0.0;
+	context.source->input.consts[CONST_SRC_CODE_CHARACTER_DISSOLVE_COLOR].v[3] = 0.0;
+	++context.source->constVersions[CONST_SRC_CODE_CHARACTER_DISSOLVE_COLOR];
+
+	Dvar_GetVec4(r_swrk_override_characterDissolveColor, &swrk_override_characterDissolveColor);
+	context.source->input.consts[CONST_SRC_CODE_CHARACTER_DISSOLVE_COLOR].v[0] = swrk_override_characterDissolveColor.v[0];
+	context.source->input.consts[CONST_SRC_CODE_CHARACTER_DISSOLVE_COLOR].v[1] = swrk_override_characterDissolveColor.v[1];
+	context.source->input.consts[CONST_SRC_CODE_CHARACTER_DISSOLVE_COLOR].v[2] = swrk_override_characterDissolveColor.v[2];
+	context.source->input.consts[CONST_SRC_CODE_CHARACTER_DISSOLVE_COLOR].v[3] = swrk_override_characterDissolveColor.v[3];
+	++context.source->constVersions[CONST_SRC_CODE_CHARACTER_DISSOLVE_COLOR];
+
+	p_rbUI3D = 0;
+	if (info->viewInfo)
+	{
+		p_rbUI3D = &info->viewInfo->rbUI3D;
+	}
+	RB_UI3D_SetShaderConstants(context.source, p_rbUI3D);
+
+	p_rbQRCode = 0;
+	if (info->viewInfo)
+	{
+		p_rbQRCode = &info->viewInfo->rbQRCode;
+	}
+	RB_QRCode_SetShaderConstants(context.source, p_rbQRCode);
+
+	listArgs.context = context;
+	listArgs.firstDrawSurfIndex = 0;
+	listArgs.info = (GfxDrawSurfListInfo*)info;
+
+	for (drawMatCount = 0; listArgs.firstDrawSurfIndex != info->drawSurfCount; ++drawMatCount)
+	{
+		listArgs.firstDrawSurfIndex += R_RenderDrawSurfListMaterial(&listArgs);
+	}
+	RB_TrackDrawSurfMat(&context.state->prim.frameStats, info->drawSurfCount, drawMatCount);
+
+	R_EndPixMaterial(context.state);
+	if (context.state->prim.device != dx.context && Sys_IsRenderThread())
+	{
+		D3DPERF_EndEvent();
+	}
+	context.source->objectPlacement = 0;
+	R_ChangeDepthHackNearClip(context.source, 0);
+	if (((context.source->cameraView != 0) - 1) != context.state->depthRangeType)
+	{
+		R_ChangeDepthRange(context.state, (GfxDepthRangeType)((context.source->cameraView != 0) - 1));
+	}
 }
 
 /*
@@ -1051,7 +1398,77 @@ R_DrawSurfsBsp
 */
 void R_DrawSurfsBsp(GfxCmdBufContext context, const GfxDrawSurfListInfo *info)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	unsigned __int8 sampState;
+	unsigned int drawSurfCount;
+	unsigned int drawSurfIndex;
+	int drawMatCount;
+	GfxViewport viewport;
+	ID3D11Buffer* indexBuffer;
+
+	assert(context.local.source->cameraView == info->cameraView);
+
+	R_Set3D(context.source);
+	if (context.source->viewportIsDirty)
+	{
+		R_GetViewport(context.source, &viewport);
+		R_SetViewport(context.state, &viewport);
+		R_UpdateViewport(context.source, &viewport);
+	}
+	R_SetCustomCodeConstants(context);
+	R_UpdateMaterialTime(context.source, 0.0, 0.0);
+	R_SetObjectIdentityPlacement(context.source);
+	R_ChangeDepthHackNearClip(context.source, 0);
+
+	if ((context.source->cameraView != 0) - 1 != context.state->depthRangeType)
+	{
+		R_ChangeDepthRange(context.state, (GfxDepthRangeType)((context.source->cameraView != 0) - 1));
+	}
+	sampState = 97;
+	if (!Dvar_GetBool(r_lightMapFilterDisable))
+	{
+		sampState = 98;
+	}
+	if (context.state->samplerState[13] != sampState)
+	{
+		context.state->samplerState[13] = sampState;
+		R_HW_ForceSamplerState(context.state->prim.device, 0xDu, sampState);
+	}
+	if (context.state->samplerState[15] != 114)
+	{
+		context.state->samplerState[15] = 114;
+		R_HW_ForceSamplerState(context.state->prim.device, 0xFu, 0x72u);
+	}
+	assert(dx.device);
+	indexBuffer = g_worldDraw->indexBuffer;
+	if (context.state->prim.indexBuffer != indexBuffer)
+	{
+		R_ChangeIndices(&context.state->prim, indexBuffer);
+	}
+	if (context.state->prim.device != dx.context)
+	{
+		PIXBeginNamedEvent(-1, "draw surf bsp %d", info->drawSurfCount);
+	}
+
+	R_BeginPixMaterials(context.state);
+	if (info->drawSurfCount)
+	{
+		for (drawMatCount = 0; drawSurfIndex != drawSurfCount; ++drawMatCount)
+		{
+			drawSurfIndex += R_RenderDrawSurfBspListMaterial(context, info, drawSurfIndex);
+		}
+	}
+	RB_TrackDrawSurfMat(&context.state->prim.frameStats, info->drawSurfCount, drawMatCount);
+	R_EndPixMaterials(context.state);
+	if (context.state->prim.device != dx.context && Sys_IsRenderThread())
+	{
+		D3DPERF_EndEvent();
+	}
+	context.source->objectPlacement = 0;
+	R_ChangeDepthHackNearClip(context.source, 0);
+	if (((context.source->cameraView != 0) - 1) != context.state->depthRangeType)
+	{
+		R_ChangeDepthRange(context.state, (GfxDepthRangeType)((context.source->cameraView != 0) - 1));
+	}
 }
 
 /*
@@ -1061,7 +1478,62 @@ R_DrawSurfsStaticModel
 */
 void R_DrawSurfsStaticModel(GfxCmdBufContext context, const GfxDrawSurfListInfo *info)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	ID3D11DeviceContext* device;
+	unsigned int drawSurfCount;
+	unsigned int drawSurfIndex;
+	int drawMatCount;
+	GfxViewport viewport;
+
+	assert(context.local.source->cameraView == info->cameraView);
+
+	R_Set3D(context.source);
+	if (context.source->viewportIsDirty)
+	{
+		R_GetViewport(context.source, &viewport);
+		R_SetViewport(context.state, &viewport);
+		R_UpdateViewport(context.source, &viewport);
+	}
+	R_SetCustomCodeConstants(context);
+	R_UpdateMaterialTime(context.source, 0.0, 0.0);
+	R_ChangeDepthHackNearClip(context.source, 0);
+	if ((context.source->cameraView != 0) - 1 != context.state->depthRangeType)
+	{
+		R_ChangeDepthRange(context.state, (GfxDepthRangeType)((context.source->cameraView != 0) - 1));
+	}
+	context.source->objectPlacement = &s_manualObjectPlacement;
+	if (context.state->samplerState[15] != 114)
+	{
+		device = context.state->prim.device;
+		context.state->samplerState[15] = 114;
+		R_HW_ForceSamplerState(device, 0xFu, 0x72u);
+	}
+	assert(dx.device);
+	if (context.state->prim.device != dx.context)
+	{
+		PIXBeginNamedEvent(-1, "draw surf %d", info->drawSurfCount);
+	}
+	R_BeginPixMaterials(context.state);
+
+	if (info->drawSurfCount)
+	{
+		for (drawMatCount = 0; drawSurfIndex != drawSurfCount; ++drawMatCount)
+		{
+			drawSurfIndex += R_RenderDrawSurfStaticModelListMaterial(context, info, drawSurfIndex);
+		}
+	}
+	RB_TrackDrawSurfMat(&context.state->prim.frameStats, info->drawSurfCount, drawMatCount);
+	R_EndPixMaterials(context.state);
+	if (context.state->prim.device != dx.context && Sys_IsRenderThread())
+	{
+		D3DPERF_EndEvent();
+	}
+
+	context.source->objectPlacement = 0;
+	R_ChangeDepthHackNearClip(context.source, 0);
+	if (((context.source->cameraView != 0) - 1) != context.state->depthRangeType)
+	{
+		R_ChangeDepthRange(context.state, (GfxDepthRangeType)((context.source->cameraView != 0) - 1));
+	}
 }
 
 /*
@@ -1071,7 +1543,17 @@ RB_ClearScreenCmd
 */
 void RB_ClearScreenCmd(GfxRenderCommandExecState *execState)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	GfxCmdClearScreen* cmd;
+
+	cmd = (GfxCmdClearScreen*)execState->cmd;
+
+	if (tess.indexCount)
+	{
+		RB_EndTessSurface();
+	}
+	R_ClearScreen(&gfxCmdBufState, cmd->whichToClear, &cmd->color, cmd->depth, cmd->stencil);
+
+	execState->cmd = (char*)execState->cmd + *(unsigned short*)execState->cmd;
 }
 
 /*
@@ -1091,7 +1573,7 @@ RB_BlendSavedScreenFlashedCmd
 */
 void RB_BlendSavedScreenFlashedCmd(GfxRenderCommandExecState *execState)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	execState->cmd = (char*)execState->cmd + *(unsigned short*)execState->cmd;
 }
 
 /*
@@ -1101,7 +1583,62 @@ RB_DrawPoints2D
 */
 void RB_DrawPoints2D(const GfxCmdDrawPoints *cmd)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	float size;
+	int pointIndex;
+
+	assert(gfxCmdBufSourceState.viewMode == VIEW_MODE_2D);
+	RB_SetTessTechnique(rgp.whiteMaterial, 2u);
+	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, GFX_PRIM_STATS_DEBUG);
+	size = cmd->size * 0.5f;
+	pointIndex = 0;
+	for (pointIndex = 0; pointIndex < cmd->pointCount; ++pointIndex)
+	{
+		RB_CheckTessOverflow(4, 6);
+		tess.indices[tess.indexCount] = tess.vertexCount + 1;
+		tess.indices[tess.indexCount + 1] = tess.vertexCount;
+		tess.indices[tess.indexCount + 2] = tess.vertexCount + 2;
+		tess.indices[tess.indexCount + 3] = tess.vertexCount + 2;
+		tess.indices[tess.indexCount + 4] = tess.vertexCount;
+		tess.indices[tess.indexCount + 5] = tess.vertexCount + 3;
+		tess.indexCount += 6;
+		R_SetVertex4d(
+			&tess.verts[tess.vertexCount + 0],
+			cmd->verts[pointIndex].xyz.v[0] - size,
+			cmd->verts[pointIndex].xyz.v[1] - size,
+			cmd->verts[pointIndex].xyz.v[2],
+			1.0f,
+			0.0f,
+			0.0f,
+			*(int*)cmd->verts[pointIndex].color);
+		R_SetVertex4d(
+			&tess.verts[tess.vertexCount + 1],
+			cmd->verts[pointIndex].xyz.v[0] - size,
+			cmd->verts[pointIndex].xyz.v[1] + size,
+			cmd->verts[pointIndex].xyz.v[2],
+			1.0f,
+			0.0f,
+			1.0f,
+			*(int*)cmd->verts[pointIndex].color);
+		R_SetVertex4d(
+			&tess.verts[tess.vertexCount + 2],
+			cmd->verts[pointIndex].xyz.v[0] + size,
+			cmd->verts[pointIndex].xyz.v[1] + size,
+			cmd->verts[pointIndex].xyz.v[2],
+			1.0f,
+			1.0f,
+			1.0f,
+			*(int*)cmd->verts[pointIndex].color);
+		R_SetVertex4d(
+			&tess.verts[tess.vertexCount + 3],
+			cmd->verts[pointIndex].xyz.v[0] + size,
+			cmd->verts[pointIndex].xyz.v[1] - size,
+			cmd->verts[pointIndex].xyz.v[2],
+			1.0f,
+			1.0f,
+			0.0f,
+			*(int*)cmd->verts[pointIndex].color);
+		tess.vertexCount += 4;
+	}
 }
 
 /*
@@ -1111,7 +1648,75 @@ RB_DrawPoints3D
 */
 void RB_DrawPoints3D(const GfxCmdDrawPoints *cmd)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	GfxViewParms* viewParms3D;
+	float invWidth;
+	float invHeight;
+	int pointIndex;
+	float xyz, xyz_4, xyz_8, xyz_12;
+
+	RB_SetTessTechnique(rgp.pointMaterial, 2u);
+	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, GFX_PRIM_STATS_DEBUG);
+	RB_SetIdentity();
+
+	viewParms3D = (GfxViewParms*)gfxCmdBufSourceState.viewParms3D;
+	invWidth = cmd->size / gfxCmdBufSourceState.renderTargetWidth;
+	invHeight = cmd->size / gfxCmdBufSourceState.renderTargetHeight;
+
+	for (pointIndex = 0; pointIndex < cmd->pointCount; ++pointIndex)
+	{
+		xyz = (((cmd->verts[pointIndex].xyz.x * viewParms3D->viewProjectionMatrix.m[0].v[0]) + (cmd->verts[pointIndex].xyz.y * viewParms3D->viewProjectionMatrix.m[1].v[0])) + (cmd->verts[pointIndex].xyz.z * viewParms3D->viewProjectionMatrix.m[2].v[0])) + viewParms3D->viewProjectionMatrix.m[3].v[0];
+		xyz_4 = (((cmd->verts[pointIndex].xyz.x * viewParms3D->viewProjectionMatrix.m[0].v[1]) + (cmd->verts[pointIndex].xyz.y * viewParms3D->viewProjectionMatrix.m[1].v[1])) + (cmd->verts[pointIndex].xyz.z * viewParms3D->viewProjectionMatrix.m[2].v[1])) + viewParms3D->viewProjectionMatrix.m[3].v[1];
+		xyz_12 = (((cmd->verts[pointIndex].xyz.x * viewParms3D->viewProjectionMatrix.m[0].v[3]) + (cmd->verts[pointIndex].xyz.y * viewParms3D->viewProjectionMatrix.m[1].v[3])) + (cmd->verts[pointIndex].xyz.z * viewParms3D->viewProjectionMatrix.m[2].v[3])) + viewParms3D->viewProjectionMatrix.m[3].v[3];
+		xyz_8 = (xyz_12 * 0.001) + ((((viewParms3D->viewProjectionMatrix.m[0].v[2] * cmd->verts[pointIndex].xyz.x) + (viewParms3D->viewProjectionMatrix.m[1].v[2] * cmd->verts[pointIndex].xyz.y)) + (cmd->verts[pointIndex].xyz.z * viewParms3D->viewProjectionMatrix.m[2].v[2])) + viewParms3D->viewProjectionMatrix.m[3].v[2]);
+
+		RB_CheckTessOverflow(4, 6);
+		tess.indices[tess.indexCount] = tess.vertexCount + 3;
+		tess.indices[tess.indexCount + 1] = tess.vertexCount;
+		tess.indices[tess.indexCount + 2] = tess.vertexCount + 2;
+		tess.indices[tess.indexCount + 3] = tess.vertexCount + 2;
+		tess.indices[tess.indexCount + 4] = tess.vertexCount;
+		tess.indices[tess.indexCount + 5] = tess.vertexCount + 1;
+		tess.indexCount += 6;
+
+		R_SetVertex4d(
+			&tess.verts[tess.vertexCount],
+			xyz - (invWidth * xyz_12),
+			xyz_4 - (invHeight * xyz_12),
+			xyz_8,
+			xyz_12,
+			0.0,
+			0.0,
+			*(int*)cmd->verts[pointIndex].color);
+		R_SetVertex4d(
+			&tess.verts[tess.vertexCount + 1],
+			xyz - (invWidth * xyz_12),
+			xyz_4 + (invHeight * xyz_12),
+			xyz_8,
+			xyz_12,
+			0.0,
+			1.0,
+			*(int*)cmd->verts[pointIndex].color);
+		R_SetVertex4d(
+			&tess.verts[tess.vertexCount + 2],
+			xyz + (invWidth * xyz_12),
+			xyz_4 + (invHeight * xyz_12),
+			xyz_8,
+			xyz_12,
+			1.0,
+			1.0,
+			*(int*)cmd->verts[pointIndex].color);
+		R_SetVertex4d(
+			&tess.verts[tess.vertexCount + 3],
+			xyz + (invWidth * xyz_12),
+			xyz_4 - (invHeight * xyz_12),
+			xyz_8,
+			xyz_12,
+			1.0,
+			0.0,
+			*(int*)cmd->verts[pointIndex].color);
+		tess.vertexCount += 4;
+	}
+	RB_EndTessSurface();
 }
 
 /*
@@ -1121,7 +1726,20 @@ RB_DrawPointsCmd
 */
 void RB_DrawPointsCmd(GfxRenderCommandExecState *execState)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	GfxCmdDrawPoints* cmd;
+
+	cmd = (GfxCmdDrawPoints*)execState->cmd;
+
+	if (cmd->dimensions == 2)
+	{
+		RB_DrawPoints2D(cmd);
+	}
+	else
+	{
+		assert((cmd->dimensions == 3));
+		RB_DrawPoints3D(cmd);
+	}
+	execState->cmd = (char*)execState->cmd + *(unsigned short*)execState->cmd;
 }
 
 /*
@@ -2011,9 +2629,6 @@ void RB_SetBspImages()
 {
 	gfxCmdBufInput.codeImages[17] = rgp.world->outdoorImage;
 }
-
-GfxCmdBufContext gfxCmdBufContext = { { { &gfxCmdBufSourceState, &gfxCmdBufState } } };
-GfxCmdBufSourceState gfxCmdBufSourceState;
 
 /*
 ==============

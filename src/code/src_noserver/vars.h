@@ -3777,3 +3777,5 @@ extern GfxCmdBufInput gfxCmdBufInput;
 extern int alwaysfails;
 extern int g_disableRendering;
 extern materialCommands_t tess;
+extern GfxWorldDraw* g_worldDraw;
+extern GfxScaledPlacement s_manualObjectPlacement;
