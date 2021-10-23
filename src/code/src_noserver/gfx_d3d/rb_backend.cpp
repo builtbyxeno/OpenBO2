@@ -9,12 +9,15 @@
 #include <gfx_d3d/rb_backend.h>
 #include <stringed/stringed_public.h>
 #include <gfx_d3d/r_setstate_d3d.h>
+#include <universal/com_vector.h>
+#include <gfx_d3d/r_material.h>
+#include <client/client_public.h>
 
 r_backEndGlobals_t backEnd;
 GfxCmdBufState gfxCmdBufState;
 
 GfxBackEndData* data;
-const GfxBackEndData* backEndData;
+GfxBackEndData* backEndData;
 
 GfxCmdBufContext gfxCmdBufContext = { { { &gfxCmdBufSourceState, &gfxCmdBufState } } };
 GfxCmdBufSourceState gfxCmdBufSourceState;
@@ -39,6 +42,43 @@ unsigned int(__cdecl* const rb_tessTable[16])(const GfxDrawSurfListArgs*) =
   &R_TessParticleCloudList,
   &R_TessRopeMeshList,
   &R_TessGlassMeshList
+};
+
+void(__cdecl* const RB_RenderCommandTable[33])(GfxRenderCommandExecState*) =
+{
+  NULL,
+  &RB_SetCustomConstantCmd,
+  &RB_SetMaterialColorCmd,
+  &RB_BlendSavedScreenFlashedCmd,
+  &RB_BlendSavedScreenFlashedCmd,
+  &RB_ClearScreenCmd,
+  &RB_BeginViewCmd,
+  &RB_SetViewportCmd,
+  &RB_SetScissorCmd,
+  &RB_ResolveCompositeCmd,
+  &RB_PCCopyImageGenMIPCmd,
+  &RB_StretchPicCmd,
+  &RB_StretchPicCmdFlipST,
+  &RB_StretchPicRotateXYCmd,
+  &RB_StretchPicRotateSTCmd,
+  &RB_DrawQuadPicCmd,
+  &RB_DrawFullScreenColoredQuadCmd,
+  &RB_DrawText2DCmd,
+  &RB_DrawText3DCmd,
+  &RB_BlendSavedScreenFlashedCmd,
+  &RB_BlendSavedScreenFlashedCmd,
+  &RB_DrawPointsCmd,
+  &RB_DrawLinesCmd,
+  &RB_DrawUIQuadsCmd,
+  &RB_DrawUIQuadsReplaceImageCmd,
+  &RB_DrawTrianglesCmd,
+  &RB_DrawUITrianglesCmd,
+  &RB_DrawQuadList2DCmd,
+  &RB_DrawEmblemLayer,
+  &RB_StretchCompositeCmd,
+  &RB_ProjectionSetCmd,
+  &RB_DrawFramedCmd,
+  &RB_ConstantSetCmd
 };
 
 /*
@@ -1749,7 +1789,78 @@ RB_DrawLines2D
 */
 void RB_DrawLines2D(int count, int width, const GfxPointVertex *verts)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	vec2_t delta;
+	int lineIndex;
+	const GfxPointVertex* v[2];
+
+	assertMsg((count > 0), "(count) = %i", count);
+	assert(gfxCmdBufSourceState.viewMode == VIEW_MODE_2D);
+	RB_SetTessTechnique(rgp.whiteMaterial, 2u);
+	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, GFX_PRIM_STATS_DEBUG);
+
+	for (lineIndex = 0; lineIndex < count; ++lineIndex)
+	{
+		v[0] = &verts[2 * lineIndex];
+		v[1] = &verts[2 * lineIndex + 1];
+		delta.v[0] = v[1]->xyz.v[1] - v[0]->xyz.v[1];
+		delta.v[1] = v[0]->xyz.v[0] - v[1]->xyz.v[0];
+		Vec2Normalize(&delta);
+		delta.v[0] *= 0.5;
+		delta.v[1] *= 0.5;
+		RB_CheckTessOverflow(4, 6);
+		tess.indices[tess.indexCount] = tess.vertexCount + 1;
+		tess.indices[tess.indexCount + 1] = tess.vertexCount;
+		tess.indices[tess.indexCount + 2] = tess.vertexCount + 2;
+		tess.indices[tess.indexCount + 3] = tess.vertexCount + 2;
+		tess.indices[tess.indexCount + 4] = tess.vertexCount;
+		tess.indices[tess.indexCount + 5] = tess.vertexCount + 3;
+		tess.indexCount += 6;
+		R_SetVertex3d(
+			&tess.verts[tess.vertexCount],
+			v[0]->xyz.v[0] - delta.v[0],
+			v[0]->xyz.v[1] - delta.v[1],
+			v[0]->xyz.v[2],
+			0.0,
+			0.0,
+			*(int*)v[0]->color);
+		R_SetVertex3d(
+			&tess.verts[tess.vertexCount + 1],
+			v[1]->xyz.v[0] - delta.v[0],
+			v[1]->xyz.v[1] - delta.v[1],
+			v[1]->xyz.v[2],
+			0.0,
+			1.0,
+			*(int*)v[1]->color);
+		R_SetVertex3d(
+			&tess.verts[tess.vertexCount + 2],
+			v[1]->xyz.v[0] + delta.v[0],
+			v[1]->xyz.v[1] + delta.v[1],
+			v[1]->xyz.v[2],
+			1.0,
+			1.0,
+			*(int*)v[1]->color);
+		R_SetVertex3d(
+			&tess.verts[tess.vertexCount + 3],
+			v[0]->xyz.v[0] + delta.v[0],
+			v[0]->xyz.v[1] + delta.v[1],
+			v[0]->xyz.v[2],
+			1.0,
+			0.0,
+			*(int*)v[0]->color);
+		tess.vertexCount += 4;
+	}
+}
+
+inline void R_SetVertex4d_0(GfxVertex* vert, float x, float y, float z, float w, float s, float t, int color)
+{
+	vert->xyzw.v[0] = x;
+	vert->xyzw.v[1] = y;
+	vert->xyzw.v[2] = z;
+	vert->xyzw.v[3] = w;
+	vert->normal.packed = 1073643391;
+	vert->color.packed = color;
+	vert->texCoord.v[0] = s;
+	vert->texCoord.v[1] = t;
 }
 
 /*
@@ -1759,7 +1870,117 @@ RB_DrawLines3D
 */
 void RB_DrawLines3D(int count, int width, const GfxPointVertex *verts, bool depthTest)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	vec2_t delta;
+	vec2_t offset[2];
+	vec4_t xyz[2];
+	float invWidth;
+	float invHeight;
+	int lineIndex;
+	const GfxPointVertex* v[2];
+	const GfxViewParms* transform;
+
+	if (depthTest)
+	{
+		RB_SetTessTechnique(rgp.lineMaterial, 2);
+	}
+	else
+	{
+		RB_SetTessTechnique(rgp.lineMaterialNoDepth, 2);
+	}
+	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, GFX_PRIM_STATS_DEBUG);
+	RB_SetIdentity();
+	transform = gfxCmdBufSourceState.viewParms3D;
+	invWidth = width / gfxCmdBufSourceState.renderTargetWidth;
+	invHeight = width / gfxCmdBufSourceState.renderTargetHeight;
+
+	for (lineIndex = 0; lineIndex < count; ++lineIndex)
+	{
+		v[0] = &verts[2 * lineIndex];
+		xyz[0].v[0] = (((v[0]->xyz.x * transform->viewMatrix.m[0].v[0]) + (v[0]->xyz.y * transform->viewMatrix.m[1].v[0]))
+			+ (v[0]->xyz.z * transform->viewMatrix.m[2].v[0]))
+			+ transform->viewMatrix.m[3].v[0];
+		xyz[0].v[1] = (((v[0]->xyz.x * transform->viewMatrix.m[0].v[1]) + (v[0]->xyz.y * transform->viewMatrix.m[1].v[1]))
+			+ (v[0]->xyz.z * transform->viewMatrix.m[2].v[1]))
+			+ transform->viewMatrix.m[3].v[1];
+		xyz[0].v[2] = (((v[0]->xyz.x * transform->viewMatrix.m[0].v[2]) + (v[0]->xyz.y * transform->viewMatrix.m[1].v[2]))
+			+ (v[0]->xyz.z * transform->viewMatrix.m[2].v[2]))
+			+ transform->viewMatrix.m[3].v[2];
+		xyz[0].v[3] = (((v[0]->xyz.x * transform->viewMatrix.m[0].v[3]) + (v[0]->xyz.y * transform->viewMatrix.m[1].v[3]))
+			+ (v[0]->xyz.z * transform->viewMatrix.m[2].v[3]))
+			+ transform->viewMatrix.m[3].v[3];
+
+		v[1] = &verts[2 * lineIndex + 1];
+		xyz[1].v[0] = (((v[1]->xyz.x * transform->viewMatrix.m[0].v[0]) + (v[1]->xyz.y * transform->viewMatrix.m[1].v[0]))
+			+ (v[1]->xyz.z * transform->viewMatrix.m[2].v[0]))
+			+ transform->viewMatrix.m[3].v[0];
+		xyz[1].v[1] = (((v[1]->xyz.x * transform->viewMatrix.m[0].v[1]) + (v[1]->xyz.y * transform->viewMatrix.m[1].v[1]))
+			+ (v[1]->xyz.z * transform->viewMatrix.m[2].v[1]))
+			+ transform->viewMatrix.m[3].v[1];
+		xyz[1].v[2] = (((v[1]->xyz.x * transform->viewMatrix.m[0].v[2]) + (v[1]->xyz.y * transform->viewMatrix.m[1].v[2]))
+			+ (v[1]->xyz.z * transform->viewMatrix.m[2].v[2]))
+			+ transform->viewMatrix.m[3].v[2];
+		xyz[1].v[3] = (((v[1]->xyz.x * transform->viewMatrix.m[0].v[3]) + (v[1]->xyz.y * transform->viewMatrix.m[1].v[3]))
+			+ (v[1]->xyz.z * transform->viewMatrix.m[2].v[3]))
+			+ transform->viewMatrix.m[3].v[3];
+		delta.v[0] = (xyz[1].v[1] * xyz[0].v[3]) - (xyz[0].v[1] * xyz[1].v[3]);
+		delta.v[1] = (xyz[0].v[0] * xyz[1].v[3]) - (xyz[1].v[0] * xyz[0].v[3]);
+
+		Vec2Normalize(&delta);
+		delta.v[0] *= invWidth;
+		delta.v[1] *= invHeight;
+		offset[0].v[0] = xyz[0].v[3] * delta.v[0];
+		offset[0].v[1] = xyz[0].v[3] * delta.v[1];
+		offset[1].v[0] = xyz[1].v[3] * delta.v[0];
+		offset[1].v[1] = xyz[1].v[3] * delta.v[1];
+
+		RB_CheckTessOverflow(4, 6);
+		tess.indices[tess.indexCount] = tess.vertexCount + 3;
+		tess.indices[tess.indexCount + 1] = tess.vertexCount;
+		tess.indices[tess.indexCount + 2] = tess.vertexCount + 2;
+		tess.indices[tess.indexCount + 3] = tess.vertexCount + 2;
+		tess.indices[tess.indexCount + 4] = tess.vertexCount;
+		tess.indices[tess.indexCount + 5] = tess.vertexCount + 1;
+		tess.indexCount += 6;
+
+		R_SetVertex4d_0(
+			&tess.verts[tess.vertexCount],
+			xyz[0].v[0] - offset[0].v[0],
+			xyz[0].v[1] - offset[0].v[1],
+			xyz[0].v[2],
+			xyz[0].v[3],
+			0.0,
+			0.0,
+			*(int*)v[0]->color);
+		R_SetVertex4d_0(
+			&tess.verts[tess.vertexCount + 1],
+			xyz[1].v[0] - offset[1].v[0],
+			xyz[1].v[1] - offset[1].v[1],
+			xyz[1].v[2],
+			xyz[1].v[3],
+			0.0,
+			1.0,
+			*(int*)v[1]->color);
+		R_SetVertex4d_0(
+			&tess.verts[tess.vertexCount + 2],
+			xyz[1].v[0] + offset[1].v[0],
+			xyz[1].v[1] + offset[1].v[1],
+			xyz[1].v[2],
+			xyz[1].v[3],
+			1.0,
+			1.0,
+			*(int*)v[1]->color);
+		R_SetVertex4d_0(
+			&tess.verts[tess.vertexCount + 3],
+			xyz[0].v[0] + offset[0].v[0],
+			xyz[0].v[1] + offset[0].v[1],
+			xyz[0].v[2],
+			xyz[0].v[3],
+			1.0,
+			0.0,
+			*(int*)v[0]->color);
+		tess.vertexCount += 4;
+	}
+	RB_EndTessSurface();
 }
 
 /*
@@ -1786,6 +2007,25 @@ void RB_DrawLinesCmd(GfxRenderCommandExecState *execState)
 	execState->cmd = (char*)execState->cmd + *(unsigned short*)execState->cmd;
 }
 
+inline void __cdecl R_SetVertex4dWithNormal(GfxVertex* vert, float x, float y, float z, float w, float nx, float ny, float nz, float s, float t, const char* color)
+{
+	char normal[4];
+
+	normal[0] = ((nx * 127.0) + 127.5);
+	normal[1] = ((ny * 127.0) + 127.5);
+	normal[2] = ((nz * 127.0) + 127.5);
+	normal[3] = 63;
+
+	vert->xyzw.v[0] = x;
+	vert->xyzw.v[1] = y;
+	vert->xyzw.v[2] = z;
+	vert->xyzw.v[3] = w;
+	vert->normal.packed = *(int*)normal;
+	vert->color.packed = *color;
+	vert->texCoord.v[0] = s;
+	vert->texCoord.v[1] = t;
+}
+
 /*
 ==============
 RB_DrawTriangles_Internal
@@ -1793,7 +2033,38 @@ RB_DrawTriangles_Internal
 */
 void RB_DrawTriangles_Internal(const Material *material, unsigned __int8 techType, __int16 indexCount, const unsigned __int16 *indices, __int16 vertexCount, const vec4_t *xyzw, const vec3_t *normal, const GfxColor *color, const vec2_t *st)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	int index;
+
+	if (tess.indexCount)
+	{
+		RB_EndTessSurface();
+	}
+	R_Set3D(&gfxCmdBufSourceState);
+	RB_SetTessTechnique(material, techType);
+	RB_TrackPrimsBegin(&gfxCmdBufState.prim.frameStats, GFX_PRIM_STATS_DEBUG);
+	RB_CheckTessOverflow(vertexCount, indexCount);
+	for (index = 0; index < indexCount; ++index)
+	{
+		tess.indices[tess.indexCount + index] = tess.vertexCount + indices[index];
+	}
+	for (index = 0; index < vertexCount; ++index)
+	{
+		R_SetVertex4dWithNormal(
+			&tess.verts[index + tess.vertexCount],
+			xyzw[index].v[0],
+			xyzw[index].v[1],
+			xyzw[index].v[2],
+			xyzw[index].v[3],
+			normal[index].v[0],
+			normal[index].v[1],
+			normal[index].v[2],
+			st[index].v[0],
+			st[index].v[1],
+			(const char*)&color[index]);
+	}
+	tess.indexCount += indexCount;
+	tess.vertexCount += vertexCount;
+	RB_EndTessSurface();
 }
 
 /*
@@ -1801,7 +2072,7 @@ void RB_DrawTriangles_Internal(const Material *material, unsigned __int8 techTyp
 RB_DrawUIQuadsCmd
 ==============
 */
-void RB_DrawUIQuadsCmd(char *a1, GfxRenderCommandExecState *execState)
+void RB_DrawUIQuadsCmd( GfxRenderCommandExecState *execState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -1811,7 +2082,7 @@ void RB_DrawUIQuadsCmd(char *a1, GfxRenderCommandExecState *execState)
 RB_DrawUIQuadsReplaceImageCmd
 ==============
 */
-void RB_DrawUIQuadsReplaceImageCmd(char *a1, GfxRenderCommandExecState *execState)
+void RB_DrawUIQuadsReplaceImageCmd(GfxRenderCommandExecState *execState)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -2142,8 +2413,49 @@ RB_DrawHudIcon
 */
 float RB_DrawHudIcon(const char *text, float x, float y, float sinAngle, float cosAngle, Font_s *font, float xScale, float yScale, unsigned int color)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	float w, h, ya, yb;
+	float s1;
+	float s0;
+	char materialName[256];
+	Material* material;
+
+	assert(text);
+
+	if (text[0] == 'H')
+	{
+		s0 = 0.0;
+		s1 = 1.0;
+	}
+	else
+	{
+		assertMsg((text[0]) == ('I'), "text[0] == CONTXTCMD_TYPE_HUDICON_FLIP\n\t%i, %i", text[0], 'I');
+		s0 = 1.0;
+		s1 = 0.0;
+	}
+	if (text[1] && text[2] && text[3] && text[4])
+	{
+		w = ((font->pixelHeight * (text[1] - 16) + 16) / 32) * xScale;
+		h = ((font->pixelHeight * (text[2] - 16) + 16) / 32) * yScale;
+		ya = y - (((font->pixelHeight * yScale) + h) * 0.5);
+
+		assert(w > 0);
+		assert(h > 0);
+
+		memcpy(materialName, &text[4], text[3]);
+		materialName[text[3]] = 0;
+		material = Material_RegisterHandle(materialName, 7, 1, -1);
+		RB_DrawStretchPicRotate(material, x, ya, 1.0, w, h, s0, 0.0, s1, 1.0, sinAngle, cosAngle, color, GFX_PRIM_STATS_HUD);
+		return w;
+	}
+	else
+	{
+		yb = x - (((cosAngle * xScale) + 32.0) * 0.5);
+		material = Material_RegisterHandle("$default", 7, 1, -1);
+		RB_DrawStretchPicRotate(material, x, yb, 1.0, 32.0, 32.0, s0, 0.0, s1, 1.0, sinAngle, cosAngle, color, GFX_PRIM_STATS_HUD);
+		return 32.0;
+	}
+
+
 }
 
 /*
@@ -2153,8 +2465,38 @@ RB_DrawButton
 */
 float RB_DrawButton(const char *text, float x, float y, float sinAngle, float cosAngle, Font_s *font, float xScale, float yScale, unsigned int color, int *buttonNameLen)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int i;
+	char buttonName[64];
+	float pixelHeight;
+	float iconWidth;
+	float iconHeight;
+	Material* handle;
+	float w;
+	float h;
+	float ya;
+
+	for (i = 1; text[i] != '^'; ++i)
+	{
+		if (i >= '@')
+			break;
+		buttonName[i - 1] = text[i];
+	}
+	buttonName[i - 1] = 0;
+	R_GetFontIconEntryInfo(INVALID_LOCAL_CLIENT, buttonName, font->pixelHeight, &handle, &iconWidth, &iconHeight);
+	pixelHeight = font->pixelHeight;
+	w = (pixelHeight * iconWidth) * xScale;
+	h = (pixelHeight * iconHeight) * yScale;
+	ya = y - (((pixelHeight * yScale) + h) * 0.5);
+
+	assert(w > 0);
+	assert(h > 0);
+
+	if (!IsValidMaterialHandle(handle))
+	{
+		return 0.0;
+	}
+	RB_DrawStretchPicRotate(Material_FromHandle(handle), x, ya, 1.0, w, h, 0.0, 0.0, 1.0, 1.0, sinAngle, cosAngle, color, GFX_PRIM_STATS_HUD);
+	return w;
 }
 
 /*
@@ -2162,10 +2504,9 @@ float RB_DrawButton(const char *text, float x, float y, float sinAngle, float co
 RB_DrawChar
 ==============
 */
-int RB_DrawChar(unsigned int color, const Material *material, float x, float y, float w, float width, float height, float sinAngle)
+void RB_DrawChar(const Material *material, float x, float y, float w, float width, float height, float sinAngle, float cosAngle, const Glyph* glyph, unsigned int color)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	RB_DrawStretchPicRotate(material, x, y, w, width, height, glyph->s0, glyph->t0, glyph->s1, glyph->t1, sinAngle, cosAngle, color, GFX_PRIM_STATS_HUD);
 }
 
 /*
@@ -2175,7 +2516,36 @@ RB_DrawCursor
 */
 void RB_DrawCursor(const Material *material, unsigned __int8 cursor, float x, float y, float sinAngle, float cosAngle, Font_s *font, float xScale, float yScale, unsigned int color)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	unsigned int newColor;
+	const Glyph* cursorGlyph;
+
+	if (((CL_ScaledMilliseconds() / 256) & 1) == 0)
+	{
+		cursorGlyph = R_GetCharacterGlyph(font, cursor);
+		if (cursor && cursor <= 6u || cursor >= 0xEu && cursor <= 0x19u || cursor >= 0x1Cu && cursor <= 0x1Fu || cursor == 188 || cursor == 189)
+		{
+			newColor = -1;
+		}
+		else
+		{
+			newColor = color;
+		}
+		RB_DrawStretchPicRotate(
+			material,
+			x,
+			(cursorGlyph->y0 * yScale) + y,
+			1.0,
+			cursorGlyph->pixelWidth * xScale,
+			cursorGlyph->pixelHeight * yScale,
+			cursorGlyph->s0,
+			cursorGlyph->t0,
+			cursorGlyph->s1,
+			cursorGlyph->t1,
+			sinAngle,
+			cosAngle,
+			newColor,
+			GFX_PRIM_STATS_HUD);
+	}
 }
 
 /*
@@ -2185,7 +2555,17 @@ GlowColor
 */
 void GlowColor(GfxColor *result, GfxColor baseColor, GfxColor forcedGlowColor, int renderFlags)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if ((renderFlags & 0x20) != 0)
+	{
+		result->array[0] = forcedGlowColor.array[0];
+		result->packed = forcedGlowColor.packed;
+	}
+	else
+	{
+		result->array[0] = (baseColor.array[0] * 0.059999999);
+		result->array[1] = (baseColor.array[1] * 0.059999999);
+		result->array[2] = (baseColor.array[2] * 0.059999999);
+	}
 }
 
 /*
@@ -2195,8 +2575,41 @@ SetupFadeinFXVars
 */
 bool SetupFadeinFXVars(const char *text, int maxLength, int renderFlags, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, bool *resultDrawRandChar, int *resultRandSeed, bool *resultDecaying, int *resultdecayTimeElapsed)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int timeElapsed;
+	int decayTimeElapsed;
+	bool decaying;
+
+	decaying = false;
+	timeElapsed = gfxCmdBufSourceState.scissorViewport.height - fxBirthTime;
+	assert(timeElapsed >= 0);
+
+	if (timeElapsed <= fxDecayDuration + fxDecayStartTime)
+	{
+		decayTimeElapsed = 0;
+		if (timeElapsed <= fxBirthTime)
+		{
+			decaying = 1;
+			decayTimeElapsed = fxDecayDuration - timeElapsed;
+		}
+		else if (timeElapsed > fxDecayStartTime)
+		{
+			decaying = 1;
+			decayTimeElapsed = timeElapsed - fxDecayStartTime;
+		}
+		*resultDrawRandChar = 0;
+		*resultRandSeed = 0;
+		*resultDecaying = decaying;
+		*resultdecayTimeElapsed = decayTimeElapsed;
+		return true;
+	}
+	else
+	{
+		*resultDrawRandChar = 0;
+		*resultRandSeed = 1;
+		*resultDecaying = 0;
+		*resultdecayTimeElapsed = 0;
+		return false;
+	}
 }
 
 /*
@@ -2250,10 +2663,51 @@ bool SetupCOD7DecodeFXVars(const char *text, int maxLength, int fxBirthTime, int
 SetupTypewriterFXVars
 ==============
 */
-char SetupTypewriterFXVars(const char *text, int maxLength, int renderFlags, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, bool *resultDrawRandChar, int *resultRandSeed, int *resultMaxLength, bool *resultDecaying)
+char SetupTypewriterFXVars(const char *text, int maxLength, int renderFlags, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, bool *resultDrawRandChar, int *resultRandSeed, int *resultMaxLength, bool *resultDecaying, int* resultdecayTimeElapsed)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int timeElapsed;
+	int strLength;
+	int decayTimeElapsed;
+	bool decaying;
+
+	decaying = false;
+	timeElapsed = gfxCmdBufSourceState.scissorViewport.height - fxBirthTime;
+	assert(timeElapsed >= 0);
+
+	strLength = SEH_PrintStrlen(text);
+	if (strLength > maxLength)
+	{
+		strLength = maxLength;
+	}
+	if (timeElapsed <= fxDecayDuration + fxDecayStartTime)
+	{
+		decayTimeElapsed = 0;
+		if (timeElapsed <= fxLetterTime * strLength)
+		{
+			assert(fxLetterTime);
+			maxLength = timeElapsed / fxLetterTime;
+		}
+		else if (timeElapsed > fxDecayStartTime)
+		{
+			decaying = 1;
+			decayTimeElapsed = timeElapsed - fxDecayStartTime;
+		}
+		*resultDrawRandChar = 0;
+		*resultRandSeed = 0;
+		*resultMaxLength = maxLength;
+		*resultDecaying = decaying;
+		*resultdecayTimeElapsed = decayTimeElapsed;
+		return true;
+	}
+	else
+	{
+		*resultDrawRandChar = 0;
+		*resultRandSeed = 1;
+		*resultMaxLength = maxLength;
+		*resultDecaying = 0;
+		*resultdecayTimeElapsed = 0;
+		return false;
+	}
 }
 
 /*
@@ -2261,10 +2715,49 @@ char SetupTypewriterFXVars(const char *text, int maxLength, int renderFlags, int
 SetupPopInFXVars
 ==============
 */
-char SetupPopInFXVars(const char *text, int maxLength, int renderFlags, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, float *sizeIncrease, int *resultRandSeed, int *resultMaxLength, bool *resultDecaying)
+char SetupPopInFXVars(const char *text, int maxLength, int renderFlags, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, float *sizeIncrease, int *resultRandSeed, int *resultMaxLength, bool *resultDecaying, int *resultdecayTimeElapsed)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int timeElapsed;
+	int strLength;
+	int decayTimeElapsed;
+	bool decaying;
+
+	decaying = 0;
+	timeElapsed = gfxCmdBufSourceState.scissorViewport.height - fxBirthTime;
+	assert(timeElapsed >= 0);
+	strLength = SEH_PrintStrlen(text);
+	if (strLength > maxLength)
+	{
+		strLength = maxLength;
+	}
+	if (timeElapsed <= fxDecayDuration + fxDecayStartTime)
+	{
+		decayTimeElapsed = 0;
+		if (timeElapsed <= fxLetterTime * strLength)
+		{
+			assert(fxLetterTime);
+			maxLength = timeElapsed / fxLetterTime;
+		}
+		else if (timeElapsed > fxDecayStartTime)
+		{
+			decaying = 1;
+			decayTimeElapsed = timeElapsed - fxDecayStartTime;
+		}
+		*sizeIncrease = 2.0;
+		*resultRandSeed = 0;
+		*resultMaxLength = maxLength;
+		*resultDecaying = decaying;
+		*resultdecayTimeElapsed = decayTimeElapsed;
+		return true;
+	}
+	else
+	{
+		*resultRandSeed = 1;
+		*resultMaxLength = maxLength;
+		*resultDecaying = 0;
+		*resultdecayTimeElapsed = 0;
+		return false;
+	}
 }
 
 /*
@@ -2274,8 +2767,79 @@ SetupPulseFXVars
 */
 bool SetupPulseFXVars(const char *text, int maxLength, int renderFlags, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, bool *resultDrawRandChar, int *resultRandSeed, int *resultMaxLength, bool *resultDecaying, int *resultdecayTimeElapsed)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int timeRemainder;
+	int timeElapsed;
+	int randSeed;
+	int strLength;
+	bool drawRandCharAtEnd;
+	int decayTimeElapsed;
+	bool decaying;
+	int maxLengtha;
+
+	if ((renderFlags & 0x40) != 0)
+	{
+		drawRandCharAtEnd = 0;
+		randSeed = 1;
+		decaying = 0;
+		decayTimeElapsed = 0;
+		timeElapsed = gfxCmdBufSourceState.scissorViewport.height - fxBirthTime;
+		assert(timeElapsed >= 0);
+		strLength = SEH_PrintStrlen(text);
+		if (strLength > maxLength)
+		{
+			strLength = maxLength;
+		}
+		if (timeElapsed <= fxDecayDuration + fxDecayStartTime)
+		{
+			if (timeElapsed < fxLetterTime * strLength)
+			{
+				assert(fxLetterTime);
+				maxLengtha = timeElapsed / fxLetterTime;
+				drawRandCharAtEnd = 1;
+				timeRemainder = timeElapsed % fxLetterTime;
+				if (fxLetterTime / 4)
+				{
+					timeRemainder /= fxLetterTime / 4;
+				}
+				randSeed = maxLengtha + timeRemainder + strLength + fxBirthTime;
+				RandWithSeed(&randSeed);
+				RandWithSeed(&randSeed);
+				maxLength = maxLengtha + 1;
+			}
+			else if (timeElapsed > fxDecayStartTime)
+			{
+				decaying = 1;
+				randSeed = strLength + fxBirthTime;
+				RandWithSeed(&randSeed);
+				RandWithSeed(&randSeed);
+				decayTimeElapsed = timeElapsed - fxDecayStartTime;
+			}
+			*resultDrawRandChar = drawRandCharAtEnd;
+			*resultRandSeed = randSeed;
+			*resultMaxLength = maxLength;
+			*resultDecaying = decaying;
+			*resultdecayTimeElapsed = decayTimeElapsed;
+			return true;
+		}
+		else
+		{
+			*resultDrawRandChar = 0;
+			*resultRandSeed = 1;
+			*resultMaxLength = maxLength;
+			*resultDecaying = 0;
+			*resultdecayTimeElapsed = 0;
+			return false;
+		}
+	}
+	else
+	{
+		*resultDrawRandChar = 0;
+		*resultRandSeed = 1;
+		*resultMaxLength = maxLength;
+		*resultDecaying = 0;
+		*resultdecayTimeElapsed = 0;
+		return true;
+	}
 }
 
 /*
@@ -2285,7 +2849,30 @@ GetShiftColor
 */
 void GetShiftColor(GfxColor targetColor, int fxBirthTime, int fxDecayStart, int fxDecayDuration, GfxColor startColor, GfxColor *shiftColor)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	float frac;
+	int timeElapsed;
+
+	timeElapsed = gfxCmdBufSourceState.scissorViewport.height - fxBirthTime;
+	assert(timeElapsed >= 0);
+	if (timeElapsed <= fxDecayDuration + fxDecayStart)
+	{
+		if (timeElapsed <= fxDecayStart)
+		{
+			shiftColor->packed = startColor.packed;
+		}
+		else
+		{
+			frac = (timeElapsed - fxDecayStart) / fxDecayDuration;
+			shiftColor->array[2] = (startColor.array[2] + ((targetColor.array[2] - startColor.array[2]) * frac));
+			shiftColor->array[1] = (startColor.array[1] + ((targetColor.array[1] - startColor.array[1]) * frac));
+			shiftColor->array[0] = (startColor.array[0] + ((targetColor.array[0] - startColor.array[0]) * frac));
+			shiftColor->array[3] = startColor.array[3];
+		}
+	}
+	else
+	{
+		shiftColor->packed = targetColor.packed;
+	}
 }
 
 /*
@@ -2295,8 +2882,28 @@ SetupRedactTextFXVars
 */
 bool SetupRedactTextFXVars(const char *text, int maxLength, int renderFlags, int fxBirthTime, int fxLetterTime, int fxDecayStartTime, int fxDecayDuration, bool *resultDrawRandChar, int *resultRandSeed, int *resultMaxLength, bool *resultDecaying, int *resultdecayTimeElapsed)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int timeElapsed;
+	int decayTimeElapsed;
+
+	decayTimeElapsed = 0;
+	*resultDrawRandChar = 0;
+	*resultRandSeed = 1;
+	*resultMaxLength = maxLength;
+	*resultDecaying = 0;
+	*resultdecayTimeElapsed = 0;
+	timeElapsed = gfxCmdBufSourceState.scissorViewport.height - fxBirthTime;
+	assert(timeElapsed >= 0);
+	if (timeElapsed > fxDecayDuration + fxDecayStartTime)
+	{
+		return false;
+	}
+	if (timeElapsed > fxDecayStartTime)
+	{
+		decayTimeElapsed = timeElapsed - fxDecayStartTime;
+		*resultDecaying = 1;
+	}
+	*resultdecayTimeElapsed = decayTimeElapsed;
+	return true;
 }
 
 /*
@@ -2597,7 +3204,69 @@ RB_ExecuteRenderCommandsLoop
 */
 void RB_ExecuteRenderCommandsLoop(const void *cmds, int *ui3dTextureWindow)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	const GfxCmdHeader* header;
+	bool shouldRun;
+	GfxRenderCommandExecState execState;
+	int window;
+	const void* prevCmd;
+
+	PIXBeginNamedEvent(-1, "RB_ExecuteRenderCommandsLoop");
+	if (rgp.heatMapImage)
+	{
+		gfxCmdBufSourceState.input.codeImages[TEXTURE_SRC_CODE_HEATMAP] = rgp.heatMapImage;
+	}
+	else
+	{
+		gfxCmdBufSourceState.input.codeImages[TEXTURE_SRC_CODE_HEATMAP] = rgp.whiteImage;
+	}
+	if (gfxRenderTargets[17].image)
+	{
+		gfxCmdBufSourceState.input.codeImages[33] = gfxRenderTargets[17].image;
+	}
+	if (r_glob.isMultiplayer)
+	{
+		gfxCmdBufSourceState.input.codeImages[41] = Image_GetProg(35);
+	}
+
+	assertMsg((!tess.indexCount), "(tess.indexCount) = %i", tess.indexCount);
+	execState.cmd = cmds;
+	prevCmd = cmds;
+
+	if (ui3dTextureWindow)
+	{
+		window = *ui3dTextureWindow;
+	}
+	else
+	{
+		window = -1;
+	}
+
+	while (1)
+	{
+		assert((reinterpret_cast<psize_int>(execState.cmd) & 3) == 0);
+		header = (const GfxCmdHeader*)execState.cmd;
+
+		if (!header->id)
+		{
+			break;
+		}
+		if (header->ui3d & 0x80)
+		{
+			shouldRun = window >= 0 && (header->ui3d & 0x7F) == window;
+		}
+		else
+		{
+			shouldRun = window == -1;
+		}
+
+		if (shouldRun)
+		{
+			assertMsg((header->id < ARRAY_COUNT(RB_RenderCommandTable)), "(header->id) = %i", header->id);
+			assertMsg((RB_RenderCommandTable[header->id]), "(header->id) = %i", header->id);
+
+			PIXBeginNamedEvent(0xffffff, gfxRenderCommandNames[header->id]);
+		}
+	}
 }
 
 /*
@@ -2617,7 +3286,88 @@ RB_CallExecuteRenderCommands
 */
 void RB_CallExecuteRenderCommands()
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	assert(backEndData);
+
+	if (backEndData->drawType & 0x12)
+	{
+		PIXBeginNamedEvent(-1, "RB_CallExecuteRenderCommands");
+		assert((!tess.indexCount));
+		R_GPU_BeginTimer(GPU_TIMER_2D);
+		if (backEndData->viewInfoCount)
+		{
+			RB_Draw3DCommon();
+		}
+		RB_UI3D_RenderToTexture(backEndData->cmds, &backEndData->rbUI3D, &gfxCmdBufInput);
+		assert((!tess.indexCount));
+		R_InitCmdBufSourceState(&gfxCmdBufSourceState, &gfxCmdBufInput, 0);
+
+		gfxCmdBufSourceState.input.data = backEndData;
+		R_InitCmdBufState(&gfxCmdBufState, backEndData);
+		RB_TrackStageBegin(&gfxCmdBufState.prim.frameStats, GFX_PRIM_STATS_STAGE_2D);
+		R_SetRenderTargetSize(&gfxCmdBufSourceState, r_glob.frameBuffer);
+		R_SetRenderTarget(gfxCmdBufContext, r_glob.frameBuffer);
+		RB_InitSceneViewport();
+
+		++gfxCmdBufSourceState.constVersions[CONST_SRC_CODE_CINEMATIC_BLUR_BOX];
+		++gfxCmdBufSourceState.constVersions[CONST_SRC_CODE_CINEMATIC_BLUR_BOX2];
+
+		gfxCmdBufSourceState.input.consts[CONST_SRC_CODE_CINEMATIC_BLUR_BOX].v[0] = 0;
+		gfxCmdBufSourceState.input.consts[CONST_SRC_CODE_CINEMATIC_BLUR_BOX].v[1] = 0;
+		gfxCmdBufSourceState.input.consts[CONST_SRC_CODE_CINEMATIC_BLUR_BOX].v[2] = 0;
+		gfxCmdBufSourceState.input.consts[CONST_SRC_CODE_CINEMATIC_BLUR_BOX].v[3] = 0;
+		gfxCmdBufSourceState.input.consts[CONST_SRC_CODE_CINEMATIC_BLUR_BOX].b = 0;
+
+		gfxCmdBufSourceState.input.consts[CONST_SRC_CODE_CINEMATIC_BLUR_BOX2].v[0] = 0;
+		gfxCmdBufSourceState.input.consts[CONST_SRC_CODE_CINEMATIC_BLUR_BOX2].v[1] = 0;
+		gfxCmdBufSourceState.input.consts[CONST_SRC_CODE_CINEMATIC_BLUR_BOX2].v[2] = 0;
+		gfxCmdBufSourceState.input.consts[CONST_SRC_CODE_CINEMATIC_BLUR_BOX2].v[3] = 0;
+		gfxCmdBufSourceState.input.consts[CONST_SRC_CODE_CINEMATIC_BLUR_BOX2].b = 0;
+
+		if (rgp.heatMapImage)
+		{
+			gfxCmdBufSourceState.input.codeImages[TEXTURE_SRC_CODE_HEATMAP] = rgp.heatMapImage;
+		}
+		else
+		{
+			gfxCmdBufSourceState.input.codeImages[TEXTURE_SRC_CODE_HEATMAP] = rgp.whiteImage;
+		}
+
+		RB_SetUI3DSamplerAndConstants(&gfxCmdBufSourceState, &backEndData->rbUI3D);
+		RB_QRCode_SetShaderConstants(&gfxCmdBufSourceState, &backEndData->rbQRCode);
+		if (backEndData->cmds)
+		{
+			PIXBeginNamedEvent(-1, "backEndData->cmds");
+			RB_ExecuteRenderCommandsLoop(backEndData->cmds, 0);
+			if (Sys_IsRenderThread())
+			{
+				D3DPERF_EndEvent();
+			}
+		}
+		R_Perf_ResetDraw();
+		R_GPU_DrawTimers();
+		if (tess.indexCount)
+		{
+			RB_EndTessSurface();
+		}
+		R_ShutdownCmdBufState(&gfxCmdBufState);
+		R_GPU_EndTimer();
+		if (gfxCmdBufState.prim.indexBuffer)
+		{
+			R_ChangeIndices(&gfxCmdBufState.prim, 0);
+		}
+		R_ClearAllStreamSources(&gfxCmdBufState.prim);
+		assert((!tess.indexCount));
+		RB_TrackStageEnd(&gfxCmdBufState.prim.frameStats);
+		if (Sys_IsRenderThread())
+		{
+			D3DPERF_EndEvent();
+		}
+	}
+	backEndData->endFrameFence = dx.fencePool[dx.nextFence];
+	++dx.nextFence;
+	Sys_EnterCriticalSection(CRITSECT_DXCONTEXT);
+	dx.context->End(backEndData->endFrameFence);
+	Sys_LeaveCriticalSection(CRITSECT_DXCONTEXT);
 }
 
 /*
