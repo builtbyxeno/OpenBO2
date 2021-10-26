@@ -1008,7 +1008,7 @@ void Image_Upload3D_CopyData_PC(const GfxImage *image, DXGI_FORMAT format, unsig
 void __cdecl Image_UploadData(GfxImage *image, DXGI_FORMAT format, D3D11_TEXTURECUBE_FACE face, unsigned int mipLevel, const unsigned __int8 *src);
 unsigned int Image_CountMipmaps(unsigned int imageFlags, unsigned int width, unsigned int height, unsigned int depth);
 void Image_GetPicmip(const GfxImage *image, Picmip *picmip);
-unsigned int Image_CubemapFace(unsigned int faceIndex);
+D3D11_TEXTURECUBE_FACE Image_CubemapFace(unsigned int faceIndex);
 void Image_TrackTexture(GfxImage *image, int imageFlags, DXGI_FORMAT format, int width, int height, int depth);
 void Image_Setup(GfxImage *image, int width, int height, int depth, int imageFlags, DXGI_FORMAT imageFormat, void *initData);
 void Image_SetupAndLoad(GfxImage *image, int width, int height, int depth, int imageFlags, DXGI_FORMAT imageFormat);
@@ -1018,13 +1018,13 @@ void Image_SetupAndLoad(GfxImage *image, int width, int height, int depth, int i
 //t6/code/src_noserver/gfx_d3d/r_image_load_obj.cpp
 unsigned __int8 Image_GetPcStreamedMips(GfxImageFileHeader *fileHeader);
 int Image_GetPicmipUsed(const GfxImage *image);
-void Image_SetupFromFile(GfxImage *image, const GfxImageFileHeader *fileHeader, DXGI_FORMAT imageFormat, void *initData, unsigned int allocFlags, unsigned int *outStreamedSize);
+void Image_SetupFromFile(GfxImage *image, const GfxImageFileHeader *fileHeader, DXGI_FORMAT imageFormat, void *initData);
 unsigned __int8 *Image_AllocTempMemory(int bytes);
 void Image_FreeTempMemory(unsigned __int8 *mem, int bytes);
 void Image_LoadBitmap(GfxImage *image, const GfxImageFileHeader *fileHeader, unsigned __int8 *data, DXGI_FORMAT format, int bytesPerPixel, int allocFlags, unsigned int *outStreamedSize);
 void Image_LoadDxtc(GfxImage *image, const GfxImageFileHeader *fileHeader, const unsigned __int8 *data, DXGI_FORMAT format, int bytesPerBlock, unsigned int allocFlags, unsigned int *outStreamedSize);
 void __cdecl Image_LoadFromData(GfxImage *image, GfxImageFileHeader *fileHeader, unsigned __int8 *srcData, unsigned int allocFlags, unsigned int *outStreamedSize);
-char Image_LoadFromFileInternal(const GfxImageFileHeader *a1, unsigned int a2, GfxImage *image);
+char Image_LoadFromFileInternal(GfxImage *image);
 char __cdecl Image_LoadFromFile(GfxImage *image);
 void Image_Generate2D(GfxImage *image, unsigned __int8 *pixels, int width, int height, DXGI_FORMAT imageFormat);
 void Image_GenerateCube(GfxImage *image, const unsigned __int8 *(*pixels)[15], int edgeLen, DXGI_FORMAT imageFormat, const unsigned int mipCount);
@@ -1035,6 +1035,10 @@ void Image_LoadLinearGray(GfxImage *image);
 void Image_LoadIdentityNormalMap(GfxImage *image);
 void Image_LoadWhiteTransparent(GfxImage *image);
 void Image_LoadBlackTransparent(GfxImage *image);
+
+template<int S>
+void Image_LoadLightmapIntensity(GfxImage* image);
+
 GfxImage *Image_LoadBuiltin(const char *name, unsigned __int8 semantic, int imageTrack);
 GfxImage *__cdecl Image_Load(const char *name, int semantic, int imageTrack);
 
@@ -1451,7 +1455,7 @@ void TRACK_r_rendercmds();
 void R_InitGlassRenderBuffers(int numIndices, int numVerts, int vertexSize);
 void R_InitTempSkinBuf(unsigned int maxVerts);
 void R_ShutdownTempSkinBuf();
-unsigned int R_UpdateSkinCacheUsage();
+void R_UpdateSkinCacheUsage();
 GfxCmdHeader *R_GetCommandBuffer(GfxRenderCommand renderCmd, int bytes);
 void R_BeginClientCmdList2D();
 void R_ClearClientCmdList2D();

@@ -105,8 +105,13 @@ void DB_PrintAssetName(XAssetHeader header, void *data);
 void DB_MarkAssetTypeUsageDirty();
 void DB_GetAssetTypeUsageInfo(XAssetType assetType, const char **outName, int *outUsed, int *outPool);
 void DB_PrintXAssetsForType_FastFile(XAssetType type, void *inData, bool includeOverride);
+XAssetHeader DB_AllocXAssetSingleton(void* pool);
+template <typename T>
+XAssetHeader DB_AllocXAsset(void* pool);
+template <typename T>
+void DB_InitPool(void* pool, int size);
 XAssetHeader DB_AllocXAssetHeader(XAssetType type);
-unsigned int DB_Init();
+void DB_Init();
 XAssetEntry *DB_AllocXAssetEntry(XAssetType type, unsigned int zoneIndex);
 void DB_FreeXAssetEntry(XAssetEntry *assetEntry);
 void DB_LogMissingAsset(int a1, XAssetType type, const char *name);
@@ -114,10 +119,10 @@ void DB_EnumXAssets_FastFile(XAssetType type, void (*func)(XAssetHeader, void *)
 char DB_EnumXAssetsTimeout_FastFile(XAssetType type, void (*func)(XAssetHeader, void *), void *inData, bool includeOverride, int msec);
 void DB_LoadDelayedImages();
 void DB_CloneXAsset(const XAsset *from, XAsset *to, DBCloneMethod cloneMethod);
-void DB_SwapXAsset(XAsset *from, XAsset *to);
+void DB_SwapXAsset(const XAsset *from, XAsset *to);
 void DB_DelayedCloneXAsset(XAssetEntry *newEntry);
 XAssetEntry *DB_FindXAssetEntry(XAssetType type, const char *name);
-XAssetHeader DB_FindXAssetDefaultHeaderInternal(XAssetType a1, XAssetType type);
+XAssetHeader DB_FindXAssetDefaultHeaderInternal(XAssetType type);
 XAssetEntry *DB_CreateDefaultEntry(XAssetType type, const char *name);
 void DB_ListDefaultEntries_f();
 void DB_ListAssetPool(XAssetType type);
@@ -126,8 +131,8 @@ void DB_DumpMaterialList_f();
 void DB_DumpModels_f();
 bool IsConfigFile(const char *name);
 void PrintWaitedError(XAssetType type, const char *name, int waitedMsec);
-char DB_DoesXAssetExist(XAssetType type);
-char DB_DoesXAssetExist(const char *typeName, const char *name);
+bool DB_DoesXAssetExist(XAssetType type, const char* name);
+bool DB_DoesXAssetExist(const char *typeName, const char *name);
 void DB_SetInitializing(bool inUse);
 bool DB_IsXAssetDefault(XAssetType a1, XAssetType type, const char *name);
 int DB_GetAllXAssetOfType_FastFile(XAssetType type, XAssetHeader *assets, int maxCount);
@@ -141,8 +146,8 @@ void DB_BuildOSPath(const char *zoneName, const char *ext, int size, char *filen
 void DB_BuildOSPath_FromSource(const char *zoneName, FF_DIR source, int size, char *filename);
 void DB_LoadXZone(XZoneInfo *zoneInfo, unsigned int zoneCount);
 int DB_PostLoadPerXZone();
-void DB_UpdateDebugZone(int a1);
-void DB_LoadZone_f(int a1);
+void DB_UpdateDebugZone();
+void DB_LoadZone_f();
 char DB_IsZoneLoaded(const char *name);
 bool DB_IsZoneTypeLoading(int zoneType);
 char DB_IsZoneTypeLoaded(int zoneType);
@@ -153,7 +158,7 @@ int DB_TryLoadXFileInternal(const char *zoneName, int zoneFlags, int requiredVer
 void DB_InitFastFileNames();
 void DB_UnloadXZoneInternal(unsigned int zoneIndex, bool createDefault);
 void DB_UnloadXZoneMemory(XZone *zone);
-BOOL DB_FreeDefaultEntries();
+void DB_FreeDefaultEntries();
 void DB_ReleaseXAssets();
 void DB_UnloadXAssetsMemory(XZone *zone);
 void DB_UnloadXAssetsMemoryForZone(int zoneFreeFlags, int zoneFreeBit);

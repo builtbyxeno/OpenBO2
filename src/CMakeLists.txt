@@ -944,6 +944,6 @@ target_link_options(t6mp PUBLIC
     /DYNAMICBASE:NO;
     /INCREMENTAL:NO)
 
-target_link_libraries(t6mp winmm.lib wsock32.lib d3d9.lib dsound.lib xinput.lib nvapi.lib dxgi.lib d3d11.lib)
+target_link_libraries(t6mp winmm.lib wsock32.lib d3d9.lib dsound.lib xinput.lib nvapi.lib dxgi.lib d3d11.lib dxguid.lib)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

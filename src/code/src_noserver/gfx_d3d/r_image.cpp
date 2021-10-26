@@ -2,6 +2,7 @@
 #include "vars.h"
 #include <qcommon/qcommon_public.h>
 #include <gfx_d3d/gfx_d3d_public.h>
+#include <database/database_public.h>
 
 GfxImage g_imageProgs[59];
 int Image_TrackBytes;
@@ -458,7 +459,65 @@ Image_CreateCubeTexture_PC
 */
 void Image_CreateCubeTexture_PC(GfxImage *image, unsigned __int16 edgeLen, int mipmapCount, DXGI_FORMAT imageFormat, void *initData)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	HRESULT hr;
+	D3D11_SHADER_RESOURCE_VIEW_DESC viewDesc;
+	ID3D11Texture2D* cubemap;
+	D3D11_TEXTURE2D_DESC desc;
+
+	assert(image);
+	assert(!image->texture.basemap);
+
+	image->width = edgeLen;
+	image->height = edgeLen;
+	image->depth = 1;
+	image->mapType = 5;
+	memset(&desc, 0, sizeof(desc));
+	desc.Width = edgeLen;
+	desc.Height = edgeLen;
+	desc.Format = imageFormat;
+	desc.MipLevels = mipmapCount;
+	desc.ArraySize = 6;
+	desc.SampleDesc.Count = 1;
+	desc.SampleDesc.Quality = 0;
+	desc.Usage = D3D11_USAGE_DEFAULT;
+	desc.BindFlags = 8;
+	desc.MiscFlags = 4;
+
+	while (1)
+	{
+		hr = dx.device->CreateTexture2D(&desc, (const D3D11_SUBRESOURCE_DATA*)initData, &cubemap);
+		if (hr < 0)
+		{
+			break;
+		}
+		else
+		{
+			Com_Error(ERR_FATAL, __FILE__, " (%i) dx.device->CreateTexture2D(&desc, (D3D11_SUBRESOURCE_DATA*)initData, &cubemap) failed: %s\n", __LINE__, R_ErrorDescription(hr));
+		}
+	}
+
+	cubemap->SetPrivateData(WKPDID_D3DDebugObjectName, strlen(image->name), image->name);
+	viewDesc.Buffer.FirstElement = -1;
+	viewDesc.Buffer.ElementOffset = 0;
+	viewDesc.Texture3D.MipLevels = 0;
+	viewDesc.Texture3D.MostDetailedMip = 0;
+	viewDesc.Format = desc.Format;
+	viewDesc.ViewDimension = D3D_SRV_DIMENSION_TEXTURECUBE;
+
+	while (1)
+	{
+		hr = dx.device->CreateShaderResourceView(cubemap, &viewDesc, &image->texture.basemap);
+		if (hr < 0)
+		{
+			break;
+		}
+		else
+		{
+			Com_Error(ERR_FATAL, __FILE__, " (%i) dx.device->CreateShaderResourceView(cubemap, &viewDesc, &image->texture.basemap) failed: %s\n", __LINE__, R_ErrorDescription(hr));
+		}
+	}
+	image->texture.basemap->SetPrivateData(WKPDID_D3DDebugObjectName, strlen(image->name), image->name);
+	cubemap->Release();
 }
 
 /*
@@ -468,7 +527,21 @@ Image_SetupRenderTarget
 */
 void Image_SetupRenderTarget(GfxImage *image, unsigned __int16 width, unsigned __int16 height, DXGI_FORMAT imageFormat, const char *name, unsigned int allocFlags)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	assert(image);
+	assert(image->semantic == TS_2D);
+
+	if (!strcmp(image->name, "$scene"))
+	{
+		Image_SetupAndLoad(image, width, height, 1, 0x60003, imageFormat);
+	}
+	else if (!strcmp(image->name, "$ssao_csz") || !strcmp(image->name, "$dof_scene_fp16"))
+	{
+		Image_SetupAndLoad(image, width, height, 1, 0x30001, imageFormat);
+	}
+	else
+	{
+		Image_SetupAndLoad(image, width, height, 1, 0x20003, imageFormat);
+	}
 }
 
 /*
@@ -478,7 +551,101 @@ Image_PicmipForSemantic
 */
 void Image_PicmipForSemantic(unsigned __int8 semantic, Picmip *picmip)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	int picmipBump;
+
+	switch (semantic)
+	{
+	case 0u:
+	case 1u:
+		picmip = nullptr;
+		break;
+	case 2u:
+	case 0xAu:
+	case 0xCu:
+	case 0xDu:
+	case 0xEu:
+	case 0xFu:
+	case 0x10u:
+	case 0x11u:
+	case 0x12u:
+	case 0x13u:
+	case 0x14u:
+	case 0x15u:
+	case 0x16u:
+	case 0x17u:
+	case 0x18u:
+	case 0x19u:
+	case 0x1Au:
+	case 0x1Bu:
+	case 0x1Cu:
+		picmipBump = imageGlobals.picmip;
+		picmip->platform[1] = 2;
+		if (picmipBump >= 0)
+		{
+			if (picmipBump > 3)
+			{
+				picmipBump = 3;
+			}
+			picmip->platform[0] = picmipBump;
+		}
+		else
+		{
+			picmip->platform[0] = 0;
+		}
+		break;
+	case 5u:
+		picmipBump = imageGlobals.picmipBump;
+		picmip->platform[1] = 2;
+		if (picmipBump >= 0)
+		{
+			if (picmipBump > 3)
+			{
+				picmipBump = 3;
+			}
+			picmip->platform[0] = picmipBump;
+		}
+		else
+		{
+			picmip->platform[0] = 0;
+		}
+		break;
+	case 8u:
+		picmipBump = imageGlobals.picmipSpec;
+		picmip->platform[1] = 2;
+		if (picmipBump >= 0)
+		{
+			if (picmipBump > 3)
+			{
+				picmipBump = 3;
+			}
+			picmip->platform[0] = picmipBump;
+		}
+		else
+		{
+			picmip->platform[0] = 0;
+		}
+		break;
+	default:
+		AssertMsg(va("unhandled case: %d", semantic));
+	}
+}
+
+/*
+==============
+R_DuplicateTexture
+==============
+*/
+inline bool R_DuplicateTexture(GfxImage* dstImage, GfxImage* srcImage)
+{
+	if (!srcImage || !srcImage->texture.basemap)
+	{
+		return 0;
+	}
+
+	dstImage->texture.basemap = srcImage->texture.basemap;
+	dstImage->texture.basemap->AddRef();
+
+	return 1;
 }
 
 /*
@@ -488,8 +655,21 @@ Image_AssignDefaultTexture
 */
 bool Image_AssignDefaultTexture(GfxImage *image)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	if (image->mapType != MAPTYPE_2D)
+	{
+		return false;
+	}
+	if (image->semantic == TS_NORMAL_MAP)
+	{
+		return R_DuplicateTexture(image, rgp.identityNormalMapImage);
+	}
+
+	if (image->semantic == TS_SPECULAR_MAP)
+	{
+		return R_DuplicateTexture(image, rgp.blackImage);
+	}
+
+	return R_DuplicateTexture(image, rgp.whiteImage);
 }
 
 /*
@@ -499,7 +679,25 @@ R_DelayLoadImage
 */
 void R_DelayLoadImage(XAssetHeader header)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	GfxImage* image;
+	int externalDataSize;
+
+	image = header.image;
+
+	if (image->delayLoadPixels)
+	{
+		image->delayLoadPixels = 0;
+
+		externalDataSize = image->cardMemory.platform[PICMIP_PLATFORM_USED];
+		image->cardMemory.platform[PICMIP_PLATFORM_USED] = 0;
+		image->cardMemory.platform[PICMIP_PLATFORM_MINSPEC] = 0;
+
+		if (Dvar_GetBool(r_loadForRenderer) && !Image_LoadFromFile(image))
+		{
+			Image_AssignDefaultTexture(image);
+		}
+		DB_LoadedExternalData(externalDataSize);
+	}
 }
 
 /*
@@ -509,7 +707,101 @@ Load_Texture
 */
 void Load_Texture(GfxImageLoadDef **remoteLoadDef, GfxImage *image)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	int width;
+	int height;
+	int depth;
+	int faceCount;
+	int faceIndex;
+	int mipCount;
+	int mipLevel;
+	int externalDataSize;
+	const unsigned char* data;
+	GfxImageLoadDef* loadDef;
+	DXGI_FORMAT format;
+	D3D11_SUBRESOURCE_DATA initData[64];
+
+	loadDef = *remoteLoadDef;
+	assert(loadDef == image->texture.loadDef);
+	image->texture.basemap = NULL;
+
+	if (Dvar_GetBool(r_loadForRenderer))
+	{
+		format = static_cast<DXGI_FORMAT>(loadDef->format);
+		if (loadDef->resourceSize)
+		{
+			image->delayLoadPixels = 0;
+			if (image->mapType == MAPTYPE_2D)
+			{
+				faceCount = 1;
+			}
+			else if (image->mapType == MAPTYPE_3D)
+			{
+				faceCount = 1;
+			}
+
+			data = loadDef->data;
+			mipCount = Image_CountMipmaps(loadDef->flags, image->width, image->height, image->depth);
+			for (faceIndex = 0; faceIndex < faceCount; ++faceIndex)
+			{
+				if (faceCount != 1)
+				{
+					Image_CubemapFace(faceIndex);
+				}
+				for (mipLevel = 0; mipLevel < mipCount; ++mipLevel)
+				{
+					width = max(1, image->width >> mipLevel);
+					height = max(1, image->height >> mipLevel);
+					depth = max(1, image->depth >> mipLevel);
+					initData[mipCount * faceIndex].pSysMem = data;
+					initData[mipCount * faceIndex].SysMemPitch = Image_GetCardMemoryAmountForMipLevel(format, width, 1u, 1u);
+					data += Image_GetCardMemoryAmountForMipLevel(format, width, height, depth);
+				}
+			}
+			assert((data) == (&loadDef->data[loadDef->resourceSize]));
+
+			if (image->mapType == MAPTYPE_2D)
+			{
+				Image_Create2DTexture_PC(image, image->width, image->height, loadDef->levelCount, 0, format, initData);
+			}
+			else if (image->mapType == MAPTYPE_3D)
+			{
+				Image_Create3DTexture_PC(image, image->width, image->height, image->depth, loadDef->levelCount, 0, format, initData);
+			}
+			else
+			{
+				assert((image->mapType == MAPTYPE_CUBE));
+				Image_CreateCubeTexture_PC(image, image->width, loadDef->levelCount, format, initData);
+			}
+		}
+		else
+		{
+			assertMsg((static_cast<uint>(image->cardMemory.platform[PICMIP_PLATFORM_USED])
+				== Image_GetCardMemoryAmount(loadDef->flags, static_cast<DXGI_FORMAT>(loadDef->format),
+					image->width, image->height, image->depth)),
+				"(image->name) = %s", image->name);
+			assertMsg((image->texture.basemap == 0), "(image->name) = %s", image->name);
+
+			externalDataSize = image->cardMemory.platform[PICMIP_PLATFORM_USED];
+			image->delayLoadPixels = 0;
+			image->cardMemory.platform[PICMIP_PLATFORM_USED] = 0;
+			image->cardMemory.platform[PICMIP_PLATFORM_MINSPEC] = 0;
+			if (!Image_LoadFromFile(image))
+			{
+				Com_Error(ERR_DROP, "Couldn't load image '%s'\n", image->name);
+			}
+			DB_LoadedExternalData(externalDataSize);
+		}
+	}
+}
+
+/*
+==============
+Image_IsProg
+==============
+*/
+inline bool Image_IsProg(GfxImage* image)
+{
+	return image >= g_imageProgs && image < &g_imageProgs[ARRAY_COUNT(g_imageProgs) - 1];
 }
 
 /*
@@ -519,8 +811,26 @@ Image_FindExisting_LoadObj
 */
 GfxImage *Image_FindExisting_LoadObj(const char *name)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	GfxImage* image;
+	unsigned int stuck;
+	int hashIndex;
+	char error_string[256];
+
+	hashIndex = R_HashAssetName(name) & 0x7FF;
+	image = imageGlobals.imageHashTable[hashIndex];
+	stuck = 0;
+	while (image && strcmp(name, image->name))
+	{
+		hashIndex = (hashIndex + 1) & 0x7FF;
+		image = imageGlobals.imageHashTable[hashIndex];
+		if (++stuck > 0x800)
+		{
+			sprintf(error_string, "stuck %s name %x\n", name, hashIndex);
+			Com_Printf(CON_CHANNEL_SYSTEM, "%s", error_string);
+			return Image_IsProg(image) == 0 ? image : NULL;
+		}
+	}
+	return Image_IsProg(image) == 0 ? image : NULL;
 }
 
 /*
@@ -530,8 +840,22 @@ Image_FindExisting_FastFile
 */
 GfxImage *Image_FindExisting_FastFile(const char *name)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	return DB_FindXAssetHeader(ASSET_TYPE_IMAGE, name, true, -1).image;
+}
+
+/*
+==============
+Image_FindExisting
+==============
+*/
+inline GfxImage* Image_FindExisting(const char* name)
+{
+	if (IsFastFileLoad())
+	{
+		return Image_FindExisting_FastFile(name);
+	}
+
+	return Image_FindExisting_LoadObj(name);
 }
 
 /*
@@ -541,8 +865,23 @@ Image_Register_LoadObj
 */
 GfxImage *Image_Register_LoadObj(const char *imageName, unsigned __int8 semantic, int imageTrack)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	GfxImage* image;
+
+	image = Image_FindExisting(imageName);
+	if (image)
+	{
+		return image;
+	}
+
+	ProfLoad_Begin("Load image");
+	image = Image_Load(imageName, semantic, imageTrack);
+	ProfLoad_End();
+	if (!image)
+	{
+		Com_PrintError(8, "ERROR: failed to load image '%s'\n", imageName);
+	}
+
+	return image;
 }
 
 /*
@@ -552,8 +891,7 @@ Image_Register_FastFile
 */
 GfxImage *Image_Register_FastFile(const char *imageName)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	return Image_FindExisting(imageName);
 }
 
 /*
@@ -561,10 +899,14 @@ GfxImage *Image_Register_FastFile(const char *imageName)
 Image_Register
 ==============
 */
-GfxImage *Image_Register()
+GfxImage* Image_Register(const char* imageName, char semantic, int imageTrack)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	if (IsFastFileLoad())
+	{
+		return Image_Register_FastFile(imageName);
+	}
+
+	return Image_Register_LoadObj(imageName, semantic, imageTrack);
 }
 
 /*
@@ -574,6 +916,19 @@ R_EnumImages
 */
 void R_EnumImages(void (*func)(XAssetHeader, void *), void *data)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	XAssetHeader header;
+	unsigned int imageIndex;
+
+	for (imageIndex = 0; imageIndex < 0x800; ++imageIndex)
+	{
+		header.image = imageGlobals.imageHashTable[imageIndex];
+		if (header.image)
+		{
+			if (!Image_IsProg(header.image))
+			{
+				func(header, data);
+			}
+		}
+	}
 }
 

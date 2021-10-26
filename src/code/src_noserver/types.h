@@ -53167,4 +53167,48 @@ struct vpx_codec_cx_pkt
     } data;
 };
 
+struct clipMap_t
+{
+    const char* name;
+    int isInUse;
+    ClipInfo info;
+    ClipInfo* pInfo;
+    unsigned int numStaticModels;
+    cStaticModel_s* staticModelList;
+    unsigned int numNodes;
+    cNode_t* nodes;
+    unsigned int numLeafs;
+    cLeaf_s* leafs;
+    unsigned int vertCount;
+    vec3_t* verts;
+    int triCount;
+    unsigned __int16* triIndices;
+    unsigned __int8* triEdgeIsWalkable;
+    int partitionCount;
+    CollisionPartition* partitions;
+    int aabbTreeCount;
+    CollisionAabbTree* aabbTrees;
+    unsigned int numSubModels;
+    cmodel_t* cmodels;
+    int numClusters;
+    int clusterBytes;
+    unsigned __int8* visibility;
+    int vised;
+    MapEnts* mapEnts;
+    cbrush_t* box_brush;
+    cmodel_t box_model;
+    unsigned __int16 originalDynEntCount;
+    unsigned __int16 dynEntCount[4];
+    DynEntityDef* dynEntDefList[2];
+    DynEntityPose* dynEntPoseList[2];
+    DynEntityClient* dynEntClientList[2];
+    DynEntityServer* dynEntServerList[2];
+    DynEntityColl* dynEntCollList[4];
+    int num_constraints;
+    PhysConstraint* constraints;
+    int max_ropes;
+    rope_t* ropes;
+    unsigned int checksum;
+};
+
 #include <nvapi.h>

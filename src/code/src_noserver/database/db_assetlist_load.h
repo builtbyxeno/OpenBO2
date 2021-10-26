@@ -5,7 +5,7 @@
 AllocLoad_XAsset
 ==============
 */
-XAsset *AllocLoad_XAsset()
+inline XAsset *AllocLoad_XAsset()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 	return NULL;
@@ -16,7 +16,7 @@ XAsset *AllocLoad_XAsset()
 Mark_XAssetHeader
 ==============
 */
-void Mark_XAssetHeader()
+inline void Mark_XAssetHeader()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -26,7 +26,7 @@ void Mark_XAssetHeader()
 Mark_XAsset
 ==============
 */
-void Mark_XAsset()
+inline void Mark_XAsset()
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -36,7 +36,7 @@ void Mark_XAsset()
 Load_XAssetHeader
 ==============
 */
-void Load_XAssetHeader(bool atStreamStart)
+inline void Load_XAssetHeader(bool atStreamStart)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }
@@ -46,7 +46,7 @@ void Load_XAssetHeader(bool atStreamStart)
 Load_XAsset
 ==============
 */
-void Load_XAsset(bool atStreamStart)
+inline void Load_XAsset(bool atStreamStart)
 {
 	UNIMPLEMENTED(__FUNCTION__);
 }

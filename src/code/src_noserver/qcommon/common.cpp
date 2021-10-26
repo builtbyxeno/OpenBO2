@@ -25,7 +25,6 @@
 #include <mjpeg/mjpeg_public.h>
 #include <gfx_d3d/r_pix_profile.h>
 #include <game_mp/game_mp_public.h>
-#include <physics/phys_colgeom.h>
 #include <server/server_public.h>
 #include <glass/glass_public.h>
 #include <flame/flame_public.h>
@@ -443,9 +442,8 @@ Com_ShutdownDynamicMemorySystems
 */
 void Com_ShutdownDynamicMemorySystems()
 {
-	CL_FlushGump();
+	DB_FlushGumps();
 	R_Cinematic_FreeBuffers();
-	Prof_ForceCameraFreeMemory();
 	GlassCl_FreeMemory();
 	R_UI3D_Shutdown();
 	BB_ResetHighWaterMarks();

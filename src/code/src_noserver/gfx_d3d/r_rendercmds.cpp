@@ -112,7 +112,7 @@ void R_ShutdownTempSkinBuf()
 R_UpdateSkinCacheUsage
 ==============
 */
-unsigned int R_UpdateSkinCacheUsage()
+void R_UpdateSkinCacheUsage()
 {
 	rg.skinnedVertexCacheUsed[frontEndDataOut->viewInfoIndex] = frontEndDataOut->skinnedCacheVertsAllocated / frontEndDataOut->skinnedCacheVb->total;
 }
@@ -162,8 +162,6 @@ GfxCmdHeader *R_GetCommandBuffer(GfxRenderCommand renderCmd, int bytes)
 
 		return NULL;
 	}
-
-	PIXSetMarker(0, gfxRenderCommandNames[renderCmd]);
 
 	header = (GfxCmdHeader*)&s_cmdList->cmds[s_cmdList->usedTotal];
 	s_cmdList->usedTotal += bytes;

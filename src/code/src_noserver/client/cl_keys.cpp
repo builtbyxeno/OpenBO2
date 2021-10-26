@@ -1,5 +1,9 @@
 #include "types.h"
+#include "vars.h"
 #include "client_public.h"
+#include <client_mp/client_mp_public.h>
+
+PlayerKeyState playerKeys[MAX_LOCAL_CLIENTS];
 
 /*
 ==============
@@ -601,10 +605,33 @@ void CL_CharEvent(LocalClientNum_t localClientNum, int key)
 CL_GetKeyBindingInternal
 ==============
 */
-int __cdecl CL_GetKeyBindingInternal(LocalClientNum_t localClientNum, const char *command, char (*keyNames)[128], int gamePadOnly, BindIndex_t bindNum)
+int CL_GetKeyBindingInternal(LocalClientNum_t localClientNum, const char *command, char (*keyNames)[128], int gamePadOnly, BindIndex_t bindNum)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	int keys[2];
+	int bindCount;
+	Bind_t bind;
+
+	Sys_EnterCriticalSection(CRITSECT_KEY_BINDINGS);
+	(*keyNames)[128] = 0;
+	bind = Key_GetBindingForCmd(command);
+	bindCount = Key_GetCommandAssignmentInternal(localClientNum, bind, keys, bindNum, gamePadOnly);
+	assert((0) <= (bindCount) && (bindCount) <= (2));
+	if (bindCount)
+	{
+		Key_KeynumToStringBuf(localClientNum, keys[0], (char*)keyNames, 128);
+		if (bindCount == 2)
+		{
+			Key_KeynumToStringBuf(localClientNum, keys[1], &(*keyNames)[128], 128);
+		}
+		Sys_LeaveCriticalSection(CRITSECT_KEY_BINDINGS);
+		return bindCount;
+	}
+	else
+	{
+		strcpy((char*)keyNames, "KEY_UNBOUND");
+		Sys_LeaveCriticalSection(CRITSECT_KEY_BINDINGS);
+		return 0;
+	}
 }
 
 /*
@@ -614,8 +641,7 @@ CL_GetKeyBinding
 */
 int CL_GetKeyBinding(LocalClientNum_t localClientNum, const char *command, char (*keyNames)[128], BindIndex_t bindNum)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return CL_GetKeyBindingInternal(localClientNum, command, keyNames, 0, bindNum);
 }
 
 /*
@@ -625,8 +651,7 @@ CL_GetGamePadBinding
 */
 int CL_GetGamePadBinding(LocalClientNum_t localClientNum, const char *command, char (*keyNames)[128], BindIndex_t bindNum)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return CL_GetKeyBindingInternal(localClientNum, command, keyNames, 1, bindNum);
 }
 
 /*
@@ -649,8 +674,42 @@ Key_WriteBindingsToBuffer
 */
 int Key_WriteBindingsToBuffer(LocalClientNum_t localClientNum, char* buffer, int bufferSize)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	//TODO
 	return 0;
+
+	int bytesUsed;
+	const char* bind;
+	KeyState* keys;
+	int len;
+	int keyIndex;
+
+	keys = playerKeys[localClientNum].keys;
+	bufferSize = bufferSize - 4;
+	bytesUsed = 0;
+	for (keyIndex = 0; keyIndex < 256; ++keyIndex)
+	{
+		if (keys[keyIndex].binding[0] && *&keys[keyIndex].binding[0] || keys[keyIndex].binding[1] && *&keys[keyIndex].binding[1])
+		{
+			if (keys[keyIndex].binding[0] && *&keys[keyIndex].binding[0])
+			{
+				len = Com_sprintf(&buffer[bytesUsed], bufferSize - bytesUsed, "bind %s \"", Key_KeynumToString(keyIndex, 0));
+				if (len < 0)
+				{
+					return bytesUsed;
+				}
+
+				bytesUsed = len + bytesUsed;
+				/*for (bind = keys[keyIndex].binding; *bind && bytesUsed < bufferSize; ++bind)
+				{
+					if (*bind == 34)
+					{
+						buffer[bytesUsed++] = 92;
+					}
+					buffer[bytesUsed++] = *bind;
+				}*/
+			}
+		}
+	}
 }
 
 /*

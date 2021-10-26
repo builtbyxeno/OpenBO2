@@ -25,7 +25,7 @@ Sys_Mkdir
 */
 void Sys_Mkdir(const char *path)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+    _mkdir(path);
 }
 
 /*
@@ -35,7 +35,23 @@ Sys_MkdirEx
 */
 void Sys_MkdirEx(const char *_path)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+    int pathLen;
+    int i;
+    char currChar;
+    char path[1024];
+
+    strcpy(path, _path);
+    pathLen = strlen(path);
+    for (i = 0; i < pathLen; ++i)
+    {
+        currChar = path[i];
+        if (currChar == 47 || currChar == 92)
+        {
+            path[i] = 0;
+            _mkdir(path);
+            path[i] = currChar;
+        }
+    }
 }
 
 /*

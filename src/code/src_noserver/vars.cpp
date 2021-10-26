@@ -3579,7 +3579,7 @@ dvar_t* party_maxplayers_wagerpartylobby;
 dvar_t* party_maxplayers_privatematch;
 dvar_t* party_maxplayers_wagermatch;
 
-dvar_t* s_dvarHashTable[1024];
+dvar_t* s_dvarHashTable[1600];
 
 int g_dvarCount;
 
@@ -3738,3 +3738,8 @@ int g_disableRendering;
 materialCommands_t tess;
 GfxWorldDraw* g_worldDraw;
 GfxScaledPlacement s_manualObjectPlacement;
+
+clipMap_t cm;
+GameWorldMp gameWorldMp;
+GfxWorld s_world;
+XModelRigidCullInfoContext* cullInfoContext;

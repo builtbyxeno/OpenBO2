@@ -14,13 +14,11 @@
 #include <client/client_public.h>
 
 r_backEndGlobals_t backEnd;
-GfxCmdBufState gfxCmdBufState;
 
 GfxBackEndData* data;
 GfxBackEndData* backEndData;
 
 GfxCmdBufContext gfxCmdBufContext = { { { &gfxCmdBufSourceState, &gfxCmdBufState } } };
-GfxCmdBufSourceState gfxCmdBufSourceState;
 
 GfxFrameStats g_frameStatsCur;
 
@@ -79,6 +77,43 @@ void(__cdecl* const RB_RenderCommandTable[33])(GfxRenderCommandExecState*) =
   &RB_ProjectionSetCmd,
   &RB_DrawFramedCmd,
   &RB_ConstantSetCmd
+};
+
+const char* gfxRenderCommandNames[33] =
+{
+  "RC_END_OF_LIST",
+  "RC_SET_CUSTOM_CONSTANT",
+  "RC_SET_MATERIAL_COLOR",
+  "RC_SAVE_SCREEN",
+  "RC_SAVE_SCREEN_SECTION",
+  "RC_CLEAR_SCREEN",
+  "RC_BEGIN_VIEW",
+  "RC_SET_VIEWPORT",
+  "RC_SET_SCISSOR",
+  "RC_RESOLVE_COMPOSITE",
+  "RC_PC_COPY_IMAGE_GEN_MIP",
+  "RC_STRETCH_PIC",
+  "RC_STRETCH_PIC_FLIP_ST",
+  "RC_STRETCH_PIC_ROTATE_XY",
+  "RC_STRETCH_PIC_ROTATE_ST",
+  "RC_DRAW_QUAD_PIC",
+  "RC_DRAW_FULL_SCREEN_COLORED_QUAD",
+  "RC_DRAW_TEXT_2D",
+  "RC_DRAW_TEXT_3D",
+  "RC_BLEND_SAVED_SCREEN_BLURRED",
+  "RC_BLEND_SAVED_SCREEN_FLASHED",
+  "RC_DRAW_POINTS",
+  "RC_DRAW_LINES",
+  "RC_DRAW_UI_QUADS",
+  "RC_DRAW_UI_QUADS_REPLACE_IMAGE",
+  "RC_DRAW_UI_TRIANGLES",
+  "RC_DRAW_TRIANGLES",
+  "RC_DRAW_QUADLIST_2D",
+  "RC_DRAW_EMBLEM_LAYER",
+  "RC_STRETCH_COMPOSITE",
+  "RC_PROJECTION_SET",
+  "RC_DRAW_FRAMED",
+  "RC_CONSTANT_SET"
 };
 
 /*
@@ -150,6 +185,18 @@ void R_SetVertex3d(GfxVertex* vert, float x, float y, float z, float s, float t,
 	vert->normal.packed = 0x3FFE7F7F;
 	vert->color.packed = color;
 
+	vert->texCoord.v[0] = s;
+	vert->texCoord.v[1] = t;
+}
+
+inline void R_SetVertex4d(GfxVertex* vert, float x, float y, float z, float w, float s, float t, int color)
+{
+	vert->xyzw.v[0] = x;
+	vert->xyzw.v[1] = y;
+	vert->xyzw.v[2] = z;
+	vert->xyzw.v[3] = w;
+	vert->normal.packed = 1073643391;
+	vert->color.packed = color;
 	vert->texCoord.v[0] = s;
 	vert->texCoord.v[1] = t;
 }
@@ -596,18 +643,6 @@ void RB_StretchPicCmdFlipST(GfxRenderCommandExecState *execState)
 	RB_DrawStretchPicFlipST(cmd->material, cmd->x, cmd->y, cmd->w, cmd->h, cmd->centerS, cmd->centerT, cmd->scaleFinalS, cmd->scaleFinalT, cmd->color.packed, GFX_PRIM_STATS_HUD);
 
 	execState->cmd = (char*)execState->cmd + *(unsigned short*)execState->cmd;
-}
-
-inline void R_SetVertex4d(GfxVertex* vert, float x, float y, float z, float w, float s, float t, int color)
-{
-	vert->xyzw.v[0] = x;
-	vert->xyzw.v[1] = y;
-	vert->xyzw.v[2] = z;
-	vert->xyzw.v[3] = w;
-	vert->normal.packed = 1073643391;
-	vert->color.packed = color;
-	vert->texCoord.v[0] = s;
-	vert->texCoord.v[1] = t;
 }
 
 /*

@@ -1,4 +1,7 @@
 #include "types.h"
+#include "vars.h"
+
+#define FOGCOUNT 6
 
 /*
 ==============
