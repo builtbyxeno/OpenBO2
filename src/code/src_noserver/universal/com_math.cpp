@@ -61,8 +61,17 @@ LinearTrack
 */
 double LinearTrack(float tgt, float cur, float rate, float deltaTime)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	float v4 = rate * deltaTime;
+
+	if ((tgt - cur) <= 0)
+		v4 = -v4;
+
+	const float v5 = fabs(tgt - cur);
+
+	if (v5 <= 0.001 || fabs(v4) > v5)
+		return tgt;
+	else
+		return v4 + cur;
 }
 
 /*
@@ -83,8 +92,14 @@ DiffTrack
 */
 double DiffTrack(float tgt, float cur, float rate, float deltaTime)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	const float d = tgd - cur;
+	const float step = rate * d * deltaTime;
+	const float ad = fabs(d);
+
+	if (ad <= 0.001 || fabs(step) > ad)
+		return tgt;
+
+	return cur + step;
 }
 
 /*
@@ -116,8 +131,15 @@ Q_acos
 */
 double Q_acos(const float c)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	const float angle = acos(c);
+
+	if (angle > M_PI)
+		return static_cast<float>(M_PI);
+
+	if (angle < -M_PI)
+		return static_cast<float>(M_PI);
+
+	return angle;
 }
 
 /*
@@ -127,8 +149,13 @@ ClampChar
 */
 char ClampChar(const int i)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	if (i < CHAR_MIN)
+		return CHAR_MIN;
+
+	if (i > CHAR_MAX)
+		return CHAR_MAX;
+
+	return i;;
 }
 
 /*
@@ -138,8 +165,13 @@ ClampShort
 */
 int ClampShort(const int i)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	if (i < SHRT_MIN)
+		return SHRT_MIN;
+
+	if (i > SHRT_MAX)
+		return SHRT_MAX;
+
+	return i;
 }
 
 /*
@@ -168,10 +200,15 @@ void ByteToDir(const int b, vec3_t *dir)
 VecNCompareCustomEpsilon
 ==============
 */
-int VecNCompareCustomEpsilon(const vec3_t *v0, const vec3_t *v1, float epsilon, int coordCount)
+int VecNCompareCustomEpsilon(const float *v0, const float *v1, float epsilon, int coordCount)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	for (int i = 0; i < coordCount; ++i)
+	{
+		if ((v0[i] - v1[i]) * (v[i] - v1[i]) > epsilon * epsilon)
+			return false;
+	}
+
+	return true;
 }
 
 /*
@@ -181,7 +218,51 @@ Vec3ProjectionCoords
 */
 void Vec3ProjectionCoords(const vec3_t *dir, int *xCoord, int *yCoord)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	const float v3 = dir->x * dir->x;
+	const float v4 = dir->z * dir->z;
+	const float v5 = dir->y * dir->y;
+
+	if (v4 < v3 || v4 < v5)
+	{
+		if (v5 < v3 || v5 < v4)
+		{
+			if (dir->x <= 0)
+			{
+				*xCoord = 2;
+				*yCoord = 1;
+			}
+
+			else
+			{
+				*xCoord = 1;
+				*yCoord = 2;
+			}
+		}
+
+		else if (dir->y <= 0)
+		{
+			*xCoord = 0;
+			*yCoord = 2;
+		}
+
+		else
+		{
+			*xCoord = 2;
+			*yCoord = 0;
+		}
+	}
+
+	else if (dir->z <= 0)
+	{
+		*xCoord = 1;
+		*yCoord = 0;
+	}
+
+	else
+	{
+		*xCoord = 0;
+		*yCoord = 1;
+	}
 }
 
 /*
@@ -191,7 +272,15 @@ vectoyaw
 */
 void vectoyaw(vec2_t const &)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (vec.z == 0 && vec.y == 0)
+		return 0;
+
+	const float yaw = (atan2(vec.z, vec.y) * 180 / M_PI);
+
+	if (yaw >= 0)
+		return yaw;
+
+	return yaw + 360;
 }
 
 /*
@@ -231,7 +320,23 @@ YawVectors
 */
 void YawVectors(float yaw, vec3_t *forward, vec3_t *right)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	const float angle = yaw * 0.017453292;
+	const float cy = cos(angle);
+	const float sy = sin(angle);
+
+	if (forward)
+	{
+		forward->x = cy;
+		forward->y = sy;
+		forward->z = 0;
+	}
+
+	if (right)
+	{
+		right->x = sy;
+		right->y = -cy;
+		right->z = 0;
+	}
 }
 
 /*
@@ -241,7 +346,21 @@ YawVectors2D
 */
 void YawVectors2D(float yaw, vec2_t *forward, vec2_t *right)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	const float angle = yaw * 0.017453292;
+	const float cy = cos(angle);
+	const float sy = sin(angle);
+
+	if (forward)
+	{
+		forward->x = cy;
+		forward->y = sy;
+	}
+
+	if (right)
+	{
+		right->x = sy;
+		right->y = -cy;
+	}
 }
 
 /*
@@ -596,8 +715,7 @@ AngleNormalize360
 */
 double AngleNormalize360(const float angle)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return (360.0 / 65536) * (static_cast<int>(angle * (65536 / 360.0)) & 65535);
 }
 
 /*
@@ -607,8 +725,19 @@ RadiusFromBounds2DSq
 */
 double RadiusFromBounds2DSq(const vec2_t *mins, const vec2_t *maxs)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	vec2_t corner;
+
+	for (int i = 0; i < 2; ++i)
+	{
+		const float a = fabs(mins[i]);
+		const float b = fabs(maxs[i]);
+		if (a <= b)
+			corner[i] = b;
+		else
+			corner[i] = a;
+	}
+
+	return corner.x * corner.x + corner.y * corner.y;
 }
 
 /*
@@ -638,7 +767,23 @@ AddPointToBounds
 */
 void AddPointToBounds(const vec3_t *v, vec3_t *mins, vec3_t *maxs)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (v->x < mins->x)
+		mins->x = v->x;
+
+	if (v->x > maxs->x)
+		maxs->x = v->x;
+
+	if (v->y < mins->y)
+		mins->y = v->y;
+
+	if (v->y > maxs->y)
+		maxs->y = v->y;
+
+	if (v->z < mins->z)
+		mins->z = v->z;
+
+	if (v->z > maxs->z)
+		maxs->z = v->z;
 }
 
 /*
@@ -648,7 +793,17 @@ AddPointToBounds2D
 */
 void AddPointToBounds2D(const vec2_t *v, vec2_t *mins, vec2_t *maxs)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (mins->x > v->x)
+		mins->x = v->x;
+
+	if (v->x > maxs->x)
+		maxs->x = v->x;
+
+	if (mins->y > v->y)
+		mins->y = v->y;
+
+	if (v->y; > maxs->y)
+		maxs->y = v->y;
 }
 
 /*
@@ -658,8 +813,12 @@ BoundsOverlap
 */
 BOOL BoundsOverlap(const vec3_t *mins0, const vec3_t *maxs0, const vec3_t *mins1, const vec3_t *maxs1)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return mins0->x <= maxs1->x
+		&& mins1->x <= maxs0->x
+		&& mins0->y <= maxs1->y
+		&& mins1->y <= maxs0->y
+		&& mins0->z <= maxs1->z
+		&& mins1->z <= maxs0->z;
 }
 
 /*
@@ -669,7 +828,23 @@ ExpandBounds
 */
 void ExpandBounds(const vec3_t *addedmins, const vec3_t *addedmaxs, vec3_t *mins, vec3_t *maxs)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (mins->x > addedmins->x)
+		mins->x = addedmins->x;
+
+	if (addedmaxs->x > maxs->x)
+		maxs->x = addedmaxs->x;
+
+	if (mins->y > addedmins->y;)
+		mins->y = addedmins->y;
+
+	if (addedmaxs->y > maxs->y)
+		maxs->y = addedmaxs->y;
+
+	if (mins->z > addedmins->z)
+		mins->z = addedmins->z;
+
+	if (addedmaxs->z > maxs->z)
+		maxs->z = addedmaxs->z;
 }
 
 /*
@@ -824,8 +999,7 @@ Q_rint
 */
 double Q_rint(const float in)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return floor(in + 0.5);
 }
 
 /*
