@@ -286,11 +286,7 @@ I_islower
 */
 BOOL I_islower(int c)
 {
-	if (c >= 'a' && c <= 'z')
-	{
-		return true;
-	}
-	return false;
+	return islower(c);
 }
 
 /*
@@ -300,11 +296,7 @@ I_isupper
 */
 BOOL I_isupper(int c)
 {
-	if (c >= 'A' && c <= 'Z')
-	{
-		return TRUE;
-	}
-	return FALSE;
+	return isupper(c);
 }
 
 /*
@@ -314,11 +306,7 @@ I_isalpha
 */
 BOOL I_isalpha(int c)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-	{
-		return TRUE;
-	}
-	return FALSE;
+	return isalpha(c);
 }
 
 
@@ -329,12 +317,7 @@ I_isdigit
 */
 BOOL I_isdigit(int c)
 {
-	if (c >= '0' && c <= '9')
-	{
-		return TRUE;
-	}
-
-	return FALSE;
+	return isdigit(c);
 }
 
 /*
@@ -344,7 +327,7 @@ I_isalnum
 */
 BOOL I_isalnum(int c)
 {
-	return I_isalpha(c) || I_isdigit(c);
+	return isalnum(c);
 }
 
 /*
@@ -609,18 +592,12 @@ I_iscsym
 */
 BOOL I_iscsym(int c)
 {
-	if (c >= 'a' && c <= 'z')
-	{
+	if (isalpha(c))
 		return 1;
-	}
-	if (c >= 'A' && c <= 'Z')
-	{
-		return 1;
-	}
-	if (c < '0' || c > '9')
-	{
+
+	if (isdigit(c))
 		return c == '_';
-	}
+
 	return 1;
 }
 
@@ -677,8 +654,7 @@ I_IsSpecialToken
 */
 bool I_IsSpecialToken(const char *buf)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return buf && (*buf == '^' && buf[1] || *buf == '[' && buf[1] == '{');
 }
 
 /*
@@ -688,7 +664,19 @@ I_IsSpecialTokenRecursive
 */
 int I_IsSpecialTokenRecursive(const char *buf)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	int IsSpecialTokenRecursive;
+
+	if (!buf)
+		return 0;
+
+	char v1 = *buf;
+
+	if (*buf == '^' && buf[1] || v1 == '[' && buf[1] == '{')
+		return 2;
+
+	if ((v1 == '^' || v1 == '[') && (IsSpecialTokenRecursive = I_IsSpecialTokenRecursive(buf + 1)) != 0)
+		return IsSpecialTokenRecursive + 1;
+
 	return 0;
 }
 
@@ -1484,7 +1472,23 @@ AddLeanToPosition
 */
 void AddLeanToPosition(vec3_t *position, const float fViewYaw, const float fLeanFrac, const float fViewRoll, const float fLeanDist)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	if (fLeanFrac != 0)
+	{
+		const float fLean = (2 - fabs(fLeanFrac)) * fLeanFrac;
+
+		vAng.x = 0;
+		vAng.y = fViewYaw;
+		vAng.z = fLean * fViewRoll;
+
+		vec3_t vAng;
+		vec3_t vRight;
+
+		AngleVectors(&vAng, 0, &vRight, 0);
+
+		position->x = (vRight.x * (fLean * fLeanDist)) + position->x;
+		position->y = (vRight.y * (fLean * fLeanDist)) + position->y;
+		position->z = (vRight.z * (fLean * fLeanDist)) + position->z;
+	}
 }
 
 /*
@@ -1504,7 +1508,21 @@ OrientationInvert
 */
 void OrientationInvert(const orientation_t *orient, orientation_t *out)
 {
-	UNIMPLEMENTED(__FUNCTION__);
+	out->axis[0].x = orient->axis[0].x;
+	out->axis[0].y = orient->axis[1].x;
+	out->axis[0].z = orient->axis[2].x;
+
+	out->axis[1].x = orient->axis[0].y;
+	out->axis[1].y = orient->axis[1].y;
+	out->axis[1].z = orient->axis[2].y;
+
+	out->axis[2].x = orient->axis[0].z;
+	out->axis[2].y = orient->axis[1].z;
+	out->axis[2].z = orient->axis[2].z;
+
+	out->origin.x = (out->axis[0].x * orient->origin.x) + (out->axis[1].x * orient->origin.y) + (out->axis[2].x * orient->origin.z);
+	out->origin.y = (out->axis[0].y * orient->origin.x) + (out->axis[1].y * orient->origin.y) + (out->axis[2].y * orient->origin.z);
+	out->origin.z = (out->axis[0].z * orient->origin.x) + (out->axis[1].z * orient->origin.y) + (out->axis[2].z * orient->origin.z);
 }
 
 /*

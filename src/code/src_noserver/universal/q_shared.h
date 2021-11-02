@@ -31,8 +31,9 @@ Com_IsRagdollTrajectory
 */
 inline BOOL Com_IsRagdollTrajectory(const trajectory_t *trajectory)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	assert(trajectory);
+
+	return trajectory->trType >= 12u && trajectory->trType <= 14u;
 }
 
 /*
@@ -42,8 +43,7 @@ Com_OnSameTeam
 */
 inline BOOL Com_OnSameTeam(team_t team1, team_t team2)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return 0;
+	return team1 && team1 == team2;
 }
 
 /*
