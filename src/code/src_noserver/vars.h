@@ -3747,3 +3747,7 @@ extern clipMap_t cm;
 extern GameWorldMp gameWorldMp;
 extern GfxWorld s_world;
 extern XModelRigidCullInfoContext* cullInfoContext;
+
+extern StringTable* s_sortTable;
+extern bool isTableInitialised;
+extern StringTable* s_sortTable_0;

@@ -3743,3 +3743,7 @@ clipMap_t cm;
 GameWorldMp gameWorldMp;
 GfxWorld s_world;
 XModelRigidCullInfoContext* cullInfoContext;
+
+StringTable* s_sortTable;
+bool isTableInitialised;
+StringTable* s_sortTable_0;

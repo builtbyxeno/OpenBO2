@@ -116,7 +116,10 @@
 #include <WinSock2.h>
 #include <WS2tcpip.h>
 #include <windows.h>
+#include <cmath>
+#include <cstdint>
 #include <cstdio>
+#include <cstdlib>
 #include <Psapi.h>
 #include <xmmintrin.h>
 #include <time.h>
