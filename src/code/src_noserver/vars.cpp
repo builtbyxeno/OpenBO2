@@ -3747,3 +3747,6 @@ XModelRigidCullInfoContext* cullInfoContext;
 StringTable* s_sortTable;
 bool isTableInitialised;
 StringTable* s_sortTable_0;
+
+const StringTable* configStringTable;
+int configStringTableChecksum;

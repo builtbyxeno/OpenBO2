@@ -3751,3 +3751,6 @@ extern XModelRigidCullInfoContext* cullInfoContext;
 extern StringTable* s_sortTable;
 extern bool isTableInitialised;
 extern StringTable* s_sortTable_0;
+
+extern const StringTable* configStringTable;
+extern int configStringTableChecksum;
