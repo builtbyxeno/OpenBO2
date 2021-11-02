@@ -38,7 +38,7 @@ Z_TryVirtualCommitInternal
 int Z_TryVirtualCommitInternal(void *ptr, int size)
 {
 	assertMsg((size >= 0), "(size) = %i", size);
-	return VirtualAlloc(ptr, size, (size > 0x20000 ? 0 : 0x100000) | 0x1000, 4) != NULL;
+	return VirtualAlloc(ptr, size, (size > 0x20000 ? 0 : MEM_TOP_DOWN) | MEM_COMMIT, 4) != NULL;
 }
 
 /*
@@ -639,7 +639,7 @@ Z_VirtualFree
 */
 void Z_VirtualFree(void* ptr)
 {
-	VirtualFree(ptr, 0, 0x8000u);
+	VirtualFree(ptr, 0, MEM_RELEASE);
 }
 
 /*
@@ -659,7 +659,7 @@ Z_VirtualDecommit
 */
 void Z_VirtualDecommit(void* ptr, int size)
 {
-	VirtualFree(ptr, size, 0x4000u);
+	VirtualFree(ptr, size, MEM_DECOMMIT);
 }
 
 /*
@@ -694,7 +694,7 @@ void* Z_VirtualAlloc(int size, const char* name, int type)
 	}
 	if (Z_TryVirtualCommitInternal(buf, size))
 	{
-		VirtualFree(buf, 0, 0x8000u);
+		Z_VirtualFree(buf);
 		Sys_OutOfMemErrorInternal(__FILE__, __LINE__);
 	}
 	track_z_commit((size + 4095) & 0xFFFFF000, type);
@@ -708,7 +708,7 @@ Z_VirtualCommit
 */
 void Z_VirtualCommit(void* ptr, int size)
 {
-	if (!VirtualAlloc(ptr, size, (size > 0x20000 ? 0 : 0x100000) | 0x1000, 4u))
+	if (!VirtualAlloc(ptr, size, (size > 0x20000 ? 0 : MEM_TOP_DOWN) | MEM_COMMIT, 4u))
 		Sys_OutOfMemErrorInternal(__FILE__, __LINE__);
 }
 
@@ -719,7 +719,7 @@ Z_VirtualReserve
 */
 void* Z_VirtualReserve(int size)
 {
-	void* alloc = VirtualAlloc(0, size, (size > 0x20000 ? 0 : 0x100000) | 0x2000, 4u);
+	void* alloc = VirtualAlloc(0, size, (size > 0x20000 ? 0 : MEM_TOP_DOWN) | MEM_RESERVE, 4u);
 	assert(alloc);
 	return alloc;
 }

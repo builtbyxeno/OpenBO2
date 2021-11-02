@@ -31,8 +31,25 @@ Com_HashKey
 */
 const char *Com_HashKey(const char *string, int maxlen)
 {
-	UNIMPLEMENTED(__FUNCTION__);
-	return NULL;
+	const char* result = string;
+	int v3 = 0;
+
+	result = string;
+	if (string)
+	{
+		for (int i = 0; i < maxlen; ++result)
+		{
+			if (!*result)
+				break;
+
+			++i;
+			v3 += *result * (DWORD)&result[119 - (DWORD)string];
+		}
+		
+		return (const char*)(v3 ^ ((v3 ^ (v3 >> 10)) >> 10));
+	}
+
+	return result;
 }
 
 /*
